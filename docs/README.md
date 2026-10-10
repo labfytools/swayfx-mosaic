@@ -15,7 +15,8 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 7. [Roadmap](ROADMAP.md): ordered future work, not proof of implementation.
 8. [STEP20C viewport proposal](design/STEP20C_VIEWPORT_DESIGN.md): proposed design, subordinate to accepted canonical contracts.
 9. [STEP20C feasibility probe](design/STEP20C_FEASIBILITY_PROBE.md): isolated technical evidence and an unresolved multi-output gate.
-10. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+10. [STEP20C SceneFX subtree spike](design/STEP20C_SCENEFX_CLIPPING_SPIKE.md): isolated clipping, popup and packaging evidence; production gate remains open.
+11. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -48,6 +49,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | --- | --- | --- |
 | [STEP20C viewport design](design/STEP20C_VIEWPORT_DESIGN.md) | Proposed, not yet accepted | Source audit, clipping alternatives, test plan, feasibility gate |
 | [STEP20C feasibility probe](design/STEP20C_FEASIBILITY_PROBE.md) | Experimental evidence | PARTIALLY FEASIBLE; visual and input boundary failed in a two-output headless candidate |
+| [STEP20C SceneFX subtree spike](design/STEP20C_SCENEFX_CLIPPING_SPIKE.md) | Experimental evidence | PARTIALLY FEASIBLE; tiled clip worked privately, global popup leaked pixels and input |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 
