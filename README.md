@@ -1,166 +1,162 @@
-<p align="center">
-    <img src="assets/swayfx_logo.svg" width="256" alt="swayfx logo">
-</p>
+# SwayFX Mosaic
 
+**SwayFX Mosaic** is an experimental SwayFX variant that adds a native **Mosaic / Spatial Canvas** tiling layout.
 
-Sway is an incredible window manager, and certainly one of the most well established wayland window managers. However, it is restricted to only include the functionality that existed in i3. This fork ditches the simple wlr_renderer, and replaces it with our fx_renderer, capable of rendering with fancy GLES2 effects. This, along with a couple of minor changes, expands sway's featureset to include the following:
+The goal is not to replace SwayFX, reimplement tiling in userspace, or turn the desktop into a floating-window canvas. Mosaic stays inside the compositor and keeps real Sway containers, workspaces, IPC, fullscreen, floating windows and scratchpad semantics.
 
-+ **Blur**
-+ **Anti-aliased rounded corners, borders, and titlebars**
-+ **Shadows**
-+ **Dim unfocused windows**
-+ **Scratchpad treated as minimize**: Allows docks, or panels with a taskbar, to correctly interpret minimize / unminimize requests ([thanks to LCBCrion](https://github.com/swaywm/sway/issues/6457))
-+ **nixify the repo**: Allows nixos users to easily contribute to and test this project
+> Status: active development. The compositor is not installed as the daily SwayFX session yet.
 
-<p align="center">
-    <a href="https://repology.org/project/swayfx/versions"><img src="https://repology.org/badge/vertical-allrepos/swayfx.svg" height="282"/></a>
-    <img src="assets/swayfx_screenshot.jpg" width="500"/>
-</p>
+## Why Mosaic?
 
-For Fedora users, SwayFX is also available in [copr](https://copr.fedorainfracloud.org/coprs/swayfx/swayfx/) or in the [Terra repository](https://terra.fyralabs.com).
+Classic tiling is constrained by the physical viewport. Mosaic introduces a logical canvas made of horizontal rows that may extend beyond the visible output.
 
-[Join our Discord](https://discord.gg/qsSx397rkh)
-
-## New Configuration Options
-
-+ Window blur:
-    - `blur enable|disable`
-    - `blur_xray enable|disable`: this will set floating windows to blur based on the background, not the windows below. You probably want to set this to `disable` :)
-    - `blur_passes <integer value 0 - 10>`
-    - `blur_radius <integer value 0 - 10>`
-    - `blur_noise <float value 0 - 1>`
-    - `blur_brightness <float value 0 - 2>`
-    - `blur_contrast <float value 0 - 2>`
-    - `blur_saturation <float value 0 - 2>`
-+ Corner radius: `corner_radius <val>`
-+ Window shadows:
-    - `shadows enable|disable`
-    - `shadows_on_csd enable|disable` (**Note**: The shadow might not fit some windows)
-    - `shadow_blur_radius <integer value 0 - 99>`
-    - `shadow_color <hex color with alpha> ex, #0000007F`
-    - `shadow_offset <x offset> <y offset>`
-    - `shadow_inactive_color <hex color with alpha> ex, #0000007F`
-+ LayerShell effects (to blur panels / notifications etc):
-    - `layer_effects <layer namespace> <effects>`
-    - The current layer namespaces can be shown with `swaymsg -r -t get_outputs | jq '.[0].layer_shell_surfaces | .[] | .namespace'`
-    - Example: `layer_effects "waybar" blur enable; shadows enable; corner_radius 6`
-      - Note: If an application uses gtk, its namespace is likely to be "gtk-layer-shell"
-    - SwayIPC Example: `swaymsg layer_effects "waybar" "blur enable"` (you can only set one effect at a time through `swaymsg`)
-    - Config Example:
-        ```
-        layer_effects "waybar" {
-            blur enable;
-            blur_xray enable;
-            blur_ignore_transparent enable;
-            shadows enable;
-            corner_radius 20;
-        }
-        ```
-    - Available Effects:
-        - `blur <enable|disable>`
-        - `blur_xray <enable|disable>`
-        - `blur_ignore_transparent <enable|disable>`
-        - `shadows <enable|disable>`
-        - `corner_radius <int>`
-        - `reset`: To reset/disable all previously applied effects to the layer application
-+ Dim unfocused windows:
-    - `default_dim_inactive <float value 0.0 - 1.0>`
-    - `for_window [CRITERIA_HERE] dim_inactive <float value 0.0 - 1.0>`
-    - `dim_inactive_colors.unfocused <hex color> ex, #000000FF`
-    - `dim_inactive_colors.urgent <hex color> ex, #900000FF`
-+ Keep/remove separator border between titlebar and content: `titlebar_separator enable|disable`
-+ Treat Scratchpad as minimized: `scratchpad_minimize enable|disable`: **we recommend keeping this setting off, as there are many kinks to iron out here**
-
-## Roadmap
-
-+ fade in / out animations
-+ window movement animations
-
-## Compiling From Source
-
-### Nix
-
-If you have Nix installed, you can build and run SwayFX easily:
-
-```
-nix build
-./result/bin/sway
+```text
+Workspace
+└── Mosaic Canvas
+    ├── Row 0: [A][B][C][D]...
+    ├── Row 1: [E][F][G]...
+    └── ...
 ```
 
-You can also bring up a development shell and follow the build instructions below, without installing all of the dependencies manually:
+Each row owns its viewport position and last focused container. The compositor remains the source of truth for order, geometry, focus and scrolling.
 
-```
-nix develop
-```
-### Debian
+## Core rules
 
-Check [INSTALL-deb.md](/INSTALL-deb.md)
+- real tiled Sway containers; no floating-window simulation;
+- Mosaic is opt-in per workspace;
+- standard Sway/SwayFX layouts remain available;
+- workspaces continue to exist normally;
+- Mosaic state lives in the compositor, not in QuickShell;
+- the standard `swayfx` package must remain untouched and independently updatable;
+- the Mosaic package installs a separate `/usr/bin/swayfx-mosaic` binary;
+- our production artifact is a minimal, reviewable patch on a pinned SwayFX upstream revision.
 
-### Container (Docker)
+## Package model
 
-To build SwayFX inside a container, install Docker and run the following commands from inside this repository:
+```text
+swayfx
+└── /usr/bin/sway
 
-```bash
-# build the container and run it (which builds SwayFX)
-docker compose up --build
-
-# become root to install the previously built files
-sudo bash
-
-# copy all files into the host file system at /usr/local/
-while read -r FILE; do
-  NEW_FILE=/usr/local${FILE#opt}
-  NEW_DIR=$(dirname "${NEW_FILE}")
-  [[ -d ${NEW_DIR} ]] || mkdir -p "${NEW_DIR}"
-
-  echo "Creating '${NEW_FILE}'"
-  cp "${FILE}" "${NEW_FILE}"
-done < <(command find opt/ -type f)
+swayfx-mosaic
+└── /usr/bin/swayfx-mosaic
 ```
 
-### Manual Steps
+`swayfx-mosaic` must not declare `provides`, `conflicts` or `replaces` against SwayFX. An upstream SwayFX update must never be blocked by this project.
 
-Install dependencies:
+The Arch packaging path is intentionally patch-based:
 
-* meson \*
-* wlroots
-* wayland
-* wayland-protocols \*
-* pcre2
-* json-c
-* pango
-* cairo
-* [scenefx](https://github.com/wlrfx/scenefx)
-* gdk-pixbuf2 (optional: additional image formats for system tray)
-* [swaybg] (optional: wallpaper)
-* [scdoc] (optional: man pages) \*
-* git (optional: version info) \*
+```text
+pinned SwayFX upstream
+        +
+Mosaic patch set
+        ↓
+/usr/bin/swayfx-mosaic
+```
 
-_\* Compile-time dep_
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and [docs/UPSTREAM.md](docs/UPSTREAM.md).
 
-Run these commands:
+## Layout switching
 
-    meson build/
-    ninja -C build/
-    sudo ninja -C build/ install
+The target desktop contract is:
 
-On systems without logind nor seatd, you need to suid the sway binary:
+```text
+Super + Alt + M  → Applications
+Super + Alt + L  → Standard layout ↔ Mosaic
+```
 
-    sudo chmod a+s /usr/local/bin/sway
+The compositor command is:
 
-SwayFX will drop root permissions shortly after startup.
+```text
+layout toggle mosaic
+```
 
-## Contributing
+Each workspace remembers its previous standard layout, so a toggle behaves conceptually like:
 
-SwayFX would love to receive any new features that you're willing to build! Generally, we'd like to focus on eye-candy type improvements to keep our scope appropriate. If you'd like to build something that you think may be out of that focus, please raise an issue and we can discuss whether or not it will fit within this project.
+```text
+tabbed → mosaic → tabbed
+splith → mosaic → splith
+```
 
-## Acknowledgements
+The key binding itself belongs to the user's dotfiles, not to this package.
 
-The SwayFX team would like to first and foremost thank the maintainers and contributors of the Sway window manager. We are but a humble group of Sway enthusiasts who wanted to expand upon your creation.
+## Current implementation
 
-We would also like to thank the talented artists in our community for contibuting the visual assets that give this project charm:
-+ pkdesuwu and honchokomodo for creating the swayfx mascot: https://twitter.com/pkdesuwu/status/1664517033017368576
-+ spooky_skeleton for the swayfx logo, and [Basil](https://basil.cafe) for making some fine adjustments to it
+The current development tree contains the native Mosaic foundation and the first single-row viewport work:
 
-Lastly, we would like to thank you, the community, for enjoying and using window manager that we have spent so much time maintaining.
+- native `L_MOSAIC` layout;
+- workspace-local Mosaic state;
+- ordered Row 0 backed by real `workspace->tiling` containers;
+- insertion after the active container;
+- workspace-local previous-layout memory;
+- `layout toggle mosaic`;
+- logical `scroll_x`;
+- first scene translation / single-row viewport implementation;
+- IPC exposure through `get_tree`;
+- model and headless compositor tests;
+- Arch package staging limited to `swayfx-mosaic`.
 
+Multi-row behavior, robust multi-output clipping, final sizing policy, camera animation and session restore integration are still development work.
+
+Technical reports:
+- [STEP20A — native foundation](docs/STEP20A.md)
+- [STEP20B — first scrollable row](docs/STEP20B.md)
+
+## Development
+
+Baseline:
+
+```sh
+meson setup build-baseline -Dwerror=false -Dsd-bus-provider=libsystemd
+meson compile -C build-baseline
+```
+
+Mosaic build:
+
+```sh
+meson setup build-mosaic \
+  -Dwerror=false \
+  -Dsd-bus-provider=libsystemd \
+  -Dmosaic-package=true \
+  -Dprefix=/usr -Dbindir=bin \
+  -Dswaybar=false -Dswaynag=false \
+  -Dman-pages=disabled -Ddefault-wallpaper=false
+
+meson compile -C build-mosaic
+meson test -C build-mosaic --print-errorlogs
+python tests/headless-ipc.py
+```
+
+See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for the full workflow.
+
+## Repository layout
+
+```text
+docs/       design, roadmap and validation reports
+patches/    production delta against pinned SwayFX
+tests/      Mosaic model and headless compositor tests
+tooling/    patch/export maintenance helpers
+PKGBUILD    coexistence-oriented Arch package
+```
+
+The full SwayFX source remains in the development tree for compositor work. The patch set is the reviewable production delta.
+
+## Upstream and license
+
+SwayFX Mosaic is derived from [SwayFX](https://github.com/WillPower3309/swayfx), itself based on [Sway](https://github.com/swaywm/sway).
+
+Current base:
+- SwayFX tag `0.6`;
+- commit `fd71a6bdc061bd633b488ae7b83e8a6981d22f86`;
+- Sway 1.12.0 base;
+- wlroots 0.20 series;
+- SceneFX 0.5 series.
+
+The project keeps the upstream MIT license. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
+
+## Mirrors
+
+Canonical development repository:
+- Forgejo: `https://git.labfytools.com/fy59/swayfx-mosaic`
+
+Public mirror:
+- GitHub: `https://github.com/labfytools/swayfx-mosaic`

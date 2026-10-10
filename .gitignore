@@ -16,3 +16,10 @@ result
 
 # ignore the build output from build.sh
 opt/
+
+# Arch package build output
+/pkg/
+/src/
+*.pkg.tar.*
+.SRCINFO.tmp
+.SRCINFO
