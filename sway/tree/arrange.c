@@ -1,11 +1,14 @@
 #include <ctype.h>
 #include <stdbool.h>
+#include <limits.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <wlr/types/wlr_output.h>
 #include <wlr/types/wlr_output_layout.h>
 #include "sway/tree/arrange.h"
 #include "sway/tree/container.h"
+#include "sway/tree/mosaic.h"
 #include "sway/output.h"
 #include "sway/tree/workspace.h"
 #include "sway/tree/view.h"
@@ -95,6 +98,37 @@ static void apply_horiz_layout(list_t *children, struct wlr_box *parent) {
 		}
 		child_x += child->pending.width + inner_gap;
 	}
+}
+
+static void apply_mosaic_layout(list_t *children, struct wlr_box *viewport,
+		struct sway_workspace *ws) {
+	if (!children->length || !ws->mosaic) {
+		return;
+	}
+	struct mosaic_row *row = ws->mosaic->rows->items[0];
+	int count = children->length;
+	int gap = ws->gaps_inner > 0 ? ws->gaps_inner : 0;
+	int64_t gap_total = (int64_t)(count - 1) * gap;
+	int64_t fitting = ((int64_t)viewport->width - gap_total) / count;
+	// STEP20B temporary sizing policy: 640 px minimum demonstrates an
+	// overflowing tiled row. A later slice will define the UX cell sizing.
+	int cell = row->state.minimum_cell_width > 0 ?
+		row->state.minimum_cell_width : 640;
+	if (fitting > cell) {
+		cell = fitting > INT_MAX ? INT_MAX : (int)fitting;
+	}
+	int64_t x = viewport->x;
+	for (int i = 0; i < count; ++i) {
+		struct sway_container *child = children->items[i];
+		child->pending.x = x;
+		child->pending.y = viewport->y;
+		child->pending.width = cell;
+		child->pending.height = viewport->height;
+		child->child_total_width = (int64_t)count * cell > INT_MAX ?
+			INT_MAX : count * cell;
+		x += (int64_t)cell + gap;
+	}
+	mosaic_row_clamp_scroll(row, viewport->width, gap);
 }
 
 static void apply_vert_layout(list_t *children, struct wlr_box *parent) {
@@ -224,6 +258,19 @@ static void arrange_children(list_t *children,
 	switch (layout) {
 	case L_HORIZ:
 		apply_horiz_layout(children, parent);
+		break;
+	case L_MOSAIC:
+		// Only a workspace owns a Mosaic row. Nested containers retain Sway's
+		// normal tiling rules while row zero remains the real workspace tree.
+		if (children->length) {
+			struct sway_container *first = children->items[0];
+			struct sway_workspace *ws = first->pending.workspace;
+			if (ws && ws->tiling == children) {
+				apply_mosaic_layout(children, parent, ws);
+			} else {
+				apply_horiz_layout(children, parent);
+			}
+		}
 		break;
 	case L_VERT:
 		apply_vert_layout(children, parent);

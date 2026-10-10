@@ -10,6 +10,7 @@
 #include "sway/tree/node.h"
 
 struct sway_view;
+struct mosaic_workspace_state;
 
 struct sway_workspace_state {
 	struct sway_container *fullscreen;
@@ -41,6 +42,9 @@ struct sway_workspace {
 	int width, height;
 	enum sway_container_layout layout;
 	enum sway_container_layout prev_split_layout;
+	// CONTRACT: workspace-local target restored by `layout toggle mosaic`.
+	// This is distinct from Sway's prev_split_layout toggle history.
+	enum sway_container_layout mosaic_previous_standard_layout;
 
 	struct side_gaps current_gaps;
 	int gaps_inner;
@@ -49,6 +53,8 @@ struct sway_workspace {
 	struct sway_output *output; // NULL if no outputs are connected
 	list_t *floating;           // struct sway_container
 	list_t *tiling;             // struct sway_container
+	// Mosaic row zero borrows tiling: Sway's tree remains the ordering authority.
+	struct mosaic_workspace_state *mosaic;
 	list_t *output_priority;
 	bool urgent;
 
@@ -129,6 +135,10 @@ void workspace_detach(struct sway_workspace *workspace);
 
 struct sway_container *workspace_add_tiling(struct sway_workspace *workspace,
 		struct sway_container *con);
+
+// Reconcile the active Mosaic row after Sway reattaches a focused container.
+// No-op outside Mosaic or when the active seat has no tiled focus in this row.
+void workspace_mosaic_sync_focus(struct sway_workspace *workspace);
 
 void workspace_add_floating(struct sway_workspace *workspace,
 		struct sway_container *con);

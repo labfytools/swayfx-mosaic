@@ -17,6 +17,7 @@
 #include "sway/server.h"
 #include "sway/tree/arrange.h"
 #include "sway/tree/container.h"
+#include "sway/tree/mosaic.h"
 #include "sway/tree/node.h"
 #include "sway/tree/view.h"
 #include "sway/tree/workspace.h"
@@ -217,6 +218,7 @@ struct sway_workspace *workspace_create(struct sway_output *output,
 	ws->name = strdup(name);
 	ws->prev_split_layout = L_NONE;
 	ws->layout = output_get_default_layout(output);
+	ws->mosaic_previous_standard_layout = ws->layout;
 	ws->floating = create_list();
 	ws->tiling = create_list();
 	ws->output_priority = create_list();
@@ -294,6 +296,8 @@ void workspace_destroy(struct sway_workspace *workspace) {
 	free(workspace->representation);
 	list_free_items_and_destroy(workspace->output_priority);
 	list_free(workspace->floating);
+	// Row zero borrows workspace->tiling; release the state before that list.
+	mosaic_state_destroy(workspace->mosaic);
 	list_free(workspace->tiling);
 	list_free(workspace->current.floating);
 	list_free(workspace->current.tiling);
@@ -955,14 +959,34 @@ struct sway_container *workspace_add_tiling(struct sway_workspace *workspace,
 	if (config->default_layout != L_NONE) {
 		con = container_split(con, config->default_layout);
 	}
-	list_add(workspace->tiling, con);
+	if (workspace->layout == L_MOSAIC && workspace->mosaic) {
+		struct mosaic_row *row = workspace->mosaic->rows->items[0];
+		mosaic_row_insert_after_focus(row, con);
+	} else {
+		list_add(workspace->tiling, con);
+	}
 	con->pending.workspace = workspace;
 	container_for_each_child(con, set_workspace, NULL);
+	workspace_mosaic_sync_focus(workspace);
 	container_handle_fullscreen_reparent(con);
 	workspace_update_representation(workspace);
 	node_set_dirty(&workspace->node);
 	node_set_dirty(&con->node);
 	return con;
+}
+
+void workspace_mosaic_sync_focus(struct sway_workspace *workspace) {
+	if (!workspace || workspace->layout != L_MOSAIC || !workspace->mosaic) {
+		return;
+	}
+	struct sway_seat *seat = input_manager_current_seat();
+	struct sway_container *focused = seat_get_focused_container(seat);
+	if (!focused || focused->pending.workspace != workspace) {
+		return;
+	}
+	struct sway_container *top = container_toplevel_ancestor(focused);
+	struct mosaic_row *row = workspace->mosaic->rows->items[0];
+	mosaic_row_focus(row, top);
 }
 
 void workspace_add_floating(struct sway_workspace *workspace,
@@ -983,6 +1007,7 @@ void workspace_insert_tiling_direct(struct sway_workspace *workspace,
 	list_insert(workspace->tiling, index, con);
 	con->pending.workspace = workspace;
 	container_for_each_child(con, set_workspace, NULL);
+	workspace_mosaic_sync_focus(workspace);
 	container_handle_fullscreen_reparent(con);
 	workspace_update_representation(workspace);
 	node_set_dirty(&workspace->node);

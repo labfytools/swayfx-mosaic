@@ -17,6 +17,7 @@
 #include "sway/output.h"
 #include "sway/server.h"
 #include "sway/tree/arrange.h"
+#include "sway/tree/mosaic.h"
 #include "sway/tree/view.h"
 #include "sway/tree/workspace.h"
 #include "sway/xdg_decoration.h"
@@ -829,6 +830,9 @@ size_t container_build_representation(enum sway_container_layout layout,
 	case L_HORIZ:
 		lenient_strcat(buffer, "H[");
 		break;
+	case L_MOSAIC:
+		lenient_strcat(buffer, "M[");
+		break;
 	case L_TABBED:
 		lenient_strcat(buffer, "T[");
 		break;
@@ -1528,6 +1532,7 @@ void container_insert_child(struct sway_container *parent,
 	child->pending.parent = parent;
 	child->pending.workspace = parent->pending.workspace;
 	container_for_each_child(child, set_workspace, NULL);
+	workspace_mosaic_sync_focus(child->pending.workspace);
 	container_handle_fullscreen_reparent(child);
 	container_update_representation(parent);
 }
@@ -1543,6 +1548,7 @@ void container_add_sibling(struct sway_container *fixed,
 	active->pending.parent = fixed->pending.parent;
 	active->pending.workspace = fixed->pending.workspace;
 	container_for_each_child(active, set_workspace, NULL);
+	workspace_mosaic_sync_focus(active->pending.workspace);
 	container_handle_fullscreen_reparent(active);
 	container_update_representation(active);
 }
@@ -1556,6 +1562,7 @@ void container_add_child(struct sway_container *parent,
 	child->pending.parent = parent;
 	child->pending.workspace = parent->pending.workspace;
 	container_for_each_child(child, set_workspace, NULL);
+	workspace_mosaic_sync_focus(child->pending.workspace);
 	container_handle_fullscreen_reparent(child);
 	container_update_representation(parent);
 	node_set_dirty(&child->node);
@@ -1572,6 +1579,16 @@ void container_detach(struct sway_container *child) {
 
 	struct sway_container *old_parent = child->pending.parent;
 	struct sway_workspace *old_workspace = child->pending.workspace;
+	// A Mosaic focus reference must not outlive a detached Sway container.
+	if (old_workspace && old_workspace->mosaic) {
+		struct mosaic_workspace_state *mosaic = old_workspace->mosaic;
+		for (int i = 0; i < mosaic->rows->length; ++i) {
+			struct mosaic_row *row = mosaic->rows->items[i];
+			if (row->state.focused == child) {
+				row->state.focused = NULL;
+			}
+		}
+	}
 	list_t *siblings = container_get_siblings(child);
 	if (siblings) {
 		int index = list_find(siblings, child);

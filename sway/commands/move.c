@@ -81,6 +81,8 @@ static bool is_parallel(enum sway_container_layout layout,
 	switch (layout) {
 	case L_TABBED:
 	case L_HORIZ:
+	case L_MOSAIC:
+		// Horizontal moves within Row0 must not reorient the workspace.
 		return dir == WLR_DIRECTION_LEFT || dir == WLR_DIRECTION_RIGHT;
 	case L_STACKED:
 	case L_VERT:

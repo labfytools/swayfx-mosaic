@@ -1,5 +1,7 @@
 #include <assert.h>
 #include <stdbool.h>
+#include <limits.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -15,6 +17,7 @@
 #include "sway/output.h"
 #include "sway/server.h"
 #include "sway/tree/container.h"
+#include "sway/tree/mosaic.h"
 #include "sway/tree/node.h"
 #include "sway/tree/view.h"
 #include "sway/tree/workspace.h"
@@ -504,8 +507,10 @@ static void arrange_children(enum sway_container_layout layout, list_t *children
 				disable_container(child);
 			}
 		}
-	} else if (layout == L_HORIZ) {
-		int off = 0;
+	} else if (layout == L_HORIZ || layout == L_MOSAIC) {
+		// Scene node positions are int; keep the logical canvas accumulator
+		// wide so a very large Mosaic row cannot overflow signed arithmetic.
+		int64_t off = 0;
 		for (int i = 0; i < children->length; i++) {
 			struct sway_container *child = children->items[i];
 			int cwidth = child->current.width;
@@ -515,9 +520,9 @@ static void arrange_children(enum sway_container_layout layout, list_t *children
 			wlr_scene_node_set_enabled(&child->shadow->node,
 					container_has_shadow(child) && child->view);
 			wlr_scene_node_reparent(&child->scene_tree->node, content);
-			if (cwidth > 0 && height > 0) {
-				arrange_container(child, cwidth, height, off, 0, true, gaps);
-				off += cwidth + gaps;
+			if (cwidth > 0 && height > 0 && off <= INT_MAX) {
+				arrange_container(child, cwidth, height, (int)off, 0, true, gaps);
+				off += (int64_t)cwidth + gaps;
 			} else {
 				disable_container(child);
 			}
@@ -864,6 +869,18 @@ static void arrange_workspace_tiling(struct sway_workspace *ws,
 		width, height, ws->gaps_inner);
 }
 
+static int workspace_tiling_scene_x(struct sway_workspace *ws,
+		struct wlr_box *area, struct side_gaps *gaps) {
+	int64_t x = (int64_t)area->x + gaps->left;
+	if (ws->current.layout == L_MOSAIC && ws->mosaic) {
+		struct mosaic_row *row = ws->mosaic->rows->items[0];
+		x -= (int64_t)row->state.scroll_x;
+	}
+	// The camera is kept in logical pixels; this conversion is the sole
+	// output-scene mapping and must never overflow wlroots' int positions.
+	return x < INT_MIN ? INT_MIN : x > INT_MAX ? INT_MAX : (int)x;
+}
+
 static void disable_workspace(struct sway_workspace *ws) {
 	// if any containers were just moved to a disabled workspace it will
 	// have the parent of the old workspace. Move the workspace so that it won't
@@ -955,7 +972,8 @@ static void arrange_output(struct sway_output *output, int width, int height) {
 				struct side_gaps *gaps = &child->current_gaps;
 
 				wlr_scene_node_set_position(&child->layers.tiling->node,
-					gaps->left + area->x, gaps->top + area->y);
+					workspace_tiling_scene_x(child, area, gaps),
+					gaps->top + area->y);
 
 				arrange_workspace_tiling(child,
 					area->width - gaps->left - gaps->right,
@@ -971,7 +989,8 @@ static void arrange_output(struct sway_output *output, int width, int height) {
 			wlr_scene_node_set_enabled(&child->layers.fullscreen->node, false);
 
 			wlr_scene_node_set_position(&child->layers.tiling->node,
-				gaps->left + area->x, gaps->top + area->y);
+				workspace_tiling_scene_x(child, area, gaps),
+				gaps->top + area->y);
 
 			arrange_workspace_tiling(child,
 				area->width - gaps->left - gaps->right,

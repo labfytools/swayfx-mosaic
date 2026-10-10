@@ -236,6 +236,7 @@ sway_sources = files(
 
 	'tree/arrange.c',
 	'tree/container.c',
+	'tree/mosaic.c',
 	'tree/node.c',
 	'tree/root.c',
 	'tree/view.c',
@@ -272,7 +273,7 @@ if wlroots_features['libinput_backend']
 endif
 
 executable(
-	'sway',
+	'swayfx-mosaic',
 	sway_sources + wl_protos_src,
 	include_directories: [sway_inc],
 	dependencies: sway_deps,

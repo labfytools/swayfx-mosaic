@@ -123,8 +123,9 @@ foreach sym : ['LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM', 'LIBINPUT_CONFIG_DRAG_LOC
 	conf_data.set10('HAVE_' + sym, cc.has_header_symbol('libinput.h', sym, dependencies: libinput))
 endforeach
 
-scdoc = dependency('scdoc', version: '>=1.9.2', native: true, required: get_option('man-pages'))
-if scdoc.found()
+scdoc = dependency('scdoc', version: '>=1.9.2', native: true,
+	required: get_option('mosaic-package') ? false : get_option('man-pages'))
+if scdoc.found() and not get_option('mosaic-package')
 	scdoc_prog = find_program(scdoc.get_variable(pkgconfig: 'scdoc'), native: true)
 	mandir = get_option('mandir')
 	man_files = [
@@ -205,15 +206,23 @@ subdir('include')
 subdir('protocols')
 subdir('common')
 subdir('sway')
-subdir('swaymsg')
+model_test = executable('mosaic-model-test',
+	['tests/mosaic-model.c', 'sway/tree/mosaic.c'],
+	include_directories: sway_inc,
+	link_with: lib_sway_common,
+	dependencies: [cairo, pango, pangocairo, wayland_client])
+test('mosaic-model', model_test)
+if not get_option('mosaic-package')
+	subdir('swaymsg')
+endif
 
-if get_option('swaybar') or get_option('swaynag')
+if not get_option('mosaic-package') and (get_option('swaybar') or get_option('swaynag'))
 	subdir('client')
 endif
-if get_option('swaybar')
+if not get_option('mosaic-package') and get_option('swaybar')
 	subdir('swaybar')
 endif
-if get_option('swaynag')
+if not get_option('mosaic-package') and get_option('swaynag')
 	subdir('swaynag')
 endif
 
@@ -222,19 +231,18 @@ config.set('datadir', join_paths(prefix, datadir))
 config.set('prefix', prefix)
 config.set('sysconfdir', join_paths(prefix, sysconfdir))
 
-configure_file(
-	configuration: config,
-	input: 'config.in',
-	output: '@BASENAME@',
-	install_dir: join_paths(sysconfdir, 'sway')
-)
+if not get_option('mosaic-package')
+	configure_file(
+		configuration: config,
+		input: 'config.in',
+		output: '@BASENAME@',
+		install_dir: join_paths(sysconfdir, 'sway')
+	)
+	install_data('sway.desktop',
+		install_dir: join_paths(datadir, 'wayland-sessions'))
+endif
 
-install_data(
-	'sway.desktop',
-	install_dir: join_paths(datadir, 'wayland-sessions')
-)
-
-if get_option('default-wallpaper')
+if get_option('default-wallpaper') and not get_option('mosaic-package')
 	wallpaper_files = files(
 		'assets/Sway_Wallpaper_Blue_768x1024.png',
 		'assets/Sway_Wallpaper_Blue_768x1024_Portrait.png',
@@ -250,10 +258,12 @@ if get_option('default-wallpaper')
 	install_data(wallpaper_files, install_dir: wallpaper_install_dir)
 endif
 
-subdir('completions')
+if not get_option('mosaic-package')
+	subdir('completions')
+endif
 
 summary({
 	'gdk-pixbuf': gdk_pixbuf.found(),
-	'tray': have_tray,
-	'man-pages': scdoc.found(),
+	'tray': have_tray and not get_option('mosaic-package') and get_option('swaybar'),
+	'man-pages': scdoc.found() and not get_option('mosaic-package'),
 }, bool_yn: true)

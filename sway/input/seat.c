@@ -31,6 +31,7 @@
 #include "sway/server.h"
 #include "sway/tree/arrange.h"
 #include "sway/tree/container.h"
+#include "sway/tree/mosaic.h"
 #include "sway/tree/root.h"
 #include "sway/tree/view.h"
 #include "sway/tree/workspace.h"
@@ -1189,6 +1190,28 @@ static void seat_set_workspace_focus(struct sway_seat *seat, struct sway_node *n
 	if (container) {
 		seat_set_raw_focus(seat, &container->node);
 		seat_send_focus(&container->node, seat);
+		// Focus changes update row context without changing Sway tiling order.
+		if (new_workspace && new_workspace->layout == L_MOSAIC &&
+				new_workspace->mosaic) {
+			struct mosaic_row *row = new_workspace->mosaic->rows->items[0];
+			struct sway_container *top = container_toplevel_ancestor(container);
+			if (mosaic_row_focus(row, top) && top) {
+				// Keep focus separate from order. Only move the logical camera
+				// when the focused tiled cell falls outside the viewport.
+				struct wlr_box viewport;
+				workspace_get_box(new_workspace, &viewport);
+				double left = top->pending.x - viewport.x;
+				double right = left + top->pending.width;
+				if (left < row->state.scroll_x) {
+					row->state.scroll_x = left < 0 ? 0 : left;
+				} else if (right > row->state.scroll_x + viewport.width) {
+					row->state.scroll_x = right - viewport.width;
+				}
+				mosaic_row_clamp_scroll(row, viewport.width,
+					new_workspace->gaps_inner);
+				arrange_workspace(new_workspace);
+			}
+		}
 	}
 
 	// emit ipc events

@@ -257,7 +257,7 @@ int main(int argc, char **argv) {
 			allow_unsupported_gpu = true;
 			break;
 		case 'v': // version
-			printf("swayfx version " SWAY_VERSION " (based on sway " SWAY_ORIGINAL_VERSION ")\n");
+			printf("swayfx-mosaic version " SWAY_VERSION " (based on sway " SWAY_ORIGINAL_VERSION ")\n");
 			exit(EXIT_SUCCESS);
 			break;
 		case 'V': // verbose

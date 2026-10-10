@@ -32,6 +32,7 @@
 #include "sway/sway_text_node.h"
 #include "sway/tree/arrange.h"
 #include "sway/tree/container.h"
+#include "sway/tree/mosaic.h"
 #include "sway/tree/view.h"
 #include "sway/tree/workspace.h"
 #include "sway/config.h"
@@ -894,6 +895,15 @@ void view_map(struct sway_view *view, struct wlr_surface *wlr_surface,
 			}
 		} else {
 			target_sibling = node->sway_container;
+		}
+	}
+	if (ws && ws->layout == L_MOSAIC && ws->mosaic) {
+		// New tiled views join after the row's active top-level container;
+		// workspace->tiling remains the sole ordering authority.
+		struct mosaic_row *row = ws->mosaic->rows->items[0];
+		target_sibling = row->state.focused;
+		if (target_sibling && list_find(ws->tiling, target_sibling) < 0) {
+			target_sibling = NULL;
 		}
 	}
 

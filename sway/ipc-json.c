@@ -16,6 +16,7 @@
 #include "sway/scene_descriptor.h"
 #include "sway/server.h"
 #include "sway/tree/container.h"
+#include "sway/tree/mosaic.h"
 #include "sway/tree/root.h"
 #include "sway/tree/view.h"
 #include "sway/tree/workspace.h"
@@ -54,6 +55,8 @@ static const char *ipc_json_layout_description(enum sway_container_layout l) {
 		return "splitv";
 	case L_HORIZ:
 		return "splith";
+	case L_MOSAIC:
+		return "mosaic";
 	case L_TABBED:
 		return "tabbed";
 	case L_STACKED:
@@ -69,6 +72,7 @@ static const char *ipc_json_orientation_description(enum sway_container_layout l
 	case L_VERT:
 		return "vertical";
 	case L_HORIZ:
+	case L_MOSAIC:
 		return "horizontal";
 	default:
 		return "none";
@@ -611,6 +615,32 @@ static void ipc_json_describe_workspace(struct sway_workspace *workspace,
 	json_object_object_add(object, "orientation",
 			json_object_new_string(
 				ipc_json_orientation_description(workspace->layout)));
+	if (workspace->layout == L_MOSAIC && workspace->mosaic) {
+		// Optional extension: legacy IPC fields keep their Sway shapes.
+		// Row zero borrows the real workspace tiling order.
+		json_object *mosaic = json_object_new_object();
+		json_object *rows = json_object_new_array();
+		for (int i = 0; i < workspace->mosaic->rows->length; ++i) {
+			struct mosaic_row *row = workspace->mosaic->rows->items[i];
+			json_object *entry = json_object_new_object();
+			json_object *ids = json_object_new_array();
+			for (int j = 0; j < row->children->length; ++j) {
+				struct sway_container *child = row->children->items[j];
+				json_object_array_add(ids, json_object_new_int64(child->node.id));
+			}
+			json_object_object_add(entry, "children", ids);
+			json_object_object_add(entry, "scroll_x",
+				json_object_new_double(row->state.scroll_x));
+			json_object_object_add(entry, "focused",
+				row->state.focused ? json_object_new_int64(
+					row->state.focused->node.id) : NULL);
+			json_object_array_add(rows, entry);
+		}
+		json_object_object_add(mosaic, "rows", rows);
+		json_object_object_add(mosaic, "active_row",
+			json_object_new_int(workspace->mosaic->active_row));
+		json_object_object_add(object, "mosaic", mosaic);
+	}
 
 	// Floating
 	json_object *floating_array = json_object_new_array();

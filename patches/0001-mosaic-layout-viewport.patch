@@ -1,0 +1,1130 @@
+diff --git a/include/sway/tree/container.h b/include/sway/tree/container.h
+index 5a36df85160c0cd2392efe62abeb93666cfaa926..cefbcac534450b3857319d2640191b03e06ac4f7 100644
+--- a/include/sway/tree/container.h
++++ b/include/sway/tree/container.h
+@@ -18,6 +18,7 @@ enum sway_container_layout {
+ 	L_VERT,
+ 	L_STACKED,
+ 	L_TABBED,
++	L_MOSAIC,
+ };
+ 
+ enum sway_container_border {
+diff --git a/include/sway/tree/mosaic.h b/include/sway/tree/mosaic.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..fe24490141d83bca8a245d6871aa0c65497af189
+--- /dev/null
++++ b/include/sway/tree/mosaic.h
+@@ -0,0 +1,57 @@
++#ifndef _SWAY_MOSAIC_H
++#define _SWAY_MOSAIC_H
++
++#include <stdbool.h>
++#include "list.h"
++
++struct sway_container;
++
++// CONTRACT: children are ordered Sway tiling containers; scroll_x is a
++// logical canvas coordinate, independent of focus and rendered geometry.
++struct mosaic_row_state {
++	double scroll_x;
++	// STEP20B temporary sizing policy. Zero selects the current 640 px
++	// minimum; this is not a stable Mosaic layout API.
++	int minimum_cell_width;
++	struct sway_container *focused;
++};
++
++struct mosaic_row {
++	list_t *children;
++	bool owns_children;
++	struct mosaic_row_state state;
++};
++
++struct mosaic_workspace_state {
++	list_t *rows; // struct mosaic_row; owns rows, never their containers.
++	int active_row;
++};
++
++// The first row may borrow workspace->tiling. The caller keeps that list alive
++// until mosaic_state_destroy; later rows own only their lists, not children.
++// NULL input/allocation failure returns NULL. Destroy accepts NULL.
++struct mosaic_workspace_state *mosaic_state_create(list_t *first_children);
++void mosaic_state_destroy(struct mosaic_workspace_state *state);
++// Model operation only: wiring another row into Sway's tree and scene is later
++// work. NULL/allocation failure returns NULL; child ownership stays with Sway.
++struct mosaic_row *mosaic_state_add_row(struct mosaic_workspace_state *state);
++// Rejects an invalid row index without changing active_row.
++bool mosaic_state_select_row(struct mosaic_workspace_state *state, int index);
++// Insertion/removal must occur from a Sway tree mutation path, which also
++// maintains parent/workspace pointers, representation and transaction dirtiness.
++int mosaic_row_insertion_index(const struct mosaic_row *row);
++void mosaic_row_insert_after_focus(struct mosaic_row *row,
++		struct sway_container *child);
++void mosaic_row_remove(struct mosaic_row *row, struct sway_container *child);
++// Rejects a child not present in this row, preserving the last valid focus.
++bool mosaic_row_focus(struct mosaic_row *row, struct sway_container *child);
++// Rejects negative/NaN/infinite logical positions without changing the row.
++bool mosaic_row_set_scroll(struct mosaic_row *row, double scroll_x);
++// Clamp the logical camera to the currently arranged canvas. The viewport and
++// row contents remain owned by Sway; this helper never mutates child order.
++int mosaic_row_max_scroll(const struct mosaic_row *row, int viewport_width,
++		int gaps);
++void mosaic_row_clamp_scroll(struct mosaic_row *row, int viewport_width,
++		int gaps);
++
++#endif
+diff --git a/include/sway/tree/workspace.h b/include/sway/tree/workspace.h
+index a7da62204636c268503b77305576799c0c63716b..955214ba9128e4c22afd433d09ba5cb235ff0834 100644
+--- a/include/sway/tree/workspace.h
++++ b/include/sway/tree/workspace.h
+@@ -10,6 +10,7 @@
+ #include "sway/tree/node.h"
+ 
+ struct sway_view;
++struct mosaic_workspace_state;
+ 
+ struct sway_workspace_state {
+ 	struct sway_container *fullscreen;
+@@ -41,6 +42,9 @@ struct sway_workspace {
+ 	int width, height;
+ 	enum sway_container_layout layout;
+ 	enum sway_container_layout prev_split_layout;
++	// CONTRACT: workspace-local target restored by `layout toggle mosaic`.
++	// This is distinct from Sway's prev_split_layout toggle history.
++	enum sway_container_layout mosaic_previous_standard_layout;
+ 
+ 	struct side_gaps current_gaps;
+ 	int gaps_inner;
+@@ -49,6 +53,8 @@ struct sway_workspace {
+ 	struct sway_output *output; // NULL if no outputs are connected
+ 	list_t *floating;           // struct sway_container
+ 	list_t *tiling;             // struct sway_container
++	// Mosaic row zero borrows tiling: Sway's tree remains the ordering authority.
++	struct mosaic_workspace_state *mosaic;
+ 	list_t *output_priority;
+ 	bool urgent;
+ 
+@@ -130,6 +136,10 @@ void workspace_detach(struct sway_workspace *workspace);
+ struct sway_container *workspace_add_tiling(struct sway_workspace *workspace,
+ 		struct sway_container *con);
+ 
++// Reconcile the active Mosaic row after Sway reattaches a focused container.
++// No-op outside Mosaic or when the active seat has no tiled focus in this row.
++void workspace_mosaic_sync_focus(struct sway_workspace *workspace);
++
+ void workspace_add_floating(struct sway_workspace *workspace,
+ 		struct sway_container *con);
+ 
+diff --git a/meson.build b/meson.build
+index dad186a52e40ac41a22dbe48134bdf7a3033fb69..adeb50b10949831cf32feb411d1088aea2011e59 100644
+--- a/meson.build
++++ b/meson.build
+@@ -123,8 +123,9 @@ foreach sym : ['LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM', 'LIBINPUT_CONFIG_DRAG_LOC
+ 	conf_data.set10('HAVE_' + sym, cc.has_header_symbol('libinput.h', sym, dependencies: libinput))
+ endforeach
+ 
+-scdoc = dependency('scdoc', version: '>=1.9.2', native: true, required: get_option('man-pages'))
+-if scdoc.found()
++scdoc = dependency('scdoc', version: '>=1.9.2', native: true,
++	required: get_option('mosaic-package') ? false : get_option('man-pages'))
++if scdoc.found() and not get_option('mosaic-package')
+ 	scdoc_prog = find_program(scdoc.get_variable(pkgconfig: 'scdoc'), native: true)
+ 	mandir = get_option('mandir')
+ 	man_files = [
+@@ -205,15 +206,23 @@ subdir('include')
+ subdir('protocols')
+ subdir('common')
+ subdir('sway')
+-subdir('swaymsg')
++model_test = executable('mosaic-model-test',
++	['tests/mosaic-model.c', 'sway/tree/mosaic.c'],
++	include_directories: sway_inc,
++	link_with: lib_sway_common,
++	dependencies: [cairo, pango, pangocairo, wayland_client])
++test('mosaic-model', model_test)
++if not get_option('mosaic-package')
++	subdir('swaymsg')
++endif
+ 
+-if get_option('swaybar') or get_option('swaynag')
++if not get_option('mosaic-package') and (get_option('swaybar') or get_option('swaynag'))
+ 	subdir('client')
+ endif
+-if get_option('swaybar')
++if not get_option('mosaic-package') and get_option('swaybar')
+ 	subdir('swaybar')
+ endif
+-if get_option('swaynag')
++if not get_option('mosaic-package') and get_option('swaynag')
+ 	subdir('swaynag')
+ endif
+ 
+@@ -222,19 +231,18 @@ config.set('datadir', join_paths(prefix, datadir))
+ config.set('prefix', prefix)
+ config.set('sysconfdir', join_paths(prefix, sysconfdir))
+ 
+-configure_file(
+-	configuration: config,
+-	input: 'config.in',
+-	output: '@BASENAME@',
+-	install_dir: join_paths(sysconfdir, 'sway')
+-)
+-
+-install_data(
+-	'sway.desktop',
+-	install_dir: join_paths(datadir, 'wayland-sessions')
+-)
++if not get_option('mosaic-package')
++	configure_file(
++		configuration: config,
++		input: 'config.in',
++		output: '@BASENAME@',
++		install_dir: join_paths(sysconfdir, 'sway')
++	)
++	install_data('sway.desktop',
++		install_dir: join_paths(datadir, 'wayland-sessions'))
++endif
+ 
+-if get_option('default-wallpaper')
++if get_option('default-wallpaper') and not get_option('mosaic-package')
+ 	wallpaper_files = files(
+ 		'assets/Sway_Wallpaper_Blue_768x1024.png',
+ 		'assets/Sway_Wallpaper_Blue_768x1024_Portrait.png',
+@@ -250,10 +258,12 @@ if get_option('default-wallpaper')
+ 	install_data(wallpaper_files, install_dir: wallpaper_install_dir)
+ endif
+ 
+-subdir('completions')
++if not get_option('mosaic-package')
++	subdir('completions')
++endif
+ 
+ summary({
+ 	'gdk-pixbuf': gdk_pixbuf.found(),
+-	'tray': have_tray,
+-	'man-pages': scdoc.found(),
++	'tray': have_tray and not get_option('mosaic-package') and get_option('swaybar'),
++	'man-pages': scdoc.found() and not get_option('mosaic-package'),
+ }, bool_yn: true)
+diff --git a/meson_options.txt b/meson_options.txt
+index 506ecc9a69018cd13d6be40d81167a2fc1aab232..351f859a0d94ec6b212b7aff86dbeba4b90615da 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -1,4 +1,5 @@
+ option('default-wallpaper', type: 'boolean', value: true, description: 'Install the default wallpaper.')
++option('mosaic-package', type: 'boolean', value: true, description: 'Install only the coexistence-safe swayfx-mosaic compositor binary.')
+ option('zsh-completions', type: 'boolean', value: true, description: 'Install zsh shell completions.')
+ option('bash-completions', type: 'boolean', value: true, description: 'Install bash shell completions.')
+ option('fish-completions', type: 'boolean', value: true, description: 'Install fish shell completions.')
+diff --git a/sway/commands/focus.c b/sway/commands/focus.c
+index facd82de77443839cb9c0e529383b5bfc51faf5d..e3aa1f3ac29d49ec89aa92bf545eeb831c078dd7 100644
+--- a/sway/commands/focus.c
++++ b/sway/commands/focus.c
+@@ -24,6 +24,7 @@ static bool get_direction_from_next_prev(struct sway_container *container,
+ 	if (strcasecmp(name, "prev") == 0) {
+ 		switch (parent_layout) {
+ 		case L_HORIZ:
++		case L_MOSAIC:
+ 		case L_TABBED:
+ 			*out = WLR_DIRECTION_LEFT;
+ 			break;
+@@ -39,6 +40,7 @@ static bool get_direction_from_next_prev(struct sway_container *container,
+ 	} else if (strcasecmp(name, "next") == 0) {
+ 		switch (parent_layout) {
+ 		case L_HORIZ:
++		case L_MOSAIC:
+ 		case L_TABBED:
+ 			*out = WLR_DIRECTION_RIGHT;
+ 			break;
+@@ -93,7 +95,8 @@ static struct sway_node *get_node_in_output_direction(
+ 	if (ws->tiling->length > 0) {
+ 		switch (dir) {
+ 		case WLR_DIRECTION_LEFT:
+-			if (ws->layout == L_HORIZ || ws->layout == L_TABBED) {
++			if (ws->layout == L_HORIZ || ws->layout == L_MOSAIC ||
++					ws->layout == L_TABBED) {
+ 				// get most right child of new output
+ 				container = ws->tiling->items[ws->tiling->length-1];
+ 			} else {
+@@ -101,7 +104,8 @@ static struct sway_node *get_node_in_output_direction(
+ 			}
+ 			break;
+ 		case WLR_DIRECTION_RIGHT:
+-			if (ws->layout == L_HORIZ || ws->layout == L_TABBED) {
++			if (ws->layout == L_HORIZ || ws->layout == L_MOSAIC ||
++					ws->layout == L_TABBED) {
+ 				// get most left child of new output
+ 				container = ws->tiling->items[0];
+ 			} else {
+@@ -163,7 +167,8 @@ static struct sway_node *node_get_in_direction_tiling(
+ 		list_t *siblings = container_get_siblings(current);
+ 
+ 		if (dir == WLR_DIRECTION_LEFT || dir == WLR_DIRECTION_RIGHT) {
+-			if (parent_layout == L_HORIZ || parent_layout == L_TABBED) {
++			if (parent_layout == L_HORIZ || parent_layout == L_MOSAIC ||
++					parent_layout == L_TABBED) {
+ 				can_move = true;
+ 				desired = idx + (dir == WLR_DIRECTION_LEFT ? -1 : 1);
+ 			}
+diff --git a/sway/commands/layout.c b/sway/commands/layout.c
+index 22dfdf3d7cec5a18d6b861d99d5cb0c3ce238e00..0d48ee81b70afebef164c90a1a3b62e1f91da972 100644
+--- a/sway/commands/layout.c
++++ b/sway/commands/layout.c
+@@ -1,10 +1,14 @@
+ #include <stdbool.h>
++#include <errno.h>
++#include <limits.h>
++#include <stdlib.h>
+ #include <string.h>
+ #include <strings.h>
+ #include "sway/commands.h"
+ #include "sway/output.h"
+ #include "sway/tree/arrange.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/workspace.h"
+ #include "log.h"
+ 
+@@ -22,7 +26,9 @@ static enum sway_container_layout parse_layout_string(char *s) {
+ }
+ 
+ static const char expected_syntax[] =
+-	"Expected 'layout default|tabbed|stacking|splitv|splith' or "
++	"Expected 'layout default|tabbed|stacking|splitv|splith|mosaic' or "
++	"'layout toggle mosaic' or "
++	"'layout mosaic scroll <signed pixels>' or "
+ 	"'layout toggle [split|all]' or "
+ 	"'layout toggle [split|tabbed|stacking|splitv|splith] [split|tabbed|stacking|splitv|splith]...'";
+ 
+@@ -97,6 +103,10 @@ static enum sway_container_layout get_layout(int argc, char **argv,
+ 		enum sway_container_layout layout,
+ 		enum sway_container_layout prev_split_layout,
+ 		struct sway_output *output) {
++	// Mosaic is an explicit workspace mode, never part of the legacy toggle cycle.
++	if (argc == 1 && strcasecmp(argv[0], "mosaic") == 0) {
++		return L_MOSAIC;
++	}
+ 	// Check if assigned directly
+ 	enum sway_container_layout parsed = parse_layout_string(argv[0]);
+ 	if (parsed != L_NONE) {
+@@ -125,6 +135,37 @@ struct cmd_results *cmd_layout(int argc, char **argv) {
+ 	}
+ 	struct sway_container *container = config->handler_context.container;
+ 	struct sway_workspace *workspace = config->handler_context.workspace;
++	if (argc == 3 && strcasecmp(argv[0], "mosaic") == 0 &&
++			strcasecmp(argv[1], "scroll") == 0) {
++		if (!workspace || workspace->layout != L_MOSAIC || !workspace->mosaic) {
++			return cmd_results_new(CMD_FAILURE, "Mosaic est inactif sur ce workspace");
++		}
++		errno = 0;
++		char *end = NULL;
++		long delta = strtol(argv[2], &end, 10);
++		if (errno || end == argv[2] || *end || delta < -INT_MAX ||
++				delta > INT_MAX) {
++			return cmd_results_new(CMD_INVALID, "%s", expected_syntax);
++		}
++		struct mosaic_row *row = workspace->mosaic->rows->items[0];
++		double next = row->state.scroll_x + delta;
++		mosaic_row_set_scroll(row, next < 0 ? 0 : next);
++		struct wlr_box viewport;
++		workspace_get_box(workspace, &viewport);
++		mosaic_row_clamp_scroll(row, viewport.width, workspace->gaps_inner);
++		// The transaction updates the workspace tiling scene position; the
++		// ordered Sway children and their logical rectangles stay intact.
++		arrange_workspace(workspace);
++		return cmd_results_new(CMD_SUCCESS, NULL);
++	}
++	bool mosaic_command = argc == 1 && strcasecmp(argv[0], "mosaic") == 0;
++	bool mosaic_toggle = argc == 2 && strcasecmp(argv[0], "toggle") == 0 &&
++		strcasecmp(argv[1], "mosaic") == 0;
++	// CONTRACT: Mosaic belongs to the workspace, even when a view has focus.
++	if (mosaic_command || mosaic_toggle ||
++			(workspace && workspace->layout == L_MOSAIC)) {
++		container = NULL;
++	}
+ 
+ 	if (container && container_is_floating(container)) {
+ 		return cmd_results_new(CMD_FAILURE,
+@@ -161,28 +202,74 @@ struct cmd_results *cmd_layout(int argc, char **argv) {
+ 				container->pending.workspace->output);
+ 	} else {
+ 		old_layout = workspace->layout;
+-		new_layout = get_layout(argc, argv,
+-				workspace->layout, workspace->prev_split_layout,
+-				workspace->output);
++		if (mosaic_toggle) {
++			new_layout = old_layout == L_MOSAIC ?
++				workspace->mosaic_previous_standard_layout : L_MOSAIC;
++		} else {
++			new_layout = get_layout(argc, argv,
++					workspace->layout, workspace->prev_split_layout,
++					workspace->output);
++		}
+ 	}
+ 	if (new_layout == L_NONE) {
+ 		return cmd_results_new(CMD_INVALID, "%s", expected_syntax);
+ 	}
++	if (new_layout == L_MOSAIC && old_layout != L_MOSAIC &&
++			workspace->mosaic_previous_standard_layout == L_NONE) {
++		// A defensive fallback for workspaces created before layout state init.
++		workspace->mosaic_previous_standard_layout = old_layout;
++	}
++	if (new_layout == L_MOSAIC && !workspace->mosaic) {
++		workspace->mosaic = mosaic_state_create(workspace->tiling);
++		if (!workspace->mosaic) {
++			return cmd_results_new(CMD_FAILURE,
++					"Impossible d'allouer l'état Mosaic");
++		}
++	}
++	if (new_layout == L_MOSAIC && old_layout != L_MOSAIC &&
++			workspace->tiling->length == 1) {
++		struct sway_container *wrap = workspace->tiling->items[0];
++		// Sway applies `layout tabbed/stacking` on an occupied workspace by
++		// wrapping its children. Promote that root wrapper's tabs to Row0 so
++		// Mosaic receives the same windows, then restore the remembered
++		// standard layout at the workspace level on the next toggle.
++		if (!wrap->view && wrap->pending.children->length > 0 &&
++				(wrap->pending.layout == L_TABBED ||
++				 wrap->pending.layout == L_STACKED) &&
++				wrap->pending.layout == workspace->mosaic_previous_standard_layout) {
++			container_detach(wrap);
++			workspace_unwrap_children(workspace, wrap);
++			container_reap_empty(wrap);
++		}
++	}
++	if (new_layout == L_MOSAIC && config->handler_context.container) {
++		struct mosaic_row *row = workspace->mosaic->rows->items[0];
++		struct sway_container *focused = container_toplevel_ancestor(
++				config->handler_context.container);
++		mosaic_row_focus(row, focused);
++	}
+ 	if (new_layout != old_layout) {
++		// The remembered standard layout belongs to the workspace, regardless
++		// of whether i3 applies the command to a focused parent container.
++		if (new_layout != L_MOSAIC) {
++			workspace->mosaic_previous_standard_layout = new_layout;
++		}
+ 		if (container) {
+ 			if (old_layout != L_TABBED && old_layout != L_STACKED) {
+ 				container->prev_split_layout = old_layout;
+ 			}
+ 			container->pending.layout = new_layout;
+ 			container_update_representation(container);
+-		} else if (config->handler_context.container) {
++		} else if (config->handler_context.container &&
++				old_layout != L_MOSAIC && new_layout != L_MOSAIC) {
+ 			// i3 avoids changing workspace layouts with a new container
+ 			// https://github.com/i3/i3/blob/3cd1c45eba6de073bc4300eebb4e1cc1a0c4479a/src/con.c#L1817
+ 			container = workspace_wrap_children(workspace);
+ 			container->pending.layout = new_layout;
+ 			container_update_representation(container);
+ 		} else {
+-			if (old_layout != L_TABBED && old_layout != L_STACKED) {
++			if (old_layout != L_TABBED && old_layout != L_STACKED &&
++					old_layout != L_MOSAIC) {
+ 				workspace->prev_split_layout = old_layout;
+ 			}
+ 			workspace->layout = new_layout;
+diff --git a/sway/commands/move.c b/sway/commands/move.c
+index 43fce0d6db755ea3123b84567db19488bae84cfb..1ecca7846bfee7f355241c1b3a235489c80122d6 100644
+--- a/sway/commands/move.c
++++ b/sway/commands/move.c
+@@ -81,6 +81,8 @@ static bool is_parallel(enum sway_container_layout layout,
+ 	switch (layout) {
+ 	case L_TABBED:
+ 	case L_HORIZ:
++	case L_MOSAIC:
++		// Horizontal moves within Row0 must not reorient the workspace.
+ 		return dir == WLR_DIRECTION_LEFT || dir == WLR_DIRECTION_RIGHT;
+ 	case L_STACKED:
+ 	case L_VERT:
+diff --git a/sway/desktop/transaction.c b/sway/desktop/transaction.c
+index 3a37b40f6b0ad9f5281101e55c259de03eb80ec9..47e3e179b492e3c6d1ea1e2e10492a2da886c1b0 100644
+--- a/sway/desktop/transaction.c
++++ b/sway/desktop/transaction.c
+@@ -1,5 +1,7 @@
+ #include <assert.h>
+ #include <stdbool.h>
++#include <limits.h>
++#include <stdint.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <time.h>
+@@ -15,6 +17,7 @@
+ #include "sway/output.h"
+ #include "sway/server.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/node.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
+@@ -504,8 +507,10 @@ static void arrange_children(enum sway_container_layout layout, list_t *children
+ 				disable_container(child);
+ 			}
+ 		}
+-	} else if (layout == L_HORIZ) {
+-		int off = 0;
++	} else if (layout == L_HORIZ || layout == L_MOSAIC) {
++		// Scene node positions are int; keep the logical canvas accumulator
++		// wide so a very large Mosaic row cannot overflow signed arithmetic.
++		int64_t off = 0;
+ 		for (int i = 0; i < children->length; i++) {
+ 			struct sway_container *child = children->items[i];
+ 			int cwidth = child->current.width;
+@@ -515,9 +520,9 @@ static void arrange_children(enum sway_container_layout layout, list_t *children
+ 			wlr_scene_node_set_enabled(&child->shadow->node,
+ 					container_has_shadow(child) && child->view);
+ 			wlr_scene_node_reparent(&child->scene_tree->node, content);
+-			if (cwidth > 0 && height > 0) {
+-				arrange_container(child, cwidth, height, off, 0, true, gaps);
+-				off += cwidth + gaps;
++			if (cwidth > 0 && height > 0 && off <= INT_MAX) {
++				arrange_container(child, cwidth, height, (int)off, 0, true, gaps);
++				off += (int64_t)cwidth + gaps;
+ 			} else {
+ 				disable_container(child);
+ 			}
+@@ -864,6 +869,18 @@ static void arrange_workspace_tiling(struct sway_workspace *ws,
+ 		width, height, ws->gaps_inner);
+ }
+ 
++static int workspace_tiling_scene_x(struct sway_workspace *ws,
++		struct wlr_box *area, struct side_gaps *gaps) {
++	int64_t x = (int64_t)area->x + gaps->left;
++	if (ws->current.layout == L_MOSAIC && ws->mosaic) {
++		struct mosaic_row *row = ws->mosaic->rows->items[0];
++		x -= (int64_t)row->state.scroll_x;
++	}
++	// The camera is kept in logical pixels; this conversion is the sole
++	// output-scene mapping and must never overflow wlroots' int positions.
++	return x < INT_MIN ? INT_MIN : x > INT_MAX ? INT_MAX : (int)x;
++}
++
+ static void disable_workspace(struct sway_workspace *ws) {
+ 	// if any containers were just moved to a disabled workspace it will
+ 	// have the parent of the old workspace. Move the workspace so that it won't
+@@ -955,7 +972,8 @@ static void arrange_output(struct sway_output *output, int width, int height) {
+ 				struct side_gaps *gaps = &child->current_gaps;
+ 
+ 				wlr_scene_node_set_position(&child->layers.tiling->node,
+-					gaps->left + area->x, gaps->top + area->y);
++					workspace_tiling_scene_x(child, area, gaps),
++					gaps->top + area->y);
+ 
+ 				arrange_workspace_tiling(child,
+ 					area->width - gaps->left - gaps->right,
+@@ -971,7 +989,8 @@ static void arrange_output(struct sway_output *output, int width, int height) {
+ 			wlr_scene_node_set_enabled(&child->layers.fullscreen->node, false);
+ 
+ 			wlr_scene_node_set_position(&child->layers.tiling->node,
+-				gaps->left + area->x, gaps->top + area->y);
++				workspace_tiling_scene_x(child, area, gaps),
++				gaps->top + area->y);
+ 
+ 			arrange_workspace_tiling(child,
+ 				area->width - gaps->left - gaps->right,
+diff --git a/sway/input/seat.c b/sway/input/seat.c
+index 0434d637c37930b171a3a508c41a3f991cea3c09..d11f6fedeb1b8cc4672c9a0b66ae91b7cfc7a31a 100644
+--- a/sway/input/seat.c
++++ b/sway/input/seat.c
+@@ -31,6 +31,7 @@
+ #include "sway/server.h"
+ #include "sway/tree/arrange.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/root.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
+@@ -1189,6 +1190,28 @@ static void seat_set_workspace_focus(struct sway_seat *seat, struct sway_node *n
+ 	if (container) {
+ 		seat_set_raw_focus(seat, &container->node);
+ 		seat_send_focus(&container->node, seat);
++		// Focus changes update row context without changing Sway tiling order.
++		if (new_workspace && new_workspace->layout == L_MOSAIC &&
++				new_workspace->mosaic) {
++			struct mosaic_row *row = new_workspace->mosaic->rows->items[0];
++			struct sway_container *top = container_toplevel_ancestor(container);
++			if (mosaic_row_focus(row, top) && top) {
++				// Keep focus separate from order. Only move the logical camera
++				// when the focused tiled cell falls outside the viewport.
++				struct wlr_box viewport;
++				workspace_get_box(new_workspace, &viewport);
++				double left = top->pending.x - viewport.x;
++				double right = left + top->pending.width;
++				if (left < row->state.scroll_x) {
++					row->state.scroll_x = left < 0 ? 0 : left;
++				} else if (right > row->state.scroll_x + viewport.width) {
++					row->state.scroll_x = right - viewport.width;
++				}
++				mosaic_row_clamp_scroll(row, viewport.width,
++					new_workspace->gaps_inner);
++				arrange_workspace(new_workspace);
++			}
++		}
+ 	}
+ 
+ 	// emit ipc events
+diff --git a/sway/ipc-json.c b/sway/ipc-json.c
+index bb0566ab68d492f5f46324828a75425f7af8372d..525849848d3d23f338c96b5f96b2a17dd66ad229 100644
+--- a/sway/ipc-json.c
++++ b/sway/ipc-json.c
+@@ -16,6 +16,7 @@
+ #include "sway/scene_descriptor.h"
+ #include "sway/server.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/root.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
+@@ -54,6 +55,8 @@ static const char *ipc_json_layout_description(enum sway_container_layout l) {
+ 		return "splitv";
+ 	case L_HORIZ:
+ 		return "splith";
++	case L_MOSAIC:
++		return "mosaic";
+ 	case L_TABBED:
+ 		return "tabbed";
+ 	case L_STACKED:
+@@ -69,6 +72,7 @@ static const char *ipc_json_orientation_description(enum sway_container_layout l
+ 	case L_VERT:
+ 		return "vertical";
+ 	case L_HORIZ:
++	case L_MOSAIC:
+ 		return "horizontal";
+ 	default:
+ 		return "none";
+@@ -611,6 +615,32 @@ static void ipc_json_describe_workspace(struct sway_workspace *workspace,
+ 	json_object_object_add(object, "orientation",
+ 			json_object_new_string(
+ 				ipc_json_orientation_description(workspace->layout)));
++	if (workspace->layout == L_MOSAIC && workspace->mosaic) {
++		// Optional extension: legacy IPC fields keep their Sway shapes.
++		// Row zero borrows the real workspace tiling order.
++		json_object *mosaic = json_object_new_object();
++		json_object *rows = json_object_new_array();
++		for (int i = 0; i < workspace->mosaic->rows->length; ++i) {
++			struct mosaic_row *row = workspace->mosaic->rows->items[i];
++			json_object *entry = json_object_new_object();
++			json_object *ids = json_object_new_array();
++			for (int j = 0; j < row->children->length; ++j) {
++				struct sway_container *child = row->children->items[j];
++				json_object_array_add(ids, json_object_new_int64(child->node.id));
++			}
++			json_object_object_add(entry, "children", ids);
++			json_object_object_add(entry, "scroll_x",
++				json_object_new_double(row->state.scroll_x));
++			json_object_object_add(entry, "focused",
++				row->state.focused ? json_object_new_int64(
++					row->state.focused->node.id) : NULL);
++			json_object_array_add(rows, entry);
++		}
++		json_object_object_add(mosaic, "rows", rows);
++		json_object_object_add(mosaic, "active_row",
++			json_object_new_int(workspace->mosaic->active_row));
++		json_object_object_add(object, "mosaic", mosaic);
++	}
+ 
+ 	// Floating
+ 	json_object *floating_array = json_object_new_array();
+diff --git a/sway/main.c b/sway/main.c
+index ab1d05e89bb7a882afe6f7ec95e2d4cfc9bad517..e7fc09b01fef1db7c5b03efa20d78cca7ea29f07 100644
+--- a/sway/main.c
++++ b/sway/main.c
+@@ -257,7 +257,7 @@ int main(int argc, char **argv) {
+ 			allow_unsupported_gpu = true;
+ 			break;
+ 		case 'v': // version
+-			printf("swayfx version " SWAY_VERSION " (based on sway " SWAY_ORIGINAL_VERSION ")\n");
++			printf("swayfx-mosaic version " SWAY_VERSION " (based on sway " SWAY_ORIGINAL_VERSION ")\n");
+ 			exit(EXIT_SUCCESS);
+ 			break;
+ 		case 'V': // verbose
+diff --git a/sway/meson.build b/sway/meson.build
+index ecd2865be64ac90dc8651c881c6ddb3cca33d931..41119f20f0fd29a0f49f6d2f405ccfd5f7c4688b 100644
+--- a/sway/meson.build
++++ b/sway/meson.build
+@@ -236,6 +236,7 @@ sway_sources = files(
+ 
+ 	'tree/arrange.c',
+ 	'tree/container.c',
++	'tree/mosaic.c',
+ 	'tree/node.c',
+ 	'tree/root.c',
+ 	'tree/view.c',
+@@ -272,7 +273,7 @@ if wlroots_features['libinput_backend']
+ endif
+ 
+ executable(
+-	'sway',
++	'swayfx-mosaic',
+ 	sway_sources + wl_protos_src,
+ 	include_directories: [sway_inc],
+ 	dependencies: sway_deps,
+diff --git a/sway/tree/arrange.c b/sway/tree/arrange.c
+index 3b85376c1e101bdb70837182852d56c94ed30125..4155e153668b199179800cff940276f04ba0dac1 100644
+--- a/sway/tree/arrange.c
++++ b/sway/tree/arrange.c
+@@ -1,11 +1,14 @@
+ #include <ctype.h>
+ #include <stdbool.h>
++#include <limits.h>
++#include <stdint.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <wlr/types/wlr_output.h>
+ #include <wlr/types/wlr_output_layout.h>
+ #include "sway/tree/arrange.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/output.h"
+ #include "sway/tree/workspace.h"
+ #include "sway/tree/view.h"
+@@ -97,6 +100,37 @@ static void apply_horiz_layout(list_t *children, struct wlr_box *parent) {
+ 	}
+ }
+ 
++static void apply_mosaic_layout(list_t *children, struct wlr_box *viewport,
++		struct sway_workspace *ws) {
++	if (!children->length || !ws->mosaic) {
++		return;
++	}
++	struct mosaic_row *row = ws->mosaic->rows->items[0];
++	int count = children->length;
++	int gap = ws->gaps_inner > 0 ? ws->gaps_inner : 0;
++	int64_t gap_total = (int64_t)(count - 1) * gap;
++	int64_t fitting = ((int64_t)viewport->width - gap_total) / count;
++	// STEP20B temporary sizing policy: 640 px minimum demonstrates an
++	// overflowing tiled row. A later slice will define the UX cell sizing.
++	int cell = row->state.minimum_cell_width > 0 ?
++		row->state.minimum_cell_width : 640;
++	if (fitting > cell) {
++		cell = fitting > INT_MAX ? INT_MAX : (int)fitting;
++	}
++	int64_t x = viewport->x;
++	for (int i = 0; i < count; ++i) {
++		struct sway_container *child = children->items[i];
++		child->pending.x = x;
++		child->pending.y = viewport->y;
++		child->pending.width = cell;
++		child->pending.height = viewport->height;
++		child->child_total_width = (int64_t)count * cell > INT_MAX ?
++			INT_MAX : count * cell;
++		x += (int64_t)cell + gap;
++	}
++	mosaic_row_clamp_scroll(row, viewport->width, gap);
++}
++
+ static void apply_vert_layout(list_t *children, struct wlr_box *parent) {
+ 	if (!children->length) {
+ 		return;
+@@ -225,6 +259,19 @@ static void arrange_children(list_t *children,
+ 	case L_HORIZ:
+ 		apply_horiz_layout(children, parent);
+ 		break;
++	case L_MOSAIC:
++		// Only a workspace owns a Mosaic row. Nested containers retain Sway's
++		// normal tiling rules while row zero remains the real workspace tree.
++		if (children->length) {
++			struct sway_container *first = children->items[0];
++			struct sway_workspace *ws = first->pending.workspace;
++			if (ws && ws->tiling == children) {
++				apply_mosaic_layout(children, parent, ws);
++			} else {
++				apply_horiz_layout(children, parent);
++			}
++		}
++		break;
+ 	case L_VERT:
+ 		apply_vert_layout(children, parent);
+ 		break;
+diff --git a/sway/tree/container.c b/sway/tree/container.c
+index 6fe1206499abc428517f4bc0cfc33c25a1c0e0ad..e6cad85806b3a42a18f73c51044130fc94d4e90e 100644
+--- a/sway/tree/container.c
++++ b/sway/tree/container.c
+@@ -17,6 +17,7 @@
+ #include "sway/output.h"
+ #include "sway/server.h"
+ #include "sway/tree/arrange.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
+ #include "sway/xdg_decoration.h"
+@@ -829,6 +830,9 @@ size_t container_build_representation(enum sway_container_layout layout,
+ 	case L_HORIZ:
+ 		lenient_strcat(buffer, "H[");
+ 		break;
++	case L_MOSAIC:
++		lenient_strcat(buffer, "M[");
++		break;
+ 	case L_TABBED:
+ 		lenient_strcat(buffer, "T[");
+ 		break;
+@@ -1528,6 +1532,7 @@ void container_insert_child(struct sway_container *parent,
+ 	child->pending.parent = parent;
+ 	child->pending.workspace = parent->pending.workspace;
+ 	container_for_each_child(child, set_workspace, NULL);
++	workspace_mosaic_sync_focus(child->pending.workspace);
+ 	container_handle_fullscreen_reparent(child);
+ 	container_update_representation(parent);
+ }
+@@ -1543,6 +1548,7 @@ void container_add_sibling(struct sway_container *fixed,
+ 	active->pending.parent = fixed->pending.parent;
+ 	active->pending.workspace = fixed->pending.workspace;
+ 	container_for_each_child(active, set_workspace, NULL);
++	workspace_mosaic_sync_focus(active->pending.workspace);
+ 	container_handle_fullscreen_reparent(active);
+ 	container_update_representation(active);
+ }
+@@ -1556,6 +1562,7 @@ void container_add_child(struct sway_container *parent,
+ 	child->pending.parent = parent;
+ 	child->pending.workspace = parent->pending.workspace;
+ 	container_for_each_child(child, set_workspace, NULL);
++	workspace_mosaic_sync_focus(child->pending.workspace);
+ 	container_handle_fullscreen_reparent(child);
+ 	container_update_representation(parent);
+ 	node_set_dirty(&child->node);
+@@ -1572,6 +1579,16 @@ void container_detach(struct sway_container *child) {
+ 
+ 	struct sway_container *old_parent = child->pending.parent;
+ 	struct sway_workspace *old_workspace = child->pending.workspace;
++	// A Mosaic focus reference must not outlive a detached Sway container.
++	if (old_workspace && old_workspace->mosaic) {
++		struct mosaic_workspace_state *mosaic = old_workspace->mosaic;
++		for (int i = 0; i < mosaic->rows->length; ++i) {
++			struct mosaic_row *row = mosaic->rows->items[i];
++			if (row->state.focused == child) {
++				row->state.focused = NULL;
++			}
++		}
++	}
+ 	list_t *siblings = container_get_siblings(child);
+ 	if (siblings) {
+ 		int index = list_find(siblings, child);
+diff --git a/sway/tree/mosaic.c b/sway/tree/mosaic.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..a31f37e7dea3906a27df76648380b8d876f68ee9
+--- /dev/null
++++ b/sway/tree/mosaic.c
+@@ -0,0 +1,155 @@
++#include <math.h>
++#include <limits.h>
++#include <stdint.h>
++#include <stdlib.h>
++#include "sway/tree/mosaic.h"
++
++static struct mosaic_row *row_create(list_t *children, bool owns_children) {
++	struct mosaic_row *row = calloc(1, sizeof(*row));
++	if (!row) {
++		return NULL;
++	}
++	row->children = children;
++	row->owns_children = owns_children;
++	return row;
++}
++
++struct mosaic_workspace_state *mosaic_state_create(list_t *first_children) {
++	if (!first_children) {
++		return NULL;
++	}
++	struct mosaic_workspace_state *state = calloc(1, sizeof(*state));
++	if (!state) {
++		return NULL;
++	}
++	state->rows = create_list();
++	if (!state->rows) {
++		free(state);
++		return NULL;
++	}
++	struct mosaic_row *row = row_create(first_children, false);
++	if (!row) {
++		list_free(state->rows);
++		free(state);
++		return NULL;
++	}
++	list_add(state->rows, row);
++	return state;
++}
++
++void mosaic_state_destroy(struct mosaic_workspace_state *state) {
++	if (!state) {
++		return;
++	}
++	for (int i = 0; i < state->rows->length; ++i) {
++		struct mosaic_row *row = state->rows->items[i];
++		if (row->owns_children) {
++			list_free(row->children);
++		}
++		free(row);
++	}
++	list_free(state->rows);
++	free(state);
++}
++
++struct mosaic_row *mosaic_state_add_row(struct mosaic_workspace_state *state) {
++	if (!state) {
++		return NULL;
++	}
++	list_t *children = create_list();
++	if (!children) {
++		return NULL;
++	}
++	struct mosaic_row *row = row_create(children, true);
++	if (!row) {
++		list_free(children);
++		return NULL;
++	}
++	list_add(state->rows, row);
++	return row;
++}
++
++bool mosaic_state_select_row(struct mosaic_workspace_state *state, int index) {
++	if (!state || index < 0 || index >= state->rows->length) {
++		return false;
++	}
++	state->active_row = index;
++	return true;
++}
++
++int mosaic_row_insertion_index(const struct mosaic_row *row) {
++	if (!row || !row->children) {
++		return 0;
++	}
++	int index = list_find(row->children, row->state.focused);
++	return index < 0 ? row->children->length : index + 1;
++}
++
++void mosaic_row_insert_after_focus(struct mosaic_row *row,
++		struct sway_container *child) {
++	if (row && child) {
++		list_insert(row->children, mosaic_row_insertion_index(row), child);
++	}
++}
++
++void mosaic_row_remove(struct mosaic_row *row, struct sway_container *child) {
++	if (!row || !child) {
++		return;
++	}
++	int index = list_find(row->children, child);
++	if (index >= 0) {
++		list_del(row->children, index);
++	}
++	// INVARIANT: no row retains focus on a detached or destroyed container.
++	if (row->state.focused == child) {
++		row->state.focused = NULL;
++	}
++}
++
++bool mosaic_row_focus(struct mosaic_row *row, struct sway_container *child) {
++	if (!row || (child && list_find(row->children, child) < 0)) {
++		return false;
++	}
++	row->state.focused = child;
++	return true;
++}
++
++bool mosaic_row_set_scroll(struct mosaic_row *row, double scroll_x) {
++	if (!row || !isfinite(scroll_x) || scroll_x < 0) {
++		return false;
++	}
++	row->state.scroll_x = scroll_x;
++	return true;
++}
++
++int mosaic_row_max_scroll(const struct mosaic_row *row, int viewport_width,
++		int gaps) {
++	if (!row || !row->children || viewport_width <= 0 ||
++			row->children->length == 0) {
++		return 0;
++	}
++	int count = row->children->length;
++	int cell = row->state.minimum_cell_width > 0 ?
++		row->state.minimum_cell_width : 640;
++	if (gaps < 0) {
++		gaps = 0;
++	}
++	int64_t occupied_gaps = (int64_t)(count - 1) * gaps;
++	int64_t fitting = ((int64_t)viewport_width - occupied_gaps) / count;
++	if (fitting > cell) {
++		cell = fitting > INT_MAX ? INT_MAX : (int)fitting;
++	}
++	int64_t overflow = (int64_t)count * cell + occupied_gaps - viewport_width;
++	return overflow <= 0 ? 0 : overflow > INT_MAX ? INT_MAX : (int)overflow;
++}
++
++void mosaic_row_clamp_scroll(struct mosaic_row *row, int viewport_width,
++		int gaps) {
++	if (!row) {
++		return;
++	}
++	int maximum = mosaic_row_max_scroll(row, viewport_width, gaps);
++	if (row->state.scroll_x > maximum) {
++		row->state.scroll_x = maximum;
++	}
++}
+diff --git a/sway/tree/view.c b/sway/tree/view.c
+index 764e56de419d48b9b99dc6cf6fe920773147b309..2079d0834065c9430099992c9841127d9ea0f1fc 100644
+--- a/sway/tree/view.c
++++ b/sway/tree/view.c
+@@ -32,6 +32,7 @@
+ #include "sway/sway_text_node.h"
+ #include "sway/tree/arrange.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
+ #include "sway/config.h"
+@@ -896,6 +897,15 @@ void view_map(struct sway_view *view, struct wlr_surface *wlr_surface,
+ 			target_sibling = node->sway_container;
+ 		}
+ 	}
++	if (ws && ws->layout == L_MOSAIC && ws->mosaic) {
++		// New tiled views join after the row's active top-level container;
++		// workspace->tiling remains the sole ordering authority.
++		struct mosaic_row *row = ws->mosaic->rows->items[0];
++		target_sibling = row->state.focused;
++		if (target_sibling && list_find(ws->tiling, target_sibling) < 0) {
++			target_sibling = NULL;
++		}
++	}
+ 
+ 	struct wlr_ext_foreign_toplevel_handle_v1_state foreign_toplevel_state = {
+ 		.app_id = view_get_app_id(view),
+diff --git a/sway/tree/workspace.c b/sway/tree/workspace.c
+index 401e3e7ec3e741810a3e062ae99c028d09879905..ca91a6a7d2d05afa155ac4efe04c62b35deefd33 100644
+--- a/sway/tree/workspace.c
++++ b/sway/tree/workspace.c
+@@ -17,6 +17,7 @@
+ #include "sway/server.h"
+ #include "sway/tree/arrange.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/node.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
+@@ -217,6 +218,7 @@ struct sway_workspace *workspace_create(struct sway_output *output,
+ 	ws->name = strdup(name);
+ 	ws->prev_split_layout = L_NONE;
+ 	ws->layout = output_get_default_layout(output);
++	ws->mosaic_previous_standard_layout = ws->layout;
+ 	ws->floating = create_list();
+ 	ws->tiling = create_list();
+ 	ws->output_priority = create_list();
+@@ -294,6 +296,8 @@ void workspace_destroy(struct sway_workspace *workspace) {
+ 	free(workspace->representation);
+ 	list_free_items_and_destroy(workspace->output_priority);
+ 	list_free(workspace->floating);
++	// Row zero borrows workspace->tiling; release the state before that list.
++	mosaic_state_destroy(workspace->mosaic);
+ 	list_free(workspace->tiling);
+ 	list_free(workspace->current.floating);
+ 	list_free(workspace->current.tiling);
+@@ -955,9 +959,15 @@ struct sway_container *workspace_add_tiling(struct sway_workspace *workspace,
+ 	if (config->default_layout != L_NONE) {
+ 		con = container_split(con, config->default_layout);
+ 	}
+-	list_add(workspace->tiling, con);
++	if (workspace->layout == L_MOSAIC && workspace->mosaic) {
++		struct mosaic_row *row = workspace->mosaic->rows->items[0];
++		mosaic_row_insert_after_focus(row, con);
++	} else {
++		list_add(workspace->tiling, con);
++	}
+ 	con->pending.workspace = workspace;
+ 	container_for_each_child(con, set_workspace, NULL);
++	workspace_mosaic_sync_focus(workspace);
+ 	container_handle_fullscreen_reparent(con);
+ 	workspace_update_representation(workspace);
+ 	node_set_dirty(&workspace->node);
+@@ -965,6 +975,20 @@ struct sway_container *workspace_add_tiling(struct sway_workspace *workspace,
+ 	return con;
+ }
+ 
++void workspace_mosaic_sync_focus(struct sway_workspace *workspace) {
++	if (!workspace || workspace->layout != L_MOSAIC || !workspace->mosaic) {
++		return;
++	}
++	struct sway_seat *seat = input_manager_current_seat();
++	struct sway_container *focused = seat_get_focused_container(seat);
++	if (!focused || focused->pending.workspace != workspace) {
++		return;
++	}
++	struct sway_container *top = container_toplevel_ancestor(focused);
++	struct mosaic_row *row = workspace->mosaic->rows->items[0];
++	mosaic_row_focus(row, top);
++}
++
+ void workspace_add_floating(struct sway_workspace *workspace,
+ 		struct sway_container *con) {
+ 	if (con->pending.workspace) {
+@@ -983,6 +1007,7 @@ void workspace_insert_tiling_direct(struct sway_workspace *workspace,
+ 	list_insert(workspace->tiling, index, con);
+ 	con->pending.workspace = workspace;
+ 	container_for_each_child(con, set_workspace, NULL);
++	workspace_mosaic_sync_focus(workspace);
+ 	container_handle_fullscreen_reparent(con);
+ 	workspace_update_representation(workspace);
+ 	node_set_dirty(&workspace->node);
+diff --git a/tests/mosaic-model.c b/tests/mosaic-model.c
+new file mode 100644
+index 0000000000000000000000000000000000000000..ddff5b0787ea25e067befb50bba0b0242d41e2b2
+--- /dev/null
++++ b/tests/mosaic-model.c
+@@ -0,0 +1,58 @@
++#include <assert.h>
++#include <stddef.h>
++#include "sway/tree/mosaic.h"
++
++// Distinct addresses stand for containers; the model must never dereference
++// them or infer geometry from their identity.
++static int a, b, c, d, x, f;
++#define CON(v) ((struct sway_container *)&(v))
++
++int main(void) {
++	list_t *tiling = create_list();
++	assert(tiling);
++	list_add(tiling, CON(a));
++	list_add(tiling, CON(b));
++	list_add(tiling, CON(c));
++	list_add(tiling, CON(d));
++	struct mosaic_workspace_state *state = mosaic_state_create(tiling);
++	assert(state && state->rows->length == 1);
++	struct mosaic_row *row0 = state->rows->items[0];
++	assert(row0->children == tiling && !row0->owns_children);
++
++	assert(mosaic_row_focus(row0, CON(a)));
++	mosaic_row_insert_after_focus(row0, CON(x));
++	assert(tiling->length == 5 && tiling->items[0] == CON(a) &&
++		tiling->items[1] == CON(x) && tiling->items[2] == CON(b) &&
++		tiling->items[3] == CON(c) && tiling->items[4] == CON(d));
++	mosaic_row_remove(row0, CON(c));
++	assert(tiling->length == 4 && tiling->items[3] == CON(d));
++	assert(mosaic_row_focus(row0, CON(b)));
++	assert(tiling->items[0] == CON(a) && tiling->items[1] == CON(x));
++	assert(mosaic_row_set_scroll(row0, 1200));
++	assert(!mosaic_row_set_scroll(row0, -1));
++	assert(tiling->items[2] == CON(b));
++	assert(mosaic_row_max_scroll(row0, 1280, 0) == 1280);
++	mosaic_row_clamp_scroll(row0, 1280, 0);
++	assert(row0->state.scroll_x == 1200);
++	assert(mosaic_row_max_scroll(row0, 2560, 0) == 0);
++	// Clamping the camera does not change the borrowed Sway tiling order.
++	assert(tiling->items[2] == CON(b));
++
++	struct mosaic_row *row1 = mosaic_state_add_row(state);
++	assert(row1 && row1->owns_children);
++	list_add(row1->children, CON(f));
++	assert(mosaic_row_max_scroll(row1, 300, 0) == 340);
++	assert(mosaic_row_focus(row1, CON(f)));
++	assert(mosaic_row_set_scroll(row1, 400));
++	assert(mosaic_state_select_row(state, 1));
++	assert(mosaic_state_select_row(state, 0));
++	assert(row0->state.scroll_x == 1200 && row0->state.focused == CON(b));
++	assert(row1->state.scroll_x == 400 && row1->state.focused == CON(f));
++	mosaic_row_remove(row0, CON(b));
++	assert(row0->state.focused == NULL);
++	assert(!mosaic_state_select_row(state, 2));
++	mosaic_state_destroy(state);
++	assert(tiling->length == 3); // Borrowed Sway list survives state destruction.
++	list_free(tiling);
++	return 0;
++}
