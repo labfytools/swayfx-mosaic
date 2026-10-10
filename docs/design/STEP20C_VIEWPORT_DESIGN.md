@@ -8,6 +8,8 @@
 
 **Critical unresolved feasibility:** SceneFX 0.5 has no public generic `wlr_scene_tree` clip API. It offers node-specific clip/crop operations, but their combined behavior for all Mosaic node types, damage, and hit testing has not been demonstrated. In particular, global popup scene trees and effect/saved-buffer nodes need a focused disposable headless probe before production implementation. Until that proof passes, this is a recommended architecture, **not an implementation-ready clipping contract**. If the probe fails, revisit the architecture; do not silently substitute an output-only mask or claim multi-output safety.
 
+**Probe update:** The subsequent [isolated feasibility probe](STEP20C_FEASIBILITY_PROBE.md) concluded **PARTIALLY FEASIBLE**. Its two-output candidate failed visual and pointer isolation; popup/effect/saved-buffer coverage remains unproven. This proposal remains a hypothesis, and STEP20C production implementation is not authorized by the probe.
+
 ## 2. Existing implementation and exact call paths
 
 The paths below were checked in this repository. References identify current functions; the change column describes **proposed future work**, not a present API.
