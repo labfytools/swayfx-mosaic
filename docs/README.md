@@ -13,7 +13,8 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 5. [Development](DEVELOPMENT.md): reproducible workflow.
 6. [Known limitations](KNOWN_LIMITATIONS.md): current support boundary.
 7. [Roadmap](ROADMAP.md): ordered future work, not proof of implementation.
-8. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+8. [STEP20C viewport proposal](design/STEP20C_VIEWPORT_DESIGN.md): proposed design, subordinate to accepted canonical contracts.
+9. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -39,6 +40,14 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [Development](DEVELOPMENT.md) | Normative | Build, test, staging, patch workflow |
 | [Packaging](PACKAGING.md) | Normative | File ownership, versioning, fallback |
 | [Upstream maintenance](UPSTREAM.md) | Normative | SwayFX relationship, pinned base, forward ports |
+
+## Design proposals
+
+| Document | Role | Purpose |
+| --- | --- | --- |
+| [STEP20C viewport design](design/STEP20C_VIEWPORT_DESIGN.md) | Proposed, not yet accepted | Source audit, clipping alternatives, test plan, feasibility gate |
+
+A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 
 ## Roadmap and historical reports
 

@@ -112,6 +112,7 @@ These commands do not install or switch the active session. See [Development](do
 | [Development](docs/DEVELOPMENT.md) | Reproducible build and validation workflow |
 | [Known limitations](docs/KNOWN_LIMITATIONS.md) | Unsupported or unvalidated behavior |
 | [Roadmap](docs/ROADMAP.md) | Ordered steps and exit criteria |
+| [STEP20C viewport proposal](docs/design/STEP20C_VIEWPORT_DESIGN.md) | Proposed clipping and input design; feasibility still open |
 | [STEP20A](docs/STEP20A.md) · [STEP20B](docs/STEP20B.md) | Historical implementation evidence |
 | [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md) | Evolution and contribution rules |
 

@@ -50,6 +50,10 @@ Each row conceptually remembers `scroll_x` and its last focused container. Chang
 
 The viewport must remain aligned with rendered content and hit testing. Robust clipping across adjacent outputs is **PLANNED**.
 
+## Proposed STEP20C viewport behavior
+
+The [STEP20C design proposal](design/STEP20C_VIEWPORT_DESIGN.md) recommends **minimal focus reveal**: a fully visible focused cell would not move the camera, while an off-screen cell would be revealed by the smallest useful movement. A cell wider than the viewport needs a separate edge/partial-visibility rule. This policy is **PROPOSED**, not yet accepted. A future visual camera value may animate toward the logical target while preserving row order; animation duration and easing remain **TBD**. Multi-output visual and input isolation, including popups and partial cells, remains unimplemented and unsupported pending a SceneFX feasibility probe.
+
 ## Floating, fullscreen, and scratchpad
 
 These remain ordinary Sway concepts. Mosaic does not redefine them. Headless tests have exercised basic floating, fullscreen, scratchpad, insertion, and layout transitions; longer multi-output and resize interactions are not fully validated. See [known limitations](KNOWN_LIMITATIONS.md).

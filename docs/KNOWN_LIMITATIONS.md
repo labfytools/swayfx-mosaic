@@ -16,4 +16,6 @@ This document describes the development tree at the documentation foundation pas
 | Forward port to a later SwayFX release | PLANNED | The patch is pinned to SwayFX 0.6; a new release requires manual review and validation. |
 | Very wide logical coordinates | NOT YET SUPPORTED | Scene positions use bounded integer coordinates; extremely wide canvases are not qualified. |
 
+The [STEP20C viewport proposal](design/STEP20C_VIEWPORT_DESIGN.md) identifies an additional **design feasibility blocker**: installed SceneFX 0.5 exposes no generic scene-tree clip. Its proposed Mosaic-only projection requires a disposable headless proof that all relevant nodes, popups, damage and pointer hits respect one viewport boundary. The proposal does not change any current support status.
+
 These limits are reflected in [UX](UX.md), [architecture](ARCHITECTURE.md), and [roadmap](ROADMAP.md). A future step must update those contracts before claiming support.
