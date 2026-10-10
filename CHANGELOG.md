@@ -2,30 +2,20 @@
 
 ## Unreleased
 
-### Added
+### Documentation
 
-- native Mosaic / Spatial Canvas layout foundation;
-- workspace-local Mosaic state;
-- real tiled Row 0 backed by the Sway tree;
-- insertion/reflow/focus model tests;
-- `layout mosaic` support;
-- workspace-local `layout toggle mosaic`;
-- logical row scrolling and first viewport translation;
-- Mosaic IPC state in `get_tree`;
-- headless compositor validation;
-- isolated Arch packaging path for `/usr/bin/swayfx-mosaic`;
-- architecture, development, upstream and roadmap documentation.
+- Established a public landing page, original source-controlled SVG banner, canonical documentation index, UX contract, packaging contract, known limitations, and documentation-first roadmap.
+- Clarified the current single-row implementation, historical STEP evidence, package coexistence, and upstream forward-port policy.
 
-### Safety
+### Existing implementation
 
-- ordinary SwayFX remains installed separately and untouched;
-- no automatic session replacement;
-- no package `conflicts`, `replaces` or `provides` against SwayFX.
+- Native Mosaic layout with workspace-local state and real tiled Row 0.
+- Insertion/reflow/focus model tests and `layout mosaic` command.
+- Workspace-local `layout toggle mosaic`, logical scrolling, and first viewport scene translation.
+- Mosaic `get_tree` IPC state and headless compositor validation.
+- Isolated Arch packaging path for `/usr/bin/swayfx-mosaic`.
 
-### Known limitations
+### Safety and limitations
 
-- multi-output viewport clipping is not yet production-ready;
-- multi-row Canvas behavior is not implemented;
-- camera animation is not final;
-- Session V2 does not yet restore Mosaic state;
-- the final cell sizing/reflow policy is not frozen.
+- Ordinary SwayFX remains separately installed and independently updatable; no automatic session replacement.
+- Multi-output clipping, multiple runtime rows, camera animation, Session V2 restore, final cell sizing, and daily-driver qualification remain open. See [known limitations](docs/KNOWN_LIMITATIONS.md).

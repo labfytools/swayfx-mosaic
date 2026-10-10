@@ -1,5 +1,7 @@
 # STEP20A — fondation Spatial Canvas native
 
+> **Historical implementation report (native compositor foundation).** This report preserves the original French validation record and reflects the state at that step. For current behavior and decisions, use the [documentation index](README.md), [architecture](ARCHITECTURE.md), [UX contract](UX.md), and [known limitations](KNOWN_LIMITATIONS.md). Canonical documentation takes precedence if a historical statement is stale.
+
 ## Base et provenance
 
 - Installation protégée : paquet Arch `swayfx 0.6-1`, binaire `/usr/bin/sway`, `swayfx version 0.6 (based on sway 1.12.0)`. `pacman -Qkk swayfx` : 58 fichiers, aucun altéré.

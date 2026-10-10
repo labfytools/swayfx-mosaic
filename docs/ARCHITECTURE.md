@@ -1,133 +1,68 @@
 # Architecture
 
-## Scope
+This is the canonical technical contract for SwayFX Mosaic. The current implementation is an experimental single-row compositor layout. [UX](UX.md) specifies user-visible behavior; [known limitations](KNOWN_LIMITATIONS.md) identifies unvalidated boundaries.
 
-Mosaic / Spatial Canvas is an additional native SwayFX layout. It is not a separate window manager model layered above IPC and it is not a QuickShell feature.
+## Scope and authority
 
-The compositor owns:
-- container order;
-- row membership;
-- logical geometry;
-- active row;
-- per-row scroll position;
-- per-row focus memory;
-- scene translation;
-- hit testing consistency.
+| System | Responsibility |
+| --- | --- |
+| SwayFX Mosaic compositor | Runtime order, geometry, focus, camera, scene, input, transactions, IPC |
+| User dotfiles | Session selection and personal key bindings |
+| QuickShell | Future visualization and controls through compositor IPC; never a layout authority |
+| Session V2 | Future persistence/restoration helper; never a parallel runtime authority |
+| SwayFX upstream | Base compositor and standard SwayFX behavior; maintained separately |
 
-QuickShell may display this state later, but must not duplicate or authoritatively store it.
+**The compositor is the runtime source of truth for Mosaic state.** A consumer may request a change or save a snapshot, but must not maintain an independent authoritative window arrangement.
 
-## Logical model
+## Runtime model and lifetime
 
-```text
-MosaicWorkspaceState
-├── active_row
-├── previous_standard_layout
-└── rows[]
-    ├── ordered children
-    ├── scroll_x
-    └── focused child
+The C model uses `struct mosaic_workspace_state`, `struct mosaic_row`, and `struct mosaic_row_state` (see `include/sway/tree/mosaic.h`). A workspace owns its Mosaic state and frees it with the workspace. The state owns row objects but never Sway containers. Row 0 borrows `workspace->tiling`, preserving the Sway tree's real ordered containers. Later model rows own their lists, not their children; they are **not** connected to runtime arrangement yet. A workspace also stores `mosaic_previous_standard_layout` separately from Sway's generic split-layout history.
+
+```mermaid
+flowchart TD
+    W[Sway workspace and real tiling tree] --> M[Mosaic workspace state]
+    M --> R[Row 0 borrows workspace tiling order]
+    R --> G[Logical pending geometry]
+    G --> T[Sway pending/current transaction]
+    T --> S[Scene translation by scroll_x]
+    S --> O[Output viewport and hit testing]
 ```
 
-The first row directly borrows `workspace->tiling`, keeping the existing Sway tree authoritative.
+## Distinct state
 
-Four concepts must remain separate:
+- **Logical order:** sequence in `workspace->tiling` for Row 0. Order is not inferred from screen coordinates.
+- **Row membership:** only Row 0 is a runtime row today; multiple runtime rows are planned.
+- **Geometry:** logical tiled rectangles in the workspace arrangement/transaction state. They may extend beyond the output width.
+- **Camera:** row-local `scroll_x`, clamped to the arranged extent. It changes visibility without changing order.
+- **Focus:** Sway's focus state, with a row-local remembered focused container. Focus can make an off-screen cell visible.
+- **Standard-layout history:** workspace-local restore target for `layout toggle mosaic`.
 
-1. logical order;
-2. calculated geometry;
-3. viewport/camera;
-4. focus.
+Insertion after the active container and deletion reflow preserve contiguous logical order. Floating, fullscreen, and scratchpad retain Sway ownership and paths.
 
-Changing the camera must not reorder containers. Changing focus must not change logical order.
+## Standard layout compatibility
 
-## Layout semantics
+`layout mosaic` activates the native layout on one workspace. `layout toggle mosaic` enters Mosaic or restores that workspace's previous standard layout. Windows keep Sway node identity. When a standard tabbed or stacking layout wraps workspace windows in a root container, entering Mosaic promotes its children into Row 0; deeper groups remain one logical cell. Standard layouts remain usable in the same binary. The restore path is a layout transition, not process replacement.
 
-Mosaic is opt-in per workspace through:
+## Transactions and rendering
 
-```text
-layout mosaic
-```
+Sway's pending/current transaction model separates requested geometry from committed scene state. Mosaic calculates logical pending rectangles; scene positioning translates the tiling layer by `-scroll_x`. Camera updates and future animation must preserve agreement among committed scene positions, IPC geometry, and pointer hit testing. The current camera move is immediate; animated camera work is **PLANNED**.
 
-The bidirectional UX command is:
-
-```text
-layout toggle mosaic
-```
-
-Entering Mosaic records the current standard layout. Leaving Mosaic restores that layout for the same workspace.
-
-Standard layouts continue to work inside `swayfx-mosaic`; changing process or restarting the compositor is not part of layout switching.
-
-## Tiling invariants
-
-- containers remain Sway tiled nodes;
-- no overlaps in the logical tiling geometry;
-- no internal holes after insertion/removal;
-- insertion occurs next to the active logical container;
-- deletion triggers reflow;
-- a row can extend beyond the physical viewport;
-- `scroll_x` is bounded to the logical row extent;
-- focusing an off-screen cell may bring it into view;
-- floating, fullscreen and scratchpad use normal Sway paths and are not reimplemented as Mosaic concepts.
-
-## Scene and viewport
-
-The logical row may be wider than the output. Mosaic therefore needs a camera transform between logical tiled geometry and visible scene coordinates.
-
-The output viewport is not the layout itself.
-
-STEP20B currently proves the single-row translation path. Multi-output correctness still requires explicit clipping or an equivalent SceneFX/wlroots strategy so content from one workspace viewport cannot leak onto an adjacent output.
-
-Hit testing must remain aligned with the translated scene.
+The output renders a physical viewport of a wider logical row. Single-output headless tests demonstrate visual translation. A generic scene-tree clip at workspace/output boundaries is not yet implemented. Adjacent outputs may expose content outside a workspace's intended viewport; correct clipping and matching hit testing are a STEP20C concern. Do not infer multi-output safety from output-buffer cropping on one monitor.
 
 ## IPC
 
-Existing Sway IPC contracts remain primary:
-- `get_tree`;
-- `get_workspaces`;
-- window events;
-- workspace events.
+On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.
 
-A Mosaic workspace exposes `layout: "mosaic"` and may expose an additional Mosaic object describing rows, focus and scroll state.
+## Package and persistence boundary
 
-Consumers that treat layouts as a closed enum must explicitly add Mosaic support.
+The ordinary SwayFX package owns `/usr/bin/sway`; Mosaic owns the alternate `/usr/bin/swayfx-mosaic`. This is a pinned compositor build with a Mosaic patch, not a runtime plugin. [Packaging](PACKAGING.md) specifies coexistence and file ownership.
 
-## Package isolation
+Session V2 restoration is **PLANNED**. It must restore Mosaic activation, ordered rows, row membership, active row, camera positions, remembered focus, and stable window identities through compositor-owned state. It must not become another source of runtime truth.
 
-The normal package owns the normal compositor:
+## Non-goals
 
-```text
-swayfx → /usr/bin/sway
-```
-
-This project owns only the alternate binary and project-specific files:
-
-```text
-swayfx-mosaic → /usr/bin/swayfx-mosaic
-```
-
-No file owned by `swayfx` may be overwritten.
-
-The package must not declare itself a replacement for SwayFX.
-
-## Patch maintenance
-
-The installed Mosaic build is produced from:
-1. a pinned, known SwayFX upstream commit;
-2. the Mosaic patch set;
-3. Mosaic tests;
-4. a package recipe that checks the expected upstream commit.
-
-A new SwayFX version is never accepted implicitly. The patch must be rebased/reviewed and all standard-layout plus Mosaic tests rerun.
-
-## Session restore
-
-The existing external Session V2 system will eventually need to persist:
-- Mosaic activation;
-- ordered rows;
-- row membership;
-- active row;
-- each row's `scroll_x`;
-- each row's remembered focus;
-- stable window identities.
-
-That integration belongs to a later step and must not turn Session V2 into the runtime source of truth.
+- Replacing Sway workspaces or standard layouts.
+- Replacing QuickShell or creating a new desktop shell.
+- Simulating tiling with floating windows or a repositioning daemon.
+- Embedding personal dotfiles or keyboard bindings in the package.
+- Maintaining a permanently diverged SwayFX fork instead of a reviewable delta.

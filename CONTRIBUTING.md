@@ -1,54 +1,14 @@
 # Contributing
 
-SwayFX Mosaic is experimental compositor work. Changes should stay narrowly focused on the Mosaic / Spatial Canvas layout and its packaging/tests.
+SwayFX Mosaic is an experimental native layout. Keep contributions within Mosaic behavior, its validation, documentation, patch maintenance, and isolated packaging. Unrelated SwayFX customization, personal dotfiles, QuickShell UI, and desktop themes are outside this repository's current scope.
 
-## Before changing code
+## Contribution flow
 
-Read:
-- `README.md`
-- `docs/ARCHITECTURE.md`
-- `docs/DEVELOPMENT.md`
-- `docs/UPSTREAM.md`
+1. Read the [documentation index](docs/README.md), [architecture](docs/ARCHITECTURE.md), and [known limitations](docs/KNOWN_LIMITATIONS.md).
+2. Document a user-visible change in [UX](docs/UX.md) and an architecture change in [Architecture](docs/ARCHITECTURE.md) **before** implementation. Packaging changes update [Packaging](docs/PACKAGING.md); upstream changes update [Upstream](docs/UPSTREAM.md).
+3. Keep the source delta focused on Mosaic and preserve real Sway containers, standard layouts, and package coexistence.
+4. Add tests that exercise changed production behavior. Run the relevant build, Meson tests, headless compositor tests, and `git diff --check` as described in [Development](docs/DEVELOPMENT.md).
+5. Report failed tests and unresolved limitations plainly. Never hide a failure or force-apply a patch to a new upstream revision.
+6. Submit a reviewable change with its contract, validation evidence, and scope. The [Forgejo repository](https://git.labfytools.com/fy59/swayfx-mosaic) is canonical; GitHub is a public mirror.
 
-## Scope
-
-Appropriate contributions include:
-- Mosaic layout model;
-- geometry, viewport and scene behavior;
-- focus/input behavior required by Mosaic;
-- IPC additions required to expose Mosaic state;
-- Mosaic tests;
-- patch maintenance and packaging.
-
-Desktop shell features, themes, personal key bindings and unrelated SwayFX customizations belong elsewhere.
-
-## Required checks
-
-At minimum:
-
-```sh
-meson compile -C build-mosaic -j 8
-meson test -C build-mosaic --print-errorlogs
-python tests/headless-ipc.py
-git diff --check
-```
-
-For upstream rebases, also rebuild the pristine baseline and validate the standard Sway layouts.
-
-## Compatibility
-
-Do not introduce a package conflict with ordinary `swayfx`.
-
-Do not install over `/usr/bin/sway`.
-
-Do not treat QuickShell or an external daemon as the authoritative Mosaic state store.
-
-## Commits
-
-Keep commits reviewable and explain:
-- the compositor invariant being changed;
-- why the change belongs in Mosaic;
-- the validation performed;
-- any known limitation.
-
-Never hide failed tests or force-apply the Mosaic patch to an unvalidated upstream revision.
+Do not install over `/usr/bin/sway` or make `swayfx-mosaic` conflict with ordinary SwayFX.

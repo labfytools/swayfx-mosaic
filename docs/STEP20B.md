@@ -1,5 +1,7 @@
 # STEP20B — première ligne Mosaic scrollable
 
+> **Historical implementation report (first scrollable row).** This report preserves the original French validation record and reflects the state at that step. For current behavior and decisions, use the [documentation index](README.md), [architecture](ARCHITECTURE.md), [UX contract](UX.md), and [known limitations](KNOWN_LIMITATIONS.md). Canonical documentation takes precedence if a historical statement is stale.
+
 ## Contrat et base
 
 Base source : SwayFX tag `0.6`, commit `fd71a6bdc061bd633b488ae7b83e8a6981d22f86`. La correspondance byte pour byte au paquet local `swayfx 0.6-1` reste invérifiable faute de source de sa révision de paquet ; voir [STEP20A](STEP20A.md). Le fork est toujours compilé contre `wlroots-0.20` et `scenefx-0.5`. SwayFX standard conserve `/usr/bin/sway` et son cycle de mise à jour. Aucun paquet système n'a été installé.
