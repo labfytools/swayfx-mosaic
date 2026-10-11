@@ -1,0 +1,32 @@
+--- a/sway/desktop/transaction.c
++++ b/sway/desktop/transaction.c
+@@ -1069,6 +1069,29 @@
+ 		wlr_scene_tree_set_clip(popup_tree, &empty);
+ 		return;
+ 	}
++	// EXPERIMENTAL INVARIANT: the viewport alone does not imply that its
++	// popup owner is visible. Use the already-applied scene position and size,
++	// not pending layout geometry, to suppress a fully hidden owner's popup.
++	int owner_x = INT_MIN, owner_y = INT_MIN;
++	struct wlr_box owner_visible;
++	if (!wlr_scene_node_coords(&owner->scene_tree->node, &owner_x, &owner_y) ||
++			owner->animation_state.current_width <= 0 ||
++			owner->animation_state.current_height <= 0 ||
++			!wlr_box_intersection(&owner_visible, &global,
++				&(struct wlr_box){
++					.x = owner_x, .y = owner_y,
++					.width = owner->animation_state.current_width,
++					.height = owner->animation_state.current_height,
++				})) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		sway_log(SWAY_INFO, "PROBE_POPUP_HIDDEN_OWNER owner=%p applied=%d,%d %dx%d viewport=%d,%d %dx%d",
++			(void *)con, owner_x, owner_y,
++			owner->animation_state.current_width,
++			owner->animation_state.current_height,
++			global.x, global.y, global.width, global.height);
++		return;
++	}
+ 	int64_t px = (int64_t)global.x - popup_x;
+ 	int64_t py = (int64_t)global.y - popup_y;
+ 	if (px < INT_MIN || px > INT_MAX || py < INT_MIN || py > INT_MAX) {

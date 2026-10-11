@@ -1,0 +1,211 @@
+diff --git a/include/scenefx/types/wlr_scene.h b/include/scenefx/types/wlr_scene.h
+index ac1bc49..edb68a2 100644
+--- a/include/scenefx/types/wlr_scene.h
++++ b/include/scenefx/types/wlr_scene.h
+@@ -462,6 +462,11 @@ void wlr_scene_set_color_manager_v1(struct wlr_scene *scene, struct wlr_color_ma
+  */
+ struct wlr_scene_tree *wlr_scene_tree_create(struct wlr_scene_tree *parent);
+ 
++/** Experimental: copy a tree-local clip; NULL removes it. Width/height must be nonnegative. */
++void wlr_scene_tree_set_clip(struct wlr_scene_tree *tree, const struct wlr_box *clip);
++/** Experimental: copy the currently applied tree-local clip; false if unset. */
++bool wlr_scene_tree_get_clip(struct wlr_scene_tree *tree, struct wlr_box *clip);
++
+ /**
+  * Add a node displaying a single surface to the scene-graph.
+  *
+diff --git a/types/scene/wlr_scene.c b/types/scene/wlr_scene.c
+index 9a9fcc0..b4409d3 100644
+--- a/types/scene/wlr_scene.c
++++ b/types/scene/wlr_scene.c
+@@ -40,6 +40,36 @@
+ #define DMABUF_FEEDBACK_DEBOUNCE_FRAMES  30
+ #define HIGHLIGHT_DAMAGE_FADEOUT_TIME   250
+ 
++// Experimental sidecar preserves the public scene structs shared with wlroots.
++// A production primitive needs an upstream-owned, scalable attachment design.
++struct scene_tree_clip {
++	struct scene_tree_clip *next;
++	struct wlr_scene_tree *tree;
++	struct wlr_box box;
++	struct wl_listener destroy;
++};
++static struct scene_tree_clip *scene_tree_clips;
++
++static struct scene_tree_clip *scene_tree_clip_find(struct wlr_scene_tree *tree) {
++	for (struct scene_tree_clip *it = scene_tree_clips; it; it = it->next) {
++		if (it->tree == tree) return it;
++	}
++	return NULL;
++}
++
++static void scene_tree_clip_remove(struct scene_tree_clip *clip) {
++	struct scene_tree_clip **link = &scene_tree_clips;
++	while (*link != clip) link = &(*link)->next;
++	*link = clip->next;
++	wl_list_remove(&clip->destroy.link);
++	free(clip);
++}
++
++static void scene_tree_clip_destroy(struct wl_listener *listener, void *data) {
++	struct scene_tree_clip *clip = wl_container_of(listener, clip, destroy);
++	scene_tree_clip_remove(clip);
++}
++
+ struct wlr_scene_tree *wlr_scene_tree_from_node(struct wlr_scene_node *node) {
+ 	assert(node->type == WLR_SCENE_NODE_TREE);
+ 	struct wlr_scene_tree *tree = wl_container_of(node, tree, node);
+@@ -477,6 +507,9 @@ static void scene_output_damage(struct wlr_scene_output *scene_output,
+ 	pixman_region32_intersect_rect(&clipped, damage, 0, 0, output->width, output->height);
+ 
+ 	if (!pixman_region32_empty(&clipped)) {
++		const pixman_box32_t *extent = pixman_region32_extents(&clipped);
++		wlr_log(WLR_INFO, "SPIKE_DAMAGE output=%s extent=%d,%d..%d,%d",
++			output->name, extent->x1, extent->y1, extent->x2, extent->y2);
+ 		wlr_output_schedule_frame(scene_output->output);
+ 		wlr_damage_ring_add(&scene_output->damage_ring, &clipped);
+ 
+@@ -673,6 +706,51 @@ static void restack_xwayland_surface(struct wlr_scene_node *node,
+ }
+ #endif
+ 
++// WHY: leaf visibility is also the render/damage boundary for SceneFX effects.
++// CONTRACT: clips are tree-local and intersect across all ancestors.
++// INVARIANT: a descendant cannot expose pixels beyond any ancestor clip.
++static void scene_node_intersect_clip(struct wlr_scene_node *node,
++		pixman_region32_t *region) {
++	for (struct wlr_scene_node *ancestor = node; ancestor != NULL;
++			ancestor = ancestor->parent ? &ancestor->parent->node : NULL) {
++		if (ancestor->type != WLR_SCENE_NODE_TREE) {
++			continue;
++		}
++		struct scene_tree_clip *clip = scene_tree_clip_find(wlr_scene_tree_from_node(ancestor));
++		if (!clip) {
++			continue;
++		}
++		int x, y;
++		wlr_scene_node_coords(ancestor, &x, &y);
++		pixman_region32_intersect_rect(region, region,
++			x + clip->box.x, y + clip->box.y,
++			clip->box.width, clip->box.height);
++	}
++}
++
++static bool scene_node_point_inside_clip(struct wlr_scene_node *node,
++		double lx, double ly) {
++	for (struct wlr_scene_node *ancestor = node; ancestor != NULL;
++			ancestor = ancestor->parent ? &ancestor->parent->node : NULL) {
++		if (ancestor->type != WLR_SCENE_NODE_TREE) {
++			continue;
++		}
++		struct scene_tree_clip *entry = scene_tree_clip_find(wlr_scene_tree_from_node(ancestor));
++		if (!entry) {
++			continue;
++		}
++		int x, y;
++		wlr_scene_node_coords(ancestor, &x, &y);
++		struct wlr_box clip = entry->box;
++		clip.x += x;
++		clip.y += y;
++		if (!wlr_box_contains_point(&clip, lx, ly)) {
++			return false;
++		}
++	}
++	return true;
++}
++
+ static bool scene_node_update_iterator(struct wlr_scene_node *node,
+ 		int lx, int ly, void *_data) {
+ 	struct scene_update_data *data = _data;
+@@ -695,11 +773,13 @@ static bool scene_node_update_iterator(struct wlr_scene_node *node,
+ 	pixman_region32_union(&node->visible, &node->visible, data->visible);
+ 	pixman_region32_intersect_rect(&node->visible, &node->visible,
+ 		lx, ly, box.width, box.height);
++	scene_node_intersect_clip(node, &node->visible);
+ 
+ 	if (data->calculate_visibility) {
+ 		pixman_region32_t opaque;
+ 		pixman_region32_init(&opaque);
+ 		scene_node_opaque_region(node, lx, ly, &opaque);
++		scene_node_intersect_clip(node, &opaque);
+ 		pixman_region32_subtract(data->visible, data->visible, &opaque);
+ 		pixman_region32_fini(&opaque);
+ 	}
+@@ -749,7 +829,11 @@ static void scene_node_bounds(struct wlr_scene_node *node,
+ 
+ 	int width, height;
+ 	scene_node_get_size(node, &width, &height);
+-	pixman_region32_union_rect(visible, visible, x, y, width, height);
++	pixman_region32_t bounds;
++	pixman_region32_init_rect(&bounds, x, y, width, height);
++	scene_node_intersect_clip(node, &bounds);
++	pixman_region32_union(visible, visible, &bounds);
++	pixman_region32_fini(&bounds);
+ }
+ 
+ static void scene_update_region(struct wlr_scene *scene,
+@@ -863,6 +947,40 @@ static void scene_node_update(struct wlr_scene_node *node,
+ 	pixman_region32_fini(damage);
+ }
+ 
++void wlr_scene_tree_set_clip(struct wlr_scene_tree *tree, const struct wlr_box *clip) {
++	assert(tree);
++	assert(!clip || (clip->width >= 0 && clip->height >= 0));
++	struct scene_tree_clip *entry = scene_tree_clip_find(tree);
++	if (!clip && !entry) return;
++	if (clip && entry && memcmp(&entry->box, clip, sizeof(*clip)) == 0) return;
++	wlr_log(WLR_INFO, "SPIKE_CLIP tree=%p rect=%d,%d %dx%d",
++		(void *)tree, clip ? clip->x : 0, clip ? clip->y : 0,
++		clip ? clip->width : 0, clip ? clip->height : 0);
++	if (clip && !entry) {
++		entry = calloc(1, sizeof(*entry));
++		if (!entry) return;
++		entry->tree = tree;
++		entry->destroy.notify = scene_tree_clip_destroy;
++		wl_signal_add(&tree->node.events.destroy, &entry->destroy);
++		entry->next = scene_tree_clips;
++		scene_tree_clips = entry;
++	}
++	if (clip) {
++		entry->box = *clip;
++	} else {
++		scene_tree_clip_remove(entry);
++	}
++	scene_node_update(&tree->node, NULL);
++}
++
++bool wlr_scene_tree_get_clip(struct wlr_scene_tree *tree, struct wlr_box *clip) {
++	assert(tree && clip);
++	struct scene_tree_clip *entry = scene_tree_clip_find(tree);
++	if (!entry) return false;
++	*clip = entry->box;
++	return true;
++}
++
+ struct wlr_scene_rect *wlr_scene_rect_create(struct wlr_scene_tree *parent,
+ 		int width, int height, const float color[static 4]) {
+ 	assert(parent);
+@@ -1883,6 +2001,9 @@ struct node_at_data {
+ static bool scene_node_at_iterator(struct wlr_scene_node *node,
+ 		int lx, int ly, void *data) {
+ 	struct node_at_data *at_data = data;
++	if (!scene_node_point_inside_clip(node, at_data->lx, at_data->ly)) {
++		return false;
++	}
+ 
+ 	double rx = at_data->lx - lx;
+ 	double ry = at_data->ly - ly;
+@@ -2739,6 +2860,13 @@ static enum scene_direct_scanout_result scene_entry_try_direct_scanout(
+ 		const struct render_data *data) {
+ 	struct wlr_scene_output *scene_output = data->output;
+ 	struct wlr_scene_node *node = entry->node;
++	for (struct wlr_scene_node *ancestor = node; ancestor != NULL;
++			ancestor = ancestor->parent ? &ancestor->parent->node : NULL) {
++		if (ancestor->type == WLR_SCENE_NODE_TREE &&
++				scene_tree_clip_find(wlr_scene_tree_from_node(ancestor))) {
++			return SCANOUT_INELIGIBLE;
++		}
++	}
+ 
+ 	if (!scene_output->scene->direct_scanout) {
+ 		return SCANOUT_INELIGIBLE;

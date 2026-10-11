@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### STEP20C experimental evidence
+
+- Preserved the valid-serial XDG grab / hidden-owner probe's original C and Python sources, private patches and protocol XML with hashes and a disposable headless replay procedure. Its result remains **PARTIALLY_FEASIBLE**; no production source, package or UX policy changed.
+
 ### Patch export tooling
 
 - Fixed cumulative Mosaic patch export to diff against the verified pristine SwayFX 0.6 import, preserve the real Git index, validate clean-base application and source equivalence, and replace the patch atomically only after successful checks.

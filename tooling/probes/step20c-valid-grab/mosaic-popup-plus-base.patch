@@ -1,0 +1,115 @@
+diff --git a/sway/desktop/transaction.c b/sway/desktop/transaction.c
+index 47e3e179..bb7bea16 100644
+--- a/sway/desktop/transaction.c
++++ b/sway/desktop/transaction.c
+@@ -974,6 +974,20 @@ static void arrange_output(struct sway_output *output, int width, int height) {
+ 				wlr_scene_node_set_position(&child->layers.tiling->node,
+ 					workspace_tiling_scene_x(child, area, gaps),
+ 					gaps->top + area->y);
++				// Experimental: tiling tree clip follows the output viewport,
++				// while the tree itself follows the Mosaic camera.
++				if (child->current.layout == L_MOSAIC && child->mosaic) {
++					struct mosaic_row *row = child->mosaic->rows->items[0];
++					struct wlr_box clip = {
++						.x = row->state.scroll_x,
++						.y = 0,
++						.width = area->width - gaps->left - gaps->right,
++						.height = area->height - gaps->top - gaps->bottom,
++					};
++					wlr_scene_tree_set_clip(child->layers.tiling, &clip);
++				} else {
++					wlr_scene_tree_set_clip(child->layers.tiling, NULL);
++				}
+ 
+ 				arrange_workspace_tiling(child,
+ 					area->width - gaps->left - gaps->right,
+@@ -1006,6 +1020,69 @@ static void arrange_output(struct sway_output *output, int width, int height) {
+ 	output->prev_active_workspace = new_active;
+ }
+ 
++// Experimental: derive a root popup clip from its actual tiled owner and the
++// already-applied Mosaic tiling clip. This avoids pending XDG geometry as a
++// source for the visible viewport; no owner pointer is stored on the clip.
++static void probe_clip_popup(struct wlr_scene_node *node,
++		struct sway_popup_desc *popup) {
++	struct wlr_scene_tree *popup_tree = wlr_scene_tree_from_node(node);
++	struct sway_container *con = popup->view ? popup->view->container : NULL;
++	struct sway_workspace *ws = con ? con->current.workspace : NULL;
++	if (!ws || ws->current.layout != L_MOSAIC || !ws->mosaic) {
++		wlr_scene_tree_set_clip(popup_tree, NULL);
++		return;
++	}
++	struct sway_container *owner = con;
++	while (owner->current.parent) owner = owner->current.parent;
++	if (!ws->current.tiling || list_find(ws->current.tiling, owner) < 0 ||
++			ws->current.fullscreen || con->current.fullscreen_mode) {
++		wlr_scene_tree_set_clip(popup_tree, NULL);
++		return;
++	}
++	struct wlr_box local_viewport;
++	struct sway_output *output = ws->current.output;
++	int tile_x, tile_y, popup_x, popup_y;
++	if (!output || output->current.active_workspace != ws ||
++			!wlr_scene_tree_get_clip(ws->layers.tiling, &local_viewport) ||
++			!wlr_scene_node_coords(&ws->layers.tiling->node, &tile_x, &tile_y) ||
++			!wlr_scene_node_coords(node, &popup_x, &popup_y)) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	struct wlr_box global = local_viewport;
++	int64_t gx = (int64_t)tile_x + global.x;
++	int64_t gy = (int64_t)tile_y + global.y;
++	if (gx < INT_MIN || gx > INT_MAX || gy < INT_MIN || gy > INT_MAX) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	global.x = (int)gx;
++	global.y = (int)gy;
++	struct wlr_box output_box = {
++		.x = output->lx, .y = output->ly,
++		.width = output->width, .height = output->height,
++	};
++	if (!wlr_box_intersection(&global, &global, &output_box)) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	int64_t px = (int64_t)global.x - popup_x;
++	int64_t py = (int64_t)global.y - popup_y;
++	if (px < INT_MIN || px > INT_MAX || py < INT_MIN || py > INT_MAX) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	global.x = (int)px;
++	global.y = (int)py;
++	wlr_scene_tree_set_clip(popup_tree, &global);
++	sway_log(SWAY_INFO, "PROBE_POPUP_CLIP owner=%p local=%d,%d %dx%d",
++		(void *)con, global.x, global.y, global.width, global.height);
++}
++
+ void arrange_popups(struct wlr_scene_tree *popups) {
+ 	struct wlr_scene_node *node;
+ 	wl_list_for_each(node, &popups->children, link) {
+@@ -1016,6 +1093,7 @@ void arrange_popups(struct wlr_scene_tree *popups) {
+ 			int lx, ly;
+ 			wlr_scene_node_coords(popup->relative, &lx, &ly);
+ 			wlr_scene_node_set_position(node, lx, ly);
++			probe_clip_popup(node, popup);
+ 		}
+ 	}
+ }
+diff --git a/sway/desktop/xdg_shell.c b/sway/desktop/xdg_shell.c
+index c3b4e4f2..2bf2cab5 100644
+--- a/sway/desktop/xdg_shell.c
++++ b/sway/desktop/xdg_shell.c
+@@ -380,6 +380,7 @@ static void handle_new_popup(struct wl_listener *listener, void *data) {
+ 	int lx, ly;
+ 	wlr_scene_node_coords(&popup->view->content_tree->node, &lx, &ly);
+ 	wlr_scene_node_set_position(&popup->scene_tree->node, lx, ly);
++	arrange_popups(root->layers.popup);
+ }
+ 
+ static void handle_request_maximize(struct wl_listener *listener, void *data) {

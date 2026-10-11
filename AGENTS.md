@@ -26,8 +26,9 @@ choose a convenient interpretation.
    `docs/KNOWN_LIMITATIONS.md`, and `docs/ROADMAP.md`.
 4. For build/source work: `docs/DEVELOPMENT.md` and `docs/UPSTREAM.md`.
    For packaging: `docs/PACKAGING.md`.
-5. For STEP20C: all four reports under `docs/design/STEP20C_*.md`,
-   especially `STEP20C_POPUP_OWNERSHIP_PROBE.md`.
+5. For STEP20C: all reports under `docs/design/STEP20C_*.md`,
+   especially `STEP20C_POPUP_OWNERSHIP_PROBE.md` and
+   `STEP20C_VALID_GRAB_HIDDEN_OWNER_PROBE.md`.
 
 Canonical architecture/UX/packaging/upstream/development documents govern their
 own topics. Design documents are proposals or isolated evidence; historical
@@ -60,14 +61,16 @@ Resolve contradictory canonical documents **before** implementing behavior.
   validated as a daily-driver compositor. Do not claim otherwise.
 - The isolated SceneFX subtree clip covered sampled tiled visual/input cases.
   A later isolated owner-derived root-popup clip covered sampled GTK root and
-  nested popup cases on two horizontal headless outputs. Both are only
-  **PARTIALLY_FEASIBLE**, not a production dependency decision.
-- Next evidence required: reproducible **valid-serial XDG grabs** (distinguish
-  popup dismissal/grab behavior from invisible scene hits), **fully hidden
-  popup owner**, vertical/negative-origin/scaled/rotated outputs, output
-  migration/resize, transaction-generation consistency, damage/stale pixels,
-  decorations/shadows/blur/saved buffers, and SceneFX/wlroots ABI/package
-  maintenance. Mark any untested matrix cell **NOT TESTED**.
+  nested popup cases on two horizontal headless outputs. A further private
+  probe measured a valid-serial XDG grab, found a fully hidden owner leak in
+  that initial clip, and closed the sampled leak with a disposable owner
+  visibility guard. All remain **PARTIALLY_FEASIBLE**, not a production
+  dependency or UX decision.
+- Next evidence required: valid-grab nested popup behavior, vertical/negative-
+  origin/scaled/rotated outputs, output migration/resize, transaction-generation
+  consistency, complete damage/stale-pixel coverage, decorations/shadows/blur/
+  saved buffers, and SceneFX/wlroots ABI/package maintenance. Mark any untested
+  matrix cell **NOT TESTED**.
 - For popup semantics, compare the modified private compositor against an
   unmodified headless SwayFX control. Do not promise universal click-through.
   Offscreen-popup hide/dismiss/reposition UX remains undecided.
@@ -76,6 +79,12 @@ Resolve contradictory canonical documents **before** implementing behavior.
   production readiness without an explicit decision and closed feasibility
   gates. Use disposable private checkouts, libraries, sockets and logs for
   bounded probes.
+- A bounded probe may preserve reviewed source fixtures and private patch files
+  under `tooling/probes/` with base commits, hashes, reproduction instructions
+  and an explicit experimental status. Keep generated files, binaries, build
+  trees, sockets, large logs and transient captures outside Git. Fixture
+  preservation does not add a production build dependency or authorize merging
+  the experimental patch.
 
 ## Safe development workflow
 

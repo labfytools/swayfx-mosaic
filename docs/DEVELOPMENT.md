@@ -46,6 +46,16 @@ git diff --check
 
 The headless script starts its own compositor socket; use its documented `MOSAIC_BINARY` environment variable for a nondefault build path. Do not send test commands to the running desktop's IPC socket. Record compiler/test failures, not only passes.
 
+## Preserved STEP20C experimental fixture
+
+The [valid-grab source fixture](../tooling/probes/step20c-valid-grab/README.md)
+records the exact private patch bases, hashes, dependencies and temporary
+headless replay commands for the [bounded probe](design/STEP20C_VALID_GRAB_HIDDEN_OWNER_PROBE.md).
+These source files are experimental evidence. Rebuild in a new temporary
+laboratory; leave generated protocol files, private libraries, compositor
+binaries, sockets, logs and screenshots outside Git. This fixture is not part
+of the ordinary Mosaic build, cumulative production patch or Arch package.
+
 ## Staging and package checks
 
 ```sh

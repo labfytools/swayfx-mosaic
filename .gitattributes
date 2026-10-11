@@ -1,0 +1,2 @@
+# Preserved experimental patches include diff markers and source-context tabs.
+tooling/probes/step20c-valid-grab/*.patch -whitespace
