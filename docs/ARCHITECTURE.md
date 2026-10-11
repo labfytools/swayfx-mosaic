@@ -65,6 +65,16 @@ The [valid-grab and hidden-owner probe](design/STEP20C_VALID_GRAB_HIDDEN_OWNER_P
 
 The [preserved source fixture](../tooling/probes/step20c-valid-grab/README.md) reconstructs the private guard from pinned bases and patches. It supplies reproducible evidence, not a compositor-owned STEP20C implementation.
 
+The subsequent [nested valid-grab probe](design/STEP20C_NESTED_VALID_GRAB_PROBE.md)
+used two real pointer-button serials and a true toplevel → popup A → popup B
+XDG parent chain. In a disposable guarded binary, both popup levels were
+interactive within the horizontal two-output Mosaic viewport, absent from
+sampled clipped visual/input positions, and restored after a fully hidden
+owner returned without popup re-creation. The unmodified SwayFX and private
+standard-layout controls preserved ordinary sampled popup behavior. This
+narrows the feasibility gap for nested grabs but does not define a production
+transaction, damage, output-geometry or SceneFX ABI contract.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.

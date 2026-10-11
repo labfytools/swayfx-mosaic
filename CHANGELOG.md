@@ -4,6 +4,7 @@
 
 ### STEP20C experimental evidence
 
+- Added a source-only nested XDG grab fixture and a comparative headless probe. Two real button serials produced an interactive toplevel → popup A → popup B chain; sampled guarded Mosaic clipping, child-first dismissal, hidden-owner camera return and standard-layout return were feasible. STEP20C production support remains open.
 - Preserved the valid-serial XDG grab / hidden-owner probe's original C and Python sources, private patches and protocol XML with hashes and a disposable headless replay procedure. Its result remains **PARTIALLY_FEASIBLE**; no production source, package or UX policy changed.
 
 ### Patch export tooling
