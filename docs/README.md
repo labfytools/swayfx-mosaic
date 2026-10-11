@@ -21,7 +21,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Preserved source fixtures](../tooling/probes/step20c-valid-grab/README.md) record exact inputs and a disposable replay procedure.
 13. [STEP20C nested valid-grab probe](design/STEP20C_NESTED_VALID_GRAB_PROBE.md): two genuine nested XDG grabs and sampled clipping, dismissal, hidden-owner and standard-layout return evidence; remaining STEP20C gates stay open.
     [Nested-grab source fixture](../tooling/probes/step20c-nested-grab/README.md) reconstructs the same disposable experiment.
-14. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+14. [STEP20C vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md): sampled vertical popup clipping and pointer evidence with two standard controls and private Mosaic; production gates remain open.
+    [Vertical source fixture](../tooling/probes/step20c-vertical-grab/README.md) replays it in a disposable laboratory.
+15. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -58,6 +60,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C popup ownership probe](design/STEP20C_POPUP_OWNERSHIP_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; owner-derived root/nested popup clipping worked in a horizontal private headless case, with grab/damage/output gates open |
 | [STEP20C valid-grab and hidden-owner probe](design/STEP20C_VALID_GRAB_HIDDEN_OWNER_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; valid-serial popup grab measured, hidden-owner leak found and closed only in a private guard; broader STEP20C gates remain open |
 | [STEP20C nested valid-grab probe](design/STEP20C_NESTED_VALID_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases on horizontal headless outputs; no production qualification |
+| [STEP20C vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases across the horizontal output boundary; no production qualification |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 

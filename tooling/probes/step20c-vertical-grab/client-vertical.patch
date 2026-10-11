@@ -1,0 +1,28 @@
+diff --git a/nested-client.c b/nested-client.c
+--- a/nested-client.c
++++ b/nested-client.c
+@@ -205,9 +205,24 @@
+ int main(int argc,char **argv) {
+     signal(SIGTERM,stop);
+     const char *placement=argc>1?argv[1]:"b_cross";
++    /* CONTRACT: vertical positioner anchors remain inside the toplevel's
++     * effective window geometry, which defaults to its buffer bounds. */
++    if (!strncmp(placement,"v_",2)) top.height=575;
+     if (!strcmp(placement,"visible")) {
+         a.anchor_x=50; a.anchor_y=80; a.width=250;
+         b.anchor_x=20; b.anchor_y=60; b.width=170;
++    } else if (!strcmp(placement,"v_visible")) {
++        a.anchor_x=50; a.anchor_y=80; a.width=250;
++        b.anchor_x=20; b.anchor_y=60; b.width=170;
++    } else if (!strcmp(placement,"v_b_cross")) {
++        /* WHY: only B's requested rectangle reaches below y=600 when the
++         * tiled toplevel content begins near y=25. Configure and pixels
++         * remain the authority for the actual crossing. */
++        a.anchor_x=50; a.anchor_y=350; a.width=250;
++        b.anchor_x=20; b.anchor_y=155; b.width=170;
++    } else if (!strcmp(placement,"v_both_cross")) {
++        a.anchor_x=50; a.anchor_y=480; a.width=250;
++        b.anchor_x=20; b.anchor_y=80; b.width=170;
+     } else if (!strcmp(placement,"both_cross")) {
+         a.anchor_x=350; a.anchor_y=80; a.width=350;
+         b.anchor_x=160; b.anchor_y=60; b.width=300;

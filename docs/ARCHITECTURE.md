@@ -75,6 +75,16 @@ standard-layout controls preserved ordinary sampled popup behavior. This
 narrows the feasibility gap for nested grabs but does not define a production
 transaction, damage, output-geometry or SceneFX ABI contract.
 
+The [vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md)
+then placed HEADLESS-2 below HEADLESS-1 and used a parameterized private
+virtual pointer. Unmodified SwayFX and private `splith` both rendered and
+received input on A/B popup portions actually crossing `y=600`; the guarded
+private Mosaic build omitted those sampled lower pixels and popup hits while
+preserving upper interaction. A hidden owner returned with the same mapped
+popups, and `splith` restored the sampled ordinary lower-output behavior.
+This is vertical popup evidence only. The production compositor still has no
+qualified cross-output viewport clip or committed scene/transaction contract.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.

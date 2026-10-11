@@ -1,0 +1,58 @@
+diff --git a/pointer-daemon.c b/pointer-daemon.c
+--- a/pointer-daemon.c
++++ b/pointer-daemon.c
+@@ -1,4 +1,5 @@
+ #define _DEFAULT_SOURCE
++#include <errno.h>
+ #include <linux/input-event-codes.h>
+ #include <stdint.h>
+ #include <stdio.h>
+@@ -15,7 +16,22 @@
+             version < 2 ? version : 2);
+ }
+ static void removed(void *data, struct wl_registry *registry, uint32_t name) {}
+-int main(void) {
++static uint32_t extent(const char *arg) {
++    char *end;
++    errno = 0;
++    unsigned long value = strtoul(arg, &end, 10);
++    if (errno || end == arg || *end || value == 0 || value > UINT32_MAX) {
++        fprintf(stderr, "INVALID_EXTENT %s\n", arg);
++        exit(2);
++    }
++    return (uint32_t)value;
++}
++int main(int argc, char **argv) {
++    if (argc != 3) {
++        fprintf(stderr, "usage: pointer-daemon WIDTH HEIGHT\n");
++        return 2;
++    }
++    uint32_t width = extent(argv[1]), height = extent(argv[2]);
+     struct wl_display *display=wl_display_connect(NULL);
+     if (!display) return 1;
+     struct wl_registry *registry=wl_display_get_registry(display);
+@@ -26,14 +42,20 @@
+     struct zwlr_virtual_pointer_v1 *pointer=
+         zwlr_virtual_pointer_manager_v1_create_virtual_pointer(manager,NULL);
+     wl_display_roundtrip(display);
+-    fprintf(stderr,"POINTER_READY\n");fflush(stderr);
++    fprintf(stderr,"POINTER_READY extent=%u,%u\n",width,height);fflush(stderr);
+     char line[128];
+     uint32_t stamp=1000;
+     while (fgets(line,sizeof(line),stdin)) {
+         char action[16];int x,y;
+-        if (sscanf(line,"%15s %d %d",action,&x,&y)!=3) continue;
+-        fprintf(stderr,"INJECT %s %d,%d\n",action,x,y);fflush(stderr);
+-        zwlr_virtual_pointer_v1_motion_absolute(pointer,stamp++,x,y,1600,600);
++        if (sscanf(line,"%15s %d %d",action,&x,&y)!=3 ||
++                (strcmp(action,"move") && strcmp(action,"left") && strcmp(action,"right")) ||
++                x < 0 || y < 0 || (uint32_t)x >= width || (uint32_t)y >= height) {
++            fprintf(stderr,"INVALID_INJECTION %s",line);fflush(stderr);
++            return 3;
++        }
++        fprintf(stderr,"INJECT %s %d,%d extent=%u,%u\n",action,x,y,width,height);
++        fflush(stderr);
++        zwlr_virtual_pointer_v1_motion_absolute(pointer,stamp++,x,y,width,height);
+         zwlr_virtual_pointer_v1_frame(pointer);
+         wl_display_flush(display);usleep(250000);
+         if (!strcmp(action,"left") || !strcmp(action,"right")) {

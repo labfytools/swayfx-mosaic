@@ -36,6 +36,17 @@ Other output geometries, migration/resize, transaction generations, complete
 damage/effects and dependency/ABI maintenance remain **NOT TESTED**. Adjacent
 output Mosaic remains **NOT YET SUPPORTED** in production.
 
+The [vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md)
+is **FEASIBLE for its measured matrix only**. On two stacked 800×600 headless
+outputs, the standard controls showed real A/B XDG popup pixels and buttons
+below `y=600`, while the disposable guarded Mosaic build clipped sampled
+lower pixels and hits and left upper popup interaction intact. Hidden-owner
+and standard-layout return cases also passed at their measured points. This
+does not qualify tiled-window Y overflow, continuous or complete damage
+coverage, other output geometries, migrations, transaction generations,
+effects, or SceneFX ABI/package maintenance. Production adjacent-output
+Mosaic remains **NOT YET SUPPORTED**.
+
 The [isolated feasibility probe](design/STEP20C_FEASIBILITY_PROBE.md) is **PARTIALLY FEASIBLE**, not a release qualification. On two horizontal headless outputs, real Mosaic content leaked visually into an empty adjacent output; the disposable candidate also delivered pointer enter from a partly visible client outside its viewport. Negative-origin, scaled and rotated arrangements showed visual leakage too. Popups, effects, saved buffers, vertical Y-crossing behavior, pointer behavior in those additional arrangements and complete damage correctness remain unqualified. Multi-output Mosaic remains **NOT YET SUPPORTED**.
 
 The later [SceneFX subtree clipping spike](design/STEP20C_SCENEFX_CLIPPING_SPIKE.md) is also **PARTIALLY FEASIBLE**. Its private inherited tree clip stopped tested tiled pixels and pointer hits from crossing the output boundary, including a fully hidden cell, but a real GTK XDG popup rendered and received input on the neighboring output because its scene tree lives in the global popup layer. Dedicated subsurface, saved-buffer, nested-popup and complete effect/damage validation remain open. The spike changed no production library or compositor source; multi-output Mosaic remains **NOT YET SUPPORTED**.
