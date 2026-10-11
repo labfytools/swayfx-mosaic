@@ -59,7 +59,41 @@ Inspect the staging manifest. With `mosaic-package=true`, the expected installed
 
 ## Patch export
 
-The development tree contains full SwayFX source for editing. `patches/0001-mosaic-layout-viewport.patch` is the production delta against the pinned base. After source changes, use `tooling/export-patch.sh` to regenerate it, then verify the patch against a **clean checkout of the pinned upstream commit** with `git apply --check`. Review the patch, refresh its package checksum, and validate the package build. `git apply --check` in an already-patched development tree is not a valid forward-application check.
+The development tree contains full SwayFX source for editing. `patches/0001-mosaic-layout-viewport.patch` is the complete production delta against the imported pristine SwayFX 0.6 commit `a57e3f2c4d88f258c2f038343a398c6d5be1fb59` (whose relevant source matches pinned upstream `fd71a6bdc061bd633b488ae7b83e8a6981d22f86`). Run the regression test before export:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python -m unittest -v tests/test_export_patch.py
+sh -n tooling/export-patch.sh
+tooling/export-patch.sh
+sha256sum patches/0001-mosaic-layout-viewport.patch
+git diff --check
+```
+
+The exporter uses a separate temporary Git index and object directory and includes staged, unstaged, added and deleted package source under `include/`, `sway/`, `meson.build`, `meson_options.txt` and `tests/mosaic-model.c`. It refuses unresolved conflicts in those paths and does not change the real index or object database. Before atomic replacement, it requires a nonempty patch, reverse applicability to the current tree, forward applicability to a pristine archive of the imported base, and equivalence of source contents, file modes and links. Failure leaves the prior patch intact. Review the resulting patch and update the checksum in `PKGBUILD` whenever its bytes change.
+
+For an independent release check when the pinned upstream commit is available locally, use a disposable archive of that exact commit:
+
+```sh
+(
+  set -eu
+  upstream=fd71a6bdc061bd633b488ae7b83e8a6981d22f86
+  imported=a57e3f2c4d88f258c2f038343a398c6d5be1fb59
+  patch_file="$PWD/patches/0001-mosaic-layout-viewport.patch"
+  git diff --exit-code "$upstream" "$imported" -- \
+    include meson.build meson_options.txt sway tests/mosaic-model.c
+  pristine=$(mktemp -d)
+  trap 'rm -rf "$pristine"' 0
+  git archive "$upstream" > "$pristine/base.tar"
+  mkdir "$pristine/source"
+  tar -xf "$pristine/base.tar" -C "$pristine/source"
+  (cd "$pristine/source" && git apply --check "$patch_file" && git apply "$patch_file")
+  for source in include sway meson.build meson_options.txt tests/mosaic-model.c; do
+    git diff --no-index --exit-code -- "$pristine/source/$source" "$source"
+  done
+)
+```
+
+Then review the patch and run the package checks in [Packaging](PACKAGING.md). `git apply --check` in an already-patched development tree is not a valid forward-application check. These exporter checks do not qualify the package without a full `makepkg` build and staged manifest inspection.
 
 ## Upstream update branch
 
