@@ -23,7 +23,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Nested-grab source fixture](../tooling/probes/step20c-nested-grab/README.md) reconstructs the same disposable experiment.
 14. [STEP20C vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md): sampled vertical popup clipping and pointer evidence with two standard controls and private Mosaic; production gates remain open.
     [Vertical source fixture](../tooling/probes/step20c-vertical-grab/README.md) replays it in a disposable laboratory.
-15. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+15. [STEP20C negative-origin nested-grab probe](design/STEP20C_NEGATIVE_ORIGIN_NESTED_GRAB_PROBE.md): sampled signed-coordinate pointer, popup clipping, hidden-owner and standard-layout evidence with real `x=-800` headless origin; production gates remain open.
+    [Negative-origin source fixture](../tooling/probes/step20c-negative-origin/README.md) replays it in a disposable laboratory.
+16. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -61,6 +63,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C valid-grab and hidden-owner probe](design/STEP20C_VALID_GRAB_HIDDEN_OWNER_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; valid-serial popup grab measured, hidden-owner leak found and closed only in a private guard; broader STEP20C gates remain open |
 | [STEP20C nested valid-grab probe](design/STEP20C_NESTED_VALID_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases on horizontal headless outputs; no production qualification |
 | [STEP20C vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases across the horizontal output boundary; no production qualification |
+| [STEP20C negative-origin nested-grab probe](design/STEP20C_NEGATIVE_ORIGIN_NESTED_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases with HEADLESS-1 at `x=-800`; no production qualification |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 

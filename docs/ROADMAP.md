@@ -42,10 +42,20 @@ controls produced real Y-crossing A/B popup pixels and button targets, while
 the disposable guarded Mosaic build excluded sampled lower popup pixels/hits
 and preserved upper interaction, hidden-owner return and standard-layout
 return. Its [source fixture](../tooling/probes/step20c-vertical-grab/README.md)
-also reproduced the horizontal B-crossing control. The next separate geometry
-gate is a bounded negative-origin comparison. Scaling, rotation,
+also reproduced the horizontal B-crossing control. The separate negative-origin
+comparison is recorded below. Scaling, rotation,
 resize/migration, transaction generations, complete damage/effects and
 dependency maintenance remain open. STEP20C stays **NEXT**.
+
+The [negative-origin nested-grab probe](design/STEP20C_NEGATIVE_ORIGIN_NESTED_GRAB_PROBE.md)
+is **FEASIBLE within its sampled signed-coordinate headless matrix**:
+HEADLESS-1 remained at `x=-800`, the virtual pointer reached both outputs,
+standard controls proved A/B crossing pixels and buttons, and the private
+guarded Mosaic build clipped sampled right-output pixels and hits. Hidden
+owner and `splith` return passed. Its [source fixture](../tooling/probes/step20c-negative-origin/README.md)
+preserves replay. Scaling, rotation, resize/migration, transaction
+generations, complete damage/effects and dependency maintenance remain open.
+STEP20C stays **NEXT**.
 
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 

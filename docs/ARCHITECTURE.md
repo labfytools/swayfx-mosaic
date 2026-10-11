@@ -85,6 +85,18 @@ popups, and `splith` restored the sampled ordinary lower-output behavior.
 This is vertical popup evidence only. The production compositor still has no
 qualified cross-output viewport clip or committed scene/transaction contract.
 
+The [negative-origin nested-grab probe](design/STEP20C_NEGATIVE_ORIGIN_NESTED_GRAB_PROBE.md)
+measured HEADLESS-1 at `(-800,0)` and HEADLESS-2 at `(0,0)` in both standard
+controls and private Mosaic. In the pinned wlroots path, the virtual-pointer
+absolute fraction maps through the signed output-layout box; the runner
+verified that `global_x+800` reaches the requested output and client surface.
+The disposable applied SceneFX clip and popup-owner guard excluded sampled
+right-output A/B pixels and hits, while standard layouts retained real
+crossing and popup buttons. A fully hidden applied owner and return to
+`splith` also passed at measured points. This remains experimental evidence:
+production viewport clipping, transaction consistency, continuous damage
+coverage and SceneFX ABI ownership are not settled.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.
