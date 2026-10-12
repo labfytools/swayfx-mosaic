@@ -229,3 +229,18 @@ clipped input, transaction-scoped damage, destruction while pending and
 reference lifetime after texture conversion remain unqualified. One
 private-standard episode failed through fixture timing. STEP20C remains
 **NEXT** and production multi-output **NOT YET SUPPORTED**.
+
+The [new target-crossing probe](design/STEP20C_SAVED_BUFFER_TARGET_CROSSING_PROBE.md)
+is **PARTIALLY_FEASIBLE** for one real saved target that crossed x=0 and
+rendered only its permitted H1 portion in the sampled ACK episode. H2 had no
+target-color pixels but differed from its whole-image reference by 253 pixels
+of unproven cause, also seen in pristine controls. A stale fixture pointer
+stopped Mosaic E2 before natural timeout; target input, complete damage and
+GPU reference lifetime are unqualified. STEP20C remains **NEXT** and
+production multi-output **NOT YET SUPPORTED**.
+
+Offline RGB analysis found the same filled 11×23 `#F5E0DC`→`#303038`
+rectangle in pristine and Mosaic H2 comparisons. Kitty's recorded local
+block-cursor color and blink setting strongly support a dynamic reference,
+but no effective cursor phase was logged. Whole-H2 equality is still
+unproven; the new timeout probe must use a static reference.

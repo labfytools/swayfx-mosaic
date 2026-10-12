@@ -288,3 +288,15 @@ The experimental Mosaic tiled clip is an ancestor of the view tree, so a
 saved tree has a plausible inherited path. The measured target was outside
 H1 after the applied camera reached 1760, preventing a boundary-clipping
 conclusion. This remains INCONCLUSIVE, with no production architecture change.
+
+The separate [target-crossing saved-buffer probe](design/STEP20C_SAVED_BUFFER_TARGET_CROSSING_PROBE.md)
+then measured the actual source and saved scene buffer crossing x=0 after a
+single calculated camera correction. Its target saved node rendered with a
+visible region ending at x=0 and retained target pixels on H1; no target SHM
+color appeared on H2. A 253-pixel whole-H2 reference difference and incomplete
+Mosaic timeout/input/damage/lifetime evidence limit the result to
+PARTIALLY_FEASIBLE and architecture UNDECIDED. No production contract changes.
+Offline freeze analysis strongly supports a blinking Kitty block cursor for
+the repeated H2 reference difference, without proving its cause. E2's
+`x=-30` visible bound matches the applied tiled clip narrowed by gaps; it is
+not evidence of a distinct content clip. Target timeout cleanup remains open.

@@ -45,7 +45,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [R90 source fixture](../tooling/probes/step20c-rotated-partial-popup/README.md) preserves the published experimental inputs.
 25. [STEP20C saved transaction buffer probe](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md): real saved nodes and lifetime evidence, but target partial-overflow geometry NOT EXERCISED; result INCONCLUSIVE.
     [Saved-buffer source fixture](../tooling/probes/step20c-saved-transaction-buffer/README.md) preserves the experimental inputs.
-26. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+26. [STEP20C saved target crossing probe](design/STEP20C_SAVED_BUFFER_TARGET_CROSSING_PROBE.md): measured saved target crossing and clipped H1 render; H2 reference difference and incomplete timeout/input gate keep it PARTIALLY_FEASIBLE.
+    [Target-crossing source fixture](../tooling/probes/step20c-saved-buffer-target-crossing/README.md) remains local and experimental.
+27. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -94,6 +96,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C effects/damage probe](design/STEP20C_EFFECTS_DAMAGE_PROBE.md) | Experimental, independent private replay | PARTIALLY_FEASIBLE for visible blur, excluded sampled shadow overflow, settled camera restoration and sampled damage; shadow interior, optimized cache, popup effects and saved buffers remain unqualified |
 | [STEP20C static R90 partial-popup probe](design/STEP20C_ROTATED_PARTIAL_POPUP_CLIP_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; sampled B crossing clips under R90, independent A input remains untested |
 | [STEP20C saved transaction buffer probe](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md) | Experimental, local evidence | INCONCLUSIVE; real saved nodes rendered, target partial crossing not exercised |
+| [STEP20C saved target crossing probe](design/STEP20C_SAVED_BUFFER_TARGET_CROSSING_PROBE.md) | Experimental, local evidence | PARTIALLY_FEASIBLE; target saved node crossed and rendered within H1, but whole-H2 reference and timeout/input evidence remain open |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 
@@ -141,3 +144,14 @@ EXPERIMENTAL / INCONCLUSIVE. Real held XDG configures created nonempty saved
 scene buffers; private render entries and ACK/timeout removal were observed.
 The Mosaic target was wholly off H1 after an applied relative camera scroll,
 so the partial-boundary clipping gate was NOT EXERCISED. STEP20C stays NEXT.
+
+[Saved target crossing probe](design/STEP20C_SAVED_BUFFER_TARGET_CROSSING_PROBE.md)
+and [local source fixture](../tooling/probes/step20c-saved-buffer-target-crossing/README.md):
+EXPERIMENTAL / PARTIALLY_FEASIBLE. One calculated camera correction produced
+a real saved target crossing x=0 with clipped render and retained H1 pixels.
+H2's target color was absent, but its whole-image reference differed by 253
+pixels; Mosaic target timeout and held input remain unqualified. STEP20C
+stays NEXT and production multi-output remains NOT YET SUPPORTED.
+The offline freeze audit found an identical filled 11×23 Kitty cursor-color
+rectangle across pristine and Mosaic captures. Cursor blinking is strongly
+supported, not causally proven; a static H2 reference is the next gate.

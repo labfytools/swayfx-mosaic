@@ -4,6 +4,10 @@
 
 ### STEP20C experimental evidence
 
+- Local target-crossing saved-buffer probe: one measured signed camera delta placed the real target source and saved node across x=0. The target node rendered within H1's clip and retained its SHM pixels; H2 showed no target color but had a repeated 253-pixel reference difference. Mosaic E2 timeout stopped through stale fixture pointer correlation. PARTIALLY_FEASIBLE, architecture UNDECIDED; no production change, commit or push for this campaign.
+
+- Freeze audit of that target crossing: the repeated H2 difference is one filled 11×23 rectangle with Kitty cursor/background colors in pristine and Mosaic runs, strongly compatible with cursor blinking but not causally proven. The E2 visible bound at x=-30 matches the applied tiled clip narrowed by gaps. Timeout/input remain untested.
+
 - Preserved saved-transaction-buffer probe: real held XDG configures produced nonempty saved scene buffers; private saved nodes entered rendering and sampled ACK/timeout paths removed their trees. Mosaic's target was outside H1 after the applied camera reached 1760, so partial-boundary clipping is NOT EXERCISED and the verdict is INCONCLUSIVE. Three distinct executed runner copies and the private-standard fixture timeout are retained; no production change.
 
 - Local static-R90 partial-popup probe: a legal nested B popup crossed the Mosaic viewport by 72 logical pixels; 46,455 B pixels and a real button survived on H1, while H2 was pixel-identical to its reference and delivered no B button. Both standard controls showed 35,360 B pixels and a B button on H2. A crossed visually, but its forbidden-side input was not independently clicked. PARTIALLY_FEASIBLE for the tested matrix; no production change or phase-B commit/push.

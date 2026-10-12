@@ -1,0 +1,95 @@
+--- a/sway/ipc-json.c
++++ b/sway/ipc-json.c
+@@ -3,6 +3,7 @@
+ #include <json.h>
+ #include <libevdev/libevdev.h>
+ #include <stdio.h>
++#include <time.h>
+ #include <wlr/config.h>
+ #include <wlr/types/wlr_content_type_v1.h>
+ #include <wlr/types/wlr_output.h>
+@@ -820,6 +821,33 @@
+ #endif
+ }
+ 
++/* WHY: pre-transaction geometry must be measured from the actual source node.
++ * CONTRACT: this private trace reads the mapped target only during get_tree.
++ * INVARIANT: no scene state, buffer reference or transaction is changed. */
++struct target_trace_context {
++    struct sway_container *container;
++};
++
++static void trace_target_source(struct wlr_scene_buffer *buffer,
++        int sx, int sy, void *data) {
++    struct target_trace_context *ctx = data;
++    int gx = 0, gy = 0;
++    bool valid = wlr_scene_node_coords(&buffer->node, &gx, &gy);
++    struct timespec ts;
++    clock_gettime(CLOCK_MONOTONIC, &ts);
++    fprintf(stderr, "TARGET_SOURCE ns=%lld con=%p con_id=%zu view=%p node=%p buffer=%p parent=%p global_valid=%d global=%d,%d local=%d,%d source_size=%d,%d dest=%d,%d src_box=%.3f,%.3f,%.3f,%.3f transform=%d enabled=%d\n",
++        (long long)ts.tv_sec * 1000000000LL + ts.tv_nsec,
++        (void *)ctx->container, ctx->container->node.id,
++        (void *)ctx->container->view, (void *)&buffer->node,
++        (void *)buffer->buffer, (void *)buffer->node.parent, valid, gx, gy, sx, sy,
++        buffer->buffer ? buffer->buffer->width : 0,
++        buffer->buffer ? buffer->buffer->height : 0,
++        buffer->dst_width, buffer->dst_height,
++        buffer->src_box.x, buffer->src_box.y,
++        buffer->src_box.width, buffer->src_box.height,
++        buffer->transform, buffer->node.enabled);
++}
++
+ static void ipc_json_describe_container(struct sway_container *c, json_object *object) {
+ 	json_object_object_add(object, "name",
+ 			c->title ? json_object_new_string(c->title) : NULL);
+@@ -886,6 +914,14 @@
+ 	json_object_object_add(object, "marks", marks);
+ 
+ 	if (c->view) {
++        const char *app_id = view_get_app_id(c->view);
++        if (getenv("SAVED_TARGET_TRACE") && app_id &&
++                strcmp(app_id, "org.mosaic.SavedBufferProbe") == 0 &&
++                c->view->content_tree) {
++            struct target_trace_context ctx = {.container = c};
++            wlr_scene_node_for_each_buffer(&c->view->content_tree->node,
++                trace_target_source, &ctx);
++        }
+ 		ipc_json_describe_view(c, object);
+ 	}
+ }
+--- a/sway/tree/view.c
++++ b/sway/tree/view.c
+@@ -1328,6 +1328,23 @@
+ 		buffer->buffer ? buffer->buffer->height : 0, sx, sy, (void *)sbuf->node.parent);
+ }
+ 
++/* WHY: copied local offsets cannot prove a global boundary crossing.
++ * CONTRACT: private observation only; the node and buffer remain borrowed.
++ * INVARIANT: no buffer lock or scene mutation is introduced. */
++static void trace_target_saved_buffer(struct wlr_scene_buffer *buffer,
++        int sx, int sy, void *data) {
++    struct sway_view *view = data;
++    int gx = 0, gy = 0;
++    bool valid = wlr_scene_node_coords(&buffer->node, &gx, &gy);
++    fprintf(stderr, "TARGET_SAVED ns=%lld view=%p con=%p node=%p buffer=%p parent=%p global_valid=%d global=%d,%d local=%d,%d source_size=%d,%d dest=%d,%d enabled=%d\n",
++        saved_ns(), (void *)view, (void *)view->container,
++        (void *)&buffer->node, (void *)buffer->buffer,
++        (void *)buffer->node.parent, valid, gx, gy, sx, sy,
++        buffer->buffer ? buffer->buffer->width : 0,
++        buffer->buffer ? buffer->buffer->height : 0,
++        buffer->dst_width, buffer->dst_height, buffer->node.enabled);
++}
++
+ void view_save_buffer(struct sway_view *view) {
+ 	if (!sway_assert(!view->saved_surface_tree, "Didn't expect saved buffer")) {
+ 		view_remove_saved_buffer(view);
+@@ -1354,6 +1371,9 @@
+ 
+ 	wlr_scene_node_set_enabled(&view->content_tree->node, false);
+ 	wlr_scene_node_set_enabled(&view->saved_surface_tree->node, true);
++    /* CONTRACT: measure the actual saved node after enabling the tree. */
++    wlr_scene_node_for_each_buffer(&view->saved_surface_tree->node,
++        trace_target_saved_buffer, view);
+ 	fprintf(stderr, "SB_ENABLE ns=%lld view=%p tree=%p content_enabled=%d saved_enabled=%d\n",
+ 		saved_ns(), (void *)view, (void *)view->saved_surface_tree,
+ 		view->content_tree->node.enabled, view->saved_surface_tree->node.enabled);

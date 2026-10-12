@@ -231,3 +231,20 @@ authorized saved-buffer experiment must calibrate the applied camera and
 target crossing before the first transaction. Optimized blur/cache and
 SceneFX ABI/package remain separate unqualified gates. STEP20C stays
 **NEXT**, multi-output **NOT YET SUPPORTED**.
+
+The independent [saved target crossing campaign](design/STEP20C_SAVED_BUFFER_TARGET_CROSSING_PROBE.md)
+used one measured signed camera correction and observed the actual target
+saved node cross x=0, render inside H1 and retain permitted pixels. H2 showed
+no target color, but whole-image equality failed by a repeated 253-pixel
+reference difference. Mosaic timeout cleanup and held input remain untested
+after an E2 fixture pointer error. Result **PARTIALLY_FEASIBLE**, architecture
+**UNDECIDED**. The next narrow gate should first resolve the H2 reference
+artifact and complete a fresh target timeout/input observation; optimized
+blur/cache and SceneFX ABI/package remain later separate gates. STEP20C is
+still **NEXT** and multi-output **NOT YET SUPPORTED**.
+
+The saved-target freeze audit identifies the repeated 253-pixel H2 difference
+as strongly compatible with Kitty's blinking block cursor, not causally
+proven. A separate static-reference Mosaic timeout/input gate is authorized
+before optimized blur/cache and SceneFX ABI/package work. No production
+readiness or changed UX contract follows.
