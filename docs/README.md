@@ -112,3 +112,11 @@ PARTIALLY_FEASIBLE for measured stable geometry/ownership, with explicit
 fixture and unexercised-input limitations. The original temporary evidence
 manifest was verified before an offline analyzer rerun replaced its bytes;
 the report records this provenance limit.
+
+[Rotated-output probe](design/STEP20C_ROTATED_OUTPUT_PROBE.md) and
+[fixture](../tooling/probes/step20c-rotated-output/README.md): EXPERIMENTAL /
+PARTIALLY_FEASIBLE for applied geometry, logical PNG/pointer, full-owner hide,
+sampled damage and return. Pristine R90 capture and a Mosaic popup portion
+actually crossing the boundary were not exercised; architectural clipping
+conclusion UNDECIDED. STEP20C remains NEXT; production multi-output remains
+NOT YET SUPPORTED.

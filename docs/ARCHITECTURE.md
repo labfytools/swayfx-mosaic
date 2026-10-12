@@ -261,3 +261,12 @@ Rotation is the next separate geometric gate; other open STEP20C gates persist.
 The freeze audit verified the original evidence manifest before an offline
 replay rewrote the temporary inventory; the report records that limitation.
 STEP20C stays **NEXT**, multi-output **NOT YET SUPPORTED**.
+
+The [rotated-output probe](design/STEP20C_ROTATED_OUTPUT_PROBE.md) is
+**PARTIALLY_FEASIBLE** for sampled applied 90° geometry, logical PNG/pointer
+calibration, fully hidden owner guard, physical damage coverage and R0 return.
+The `grim` PNG is logical-oriented at 1000×750 while the R90 physical mode is
+750×1000. Pristine R90 capture failed through a fixture IPC-direction error,
+and the Mosaic B popup never reached the boundary, so partial popup clipping
+under rotation remains **UNDECIDED**. No applied-geometry generation contract
+or production behavior is accepted by this evidence.

@@ -204,3 +204,11 @@ Rotation is the next separate geometric gate; other open STEP20C gates persist.
 The original temporary evidence manifest passed verification before an
 offline analyzer rerun replaced its bytes; see the report for provenance.
 STEP20C stays **NEXT**, multi-output **NOT YET SUPPORTED**.
+
+The [rotated-output probe](design/STEP20C_ROTATED_OUTPUT_PROBE.md) is
+**PARTIALLY_FEASIBLE** for sampled applied geometry, PNG/pointer calibration,
+hidden-owner return and physical damage. Its partial-popup clipping conclusion
+is **UNDECIDED** because the Mosaic popup never crossed the R90 boundary and
+the pristine R90 capture was lost to a fixture assertion. The next distinct
+geometric gate should force a legal grabbed Mosaic popup portion across that
+boundary with a completed pristine control. STEP20C remains **NEXT**.

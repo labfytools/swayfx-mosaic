@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved rotated-output probe: actual 90° output keeps an 800×600 logical viewport while the physical mode becomes 750×1000 and `grim` remains logical-oriented 1000×750. Private standard shows 15,860 B-popup pixels on H2; private Mosaic shows zero, but its B popup ends before the boundary, so partial clipping is unchallenged. Fully hidden owner, pointer, measured physical damage and R0/standard returns pass sampled checks. Pristine R90 capture stopped on a fixture IPC-direction assertion; no replay. PARTIALLY_FEASIBLE, architectural conclusion UNDECIDED; no production change.
+
 - Preserved dynamic-output ownership probe: real 800→960→800 logical resize and H1→H2→H1 workspace migration preserve IDs and sampled applied clips. Exact vacated-output backgrounds and measured physical damage are compatible; two standard-control final calibrations fail through reference occlusion. PARTIALLY_FEASIBLE; maximum clamp, migrated clipped-popup input, opaque spill and effects remain open. Six reconfigurations/six migrations, zero extra camera pairs; no production change. The original temporary evidence manifest was verified before an offline analyzer rerun replaced it; the report records the provenance limit.
 
 - Preserved fractional-scale probe: actual 1.25 uniform/mixed and 1.5 mixed outputs, calibrated logical input, sampled root/nested popup and effects clipping, two exact camera returns and physical settled-damage coverage. PARTIALLY_FEASIBLE; opaque tiled controls, interior shadow, restored Mosaic hit and broader gates remain unqualified. No production/package change.

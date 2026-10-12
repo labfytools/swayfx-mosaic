@@ -200,3 +200,12 @@ Rotation is the next separate geometric gate; other open STEP20C gates persist.
 The original temporary evidence manifest was verified before an offline
 analyzer rerun replaced it; its exact historical bytes are not retained.
 STEP20C stays **NEXT**, multi-output **NOT YET SUPPORTED**.
+
+The [rotation probe](design/STEP20C_ROTATED_OUTPUT_PROBE.md) established
+the applied 90° mode/transform and logical PNG/pointer orientation in two
+private runs, plus sampled fully-hidden owner and damage behavior. Its global
+result is **PARTIALLY_FEASIBLE**, architectural partial-clipping conclusion
+**UNDECIDED**: pristine R90 capture failed through fixture assertion, and the
+Mosaic popup stayed wholly inside the viewport despite standard control spill.
+Scored border hits, rotated shadow/blur/cache and raw buffer readback are
+**NOT TESTED**. No production support claim follows.
