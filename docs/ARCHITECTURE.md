@@ -195,6 +195,21 @@ buffer and later hit remain separate identities. The temporal line is closed
 for this backend/matrix after five attempts per mode, while the overall
 cross-time architectural question remains **UNDECIDED**.
 
+## STEP20C effects and damage evidence
+
+The [STEP20C effects/damage probe](design/STEP20C_EFFECTS_DAMAGE_PROBE.md)
+used a private inherited SceneFX clip with genuinely visible translucent
+blur and an ordinary shadow crossing the neighboring output. The sampled
+Mosaic blur stayed on its output; the ordinary 27,594-pixel shadow spill
+was absent there under Mosaic. Three settled hide/return pairs reproduced
+the original pixels, and sampled private damage covered changed pixels.
+The Mosaic interior shadow was not independently visible, while optimized
+blur cache correctness, out-of-viewport source sampling, popup effects and
+saved buffers remain unqualified. The private result is
+**PARTIALLY_FEASIBLE** and does not establish a production rendering or
+transaction contract. STEP20C remains **NEXT**; multi-output Mosaic remains
+**NOT YET SUPPORTED**.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.
@@ -212,3 +227,10 @@ Session V2 restoration is **PLANNED**. It must restore Mosaic activation, ordere
 - Simulating tiling with floating windows or a repositioning daemon.
 - Embedding personal dotfiles or keyboard bindings in the package.
 - Maintaining a permanently diverged SwayFX fork instead of a reviewable delta.
+
+Effects freeze audit: the historical campaign exceeded its three-pair budget
+(15 pairs in five Mosaic runs); all evidence is retained. A separate fresh
+rebuild reproduced the main counts with one pair under the corrected
+campaign guard. The traced reference had a different effective size, so
+instrumentation neutrality and its cause remain unqualified. See the
+[effects report](design/STEP20C_EFFECTS_DAMAGE_PROBE.md). This adds no contract.

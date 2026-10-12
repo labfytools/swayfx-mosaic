@@ -39,7 +39,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Ordering source fixture](../tooling/probes/step20c-commit-present-input/README.md) rebuilds the passive private trace.
 22. [STEP20C event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md): bounded asynchronous client submission and native callback order; no natural commit-to-present input mutation, INCONCLUSIVE.
     [Pending-input source fixture](../tooling/probes/step20c-event-loop-pending-input/README.md) replays the disposable matrix.
-23. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+23. [STEP20C effects/damage probe](design/STEP20C_EFFECTS_DAMAGE_PROBE.md): real translucent blur and shadow-overflow pixels compared across standard and private Mosaic layouts; sampled damage and camera returns PARTIALLY_FEASIBLE, optimized blur cache unqualified.
+    [Effects/damage source fixture](../tooling/probes/step20c-effects-damage/README.md) rebuilds the disposable matrix.
+24. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -85,6 +87,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C mutation coverage probe](design/STEP20C_MUTATION_COVERAGE_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE overall; an input-region change alters the hit at unchanged partial epoch, client recolor changes pixels without geometry, and a held output reference is released on sampled output destruction; cross-time generation contract remains UNDECIDED |
 | [STEP20C commit/present/input ordering probe](design/STEP20C_COMMIT_PRESENT_INPUT_ORDERING_PROBE.md) | Experimental, independently replayed evidence | INCONCLUSIVE for the discriminating temporal window; headless input-region commits and hits agree in observed states, but none of 20 applied mutations occurred between a native output commit and its present |
 | [STEP20C event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md) | Experimental, independently replayed evidence | INCONCLUSIVE / NOT EXERCISED for natural commit→input mutation→present despite decoupled client submission; the temporal line is closed for this backend/matrix |
+| [STEP20C effects/damage probe](design/STEP20C_EFFECTS_DAMAGE_PROBE.md) | Experimental, independent private replay | PARTIALLY_FEASIBLE for visible blur, excluded sampled shadow overflow, settled camera restoration and sampled damage; shadow interior, optimized cache, popup effects and saved buffers remain unqualified |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 

@@ -128,11 +128,10 @@ tested that gate without changing backend scheduling. Twenty real input
 region mutations applied in two private modes, but none occurred between
 an accepted output commit and its matching headless present; P2 is
 **INCONCLUSIVE**. The sampled hit and client delivery matched effective
-input state, and no distinct Mosaic clipping defect was reproduced. Before
-deciding whether an extra generation contract is necessary, the smallest
-next gate is passive event-loop phase tracing with a client request already
-pending during ordinary repaint, then a same-interval hit if naturally
-observable. STEP20C remains **NEXT** and multi-output **NOT YET SUPPORTED**.
+input state, and no distinct Mosaic clipping defect was reproduced. The
+subsequent pending-input event-loop follow-up below addressed that bounded
+timing question without observing the target interval. STEP20C remains
+**NEXT** and multi-output **NOT YET SUPPORTED**.
 
 The bounded [event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md)
 decoupled normal client submission from IPC/client acknowledgements, then
@@ -143,6 +142,18 @@ headless backend and fixed geometry. Do not infer an extra generation
 contract or production readiness. The next separate STEP20C gate should
 address complete effects/damage, scaling, or resize/migration. STEP20C stays
 **NEXT** and multi-output Mosaic **NOT YET SUPPORTED**.
+
+The [effects/damage probe](design/STEP20C_EFFECTS_DAMAGE_PROBE.md) then
+demonstrated genuine shadow spill in both standard controls, excluded the
+sampled spill under private Mosaic, and measured a visibly active
+translucent blur, sampled damage coverage and three exact settled camera
+returns. Its result is **PARTIALLY_FEASIBLE**: interior Mosaic shadow,
+optimized blur cache correctness, outside-viewport shader sampling, popup
+effects and saved buffers remain unqualified. The next distinct gate should
+test scaling first for the inherited clip and effect draw regions;
+rotation, resize/migration, saved buffers and ABI/package maintenance remain open.
+This does not authorize STEP20C production work or STEP20D. STEP20C stays
+**NEXT** and production multi-output Mosaic **NOT YET SUPPORTED**.
 
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 
@@ -159,3 +170,10 @@ address complete effects/damage, scaling, or resize/migration. STEP20C stays
 ## STEP20G — package and daily-use qualification · PLANNED
 
 **Goal:** publish a validated optional session while preserving standard SwayFX fallback. **Planned deliverables:** final Arch package, optional distinct session entry, install/rollback instructions, and a forward port proven against a newer SwayFX release. **Exit criteria:** package file ownership and coexistence verified, release build and headless/live qualification recorded, standard SwayFX updates remain independent. **Docs first:** update Packaging, Upstream, Development, UX, and Known Limitations with the intended release contract.
+
+Effects freeze audit: the historical campaign exceeded its three-pair budget
+(15 pairs in five Mosaic runs); all evidence is retained. A separate fresh
+rebuild reproduced the main counts with one pair under the corrected
+campaign guard. The traced reference had a different effective size, so
+instrumentation neutrality and its cause remain unqualified. See the
+[effects report](design/STEP20C_EFFECTS_DAMAGE_PROBE.md). This adds no contract.
