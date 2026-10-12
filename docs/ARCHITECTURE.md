@@ -109,6 +109,22 @@ native transaction-generation contract binding applied scene, clip and hit
 testing. The temporal evidence is **PARTIALLY_FEASIBLE**, not a production
 rendering or ABI guarantee.
 
+The [presentation identity probe](design/STEP20C_PRESENTATION_IDENTITY_PROBE.md)
+then observed native wlroots 0.20.2 headless output commit and deferred
+present callbacks in a separate private compositor. Each observed present
+paired with its accepted native `(output, commit_seq)`, and a scene snapshot
+inside each commit callback recorded the applied tiled position and clip.
+Ten settled target transitions showed matching applied scene/clip values at
+400 and 1280, while some faster command intervals had no commit. During
+initial layout setup, a presented commit exposed logical camera 1760 with
+applied scene and clip still at 1120; this reinforces the distinction between
+requested and applied state. The applied scene and clip themselves agreed.
+Headless present is an idle-delivered simulated event, and neither it nor
+sampled `grim` images identify the pixels of that exact output-state buffer.
+Pointer events remain a separate time-ordered stream. The result is
+**PARTIALLY_FEASIBLE** and does not define a production transaction or
+SceneFX ABI contract.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.

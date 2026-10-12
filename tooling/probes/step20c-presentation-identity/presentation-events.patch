@@ -1,0 +1,142 @@
+diff --git a/include/sway/output.h b/include/sway/output.h
+index 3d1d1ad1..34aa33e1 100644
+--- a/include/sway/output.h
++++ b/include/sway/output.h
+@@ -64,6 +64,8 @@ struct sway_output {
+ 	struct wl_listener layout_destroy;
+ 	struct wl_listener destroy;
+ 	struct wl_listener present;
++	// Private STEP20C trace: removed before output destruction.
++	struct wl_listener presentation_probe_commit;
+ 	struct wl_listener frame;
+ 	struct wl_listener request_state;
+ 
+diff --git a/sway/desktop/output.c b/sway/desktop/output.c
+index cd5eed21..fdf93421 100644
+--- a/sway/desktop/output.c
++++ b/sway/desktop/output.c
+@@ -37,6 +37,7 @@
+ #include "sway/tree/root.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
++#include "sway/tree/mosaic.h"
+ 
+ #if WLR_HAS_DRM_BACKEND
+ #include <wlr/backend/drm.h>
+@@ -365,6 +366,83 @@ static bool output_can_tear(struct sway_output *output) {
+ // INVARIANT: repaint and commit decisions are unchanged by the trace.
+ static uint64_t temporal_output_commit_ordinal;
+ 
++// WHY: the private headless experiment needs native output event identity.
++// CONTRACT: all scene values are read while their owning output is alive;
++// this trace never changes render, damage, clipping or commit decisions.
++// INVARIANT: event.commit sees the accepted native commit_seq, while a
++// later present event can only be paired by (output, commit_seq).
++static uint64_t presentation_probe_now_ns(void) {
++	struct timespec now;
++	clock_gettime(CLOCK_MONOTONIC, &now);
++	return (uint64_t)now.tv_sec * UINT64_C(1000000000) + now.tv_nsec;
++}
++
++static void presentation_probe_scene(struct sway_output *output) {
++	struct sway_workspace *ws = output->current.active_workspace;
++	if (!ws) {
++		sway_log(SWAY_INFO, "PI_SCENE output=%s workspace=none ns=%" PRIu64,
++			output->wlr_output->name, presentation_probe_now_ns());
++		return;
++	}
++	struct wlr_box clip = {0};
++	bool has_clip = wlr_scene_tree_get_clip(ws->layers.tiling, &clip);
++	double scroll = -1;
++	if (ws->current.layout == L_MOSAIC && ws->mosaic && ws->mosaic->rows->length) {
++		struct mosaic_row *row = ws->mosaic->rows->items[0];
++		scroll = row->state.scroll_x;
++	}
++	sway_log(SWAY_INFO, "PI_SCENE output=%s ns=%" PRIu64
++		" workspace=%zu layout=%d scroll=%.0f tile_scene=%d,%d"
++		" clip_valid=%d clip=%d,%d,%d,%d",
++		output->wlr_output->name, presentation_probe_now_ns(), ws->node.id,
++		ws->current.layout, scroll, ws->layers.tiling->node.x,
++		ws->layers.tiling->node.y, has_clip,
++		clip.x, clip.y, clip.width, clip.height);
++	if (ws->current.tiling) {
++		for (int i = 0; i < ws->current.tiling->length; i++) {
++			struct sway_container *con = ws->current.tiling->items[i];
++			int x = 0, y = 0;
++			bool coords = con->scene_tree &&
++				wlr_scene_node_coords(&con->scene_tree->node, &x, &y);
++			sway_log(SWAY_INFO, "PI_OWNER output=%s ns=%" PRIu64
++				" id=%zu current=%.0f,%.0f,%.0f,%.0f"
++				" scene_valid=%d scene=%d,%d applied_size=%d,%d",
++				output->wlr_output->name, presentation_probe_now_ns(),
++				con->node.id, con->current.x, con->current.y,
++				con->current.width, con->current.height, coords, x, y,
++				con->animation_state.current_width,
++				con->animation_state.current_height);
++		}
++	}
++	if (root->layers.popup) {
++		struct wlr_scene_node *node;
++		unsigned popup_index = 0;
++		wl_list_for_each(node, &root->layers.popup->children, link) {
++			if (!scene_descriptor_try_get(node, SWAY_SCENE_DESC_POPUP)) continue;
++			struct wlr_scene_tree *tree = wlr_scene_tree_from_node(node);
++			struct wlr_box box = {0};
++			bool valid = wlr_scene_tree_get_clip(tree, &box);
++			sway_log(SWAY_INFO, "PI_POPUP output=%s ns=%" PRIu64
++				" local_index=%u tree=%p enabled=%d clip_valid=%d clip=%d,%d,%d,%d",
++				output->wlr_output->name, presentation_probe_now_ns(),
++				++popup_index, (void *)tree, node->enabled, valid,
++				box.x, box.y, box.width, box.height);
++		}
++	}
++}
++
++static void presentation_probe_handle_commit(struct wl_listener *listener, void *data) {
++	struct sway_output *output = wl_container_of(listener, output, presentation_probe_commit);
++	const struct wlr_output_event_commit *event = data;
++	sway_log(SWAY_INFO, "PI_OUTPUT_COMMIT output=%s commit_seq=%" PRIu32
++		" ns=%" PRIu64 " event_ns=%" PRIu64 " has_buffer=%d",
++		output->wlr_output->name, output->wlr_output->commit_seq,
++		presentation_probe_now_ns(),
++		(uint64_t)event->when.tv_sec * UINT64_C(1000000000) + event->when.tv_nsec,
++		!!(event->state->committed & WLR_OUTPUT_STATE_BUFFER));
++	presentation_probe_scene(output);
++}
++
+ static int output_repaint_timer_handler(void *data) {
+ 	struct sway_output *output = data;
+ 
+@@ -540,6 +618,7 @@ static void begin_destroy(struct sway_output *output) {
+ 	wl_list_remove(&output->layout_destroy.link);
+ 	wl_list_remove(&output->destroy.link);
+ 	wl_list_remove(&output->present.link);
++	wl_list_remove(&output->presentation_probe_commit.link);
+ 	wl_list_remove(&output->frame.link);
+ 	wl_list_remove(&output->request_state.link);
+ 
+@@ -576,6 +655,15 @@ static void handle_layout_destroy(struct wl_listener *listener, void *data) {
+ static void handle_present(struct wl_listener *listener, void *data) {
+ 	struct sway_output *output = wl_container_of(listener, output, present);
+ 	struct wlr_output_event_present *output_event = data;
++	sway_log(SWAY_INFO, "PI_OUTPUT_PRESENT output=%s commit_seq=%" PRIu32
++		" ns=%" PRIu64 " event_ns=%" PRIu64
++		" presented=%d seq=%u refresh=%d flags=%" PRIu32,
++		output->wlr_output->name, output_event->commit_seq,
++		presentation_probe_now_ns(),
++		(uint64_t)output_event->when.tv_sec * UINT64_C(1000000000) +
++			output_event->when.tv_nsec,
++		output_event->presented, output_event->seq,
++		output_event->refresh, output_event->flags);
+ 
+ 	if (!output->enabled || !output_event->presented) {
+ 		return;
+@@ -690,6 +778,8 @@ void handle_new_output(struct wl_listener *listener, void *data) {
+ 	output->layout_destroy.notify = handle_layout_destroy;
+ 	wl_signal_add(&wlr_output->events.destroy, &output->destroy);
+ 	output->destroy.notify = handle_destroy;
++	wl_signal_add(&wlr_output->events.commit, &output->presentation_probe_commit);
++	output->presentation_probe_commit.notify = presentation_probe_handle_commit;
+ 	wl_signal_add(&wlr_output->events.present, &output->present);
+ 	output->present.notify = handle_present;
+ 	wl_signal_add(&wlr_output->events.frame, &output->frame);

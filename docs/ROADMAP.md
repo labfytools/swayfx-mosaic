@@ -63,10 +63,23 @@ sampled private Mosaic pixels and standard controls, and time-ordered private
 damage extents covered changed pixels between sampled captures. It did not
 identify every presented frame or bind camera/clip/input to a native applied
 transaction generation. Its [source fixture](../tooling/probes/step20c-temporal-damage/README.md)
-remains experimental. The next bounded gate is a headless presentation-event
-trace for one hide/return transition, with applied camera/clip and pointer
-target. Scaling, rotation, resize/migration, complete effects and dependency
+remains experimental. Its proposed headless presentation-event gate was
+examined by the subsequent probe below. Scaling, rotation,
+resize/migration, complete effects and dependency
 maintenance remain open. STEP20C stays **NEXT**.
+
+The [presentation identity probe](design/STEP20C_PRESENTATION_IDENTITY_PROBE.md)
+is **PARTIALLY_FEASIBLE**: native wlroots 0.20.2 headless present events
+were paired to commits by `(output, commit_seq)` and applied scene/clip
+snapshots were taken at the commit callback. Settled target states passed
+sampled clipping and input checks; faster commands could coalesce or defer.
+The actual buffer content of each commit and frame-specific pointer relation
+remain unproven. Its [private source fixture](../tooling/probes/step20c-presentation-identity/README.md)
+does not enter the production build. The smallest remaining identity gate is
+a bounded fingerprint/readback of the same retained output-state buffer at
+commit and headless present, with safe buffer lifetime. Scaling, rotation,
+migration/resize, complete effects/damage and SceneFX maintenance remain
+open. STEP20C stays **NEXT**.
 
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 

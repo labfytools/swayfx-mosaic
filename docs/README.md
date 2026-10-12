@@ -27,7 +27,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Negative-origin source fixture](../tooling/probes/step20c-negative-origin/README.md) replays it in a disposable laboratory.
 16. [STEP20C temporal damage probe](design/STEP20C_TEMPORAL_DAMAGE_PROBE.md): repeated XDG cycles, camera transitions, sampled pixel restoration and timed private damage/commit traces at the same negative-origin geometry; frame presentation remains unproven.
     [Temporal source fixture](../tooling/probes/step20c-temporal-damage/README.md) rebuilds the private campaign.
-17. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+17. [STEP20C presentation identity probe](design/STEP20C_PRESENTATION_IDENTITY_PROBE.md): native headless commit/present correlation and sampled applied camera/clip/input evidence; exact committed buffer content remains unproven.
+    [Presentation source fixture](../tooling/probes/step20c-presentation-identity/README.md) rebuilds the private instrumentation.
+18. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -67,6 +69,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases across the horizontal output boundary; no production qualification |
 | [STEP20C negative-origin nested-grab probe](design/STEP20C_NEGATIVE_ORIGIN_NESTED_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases with HEADLESS-1 at `x=-800`; no production qualification |
 | [STEP20C temporal damage probe](design/STEP20C_TEMPORAL_DAMAGE_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE for sampled repeated lifecycle/camera states; damage-to-presented-frame and transaction/input synchronization remain open |
+| [STEP20C presentation identity probe](design/STEP20C_PRESENTATION_IDENTITY_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; native headless events pair with commits, but buffer pixels and per-frame input identity remain unproven |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 
