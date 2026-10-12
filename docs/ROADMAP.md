@@ -123,6 +123,17 @@ a controlled hit-geometry mutation between one known output-state build
 and its deferred headless present, with hits and client delivery sampled
 on both sides. This remains scientific evidence, not production STEP20C.
 
+The independently replayed [commit/present/input ordering probe](design/STEP20C_COMMIT_PRESENT_INPUT_ORDERING_PROBE.md)
+tested that gate without changing backend scheduling. Twenty real input
+region mutations applied in two private modes, but none occurred between
+an accepted output commit and its matching headless present; P2 is
+**INCONCLUSIVE**. The sampled hit and client delivery matched effective
+input state, and no distinct Mosaic clipping defect was reproduced. Before
+deciding whether an extra generation contract is necessary, the smallest
+next gate is passive event-loop phase tracing with a client request already
+pending during ordinary repaint, then a same-interval hit if naturally
+observable. STEP20C remains **NEXT** and multi-output **NOT YET SUPPORTED**.
+
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 
 **Goal:** connect rows to runtime tree, transactions, scene, input, and IPC. **Planned deliverables:** active-row navigation, row-local scroll/focus, deterministic insertion/reflow, in-row reorder, and between-row movement. **Exit criteria:** real tiled containers preserve identity and order across row changes; focus and camera restore correctly; headless multi-row tests pass. **Docs first:** settle exact interactions and row invariants in UX and Architecture. Unset key combinations remain TBD.

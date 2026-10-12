@@ -171,6 +171,19 @@ candidate research boundaries; whether existing event-loop ordering alone
 is enough across build, present and input remains **UNDECIDED**. No new
 production generation or transaction contract is accepted by this probe.
 
+The independently replayed [commit/present/input ordering probe](design/STEP20C_COMMIT_PRESENT_INPUT_ORDERING_PROBE.md)
+confirms in source that wlroots headless queues `present` as an idle callback
+after an accepted output commit, while an applied Wayland input-region
+commit changes the region consulted by later scene hits. In five bounded
+cycles per mode, all 20 applied target input mutations in private standard
+and Mosaic occurred after the preceding matching `present`; none landed
+inside a native commit-to-present interval. Input-only hit and client
+delivery matched the effective region in sampled states. This leaves the
+cross-time Mosaic clipping invariant **UNDECIDED** and adds no production
+generation contract. A later hit may legitimately use newer input than a
+previously committed output buffer; identity of these states must remain
+distinct in further probes.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.
