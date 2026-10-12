@@ -1,0 +1,39 @@
+--- a/sway/input/cursor.c
++++ b/sway/input/cursor.c
+@@ -1,5 +1,7 @@
+ #include <assert.h>
+ #include <math.h>
++#include <stdio.h>
++#include <stdlib.h>
+ #include <libevdev/libevdev.h>
+ #include <linux/input-event-codes.h>
+ #include <errno.h>
+@@ -58,6 +60,17 @@
+ 	}
+ 
+ 	if (scene_node) {
++        /* WHY: one sampled motion must distinguish saved node from live surface.
++         * CONTRACT: passive private trace; no seat, scene or hit result changes.
++         * INVARIANT: log borrowed identities only during this lookup. */
++        struct timespec hit_ts;
++        clock_gettime(CLOCK_MONOTONIC, &hit_ts);
++        if (getenv("SAVED_HIT_TRACE")) {
++            fprintf(stderr, "TARGET_HIT ns=%lld point=%.2f,%.2f node=%p saved=%d\n",
++                (long long)hit_ts.tv_sec * 1000000000LL + hit_ts.tv_nsec,
++                lx, ly, (void *)scene_node,
++                scene_descriptor_try_get(scene_node, SWAY_SCENE_DESC_SAVED_BUFFER) != NULL);
++        }
+ 		// determine what wlr_surface we clicked on
+ 		if (scene_node->type == WLR_SCENE_NODE_BUFFER) {
+ 			struct wlr_scene_buffer *scene_buffer =
+@@ -68,6 +81,10 @@
+ 			if (scene_surface) {
+ 				*surface = scene_surface->surface;
+ 			}
++            if (getenv("SAVED_HIT_TRACE")) {
++                fprintf(stderr, "TARGET_HIT_SURFACE node=%p surface=%p\n",
++                    (void *)scene_node, scene_surface ? (void *)scene_surface->surface : NULL);
++            }
+ 		}
+ 
+ 		// determine what container we clicked on

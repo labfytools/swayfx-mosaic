@@ -300,3 +300,17 @@ Offline freeze analysis strongly supports a blinking Kitty block cursor for
 the repeated H2 reference difference, without proving its cause. E2's
 `x=-30` visible bound matches the applied tiled clip narrowed by gaps; it is
 not evidence of a distinct content clip. Target timeout cleanup remains open.
+
+The separate [natural timeout and input gate](design/STEP20C_SAVED_TARGET_TIMEOUT_INPUT_PROBE.md)
+uses a static SHM H2 reference and one Mosaic transaction. The actual target
+source and saved node both crossed x=0; the saved node rendered only its H1
+portion and its tree was removed after a real 2500 ms timeout with serial 50
+held and the client alive. The whole H2 RGB image was identical across two
+preflight, held and applied captures. Two sampled pointer positions found
+the H2 reference surface and the visible H1 saved node respectively; the
+latter is not a Wayland surface. This closes the sampled saved-target ACK and
+timeout clipping matrix, **PARTIALLY_FEASIBLE**, without proving full damage,
+all input paths or native GPU lifetime. The earlier crossing campaign's own
+architectural verdict remains UNDECIDED. The new limited-matrix conclusion
+does not authorize a production implementation. Optimized blur/cache and
+SceneFX ABI/package remain separate gates.

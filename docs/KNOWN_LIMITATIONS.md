@@ -244,3 +244,14 @@ rectangle in pristine and Mosaic H2 comparisons. Kitty's recorded local
 block-cursor color and blink setting strongly support a dynamic reference,
 but no effective cursor phase was logged. Whole-H2 equality is still
 unproven; the new timeout probe must use a static reference.
+
+The subsequent [static-reference saved-target timeout gate](design/STEP20C_SAVED_TARGET_TIMEOUT_INPUT_PROBE.md)
+is **PARTIALLY_FEASIBLE**. In one private horizontal Mosaic run, all four
+full H2 RGB captures matched exactly; the actual crossing saved target
+rendered its permitted H1 pixels, remained absent on H2 and its saved tree
+was removed after a natural timeout with the configure withheld. Two pointer
+points showed no invisible H2 target hit. Full frame-by-frame damage,
+unmeasured input paths, seat notification for the saved node and complete
+GPU/texture reference lifetime remain **NOT TESTED**. The old Kitty cursor
+explanation remains strongly probable, not causally proven. STEP20C remains
+**NEXT** and production multi-output Mosaic **NOT YET SUPPORTED**.

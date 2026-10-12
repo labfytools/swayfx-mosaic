@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved saved-target natural timeout gate: one Mosaic run used a static SHM H2 reference with four identical whole-RGB captures. The measured target saved node crossed x=0, rendered 182,214 retained-color pixels on H1, contributed no H2 pixels and was removed after a real 2500 ms timeout while the client held serial 50 alive. Two sampled pointer points found the H2 reference and visible H1 saved node. PARTIALLY_FEASIBLE because complete damage, broader input and GPU/texture lifetime remain unqualified; no production change.
+
 - Local target-crossing saved-buffer probe: one measured signed camera delta placed the real target source and saved node across x=0. The target node rendered within H1's clip and retained its SHM pixels; H2 showed no target color but had a repeated 253-pixel reference difference. Mosaic E2 timeout stopped through stale fixture pointer correlation. PARTIALLY_FEASIBLE, architecture UNDECIDED; no production change, commit or push for this campaign.
 
 - Freeze audit of that target crossing: the repeated H2 difference is one filled 11×23 rectangle with Kitty cursor/background colors in pristine and Mosaic runs, strongly compatible with cursor blinking but not causally proven. The E2 visible bound at x=-30 matches the applied tiled clip narrowed by gaps. Timeout/input remain untested.

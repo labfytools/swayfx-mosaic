@@ -1,2 +1,3 @@
 # Preserved experimental patches include diff markers and source-context tabs.
 tooling/probes/step20c-valid-grab/*.patch -whitespace
+tooling/probes/step20c-saved-target-timeout-input/target-hit-trace.patch -whitespace

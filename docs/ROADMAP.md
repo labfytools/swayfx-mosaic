@@ -248,3 +248,14 @@ as strongly compatible with Kitty's blinking block cursor, not causally
 proven. A separate static-reference Mosaic timeout/input gate is authorized
 before optimized blur/cache and SceneFX ABI/package work. No production
 readiness or changed UX contract follows.
+
+The completed [static-reference saved-target natural timeout gate](design/STEP20C_SAVED_TARGET_TIMEOUT_INPUT_PROBE.md)
+then measured a real crossing target saved node, clipped H1 rendering,
+stable full-image H2 RGB, two targeted pointer hits and natural timeout
+cleanup with the XDG client alive and serial 50 withheld. Combined with the
+earlier E1 ACK, the tested saved-target clipping matrix is viable, while
+damage across every frame, broader input and GPU/texture lifetime remain
+unqualified. Its verdict is **PARTIALLY_FEASIBLE**; the earlier probe's own
+UNDECIDED conclusion is preserved. The next separate STEP20C gate is
+optimized blur/cache, followed by SceneFX ABI/package. STEP20C is still
+**NEXT**, production multi-output **NOT YET SUPPORTED**.

@@ -155,3 +155,12 @@ stays NEXT and production multi-output remains NOT YET SUPPORTED.
 The offline freeze audit found an identical filled 11×23 Kitty cursor-color
 rectangle across pristine and Mosaic captures. Cursor blinking is strongly
 supported, not causally proven; a static H2 reference is the next gate.
+
+[Saved target natural timeout and input gate](design/STEP20C_SAVED_TARGET_TIMEOUT_INPUT_PROBE.md)
+and [local source fixture](../tooling/probes/step20c-saved-target-timeout-input/README.md):
+EXPERIMENTAL / PARTIALLY_FEASIBLE. A static SHM H2 reference stayed
+pixel-identical before, during and after one held Mosaic transaction. The
+crossing target saved node rendered inside H1 and was removed after a real
+timeout with the XDG client alive; sampled H2 input reached the reference.
+Complete damage and GPU lifetime remain open. STEP20C stays NEXT and
+production multi-output remains NOT YET SUPPORTED.
