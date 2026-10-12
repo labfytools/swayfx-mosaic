@@ -1,0 +1,39 @@
+--- a/sway/desktop/output.c
++++ b/sway/desktop/output.c
+@@ -1,4 +1,5 @@
+ #include <assert.h>
++#include <inttypes.h>
+ #include <stdlib.h>
+ #include <strings.h>
+ #include <time.h>
+@@ -358,6 +359,12 @@
+ 	return false;
+ }
+ 
++// WHY: SceneFX's wlr_scene_output_commit is bypassed by SwayFX's repaint
++// path. This private ordinal timestamps the actual accepted output commit.
++// CONTRACT: it is a local probe counter, not a native transaction/frame ID.
++// INVARIANT: repaint and commit decisions are unchanged by the trace.
++static uint64_t temporal_output_commit_ordinal;
++
+ static int output_repaint_timer_handler(void *data) {
+ 	struct sway_output *output = data;
+ 
+@@ -394,7 +401,16 @@
+ 		}
+ 	}
+ 
+-	if (!wlr_output_commit_state(output->wlr_output, &pending)) {
++	bool commit_ok = wlr_output_commit_state(output->wlr_output, &pending);
++	struct timespec temporal_now;
++	clock_gettime(CLOCK_MONOTONIC, &temporal_now);
++	sway_log(SWAY_INFO, "TEMPORAL_OUTPUT_COMMIT ordinal=%" PRIu64
++		" ns=%" PRIu64 " output=%s accepted=%d",
++		++temporal_output_commit_ordinal,
++		(uint64_t)temporal_now.tv_sec * UINT64_C(1000000000) +
++			(uint64_t)temporal_now.tv_nsec,
++		output->wlr_output->name, commit_ok);
++	if (!commit_ok) {
+ 		sway_log(SWAY_ERROR, "Page-flip failed on output %s", output->wlr_output->name);
+ 	}
+ 	wlr_output_state_finish(&pending);

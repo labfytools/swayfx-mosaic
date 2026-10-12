@@ -4,6 +4,7 @@
 
 ### STEP20C experimental evidence
 
+- Added a source-only temporal damage fixture at the fixed negative-origin geometry. Ten XDG open/close cycles in each of three modes and sampled camera transitions restored popup regions without a detected ghost pixel; private damage/commit traces remain insufficient for a presented-frame guarantee. STEP20C remains NEXT and multi-output Mosaic unsupported.
 - Added a source-only negative-origin nested-grab probe. Two outputs at `x=-800/0` verified signed pointer conversion, real standard popup crossing, sampled private Mosaic clipping, hidden-owner return, standard-layout return and a positive horizontal regression. Production STEP20C support remains open.
 - Added a source-only stacked-output nested valid-grab probe. Both standard controls showed real popup overflow and pointer delivery below `y=600`; the private guarded Mosaic build clipped A/B at sampled lower points, preserved hidden-owner and standard-layout return, and reproduced the horizontal control. STEP20C production support remains open.
 - Added a source-only nested XDG grab fixture and a comparative headless probe. Two real button serials produced an interactive toplevel → popup A → popup B chain; sampled guarded Mosaic clipping, child-first dismissal, hidden-owner camera return and standard-layout return were feasible. STEP20C production support remains open.

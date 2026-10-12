@@ -97,6 +97,18 @@ crossing and popup buttons. A fully hidden applied owner and return to
 production viewport clipping, transaction consistency, continuous damage
 coverage and SceneFX ABI ownership are not settled.
 
+The later [temporal damage probe](design/STEP20C_TEMPORAL_DAMAGE_PROBE.md)
+kept that same negative-origin geometry and repeated genuine nested XDG
+open/close cycles, camera hide/return and outside dismissal. Sampled private
+Mosaic captures restored former popup regions without ghost pixels; the
+private standard layout repeated control behavior. Timed SceneFX damage
+extents and private SwayFX output-commit records covered changed pixels in
+sampled capture intervals, but neither the extents nor accepted commits
+identify all presented frames. The current Mosaic `scroll_x` still lacks a
+native transaction-generation contract binding applied scene, clip and hit
+testing. The temporal evidence is **PARTIALLY_FEASIBLE**, not a production
+rendering or ABI guarantee.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.

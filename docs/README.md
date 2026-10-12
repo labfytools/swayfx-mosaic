@@ -25,7 +25,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Vertical source fixture](../tooling/probes/step20c-vertical-grab/README.md) replays it in a disposable laboratory.
 15. [STEP20C negative-origin nested-grab probe](design/STEP20C_NEGATIVE_ORIGIN_NESTED_GRAB_PROBE.md): sampled signed-coordinate pointer, popup clipping, hidden-owner and standard-layout evidence with real `x=-800` headless origin; production gates remain open.
     [Negative-origin source fixture](../tooling/probes/step20c-negative-origin/README.md) replays it in a disposable laboratory.
-16. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+16. [STEP20C temporal damage probe](design/STEP20C_TEMPORAL_DAMAGE_PROBE.md): repeated XDG cycles, camera transitions, sampled pixel restoration and timed private damage/commit traces at the same negative-origin geometry; frame presentation remains unproven.
+    [Temporal source fixture](../tooling/probes/step20c-temporal-damage/README.md) rebuilds the private campaign.
+17. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -64,6 +66,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C nested valid-grab probe](design/STEP20C_NESTED_VALID_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases on horizontal headless outputs; no production qualification |
 | [STEP20C vertical-output nested-grab probe](design/STEP20C_VERTICAL_OUTPUT_NESTED_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases across the horizontal output boundary; no production qualification |
 | [STEP20C negative-origin nested-grab probe](design/STEP20C_NEGATIVE_ORIGIN_NESTED_GRAB_PROBE.md) | Experimental evidence | FEASIBLE for sampled two-level grabbed XDG popup cases with HEADLESS-1 at `x=-800`; no production qualification |
+| [STEP20C temporal damage probe](design/STEP20C_TEMPORAL_DAMAGE_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE for sampled repeated lifecycle/camera states; damage-to-presented-frame and transaction/input synchronization remain open |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 

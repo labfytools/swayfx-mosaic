@@ -1,0 +1,50 @@
+--- a/types/scene/wlr_scene.c
++++ b/types/scene/wlr_scene.c
+@@ -1,4 +1,6 @@
+ #include <assert.h>
++#include <inttypes.h>
++#include <time.h>
+ #include <pixman.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -50,6 +52,18 @@
+ };
+ static struct scene_tree_clip *scene_tree_clips;
+ 
++// WHY: this disposable trace aligns compositor damage and output commits with
++// runner CLOCK_MONOTONIC actions; it does not identify presented frames.
++// CONTRACT: counters are local to this private process and have no ABI/API use.
++// INVARIANT: logging does not change the clip, damage ring or output state.
++static uint64_t temporal_damage_ordinal;
++static uint64_t temporal_commit_ordinal;
++static uint64_t temporal_now_ns(void) {
++	struct timespec ts;
++	clock_gettime(CLOCK_MONOTONIC, &ts);
++	return (uint64_t)ts.tv_sec * UINT64_C(1000000000) + (uint64_t)ts.tv_nsec;
++}
++
+ static struct scene_tree_clip *scene_tree_clip_find(struct wlr_scene_tree *tree) {
+ 	for (struct scene_tree_clip *it = scene_tree_clips; it; it = it->next) {
+ 		if (it->tree == tree) return it;
+@@ -510,6 +524,10 @@
+ 		const pixman_box32_t *extent = pixman_region32_extents(&clipped);
+ 		wlr_log(WLR_INFO, "SPIKE_DAMAGE output=%s extent=%d,%d..%d,%d",
+ 			output->name, extent->x1, extent->y1, extent->x2, extent->y2);
++		wlr_log(WLR_INFO, "TEMPORAL_DAMAGE ordinal=%" PRIu64 " ns=%" PRIu64
++			" output=%s extent=%d,%d..%d,%d",
++			++temporal_damage_ordinal, temporal_now_ns(), output->name,
++			extent->x1, extent->y1, extent->x2, extent->y2);
+ 		wlr_output_schedule_frame(scene_output->output);
+ 		wlr_damage_ring_add(&scene_output->damage_ring, &clipped);
+ 
+@@ -3077,6 +3095,10 @@
+ 	}
+ 
+ 	ok = wlr_output_commit_state(scene_output->output, &state);
++	wlr_log(WLR_INFO, "TEMPORAL_COMMIT ordinal=%" PRIu64 " ns=%" PRIu64
++		" output=%s accepted=%d",
++		++temporal_commit_ordinal, temporal_now_ns(),
++		scene_output->output->name, ok);
+ 	if (!ok) {
+ 		goto out;
+ 	}

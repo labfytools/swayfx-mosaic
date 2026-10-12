@@ -57,6 +57,17 @@ preserves replay. Scaling, rotation, resize/migration, transaction
 generations, complete damage/effects and dependency maintenance remain open.
 STEP20C stays **NEXT**.
 
+The [temporal damage probe](design/STEP20C_TEMPORAL_DAMAGE_PROBE.md) is
+**PARTIALLY_FEASIBLE**: repeated XDG lifecycle and camera transitions restored
+sampled private Mosaic pixels and standard controls, and time-ordered private
+damage extents covered changed pixels between sampled captures. It did not
+identify every presented frame or bind camera/clip/input to a native applied
+transaction generation. Its [source fixture](../tooling/probes/step20c-temporal-damage/README.md)
+remains experimental. The next bounded gate is a headless presentation-event
+trace for one hide/return transition, with applied camera/clip and pointer
+target. Scaling, rotation, resize/migration, complete effects and dependency
+maintenance remain open. STEP20C stays **NEXT**.
+
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 
 **Goal:** connect rows to runtime tree, transactions, scene, input, and IPC. **Planned deliverables:** active-row navigation, row-local scroll/focus, deterministic insertion/reflow, in-row reorder, and between-row movement. **Exit criteria:** real tiled containers preserve identity and order across row changes; focus and camera restore correctly; headless multi-row tests pass. **Docs first:** settle exact interactions and row invariants in UX and Architecture. Unset key combinations remain TBD.

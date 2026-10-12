@@ -1,0 +1,20 @@
+--- a/nested-client.c
++++ b/nested-client.c
+@@ -119,6 +119,9 @@
+ }
+ static void open_popup(struct surface *s, struct surface *parent, uint32_t serial) {
+     if (s->popup || !parent->mapped || !serial) return;
++    /* WHY: each repeated cycle uses a newly created XDG role after the old
++     * role was destroyed; its configure may map the replacement. */
++    s->done=false;
+     s->wl=wl_compositor_create_surface(compositor);
+     s->xdg=xdg_wm_base_get_xdg_surface(wm,s->wl);
+     xdg_surface_add_listener(s->xdg,&xdg_listener,s);
+@@ -250,6 +253,7 @@
+             char cmd[64];
+             if (fgets(cmd,sizeof(cmd),stdin)) {
+                 if (!strncmp(cmd,"close_b",7)) { destroy_popup(&b); fprintf(stderr,"COMMAND close_b DONE\n"); }
++                else if (!strncmp(cmd,"close_a",7)) { destroy_popup(&b); destroy_popup(&a); fprintf(stderr,"COMMAND close_a DONE\n"); }
+                 else if (!strncmp(cmd,"close_owner",11)) { fprintf(stderr,"COMMAND close_owner\n"); running=0; }
+             }
+         }
