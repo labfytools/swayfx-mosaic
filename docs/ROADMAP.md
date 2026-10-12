@@ -98,6 +98,18 @@ next gate is a lower-impact buffer observation with an explicit applied
 scene/input generation, then separate effects/damage and SceneFX maintenance
 qualification. STEP20C stays **NEXT**.
 
+The [applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md)
+is **PARTIALLY_FEASIBLE** in its fixed headless matrix. A distinct private
+patch prevented the historical cross-output buffer release; three
+selected buffers were read and retained through native headless present,
+while a partial experimental epoch and real pointer traces exposed
+applied state at build and hit. Client delivery under grabs remained a
+separate observation. Incomplete mutation coverage, untested error paths
+and intrusive readback leave the temporal-consistency gate open. The
+smallest next experiment must close the mutation boundary and use a
+lower-impact observation before any production STEP20C decision. STEP20C
+stays **NEXT**; multi-output remains **NOT YET SUPPORTED**.
+
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 
 **Goal:** connect rows to runtime tree, transactions, scene, input, and IPC. **Planned deliverables:** active-row navigation, row-local scroll/focus, deterministic insertion/reflow, in-row reorder, and between-row movement. **Exit criteria:** real tiled containers preserve identity and order across row changes; focus and camera restore correctly; headless multi-row tests pass. **Docs first:** settle exact interactions and row invariants in UX and Architecture. Unset key combinations remain TBD.

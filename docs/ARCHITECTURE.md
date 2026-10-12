@@ -144,6 +144,19 @@ frame-specific input consistency, other effects/renderers and physical
 presentation remain unproven. The result is **PARTIALLY_FEASIBLE** and
 multi-output Mosaic stays unsupported.
 
+The [applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md)
+then corrected the private buffer hold to be output-scoped. A sampled
+HEADLESS-2 repaint between a retained HEADLESS-1 commit and its present
+did not release that reference. Three selected visible/hidden/returned
+buffers matched their applied scene/clip, native commits and headless
+presents, and were reread byte-identically while locked. A private
+experimental epoch marks some popup and transaction arrangement sites and
+appears in both build and executed hit-test traces. It is not a native
+atomic transaction generation and does not cover every render/input
+mutation. Client delivery under a real XDG grab was checked separately
+from the scene hit. This **PARTIALLY_FEASIBLE** result does not change
+production scene, transaction, input or SceneFX ABI contracts.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.

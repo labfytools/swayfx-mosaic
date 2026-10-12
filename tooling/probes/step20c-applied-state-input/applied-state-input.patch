@@ -1,0 +1,417 @@
+--- a/sway/desktop/output.c
++++ b/sway/desktop/output.c
+@@ -444,7 +444,7 @@
+ // CONTRACT: one lab-owned reference at most; timeout and output teardown
+ // release even when no present event arrives. The lock prevents slot reuse.
+ // INVARIANT: bi_hold.buffer is non-NULL exactly while the probe owns a lock.
+-static struct {
++struct bi_hold {
+     struct wlr_buffer *buffer;
+     struct wlr_output *output;
+     struct wl_event_source *timer;
+@@ -452,23 +452,53 @@
+     uint64_t id;
+     uint64_t locked_ns;
+     int scroll;
+-} bi_hold;
++};
++// WHY: a different output must never evict this output's probe reference.
++// CONTRACT: at most one owned slot for each fixed headless output.
++// INVARIANT: each non-NULL slot has exactly one matching unlock.
++static struct bi_hold bi_holds[2];
++static unsigned bi_select_phase;
+ static unsigned bi_reread_phase;
+-
+-static void bi_release_hold(const char *reason) {
+-    if (!bi_hold.buffer) return;
+-    sway_log(SWAY_INFO, "BI_RELEASE id=%" PRIu64 " reason=%s age_ns=%" PRIu64,
+-        bi_hold.id, reason, presentation_probe_now_ns() - bi_hold.locked_ns);
+-    if (bi_hold.timer) wl_event_source_remove(bi_hold.timer);
+-    wlr_buffer_unlock(bi_hold.buffer);
+-    memset(&bi_hold, 0, sizeof(bi_hold));
++static uint64_t asi_applied_epoch;
++
++// WHY: distinguish observed applied arrangements from newer logical state.
++// CONTRACT: this experimental counter covers only explicit call sites;
++// equal values never prove an exhaustive or native transaction generation.
++// INVARIANT: increment and read occur on the compositor event-loop thread.
++uint64_t asi_epoch(void) { return asi_applied_epoch; }
++void asi_mark(const char *reason) {
++    struct timespec now;
++    clock_gettime(CLOCK_MONOTONIC, &now);
++    ++asi_applied_epoch;
++    sway_log(SWAY_INFO, "ASI_MUTATION epoch=%" PRIu64 " reason=%s ns=%" PRIu64,
++        asi_applied_epoch, reason,
++        (uint64_t)now.tv_sec * UINT64_C(1000000000) + now.tv_nsec);
++}
++
++static struct bi_hold *bi_slot(struct wlr_output *output) {
++    if (!output) return NULL;
++    if (strcmp(output->name, "HEADLESS-1") == 0) return &bi_holds[0];
++    if (strcmp(output->name, "HEADLESS-2") == 0) return &bi_holds[1];
++    return NULL;
++}
++
++static void bi_release_hold(struct bi_hold *hold, const char *reason) {
++    if (!hold || !hold->buffer) return;
++    struct wlr_buffer *buffer = hold->buffer;
++    uint64_t id = hold->id;
++    uint64_t age = presentation_probe_now_ns() - hold->locked_ns;
++    struct wl_event_source *timer = hold->timer;
++    memset(hold, 0, sizeof(*hold));
++    if (timer) wl_event_source_remove(timer);
++    sway_log(SWAY_INFO, "ASI_RELEASE id=%" PRIu64 " reason=%s age_ns=%" PRIu64,
++        id, reason, age);
++    wlr_buffer_unlock(buffer);
+ }
+ 
+ static int bi_timeout_hold(void *data) {
+-    bi_release_hold("timeout");
++    bi_release_hold(data, "timeout");
+     return 0;
+ }
+-
+ 
+ static void presentation_probe_handle_commit(struct wl_listener *listener, void *data) {
+ 	struct sway_output *output = wl_container_of(listener, output, presentation_probe_commit);
+@@ -509,14 +539,15 @@
+     }
+     struct sway_workspace *ws = output->current.active_workspace;
+     if (!ws || ws->current.layout != L_MOSAIC || !ws->mosaic ||
+-            !ws->mosaic->rows->length || bi_snapshots >= 80) {
++            !ws->mosaic->rows->length || bi_snapshots >= 3) {
+         return NULL;
+     }
+     struct mosaic_row *row = ws->mosaic->rows->items[0];
+-    bool transient = getenv("BI_INCLUDE_TRANSIENT") &&
+-        row->state.scroll_x == 1760 && ws->layers.tiling->node.x == -1120;
+-    if (row->state.scroll_x != 400 && row->state.scroll_x != 1280 &&
+-            !transient) {
++    int target = bi_select_phase == 1 ? 1280 : 400;
++    char trigger[PATH_MAX];
++    int tn = snprintf(trigger, sizeof(trigger), "%s/enable", dir);
++    if (bi_select_phase >= 3 || tn < 0 || (size_t)tn >= sizeof(trigger) ||
++            access(trigger, F_OK) != 0 || row->state.scroll_x != target) {
+         return NULL;
+     }
+     struct wlr_buffer *buffer = pending->buffer;
+@@ -612,13 +643,13 @@
+     }
+     sway_log(SWAY_INFO, "BI_STAGE phase=%s ns=%" PRIu64
+         " output=%s workspace=%zu layout=%d scroll=%.0f tile_scene=%d,%d"
+-        " clip_valid=%d clip=%d,%d,%d,%d has_buffer=%d",
++        " clip_valid=%d clip=%d,%d,%d,%d has_buffer=%d epoch=%" PRIu64,
+         phase, presentation_probe_now_ns(), output->wlr_output->name,
+         ws ? ws->node.id : 0, ws ? (int)ws->current.layout : -1, scroll,
+         ws ? ws->layers.tiling->node.x : 0,
+         ws ? ws->layers.tiling->node.y : 0, clip_valid,
+         clip.x, clip.y, clip.width, clip.height,
+-        state && (state->committed & WLR_OUTPUT_STATE_BUFFER) && state->buffer);
++        state && (state->committed & WLR_OUTPUT_STATE_BUFFER) && state->buffer, asi_epoch());
+ }
+ 
+ static int output_repaint_timer_handler(void *data) {
+@@ -659,8 +690,10 @@
+ 		}
+ 	}
+ 
+-    // INVARIANT: release an older probe lock before taking a new one.
+-    bi_release_hold("superseded");
++    // CONTRACT: observe first; only an accepted new-buffer commit on this
++    // same output may replace its older hold. Other-output and no-buffer
++    // commits leave the owned slot untouched.
++    struct bi_hold *hold = bi_slot(output->wlr_output);
+     uint64_t bi_id = 0;
+     struct wlr_buffer *bi_locked = bi_observe_buffer(output, &pending, &bi_id);
+     bi_expected_buffer = bi_locked;
+@@ -678,25 +711,27 @@
+             wlr_buffer_unlock(bi_locked);
+             sway_log(SWAY_INFO, "BI_RELEASE id=%" PRIu64 " reason=commit_rejected", bi_id);
+         } else {
++            if (hold && hold->buffer) bi_release_hold(hold, "same_output_replaced");
+             struct wl_event_source *timer = wl_event_loop_add_timer(
+-                output->wlr_output->event_loop, bi_timeout_hold, NULL);
++                output->wlr_output->event_loop, bi_timeout_hold, hold);
+             if (!timer || wl_event_source_timer_update(timer, 2000) < 0) {
+                 if (timer) wl_event_source_remove(timer);
+                 wlr_buffer_unlock(bi_locked);
+                 sway_log(SWAY_INFO, "BI_RELEASE id=%" PRIu64 " reason=timer_unavailable", bi_id);
+             } else {
+-                bi_hold.buffer = bi_locked;
+-                bi_hold.output = output->wlr_output;
+-                bi_hold.timer = timer;
+-                bi_hold.seq = output->wlr_output->commit_seq;
+-                bi_hold.id = bi_id;
+-                bi_hold.locked_ns = presentation_probe_now_ns();
++                hold->buffer = bi_locked;
++                hold->output = output->wlr_output;
++                hold->timer = timer;
++                hold->seq = output->wlr_output->commit_seq;
++                hold->id = bi_id;
++                hold->locked_ns = presentation_probe_now_ns();
++                ++bi_select_phase;
+                 struct sway_workspace *ws = output->current.active_workspace;
+                 struct mosaic_row *row = ws && ws->mosaic && ws->mosaic->rows->length ?
+                     ws->mosaic->rows->items[0] : NULL;
+-                bi_hold.scroll = row ? row->state.scroll_x : -1;
+-                sway_log(SWAY_INFO, "BI_LOCKED id=%" PRIu64 " commit_seq=%" PRIu32,
+-                    bi_id, bi_hold.seq);
++                hold->scroll = row ? row->state.scroll_x : -1;
++                sway_log(SWAY_INFO, "ASI_LOCKED id=%" PRIu64 " output=%s commit_seq=%" PRIu32,
++                    bi_id, output->wlr_output->name, hold->seq);
+             }
+         }
+     }
+@@ -834,8 +869,9 @@
+ }
+ 
+ static void begin_destroy(struct sway_output *output) {
+-    if (bi_hold.buffer && bi_hold.output == output->wlr_output) {
+-        bi_release_hold("output_destroy");
++    struct bi_hold *hold = bi_slot(output->wlr_output);
++    if (hold && hold->buffer && hold->output == output->wlr_output) {
++        bi_release_hold(hold, "output_destroy");
+     }
+ 
+ 	wl_list_remove(&output->layout_destroy.link);
+@@ -887,23 +923,22 @@
+ 			output_event->when.tv_nsec,
+ 		output_event->presented, output_event->seq,
+ 		output_event->refresh, output_event->flags);
+-    if (bi_hold.buffer && bi_hold.output == output->wlr_output &&
+-            bi_hold.seq == output_event->commit_seq) {
++    struct bi_hold *hold = bi_slot(output->wlr_output);
++    if (hold && hold->buffer && hold->output == output->wlr_output &&
++            hold->seq == output_event->commit_seq) {
+         sway_log(SWAY_INFO, "BI_PRESENT_HOLD id=%" PRIu64
+             " commit_seq=%" PRIu32 " presented=%d valid=1",
+-            bi_hold.id, bi_hold.seq, output_event->presented);
++            hold->id, hold->seq, output_event->presented);
+         // CONTRACT: the owned lock is still held here. A second read is
+         // limited to visible, hidden, returned buffers that actually reach
+         // present while locked. A superseded buffer does not advance phase.
+-        bool reread = (bi_reread_phase == 0 && bi_hold.id >= 8 && bi_hold.scroll == 400) ||
+-            (bi_reread_phase == 1 && bi_hold.scroll == 1280) ||
+-            (bi_reread_phase == 2 && bi_hold.scroll == 400);
+-        if (reread) {
++        bool reread = bi_reread_phase < 3;
++        if (reread && getenv("ASI_MODE") && strcmp(getenv("ASI_MODE"), "2") == 0) {
+             const char *dir = getenv("BI_OUTPUT_DIR");
+             const size_t bytes = 800u * 600u * 4u;
+             unsigned char *pixels = malloc(bytes);
+             struct wlr_texture *tex = pixels ? wlr_texture_from_buffer(
+-                output->wlr_output->renderer, bi_hold.buffer) : NULL;
++                output->wlr_output->renderer, hold->buffer) : NULL;
+             bool read_ok = false;
+             if (tex) {
+                 struct wlr_texture_read_pixels_options opts = {
+@@ -915,7 +950,7 @@
+             }
+             char path[PATH_MAX];
+             int n = dir ? snprintf(path, sizeof(path),
+-                "%s/buffer-%" PRIu64 "-present.xrgb", dir, bi_hold.id) : -1;
++                "%s/buffer-%" PRIu64 "-present.xrgb", dir, hold->id) : -1;
+             size_t off = 0;
+             int fd = -1;
+             if (read_ok && n >= 0 && (size_t)n < sizeof(path)) {
+@@ -931,12 +966,20 @@
+                 }
+             }
+             sway_log(SWAY_INFO, "BI_PRESENT_READ id=%" PRIu64
+-                " status=%s bytes=%zu phase=%u", bi_hold.id,
++                " status=%s bytes=%zu phase=%u", hold->id,
+                 off == bytes ? "READ" : "UNAVAILABLE", off, bi_reread_phase);
+             if (off == bytes) bi_reread_phase++;
+             free(pixels);
+         }
+-        bi_release_hold("present");
++        // CONTRACT: private fault injection retains one already-presented
++        // buffer until a later same-output commit or the two-second timeout.
++        // It exercises replacement ownership without changing render output.
++        if (getenv("ASI_TEST_HOLD_AFTER_PRESENT") && hold->id == 1) {
++            sway_log(SWAY_INFO, "ASI_TEST_HOLD id=%" PRIu64 " output=%s",
++                hold->id, output->wlr_output->name);
++        } else {
++            bi_release_hold(hold, "present");
++        }
+     }
+ 
+ 	if (!output->enabled || !output_event->presented) {
+--- a/sway/desktop/transaction.c
++++ b/sway/desktop/transaction.c
+@@ -23,6 +23,8 @@
+ #include "sway/tree/workspace.h"
+ #include "list.h"
+ #include "log.h"
++
++extern void asi_mark(const char *reason);
+ 
+ #define POPIN_FACTOR 0.8f
+ 
+@@ -1117,6 +1119,9 @@
+ 			wlr_scene_node_coords(popup->relative, &lx, &ly);
+ 			wlr_scene_node_set_position(node, lx, ly);
+ 			probe_clip_popup(node, popup);
++			// CONTRACT: mark only this applied popup arrangement site;
++			// other SceneFX and XDG mutations remain uncounted.
++			asi_mark("popup_position_clip_observed");
+ 		}
+ 	}
+ }
+@@ -1244,6 +1249,7 @@
+ 	}
+ 	transaction_apply(server.queued_transaction);
+ 	arrange_root(root);
++	asi_mark("transaction_arrange_root_complete");
+ 	cursor_rebase_all();
+ 	transaction_destroy(server.queued_transaction);
+ 	start_animations();
+--- a/sway/input/cursor.c
++++ b/sway/input/cursor.c
+@@ -4,6 +4,7 @@
+ #include <linux/input-event-codes.h>
+ #include <errno.h>
+ #include <time.h>
++#include <inttypes.h>
+ #include <strings.h>
+ #include <wlr/types/wlr_cursor.h>
+ #include <wlr/types/wlr_cursor_shape_v1.h>
+@@ -27,10 +28,59 @@
+ #include "sway/scene_descriptor.h"
+ #include "sway/server.h"
+ #include "sway/tree/container.h"
++#include "sway/tree/mosaic.h"
+ #include "sway/tree/root.h"
+ #include "sway/tree/view.h"
+ #include "sway/tree/workspace.h"
+ #include "wlr-layer-shell-unstable-v1-protocol.h"
++
++extern uint64_t asi_epoch(void);
++
++// WHY: observe the executed scene hit, independently of grab delivery.
++// CONTRACT: pointers are logged only within the hit call; epoch covers only
++// the instrumented mutation sites and is not a native transaction ID.
++static void asi_hit(double lx, double ly, struct wlr_scene_node *node,
++        struct wlr_surface *surface) {
++    struct timespec now;
++    clock_gettime(CLOCK_MONOTONIC, &now);
++    struct wlr_output *wlr_output = wlr_output_layout_output_at(root->output_layout, lx, ly);
++    struct sway_output *output = wlr_output ? wlr_output->data : NULL;
++    struct sway_workspace *ws = output ? output->current.active_workspace : NULL;
++    struct wlr_box clip = {0};
++    bool has_clip = ws && wlr_scene_tree_get_clip(ws->layers.tiling, &clip);
++    int logical_scroll = -1;
++    if (ws && ws->current.layout == L_MOSAIC && ws->mosaic &&
++            ws->mosaic->rows->length) {
++        struct mosaic_row *row = ws->mosaic->rows->items[0];
++        logical_scroll = row->state.scroll_x;
++    }
++    struct wlr_box popup_clip = {0};
++    bool popup_clip_valid = false;
++    bool root_popup_found = false;
++    struct wlr_scene_node *popup_node;
++    wl_list_for_each(popup_node, &root->layers.popup->children, link) {
++        if (scene_descriptor_try_get(popup_node, SWAY_SCENE_DESC_POPUP)) {
++            root_popup_found = true;
++            popup_clip_valid = wlr_scene_tree_get_clip(
++                wlr_scene_tree_from_node(popup_node), &popup_clip);
++            break;
++        }
++    }
++    sway_log(SWAY_INFO, "ASI_HIT ns=%" PRIu64 " epoch=%" PRIu64
++        " output=%s lx=%.2f ly=%.2f node=%p type=%d surface=%p"
++        " workspace=%zu logical_scroll=%d tile_scene=%d,%d"
++        " clip=%d,%d,%d,%d clip_valid=%d popup_root=%d"
++        " popup_clip=%d,%d,%d,%d popup_clip_valid=%d",
++        (uint64_t)now.tv_sec * UINT64_C(1000000000) + now.tv_nsec,
++        asi_epoch(), wlr_output ? wlr_output->name : "none", lx, ly,
++        (void *)node, node ? (int)node->type : -1, (void *)surface,
++        ws ? ws->node.id : 0, logical_scroll,
++        ws ? ws->layers.tiling->node.x : 0,
++        ws ? ws->layers.tiling->node.y : 0,
++        clip.x, clip.y, clip.width, clip.height, has_clip, root_popup_found,
++        popup_clip.x, popup_clip.y, popup_clip.width, popup_clip.height,
++        popup_clip_valid);
++}
+ 
+ /**
+  * Returns the node at the cursor's position. If there is a surface at that
+@@ -40,6 +90,7 @@
+ 		struct sway_seat *seat, double lx, double ly,
+ 		struct wlr_surface **surface, double *sx, double *sy) {
+ 	struct wlr_scene_node *scene_node = NULL;
++	struct wlr_surface *asi_surface = NULL;
+ 
+ 	struct wlr_scene_node *node;
+ 	wl_list_for_each_reverse(node, &root->layer_tree->children, link) {
+@@ -67,9 +118,11 @@
+ 
+ 			if (scene_surface) {
+ 				*surface = scene_surface->surface;
++				asi_surface = scene_surface->surface;
+ 			}
+ 		}
+ 
++		asi_hit(lx, ly, scene_node, asi_surface);
+ 		// determine what container we clicked on
+ 		struct wlr_scene_node *current = scene_node;
+ 		while (true) {
+@@ -116,6 +169,7 @@
+ 		}
+ 	}
+ 
++	if (!scene_node) asi_hit(lx, ly, NULL, NULL);
+ 	// if we aren't on a container, determine what workspace we are on
+ 	struct wlr_output *wlr_output = wlr_output_layout_output_at(
+ 			root->output_layout, lx, ly);
+@@ -347,6 +401,8 @@
+ 
+ 	pointer_motion(cursor, event->time_msec, &event->pointer->base, dx, dy,
+ 		dx, dy);
++	sway_log(SWAY_INFO, "ASI_WARP requested=%.6f,%.6f layout=%.2f,%.2f actual=%.2f,%.2f epoch=%" PRIu64,
++		event->x, event->y, lx, ly, cursor->cursor->x, cursor->cursor->y, asi_epoch());
+ }
+ 
+ void dispatch_cursor_button(struct sway_cursor *cursor,
+@@ -356,6 +412,8 @@
+ 		time_msec = get_current_time_in_msec();
+ 	}
+ 
++	sway_log(SWAY_INFO, "ASI_BUTTON_REQUEST epoch=%" PRIu64 " x=%.2f y=%.2f button=%u state=%d",
++		asi_epoch(), cursor->cursor->x, cursor->cursor->y, button, (int)state);
+ 	seatop_button(cursor->seat, time_msec, device, button, state);
+ }
+ 
+--- a/sway/input/seat.c
++++ b/sway/input/seat.c
+@@ -3,6 +3,7 @@
+ #include <string.h>
+ #include <strings.h>
+ #include <time.h>
++#include <inttypes.h>
+ #include <wlr/config.h>
+ #include <wlr/types/wlr_cursor.h>
+ #include <wlr/types/wlr_data_device.h>
+@@ -1540,10 +1541,22 @@
+ 	return NULL;
+ }
+ 
++extern uint64_t asi_epoch(void);
++
+ void seat_pointer_notify_button(struct sway_seat *seat, uint32_t time_msec,
+ 		uint32_t button, enum wl_pointer_button_state state) {
++	// WHY: an XDG grab can change final delivery independently of node-at.
++	// CONTRACT: this is focus before wlroots notification; the client log
++	// remains the evidence of actual receipt.
++	struct wlr_surface *focused = seat->wlr_seat->pointer_state.focused_surface;
+ 	seat->last_button_serial = wlr_seat_pointer_notify_button(seat->wlr_seat,
+ 			time_msec, button, state);
++	struct timespec now;
++	clock_gettime(CLOCK_MONOTONIC, &now);
++	sway_log(SWAY_INFO, "ASI_DELIVERY ns=%" PRIu64 " epoch=%" PRIu64
++		" surface=%p serial=%u button=%u state=%d",
++		(uint64_t)now.tv_sec * UINT64_C(1000000000) + now.tv_nsec,
++		asi_epoch(), (void *)focused, seat->last_button_serial, button, (int)state);
+ }
+ 
+ void seat_consider_warp_to_focus(struct sway_seat *seat) {

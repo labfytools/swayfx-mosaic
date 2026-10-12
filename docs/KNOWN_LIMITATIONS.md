@@ -102,6 +102,21 @@ scene/input generation contract, broad effects/damage proof, physical
 presentation proof or SceneFX ABI/package qualification. Production
 multi-output Mosaic remains **NOT YET SUPPORTED**.
 
+
+The subsequent private [applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md)
+is **PARTIALLY_FEASIBLE** in the same fixed headless geometry. A
+per-output hold survived an intervening repaint of the other output;
+three selected buffers reached matching native presents and matched
+visible/hidden/returned applied scene samples. Hit-test, seat-notification
+and client-delivery streams were observed separately for visible, clipped
+and fully hidden pointer cases. The experimental epoch covers only
+instrumented popup and transaction arrangements; other scene, effect,
+damage, animation, client-buffer and output mutations remain outside it.
+Rejected-commit and output-destroy cleanup were not dynamically triggered.
+Readback remains intrusive, and neither an atomic scene/render/input
+generation nor physical presentation is proven. Production multi-output
+Mosaic remains **NOT YET SUPPORTED**.
+
 The [isolated feasibility probe](design/STEP20C_FEASIBILITY_PROBE.md) is **PARTIALLY FEASIBLE**, not a release qualification. On two horizontal headless outputs, real Mosaic content leaked visually into an empty adjacent output; that earlier disposable candidate also delivered pointer enter from a partly visible client outside its viewport. Negative-origin, scaled and rotated arrangements showed visual leakage in that candidate. Popups, effects, saved buffers and complete damage correctness remain unqualified across the full matrix. The later probes above narrow individual cases without qualifying multi-output Mosaic, which remains **NOT YET SUPPORTED**.
 
 The later [SceneFX subtree clipping spike](design/STEP20C_SCENEFX_CLIPPING_SPIKE.md) is also **PARTIALLY FEASIBLE**. Its private inherited tree clip stopped tested tiled pixels and pointer hits from crossing the output boundary, including a fully hidden cell, but a real GTK XDG popup rendered and received input on the neighboring output because its scene tree lives in the global popup layer. Dedicated subsurface, saved-buffer, nested-popup and complete effect/damage validation remain open. The spike changed no production library or compositor source; multi-output Mosaic remains **NOT YET SUPPORTED**.

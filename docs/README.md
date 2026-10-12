@@ -31,7 +31,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Presentation source fixture](../tooling/probes/step20c-presentation-identity/README.md) rebuilds the private instrumentation.
 18. [STEP20C output buffer identity probe](design/STEP20C_OUTPUT_BUFFER_IDENTITY_PROBE.md): private GBM/FX buffer readback tied to native commit and headless present, with measured timing perturbation and remaining temporal-coherence gate.
     [Buffer source fixture](../tooling/probes/step20c-buffer-identity/README.md) reconstructs the disposable experiment; it is not production code.
-19. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+19. [STEP20C applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md): private per-output buffer-reference correction and partial applied-scene epoch tracing through render and pointer paths; no atomic generation is established.
+    [Applied-state source fixture](../tooling/probes/step20c-applied-state-input/README.md) rebuilds the disposable experiment.
+20. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -73,6 +75,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C temporal damage probe](design/STEP20C_TEMPORAL_DAMAGE_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE for sampled repeated lifecycle/camera states; damage-to-presented-frame and transaction/input synchronization remain open |
 | [STEP20C presentation identity probe](design/STEP20C_PRESENTATION_IDENTITY_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; native headless events pair with commits, but buffer pixels and per-frame input identity remain unproven |
 | [STEP20C output buffer identity probe](design/STEP20C_OUTPUT_BUFFER_IDENTITY_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; sampled true buffers were read and paired with headless presents; four early releases came from a private cross-output instrumentation defect, while readback perturbs timing and atomic scene/input coherence remains unproven |
+| [STEP20C applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; per-output holds survive cross-output repaint in the sampled matrix, and applied scene/hit/client streams are observed with a partial experimental epoch |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 
