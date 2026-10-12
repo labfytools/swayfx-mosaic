@@ -209,3 +209,13 @@ result is **PARTIALLY_FEASIBLE**, architectural partial-clipping conclusion
 Mosaic popup stayed wholly inside the viewport despite standard control spill.
 Scored border hits, rotated shadow/blur/cache and raw buffer readback are
 **NOT TESTED**. No production support claim follows.
+
+The subsequent [static R90 partial-popup probe](design/STEP20C_ROTATED_PARTIAL_POPUP_CLIP_PROBE.md)
+closed the missing B geometry challenge for one legal XDG placement:
+Mosaic B crossed by 72 logical pixels; sampled H1 visual/button input
+survived and H2 matched its prior reference with no B delivery. Its
+overall status is **PARTIALLY_FEASIBLE**. The A root popup also crossed,
+but independent input on its forbidden portion remains **NOT TESTED**.
+Saved buffers, optimized blur caches, inner shadows, intermediate frames,
+atomic generation and SceneFX/wlroots ABI/package remain unqualified.
+Multi-output stays **NOT YET SUPPORTED**.

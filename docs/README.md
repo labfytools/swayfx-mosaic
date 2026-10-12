@@ -120,3 +120,11 @@ sampled damage and return. Pristine R90 capture and a Mosaic popup portion
 actually crossing the boundary were not exercised; architectural clipping
 conclusion UNDECIDED. STEP20C remains NEXT; production multi-output remains
 NOT YET SUPPORTED.
+
+[Static R90 partial-popup probe](design/STEP20C_ROTATED_PARTIAL_POPUP_CLIP_PROBE.md)
+and [fixture](../tooling/probes/step20c-rotated-partial-popup/README.md):
+EXPERIMENTAL / PARTIALLY_FEASIBLE. Mosaic B crossed x=0 by 72 logical pixels;
+its H1 pixels and real button remained, while H2 matched its reference and
+delivered no B button. Both standard controls drew and handled the overflow.
+Independent clipped-away A input and saved buffers remain open. STEP20C is
+NEXT; production multi-output is NOT YET SUPPORTED.

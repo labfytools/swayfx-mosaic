@@ -212,3 +212,12 @@ is **UNDECIDED** because the Mosaic popup never crossed the R90 boundary and
 the pristine R90 capture was lost to a fixture assertion. The next distinct
 geometric gate should force a legal grabbed Mosaic popup portion across that
 boundary with a completed pristine control. STEP20C remains **NEXT**.
+
+The [static R90 partial-popup gate](design/STEP20C_ROTATED_PARTIAL_POPUP_CLIP_PROBE.md)
+then measured exactly that B crossing and completed the pristine control.
+The bounded result is **PARTIALLY_FEASIBLE**: B's sampled pixels/input obeyed
+the owner clip, while the independent clipped-away A input point and broader
+temporal/effect cases remain open. Next prioritize saved transaction buffers
+against the same owner-derived viewport before optimized blur cache,
+interior shadow and ABI/package maintenance. STEP20C remains **NEXT**;
+production multi-output remains **NOT YET SUPPORTED**.

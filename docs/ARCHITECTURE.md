@@ -270,3 +270,12 @@ The `grim` PNG is logical-oriented at 1000×750 while the R90 physical mode is
 and the Mosaic B popup never reached the boundary, so partial popup clipping
 under rotation remains **UNDECIDED**. No applied-geometry generation contract
 or production behavior is accepted by this evidence.
+
+The separate [static R90 partial-popup probe](design/STEP20C_ROTATED_PARTIAL_POPUP_CLIP_PROBE.md)
+measured a real Mosaic B box crossing x=0 by 72 logical pixels, with B
+visible/clickable inside H1 and absent visually and from client delivery on
+H2. Its applied root clip and nested inheritance matched the H1 owner
+viewport in the sampled state; pristine and private-standard controls both
+drew and handled the crossed portion. Result **PARTIALLY_FEASIBLE** because
+the clipped-away part of A was not independently clicked and no atomic
+render/input generation was proved. The architecture remains experimental.

@@ -1,0 +1,13 @@
+--- a/nested-client.c
++++ b/nested-client.c
+@@ -211,6 +211,10 @@
+     } else if (!strcmp(placement,"both_cross")) {
+         a.anchor_x=350; a.anchor_y=80; a.width=350;
+         b.anchor_x=160; b.anchor_y=60; b.width=300;
++    } else if (!strcmp(placement,"rot_cross")) {
++        /* CONTRACT: both 1x1 anchors stay inside their parent buffers. */
++        a.anchor_x=360; a.anchor_y=80; a.width=480;
++        b.anchor_x=210; b.anchor_y=60; b.width=300;
+     } else if (!strcmp(placement,"b_cross")) {
+         a.anchor_x=200; a.anchor_y=80; a.width=300;
+         b.anchor_x=220; b.anchor_y=60; b.width=300;
