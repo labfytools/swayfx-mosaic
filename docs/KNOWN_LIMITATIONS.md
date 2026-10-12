@@ -173,3 +173,16 @@ The [isolated feasibility probe](design/STEP20C_FEASIBILITY_PROBE.md) is **PARTI
 The later [SceneFX subtree clipping spike](design/STEP20C_SCENEFX_CLIPPING_SPIKE.md) is also **PARTIALLY FEASIBLE**. Its private inherited tree clip stopped tested tiled pixels and pointer hits from crossing the output boundary, including a fully hidden cell, but a real GTK XDG popup rendered and received input on the neighboring output because its scene tree lives in the global popup layer. Dedicated subsurface, saved-buffer, nested-popup and complete effect/damage validation remain open. The spike changed no production library or compositor source; multi-output Mosaic remains **NOT YET SUPPORTED**.
 
 These limits are reflected in [UX](UX.md), [architecture](ARCHITECTURE.md), and [roadmap](ROADMAP.md). A future step must update those contracts before claiming support.
+
+The preserved [fractional scaling probe](design/STEP20C_FRACTIONAL_SCALING_PROBE.md)
+is **PARTIALLY_FEASIBLE** for static 1.25 uniform/mixed and 1.5 mixed headless
+outputs. Actual modes/PNGs and logical pointer motion were calibrated. Sampled
+root/nested popup and shadow spill disappeared on the neighboring output;
+visible blur, terminal popup columns, two settled camera returns and available
+physical damage were consistent. Opaque tiled-overflow controls, permitted
+interior shadow, restored Mosaic hit, caches and intermediate frames remain
+unqualified. Ten failed early calibrations and their source-provenance limit
+are retained. The two-pair global budget was respected. The next distinct gate
+should test resize/migration of owner/output clips; rotation, saved buffers and
+ABI/package remain separate. This is evidence only: STEP20C stays **NEXT**,
+production multi-output **NOT YET SUPPORTED**, STEP20D–G **PLANNED**.

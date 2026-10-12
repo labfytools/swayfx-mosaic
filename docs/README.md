@@ -100,3 +100,8 @@ A proposal does not supersede accepted canonical contracts or assert implementat
 | [STEP20B](STEP20B.md) | Historical | First scrollable-row implementation evidence |
 
 STEP reports record what was observed and decided at the time. They are **not** the canonical source for current behavior. When a STEP report conflicts with current canonical documentation, the canonical documentation wins. The original French reports are preserved as historical artifacts; their opening notices point here.
+
+Preserved experimental evidence: [fractional scaling probe](design/STEP20C_FRACTIONAL_SCALING_PROBE.md)
+and [source fixture](../tooling/probes/step20c-fractional-scale/README.md).
+PARTIALLY_FEASIBLE for the sampled static scale matrix, independently replayed
+without new camera pairs; no production qualification.

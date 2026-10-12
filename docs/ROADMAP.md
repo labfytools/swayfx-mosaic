@@ -177,3 +177,16 @@ rebuild reproduced the main counts with one pair under the corrected
 campaign guard. The traced reference had a different effective size, so
 instrumentation neutrality and its cause remain unqualified. See the
 [effects report](design/STEP20C_EFFECTS_DAMAGE_PROBE.md). This adds no contract.
+
+The preserved [fractional scaling probe](design/STEP20C_FRACTIONAL_SCALING_PROBE.md)
+is **PARTIALLY_FEASIBLE** for static 1.25 uniform/mixed and 1.5 mixed headless
+outputs. Actual modes/PNGs and logical pointer motion were calibrated. Sampled
+root/nested popup and shadow spill disappeared on the neighboring output;
+visible blur, terminal popup columns, two settled camera returns and available
+physical damage were consistent. Opaque tiled-overflow controls, permitted
+interior shadow, restored Mosaic hit, caches and intermediate frames remain
+unqualified. Ten failed early calibrations and their source-provenance limit
+are retained. The two-pair global budget was respected. The next distinct gate
+should test resize/migration of owner/output clips; rotation, saved buffers and
+ABI/package remain separate. This is evidence only: STEP20C stays **NEXT**,
+production multi-output **NOT YET SUPPORTED**, STEP20D–G **PLANNED**.

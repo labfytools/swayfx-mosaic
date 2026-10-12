@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved fractional-scale probe: actual 1.25 uniform/mixed and 1.5 mixed outputs, calibrated logical input, sampled root/nested popup and effects clipping, two exact camera returns and physical settled-damage coverage. PARTIALLY_FEASIBLE; opaque tiled controls, interior shadow, restored Mosaic hit and broader gates remain unqualified. No production/package change.
+
 - Added a source-only private effects/damage probe with a real translucent SHM buffer and striped background. Both standard controls show 27,594 shadow-overflow pixels on the neighboring output; private Mosaic excludes that sampled spill, renders a visibly filtered blur within its viewport and restores exact settled pixels after three camera pairs. Sampled private damage covers changed pixels, while interior shadow, optimized cache, popup effects and saved buffers remain unqualified. The result is PARTIALLY_FEASIBLE; no production or package files changed.
 - Recorded an effects-probe campaign deviation: replay/trace variants ran 15 camera pairs against the requested maximum of three. All raw runs are retained; the final runner now reserves a finite campaign budget before launch and rejects excess repetitions.
 - Preserved and independently replayed a bounded event-loop pending-input probe. The client flush and server application were observed after decoupled request submission, but no input mutation fell between a matching native headless commit and present in five attempts per private mode. The temporal case remains INCONCLUSIVE / NOT EXERCISED; this research line is closed for the tested backend and geometry. No production or package files changed.
