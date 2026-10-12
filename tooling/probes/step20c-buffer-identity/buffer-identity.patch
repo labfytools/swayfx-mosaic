@@ -1,0 +1,338 @@
+--- a/sway/desktop/output.c
++++ b/sway/desktop/output.c
+@@ -1,4 +1,9 @@
+ #include <assert.h>
++#include <drm_fourcc.h>
++#include <fcntl.h>
++#include <limits.h>
++#include <stdio.h>
++#include <unistd.h>
+ #include <inttypes.h>
+ #include <stdlib.h>
+ #include <strings.h>
+@@ -8,6 +13,7 @@
+ #include <wlr/backend/headless.h>
+ #include <wlr/render/swapchain.h>
+ #include <wlr/render/wlr_renderer.h>
++#include <wlr/render/wlr_texture.h>
+ #include <wlr/types/wlr_buffer.h>
+ #include <wlr/types/wlr_alpha_modifier_v1.h>
+ #include <wlr/types/wlr_gamma_control_v1.h>
+@@ -431,6 +437,39 @@
+ 	}
+ }
+ 
++static struct wlr_buffer *bi_expected_buffer;
++static uint64_t bi_expected_id;
++
++// WHY: a headless present may arrive after output_state_finish.
++// CONTRACT: one lab-owned reference at most; timeout and output teardown
++// release even when no present event arrives. The lock prevents slot reuse.
++// INVARIANT: bi_hold.buffer is non-NULL exactly while the probe owns a lock.
++static struct {
++    struct wlr_buffer *buffer;
++    struct wlr_output *output;
++    struct wl_event_source *timer;
++    uint32_t seq;
++    uint64_t id;
++    uint64_t locked_ns;
++    int scroll;
++} bi_hold;
++static unsigned bi_reread_phase;
++
++static void bi_release_hold(const char *reason) {
++    if (!bi_hold.buffer) return;
++    sway_log(SWAY_INFO, "BI_RELEASE id=%" PRIu64 " reason=%s age_ns=%" PRIu64,
++        bi_hold.id, reason, presentation_probe_now_ns() - bi_hold.locked_ns);
++    if (bi_hold.timer) wl_event_source_remove(bi_hold.timer);
++    wlr_buffer_unlock(bi_hold.buffer);
++    memset(&bi_hold, 0, sizeof(bi_hold));
++}
++
++static int bi_timeout_hold(void *data) {
++    bi_release_hold("timeout");
++    return 0;
++}
++
++
+ static void presentation_probe_handle_commit(struct wl_listener *listener, void *data) {
+ 	struct sway_output *output = wl_container_of(listener, output, presentation_probe_commit);
+ 	const struct wlr_output_event_commit *event = data;
+@@ -441,6 +480,145 @@
+ 		(uint64_t)event->when.tv_sec * UINT64_C(1000000000) + event->when.tv_nsec,
+ 		!!(event->state->committed & WLR_OUTPUT_STATE_BUFFER));
+ 	presentation_probe_scene(output);
++    if (bi_expected_buffer) {
++        sway_log(SWAY_INFO, "BI_EVENT_BUFFER id=%" PRIu64
++            " output=%s commit_seq=%" PRIu32 " same=%d has_buffer=%d",
++            bi_expected_id, output->wlr_output->name,
++            output->wlr_output->commit_seq,
++            event->state->buffer == bi_expected_buffer,
++            !!(event->state->committed & WLR_OUTPUT_STATE_BUFFER));
++    }
++}
++
++// WHY: identify bytes in the actual output-state buffer, not in a screenshot.
++// CONTRACT: only the private headless lab sets BI_OUTPUT_DIR; all copies and
++// accesses end before the state is finished. The caller owns one extra lock
++// until the commit result has been recorded.
++// INVARIANT: no data pointer or texture survives this function; snapshots
++// are limited to 80 * 1.92 MiB, and failed reads never become fingerprints.
++// The commit event is synchronous inside wlr_output_commit_state(); these
++// borrowed comparison fields are cleared before the repaint call returns.
++static uint64_t bi_next_id;
++static unsigned bi_snapshots;
++static struct wlr_buffer *bi_observe_buffer(struct sway_output *output,
++        const struct wlr_output_state *pending, uint64_t *id) {
++    const char *dir = getenv("BI_OUTPUT_DIR");
++    if (!dir || strcmp(output->wlr_output->name, "HEADLESS-1") != 0 ||
++            !(pending->committed & WLR_OUTPUT_STATE_BUFFER) || !pending->buffer) {
++        return NULL;
++    }
++    struct sway_workspace *ws = output->current.active_workspace;
++    if (!ws || ws->current.layout != L_MOSAIC || !ws->mosaic ||
++            !ws->mosaic->rows->length || bi_snapshots >= 80) {
++        return NULL;
++    }
++    struct mosaic_row *row = ws->mosaic->rows->items[0];
++    bool transient = getenv("BI_INCLUDE_TRANSIENT") &&
++        row->state.scroll_x == 1760 && ws->layers.tiling->node.x == -1120;
++    if (row->state.scroll_x != 400 && row->state.scroll_x != 1280 &&
++            !transient) {
++        return NULL;
++    }
++    struct wlr_buffer *buffer = pending->buffer;
++    if (buffer->width != 800 || buffer->height != 600) {
++        return NULL;
++    }
++    *id = ++bi_next_id;
++    bi_snapshots++;
++    wlr_buffer_lock(buffer);
++    uint64_t start = presentation_probe_now_ns();
++    struct wlr_dmabuf_attributes dmabuf = {0};
++    bool has_dmabuf = wlr_buffer_get_dmabuf(buffer, &dmabuf);
++    sway_log(SWAY_INFO, "BI_BUFFER id=%" PRIu64 " output=%s ns=%" PRIu64
++        " width=%d height=%d state=0x%x dmabuf=%d dmabuf_format=0x%x"
++        " src=%.1f,%.1f,%.1f,%.1f dst=%d,%d,%d,%d",
++        *id, output->wlr_output->name, start, buffer->width, buffer->height,
++        pending->committed, has_dmabuf, has_dmabuf ? dmabuf.format : 0,
++        pending->buffer_src_box.x, pending->buffer_src_box.y,
++        pending->buffer_src_box.width, pending->buffer_src_box.height,
++        pending->buffer_dst_box.x, pending->buffer_dst_box.y,
++        pending->buffer_dst_box.width, pending->buffer_dst_box.height);
++    void *direct = NULL;
++    uint32_t direct_fmt = 0;
++    size_t direct_stride = 0;
++    bool direct_ok = wlr_buffer_begin_data_ptr_access(buffer,
++        WLR_BUFFER_DATA_PTR_ACCESS_READ, &direct, &direct_fmt, &direct_stride);
++    sway_log(SWAY_INFO, "BI_DIRECT id=%" PRIu64 " available=%d format=0x%x stride=%zu",
++        *id, direct_ok, direct_fmt, direct_stride);
++    if (direct_ok) {
++        wlr_buffer_end_data_ptr_access(buffer);
++    }
++    const size_t bytes = 800u * 600u * 4u;
++    unsigned char *pixels = malloc(bytes);
++    if (!pixels) {
++        sway_log(SWAY_INFO, "BI_READ id=%" PRIu64 " status=ALLOC_FAILED", *id);
++        return buffer;
++    }
++    struct wlr_texture *texture = wlr_texture_from_buffer(output->wlr_output->renderer, buffer);
++    if (!texture) {
++        sway_log(SWAY_INFO, "BI_READ id=%" PRIu64 " status=TEXTURE_UNAVAILABLE", *id);
++        free(pixels);
++        return buffer;
++    }
++    struct wlr_texture_read_pixels_options opts = {
++        .data = pixels, .format = DRM_FORMAT_XRGB8888, .stride = 800u * 4u,
++    };
++    bool read_ok = wlr_texture_read_pixels(texture, &opts);
++    wlr_texture_destroy(texture);
++    if (!read_ok) {
++        sway_log(SWAY_INFO, "BI_READ id=%" PRIu64 " status=READ_FAILED", *id);
++        free(pixels);
++        return buffer;
++    }
++    char path[PATH_MAX];
++    int n = snprintf(path, sizeof(path), "%s/buffer-%" PRIu64 ".xrgb", dir, *id);
++    if (n < 0 || (size_t)n >= sizeof(path)) {
++        sway_log(SWAY_INFO, "BI_READ id=%" PRIu64 " status=PATH_TOO_LONG", *id);
++        free(pixels);
++        return buffer;
++    }
++    int fd = open(path, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC, 0600);
++    size_t off = 0;
++    if (fd >= 0) {
++        while (off < bytes) {
++            ssize_t written = write(fd, pixels + off, bytes - off);
++            if (written <= 0) break;
++            off += (size_t)written;
++        }
++        close(fd);
++    }
++    if (off != bytes && fd >= 0) unlink(path);
++    sway_log(SWAY_INFO, "BI_READ id=%" PRIu64 " status=%s bytes=%zu"
++        " format=0x%x stride=%u duration_ns=%" PRIu64,
++        *id, off == bytes ? "READ" : "WRITE_FAILED", off,
++        DRM_FORMAT_XRGB8888, 800u * 4u, presentation_probe_now_ns() - start);
++    free(pixels);
++    return buffer;
++}
++
++// WHY: retain the scene state on each side of build and commit separately.
++// CONTRACT: these are ordered main-thread observations, not an atomic
++// transaction snapshot or proof that the later buffer contains these pixels.
++static void bi_stage(struct sway_output *output, const char *phase,
++        const struct wlr_output_state *state) {
++    struct sway_workspace *ws = output->current.active_workspace;
++    struct wlr_box clip = {0};
++    bool clip_valid = ws && wlr_scene_tree_get_clip(ws->layers.tiling, &clip);
++    double scroll = -1;
++    if (ws && ws->current.layout == L_MOSAIC && ws->mosaic &&
++            ws->mosaic->rows->length) {
++        struct mosaic_row *row = ws->mosaic->rows->items[0];
++        scroll = row->state.scroll_x;
++    }
++    sway_log(SWAY_INFO, "BI_STAGE phase=%s ns=%" PRIu64
++        " output=%s workspace=%zu layout=%d scroll=%.0f tile_scene=%d,%d"
++        " clip_valid=%d clip=%d,%d,%d,%d has_buffer=%d",
++        phase, presentation_probe_now_ns(), output->wlr_output->name,
++        ws ? ws->node.id : 0, ws ? (int)ws->current.layout : -1, scroll,
++        ws ? ws->layers.tiling->node.x : 0,
++        ws ? ws->layers.tiling->node.y : 0, clip_valid,
++        clip.x, clip.y, clip.width, clip.height,
++        state && (state->committed & WLR_OUTPUT_STATE_BUFFER) && state->buffer);
+ }
+ 
+ static int output_repaint_timer_handler(void *data) {
+@@ -462,6 +640,7 @@
+ 		return 0;
+ 	}
+ 
++    bi_stage(output, "PRE_BUILD", NULL);
+ 	struct wlr_output_state pending;
+ 	wlr_output_state_init(&pending);
+ 	if (!wlr_scene_output_build_state(output->scene_output, &pending, &opts)) {
+@@ -469,6 +648,7 @@
+ 		return 0;
+ 	}
+ 
++    bi_stage(output, "POST_BUILD", &pending);
+ 	if (output_can_tear(output)) {
+ 		pending.tearing_page_flip = true;
+ 
+@@ -479,7 +659,47 @@
+ 		}
+ 	}
+ 
++    // INVARIANT: release an older probe lock before taking a new one.
++    bi_release_hold("superseded");
++    uint64_t bi_id = 0;
++    struct wlr_buffer *bi_locked = bi_observe_buffer(output, &pending, &bi_id);
++    bi_expected_buffer = bi_locked;
++    bi_expected_id = bi_id;
+ 	bool commit_ok = wlr_output_commit_state(output->wlr_output, &pending);
++    bi_expected_buffer = NULL;
++    bi_expected_id = 0;
++    if (commit_ok) bi_stage(output, "COMMIT_ACCEPTED", &pending);
++    if (bi_locked) {
++        sway_log(SWAY_INFO, "BI_COMMIT id=%" PRIu64 " accepted=%d output=%s"
++            " commit_seq=%" PRIu32 " ns=%" PRIu64, bi_id, commit_ok,
++            output->wlr_output->name, output->wlr_output->commit_seq,
++            presentation_probe_now_ns());
++        if (!commit_ok) {
++            wlr_buffer_unlock(bi_locked);
++            sway_log(SWAY_INFO, "BI_RELEASE id=%" PRIu64 " reason=commit_rejected", bi_id);
++        } else {
++            struct wl_event_source *timer = wl_event_loop_add_timer(
++                output->wlr_output->event_loop, bi_timeout_hold, NULL);
++            if (!timer || wl_event_source_timer_update(timer, 2000) < 0) {
++                if (timer) wl_event_source_remove(timer);
++                wlr_buffer_unlock(bi_locked);
++                sway_log(SWAY_INFO, "BI_RELEASE id=%" PRIu64 " reason=timer_unavailable", bi_id);
++            } else {
++                bi_hold.buffer = bi_locked;
++                bi_hold.output = output->wlr_output;
++                bi_hold.timer = timer;
++                bi_hold.seq = output->wlr_output->commit_seq;
++                bi_hold.id = bi_id;
++                bi_hold.locked_ns = presentation_probe_now_ns();
++                struct sway_workspace *ws = output->current.active_workspace;
++                struct mosaic_row *row = ws && ws->mosaic && ws->mosaic->rows->length ?
++                    ws->mosaic->rows->items[0] : NULL;
++                bi_hold.scroll = row ? row->state.scroll_x : -1;
++                sway_log(SWAY_INFO, "BI_LOCKED id=%" PRIu64 " commit_seq=%" PRIu32,
++                    bi_id, bi_hold.seq);
++            }
++        }
++    }
+ 	struct timespec temporal_now;
+ 	clock_gettime(CLOCK_MONOTONIC, &temporal_now);
+ 	sway_log(SWAY_INFO, "TEMPORAL_OUTPUT_COMMIT ordinal=%" PRIu64
+@@ -614,6 +834,9 @@
+ }
+ 
+ static void begin_destroy(struct sway_output *output) {
++    if (bi_hold.buffer && bi_hold.output == output->wlr_output) {
++        bi_release_hold("output_destroy");
++    }
+ 
+ 	wl_list_remove(&output->layout_destroy.link);
+ 	wl_list_remove(&output->destroy.link);
+@@ -664,6 +887,57 @@
+ 			output_event->when.tv_nsec,
+ 		output_event->presented, output_event->seq,
+ 		output_event->refresh, output_event->flags);
++    if (bi_hold.buffer && bi_hold.output == output->wlr_output &&
++            bi_hold.seq == output_event->commit_seq) {
++        sway_log(SWAY_INFO, "BI_PRESENT_HOLD id=%" PRIu64
++            " commit_seq=%" PRIu32 " presented=%d valid=1",
++            bi_hold.id, bi_hold.seq, output_event->presented);
++        // CONTRACT: the owned lock is still held here. A second read is
++        // limited to visible, hidden, returned buffers that actually reach
++        // present while locked. A superseded buffer does not advance phase.
++        bool reread = (bi_reread_phase == 0 && bi_hold.id >= 8 && bi_hold.scroll == 400) ||
++            (bi_reread_phase == 1 && bi_hold.scroll == 1280) ||
++            (bi_reread_phase == 2 && bi_hold.scroll == 400);
++        if (reread) {
++            const char *dir = getenv("BI_OUTPUT_DIR");
++            const size_t bytes = 800u * 600u * 4u;
++            unsigned char *pixels = malloc(bytes);
++            struct wlr_texture *tex = pixels ? wlr_texture_from_buffer(
++                output->wlr_output->renderer, bi_hold.buffer) : NULL;
++            bool read_ok = false;
++            if (tex) {
++                struct wlr_texture_read_pixels_options opts = {
++                    .data = pixels, .format = DRM_FORMAT_XRGB8888,
++                    .stride = 800u * 4u,
++                };
++                read_ok = wlr_texture_read_pixels(tex, &opts);
++                wlr_texture_destroy(tex);
++            }
++            char path[PATH_MAX];
++            int n = dir ? snprintf(path, sizeof(path),
++                "%s/buffer-%" PRIu64 "-present.xrgb", dir, bi_hold.id) : -1;
++            size_t off = 0;
++            int fd = -1;
++            if (read_ok && n >= 0 && (size_t)n < sizeof(path)) {
++                fd = open(path, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC, 0600);
++                if (fd >= 0) {
++                    while (off < bytes) {
++                        ssize_t written = write(fd, pixels + off, bytes - off);
++                        if (written <= 0) break;
++                        off += (size_t)written;
++                    }
++                    close(fd);
++                    if (off != bytes) unlink(path);
++                }
++            }
++            sway_log(SWAY_INFO, "BI_PRESENT_READ id=%" PRIu64
++                " status=%s bytes=%zu phase=%u", bi_hold.id,
++                off == bytes ? "READ" : "UNAVAILABLE", off, bi_reread_phase);
++            if (off == bytes) bi_reread_phase++;
++            free(pixels);
++        }
++        bi_release_hold("present");
++    }
+ 
+ 	if (!output->enabled || !output_event->presented) {
+ 		return;

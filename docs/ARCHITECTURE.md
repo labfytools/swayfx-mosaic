@@ -125,6 +125,25 @@ Pointer events remain a separate time-ordered stream. The result is
 **PARTIALLY_FEASIBLE** and does not define a production transaction or
 SceneFX ABI contract.
 
+The subsequent private [output buffer identity probe](design/STEP20C_OUTPUT_BUFFER_IDENTITY_PROBE.md)
+read sampled actual GBM output-state buffers through SceneFX FX texture
+readback, after an audited wlroots 0.20.2 buffer lock. In the fixed
+negative-origin headless matrix, 32 selected buffers matched their native
+commit callback, `commit_seq` and headless present; their sampled A/B pixels
+agreed with the applied tiled scene and clip at 400/1280. Three buffers were
+read again while locked at present with identical bytes. Four other
+selected locks were released before their later present events because a
+HEADLESS-2 repaint reached a global release in the private probe. This is
+an instrumentation scope defect, not a demonstrated replacement by a new
+HEADLESS-1 submission. The initial
+logical-1760/applied-1120 state also had an identified buffer and headless
+present, without a demonstrated pixel or hit defect. This does not create a
+production buffer API or transaction-generation contract. FX readback uses
+an internal GPU synchronization and measurably delays the commit path;
+frame-specific input consistency, other effects/renderers and physical
+presentation remain unproven. The result is **PARTIALLY_FEASIBLE** and
+multi-output Mosaic stays unsupported.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.

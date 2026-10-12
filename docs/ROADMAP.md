@@ -75,11 +75,28 @@ snapshots were taken at the commit callback. Settled target states passed
 sampled clipping and input checks; faster commands could coalesce or defer.
 The actual buffer content of each commit and frame-specific pointer relation
 remain unproven. Its [private source fixture](../tooling/probes/step20c-presentation-identity/README.md)
-does not enter the production build. The smallest remaining identity gate is
-a bounded fingerprint/readback of the same retained output-state buffer at
-commit and headless present, with safe buffer lifetime. Scaling, rotation,
+does not enter the production build. Its then-open buffer identity gate was
+examined by the subsequent private probe below. Scaling, rotation,
 migration/resize, complete effects/damage and SceneFX maintenance remain
 open. STEP20C stays **NEXT**.
+
+The [output buffer identity probe](design/STEP20C_OUTPUT_BUFFER_IDENTITY_PROBE.md)
+is **PARTIALLY_FEASIBLE** in this fixed matrix: 32 real GBM output-state
+buffers were read through FX texture APIs, correlated with native commits
+and headless presents. Twenty-eight were released on present and four
+early because HEADLESS-2 repaint reached a global release in the private
+instrumentation; the latter were not retained through present. Three
+second reads were byte-identical. Sampled
+popup pixels matched the applied scene/clip across
+three pairs with the same A/B popup objects; the initial logical/applied
+camera lag also had an identified buffer but no proven visual defect.
+Readback materially changed timing, and neither frame-specific pointer
+identity nor an atomic scene/input generation is proven. Its
+[private fixture](../tooling/probes/step20c-buffer-identity/README.md) is
+preserved experimental source, not a production dependency. The smallest
+next gate is a lower-impact buffer observation with an explicit applied
+scene/input generation, then separate effects/damage and SceneFX maintenance
+qualification. STEP20C stays **NEXT**.
 
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 

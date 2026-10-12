@@ -84,6 +84,24 @@ initial layout setup; no wrong applied clip or invisible hit was reproduced
 in the targeted matrix. Production multi-output Mosaic remains
 **NOT YET SUPPORTED**.
 
+The private [output buffer identity probe](design/STEP20C_OUTPUT_BUFFER_IDENTITY_PROBE.md)
+is **PARTIALLY_FEASIBLE** at the fixed negative-origin headless geometry.
+Thirty-two actual output-state buffers were read through SceneFX FX texture
+readback, paired with native commits and headless present events, and
+released on present in 28 cases; four were released early when a
+HEADLESS-2 repaint reached the probe's global release, before their later
+present events. This private instrumentation scope defect is not evidence
+of same-output buffer replacement. Three second
+reads matched their earlier bytes.
+The direct CPU access method was unavailable for the GBM buffers. Readback
+added measurable GPU/CPU synchronization and file-copy delay; 29 buffers
+were not read a second time at present. The observed transient logical
+camera 1760 versus applied scene/clip 1120 had an identified buffer but
+no demonstrated wrong pixel or hit. There is still no atomic applied
+scene/input generation contract, broad effects/damage proof, physical
+presentation proof or SceneFX ABI/package qualification. Production
+multi-output Mosaic remains **NOT YET SUPPORTED**.
+
 The [isolated feasibility probe](design/STEP20C_FEASIBILITY_PROBE.md) is **PARTIALLY FEASIBLE**, not a release qualification. On two horizontal headless outputs, real Mosaic content leaked visually into an empty adjacent output; that earlier disposable candidate also delivered pointer enter from a partly visible client outside its viewport. Negative-origin, scaled and rotated arrangements showed visual leakage in that candidate. Popups, effects, saved buffers and complete damage correctness remain unqualified across the full matrix. The later probes above narrow individual cases without qualifying multi-output Mosaic, which remains **NOT YET SUPPORTED**.
 
 The later [SceneFX subtree clipping spike](design/STEP20C_SCENEFX_CLIPPING_SPIKE.md) is also **PARTIALLY FEASIBLE**. Its private inherited tree clip stopped tested tiled pixels and pointer hits from crossing the output boundary, including a fully hidden cell, but a real GTK XDG popup rendered and received input on the neighboring output because its scene tree lives in the global popup layer. Dedicated subsurface, saved-buffer, nested-popup and complete effect/damage validation remain open. The spike changed no production library or compositor source; multi-output Mosaic remains **NOT YET SUPPORTED**.
