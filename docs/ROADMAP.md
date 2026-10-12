@@ -106,9 +106,22 @@ while a partial experimental epoch and real pointer traces exposed
 applied state at build and hit. Client delivery under grabs remained a
 separate observation. Incomplete mutation coverage, untested error paths
 and intrusive readback leave the temporal-consistency gate open. The
-smallest next experiment must close the mutation boundary and use a
-lower-impact observation before any production STEP20C decision. STEP20C
+next experiment was to map the mutation boundary with lower-impact
+observation before any production STEP20C decision. STEP20C
 stays **NEXT**; multi-output remains **NOT YET SUPPORTED**.
+
+The [mutation coverage probe](design/STEP20C_MUTATION_COVERAGE_PROBE.md)
+is **PARTIALLY_FEASIBLE** overall. A bounded trace-only matrix separated
+camera/clip, popup hierarchy, same-size client content and surface input
+region changes. The input-region test changed the actual scene hit while
+`asi_applied_epoch` was unchanged, so that counter is not a complete
+geometry/hit identity. Output destruction released one held reference in
+the real private compositor; rejected-commit cleanup is still untested on
+a backend. Whether SwayFX's existing event-loop ordering suffices for
+build/present/input coherence is **UNDECIDED**. The smallest next gate is
+a controlled hit-geometry mutation between one known output-state build
+and its deferred headless present, with hits and client delivery sampled
+on both sides. This remains scientific evidence, not production STEP20C.
 
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 

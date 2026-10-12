@@ -1,0 +1,30 @@
+--- a/nested-client.c
++++ b/nested-client.c
+@@ -252,7 +252,26 @@
+         if (fds[1].revents & POLLIN) {
+             char cmd[64];
+             if (fgets(cmd,sizeof(cmd),stdin)) {
+-                if (!strncmp(cmd,"close_b",7)) { destroy_popup(&b); fprintf(stderr,"COMMAND close_b DONE\n"); }
++                /* WHY: isolate client content from scene geometry and input region.
++                 * CONTRACT: same toplevel size/position; only private headless client.
++                 * INVARIANT: region updates carry no new client buffer. */
++                if (!strncmp(cmd,"recolor_top",11)) {
++                    top.color = 0x00d020c0;
++                    draw(&top);
++                    fprintf(stderr,"COMMAND recolor_top DONE color=%08x wl=%u\n",
++                        top.color, wl_proxy_get_id((struct wl_proxy *)top.wl));
++                } else if (!strncmp(cmd,"region_empty_top",16) ||
++                           !strncmp(cmd,"region_full_top",15)) {
++                    bool empty = !strncmp(cmd,"region_empty_top",16);
++                    struct wl_region *region = wl_compositor_create_region(compositor);
++                    if (!empty) wl_region_add(region, 0, 0, top.width, top.height);
++                    wl_surface_set_input_region(top.wl, region);
++                    wl_surface_commit(top.wl);
++                    wl_region_destroy(region);
++                    fprintf(stderr,"COMMAND region_%s_top DONE wl=%u\n",
++                        empty ? "empty" : "full",
++                        wl_proxy_get_id((struct wl_proxy *)top.wl));
++                } else if (!strncmp(cmd,"close_b",7)) { destroy_popup(&b); fprintf(stderr,"COMMAND close_b DONE\n"); }
+                 else if (!strncmp(cmd,"close_a",7)) { destroy_popup(&b); destroy_popup(&a); fprintf(stderr,"COMMAND close_a DONE\n"); }
+                 else if (!strncmp(cmd,"close_owner",11)) { fprintf(stderr,"COMMAND close_owner\n"); running=0; }
+             }

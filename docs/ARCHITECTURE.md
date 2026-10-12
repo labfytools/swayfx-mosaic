@@ -157,6 +157,20 @@ mutation. Client delivery under a real XDG grab was checked separately
 from the scene hit. This **PARTIALLY_FEASIBLE** result does not change
 production scene, transaction, input or SceneFX ABI contracts.
 
+The [mutation coverage probe](design/STEP20C_MUTATION_COVERAGE_PROBE.md)
+audited compositor, private SceneFX and wlroots 0.20.2 mutation owners and
+ran a bounded trace-only headless matrix. Camera/clip and popup lifecycle
+observations agreed with scene hits and actual client events. A same-size
+client recolor changed pixels while applied geometry and the partial epoch
+stayed fixed; an empty surface input region changed the executed hit at the
+same point and epoch without changing sampled pixels. Thus
+`asi_applied_epoch` cannot identify all hit-relevant mutations. A native
+output `(output, commit_seq)` records a submission, not the later input
+state. Distinct geometry/hit, content and presentation identities are
+candidate research boundaries; whether existing event-loop ordering alone
+is enough across build, present and input remains **UNDECIDED**. No new
+production generation or transaction contract is accepted by this probe.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.

@@ -33,7 +33,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Buffer source fixture](../tooling/probes/step20c-buffer-identity/README.md) reconstructs the disposable experiment; it is not production code.
 19. [STEP20C applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md): private per-output buffer-reference correction and partial applied-scene epoch tracing through render and pointer paths; no atomic generation is established.
     [Applied-state source fixture](../tooling/probes/step20c-applied-state-input/README.md) rebuilds the disposable experiment.
-20. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+20. [STEP20C mutation coverage probe](design/STEP20C_MUTATION_COVERAGE_PROBE.md): source ownership inventory and bounded trace-only camera, popup, client-content and input-region scenarios; output-destroy cleanup sampled, rejected commit still untested.
+    [Mutation source fixture](../tooling/probes/step20c-mutation-coverage/README.md) replays the disposable matrix without production integration.
+21. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -76,6 +78,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C presentation identity probe](design/STEP20C_PRESENTATION_IDENTITY_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; native headless events pair with commits, but buffer pixels and per-frame input identity remain unproven |
 | [STEP20C output buffer identity probe](design/STEP20C_OUTPUT_BUFFER_IDENTITY_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; sampled true buffers were read and paired with headless presents; four early releases came from a private cross-output instrumentation defect, while readback perturbs timing and atomic scene/input coherence remains unproven |
 | [STEP20C applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; per-output holds survive cross-output repaint in the sampled matrix, and applied scene/hit/client streams are observed with a partial experimental epoch |
+| [STEP20C mutation coverage probe](design/STEP20C_MUTATION_COVERAGE_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE overall; an input-region change alters the hit at unchanged partial epoch, client recolor changes pixels without geometry, and a held output reference is released on sampled output destruction; cross-time generation contract remains UNDECIDED |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 
