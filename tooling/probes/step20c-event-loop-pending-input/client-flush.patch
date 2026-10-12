@@ -1,0 +1,27 @@
+--- a/nested-client.c
++++ b/nested-client.c
+@@ -8,6 +8,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <time.h>
+ #include <sys/mman.h>
+ #include <unistd.h>
+ #include <wayland-client.h>
+@@ -268,6 +269,16 @@
+                     wl_surface_set_input_region(top.wl, region);
+                     wl_surface_commit(top.wl);
+                     wl_region_destroy(region);
++                    /* CONTRACT: log an actual client flush separately from the
++                     * later server handler; a successful write is not application. */
++                    int flushed = wl_display_flush(display);
++                    struct timespec sent_at;
++                    clock_gettime(CLOCK_MONOTONIC, &sent_at);
++                    fprintf(stderr, "CLIENT_FLUSH ns=%lld region=%s rc=%d wl=%u\n",
++                        (long long)sent_at.tv_sec * 1000000000LL + sent_at.tv_nsec,
++                        empty ? "empty" : "full", flushed,
++                        wl_proxy_get_id((struct wl_proxy *)top.wl));
++                    if (flushed < 0 && errno != EAGAIN) running = false;
+                     fprintf(stderr,"COMMAND region_%s_top DONE wl=%u\n",
+                         empty ? "empty" : "full",
+                         wl_proxy_get_id((struct wl_proxy *)top.wl));

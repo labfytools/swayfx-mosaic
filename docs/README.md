@@ -37,7 +37,9 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Mutation source fixture](../tooling/probes/step20c-mutation-coverage/README.md) replays the disposable matrix without production integration.
 21. [STEP20C commit/present/input ordering probe](design/STEP20C_COMMIT_PRESENT_INPUT_ORDERING_PROBE.md): independently replayed headless ordering evidence; 20 applied input-region mutations, no natural commit-to-present interleaving, temporal question INCONCLUSIVE.
     [Ordering source fixture](../tooling/probes/step20c-commit-present-input/README.md) rebuilds the passive private trace.
-22. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+22. [STEP20C event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md): bounded asynchronous client submission and native callback order; no natural commit-to-present input mutation, INCONCLUSIVE.
+    [Pending-input source fixture](../tooling/probes/step20c-event-loop-pending-input/README.md) replays the disposable matrix.
+23. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -82,6 +84,7 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C applied state/input probe](design/STEP20C_APPLIED_STATE_INPUT_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; per-output holds survive cross-output repaint in the sampled matrix, and applied scene/hit/client streams are observed with a partial experimental epoch |
 | [STEP20C mutation coverage probe](design/STEP20C_MUTATION_COVERAGE_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE overall; an input-region change alters the hit at unchanged partial epoch, client recolor changes pixels without geometry, and a held output reference is released on sampled output destruction; cross-time generation contract remains UNDECIDED |
 | [STEP20C commit/present/input ordering probe](design/STEP20C_COMMIT_PRESENT_INPUT_ORDERING_PROBE.md) | Experimental, independently replayed evidence | INCONCLUSIVE for the discriminating temporal window; headless input-region commits and hits agree in observed states, but none of 20 applied mutations occurred between a native output commit and its present |
+| [STEP20C event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md) | Experimental, independently replayed evidence | INCONCLUSIVE / NOT EXERCISED for natural commit→input mutation→present despite decoupled client submission; the temporal line is closed for this backend/matrix |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 

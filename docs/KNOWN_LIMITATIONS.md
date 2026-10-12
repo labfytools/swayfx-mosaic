@@ -141,6 +141,15 @@ rejected backend commit cleanup and broader output/effect paths remain
 **NOT TESTED**. Existing ordering sufficiency and any added-generation
 contract remain **UNDECIDED**.
 
+The [pending-input event-loop follow-up](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md)
+removed the runner's intermediate response waits during five bounded cycles
+per private mode. It confirmed ten positive client flushes and ten applied
+target input commits per mode, yet zero natural commit→mutation→present
+interleavings. The sought same-interval hit and grabbed-popup variant are
+**NOT TESTED**. The result remains **INCONCLUSIVE** for that temporal window;
+repeat attempts on the same headless matrix are closed. Effects/damage,
+scaling and resize/migration remain open STEP20C gates.
+
 The [isolated feasibility probe](design/STEP20C_FEASIBILITY_PROBE.md) is **PARTIALLY FEASIBLE**, not a release qualification. On two horizontal headless outputs, real Mosaic content leaked visually into an empty adjacent output; that earlier disposable candidate also delivered pointer enter from a partly visible client outside its viewport. Negative-origin, scaled and rotated arrangements showed visual leakage in that candidate. Popups, effects, saved buffers and complete damage correctness remain unqualified across the full matrix. The later probes above narrow individual cases without qualifying multi-output Mosaic, which remains **NOT YET SUPPORTED**.
 
 The later [SceneFX subtree clipping spike](design/STEP20C_SCENEFX_CLIPPING_SPIKE.md) is also **PARTIALLY FEASIBLE**. Its private inherited tree clip stopped tested tiled pixels and pointer hits from crossing the output boundary, including a fully hidden cell, but a real GTK XDG popup rendered and received input on the neighboring output because its scene tree lives in the global popup layer. Dedicated subsurface, saved-buffer, nested-popup and complete effect/damage validation remain open. The spike changed no production library or compositor source; multi-output Mosaic remains **NOT YET SUPPORTED**.

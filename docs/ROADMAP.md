@@ -134,6 +134,16 @@ next gate is passive event-loop phase tracing with a client request already
 pending during ordinary repaint, then a same-interval hit if naturally
 observable. STEP20C remains **NEXT** and multi-output **NOT YET SUPPORTED**.
 
+The bounded [event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md)
+decoupled normal client submission from IPC/client acknowledgements, then
+stopped after five attempts in each private mode. All 20 target mutations
+applied, with no matching commit-to-present interleaving. Close this
+particular temporal line as **INCONCLUSIVE / NOT EXERCISED** for the tested
+headless backend and fixed geometry. Do not infer an extra generation
+contract or production readiness. The next separate STEP20C gate should
+address complete effects/damage, scaling, or resize/migration. STEP20C stays
+**NEXT** and multi-output Mosaic **NOT YET SUPPORTED**.
+
 ## STEP20D — multi-row Spatial Canvas · PLANNED
 
 **Goal:** connect rows to runtime tree, transactions, scene, input, and IPC. **Planned deliverables:** active-row navigation, row-local scroll/focus, deterministic insertion/reflow, in-row reorder, and between-row movement. **Exit criteria:** real tiled containers preserve identity and order across row changes; focus and camera restore correctly; headless multi-row tests pass. **Docs first:** settle exact interactions and row invariants in UX and Architecture. Unset key combinations remain TBD.

@@ -184,6 +184,17 @@ generation contract. A later hit may legitimately use newer input than a
 previously committed output buffer; identity of these states must remain
 distinct in further probes.
 
+The follow-up private [event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md)
+submitted ordinary client region requests without waiting for each camera or
+rendering IPC response. All 20 target mutations applied in two instrumented
+modes, but none occurred between a matching native headless output commit
+and present. This is **INCONCLUSIVE** for the unexercised temporal case;
+neither a Mosaic clipping violation nor the need for an additional applied
+generation was demonstrated. Client flush, server application, submitted
+buffer and later hit remain separate identities. The temporal line is closed
+for this backend/matrix after five attempts per mode, while the overall
+cross-time architectural question remains **UNDECIDED**.
+
 ## IPC
 
 On a Mosaic workspace, `get_tree` reports `layout: "mosaic"` and adds a `mosaic` object with `active_row` and `rows`. Each row entry contains ordered child node IDs, `scroll_x`, and focused node ID or null. Existing Sway fields retain their shapes; normal workspace/window events and `get_workspaces` paths remain in use. This is an extension to the Sway layout vocabulary: strict IPC consumers with a closed layout enum must recognize `mosaic`. Additional rows in the model are not a promise of usable multi-row IPC behavior.
