@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved saved-transaction-buffer probe: real held XDG configures produced nonempty saved scene buffers; private saved nodes entered rendering and sampled ACK/timeout paths removed their trees. Mosaic's target was outside H1 after the applied camera reached 1760, so partial-boundary clipping is NOT EXERCISED and the verdict is INCONCLUSIVE. Three distinct executed runner copies and the private-standard fixture timeout are retained; no production change.
+
 - Local static-R90 partial-popup probe: a legal nested B popup crossed the Mosaic viewport by 72 logical pixels; 46,455 B pixels and a real button survived on H1, while H2 was pixel-identical to its reference and delivered no B button. Both standard controls showed 35,360 B pixels and a B button on H2. A crossed visually, but its forbidden-side input was not independently clicked. PARTIALLY_FEASIBLE for the tested matrix; no production change or phase-B commit/push.
 
 - Preserved rotated-output probe: actual 90° output keeps an 800×600 logical viewport while the physical mode becomes 750×1000 and `grim` remains logical-oriented 1000×750. Private standard shows 15,860 B-popup pixels on H2; private Mosaic shows zero, but its B popup ends before the boundary, so partial clipping is unchallenged. Fully hidden owner, pointer, measured physical damage and R0/standard returns pass sampled checks. Pristine R90 capture stopped on a fixture IPC-direction assertion; no replay. PARTIALLY_FEASIBLE, architectural conclusion UNDECIDED; no production change.

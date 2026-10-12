@@ -23,3 +23,7 @@ opt/
 *.pkg.tar.*
 .SRCINFO.tmp
 .SRCINFO
+
+# Generated Python bytecode from experimental fixtures
+__pycache__/
+*.pyc

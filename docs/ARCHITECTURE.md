@@ -279,3 +279,12 @@ viewport in the sampled state; pristine and private-standard controls both
 drew and handled the crossed portion. Result **PARTIALLY_FEASIBLE** because
 the clipped-away part of A was not independently clicked and no atomic
 render/input generation was proved. The architecture remains experimental.
+
+The local [saved transaction buffer probe](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md)
+found `saved_surface_tree` under `view->scene_tree` as a sibling of live
+`content_tree`; SceneFX retains the source buffer at creation and a private
+trace observed saved render entries and normal removal after ACK/timeout.
+The experimental Mosaic tiled clip is an ancestor of the view tree, so a
+saved tree has a plausible inherited path. The measured target was outside
+H1 after the applied camera reached 1760, preventing a boundary-clipping
+conclusion. This remains INCONCLUSIVE, with no production architecture change.

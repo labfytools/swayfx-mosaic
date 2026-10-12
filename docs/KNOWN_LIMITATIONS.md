@@ -219,3 +219,13 @@ but independent input on its forbidden portion remains **NOT TESTED**.
 Saved buffers, optimized blur caches, inner shadows, intermediate frames,
 atomic generation and SceneFX/wlroots ABI/package remain unqualified.
 Multi-output stays **NOT YET SUPPORTED**.
+
+The [saved transaction buffer probe](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md)
+is **INCONCLUSIVE** for the intended partial-overflow gate. The target
+snapshot was outside H1 because its applied camera differed from the
+fixture's assumed initial position. Other saved nodes rendered in the
+private scene; ACK and natural timeout removed sampled trees. Target pixels,
+clipped input, transaction-scoped damage, destruction while pending and
+reference lifetime after texture conversion remain unqualified. One
+private-standard episode failed through fixture timing. STEP20C remains
+**NEXT** and production multi-output **NOT YET SUPPORTED**.

@@ -221,3 +221,13 @@ temporal/effect cases remain open. Next prioritize saved transaction buffers
 against the same owner-derived viewport before optimized blur cache,
 interior shadow and ABI/package maintenance. STEP20C remains **NEXT**;
 production multi-output remains **NOT YET SUPPORTED**.
+
+The subsequent [saved transaction buffer campaign](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md)
+observed real held XDG configure transactions, reused saved buffers, private
+render entries and sampled ACK/timeout removal. Its target never crossed the
+H1/H2 boundary after the applied Mosaic camera settled at 1760. Overall
+**INCONCLUSIVE**; all three run reservations are consumed. A new, separately
+authorized saved-buffer experiment must calibrate the applied camera and
+target crossing before the first transaction. Optimized blur/cache and
+SceneFX ABI/package remain separate unqualified gates. STEP20C stays
+**NEXT**, multi-output **NOT YET SUPPORTED**.

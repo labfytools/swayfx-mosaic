@@ -1,0 +1,23 @@
+--- a/types/scene/wlr_scene.c
++++ b/types/scene/wlr_scene.c
+@@ -2108,6 +2108,20 @@
+ 		return;
+ 	}
+ 
++	if (node->type == WLR_SCENE_NODE_BUFFER && getenv("SAVED_TRACE")) {
++		struct timespec ts;
++		clock_gettime(CLOCK_MONOTONIC, &ts);
++		struct wlr_scene_buffer *sb = wlr_scene_buffer_from_node(node);
++		struct pixman_box32 *box = pixman_region32_extents(&render_region);
++		fprintf(stderr, "SB_RENDER ns=%lld node=%p buffer=%p parent=%p visible=%d,%d,%d,%d damage=%d,%d,%d,%d\n",
++			(long long)ts.tv_sec * 1000000000LL + ts.tv_nsec,
++			(void *)node, (void *)sb->buffer, (void *)node->parent,
++			pixman_region32_extents(&node->visible)->x1,
++			pixman_region32_extents(&node->visible)->y1,
++			pixman_region32_extents(&node->visible)->x2,
++			pixman_region32_extents(&node->visible)->y2,
++			box->x1, box->y1, box->x2, box->y2);
++	}
+ 	int x = entry->x - data->logical.x;
+ 	int y = entry->y - data->logical.y;
+ 

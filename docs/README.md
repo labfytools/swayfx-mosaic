@@ -41,7 +41,11 @@ The [root README](../README.md) is the public summary. For a specific topic, use
     [Pending-input source fixture](../tooling/probes/step20c-event-loop-pending-input/README.md) replays the disposable matrix.
 23. [STEP20C effects/damage probe](design/STEP20C_EFFECTS_DAMAGE_PROBE.md): real translucent blur and shadow-overflow pixels compared across standard and private Mosaic layouts; sampled damage and camera returns PARTIALLY_FEASIBLE, optimized blur cache unqualified.
     [Effects/damage source fixture](../tooling/probes/step20c-effects-damage/README.md) rebuilds the disposable matrix.
-24. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
+24. [STEP20C static R90 partial-popup probe](design/STEP20C_ROTATED_PARTIAL_POPUP_CLIP_PROBE.md): sampled genuine B crossing and input with a completed pristine control; broader STEP20C gates remain open.
+    [R90 source fixture](../tooling/probes/step20c-rotated-partial-popup/README.md) preserves the published experimental inputs.
+25. [STEP20C saved transaction buffer probe](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md): real saved nodes and lifetime evidence, but target partial-overflow geometry NOT EXERCISED; result INCONCLUSIVE.
+    [Saved-buffer source fixture](../tooling/probes/step20c-saved-transaction-buffer/README.md) preserves the experimental inputs.
+26. [STEP20A](STEP20A.md) and [STEP20B](STEP20B.md): historical evidence.
 
 ## Project
 
@@ -88,6 +92,8 @@ The [root README](../README.md) is the public summary. For a specific topic, use
 | [STEP20C commit/present/input ordering probe](design/STEP20C_COMMIT_PRESENT_INPUT_ORDERING_PROBE.md) | Experimental, independently replayed evidence | INCONCLUSIVE for the discriminating temporal window; headless input-region commits and hits agree in observed states, but none of 20 applied mutations occurred between a native output commit and its present |
 | [STEP20C event-loop pending-input probe](design/STEP20C_EVENT_LOOP_PENDING_INPUT_PROBE.md) | Experimental, independently replayed evidence | INCONCLUSIVE / NOT EXERCISED for natural commit→input mutation→present despite decoupled client submission; the temporal line is closed for this backend/matrix |
 | [STEP20C effects/damage probe](design/STEP20C_EFFECTS_DAMAGE_PROBE.md) | Experimental, independent private replay | PARTIALLY_FEASIBLE for visible blur, excluded sampled shadow overflow, settled camera restoration and sampled damage; shadow interior, optimized cache, popup effects and saved buffers remain unqualified |
+| [STEP20C static R90 partial-popup probe](design/STEP20C_ROTATED_PARTIAL_POPUP_CLIP_PROBE.md) | Experimental evidence | PARTIALLY_FEASIBLE; sampled B crossing clips under R90, independent A input remains untested |
+| [STEP20C saved transaction buffer probe](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md) | Experimental, local evidence | INCONCLUSIVE; real saved nodes rendered, target partial crossing not exercised |
 
 A proposal does not supersede accepted canonical contracts or assert implementation status. Its open feasibility items must be resolved before implementation.
 
@@ -128,3 +134,10 @@ its H1 pixels and real button remained, while H2 matched its reference and
 delivered no B button. Both standard controls drew and handled the overflow.
 Independent clipped-away A input and saved buffers remain open. STEP20C is
 NEXT; production multi-output is NOT YET SUPPORTED.
+
+[Saved transaction buffer probe](design/STEP20C_SAVED_TRANSACTION_BUFFER_PROBE.md)
+and [source fixture](../tooling/probes/step20c-saved-transaction-buffer/README.md):
+EXPERIMENTAL / INCONCLUSIVE. Real held XDG configures created nonempty saved
+scene buffers; private render entries and ACK/timeout removal were observed.
+The Mosaic target was wholly off H1 after an applied relative camera scroll,
+so the partial-boundary clipping gate was NOT EXERCISED. STEP20C stays NEXT.
