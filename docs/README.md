@@ -105,3 +105,10 @@ Preserved experimental evidence: [fractional scaling probe](design/STEP20C_FRACT
 and [source fixture](../tooling/probes/step20c-fractional-scale/README.md).
 PARTIALLY_FEASIBLE for the sampled static scale matrix, independently replayed
 without new camera pairs; no production qualification.
+
+Preserved experimental evidence: [dynamic output ownership report](design/STEP20C_DYNAMIC_OUTPUT_OWNERSHIP_PROBE.md)
+and [source fixture](../tooling/probes/step20c-dynamic-output/README.md).
+PARTIALLY_FEASIBLE for measured stable geometry/ownership, with explicit
+fixture and unexercised-input limitations. The original temporary evidence
+manifest was verified before an offline analyzer rerun replaced its bytes;
+the report records this provenance limit.

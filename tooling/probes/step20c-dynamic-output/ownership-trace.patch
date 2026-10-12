@@ -1,0 +1,43 @@
+--- a/sway/desktop/output.c
++++ b/sway/desktop/output.c
+@@ -384,6 +384,20 @@
+ 			output->wlr_output->name, presentation_probe_now_ns());
+ 		return;
+ 	}
++    // WHY: correlate actual scene coordinates with current workspace ownership.
++    // CONTRACT: passive callback reads only; no state or callback-order changes.
++    // INVARIANT: output label is the observing callback, owner is current.output.
++    int tile_x = 0, tile_y = 0;
++    bool tile_valid = wlr_scene_node_coords(&ws->layers.tiling->node, &tile_x, &tile_y);
++    struct wlr_output *wlr = output->wlr_output;
++    sway_log(SWAY_INFO, "DO_STATE ns=%" PRIu64 " observer=%s workspace=%zu owner=%s"
++        " origin=%d,%d logical=%d,%d physical=%d,%d scale=%.2f transform=%d"
++        " tile_valid=%d tile_global=%d,%d",
++        presentation_probe_now_ns(), wlr->name, ws->node.id,
++        ws->current.output ? ws->current.output->wlr_output->name : "none",
++        output->lx, output->ly, output->width, output->height,
++        wlr->width, wlr->height, wlr->scale, wlr->transform,
++        tile_valid, tile_x, tile_y);
+ 	struct wlr_box clip = {0};
+ 	bool has_clip = wlr_scene_tree_get_clip(ws->layers.tiling, &clip);
+ 	double scroll = -1;
+@@ -422,6 +436,19 @@
+ 			struct wlr_scene_tree *tree = wlr_scene_tree_from_node(node);
+ 			struct wlr_box box = {0};
+ 			bool valid = wlr_scene_tree_get_clip(tree, &box);
++            struct sway_popup_desc *desc = scene_descriptor_try_get(node, SWAY_SCENE_DESC_POPUP);
++            struct sway_container *owner = desc && desc->view ? desc->view->container : NULL;
++            struct sway_workspace *owner_ws = owner ? owner->current.workspace : NULL;
++            int popup_x = 0, popup_y = 0;
++            bool popup_valid = wlr_scene_node_coords(node, &popup_x, &popup_y);
++            // CONTRACT: tree identity is process-local; view/current owner is authoritative.
++            sway_log(SWAY_INFO, "DO_POPUP ns=%" PRIu64 " tree=%p owner_id=%zu workspace=%zu"
++                " owner_output=%s global_valid=%d global=%d,%d clip_valid=%d clip=%d,%d,%d,%d",
++                presentation_probe_now_ns(), (void *)tree,
++                owner ? owner->node.id : 0, owner_ws ? owner_ws->node.id : 0,
++                owner_ws && owner_ws->current.output ? owner_ws->current.output->wlr_output->name : "none",
++                popup_valid, popup_x, popup_y, valid, box.x, box.y, box.width, box.height);
++
+ 			sway_log(SWAY_INFO, "PI_POPUP output=%s ns=%" PRIu64
+ 				" local_index=%u tree=%p enabled=%d clip_valid=%d clip=%d,%d,%d,%d",
+ 				output->wlr_output->name, presentation_probe_now_ns(),

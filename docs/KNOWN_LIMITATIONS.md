@@ -186,3 +186,17 @@ are retained. The two-pair global budget was respected. The next distinct gate
 should test resize/migration of owner/output clips; rotation, saved buffers and
 ABI/package remain separate. This is evidence only: STEP20C stays **NEXT**,
 production multi-output **NOT YET SUPPORTED**, STEP20D–G **PLANNED**.
+
+The preserved [dynamic output ownership probe](design/STEP20C_DYNAMIC_OUTPUT_OWNERSHIP_PROBE.md)
+is **PARTIALLY_FEASIBLE**: actual logical resize 800→960→800 and workspace
+migration H1→H2→H1 retain workspace/tiled identities and update sampled applied
+tiled/root-popup clips. Vacated outputs show exact background after stabilization.
+Two standard controls fail final reference calibration through fixture occlusion;
+Mosaic's corrected calibration passes. Maximum-scroll clamp, migrated clipped
+popup input, independent opaque tiled spill, effects and intermediate frames
+remain unqualified. Budgets are exhausted at six reconfigurations and six
+migrations, with zero additional camera pairs. No production change follows.
+Rotation is the next separate geometric gate; other open STEP20C gates persist.
+The original temporary evidence manifest was verified before an offline
+analyzer rerun replaced it; its exact historical bytes are not retained.
+STEP20C stays **NEXT**, multi-output **NOT YET SUPPORTED**.

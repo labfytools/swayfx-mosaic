@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved dynamic-output ownership probe: real 800→960→800 logical resize and H1→H2→H1 workspace migration preserve IDs and sampled applied clips. Exact vacated-output backgrounds and measured physical damage are compatible; two standard-control final calibrations fail through reference occlusion. PARTIALLY_FEASIBLE; maximum clamp, migrated clipped-popup input, opaque spill and effects remain open. Six reconfigurations/six migrations, zero extra camera pairs; no production change. The original temporary evidence manifest was verified before an offline analyzer rerun replaced it; the report records the provenance limit.
+
 - Preserved fractional-scale probe: actual 1.25 uniform/mixed and 1.5 mixed outputs, calibrated logical input, sampled root/nested popup and effects clipping, two exact camera returns and physical settled-damage coverage. PARTIALLY_FEASIBLE; opaque tiled controls, interior shadow, restored Mosaic hit and broader gates remain unqualified. No production/package change.
 
 - Added a source-only private effects/damage probe with a real translucent SHM buffer and striped background. Both standard controls show 27,594 shadow-overflow pixels on the neighboring output; private Mosaic excludes that sampled spill, renders a visibly filtered blur within its viewport and restores exact settled pixels after three camera pairs. Sampled private damage covers changed pixels, while interior shadow, optimized cache, popup effects and saved buffers remain unqualified. The result is PARTIALLY_FEASIBLE; no production or package files changed.

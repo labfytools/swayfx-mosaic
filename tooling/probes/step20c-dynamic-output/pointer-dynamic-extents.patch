@@ -1,0 +1,24 @@
+--- a/pointer-daemon.c
++++ b/pointer-daemon.c
+@@ -46,13 +46,18 @@
+     char line[128];
+     uint32_t stamp=1000;
+     while (fgets(line,sizeof(line),stdin)) {
+-        char action[16];int x,y;
+-        if (sscanf(line,"%15s %d %d",action,&x,&y)!=3 ||
++        /* WHY: output layout bounds can change without recreating the pointer.
++         * CONTRACT: per-event extents are logical, supplied from applied IPC.
++         * INVARIANT: reject invalid dimensions before unsigned conversion. */
++        char action[16];int x,y,event_width,event_height;
++        if (sscanf(line,"%15s %d %d %d %d",action,&x,&y,&event_width,&event_height)!=5 ||
++                event_width <= 0 || event_height <= 0 ||
+                 (strcmp(action,"move") && strcmp(action,"left") && strcmp(action,"right")) ||
+-                x < 0 || y < 0 || (uint32_t)x >= width || (uint32_t)y >= height) {
++                x < 0 || y < 0 || x >= event_width || y >= event_height) {
+             fprintf(stderr,"INVALID_INJECTION %s",line);fflush(stderr);
+             return 3;
+         }
++        width = (uint32_t)event_width; height = (uint32_t)event_height;
+         fprintf(stderr,"INJECT %s %d,%d extent=%u,%u\n",action,x,y,width,height);
+         fflush(stderr);
+         zwlr_virtual_pointer_v1_motion_absolute(pointer,stamp++,x,y,width,height);
