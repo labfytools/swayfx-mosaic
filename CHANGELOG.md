@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved static nested-grab fixture failure: sole unchanged-binary run confirms identity/output/camera/tiled clip and exact whole-H2 pre-popup references, then fails before any click/grab on a native-SHM versus painted-height assertion. INCONCLUSIVE / UNDECIDED; additional IPC-y/titlebar assumption invalid, offline assertion audit insufficient. Raw runner exit1 and compositor exit0 retained; popup/standard gates NOT TESTED, no retry/build/production change. Historical runner and sealed artifacts preserved.
+
 - Preserved independent static RGB/input/standard retest: corrected shared predicate and real replay pass; exact whole-H2 RGB, H1 retained/H2 forbidden pixels, real target/reference clicks and targeted splith clip removal/input pass. FEASIBLE for this matrix. Terminal exit IPC makes runner exit 1 after measured gates and compositor exit 0; raw failure retained and offline diagnosis passes. No new compositor/library build or production change.
 
 - Preserved static focus/input/standard fixture failure: exact static binary and loaded pair verified; one run stopped before captures/input on an incorrect border-width fixture assertion. INCONCLUSIVE / UNDECIDED; camera and clip traces retained, RGB/clicks/splith NOT TESTED, no retry or production change.
