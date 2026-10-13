@@ -472,3 +472,19 @@ uncommitted and unpublished, and readiness only permits requesting a separate
 future authorization. No compositor/runtime authorization,
 production/UX/package change or STEP20D work follows. Architecture UNDECIDED;
 STEP20C NEXT; production multi-output NOT YET SUPPORTED.
+
+
+## Preserved static nested runtime handoff — experimental evidence
+
+The [handoff and valid-grab report](design/STEP20C_STATIC_NESTED_RUNTIME_HANDOFF_AND_VALID_GRAB.md)
+records PASS transfer/preflight and one unchanged-static-binary run, verdict
+INCONCLUSIVE. Four genuine grabs and sampled E1/E2 Mosaic crossing pixels,
+E1 visible/forbidden input and dismissal passed. E2 reached splith with mapped
+popups and standard pixels, then a fixture root-window consistency predicate
+rejected the old-to-cleared clip transition. Offline retained observations
+support settled clip removal; standard A/B input, explicit child close/A survival
+and final H2 restoration remain NOT TESTED. Raw runner/IPC exit1 and clean
+compositor/client exits0 remain intact. No rerun or algorithm change; historical phase B
+is preserved for publication by the E2 completion batch. Architecture UNDECIDED, STEP20C NEXT,
+production multi-output NOT YET SUPPORTED; broader damage/generation/output/
+effects/ABI/distribution gates remain open.
