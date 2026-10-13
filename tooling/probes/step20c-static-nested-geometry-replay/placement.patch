@@ -1,0 +1,16 @@
+--- a/nested-client.c
++++ b/nested-client.c
+@@ -205,7 +205,12 @@
+ int main(int argc,char **argv) {
+     signal(SIGTERM,stop);
+     const char *placement=argc>1?argv[1]:"b_cross";
+-    if (!strcmp(placement,"visible")) {
++    /* EXPERIMENTAL: only placement changes; serial/grab/lifecycle stay historical.
++     * Both 1x1 anchors lie inside their parent SHM window geometry. */
++    if (!strcmp(placement,"static_cross")) {
++        a.anchor_x=100; a.anchor_y=80; a.width=350;
++        b.anchor_x=100; b.anchor_y=60; b.width=300;
++    } else if (!strcmp(placement,"visible")) {
+         a.anchor_x=50; a.anchor_y=80; a.width=250;
+         b.anchor_x=20; b.anchor_y=60; b.width=170;
+     } else if (!strcmp(placement,"both_cross")) {

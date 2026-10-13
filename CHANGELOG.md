@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Local offline nested geometry/fixture review protocol: separate SHM, assigned/rendered, scene, XDG and PNG spaces; exhaustive assertion/source/test register and independent review required. No graphical launch authorized; final offline verdict INCONCLUSIVE.
+
 - Preserved static nested-grab fixture failure: sole unchanged-binary run confirms identity/output/camera/tiled clip and exact whole-H2 pre-popup references, then fails before any click/grab on a native-SHM versus painted-height assertion. INCONCLUSIVE / UNDECIDED; additional IPC-y/titlebar assumption invalid, offline assertion audit insufficient. Raw runner exit1 and compositor exit0 retained; popup/standard gates NOT TESTED, no retry/build/production change. Historical runner and sealed artifacts preserved.
 
 - Preserved independent static RGB/input/standard retest: corrected shared predicate and real replay pass; exact whole-H2 RGB, H1 retained/H2 forbidden pixels, real target/reference clicks and targeted splith clip removal/input pass. FEASIBLE for this matrix. Terminal exit IPC makes runner exit 1 after measured gates and compositor exit 0; raw failure retained and offline diagnosis passes. No new compositor/library build or production change.
@@ -72,3 +74,17 @@
 
 - Ordinary SwayFX remains separately installed and independently updatable; no automatic session replacement.
 - Multi-output clipping, multiple runtime rows, camera animation, Session V2 restore, final cell sizing, and daily-driver qualification remain open. See [known limitations](docs/KNOWN_LIMITATIONS.md).
+
+### Preserved offline nested geometry gate — EXPERIMENTAL / INCONCLUSIVE
+
+- Replayed true static failure SHM/configure/destination/titlebar/paint data and
+  nine preserved private/control popup campaigns, without any graphical run.
+- Prepared typed shared geometry, actual-configure/lifecycle/input validators,
+  exhaustive145 historical assertions/2288 AST-site register and195 passing
+  offline tests; compiled only three C17 client utilities, never executed.
+- Preserved the independent deep review and bounded repair/delta review:
+  input correlation and terminal IPC evidence fixes accepted, readiness receipt
+  semantic-completeness defect remains CORRECTION_REQUIRED. No READY claim.
+- Preserved the [geometry gate](docs/design/STEP20C_STATIC_NESTED_GEOMETRY_REPLAY_GATE.md)
+  and experimental source fixture with its historical INCONCLUSIVE verdict; STEP20C NEXT, architecture UNDECIDED and
+  production multi-output NOT YET SUPPORTED. No production/package/UX change.

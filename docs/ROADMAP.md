@@ -388,3 +388,14 @@ are NOT TESTED in this campaign. No algorithm/production/UX/package change or
 retry; budget exhausted. Correct/replay geometry predicates offline before a
 separately authorized fresh static popup gate. Historical failure evidence is frozen;
 STEP20C NEXT, production multi-output NOT YET SUPPORTED.
+
+The preserved [static nested geometry replay gate](design/STEP20C_STATIC_NESTED_GEOMETRY_REPLAY_GATE.md)
+is EXPERIMENTAL / INCONCLUSIVE. True SHM/configure/paint geometry and nine
+historical popup cases were replayed;145 historical asserts and2288 current AST
+sites are classified, with partial executed coverage explicit.195 offline tests
+pass, but independent review retains CORRECTION_REQUIRED: the readiness
+aggregator accepts semantically incomplete proof records. Input correlation and
+terminal-code repairs are accepted; no readiness or new static popup result.
+No graphical run or execution reservation occurred. Close the residual offline
+receipt-validation gate before proposing runtime. Architecture UNDECIDED;
+STEP20C NEXT; production multi-output NOT YET SUPPORTED.
