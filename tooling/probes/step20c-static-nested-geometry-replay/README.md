@@ -125,7 +125,7 @@ forbidden action is separated from earlier legitimate visible buttons and its
 actual observed events feed dismissal. Corrupted coordinates, recipients,
 extra invisible buttons and button order fail closed.
 
-R02: `aggregate` is the single gate implementation used by writer and tests.
+Historical R02 disposition (published freeze): `aggregate` was the single gate implementation used by writer and tests.
 SHM, XDG/configured geometry, source contracts/pins, client provenance/C17,
 all nine historical cases, register/coverage/core and test receipts are
 mandatory and checked for freshness and structural presence. The bounded
@@ -151,7 +151,7 @@ remain inventoried. Re-run the offline sequence after source changes before
 handing the final unsealed fixture to the parent for bounded review.
 
 
-## Final offline disposition — INCONCLUSIVE / NOT READY
+## Historical offline disposition — INCONCLUSIVE / NOT READY
 
 The independent tester ran195 tests with0 failures and all9 historical cases.
 The bounded independent reviewer ran65 targeted tests PASS and resolved R01/R03,
@@ -167,3 +167,46 @@ The four raw technical PASS labels do not prove effective receipt completeness.
 The fixture is prepared but NOT READY; run.py must remain unexecuted. The next
 step is a separately scoped offline correction of aggregate's semantic-content
 guards and their negative regressions. No new runtime/budget is authorized.
+
+## Local R02 semantic integrity correction
+
+See [the receipt contract](../../../docs/design/STEP20C_STATIC_NESTED_RECEIPT_INTEGRITY_GATE.md).
+`aggregate()` remains the single decision function used by `write()` and tests.
+`receipt_integrity.py` replays the original data through existing geometry,
+protocol and R01 correlation functions in disposable offline directories, and
+compares every typed receipt field. It uses the existing AST checker and checks
+complete mandatory file inventories. Null clips in standard controls, zero-color
+null bboxes and scenario-specific absent standard/dismissal observations remain
+legitimate; required toggle/close/dismissal observations cannot be deleted.
+No historical receipt, raw log, image or sealed manifest is rewritten.
+
+Bindings cover all fixture sources, all mandatory receipt file bytes and the
+canonical parsed content. A changed source/receipt loses prior acceptance.
+Unit M0 acceptance is synthetic, explicitly memory-only. The real writer only
+reads the external independent review; it never signs acceptance. Final readiness
+is determined by that exact bound review and the genuine test receipts.
+
+In a new offline LAB, run the existing replay, run `tests_offline.py LAB --preflight`,
+then `assertions.py LAB`. Copy these genuine receipts under `LAB/preflight/results/`
+before running `tests_offline.py LAB --negative-preflight`. Regenerate the AST
+receipts and replace the new LAB preflight snapshot with these genuinely executed
+negative-suite receipts, then run `tests_offline.py LAB` for the final validation.
+This prevents circular test bootstrapping
+without forcing PASS or substituting old source hashes. Regenerate the final
+AST receipts, freeze source/evidence bytes, and request independent review.
+Initial preflight covers non-aggregator tests. Negative preflight collects all
+required negative test IDs without claiming M0 readiness. Final validation uses
+that complete snapshot and must pass its positive controls as well. The suite
+executes the R02/mutation/writer tests. No synthetic review file is written.
+All generated output belongs outside Git. These are Python/offline operations
+only; no runtime command or ledger initialization is authorized.
+
+The historical INCONCLUSIVE verdict above remains frozen. The local semantic
+gate can establish only readiness to request a separate future authorization,
+never static popup success. R01/R03 and the runner are unchanged. Phase B is
+local, uncommitted and unpublished.
+
+The bounded B-01 repair treats JSON decoder/encoder recursion exhaustion as
+malformed required evidence. The real writer must replace pre-existing READY
+artifacts with INCONCLUSIVE; decoder failure never retains a qualified gate.
+This is receipt error handling, not a compositor/SceneFX rejection.

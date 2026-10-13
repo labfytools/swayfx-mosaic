@@ -20,6 +20,9 @@ from support import save
 
 HERE=Path(__file__).resolve().parent
 RECEIPTS=[]
+FIXTURE_SNAPSHOT=None
+BASELINE_CHECKED=False
+BOOTSTRAP=False
 ACTIVE=None
 TRACKED={str(p.resolve()) for p in HERE.glob('*.py')}
 LINES={}
@@ -331,8 +334,8 @@ class Case(unittest.TestCase):
             auth['registered_lab']='wrong';f.write_text(json.dumps(auth));self.reject('registered-fresh-lab-required',lambda:authorize(root,f))
     def test_negative_offline_lab_authorization(self):
         with tempfile.TemporaryDirectory(prefix='geometry-auth-test-') as tmp:
-            root=Path(tmp);f=root/'auth.json';f.write_text(json.dumps(dict(scope='one-new-static-nested-headless-run',explicit_user_authorization=True,ticket='synthetic-future-unit-test',registered_lab=str(LAB.resolve()))))
-            self.reject('historical-or-offline-lab-forbidden',lambda:authorize(LAB,f))
+            root=Path(tmp);f=root/'auth.json';f.write_text(json.dumps(dict(scope='one-new-static-nested-headless-run',explicit_user_authorization=True,ticket='synthetic-future-unit-test',registered_lab=str(HISTORICAL.resolve()))))
+            self.reject('historical-or-offline-lab-forbidden',lambda:authorize(HISTORICAL,f))
     def test_negative_ledger_sequences(self):
         with tempfile.TemporaryDirectory(prefix='geometry-ledger-test-') as tmp:
             p=Path(tmp)/'budget.json';initial_for_offline_test(p);reserve(p,'click');state=json.loads(p.read_text());state['events'][0]['seq']=5
@@ -455,40 +458,41 @@ class Case(unittest.TestCase):
         data,recorded=self.exchange(invocation=True);self.assertIsNone(data['ipc_exit'])
         self.assertIn('ipc_error',data);self.assertFalse(data['scientific_cleanup_pass']);self.assertEqual(recorded,[])
 
+    def test_receipt_fail_closed_empty(self):
+        from write_results import aggregate
+        result=aggregate({},lambda path:None,{})
+        self.assertEqual(result['status'],'INCONCLUSIVE')
+        self.assertTrue(result['blockers'])
+
+    def test_receipt_fail_closed_status_only(self):
+        from write_results import aggregate,REQUIRED
+        result=aggregate({n:{'status':'PASS'} for n in REQUIRED},lambda path:None,{})
+        self.assertEqual(result['status'],'INCONCLUSIVE')
+        self.assertEqual(set(result['markers'].values()),{'INCONCLUSIVE'})
+
     def aggregate_fixture(self):
         from write_results import REQUIRED,aggregate
         from support import sha
-        evidence={n:json.loads((LAB/'results'/(n+'.json')).read_text()) for n in REQUIRED}
-        # CONTRACT: all acceptance here is a synthetic complete snapshot in memory.
-        # The real receipts are written only after the entire suite finishes.
-        evidence['test-receipts']['status']='PASS'
-        for receipt in evidence['test-receipts']['tests']:receipt['status']='PASS'
-        # CONTRACT: this is synthetic independent acceptance in memory only.
-        bindings={'source_delta':{'fixture':'synthetic-final-hash'},'evidence_sha256':{'proof':'synthetic-proof-hash'}}
-        evidence['independent-review']=dict(status='ACCEPTED',independent=True,**bindings)
-        # INVARIANT: immutable synthetic hash provider avoids bootstrapping current
-        # test receipts from the suite that is still producing those receipts.
-        # WHY: source inventories in this synthetic snapshot must describe the
-        # same bytes even while the real on-disk register awaits regeneration.
-        evidence['test-receipts']['source_inventory']={n:sha(n) for n in evidence['test-receipts']['source_inventory']}
-        evidence['assertion-register']['source_inventory']={n:sha(HERE.parents[2]/n) for n in evidence['assertion-register']['source_inventory']}
-        hashes={}
-        for name in ('historical-evidence','client-provenance','test-receipts'):
-            hashes.update(evidence[name].get('inputs',{}));hashes.update(evidence[name].get('source_inventory',{}))
-        reg=evidence['assertion-register'];hashes.update({str(HERE.parents[2]/n):v for n,v in reg['source_inventory'].items()});hashes.update(reg['artifact_inventory'])
-        audit=evidence['source-audit'];hashes.update({c['source']:c['sha256'] for c in audit['contracts']})
-        hashes[audit['source_version_receipt']]=audit['source_version_sha256']
-        for case in evidence['historical-replay']['cases']:
-            hashes.update({str(NESTED/case['case']/n):v for n,v in case['files'].items()})
-        client=evidence['client-provenance'];hashes[str(HERE/'placement.patch')]=client['patch']
-        builds={v['client']:v for v in client['builds']}
-        for command in client['commands']:
-            label=command['label'];argv=command['argv']
-            if label.endswith('-compile') and label[:-8] in builds:
-                build=builds[label[:-8]];source=next(v for v in argv if v.endswith('/'+label[:-8]+'.c'))
-                hashes[source]=build['source'];hashes[argv[argv.index('-o')+1]]=build['binary']
-                hashes.update({str(Path(source).parent/n):v for n,v in client['protocols'].items()})
-        return aggregate,evidence,lambda path:hashes.get(str(path)),bindings
+        from receipt_integrity import make_bindings
+        # WHY: bootstrap with genuine current preflight receipts, collected
+        # before aggregation tests, not forced statuses or obsolete hashes.
+        root=LAB/'preflight'/'results'
+        global FIXTURE_SNAPSHOT
+        import pickle,copy
+        if FIXTURE_SNAPSHOT is None:
+            evidence={n:json.loads((root/(n+'.json')).read_text()) for n in REQUIRED}
+            FIXTURE_SNAPSHOT=(pickle.dumps(evidence),make_bindings(evidence))
+        # Separate object graphs for every mutation. The serialization is an
+        # in-memory copy of our own JSON, never untrusted external pickle input.
+        evidence=pickle.loads(FIXTURE_SNAPSHOT[0])
+        bindings=copy.deepcopy(FIXTURE_SNAPSHOT[1])
+        # CONTRACT: synthetic acceptance exists in this independent memory
+        # snapshot only. It is never persisted as the real review.
+        evidence['independent-review']=dict(status='ACCEPTED',independent=True,scope='SYNTHETIC_IN_MEMORY_ONLY',**__import__('copy').deepcopy(bindings))
+        def safe_hash(path):
+            try:return sha(path)
+            except (OSError,ValueError):return None
+        return aggregate,evidence,safe_hash,bindings
 
     def test_positive_aggregate_complete_bound(self):
         fn,e,h,b=self.aggregate_fixture();result=fn(e,h,b)
@@ -576,24 +580,237 @@ for gate in REQUIRED:
         current=copy.deepcopy(original);current['evidence_sha256'][gate]='changed-proof'
         result=fn(e,h,current)
         self.assertEqual(result['status'],'INCONCLUSIVE')
-        self.assertTrue(any('review not bound' in x for x in result['blockers']))
+        self.assertTrue(any(x.startswith('independent-review:') for x in result['blockers']))
     setattr(Case,'test_negative_aggregate_'+gate.replace('-','_')+'_stale_review_binding',test)
+
+
+def integrity_negative(self, label, mutate, group, category):
+    import copy
+    from receipt_integrity import make_bindings
+    fn,e,h,b=self.aggregate_fixture()
+    global BASELINE_CHECKED
+    if not BOOTSTRAP and not BASELINE_CHECKED:
+        self.assertEqual(fn(e,h,b)['status'],'READY_FOR_NEW_RUNTIME','mutation baseline must be complete')
+        BASELINE_CHECKED=True
+    mutate(e)
+    # Rebind the synthetic memory-only review to the mutation so the semantic
+    # checker itself must reject it; stale-review rejection alone is inadequate.
+    if group!='independent-review':
+        import hashlib
+        from receipt_integrity import encoded
+        b=copy.deepcopy(b)
+        b['evidence_content'][group]=hashlib.sha256(encoded(e[group]).encode()).hexdigest()
+        b['evidence_sha256'][group]=b['evidence_content'][group]
+        e['independent-review']=dict(status='ACCEPTED',independent=True,scope='SYNTHETIC_IN_MEMORY_ONLY',**copy.deepcopy(b))
+    r=fn(e,h,b)
+    self.assertEqual(r['status'],'INCONCLUSIVE',label)
+    self.assertTrue(any(x.startswith(group+':') for x in r['blockers']),(label,r['blockers']))
+    for marker,dependencies in r['marker_scope'].items():
+        if group in dependencies:self.assertEqual(r['markers'][marker],'INCONCLUSIVE',label)
+    MUTATIONS.append(dict(label=label,category=category,gate=group,status=r['status'],blockers=r['blockers'],markers=r['markers']))
+
+
+MUTATIONS=[]
+def original_R02(self, name):
+    def mutate(e):
+        if name=='A':e['historical-replay']['cases'][0]['input_correlation']={'status':'PASS'}
+        elif name=='B':
+            for k in ('content','PNG_bbox','count','visible_intersection'):e['rendered'][k]=None
+        else:e['popup-root']['cases']=[{} for _ in range(9)]
+    integrity_negative(self,'R02-'+name,mutate,{'A':'historical-replay','B':'rendered','C':'popup-root'}[name],'original')
+
+for letter in 'ABC':
+    def test(self,letter=letter):original_R02(self,letter)
+    setattr(Case,'test_integrity_R02_'+letter,test)
+
+
+def essential_paths(evidence):
+    """Required fields, including scenario-specific nested original facts.
+
+    All root/nested observations are inspected in all nine cases. Empty
+    failed_lines/contracts and scenario nulls are legitimate and not mutated
+    into the same value; deleting their schema key still must be rejected.
+    """
+    for gate in REQUIRED:
+        for key in evidence[gate]:yield gate,[key]
+    for gate in ('historical-replay','popup-root','popup-nested'):
+        for index,row in enumerate(evidence[gate]['cases']):
+            def walk(value,path):
+                if isinstance(value,dict):
+                    for k,v in value.items():
+                        yield path+[k]
+                        # File inventories are complete mappings, not samples.
+                        yield from walk(v,path+[k])
+                elif isinstance(value,list) and value and isinstance(value[0],dict):
+                    for i,v in enumerate(value):yield from walk(v,path+[i])
+            for path in walk(row,['cases',index]):yield gate,path
+
+
+def access(e,gate,path):
+    node=e[gate]
+    for part in path[:-1]:node=node[part]
+    return node,path[-1]
+
+
+def test_deletions(self):
+    # WHY: bulk mutation receipts prove returned verdicts, not line coverage.
+    # Individual R02/positive tests keep tracing; suppressing tracing here
+    # avoids charging repeated read/hash loops as scientific branch proof.
+    sys.settrace(None)
+    _,e,_,_=self.aggregate_fixture()
+    for gate,path in essential_paths(e):
+        def mutate(d,gate=gate,path=path):
+            parent,key=access(d,gate,path);del parent[key]
+        integrity_negative(self,gate+'/'+str(path),mutate,gate,'deletion')
+
+
+def test_nullifications(self):
+    sys.settrace(None)
+    _,e,_,_=self.aggregate_fixture()
+    for gate,path in essential_paths(e):
+        parent,key=access(e,gate,path);original=parent[key]
+        for value in (None,{},[], ''):
+            if type(value) is type(original) and value==original:continue
+            def mutate(d,gate=gate,path=path,value=value):
+                parent,key=access(d,gate,path);parent[key]=value
+            integrity_negative(self,gate+'/'+str(path)+'='+repr(value),mutate,gate,'nullification')
+
+
+def test_contradictions(self):
+    sys.settrace(None)
+    attacks=[('rendered',['content',3],320),('rendered',['content',1],0),
+        ('rendered',['PNG_bbox',0],483),('rendered',['count'],182215),
+        ('rendered',['count'],True),('applied',['scroll'],161.0),
+        ('applied',['globalclip',0],0),('applied',['titlebar'],0),
+        ('native-shm',['stride'],1280),('native-shm',['buffer'],True),
+        ('xdg-configure',['assigned_ACK'],20),('positioner',['flags'],1)]
+    attacks += [('assertion-register',['records',0,'test_status'],None),
+        ('assertion-register',['records',0,'domain'],'invented classification'),
+        ('assertion-register',['historical_asserts'],True),
+        ('test-receipts',['tests',0,'executed_lines'],[]),
+        ('test-receipts',['tests',0,'id'],'__main__.Case.test_fabricated')]
+    for index in range(9):
+        for field,value in [('owner',999),('workspace',999),('origin',[0,0]),('A',[0,0,300,170]),('B',[0,0,300,130]),('case','unknown')]:
+            attacks.append(('historical-replay',['cases',index,field],value))
+        attacks += [('historical-replay',['cases',index,'protocol','grabs',1,'parent'],'TOPLEVEL'),
+            ('historical-replay',['cases',index,'protocol','grabs',1,'serial'],55),
+            ('historical-replay',['cases',index,'input_correlation','buttons',0,'target'],'POPUP_B'),
+            ('historical-replay',['cases',index,'input_correlation','buttons',0,'serial'],999),
+            ('historical-replay',['cases',index,'input_correlation','buttons',1,'state'],1),
+            ('historical-replay',['cases',index,'input_correlation','callbacks',-1,'local'],[99999.0,1.0]),
+            ('historical-replay',['cases',index,'input_correlation','actions',0,'motion_msec'],99999),
+            ('popup-root',['cases',index,'origin'],[0,0]),
+            ('popup-root',['cases',index,'clip'],[0,0,1,1]),
+            ('popup-nested',['cases',index,'B'],[0,0,300,130]),
+            ('popup-nested',['cases',index,'protocol','grabs',1,'ack'],999)]
+    for gate,path,value in attacks:
+        def mutate(d,gate=gate,path=path,value=value):
+            parent,key=access(d,gate,path);parent[key]=value
+        integrity_negative(self,gate+'/'+str(path),mutate,gate,'contradiction')
+    for gate in ('historical-replay','popup-root','popup-nested'):
+        integrity_negative(self,gate+' duplicated identity',lambda d,gate=gate:d[gate]['cases'].__setitem__(1,__import__('copy').deepcopy(d[gate]['cases'][0])),gate,'contradiction')
+
+
+def test_freshness(self):
+    import copy
+    fn,e,h,b=self.aggregate_fixture()
+    from receipt_integrity import make_bindings
+    from support import sha
+    # A correct source hash replaced by the hash of its own mutated file must
+    # still lose the previously signed acceptance.
+    for key in ('source_delta','evidence_sha256','evidence_content'):
+        current=copy.deepcopy(b);first=next(iter(current[key]));current[key][first]='0'*64
+        r=fn(e,h,current);self.assertEqual(r['status'],'INCONCLUSIVE');self.assertTrue(r['blockers'])
+        MUTATIONS.append(dict(label='stale '+key,category='freshness',status=r['status'],blockers=r['blockers']))
+    for gate in REQUIRED:
+        d=copy.deepcopy(e);d[gate]={};current=make_bindings(d)
+        # Old acceptance, even with fresh current bindings, is not reusable.
+        r=fn(d,h,current);self.assertEqual(r['status'],'INCONCLUSIVE')
+        self.assertTrue(any(x.startswith('independent-review:') for x in r['blockers']))
+    for key in ('status','independent','scope','source_delta','evidence_sha256','evidence_content'):
+        for value in (None,{},[], ''):
+            integrity_negative(self,'review '+key+'='+repr(value),lambda d,key=key,value=value:d['independent-review'].__setitem__(key,value),'independent-review','freshness')
+    for file in (str(HERE/'placement.patch'),str(HERE/'receipt_integrity.py'),next(iter(e['historical-evidence']['inputs']))):
+        r=fn(e,lambda p,file=file:None if str(p)==file else h(p),b)
+        self.assertEqual(r['status'],'INCONCLUSIVE');self.assertTrue(r['blockers'])
+        MUTATIONS.append(dict(label='missing '+file,category='freshness',status=r['status'],blockers=r['blockers']))
+
+
+def test_omissions(self):
+    fn,e,h,b=self.aggregate_fixture()
+    self.assertIsNone(e['popup-root']['cases'][4]['clip'])
+    self.assertIsNone(e['popup-nested']['cases'][0]['standard'])
+    self.assertIsNone(e['popup-nested']['cases'][2]['dismissal'])
+    self.assertIsNone(e['historical-replay']['cases'][0]['colors']['right']['POPUP_B']['bbox'])
+    self.assertEqual(e['historical-replay']['cases'][0]['colors']['right']['POPUP_B']['count'],0)
+    self.assertEqual(fn(e,h,b)['status'],'READY_FOR_NEW_RUNTIME')
+
+
+def test_writer(self):
+    import contextlib,io,copy
+    from write_results import write,aggregate
+    from receipt_integrity import make_bindings
+    fn,e,h,b=self.aggregate_fixture()
+    # CONTRACT: no synthetic acceptance is persisted, even in the writer test.
+    e['independent-review']={'status':'NOT RUN','independent':False}
+    with tempfile.TemporaryDirectory(prefix='mosaic-real-writer-') as tmp:
+        root=Path(tmp);(root/'results').mkdir()
+        for name,data in e.items():save(root,name,data)
+        current=make_bindings(e,{n:root/'results'/(n+'.json') for n in REQUIRED})
+        expected=aggregate(e,h,current)
+        with contextlib.redirect_stdout(io.StringIO()):observed=write(root)
+        self.assertEqual(observed['status'],expected['status']);self.assertEqual(observed['markers'],expected['markers'])
+        e['rendered']['count']=None;save(root,'rendered',e['rendered'])
+        with contextlib.redirect_stdout(io.StringIO()):observed=write(root)
+        self.assertEqual(observed['status'],'INCONCLUSIVE')
+        self.assertEqual(observed['markers']['STATIC_NESTED_SHM_RENDER_GEOMETRY_REPLAY'],'INCONCLUSIVE')
+        self.assertTrue(any(x.startswith('rendered:') for x in observed['blockers']))
+        # CONTRACT B-01: decoder exhaustion must invalidate persisted READY,
+        # not merely raise before publication. The fake prior marker is an
+        # adversarial receipt in this test-owned temp LAB, not signed review.
+        prior={'status':'READY_FOR_NEW_RUNTIME','marker':'SWAYFX_MOSAIC_STATIC_NESTED_GEOMETRY_OFFLINE_GATE=READY_FOR_NEW_RUNTIME'}
+        save(root,'runner-readiness',prior);save(root,'offline-gate',prior)
+        (root/'results/rendered.json').write_text('['*100000+'0'+']'*100000)
+        with contextlib.redirect_stdout(io.StringIO()):observed=write(root)
+        self.assertEqual(observed['status'],'INCONCLUSIVE')
+        self.assertTrue(any(x.startswith('rendered:') for x in observed['blockers']))
+        for name in ('runner-readiness','offline-gate'):
+            persisted=json.loads((root/'results'/(name+'.json')).read_text())
+            self.assertEqual(persisted['status'],'INCONCLUSIVE')
+            self.assertEqual(persisted['markers']['STATIC_NESTED_SHM_RENDER_GEOMETRY_REPLAY'],'INCONCLUSIVE')
+        save(LAB,'writer-entrypoint-test',dict(status='PASS',aggregate_source=str(Path(aggregate.__code__.co_filename)),mock=False,synthetic_review_persisted=False,invalid=observed['blockers']))
+
+
+Case.test_integrity_deletions=test_deletions
+Case.test_integrity_nullifications=test_nullifications
+Case.test_integrity_contradictions=test_contradictions
+Case.test_integrity_freshness=test_freshness
+Case.test_integrity_legitimate_omissions=test_omissions
+Case.test_integrity_writer=test_writer
 
 
 class Result(unittest.TextTestResult):
     def addSuccess(self,test):
-        super().addSuccess(test);RECEIPTS.append(dict(id=test.id(),status='PASS',mode='negative' if '.test_negative_' in test.id() else 'positive',executed_lines=sorted(LINES.get(test.id(),set())),failed_lines=sorted(FAILED.get(test.id(),set())),contracts=[{'contract':c,'pass':v} for c,v in sorted(CONTRACTS.get(test.id(),set()))]))
+        super().addSuccess(test);RECEIPTS.append(dict(id=test.id(),status='PASS',mode='negative' if '.test_negative_' in test.id() else 'positive',executed_lines=sorted(LINES.get(test.id(),set())),failed_lines=sorted(FAILED.get(test.id(),set())),contracts=[{'contract':c,'pass':v} for c,v in sorted(CONTRACTS.get(test.id(),set()))]));sys.settrace(trace)
     def addFailure(self,test,err):
-        super().addFailure(test,err);RECEIPTS.append(dict(id=test.id(),status='FAIL',error=str(err[1])))
+        super().addFailure(test,err);RECEIPTS.append(dict(id=test.id(),status='FAIL',error=str(err[1])));sys.settrace(trace)
     def addError(self,test,err):
-        super().addError(test,err);RECEIPTS.append(dict(id=test.id(),status='FAIL',error=str(err[1])))
+        super().addError(test,err);RECEIPTS.append(dict(id=test.id(),status='FAIL',error=str(err[1])));sys.settrace(trace)
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('lab',type=Path);args=parser.parse_args();LAB=args.lab
+    parser=argparse.ArgumentParser();parser.add_argument('lab',type=Path);parser.add_argument('--preflight',action='store_true');parser.add_argument('--negative-preflight',action='store_true');args=parser.parse_args();LAB=args.lab
     sys.settrace(trace)
-    result=unittest.TextTestRunner(verbosity=2,resultclass=Result).run(unittest.defaultTestLoader.loadTestsFromTestCase(Case))
+    suite=unittest.defaultTestLoader.loadTestsFromTestCase(Case)
+    if args.preflight:suite=unittest.TestSuite(t for t in suite if 'aggregate' not in t.id() and 'integrity' not in t.id())
+    if args.negative_preflight:suite=unittest.TestSuite(t for t in suite if t._testMethodName not in ('test_positive_aggregate_complete_bound','test_integrity_legitimate_omissions'))
+    BOOTSTRAP=args.negative_preflight
+    result=unittest.TextTestRunner(verbosity=2,resultclass=Result).run(suite)
     sys.settrace(None)
     save(LAB,'test-receipts',dict(source_inventory={str(p):__import__('hashlib').sha256(p.read_bytes()).hexdigest() for p in HERE.iterdir() if p.suffix in ('.py','.patch','.json')},status='PASS' if result.wasSuccessful() else 'FAIL',tests=RECEIPTS))
     save(LAB,'positive',{'tests':[r for r in RECEIPTS if r.get('mode')=='positive']})
     save(LAB,'negative',{'tests':[r for r in RECEIPTS if r.get('mode')=='negative']})
+    if not args.preflight:
+        save(LAB,'aggregate-negative',{'status':'PASS' if result.wasSuccessful() else 'FAIL', 'mutations':MUTATIONS})
+        for category in ('deletion','nullification','contradiction','freshness','original'):
+            save(LAB,category+'-tests',{'status':'PASS' if result.wasSuccessful() else 'FAIL','mutations':[r for r in MUTATIONS if r['category']==category]})
     raise SystemExit(0 if result.wasSuccessful() else 1)

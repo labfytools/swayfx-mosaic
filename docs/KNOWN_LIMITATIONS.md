@@ -395,3 +395,21 @@ terminal-code repairs are accepted; no readiness or new static popup result.
 No graphical run or execution reservation occurred. Close the residual offline
 receipt-validation gate before proposing runtime. Architecture UNDECIDED;
 STEP20C NEXT; production multi-output NOT YET SUPPORTED.
+
+## Local receipt semantic integrity gate — offline only
+
+The [R02 receipt-integrity gate](design/STEP20C_STATIC_NESTED_RECEIPT_INTEGRITY_GATE.md)
+is local and experimental. The real writer/aggregate share semantic validation
+through the existing immutable-data replay and R01 input correlation; typed
+receipt content, scenario-specific omissions, AST/test inventories and final
+review bindings are checked. Historical geometry evidence remains INCONCLUSIVE;
+this correction cannot retroactively qualify static popups. The final local gate
+is READY_FOR_NEW_RUNTIME: 206 offline tests pass, 13478 recorded invalid mutations
+are rejected, and independent review accepts the final 18-source/15-receipt
+bindings after one bounded B-01 writer repair. The actual writer returns READY
+with five PASS markers and no blockers. R02 is RESOLVED for this offline fixture;
+partial AST coverage and runtime limitations remain explicit. Phase B is
+uncommitted and unpublished, and readiness only permits requesting a separate
+future authorization. No compositor/runtime authorization,
+production/UX/package change or STEP20D work follows. Architecture UNDECIDED;
+STEP20C NEXT; production multi-output NOT YET SUPPORTED.
