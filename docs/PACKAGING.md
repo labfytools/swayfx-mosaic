@@ -52,3 +52,14 @@ not establish shared-wlroots update safety or a one-file notice policy.
 A distinct private dynamic library would add an owned file and require a new
 explicit packaging decision. No option is adopted; the contract above remains
 authoritative and unchanged. The historical evidence is frozen, PARTIALLY_FEASIBLE.
+
+## Preserved static distribution contract evidence
+
+The [static dossier](design/STEP20C_SCENEFX_STATIC_DISTRIBUTION_CONTRACT.md)
+records STATIC_STAGE_FILE_SHAPE_PASS from one private stage, with no library
+or notice file installed. It proposes dependency/security/version/notice
+policies, without changing this package contract or PKGBUILD. Embedded notices
+are technically extractable in a disposable copy; complete/legal delivery is
+unqualified. A separate installed notice (N3) would need an explicit user
+decision changing the exact-one-file rule. PARTIALLY_FEASIBLE; no production
+strategy adopted. The historical evidence is preserved; it does not authorize production integration.

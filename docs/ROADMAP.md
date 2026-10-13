@@ -298,3 +298,18 @@ SceneFX shared dependency, but shared wlroots interposition, updates, security
 maintenance and license notices remain gates. A distinct private shared library
 would require a new file-ownership decision; upstream API acceptance is unknown.
 No integration or packaging contract is approved. The historical audit is frozen as evidence; STEP20C stays NEXT, production multi-output NOT YET SUPPORTED.
+
+The preserved [static distribution contract dossier](design/STEP20C_SCENEFX_STATIC_DISTRIBUTION_CONTRACT.md)
+is **EXPERIMENTAL / PARTIALLY_FEASIBLE**, conclusion
+**STATIC_DISTRIBUTION_REQUIRES_CONTRACT_DECISION**. One private Meson DESTDIR
+stage of the hash-qualified static executable contains exactly
+`/usr/bin/swayfx-mosaic`; this proves file shape only. The 85 overlapping
+exports and 31/34 wlroots scene bindings into the executable remain explicit
+paired-version constraints, not automatically defects. Only the pinned
+SceneFX 0.5 / observed wlroots 0.20.2 pair has non-graphical evidence.
+Notices (including generated protocols), security ownership, upgrades, rollback
+and graphical semantics remain gates. A disposable notice-section extraction
+passes mechanically; legal distribution compliance is not approved.
+The upstream API dossier is preserved and not submitted. Production strategy:
+**NONE — USER DECISION REQUIRED**. Packaging/UX contracts are unchanged;
+STEP20C stays NEXT and production multi-output NOT YET SUPPORTED.
