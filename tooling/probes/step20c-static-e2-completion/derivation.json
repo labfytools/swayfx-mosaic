@@ -1,0 +1,113 @@
+{
+  "status": "EXPERIMENTAL; historical acceptance does not apply",
+  "base_commit": "c5f96a34e3924275179365938d02f3a318c0c4bf",
+  "copies": [
+    {
+      "file": "model.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/model.py",
+      "sha256": "a578fc589fb092dae3ccdcf8c4eec12a97e515f721decc4c968078dedcb2367a",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "observations.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/observations.py",
+      "sha256": "3a9193bb4221c2da00c3231d60bf90b51403833d06e0178b87f86dd44c9251db",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "ipc_predicates.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/ipc_predicates.py",
+      "sha256": "4e0615d155183d841543131bf540056a2c2d49eb23f64997a6867d796633548c",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "pixels.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/pixels.py",
+      "sha256": "d315ddad978238ffbf1c8e4d712d4608ba23564703332d814f627f57f7b6e7f5",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "predicates.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/predicates.py",
+      "sha256": "1435832e61d9694fc80d429281d6b6a18b11f56a97d7ea4fee8d117e6953ba72",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "support.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/support.py",
+      "sha256": "84687f5421ad8ef5d2e6bf1eb334fa5377ed9c59741a2cd593c043cf63c5fd76",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "ledger.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/ledger.py",
+      "sha256": "3492ed714780d94fd72f9bbc0a7dc27586c62ee4955a2570ad15ec3809c5e12d",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "run.py",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/run.py",
+      "sha256": "4382f2c0ffc8a41a6a65aecfca72dff762ded528f667288d179acbb354a9fcc9",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "placement.patch",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/placement.patch",
+      "sha256": "e0e87fb0cb3d6e7dafb1cd59ccb50f323f2934e65247526199da1695487d3e4a",
+      "kind": "identifiable initial copy; see final diff"
+    },
+    {
+      "file": "client-contract.json",
+      "source": "tooling/probes/step20c-static-nested-geometry-replay/client-contract.json",
+      "sha256": "f330328c9f7965aed06cf73693054631847eceef39de18f2978b27120a645613",
+      "kind": "identifiable initial copy; see final diff"
+    }
+  ],
+  "exact_reusable_test_methods": {
+    "setUp": "a14a5a3abba8b66055da064bdfc63ae75653c3ca35aed826f981a801b85f72e8",
+    "tearDown": "f311acf2dab71c6461a030efaec2062641116bb51e32fc49f8ee0b4643d21557",
+    "reject": "32eb998c52f371a172b64e21ef149c0e9df16efec884244d4e7ce80961f249ce",
+    "test_positive_geometry": "de5050007c1ae5833c57cfd8fa292f4b9e7b7e91ac63547ba6789c0c70bd7a69",
+    "test_negative_native_height": "cb1b1da00973603eebc33464cfcb31dc0385263af45b54c876952d8e6f990625",
+    "test_negative_scene_window_y": "124a051ce6e7e9d44efb10536c99fcedc9122255fe74f63fcda56483135866dd",
+    "test_negative_titlebar": "59d2e6723e6aae2500f6ac290eeea0bdfca78da8ec9b23b66aa0678d44f90217",
+    "test_negative_output_origin": "88d8c9c9a497f35f4db87085e15a32ea7c8c91e6ea5106b3a1f20058c518d84b",
+    "test_negative_png_space": "52bfb9216cab05c0b75db3aba426610986ec0618d4146b9049023c8c303c01fa",
+    "test_negative_png_bounds": "7096414bdf77bcf91a341cc2ed4884356090aa29f5ba5bffb6c9e1d6705bb981",
+    "test_negative_assignment": "bdf5b8441835124a327b8108cd5d6c25a5d91de5106672d02d17ec33ca9605aa",
+    "test_negative_workspace": "28a098ea5b234dbba4ca93dff5599e94bbff355893cca4d1074f87d71ff6b102",
+    "test_negative_owner": "a06eff220c9af175bb7278bca28c8cd874305f846a673402f157304dc05b4719",
+    "test_negative_old_camera": "2bdf861835107873f2a6ed9d9417da1213139c29ad502c09a6964ed6efe558db",
+    "test_negative_local_global_clip": "187bab95f02f45a6de3b9dd0415c950690e3e947c04319a068a39997b7387ffa",
+    "test_negative_buffer_identity": "81699b15d784ce23f1bbc4565a1b669afb49d98580ebb722949e0dc7c74b955c",
+    "test_negative_pending": "602a0ec9d828adf7351b8012d958b84be5395eb754c01b9513753f28aa39f8f7",
+    "test_negative_scale": "8833c6bc39c9b460ad1e9cd00fb0da1a02f2edbba1631081f2df98cedd1c107c",
+    "test_negative_transform": "392ef3eb03a7938b038e1b2bf5db405950a7a0f4c6829e63d80dddc34ed111fc",
+    "test_positive_popup": "c622548815bf95fac5b28f56d490e0f9c68955ef86c1009f3d3dc9940a2b92c3",
+    "test_negative_parent": "62a71f2976d9e32acf870c03dd031fad8a3427366304662d78be19ee686f22f9",
+    "test_negative_ack": "502d89e4e302adb14d3a52bfbdf6eca59cf46f75ef7825ad73bde90dc2d0b23a",
+    "test_negative_map": "e73c12f816d8832d00d8498bcbb777f8d8a910a1fad1b9c72750180516ff9bb7",
+    "test_negative_constraints": "d723171a9897f3dc316b4e4691a1ac99a3b3e47fac2d7f518f3b0f640e018830",
+    "test_negative_pointer": "c8b574c028e4cac0ec7e4148c5a8fc52c97138e5bcce3d18be1b4bae486ceada",
+    "test_negative_occlusion": "7bcbcf61ebb34e2196f296c4ca0000aaaf8070a7bdb68afb43473d4e0e19a956",
+    "test_negative_standard_stale_origin": "0dc996c2c9684e446383637aa0b4c6eec4a5ee2c98deaf672a4b0df19a326e2c",
+    "test_positive_standard_fresh": "2803ac768aad04f0af424876c04147e852b9351255ca4b92c40945475ac17d39",
+    "test_negative_E2_identity": "2f9ce9a4afdd72e7e7c4cba0b7cdb9ecb64c98ef84aae863e7db8632806e9a0a",
+    "test_negative_E2_serials": "c9950830e1c4244aec26a4fc3768c9db4e0d0b17fc24c3317c7f28e23f24ac65",
+    "test_positive_E2": "e20673fbed4498af2b0698d32fb51b57e56137de37bddba70af5e5d6ddc3f655",
+    "test_positive_terminal": "b37653a245fab18cc21af8a32c76827ba3ec8bda1e503822d6100274b52d9916",
+    "test_negative_terminal_incomplete": "68f75b8803fea6d62cb28baef6de8a5a80ec9dd0d91386f0c2bb93b957c335e5",
+    "test_negative_terminal_unhandled": "f7348d3486097e8ef162b7fe70931af3a668724de97de59fb1c106f0ec449547",
+    "test_negative_terminal_compositor": "1d58c53f4dd048068e747d77174ccb27cc12791bf05f29909f1f939923cb5be0",
+    "test_negative_terminal_protocol": "aa0fcdbe99b83282f6c7571e9d29b15be8140fc887bc35873905dd93cb9db878",
+    "test_negative_terminal_rescue": "2de8c7b755bc94167a8d4de40d721030cc41a6aa75fb46f2d761cd747b79f4af",
+    "test_negative_dismissal_hit": "d5ca0ee4a496a30072ea873683731b1e9a2ff6c3ed7a16259d43cd244ac0d942",
+    "test_negative_dismissal_incomplete": "559d5ac3b5d46a93b7cbf9c2f4d9f42d801d8da0a87e12102aaf4173da49980d",
+    "test_positive_dismissal": "8bc890b903eef26d0cab7a2c3c3248eed33f5ff58b64a5bd25bc79abd33a4bd1",
+    "test_positive_button": "7a320d9fab94dfc9ab483fcb1ba5f584bf9e39d2ec99bb21e03f5e247e8fa6b5",
+    "test_negative_button": "9511648c2dce6549036e1fa87f5d9b14cd920af0d3b7cf316bbcdbaa5e703726",
+    "test_negative_root_ambiguous": "6aaf85c8ab2f4e40ecc99db1e5601372313d9fbbc64d27676881337211f2d7f5",
+    "test_positive_root": "af8106e6e5264e21c9257f1af7fd591c2e5f2849033f9317ac6e6e35c4619312"
+  },
+  "test_source": "tooling/probes/step20c-static-nested-geometry-replay/tests_offline.py"
+}

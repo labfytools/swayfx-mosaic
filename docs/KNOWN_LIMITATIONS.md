@@ -429,3 +429,34 @@ compositor/client exits0 remain intact. No rerun or algorithm change; historical
 is preserved for publication by the E2 completion batch. Architecture UNDECIDED, STEP20C NEXT,
 production multi-output NOT YET SUPPORTED; broader damage/generation/output/
 effects/ABI/distribution gates remain open.
+
+
+## Static E2 completion support boundary — 2026-10-13
+
+The [completion report](design/STEP20C_STATIC_E2_TRANSITION_AND_COMPLETION.md)
+and [current fixture results](../tooling/probes/step20c-static-e2-completion/README_RESULTS.md)
+record B offline PASS, C **FEASIBLE for the tested E2 matrix** and D initial
+**BUILDABLE** with an accepted **COMMENT-ONLY / NOT REBUILT** delta. C closes
+its own sampled standard-return B/A input, explicit B-close/A-survival and normal
+owner-close/full-H2 restoration gates. It does not rewrite the historical
+INCONCLUSIVE campaign, whose corresponding gates remain NOT TESTED.
+
+C ran once on normal scale1 outputs at x=-800/0 with the unchanged static binary.
+New static hidden-owner, saved-buffer/effects, vertical/scaled/rotated and
+migration/resize matrices remain unqualified; historical private evidence retains
+its own limits. Settled full-H2 equality and 256 sampled damage traces do not
+qualify every intermediate frame, complete damage/stale pixels or atomic
+transaction/render/input generation. Universal click-through and final offscreen
+popup UX remain UNDECIDED.
+
+D's new binary has **NOT TESTED** graphics. Initial builds/model/ELF/stage pass;
+annotated sources are NOT REBUILT and the future recipe is syntax-only, NOT RUN.
+The exact five-file private stage includes the binary and four license notices;
+semantic ABI maintenance is NOT ESTABLISHED, legal compliance NOT APPROVED,
+and release/security names remain required. Raw terminal IPC1 and startup
+EGL_BAD_ALLOC entries remain preserved despite runner/compositor/client0 and
+completed C observations. A fresh old 206-suite setup retained 145 PASS/61 setup
+errors, separate from B's accepted104 tests and the historical206 result.
+Final batch audit is PASS / ACCEPTED. Publication identities are recorded in
+Git history and the private closeout receipt. STEP20C remains NEXT, production
+multi-output NOT YET SUPPORTED; no daily-driver qualification follows.

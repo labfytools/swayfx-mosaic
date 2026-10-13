@@ -488,3 +488,31 @@ compositor/client exits0 remain intact. No rerun or algorithm change; historical
 is preserved for publication by the E2 completion batch. Architecture UNDECIDED, STEP20C NEXT,
 production multi-output NOT YET SUPPORTED; broader damage/generation/output/
 effects/ABI/distribution gates remain open.
+
+
+## Static E2 completion and private integration evidence — 2026-10-13
+
+The [E2 completion report](design/STEP20C_STATIC_E2_TRANSITION_AND_COMPLETION.md)
+records independent B/C/D acceptance. The shared applied-transition predicate
+passes 104 targeted offline tests; its 277-site source audit is classification,
+not graphical execution proof. The sole unchanged-static-binary C run is
+**EXPERIMENTAL / FEASIBLE for the tested matrix**: two real grabbed popups,
+owner-derived Mosaic pixels, ordered current/applied splith return with clips
+absent, standard B input, explicit B close/A survival, standard A input and normal
+owner close with exact whole-H2 restoration. This correlates one live root and
+owner/workspace/output; it does not establish an atomic transaction generation.
+The historical runtime remains INCONCLUSIVE with its missing gates unchanged.
+
+The conditional private D candidate is **BUILDABLE for its initial build**,
+model/ELF and five-file DESTDIR stage. Its distinct binary is graphically
+**NOT TESTED**. The accepted four-file comment correction is
+**COMMENT-ONLY / NOT REBUILT**; the initial recipe/sources/manifests/binary remain
+unchanged. Characterized85 overlap symbols and 17 local structs/six offsets do
+not establish maintained semantic ABI. Legal notice closure and named release/
+security roles remain open. No production source, public ABI, library dependency,
+packaging or popup UX contract changes. Final batch audit is PASS / ACCEPTED; documentation and fixtures are approved
+for normal publication.
+[Current fixture results](../tooling/probes/step20c-static-e2-completion/README_RESULTS.md)
+supersede the original README's sealed pre-execution status only.
+Architecture remains UNDECIDED for production integration; STEP20C NEXT,
+production multi-output NOT YET SUPPORTED.

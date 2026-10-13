@@ -1,0 +1,13 @@
+{
+  "status": "EXPERIMENTAL exact retained historical client/protocol byte contract",
+  "source_receipt": "client-provenance.json in offline LAB; scanner must reproduce exact hashes",
+  "adapted_nested_sha256": "6eafb8ad63b0b06b8297e7e72711056a6d42bdf33ccf795793eeda77f98221c7",
+  "placement_sha256": "e0e87fb0cb3d6e7dafb1cd59ccb50f323f2934e65247526199da1695487d3e4a",
+  "protocols": {
+    "xdg-shell-client.h": "a09726137ea9fe1a23d58c95f1d33ab77a3fc692c63726bc82fbc91ab8e5c6fc",
+    "xdg-shell-protocol.c": "9e12fcd5676d8c6b6cfd233c2eba563163c0ea7e586cb6e27f202a328323c7f0",
+    "virtual-pointer-client.h": "0dcb6107cf948a007dcef0a6b2192e4f7b9166c0f57b499ca49b7aaf48adc56c",
+    "virtual-pointer-protocol.c": "a72e9b38dd5ed0c49fae22aa2f01883aea76075ad33f6399d9b2033df4330675"
+  },
+  "native_nested_sha256": "2e40c98af72a0df8b316810589a0be8f4425a763db1de448b49a7813956b6f7d"
+}

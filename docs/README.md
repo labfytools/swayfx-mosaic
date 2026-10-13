@@ -347,3 +347,19 @@ compositor/client exits0 remain intact. No rerun or algorithm change; historical
 is preserved for publication by the E2 completion batch. Architecture UNDECIDED, STEP20C NEXT,
 production multi-output NOT YET SUPPORTED; broader damage/generation/output/
 effects/ABI/distribution gates remain open.
+
+
+[Static E2 completion and private integration results](design/STEP20C_STATIC_E2_TRANSITION_AND_COMPLETION.md)
+and [current fixture results](../tooling/probes/step20c-static-e2-completion/README_RESULTS.md):
+EXPERIMENTAL. B 104 targeted offline tests PASS with independent acceptance;
+C FEASIBLE for the sole static nested-popup standard-return/input/normal-close
+matrix; D initial candidate BUILDABLE, accepted comment delta COMMENT-ONLY /
+NOT REBUILT, distinct candidate graphics NOT TESTED. The original fixture
+[README](../tooling/probes/step20c-static-e2-completion/README.md) is the sealed
+pre-execution protocol, preserved byte-for-byte; current status is in
+README_RESULTS. Historical INCONCLUSIVE verdicts remain unchanged. Final batch
+audit is PASS / ACCEPTED, with publication identities recorded in Git history
+and the private closeout receipt. Complete damage,
+atomic generation, wider static graphics/output coverage, maintained ABI and
+legal/maintenance gates remain open. STEP20C NEXT, production multi-output
+NOT YET SUPPORTED; no production/UX/packaging contract change.

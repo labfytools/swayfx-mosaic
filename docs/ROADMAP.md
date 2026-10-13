@@ -433,3 +433,29 @@ compositor/client exits0 remain intact. No rerun or algorithm change; historical
 is preserved for publication by the E2 completion batch. Architecture UNDECIDED, STEP20C NEXT,
 production multi-output NOT YET SUPPORTED; broader damage/generation/output/
 effects/ABI/distribution gates remain open.
+
+
+## Static E2 completion and conditional private integration — 2026-10-13
+
+The [completion report](design/STEP20C_STATIC_E2_TRANSITION_AND_COMPLETION.md)
+records B offline PASS with accepted final handoff, C independent ACCEPTED /
+**FEASIBLE for the tested matrix**, and conditional D initial **BUILDABLE**.
+C measures two genuine grabs, applied standard return, B then A standard input,
+explicit child close/A survival and normal owner close with exact whole-H2 RGB.
+Historical INCONCLUSIVE evidence is unchanged. D passes its one SceneFX build,
+one Mosaic build/model/ELF check and one exact five-file stage with zero graphics
+or installations. The accepted comment delta is **COMMENT-ONLY / NOT REBUILT**;
+C does not qualify the different D binary. The original fixture README remains
+a sealed pre-execution protocol; use
+[README_RESULTS](../tooling/probes/step20c-static-e2-completion/README_RESULTS.md).
+
+Final batch audit is PASS / ACCEPTED with no BLOCKING finding. The accompanying
+documentation/fixture publication and its verified remote identities are recorded
+in Git history and the private closeout receipt.
+A separate bounded authorization is required for an annotated rebuild or D's
+exact-binary graphical qualification. Complete damage, atomic generation, static
+hidden-owner/effects/saved-buffer continuity, wider output/migration matrices,
+maintained ABI, notice/legal closure and named maintenance roles remain gates.
+This is STEP20C evidence, not implementation of roadmap STEP20D. STEP20A DONE;
+STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED. Production multi-output
+remains NOT YET SUPPORTED. No production/UX/packaging contract changes.

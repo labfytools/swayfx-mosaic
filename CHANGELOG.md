@@ -106,3 +106,24 @@ uncommitted and unpublished, and readiness only permits requesting a separate
 future authorization. No compositor/runtime authorization,
 production/UX/package change or STEP20D work follows. Architecture UNDECIDED;
 STEP20C NEXT; production multi-output NOT YET SUPPORTED.
+
+
+## Static E2 completion and private integration evidence — 2026-10-13
+
+- Recorded the independently accepted shared applied-standard-transition gate:
+  104 targeted offline tests PASS, historical replay and 277 classified assertion
+  sites, with the separate older-suite 145 PASS/61 setup errors preserved.
+- Recorded the sole unchanged-static-binary E2 run as EXPERIMENTAL / FEASIBLE
+  for two genuine grabs, Mosaic pixels, applied splith return, standard B/A
+  input, explicit B close/A survival and normal owner close/full-H2 restoration.
+  Raw terminal IPC1, startup entries and historical INCONCLUSIVE findings remain.
+- Recorded a private initial integration candidate BUILDABLE from one SceneFX
+  build, one Mosaic build/model/ELF check and one exact five-file DESTDIR stage.
+  Its distinct binary is graphically NOT TESTED. Independent P2 comment repair
+  is accepted as COMMENT-ONLY / NOT REBUILT; initial recipe/build evidence stays
+  unchanged, recipe execution NOT RUN and legal compliance NOT APPROVED.
+- Added the [completion report](docs/design/STEP20C_STATIC_E2_TRANSITION_AND_COMPLETION.md)
+  and [current fixture results](tooling/probes/step20c-static-e2-completion/README_RESULTS.md),
+  preserving the original README as a sealed pre-execution protocol. Final batch
+  audit is PASS / ACCEPTED with no BLOCKING finding. No production source, UX, package, public ABI
+  or cumulative patch change; STEP20C NEXT, multi-output NOT YET SUPPORTED.
