@@ -270,3 +270,16 @@ whole-cache equivalence and intermediate frames remain unqualified. A
 separate pristine/untraced boundary-sampling gate should precede ABI/package
 qualification. This evidence freeze changes no production or UX contract.
 STEP20C stays **NEXT**, multi-output **NOT YET SUPPORTED**.
+
+The preserved [optimized edge causality gate](design/STEP20C_OPTIMIZED_BLUR_EDGE_CAUSALITY_PROBE.md)
+is **PARTIALLY_FEASIBLE**, architecture **UNDECIDED**. Four completed fixed
+negative-origin runs qualify pristine/private splith and same-binary Mosaic
+OPT-off/on controls. Pristine/private full images and Mosaic trace-off/on
+full images are exact at six homologous states; common glass across layouts
+is also exact. Historical right/bottom differences persist without new traces,
+with max RGB delta 6, fresh central pixels and stable whole H2. Native FBO
+history causality remains unproved despite source/model support. R3 damage
+extents cover stabilized differences only. No clipping regression or required
+invariant violation is established. A separate SceneFX ABI/package audit is
+now justified, retaining this shared rendering limitation; optional selective
+GPU observation requires a new scoped ticket. This evidence is preserved without a production change. STEP20C stays NEXT, production multi-output NOT YET SUPPORTED.
