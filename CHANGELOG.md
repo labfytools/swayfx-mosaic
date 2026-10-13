@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved SceneFX/wlroots ABI/package audit: current stock build and exact-one-file staging PASS; experimental shared clip functions absent from stock despite common SONAME. Private static build/loader passes, but wlroots interposition, notices, security and version-maintenance gates remain. PARTIALLY_FEASIBLE; architectural decision required. No integration or system change; the historical ABI evidence is published separately from any later distribution-contract investigation.
+
 - Preserved optimized-edge gate: four completed controls reproduce the same boundary differences in pristine SceneFX, private splith and Mosaic without OPT traces. Same-binary Mosaic trace-off/on and pristine/private standard match full RGB at six states; central freshness, H2 stability and sampled clipping hold. PARTIALLY_FEASIBLE, architecture UNDECIDED: reduced-domain FBO history has source/model support but no native causal observation. Separate ABI/package audit justified; optional bounded GPU study remains unexecuted. No production change; historical graphical campaign closed.
 
 - Preserved optimized blur cache probe: private splith/Mosaic used a real background source and output-scoped GPU cache, naturally reconstructed A/B/A and restored exact central filtered pixels with stable whole H2 RGB. Boundary equivalence still differs by up to six RGB levels in both private modes. Pristine C0 failed before captures; its duplicate initial image was charged after observation, with no retry or numerical budget overrun. PARTIALLY_FEASIBLE, architecture UNDECIDED; neutrality and whole-cache correctness unqualified. No production change; the historical campaign is closed.

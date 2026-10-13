@@ -41,3 +41,14 @@ The repository contains full source for development. The exporter constructs the
 6. If Mosaic fails, use the normal SwayFX session. Do not overwrite `/usr/bin/sway` to recover.
 
 See [upstream maintenance](UPSTREAM.md) and [development](DEVELOPMENT.md) for the operational procedure.
+
+## Preserved experimental ABI/package audit
+
+The [STEP20C audit](design/STEP20C_SCENEFX_ABI_PACKAGE_FEASIBILITY.md) separately
+validates the unchanged current package's stock build and exact-one-file stage.
+The experimental shared binary cannot resolve its two private clip functions
+with stock SceneFX. A private static build removes SceneFX DT_NEEDED, but does
+not establish shared-wlroots update safety or a one-file notice policy.
+A distinct private dynamic library would add an owned file and require a new
+explicit packaging decision. No option is adopted; the contract above remains
+authoritative and unchanged. The historical evidence is frozen, PARTIALLY_FEASIBLE.

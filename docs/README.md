@@ -195,3 +195,17 @@ GPU observation requires a new scoped ticket. This evidence is preserved without
 
 The [preserved edge source fixture](../tooling/probes/step20c-optimized-blur-edge/README.md)
 records pinned reconstruction, offline checks and the exhausted four-slot ledger.
+
+The preserved [SceneFX ABI/package audit](design/STEP20C_SCENEFX_ABI_PACKAGE_FEASIBILITY.md)
+is **PARTIALLY_FEASIBLE**, architecture
+**SCENEFX_ABI_PACKAGE_REQUIRES_ARCHITECTURAL_DECISION**. The unchanged current
+package builds with stock SceneFX and stages exactly /usr/bin/swayfx-mosaic.
+The shared experimental binary needs two clip exports absent from stock
+despite the same SONAME. Static embedding builds and resolves without a
+SceneFX shared dependency, but shared wlroots interposition, updates, security
+maintenance and license notices remain gates. A distinct private shared library
+would require a new file-ownership decision; upstream API acceptance is unknown.
+No integration or packaging contract is approved. The historical audit is frozen as evidence; STEP20C stays NEXT, production multi-output NOT YET SUPPORTED.
+
+The [ABI/package source fixture](../tooling/probes/step20c-scenefx-abi-package/README.md)
+records build-only reconstruction and non-graphical diagnostic commands.
