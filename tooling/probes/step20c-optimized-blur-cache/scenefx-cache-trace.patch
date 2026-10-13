@@ -1,0 +1,245 @@
+--- a/include/render/opt_probe.h
++++ b/include/render/opt_probe.h
+@@ -0,0 +1,16 @@
++#ifndef OPT_PROBE_H
++#define OPT_PROBE_H
++#include <stdio.h>
++#include <stdlib.h>
++#include <time.h>
++/* WHY: correlate passive observations with the runner's CLOCK_MONOTONIC.
++ * CONTRACT: no driver query/readback or retained object; opt-in logs only.
++ * INVARIANT: native rendering and lifetime decisions are unchanged. */
++static inline long long opt_probe_ns(void) {
++    struct timespec t;
++    clock_gettime(CLOCK_MONOTONIC, &t);
++    return (long long)t.tv_sec * 1000000000LL + t.tv_nsec;
++}
++#define OPT_LOG(event, format, ...) do { if (getenv("OPT_TRACE")) \
++    fprintf(stderr, event " ns=%lld " format "\n", opt_probe_ns(), __VA_ARGS__); } while (0)
++#endif
+--- a/types/scene/wlr_scene.c
++++ b/types/scene/wlr_scene.c
+@@ -1,3 +1,4 @@
++#include "render/opt_probe.h"
+ #include <assert.h>
+ #include <inttypes.h>
+ #include <time.h>
+@@ -1432,6 +1433,7 @@
+ 	scene_blur->dirty = false;
+ 
+ 	scene_node_update(&scene_blur->node, NULL);
++	OPT_LOG("OPT_NODE_CREATE", "node=%p parent=%p size=%dx%d dirty=0", (void *)scene_blur, (void *)parent, width, height);
+ 
+ 	return scene_blur;
+ }
+@@ -1455,6 +1457,7 @@
+ 		return;
+ 	}
+ 
++	OPT_LOG("OPT_DIRTY_SET", "node=%p enabled=%d before=%d size=%dx%d", (void *)blur_node, blur_node->node.enabled, blur_node->dirty, blur_node->width, blur_node->height);
+ 	blur_node->dirty = true;
+ 
+ 	scene_node_update(&blur_node->node, NULL);
+@@ -2108,7 +2111,15 @@
+ 		return;
+ 	}
+ 
+-	int x = entry->x - data->logical.x;
++    if (node->type == WLR_SCENE_NODE_BUFFER) {
++        struct wlr_scene_buffer *sb = wlr_scene_buffer_from_node(node);
++        struct wlr_scene_surface *ss = wlr_scene_surface_try_from_buffer(sb);
++        OPT_LOG("OPT_BUFFER_DRAW", "output=%s node=%p buffer=%p surface=%p global=%d,%d dest=%dx%d source=%dx%d draw=%d,%d,%d,%d",
++            data->output->output->name, (void *)node, (void *)sb->buffer, ss ? (void *)ss->surface : NULL,
++            entry->x, entry->y, sb->dst_width, sb->dst_height, sb->buffer ? sb->buffer->width : 0, sb->buffer ? sb->buffer->height : 0,
++            render_region.extents.x1, render_region.extents.y1, render_region.extents.x2, render_region.extents.y2);
++    }
++    int x = entry->x - data->logical.x;
+ 	int y = entry->y - data->logical.y;
+ 
+ 	struct wlr_box dst_box = {
+@@ -2300,7 +2311,12 @@
+ 		break;
+ 	case WLR_SCENE_NODE_OPTIMIZED_BLUR:;
+ 		struct wlr_scene_optimized_blur *scene_blur = wlr_scene_optimized_blur_from_node(node);
+-		// Re-render the optimized blur buffer when needed. Retry rendering
++		OPT_LOG("OPT_NODE_RENDER", "output=%s node=%p enabled=%d dirty=%d has_blur=%d size=%dx%d visible=%d,%d,%d,%d draw=%d,%d,%d,%d radius=%.3f passes=%d",
++            data->output->output->name, (void *)node, node->enabled, scene_blur->dirty, fx_pass->has_blur, scene_blur->width, scene_blur->height,
++            node->visible.extents.x1, node->visible.extents.y1, node->visible.extents.x2, node->visible.extents.y2,
++            render_region.extents.x1, render_region.extents.y1, render_region.extents.x2, render_region.extents.y2,
++            scene->blur_data.radius, scene->blur_data.num_passes);
++        // Re-render the optimized blur buffer when needed. Retry rendering
+ 		// until there's a visible blur_node.
+ 		if (fx_pass->has_blur && is_scene_blur_enabled(&scene->blur_data)
+ 				&& scene_blur->dirty) {
+@@ -2323,9 +2339,12 @@
+ 				.blur_data = &scene->blur_data,
+ 				.blur_strength = 1.0f,
+ 			};
+-			bool result = fx_render_pass_add_optimized_blur(fx_pass, &blur_options);
++			OPT_LOG("OPT_REGEN_ATTEMPT", "output=%s node=%p dirty=%d", data->output->output->name, (void *)node, scene_blur->dirty);
++            bool result = fx_render_pass_add_optimized_blur(fx_pass, &blur_options);
++            OPT_LOG("OPT_REGEN_RESULT", "output=%s node=%p result=%d", data->output->output->name, (void *)node, result);
+ 			if (result) {
+ 				scene_blur->dirty = false;
++                OPT_LOG("OPT_DIRTY_CLEAR", "output=%s node=%p dirty=%d", data->output->output->name, (void *)node, scene_blur->dirty);
+ 			}
+ 		}
+ 		break;
+@@ -2369,7 +2388,11 @@
+ 			.ignore_transparent = mask != NULL,
+ 			.blur_strength = blur->strength,
+ 		};
+-		fx_render_pass_add_blur(fx_pass, &blur_options);
++		OPT_LOG("OPT_REGULAR_NODE", "output=%s node=%p parent=%p optimized=%d strength=%.3f enabled=%d global=%d,%d size=%dx%d draw=%d,%d,%d,%d mask=%p",
++            data->output->output->name, (void *)node, (void *)node->parent, blur_options.use_optimized_blur, blur->strength, node->enabled,
++            entry->x, entry->y, blur->width, blur->height,
++            render_region.extents.x1, render_region.extents.y1, render_region.extents.x2, render_region.extents.y2, (void *)mask);
++        fx_render_pass_add_blur(fx_pass, &blur_options);
+ 		break;
+ 	}
+ 
+@@ -3623,8 +3646,10 @@
+ 		return false;
+ 	}
+ 
+-	wlr_output_state_set_buffer(state, buffer);
+-	wlr_buffer_unlock(buffer);
++    wlr_output_state_set_buffer(state, buffer);
++    OPT_LOG("OPT_OUTPUT_BUFFER", "output=%s buffer=%p submitted=1 damage=%d,%d,%d,%d committed=%u",
++        output->name, (void *)buffer, state->damage.extents.x1, state->damage.extents.y1, state->damage.extents.x2, state->damage.extents.y2, state->committed);
++    wlr_buffer_unlock(buffer);
+ 
+ 	if (scene_output->in_timeline != NULL) {
+ 		wlr_output_state_set_wait_timeline(state, scene_output->in_timeline,
+--- a/render/fx_renderer/fx_pass.c
++++ b/render/fx_renderer/fx_pass.c
+@@ -1,3 +1,4 @@
++#include "render/opt_probe.h"
+ #include <math.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -67,6 +68,7 @@
+ 		return false;
+ 	}
+ 
++	struct fx_framebuffer *opt_before = pass->fx_offscreen_buffers->optimized_blur_buffer;
+ 	// Update the buffers if needed
+ 	struct fx_renderer *renderer = pass->buffer->renderer;
+ 	const int width = pass->buffer->buffer->width;
+@@ -83,10 +85,17 @@
+ 	fx_framebuffer_get_or_create_custom(renderer, output->allocator, width, height, false,
+ 			&pass->fx_offscreen_buffers->optimized_no_blur_buffer, &failed);
+ 
+-	// Bind back to the default buffer
+-	fx_framebuffer_bind(pass->buffer);
+-
+-	if (failed) {
++	OPT_LOG("OPT_CACHE_STATE", "output=%s cache=%p blur=%p plain=%p blur_fbo=%u plain_fbo=%u size=%dx%d failed=%d reuse=%d",
++        output->name, (void *)pass->fx_offscreen_buffers,
++        (void *)pass->fx_offscreen_buffers->optimized_blur_buffer,
++        (void *)pass->fx_offscreen_buffers->optimized_no_blur_buffer,
++        pass->fx_offscreen_buffers->optimized_blur_buffer ? pass->fx_offscreen_buffers->optimized_blur_buffer->fbo : 0,
++        pass->fx_offscreen_buffers->optimized_no_blur_buffer ? pass->fx_offscreen_buffers->optimized_no_blur_buffer->fbo : 0,
++        width, height, failed, opt_before != NULL && opt_before == pass->fx_offscreen_buffers->optimized_blur_buffer);
++    // Bind back to the default buffer
++    fx_framebuffer_bind(pass->buffer);
++
++    if (failed) {
+ 		fx_offscreen_buffers_destroy(pass->fx_offscreen_buffers);
+ 		pass->fx_offscreen_buffers = NULL;
+ 		wlr_log(WLR_ERROR, "Failed to create effect framebuffers");
+@@ -1128,8 +1137,12 @@
+ 		}
+ 		buffer = get_main_buffer_blur(pass, &blur_options);
+ 	}
+-	if (!buffer) {
+-		goto finish;
++	OPT_LOG("OPT_BLUR_USE", "output=%s cache=%p chosen=%p optimized=%d strength=%.3f fbo=%u",
++        ((const struct wlr_output *)pass->fx_offscreen_buffers->addon.owner)->name,
++        (void *)pass->fx_offscreen_buffers, (void *)buffer, fx_options->use_optimized_blur, fx_options->blur_strength,
++        buffer ? buffer->fbo : 0);
++    if (!buffer) {
++        goto finish;
+ 	}
+ 	struct wlr_texture *wlr_texture =
+ 		fx_texture_from_buffer(&renderer->wlr_renderer, buffer->buffer);
+@@ -1223,7 +1236,11 @@
+ 	struct fx_render_blur_pass_options blur_options = *fx_options;
+ 	blur_options.current_buffer = pass->buffer;
+ 	blur_options.tex_options.base.clip = &clip;
+-	struct fx_framebuffer *fx_buffer = get_main_buffer_blur(pass, &blur_options);
++	OPT_LOG("OPT_GPU_REBUILD", "output=%s cache=%p source=%p source_fbo=%u region=%d,%d,%d,%d",
++        ((const struct wlr_output *)pass->fx_offscreen_buffers->addon.owner)->name,
++        (void *)pass->fx_offscreen_buffers, (void *)pass->buffer, pass->buffer->fbo,
++        clip.extents.x1, clip.extents.y1, clip.extents.x2, clip.extents.y2);
++    struct fx_framebuffer *fx_buffer = get_main_buffer_blur(pass, &blur_options);
+ 	if (fx_buffer != NULL) {
+ 		// Render the newly blurred content into the blur_buffer
+ 		fx_render_pass_read_to_buffer(pass, &clip,
+@@ -1238,6 +1255,7 @@
+ 
+ 	pop_fx_debug(renderer);
+ 	TRACY_BOTH_ZONES_END;
++	OPT_LOG("OPT_GPU_RESULT", "output=%s cache=%p result=%d blurred=%p", ((const struct wlr_output *)pass->fx_offscreen_buffers->addon.owner)->name, (void *)pass->fx_offscreen_buffers, fx_buffer != NULL, (void *)fx_buffer);
+ 	return fx_buffer != NULL;
+ }
+ 
+@@ -1259,7 +1277,11 @@
+ 		goto done;
+ 	}
+ 
+-	// Draw onto the dst_buffer
++	OPT_LOG("OPT_GPU_COPY", "output=%s cache=%p dst=%p src=%p dst_fbo=%u src_fbo=%u region=%d,%d,%d,%d",
++        pass->fx_offscreen_buffers ? ((const struct wlr_output *)pass->fx_offscreen_buffers->addon.owner)->name : "none",
++        (void *)pass->fx_offscreen_buffers, (void *)dst_buffer, (void *)src_buffer, dst_buffer->fbo, src_buffer->fbo,
++        region.extents.x1, region.extents.y1, region.extents.x2, region.extents.y2);
++    // Draw onto the dst_buffer
+ 	fx_framebuffer_bind(dst_buffer);
+ 	wlr_render_pass_add_texture(&pass->base, &(struct wlr_render_texture_options) {
+ 		.texture = src_tex,
+@@ -1279,6 +1301,7 @@
+ 			.height = src_buffer->buffer->height,
+ 		},
+ 	});
++	OPT_LOG("OPT_GPU_COPY_DRAWN", "dst=%p src=%p", (void *)dst_buffer, (void *)src_buffer);
+ 	wlr_texture_destroy(src_tex);
+ 
+ 	// Bind back to the main WLR buffer
+--- a/render/fx_renderer/fx_offscreen_buffers.c
++++ b/render/fx_renderer/fx_offscreen_buffers.c
+@@ -1,3 +1,4 @@
++#include "render/opt_probe.h"
+ #include <stdlib.h>
+ #include <wlr/types/wlr_output.h>
+ #include <wlr/util/addon.h>
+@@ -10,6 +11,7 @@
+ static void addon_handle_destroy(struct wlr_addon *addon) {
+ 	struct fx_offscreen_buffers *fbos = wl_container_of(addon, fbos, addon);
+ 
++	OPT_LOG("OPT_CACHE_DESTROY", "output=%s cache=%p blur=%p plain=%p", ((const struct wlr_output *)fbos->addon.owner)->name, (void *)fbos, (void *)fbos->optimized_blur_buffer, (void *)fbos->optimized_no_blur_buffer);
+ 	// Make sure to free the buffers
+ 	if (fbos->optimized_blur_buffer != NULL) {
+ 		wlr_buffer_drop(fbos->optimized_blur_buffer->buffer);
+@@ -87,6 +89,7 @@
+ 		free(fbos);
+ 		return NULL;
+ 	}
++	OPT_LOG("OPT_CACHE_ALLOC", "output=%s cache=%p", output->name, (void *)fbos);
+ 	wl_list_insert(&renderer->offscreen_buffers, &fbos->link);
+ 	return fbos;
+ }
+--- a/render/fx_renderer/fx_framebuffer.c
++++ b/render/fx_renderer/fx_framebuffer.c
+@@ -1,3 +1,4 @@
++#include "render/opt_probe.h"
+ #include <stdlib.h>
+ #include <wlr/interfaces/wlr_buffer.h>
+ #include <wlr/render/allocator.h>
+@@ -170,6 +171,7 @@
+ 		return;
+ 	}
+ 
++	OPT_LOG("OPT_FBO_DESTROY", "fbo_object=%p native_buffer=%p fbo=%u", (void *)fx_buffer, (void *)fx_buffer->buffer, fx_buffer->fbo);
+ 	// Release the framebuffer
+ 	wl_list_remove(&fx_buffer->link);
+ 	wlr_addon_finish(&fx_buffer->addon);

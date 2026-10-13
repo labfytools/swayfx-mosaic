@@ -1,0 +1,12 @@
+{
+  "layer": {
+    "url": "https://raw.githubusercontent.com/swaywm/wlr-protocols/b010a03648b88d143236de193bddbfea0c08bc84/unstable/wlr-layer-shell-unstable-v1.xml",
+    "commit": "b010a03648b88d143236de193bddbfea0c08bc84",
+    "sha256": "996b8c66e1c2276c443336d4cb174634e8e5948823779042f244930525b79cc2"
+  },
+  "xdg": {
+    "path": "/usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml",
+    "sha256": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+    "wayland_protocols": "1.49"
+  }
+}

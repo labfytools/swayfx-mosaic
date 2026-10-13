@@ -314,3 +314,18 @@ all input paths or native GPU lifetime. The earlier crossing campaign's own
 architectural verdict remains UNDECIDED. The new limited-matrix conclusion
 does not authorize a production implementation. Optimized blur/cache and
 SceneFX ABI/package remain separate gates.
+
+The preserved [optimized blur cache probe](design/STEP20C_OPTIMIZED_BLUR_CACHE_PROBE.md)
+is **PARTIALLY_FEASIBLE**, architecture **UNDECIDED**. A real background
+layer under blur_tree triggered natural output-specific cache reconstruction
+and fresh central A/B/A filtered pixels in private splith and Mosaic.
+Sampled final tiled drawing excluded H2, whose whole RGB remained identical;
+output damage extents covered stabilized differences and sampled cache/FBO
+teardown completed. Shared boundary differences up to six RGB levels remain
+unresolved. Pristine C0 failed before captures through a duplicate configure
+fixture; its second initial image was reserved only after observation.
+No numerical budget was exceeded or run repeated. Instrumentation neutrality,
+whole-cache equivalence and intermediate frames remain unqualified. A
+separate pristine/untraced boundary-sampling gate should precede ABI/package
+qualification. This evidence freeze changes no production or UX contract.
+STEP20C stays **NEXT**, multi-output **NOT YET SUPPORTED**.
