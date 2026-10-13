@@ -516,3 +516,28 @@ for normal publication.
 supersede the original README's sealed pre-execution status only.
 Architecture remains UNDECIDED for production integration; STEP20C NEXT,
 production multi-output NOT YET SUPPORTED.
+
+## Preserved overnight STEP20C qualification — 2026-10-14
+
+The [overnight dossier](design/STEP20C_OVERNIGHT_QUALIFICATION_AND_INTEGRATION_GATE_V1.md)
+records fresh private annotated and release-shape binaries with separate exact
+identities. Sampled owner-derived root popup clipping and fully hidden-owner
+empty clips agree with recorded pixels/input in the qualified windows;
+release-shape G has its own horizontal smoke only. These are experimental
+observations, not adopted runtime architecture or a production dependency.
+
+Applied scene callbacks, client input-region commits and native output
+commit/present events remain separate observations. No atomic transaction,
+scene, hit or presented-buffer generation is established. Saved-buffer/GPU
+reference and release lifetime, complete frame damage and instrumentation
+neutrality remain NOT PROVEN. G retains PI listeners and framebuffer
+bind-before-failure ordering after removing reviewed logging statements.
+Local header/layout/symbol checks qualify only the exact recorded pair.
+
+The compositor and its native tiling tree remain authoritative; Row 0 borrows
+workspace->tiling and no additional runtime row or UX policy is adopted.
+STEP20C remains NEXT, production multi-output NOT YET SUPPORTED. The decision
+recommendation is PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE, not integration.
+Final independent review is ACCEPTED / audit PASS for experimental evidence
+fidelity. Documentary publication is prepared, not executed at this edition;
+final publication identities belong to the private receipt and final handoff.

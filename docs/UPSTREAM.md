@@ -61,3 +61,17 @@ SwayFX remains the fallback. All other pairs are NOT QUALIFIED.
 These decisions do not settle popup UX or close STEP20C production gates.
 STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED.
 Production multi-output remains NOT YET SUPPORTED.
+
+## Overnight private maintenance evidence
+
+The [annotated reconstruction report](design/STEP20C_ANNOTATED_REBUILD_AND_PRIVATE_STAGE.md)
+qualifies only the exact private SceneFX 0.5 source and shared wlroots 0.20.2
+build recorded there. Local header/layout/symbol/relocation checks establish no
+future semantic ABI guarantee. Any relevant source or dependency build change
+requires impact review, rebuild and fresh qualification of the new binary;
+no previous SHA's graphics results are inherited. Release and security roles
+remain unnamed, and no SLA is established. Future recipe and notices remain
+PARTIALLY_FEASIBLE: syntax/input correspondence passed, complete makepkg and
+human legal/distribution review remain open. The [decision draft](design/STEP20C_PRODUCTION_INTEGRATION_DECISION_DRAFT.md)
+records proposed monitoring, requalification and rollback without adopting a
+production integration or changing normal SwayFX upgrade independence.

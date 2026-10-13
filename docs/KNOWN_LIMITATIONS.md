@@ -460,3 +460,29 @@ errors, separate from B's accepted104 tests and the historical206 result.
 Final batch audit is PASS / ACCEPTED. Publication identities are recorded in
 Git history and the private closeout receipt. STEP20C remains NEXT, production
 multi-output NOT YET SUPPORTED; no daily-driver qualification follows.
+
+## Preserved overnight STEP20C qualification — 2026-10-14
+
+The [overnight qualification dossier](design/STEP20C_OVERNIGHT_QUALIFICATION_AND_INTEGRATION_GATE_V1.md)
+records a fresh annotated private rebuild and its own bounded graphics evidence,
+plus a separately built release-shape candidate with its own horizontal smoke.
+The [exact matrix](design/STEP20C_ANNOTATED_GRAPHICS_MATRIX.md) contains 18 unique
+runs and 196 captures, without retries. Horizontal C is FEASIBLE for sampled
+cases; the overall result is PARTIALLY_ADVANCED and the integration recommendation
+is PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE, a draft decision, not adoption.
+
+Vertical, scaled, R90 and resize/migration observations remain bounded. D2's
+fixture root association stopped before input/final qualification; saved-buffer
+E2 was NOT EXERCISED; whole-H1 effects restoration failed in both controls;
+F's stale-coordinate assertion stopped its remaining mutations. Atomic
+transaction/input/present identity, complete damage and GPU buffer lifetime
+remain NOT PROVEN. G is SMOKE_FEASIBLE horizontally, without inheriting A's
+matrix or establishing instrumentation neutrality. Exact local ABI/staging
+checks and future recipe syntax/input checks do not qualify future pairs,
+complete makepkg reproduction, actual notice incorporation or legal distribution.
+
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED.
+Production multi-output remains NOT YET SUPPORTED. No production, UX or current
+package contract is changed. Final independent review is ACCEPTED / audit PASS for experimental evidence
+fidelity. Documentary publication is prepared, not executed at this edition;
+production integration remains undecided.

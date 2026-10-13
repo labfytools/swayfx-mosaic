@@ -459,3 +459,27 @@ maintained ABI, notice/legal closure and named maintenance roles remain gates.
 This is STEP20C evidence, not implementation of roadmap STEP20D. STEP20A DONE;
 STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED. Production multi-output
 remains NOT YET SUPPORTED. No production/UX/packaging contract changes.
+
+## Preserved overnight STEP20C qualification — 2026-10-14
+
+The [overnight qualification dossier](design/STEP20C_OVERNIGHT_QUALIFICATION_AND_INTEGRATION_GATE_V1.md)
+advances private evidence through a fresh annotated rebuild, 18 unique graphics
+attempts/196 captures and a separately built release-shape horizontal smoke.
+C horizontal is FEASIBLE for sampled cases; the overall scientific result is
+PARTIALLY_ADVANCED. PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE is the proposed
+integration decision, not an applied decision or READY status.
+
+The next justified gate is targeted evidence with a new authorized scope and
+budget: trigger an actual saved configure, diagnose whole-H1 effects restoration
+against pristine, tie input assertions to applied geometry, and establish
+relevant native lifetime/transaction/damage and instrumentation-neutrality
+proof. Exact-pair requalification, complete package reproduction, actual notice
+incorporation/legal review and release/security nominations remain open.
+Popup hide/dismiss/reposition and grab click-through policy remain undecided.
+Relevant canonical contracts must precede any future implementation.
+
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED.
+Production multi-output remains NOT YET SUPPORTED. No STEP20D work or production
+integration follows automatically from documentary publication. Final independent
+review is ACCEPTED / audit PASS for experimental evidence fidelity. Documentary
+publication is prepared, not executed at this edition.

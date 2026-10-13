@@ -127,3 +127,19 @@ STEP20C NEXT; production multi-output NOT YET SUPPORTED.
   preserving the original README as a sealed pre-execution protocol. Final batch
   audit is PASS / ACCEPTED with no BLOCKING finding. No production source, UX, package, public ABI
   or cumulative patch change; STEP20C NEXT, multi-output NOT YET SUPPORTED.
+
+## 2026-10-14 — preserved private STEP20C overnight qualification
+
+- Record the fresh annotated private rebuild, exact local ABI and five-file
+  DESTDIR stage, 18 unique graphics attempts/196 captures, and separately built
+  release-shape horizontal smoke with its own binary identity.
+- Preserve positive sampled clip/input observations alongside D2 fixture
+  ambiguity, saved-buffer NOT EXERCISED, failed whole-H1 effects restoration,
+  stale-coordinate F assertion, terminal IPC incidents and unproven lifetime,
+  atomic generation, full damage, legal and package qualification.
+- Add the 22-question production integration decision draft and compact
+  source-only provenance. PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE remains a
+  recommendation; STEP20C NEXT and production multi-output NOT YET SUPPORTED.
+  Final independent review is ACCEPTED / audit PASS for experimental evidence
+  fidelity; documentary publication is prepared, not executed at this edition. No production
+  source, current package, UX or historical evidence contract is changed.

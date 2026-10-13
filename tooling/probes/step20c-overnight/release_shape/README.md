@@ -1,0 +1,11 @@
+# Fixture G privé — release-shape
+
+Statut : **EXPERIMENTAL, prêt pour revue indépendante des octets gelés**. Le fixture reprend exactement le scénario C2 horizontal déjà préparé et remplace uniquement l’import du gate. Il cible le binaire G en stage statique, lié à son SHA256 `8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a`, Build ID `83896fdb36f3fd21522becec0e8c5219e15f4b8e`, aux trois sources Mosaic de traces et à wlroots 0.20.2 SHA256 `7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837`.
+
+Le plan d’action reste celui de C2 : 2 chaînes, 4 grabs, 8 clics, 17 captures 800×600, 2 mouvements de caméra, une transition vers `splith`, et 10 mouvements du pointeur. Les prédicats C2 réutilisés vérifient le propriétaire et les popups root/enfant dans H2, la limitation visuelle et d’entrée, la fermeture/dismissal, le retour à la disposition standard, puis la restauration. Le fixture ne revendique aucun résultat graphique; `generic_author_generator_negatives` reste **NOT_PROVEN** puisque les preuves de ces négatifs n’ont pas été conservées.
+
+Préparation hors ligne : depuis le dépôt, exécuter `python tooling/probes/step20c-overnight/release_shape/dispatch.py prepare`, puis `.../dispatch.py tests`, puis `.../dispatch.py freeze`. Le freeze couvre les entrées C2 réutilisées, le code et les imports G, les deux arbres source G, le patch et sa revue ACCEPTED, les reçus de build/stage/ELF, les clients/protocoles et les dépendances de référence.
+
+Le préflight refuse de lancer tant que `release-shape/reviews/release-smoke-review.json` n’existe pas et ne lie pas exactement `smoke/freeze.json`, tous ses fichiers, le rapport de revue et le scope `OVERNIGHT_G_SMOKE_FINAL_BYTES`. Un refus préflight ne crée ni jeton one-shot, ni runtime, ni réservation. Après revue acceptée, la commande sera `python tooling/probes/step20c-overnight/release_shape/dispatch.py preflight`, puis `python tooling/probes/step20c-overnight/release_shape/dispatch.py run` depuis le répertoire du fixture. Le runner dure au plus 143 s; le reçu global réserve au plus 150 s. Chaque action est durable avant mutation et chaque capture réserve d’abord le compteur global.
+
+Aucun build, stage ou smoke n’a été exécuté pour préparer ce fixture. Neutralité **NOT PROVEN**; le résultat ne transfère aucun résultat graphique de A, C, D ni de la matrice séparée.

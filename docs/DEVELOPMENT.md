@@ -144,3 +144,18 @@ SwayFX remains the fallback. All other pairs are NOT QUALIFIED.
 These decisions do not settle popup UX or close STEP20C production gates.
 STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED.
 Production multi-output remains NOT YET SUPPORTED.
+
+## Preserved overnight experimental reproduction
+
+The [annotated rebuild/private-stage report](design/STEP20C_ANNOTATED_REBUILD_AND_PRIVATE_STAGE.md)
+and [source-only qualification index](../tooling/probes/step20c-overnight/qualification/README.md)
+record exact pins, ordered patches, private Meson options, local ABI checks,
+staging manifests and an immutable 18-run budget outcome. Reproduce only in a
+new disposable LAB with verified retained inputs and a separately authorized
+budget; the original budget is exhausted and no retry is authorized. Private
+patches, source archives and future recipe remain local references, not a
+self-contained publicly distributed build kit. Build/model/ELF/stage passed
+locally; makepkg metadata/source verification/full build was NOT RUN. No binary
+bit-reproducibility or distribution readiness is claimed. Experimental helper
+fixtures do not add a production dependency. See the dossier for transport,
+cleanup and unexercised-case limits before interpreting runtime results.

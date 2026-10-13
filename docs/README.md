@@ -363,3 +363,14 @@ and the private closeout receipt. Complete damage,
 atomic generation, wider static graphics/output coverage, maintained ABI and
 legal/maintenance gates remain open. STEP20C NEXT, production multi-output
 NOT YET SUPPORTED; no production/UX/packaging contract change.
+
+Preserved [overnight qualification dossier](design/STEP20C_OVERNIGHT_QUALIFICATION_AND_INTEGRATION_GATE_V1.md):
+EXPERIMENTAL / PARTIALLY_ADVANCED, with a [fresh annotated rebuild and private stage](design/STEP20C_ANNOTATED_REBUILD_AND_PRIVATE_STAGE.md),
+[18-run graphics matrix](design/STEP20C_ANNOTATED_GRAPHICS_MATRIX.md),
+[lifecycle/effects/native-ordering limits](design/STEP20C_LIFECYCLE_EFFECTS_AND_NATIVE_ORDERING.md),
+and [22-question production integration decision draft](design/STEP20C_PRODUCTION_INTEGRATION_DECISION_DRAFT.md).
+The [compact source-only qualification index](../tooling/probes/step20c-overnight/qualification/README.md)
+preserves exact identities, budget and private provenance references. Recommendation:
+PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE; no production decision applied.
+STEP20C NEXT; production multi-output NOT YET SUPPORTED. Final independent review is ACCEPTED / audit PASS for experimental evidence
+fidelity. Documentary publication is prepared, not executed at this edition.
