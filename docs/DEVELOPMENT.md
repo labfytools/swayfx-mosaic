@@ -116,3 +116,31 @@ Then review the patch and run the package checks in [Packaging](PACKAGING.md). `
 7. Publish only after the new base is validated. The normal SwayFX package continues updating independently.
 
 See [Packaging](PACKAGING.md) and [Upstream](UPSTREAM.md) for release invariants. Desktop key bindings belong to user dotfiles and are not installed here.
+
+## Approved private STEP20C static candidate — 2026-10-13
+
+The user approved four decisions for documentation and private prototypes only:
+private static SceneFX; separate complete notices under
+`/usr/share/licenses/swayfx-mosaic/`; project responsibility for embedded
+SceneFX maintenance; and qualification of each exact SceneFX/wlroots pair.
+See the [decision register and bounded runtime gate](design/STEP20C_STATIC_RUNTIME_AND_PACKAGE_CONTRACT.md).
+The current PKGBUILD, system SceneFX dependency, one-binary package, production
+sources and cumulative patch remain unchanged. The future private stage may
+contain only `/usr/bin/swayfx-mosaic` and justified regular notice files below
+the license directory. No private shared library, session, service, config or
+Sway symlink is allowed. No real installation is authorized.
+
+Mosaic owns monitoring, impact review, rebuild and requalification of embedded
+SceneFX fixes, including renderer/shaders/dependencies/ABI/buffer lifetime/clip/
+damage changes. Before public distribution, a release maintainer and security
+reviewer must be designated; no names or SLA are assigned. Preserve exact source,
+patch, compiler/options/dependency, notice, test and artifact manifests.
+A new relevant dependency build requires header/symbol/shared-layout inspection,
+rebuild, relocation/model/staging/headless checks and graphical requalification
+of relevant paths, then a separate publication decision. No automatic update
+subsystem is added. Ordinary SwayFX upgrades remain independent and standard
+SwayFX remains the fallback. All other pairs are NOT QUALIFIED.
+
+These decisions do not settle popup UX or close STEP20C production gates.
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED.
+Production multi-output remains NOT YET SUPPORTED.

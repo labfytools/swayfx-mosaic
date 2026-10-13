@@ -115,7 +115,11 @@ Resolve contradictory canonical documents **before** implementing behavior.
    Mosaic-modified checkout. For documentation-only changes, validate links,
    consistency, and `git diff --check`; do not claim runtime tests were run.
 6. For packaging tasks, use **DESTDIR staging only** and verify the complete
-   manifest contains exactly `/usr/bin/swayfx-mosaic`. No live install, sudo,
+   manifest contains exactly `/usr/bin/swayfx-mosaic` for the current package.
+   The approved private future STEP20C candidate may additionally stage only
+   justified notices under `/usr/share/licenses/swayfx-mosaic/`. This exception
+   does not authorize PKGBUILD changes or real installation; coexistence with
+   standard SwayFX is mandatory. No live install, sudo,
    `pacman`, session switch or system library replacement without explicit
    user authorization.
 
@@ -125,7 +129,9 @@ Resolve contradictory canonical documents **before** implementing behavior.
   `fd71a6bdc061bd633b488ae7b83e8a6981d22f86`,
   wlroots 0.20 and SceneFX 0.5. Never assume an upstream update is compatible.
 - The ordinary SwayFX package owns `/usr/bin/sway`; this project may stage
-  only `/usr/bin/swayfx-mosaic`. No `provides`, `conflicts` or `replaces`
+  only `/usr/bin/swayfx-mosaic` for the current package. The private future
+  STEP20C candidate may also stage justified separate license notices as above.
+  No `provides`, `conflicts` or `replaces`
   against sway/SwayFX. Do not alter or block normal SwayFX upgrades.
 - Remotes: `origin` = canonical Forgejo; `github` = public mirror;
   `upstream` = SwayFX fetch-only. Never push Mosaic to `upstream`.

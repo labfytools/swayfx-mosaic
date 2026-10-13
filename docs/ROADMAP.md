@@ -313,3 +313,40 @@ passes mechanically; legal distribution compliance is not approved.
 The upstream API dossier is preserved and not submitted. Production strategy:
 **NONE — USER DECISION REQUIRED**. Packaging/UX contracts are unchanged;
 STEP20C stays NEXT and production multi-output NOT YET SUPPORTED.
+
+## Approved private STEP20C static candidate — 2026-10-13
+
+The user approved four decisions for documentation and private prototypes only:
+private static SceneFX; separate complete notices under
+`/usr/share/licenses/swayfx-mosaic/`; project responsibility for embedded
+SceneFX maintenance; and qualification of each exact SceneFX/wlroots pair.
+See the [decision register and bounded runtime gate](design/STEP20C_STATIC_RUNTIME_AND_PACKAGE_CONTRACT.md).
+The current PKGBUILD, system SceneFX dependency, one-binary package, production
+sources and cumulative patch remain unchanged. The future private stage may
+contain only `/usr/bin/swayfx-mosaic` and justified regular notice files below
+the license directory. No private shared library, session, service, config or
+Sway symlink is allowed. No real installation is authorized.
+
+Mosaic owns monitoring, impact review, rebuild and requalification of embedded
+SceneFX fixes, including renderer/shaders/dependencies/ABI/buffer lifetime/clip/
+damage changes. Before public distribution, a release maintainer and security
+reviewer must be designated; no names or SLA are assigned. Preserve exact source,
+patch, compiler/options/dependency, notice, test and artifact manifests.
+A new relevant dependency build requires header/symbol/shared-layout inspection,
+rebuild, relocation/model/staging/headless checks and graphical requalification
+of relevant paths, then a separate publication decision. No automatic update
+subsystem is added. Ordinary SwayFX upgrades remain independent and standard
+SwayFX remains the fallback. All other pairs are NOT QUALIFIED.
+
+These decisions do not settle popup UX or close STEP20C production gates.
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED.
+Production multi-output remains NOT YET SUPPORTED.
+
+The [private static runtime gate](design/STEP20C_STATIC_RUNTIME_AND_PACKAGE_CONTRACT.md)
+is **EXPERIMENTAL / PARTIALLY_FEASIBLE**, architecture **UNDECIDED**. Real `/usr`
+static build/model/stage/notices/loaded-library identity/headless startup pass.
+Sampled H1 target pixels survive with zero target colors on H2, but whole-H2
+reference equality fails through a focus/decor mismatch; input and splith return
+are NOT TESTED after the single run stopped. No rerun or algorithm modification
+occurred. Distribution notice closure, named release/security roles and broader
+ABI/graphics gates remain open. STEP20C NEXT, multi-output NOT YET SUPPORTED.
