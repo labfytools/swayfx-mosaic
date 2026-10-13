@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved independent static RGB/input/standard retest: corrected shared predicate and real replay pass; exact whole-H2 RGB, H1 retained/H2 forbidden pixels, real target/reference clicks and targeted splith clip removal/input pass. FEASIBLE for this matrix. Terminal exit IPC makes runner exit 1 after measured gates and compositor exit 0; raw failure retained and offline diagnosis passes. No new compositor/library build or production change.
+
 - Preserved static focus/input/standard fixture failure: exact static binary and loaded pair verified; one run stopped before captures/input on an incorrect border-width fixture assertion. INCONCLUSIVE / UNDECIDED; camera and clip traces retained, RGB/clicks/splith NOT TESTED, no retry or production change.
 
 - Approved private static candidate decisions (2026-10-13): separate notices, project maintenance and exact-pair qualification. Current package unchanged; private real `/usr` static build/model/staging/library identity/headless startup pass. Whole-H2 reference fixture failed after a focus change; input and splith return NOT TESTED. PARTIALLY_FEASIBLE / UNDECIDED, preserved historical evidence; the original manifests and fixture bytes remain unchanged.

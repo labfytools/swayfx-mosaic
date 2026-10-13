@@ -416,3 +416,17 @@ PNG, click or splith transition. Those gates are NOT TESTED; no clipping defect
 or need for an algorithm change is demonstrated. No retry/build/production
 change occurred. A separately authorized corrected-fixture gate is required.
 STEP20C stays NEXT; production multi-output remains NOT YET SUPPORTED.
+
+The [static RGB/input/standard retest](design/STEP20C_STATIC_RGB_INPUT_STANDARD_RETEST.md)
+is **EXPERIMENTAL / FEASIBLE for the tested matrix**; its evidence is frozen
+for publication.
+The corrected shared IPC predicate/replay pass before the sole unchanged-static-
+binary run. Two full H2 references and all later H2 RGB are exact; H1 retains
+182,214 target pixels, H2 zero, actual visible/reference/standard button pairs
+are delivered only to the right client. Targeted splith removes the native clip
+and retains ordinary pixels/input. The runner exits 1 only on terminal exit IPC
+after completed measurements and compositor exit 0; that raw failure is retained
+and separately diagnosed/revalidated offline. No algorithm, build, production,
+package or UX change follows. Wider static popup/effect/lifecycle, complete
+damage/generation, ABI/maintenance/notices gates remain open. D1–D4 persist;
+STEP20C stays NEXT and production multi-output remains NOT YET SUPPORTED.
