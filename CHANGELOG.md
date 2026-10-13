@@ -4,6 +4,8 @@
 
 ### STEP20C experimental evidence
 
+- Preserved static focus/input/standard fixture failure: exact static binary and loaded pair verified; one run stopped before captures/input on an incorrect border-width fixture assertion. INCONCLUSIVE / UNDECIDED; camera and clip traces retained, RGB/clicks/splith NOT TESTED, no retry or production change.
+
 - Approved private static candidate decisions (2026-10-13): separate notices, project maintenance and exact-pair qualification. Current package unchanged; private real `/usr` static build/model/staging/library identity/headless startup pass. Whole-H2 reference fixture failed after a focus change; input and splith return NOT TESTED. PARTIALLY_FEASIBLE / UNDECIDED, preserved historical evidence; the original manifests and fixture bytes remain unchanged.
 
 - Preserved static distribution contract: one hash-qualified static executable staged through private Meson metadata at /usr/bin/swayfx-mosaic, exact-one-file shape PASS without recompilation. Existing scene interposition is characterized, version/security/notice obligations and an unsubmitted upstream API dossier are explicit. PARTIALLY_FEASIBLE, contract decision required; no recipe, packaging contract, production or system change. Historical verdict retained; later user decisions authorize a separate private gate only.

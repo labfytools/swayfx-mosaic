@@ -405,3 +405,14 @@ reference equality fails through a focus/decor mismatch; input and splith return
 are NOT TESTED after the single run stopped. No rerun or algorithm modification
 occurred. Distribution notice closure, named release/security roles and broader
 ABI/graphics gates remain open. STEP20C NEXT, multi-output NOT YET SUPPORTED.
+
+The [static focus/input/standard follow-up](design/STEP20C_STATIC_RUNTIME_FOCUS_INPUT_STANDARD_PROBE.md)
+is **EXPERIMENTAL / INCONCLUSIVE**, architecture **UNDECIDED**. One run reused
+the exact static binary, verified loaded wlroots/output geometry, calculated
+camera and observed the applied clip. A fixture incorrectly required stored
+current_border_width=0 under border none; actual IPC retained thickness 2 with
+empty decoration and full-size client rectangles. The run stopped before any
+PNG, click or splith transition. Those gates are NOT TESTED; no clipping defect
+or need for an algorithm change is demonstrated. No retry/build/production
+change occurred. A separately authorized corrected-fixture gate is required.
+STEP20C stays NEXT; production multi-output remains NOT YET SUPPORTED.
