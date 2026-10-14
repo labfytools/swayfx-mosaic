@@ -1,0 +1,167 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_CORE_RECOVERY_OOM_AND_DCC_QUALIFICATION_BATCH_V1",
+  "limits": {
+    "runs": 11,
+    "captures": 160,
+    "captures_per_run": 18,
+    "duration_s": 150,
+    "scene_builds": 0,
+    "mosaic_builds": 0,
+    "gpu_builds": 0,
+    "stages": 0
+  },
+  "runs": [
+    {
+      "id": "S0-pristine-standard",
+      "campaign": "S",
+      "token": "94df962143284a549a2f6cec5658db7f",
+      "started_ns": 273893896100094,
+      "capture_limit": 12,
+      "actions": {
+        "configuration": 10,
+        "chain": 1,
+        "move": 5,
+        "capture": 12,
+        "click": 4,
+        "grab": 2,
+        "mutation": 1
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S1-core-standard",
+      "campaign": "S",
+      "token": "fad2790efa5f42e2b02f532d1b4a9bdc",
+      "started_ns": 273967713087801,
+      "capture_limit": 12,
+      "actions": {
+        "configuration": 10,
+        "chain": 1,
+        "move": 5,
+        "capture": 12,
+        "click": 4,
+        "grab": 2,
+        "mutation": 1
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S2-core-horizontal",
+      "campaign": "S",
+      "token": "4ec6f81d3734459baccacc7f4fd3ce71",
+      "started_ns": 273990133836292,
+      "capture_limit": 18,
+      "actions": {
+        "configuration": 15,
+        "chain": 2,
+        "camera": 2,
+        "move": 9,
+        "capture": 16,
+        "click": 8,
+        "grab": 4,
+        "mutation": 1
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S3-pristine-vertical",
+      "campaign": "S",
+      "token": "2b88b7ef5d814ebb86f38993b61190b3",
+      "started_ns": 274016156729138,
+      "capture_limit": 12,
+      "actions": {
+        "configuration": 9,
+        "chain": 1,
+        "move": 5,
+        "capture": 8,
+        "click": 4,
+        "grab": 2
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S4-core-vertical",
+      "campaign": "S",
+      "token": "5b1b3f8a3c1148fe9f1f1fc2f25587fa",
+      "started_ns": 274037351032301,
+      "capture_limit": 12,
+      "actions": {
+        "configuration": 9,
+        "chain": 1,
+        "move": 5,
+        "capture": 8,
+        "click": 4,
+        "grab": 2
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S5-pristine-fullscreen",
+      "campaign": "S",
+      "token": "0693560f72d44b80919535c3eaa790fd",
+      "started_ns": 274056656303804,
+      "capture_limit": 14,
+      "actions": {
+        "configuration": 12,
+        "chain": 1,
+        "move": 4,
+        "capture": 12,
+        "mutation": 3,
+        "click": 3,
+        "grab": 2
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S6-core-fullscreen",
+      "campaign": "S",
+      "token": "d3c0e2f84bc64c41baca8f5a815898ac",
+      "started_ns": 274081200052839,
+      "capture_limit": 14,
+      "actions": {
+        "configuration": 12,
+        "chain": 1,
+        "move": 4,
+        "capture": 12,
+        "mutation": 3,
+        "click": 3,
+        "grab": 2
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S7-core-hidden-return",
+      "campaign": "S",
+      "token": "35da90506f6f468dba1b2fad795bd8a6",
+      "started_ns": 274103082013577,
+      "capture_limit": 14,
+      "actions": {
+        "configuration": 15,
+        "chain": 1,
+        "camera": 3,
+        "move": 6,
+        "capture": 12,
+        "click": 4,
+        "grab": 2
+      },
+      "status": "RESERVED"
+    },
+    {
+      "id": "S8-core-saved",
+      "campaign": "S",
+      "token": "530195ad8d3440408a3e9a09e26fcfa0",
+      "started_ns": 274130228318903,
+      "capture_limit": 12,
+      "actions": {
+        "configuration": 11,
+        "camera": 1,
+        "move": 1,
+        "capture": 10,
+        "mutation": 3
+      },
+      "status": "RESERVED"
+    }
+  ],
+  "builds": [],
+  "stages": []
+}

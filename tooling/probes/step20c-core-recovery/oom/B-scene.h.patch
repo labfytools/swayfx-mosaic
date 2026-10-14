@@ -1,0 +1,5 @@
+--- a/scene.h
++++ b/scene.h
+@@ -472 +472 @@
+-void wlr_scene_tree_set_clip(struct wlr_scene_tree *tree, const struct wlr_box *clip);
++bool wlr_scene_tree_set_clip(struct wlr_scene_tree *tree, const struct wlr_box *clip);

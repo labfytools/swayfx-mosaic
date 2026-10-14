@@ -1,0 +1,56 @@
+{
+  "review_kind": "BOUNDED_RUNTIME_EVIDENCE",
+  "reviewer": "/root/runtime_evidence_review",
+  "decision": "ACCEPTED",
+  "independent": true,
+  "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+  "manifest_entries_verified": 565,
+  "manifest_mismatches": [],
+  "captures_verified": 102,
+  "new_runs": 9,
+  "reserved_capture_slots": 120,
+  "runner_codes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "terminal_ipc_codes": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "scientific_cleanup": "PASS",
+  "mechanical_cleanup": "PASS",
+  "findings": [],
+  "limitations": [
+    "Fullscreen popups wholly H1, noncomparable ancestor child counts2/1 and owner heights275/575; cross-outputNOTEXERCISED",
+    "Vertical raw geometry.crossing defaultsX0; executed Y600predicate and actualYbounds505..675/585..715 establish crossing",
+    "CORE lacks native PI/atomic generation/buffer identity; submitted damage extents plus sampled RGB only",
+    "No universal grab click-through policy"
+  ],
+  "markers": {
+    "CORE_STANDARD_CONTROL": "PARTIALLY_FEASIBLE",
+    "CORE_HORIZONTAL_RETURN": "PARTIALLY_FEASIBLE",
+    "CORE_VERTICAL_CROSSING": "PARTIALLY_FEASIBLE",
+    "CORE_HIDDEN_RETURN": "PARTIALLY_FEASIBLE",
+    "CORE_SAVED_EPOCH": "PARTIALLY_FEASIBLE",
+    "CORE_SAMPLED_DAMAGE": "PARTIALLY_FEASIBLE",
+    "CORE_FULLSCREEN_COMPARISON": "INCONCLUSIVE",
+    "CORE_NATIVE_ORDERING": "INCONCLUSIVE",
+    "CORE_BUFFER_IDENTITY": "NOT_PROVEN",
+    "CORE_ATOMIC_GENERATION": "NOT_PROVEN"
+  },
+  "transcription": "Parent-written faithful structured summary of independent read-only reviewer final; not verbatim or reviewer-authored file."
+}

@@ -1,0 +1,39 @@
+{
+  "status": "EXPERIMENTAL_SOURCE_ONLY",
+  "baseline": "70954e26f62fb3df25995e31b0c615762ff85a60",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_CORE_RECOVERY_OOM_AND_DCC_QUALIFICATION_BATCH_V1",
+  "lab": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5",
+  "historical_hashes": {
+    "closeout.json": "5166d6442aae8dfa2a5e939eb5e83141f83c55e7be89f93670eb381e9956df0a",
+    "closeout-manifest.json": "4fd7ccedf00a59754db447d015fdca35fbcdda5b7de3820c3655b6e433765ce8",
+    "publication-receipt.json": "45396f706af9374547bda0d76edcb704298bca10a4ea300ae69b4fdb076de655"
+  },
+  "binary_hashes": {
+    "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/stage1/usr/bin/swayfx-mosaic": "29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965",
+    "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/pristine-build/sway/sway": "8ac865481bc0487344210cd0e16d8e6c7655b29db887cd58ddc11b0ca22fe494",
+    "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/gpu-field/mosaic-build/sway/swayfx-mosaic": "1905a20fa72ebcc7ec47d1584a4653654280288096a20005199eb75673ac0383",
+    "/usr/lib/libwlroots-0.20.so": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+    "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/scene0-build/libscenefx-0.5.so": "7a07c1f239043f7910039670006a2f6e9bb15608bf2a840576476c5f7b1378b3",
+    "/usr/lib/libscenefx-0.5.so": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62"
+  },
+  "private_receipts": {
+    "audit/initial.json": "b8f9aa72e52ebc34fa6866818916bf948e808e1258eb8f379a09b3fc941e8aba",
+    "audit/historical-native.json": "e4961706ea8056ada4bf6da3515b21c44f1523141ae77dd8a31f3431e58171df",
+    "audit/elf-stage.json": "0c682311adc8f24ad2bbe6cbb418d523849fa9758fd932e22378139bc91414d3",
+    "audit/new-run-collection.json": "0b5b48b2466be4e825b188bb0b362e3e104e487965639e7d9d51d255be608c35",
+    "graphics/pre-run-manifest.json": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+    "graphics/historical-replay.json": "8f214f53e51812eeaf3fce4ce5e087905374c8d41890970b3fa92d9606ee5bfc",
+    "oom/final-fixture-manifest.json": "4a6dfda4f61d9c9f5a13588fe7ed7ac6ec6d9720cf2167a82e5f7c39f52d0c35",
+    "oom/commands.json": "1c867b9a4d9a013a78ebda7ad3e5cb24b606480071afde9bbc94d26bf6eed0b5",
+    "oom/negative/results.json": "c67f1d5902224f7d4a2b299d710222e439439389383523d0dca2a4b9217f5384",
+    "gpu-field/evidence.json": "219dc7ecc0dd29e5e93b735b98e14b606983573ea9e09100dea88843e6e9e613",
+    "gpu-field/replay-result.json": "72304c9c935fe14c6d8a8e658a18876a4b73afc15406c7f0624aa4ceaf7f323c",
+    "gpu-field/parent-delta-whitespace-repair.json": "77a6134c96764e3bb8075220fb5acf6a25fb34931b842a29229cf34711026d3b"
+  },
+  "source_manifest": "Private pre-run manifest covers executed graphics bytes; final public source manifest separately captured at closeout; no old budget reopened.",
+  "public_source_normalization": {
+    "receipt": "tooling/probes/step20c-core-recovery/evidence/public-source-eof-normalization.json",
+    "sha256": "b9612ce4d8e71593c217ecb569dca7aaa47c531e720fc3f13faebc038c397123",
+    "scope": "Three public Python files only; EOF suffix reversible, AST and bytecode equal; executed LAB sources/manifests remain unchanged."
+  }
+}

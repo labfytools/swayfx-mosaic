@@ -1,0 +1,2301 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_CORE_RECOVERY_OOM_AND_DCC_QUALIFICATION_BATCH_V1",
+  "edition": "Before final deep audit/publication; actual final review/commit/remote identities belong to private post-publication closeout, not anticipated here.",
+  "lab": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5",
+  "recommendation": "PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE",
+  "markers": {
+    "CORE_HISTORICAL_REPLAY": "PASS",
+    "CORE_STANDARD_FIXTURE_OFFLINE": "PASS",
+    "CORE_VERTICAL_FIXTURE_OFFLINE": "PASS",
+    "CORE_FULLSCREEN_FIXTURE_OFFLINE": "PASS",
+    "CORE_HIDDEN_FIXTURE_OFFLINE": "PASS",
+    "CORE_SAVED_PHASED_FIXTURE_OFFLINE": "PASS",
+    "CORE_STANDARD_CONTROL": "PARTIALLY_FEASIBLE",
+    "CORE_HORIZONTAL_RETURN": "PARTIALLY_FEASIBLE",
+    "CORE_VERTICAL_CROSSING": "PARTIALLY_FEASIBLE",
+    "CORE_HIDDEN_RETURN": "PARTIALLY_FEASIBLE",
+    "CORE_SAVED_EPOCH": "PARTIALLY_FEASIBLE",
+    "CORE_SAMPLED_DAMAGE": "PARTIALLY_FEASIBLE",
+    "CORE_FULLSCREEN_COMPARISON": "INCONCLUSIVE",
+    "CORE_NATIVE_ORDERING": "INCONCLUSIVE",
+    "CORE_BUFFER_IDENTITY": "NOT_PROVEN",
+    "CORE_ATOMIC_GENERATION": "NOT_PROVEN",
+    "CORE_OOM_C_TESTS": "PARTIALLY_FEASIBLE",
+    "CORE_OOM_ALTERNATIVES_REVIEW": "ACCEPTED",
+    "CORE_PRODUCTION_OOM_POLICY": "UNDECIDED",
+    "CORE_PRIVATE_ABI_PACKAGE": "PARTIALLY_FEASIBLE",
+    "GPU_MODIFIER_AWARE_OFFLINE": "INCONCLUSIVE",
+    "GPU_DCC_DESIGN_REVIEW": "NOT_PROVEN",
+    "GPU_DCC_RUNTIME": "NOT_RUN",
+    "GPU_WHOLE_FIELD_CAUSALITY": "INCONCLUSIVE",
+    "CORE_FINAL_INDEPENDENT_REVIEW": "NOT_PROVEN",
+    "CORE_DOCUMENTARY_PUBLICATION": "PARTIAL",
+    "SWAYFX_MOSAIC_STEP20C_CORE_RECOVERY_OOM_AND_DCC_QUALIFICATION_BATCH_V1": "PARTIALLY_ADVANCED",
+    "STEP20A": "DONE",
+    "STEP20B": "EXPERIMENTAL",
+    "STEP20C": "NEXT",
+    "STEP20D_G": "PLANNED",
+    "PRODUCTION_MULTI_OUTPUT": "NOT_YET_SUPPORTED",
+    "PRODUCTION_AUTHORIZED": false
+  },
+  "budget": {
+    "runs": 9,
+    "maximum_runs": 11,
+    "output_PNG": 102,
+    "reserved_capture_slots": 120,
+    "maximum_output_PNG": 160,
+    "compositor_builds": 0,
+    "gpu_builds": 0,
+    "stages": 0,
+    "reruns": 0
+  },
+  "runs": [
+    {
+      "id": "S0-pristine-standard",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S0-pristine-standard"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": null,
+      "review_binding_note": "S0 execution receipt did not record a review file hash; its hashed preflight records independent accepted manifest. Other runs record review SHA directly.",
+      "preflight_sha256": "35948205848bdfb52fac8ff0ce4195d6692baab9b489660723950a376b47b49a",
+      "raw_exit": 0,
+      "seconds": 8.111753,
+      "capture_count": 12,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "owner-top-1",
+          "output": "HEADLESS-1",
+          "sha256": "4b4edf47fa1194970064c535874f41c1a14ec54e62a649ba6ef53a0e627d3306"
+        },
+        {
+          "tag": "popup-A-1",
+          "output": "HEADLESS-1",
+          "sha256": "86877c7a21d24670b601cb0f000cb5cb305cd296a9cb007fbdbca05c0a3ef72f"
+        },
+        {
+          "tag": "mapped-1-H1",
+          "output": "HEADLESS-1",
+          "sha256": "ec2265e3b94f31ad8b03dd4a8b2e51ebd47c878faffa8edc3f4dd6ee17a54d36"
+        },
+        {
+          "tag": "mapped-1-H2",
+          "output": "HEADLESS-2",
+          "sha256": "d49e71ebc43ecc8de29dff4ae699f0e6d21747f8746056f753631f14fb0503cd"
+        },
+        {
+          "tag": "standard-live-H1",
+          "output": "HEADLESS-1",
+          "sha256": "ec2265e3b94f31ad8b03dd4a8b2e51ebd47c878faffa8edc3f4dd6ee17a54d36"
+        },
+        {
+          "tag": "standard-live-H2",
+          "output": "HEADLESS-2",
+          "sha256": "d49e71ebc43ecc8de29dff4ae699f0e6d21747f8746056f753631f14fb0503cd"
+        },
+        {
+          "tag": "B-closed-A-survives-H1",
+          "output": "HEADLESS-1",
+          "sha256": "86877c7a21d24670b601cb0f000cb5cb305cd296a9cb007fbdbca05c0a3ef72f"
+        },
+        {
+          "tag": "B-closed-A-survives-H2",
+          "output": "HEADLESS-2",
+          "sha256": "064dbdf3f1e79b56e1c8dd86c08defa9240da4e58507707640ed9a32ed018d96"
+        },
+        {
+          "tag": "standard-final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "2437fcf9c5b8d22608267b04d71978759e15fb80dc2b0815c1f08785606d2a03"
+        },
+        {
+          "tag": "standard-final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PARTIALLY_FEASIBLE",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.001 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2971034,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2971086,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2971089,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2971100,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2971116,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2971116,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S0-pristine-standard/run/owner-closed-2971116.log",
+          "sha256": "533b5c43c1e346b13f60278d562a7d09c52b3758d421065f3678a66768d2bbb8",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2971089,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S0-pristine-standard/run/reference-closed-2971089.log",
+          "sha256": "0bfa98bd0c2847107be9d4ed519b2370582ec8fc032184cabd17b5695117192a",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2971100,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S0-pristine-standard/run/filler0-closed-2971100.log",
+          "sha256": "f74f83fcb740cbaae432f912b854f96f5822556bf8e661dae0bc6c78959bff08",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/pristine-build/sway/sway",
+        "binary_sha256": "8ac865481bc0487344210cd0e16d8e6c7655b29db887cd58ddc11b0ca22fe494",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "source_parent": "fd71a6bdc061bd633b488ae7b83e8a6981d22f86",
+        "pristine_scene": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/scene0-build/libscenefx-0.5.so",
+        "pristine_scene_sha256": "7a07c1f239043f7910039670006a2f6e9bb15608bf2a840576476c5f7b1378b3",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/pristine-source-provenance.json"
+      },
+      "popup_geometry": {
+        "A": [
+          -298,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -198,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -398,
+          25
+        ],
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      },
+      "grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 29,
+          "used": 29,
+          "origin": "wl_pointer.button",
+          "ids": [
+            12,
+            11,
+            14
+          ],
+          "ack": 30,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 38,
+          "used": 38,
+          "origin": "wl_pointer.button",
+          "ids": [
+            15,
+            13,
+            17
+          ],
+          "ack": 39,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S1-core-standard",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S1-core-standard"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "367b6e769547ba49925209a670fa5ee11347b5653410733104d6353a8db1afc8",
+      "raw_exit": 0,
+      "seconds": 6.677133,
+      "capture_count": 12,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "owner-top-1",
+          "output": "HEADLESS-1",
+          "sha256": "4b4edf47fa1194970064c535874f41c1a14ec54e62a649ba6ef53a0e627d3306"
+        },
+        {
+          "tag": "popup-A-1",
+          "output": "HEADLESS-1",
+          "sha256": "86877c7a21d24670b601cb0f000cb5cb305cd296a9cb007fbdbca05c0a3ef72f"
+        },
+        {
+          "tag": "mapped-1-H1",
+          "output": "HEADLESS-1",
+          "sha256": "ec2265e3b94f31ad8b03dd4a8b2e51ebd47c878faffa8edc3f4dd6ee17a54d36"
+        },
+        {
+          "tag": "mapped-1-H2",
+          "output": "HEADLESS-2",
+          "sha256": "d49e71ebc43ecc8de29dff4ae699f0e6d21747f8746056f753631f14fb0503cd"
+        },
+        {
+          "tag": "standard-live-H1",
+          "output": "HEADLESS-1",
+          "sha256": "ec2265e3b94f31ad8b03dd4a8b2e51ebd47c878faffa8edc3f4dd6ee17a54d36"
+        },
+        {
+          "tag": "standard-live-H2",
+          "output": "HEADLESS-2",
+          "sha256": "d49e71ebc43ecc8de29dff4ae699f0e6d21747f8746056f753631f14fb0503cd"
+        },
+        {
+          "tag": "B-closed-A-survives-H1",
+          "output": "HEADLESS-1",
+          "sha256": "86877c7a21d24670b601cb0f000cb5cb305cd296a9cb007fbdbca05c0a3ef72f"
+        },
+        {
+          "tag": "B-closed-A-survives-H2",
+          "output": "HEADLESS-2",
+          "sha256": "064dbdf3f1e79b56e1c8dd86c08defa9240da4e58507707640ed9a32ed018d96"
+        },
+        {
+          "tag": "standard-final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "2437fcf9c5b8d22608267b04d71978759e15fb80dc2b0815c1f08785606d2a03"
+        },
+        {
+          "tag": "standard-final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PARTIALLY_FEASIBLE",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.002 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2973815,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2973843,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2973846,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2973859,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2973873,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2973873,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S1-core-standard/run/owner-closed-2973873.log",
+          "sha256": "0f00b00da0d328d71f677942010c1a2755f9ce77167d32e41bfc2f35df6a6274",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2973846,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S1-core-standard/run/reference-closed-2973846.log",
+          "sha256": "920c211bc4d5ca45ace7d36ac5a95ea166d751925b4906cb79b36a649c4c5786",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2973859,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S1-core-standard/run/filler0-closed-2973859.log",
+          "sha256": "19d8901b3287463eec1fb085518450483494240edb8c10d7026c781c88344574",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/mosaic-build/sway/swayfx-mosaic",
+        "binary_sha256": "29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "build_id": "1b42e557e38db3440ae8dcf7ac967e4132223365",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/candidate-source-freeze.json"
+      },
+      "popup_geometry": {
+        "A": [
+          -298,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -198,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -398,
+          25
+        ],
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      },
+      "grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 29,
+          "used": 29,
+          "origin": "wl_pointer.button",
+          "ids": [
+            12,
+            11,
+            14
+          ],
+          "ack": 30,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 38,
+          "used": 38,
+          "origin": "wl_pointer.button",
+          "ids": [
+            15,
+            13,
+            17
+          ],
+          "ack": 39,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S2-core-horizontal",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S2-core-horizontal"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "f065e1e8720365e04d7cbc2d9fee4ede9f81605e281d89f9df6959ccb8b777c3",
+      "raw_exit": 0,
+      "seconds": 10.554122,
+      "capture_count": 16,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "owner-top-1",
+          "output": "HEADLESS-1",
+          "sha256": "c8d50e1a0e52074bf595a82a56d5db9f1790cf0cfd7e510c32ceceeba4295802"
+        },
+        {
+          "tag": "popup-A-1",
+          "output": "HEADLESS-1",
+          "sha256": "35072322e2a22c1fd73e20c67593080266df0fe42b7b6320808f17fb47f98250"
+        },
+        {
+          "tag": "mapped-1-H1",
+          "output": "HEADLESS-1",
+          "sha256": "1d502191e74f449a3cc9d89db52708a45e9c225d7be814fe839d1513c892dc72"
+        },
+        {
+          "tag": "mapped-1-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "owner-top-2",
+          "output": "HEADLESS-1",
+          "sha256": "c8d50e1a0e52074bf595a82a56d5db9f1790cf0cfd7e510c32ceceeba4295802"
+        },
+        {
+          "tag": "popup-A-2",
+          "output": "HEADLESS-1",
+          "sha256": "35072322e2a22c1fd73e20c67593080266df0fe42b7b6320808f17fb47f98250"
+        },
+        {
+          "tag": "mapped-2-H1",
+          "output": "HEADLESS-1",
+          "sha256": "1d502191e74f449a3cc9d89db52708a45e9c225d7be814fe839d1513c892dc72"
+        },
+        {
+          "tag": "mapped-2-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "standard-live-H1",
+          "output": "HEADLESS-1",
+          "sha256": "ec2265e3b94f31ad8b03dd4a8b2e51ebd47c878faffa8edc3f4dd6ee17a54d36"
+        },
+        {
+          "tag": "standard-live-H2",
+          "output": "HEADLESS-2",
+          "sha256": "d49e71ebc43ecc8de29dff4ae699f0e6d21747f8746056f753631f14fb0503cd"
+        },
+        {
+          "tag": "B-closed-A-survives-H1",
+          "output": "HEADLESS-1",
+          "sha256": "86877c7a21d24670b601cb0f000cb5cb305cd296a9cb007fbdbca05c0a3ef72f"
+        },
+        {
+          "tag": "B-closed-A-survives-H2",
+          "output": "HEADLESS-2",
+          "sha256": "064dbdf3f1e79b56e1c8dd86c08defa9240da4e58507707640ed9a32ed018d96"
+        },
+        {
+          "tag": "standard-final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "2437fcf9c5b8d22608267b04d71978759e15fb80dc2b0815c1f08785606d2a03"
+        },
+        {
+          "tag": "standard-final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PARTIALLY_FEASIBLE",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.001 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "owner",
+          "pid": 2974469,
+          "exit": 0
+        },
+        {
+          "name": "compositor",
+          "pid": 2974411,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2974439,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2974442,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2974457,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2974610,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2974469,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S2-core-horizontal/run/owner-closed-2974469.log",
+          "sha256": "a4e662d95e723f6cee6780a4df2cf38a3ca270b83ae14b584443690cbb5686d6",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "owner",
+          "pid": 2974610,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S2-core-horizontal/run/owner-closed-2974610.log",
+          "sha256": "e1e05ff05c4ea75f6051d93c61e748e59c3e74879a74d9e7517cc718a762123d",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2974442,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S2-core-horizontal/run/reference-closed-2974442.log",
+          "sha256": "ea2891d6b10e40e16c4192b47b2ec12b02131c81d0c7456d795669317a3fc613",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "6",
+              "6"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2974457,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S2-core-horizontal/run/filler0-closed-2974457.log",
+          "sha256": "4cad7baa47b93f127e2e30e0e68f8308bba55ce4d27e330da23ca2f41a1bbb56",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "8",
+              "8"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/mosaic-build/sway/swayfx-mosaic",
+        "binary_sha256": "29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "build_id": "1b42e557e38db3440ae8dcf7ac967e4132223365",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/candidate-source-freeze.json"
+      },
+      "popup_geometry": {
+        "A": [
+          -218,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -118,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -318,
+          25
+        ],
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      },
+      "grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 83,
+          "used": 83,
+          "origin": "wl_pointer.button",
+          "ids": [
+            12,
+            11,
+            14
+          ],
+          "ack": 84,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 92,
+          "used": 92,
+          "origin": "wl_pointer.button",
+          "ids": [
+            15,
+            13,
+            17
+          ],
+          "ack": 93,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S3-pristine-vertical",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S3-pristine-vertical"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "f675c79499151f2930e624d715f74333cf11481096a388c7791482aea4f8e9e2",
+      "raw_exit": 0,
+      "seconds": 6.126023,
+      "capture_count": 8,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "owner-top-1",
+          "output": "HEADLESS-1",
+          "sha256": "4b4edf47fa1194970064c535874f41c1a14ec54e62a649ba6ef53a0e627d3306"
+        },
+        {
+          "tag": "popup-A-1",
+          "output": "HEADLESS-1",
+          "sha256": "a517ea030ec01ccffce0829ab3b58f7141f6613c41ae358c20dddc16fb941d84"
+        },
+        {
+          "tag": "mapped-1-H1",
+          "output": "HEADLESS-1",
+          "sha256": "23d6765cbb510d69ce15edfef1961453e4418ce152dbe09965246d07c498a203"
+        },
+        {
+          "tag": "mapped-1-H2",
+          "output": "HEADLESS-2",
+          "sha256": "3204f063f332262fa25f36b02c79040a19fa3a829d9da8bf045c19d62113b09c"
+        },
+        {
+          "tag": "final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "2437fcf9c5b8d22608267b04d71978759e15fb80dc2b0815c1f08785606d2a03"
+        },
+        {
+          "tag": "final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PASS",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.002 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2975106,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2975134,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2975136,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2975148,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2975160,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2975160,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S3-pristine-vertical/run/owner-closed-2975160.log",
+          "sha256": "51ca498cac32cde6176da354dfa8358fd2aba35c030df7b9689273d3f56688d3",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2975136,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S3-pristine-vertical/run/reference-closed-2975136.log",
+          "sha256": "5dea7a7da2bd3fb1e6a57810185143c528cb3c3e222bdfc81494002c4fa4f773",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2975148,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S3-pristine-vertical/run/filler0-closed-2975148.log",
+          "sha256": "bbc7d2cc163ee0fae1c532ccb17e6f0b66a24f1d51a4277f2101d380abaef261",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/pristine-build/sway/sway",
+        "binary_sha256": "8ac865481bc0487344210cd0e16d8e6c7655b29db887cd58ddc11b0ca22fe494",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "source_parent": "fd71a6bdc061bd633b488ae7b83e8a6981d22f86",
+        "pristine_scene": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/scene0-build/libscenefx-0.5.so",
+        "pristine_scene_sha256": "7a07c1f239043f7910039670006a2f6e9bb15608bf2a840576476c5f7b1378b3",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/pristine-source-provenance.json"
+      },
+      "popup_geometry": {
+        "A": [
+          452,
+          505,
+          250,
+          170
+        ],
+        "B": [
+          472,
+          585,
+          170,
+          130
+        ],
+        "configured_A": [
+          50,
+          480,
+          250,
+          170
+        ],
+        "configured_B": [
+          20,
+          80,
+          170,
+          130
+        ],
+        "origin": [
+          402,
+          25
+        ],
+        "crossing": {
+          "A": "NOT EXERCISED",
+          "B": "NOT EXERCISED"
+        }
+      },
+      "grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 27,
+          "used": 27,
+          "origin": "wl_pointer.button",
+          "ids": [
+            12,
+            11,
+            14
+          ],
+          "ack": 28,
+          "native_buffer": 15,
+          "native_size": [
+            250,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 36,
+          "used": 36,
+          "origin": "wl_pointer.button",
+          "ids": [
+            15,
+            13,
+            17
+          ],
+          "ack": 37,
+          "native_buffer": 18,
+          "native_size": [
+            170,
+            130
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S4-core-vertical",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S4-core-vertical"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "9f6d9086acdccb8a77607bc70c1dcd7b44e4fb3a8c470bd21ffa82b7683f8aa4",
+      "raw_exit": 0,
+      "seconds": 6.00904,
+      "capture_count": 8,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "owner-top-1",
+          "output": "HEADLESS-1",
+          "sha256": "a46c3d22de18cb94f36f4baf264f079b7dad5a3504b199a07088f9347934c2be"
+        },
+        {
+          "tag": "popup-A-1",
+          "output": "HEADLESS-1",
+          "sha256": "e77e66676f51da58ba53630304b041553711d0e7f9121f63774675b274d07322"
+        },
+        {
+          "tag": "mapped-1-H1",
+          "output": "HEADLESS-1",
+          "sha256": "6786971f8f9b5e342dde07304b0c3fbcd23494d5c87e128e542988eb7aeb2f22"
+        },
+        {
+          "tag": "mapped-1-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "b3897b09ce71283b2c2ce13faa09f0431352d8c52c28de21f0cfce376ed66ff9"
+        },
+        {
+          "tag": "final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PASS",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.001 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2975686,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2975716,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2975718,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2975731,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2975768,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2975768,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S4-core-vertical/run/owner-closed-2975768.log",
+          "sha256": "a93d4169b3a00e9cc1069752d86348927778f96c538d9ce65c1174e98c675056",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2975718,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S4-core-vertical/run/reference-closed-2975718.log",
+          "sha256": "146468102b211adfdf9319e3671bb11836c253a2b57823c58a7adca7b23ca98d",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "5",
+              "5"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2975731,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S4-core-vertical/run/filler0-closed-2975731.log",
+          "sha256": "78073a5b512fc00e49c8e25f332d81e17452e2a9e292205e862dfdb65f70dc7e",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/mosaic-build/sway/swayfx-mosaic",
+        "binary_sha256": "29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "build_id": "1b42e557e38db3440ae8dcf7ac967e4132223365",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/candidate-source-freeze.json"
+      },
+      "popup_geometry": {
+        "A": [
+          212,
+          505,
+          250,
+          170
+        ],
+        "B": [
+          232,
+          585,
+          170,
+          130
+        ],
+        "configured_A": [
+          50,
+          480,
+          250,
+          170
+        ],
+        "configured_B": [
+          20,
+          80,
+          170,
+          130
+        ],
+        "origin": [
+          162,
+          25
+        ],
+        "crossing": {
+          "A": "NOT EXERCISED",
+          "B": "NOT EXERCISED"
+        }
+      },
+      "grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 29,
+          "used": 29,
+          "origin": "wl_pointer.button",
+          "ids": [
+            12,
+            11,
+            14
+          ],
+          "ack": 30,
+          "native_buffer": 15,
+          "native_size": [
+            250,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 38,
+          "used": 38,
+          "origin": "wl_pointer.button",
+          "ids": [
+            15,
+            13,
+            17
+          ],
+          "ack": 39,
+          "native_buffer": 18,
+          "native_size": [
+            170,
+            130
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S5-pristine-fullscreen",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S5-pristine-fullscreen"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "75b318d48aa98658f486ee7680bf2173ae6cea24b2b786822cdfd98e165f0dce",
+      "raw_exit": 0,
+      "seconds": 6.238151,
+      "capture_count": 12,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "fullscreen-owner",
+          "output": "HEADLESS-1",
+          "sha256": "e52d67680fd52bcd081ef8b9e66cb4fb1f9722d61d05cdcf5fca955c91ad4177"
+        },
+        {
+          "tag": "fullscreen-A",
+          "output": "HEADLESS-1",
+          "sha256": "5aa45ecba94f3936439c476d9a69808d2d4e76813968263321f1b54932d7afd1"
+        },
+        {
+          "tag": "fullscreen-nested-H1",
+          "output": "HEADLESS-1",
+          "sha256": "1fec1fc133e791173283d8701c7a4e2abf4178410133b091d9e9959ae59e74c9"
+        },
+        {
+          "tag": "fullscreen-nested-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "fullscreen-left-H1",
+          "output": "HEADLESS-1",
+          "sha256": "95c6759b801d8149633d21b69a5b955bd87e4301e8156e480d3169ef192b6f99"
+        },
+        {
+          "tag": "fullscreen-left-H2",
+          "output": "HEADLESS-2",
+          "sha256": "d49e71ebc43ecc8de29dff4ae699f0e6d21747f8746056f753631f14fb0503cd"
+        },
+        {
+          "tag": "fullscreen-standard-H1",
+          "output": "HEADLESS-1",
+          "sha256": "55f1e65c27341e7d930862ff241cc8a4d8de47be6843641265ebd2ffb7ac7260"
+        },
+        {
+          "tag": "fullscreen-standard-H2",
+          "output": "HEADLESS-2",
+          "sha256": "d49e71ebc43ecc8de29dff4ae699f0e6d21747f8746056f753631f14fb0503cd"
+        },
+        {
+          "tag": "fullscreen-final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "af3ac8ce331306347f6bd66831c4eae9bca1f2e42ecb25bb639cbfd16b5e622f"
+        },
+        {
+          "tag": "fullscreen-final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PARTIALLY_FEASIBLE",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.001 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2976475,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2976502,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2976505,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2976517,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2976526,
+          "exit": 0
+        },
+        {
+          "name": "nested-filler",
+          "pid": 2976541,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2976526,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S5-pristine-fullscreen/run/owner-closed-2976526.log",
+          "sha256": "4ae79d0947150b64a7483e11f1fb32ff62240d87d44a7ebe26a1c208931f527e",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2976505,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S5-pristine-fullscreen/run/reference-closed-2976505.log",
+          "sha256": "a5aaa5c8f3f91e07ebe0454abde9524a42998508f1b5b61ef865665cf9a28909",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2976517,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S5-pristine-fullscreen/run/filler0-closed-2976517.log",
+          "sha256": "8011512b586f2e0939da2cbfa5aef6d3d023930456de64ecfb1b6cdf6ed82514",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "nested-filler",
+          "pid": 2976541,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S5-pristine-fullscreen/run/nested-filler-closed-2976541.log",
+          "sha256": "21214d93e7c50624299b5f18b6881c9f50e8e98f4fa2f52c0b85508e57f574f8",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "10",
+              "10"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/pristine-build/sway/sway",
+        "binary_sha256": "8ac865481bc0487344210cd0e16d8e6c7655b29db887cd58ddc11b0ca22fe494",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "source_parent": "fd71a6bdc061bd633b488ae7b83e8a6981d22f86",
+        "pristine_scene": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/scene0-build/libscenefx-0.5.so",
+        "pristine_scene_sha256": "7a07c1f239043f7910039670006a2f6e9bb15608bf2a840576476c5f7b1378b3",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/pristine-source-provenance.json"
+      },
+      "popup_geometry": null,
+      "grabs": null
+    },
+    {
+      "id": "S6-core-fullscreen",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S6-core-fullscreen"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "3e36161eb83ca3e8693ef15129c7725bb9a85305228b3f65ca4307235424ff8e",
+      "raw_exit": 0,
+      "seconds": 6.201927,
+      "capture_count": 12,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "fullscreen-owner",
+          "output": "HEADLESS-1",
+          "sha256": "733c7018dbe7d2619c83fe21511a6fa4241549ee188befb0acaab0f663648344"
+        },
+        {
+          "tag": "fullscreen-A",
+          "output": "HEADLESS-1",
+          "sha256": "536ea80fbe5d0e69bad43b84a463ed7572faa7ca255130d6c380ef7208407314"
+        },
+        {
+          "tag": "fullscreen-nested-H1",
+          "output": "HEADLESS-1",
+          "sha256": "f679149fb47ca7093e72d3cdb6a6079fbc10ba273bef74675eef86247bc07ec9"
+        },
+        {
+          "tag": "fullscreen-nested-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "fullscreen-left-H1",
+          "output": "HEADLESS-1",
+          "sha256": "da6396aeb510c49bc399c5012edd70ed12b1972695323c973c0b1b399ec418c6"
+        },
+        {
+          "tag": "fullscreen-left-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "fullscreen-standard-H1",
+          "output": "HEADLESS-1",
+          "sha256": "ac077a0d1d416dcaebf6fb09525267368fcf99d0a8859cedfb8f2326c3765ff7"
+        },
+        {
+          "tag": "fullscreen-standard-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "fullscreen-final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "f2e40f3c8a28214d2727eb3da0d888cc9d7253354bf6455e4a88d7e6a6e88c9f"
+        },
+        {
+          "tag": "fullscreen-final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PARTIALLY_FEASIBLE",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2977101,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2977129,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2977132,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2977143,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2977156,
+          "exit": 0
+        },
+        {
+          "name": "nested-filler",
+          "pid": 2977167,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2977156,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S6-core-fullscreen/run/owner-closed-2977156.log",
+          "sha256": "10a2c65b09af705af91c2b50e62f2a0aa38ccd5abb8b2ad839b7974c89e444ad",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2977132,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S6-core-fullscreen/run/reference-closed-2977132.log",
+          "sha256": "fed24b0feb9c4f8afff4d4a1920e29148ccfc702a712792221099fdf03b2b50f",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2977143,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S6-core-fullscreen/run/filler0-closed-2977143.log",
+          "sha256": "83cdfff514f7fb5c51d4df91084ea8b8643543a291ebb1861f257b70c15276c2",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "5",
+              "5"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "nested-filler",
+          "pid": 2977167,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S6-core-fullscreen/run/nested-filler-closed-2977167.log",
+          "sha256": "7bef64e9cc7674874b48f80b796d3e8468f9c79fe37120aca0e7a1ea6f836384",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "6",
+              "6"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/mosaic-build/sway/swayfx-mosaic",
+        "binary_sha256": "29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "build_id": "1b42e557e38db3440ae8dcf7ac967e4132223365",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/candidate-source-freeze.json"
+      },
+      "popup_geometry": null,
+      "grabs": null
+    },
+    {
+      "id": "S7-core-hidden-return",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S7-core-hidden-return"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "c43a1faad158e36184a8c28ba113ebe63d0be6cb055a9657873fd90f5c7368bc",
+      "raw_exit": 0,
+      "seconds": 8.372265,
+      "capture_count": 12,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "owner-top-1",
+          "output": "HEADLESS-1",
+          "sha256": "c8d50e1a0e52074bf595a82a56d5db9f1790cf0cfd7e510c32ceceeba4295802"
+        },
+        {
+          "tag": "popup-A-1",
+          "output": "HEADLESS-1",
+          "sha256": "35072322e2a22c1fd73e20c67593080266df0fe42b7b6320808f17fb47f98250"
+        },
+        {
+          "tag": "mapped-1-H1",
+          "output": "HEADLESS-1",
+          "sha256": "1d502191e74f449a3cc9d89db52708a45e9c225d7be814fe839d1513c892dc72"
+        },
+        {
+          "tag": "mapped-1-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "fully-hidden-H1",
+          "output": "HEADLESS-1",
+          "sha256": "d3419ecee91bbd4b27dc9dbbcdddd256d8bb619a2be944e4659b14e3bf1537b0"
+        },
+        {
+          "tag": "fully-hidden-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "returned-H1",
+          "output": "HEADLESS-1",
+          "sha256": "1d502191e74f449a3cc9d89db52708a45e9c225d7be814fe839d1513c892dc72"
+        },
+        {
+          "tag": "returned-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "043ef1d76e3380c62b0814442eb1826694c0dea6bbccf588c82ca8e287b8d63b"
+        },
+        {
+          "tag": "final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PASS",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.001 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2977665,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2977697,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2977700,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2977711,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2977719,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2977733,
+          "exit": 0
+        },
+        {
+          "name": "tail0",
+          "pid": 2977744,
+          "exit": 0
+        },
+        {
+          "name": "tail1",
+          "pid": 2977752,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2977733,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S7-core-hidden-return/run/owner-closed-2977733.log",
+          "sha256": "ce55e1149ad6f7cc6e5d8a9f09793183100af1b180f1454712e747cf6cad530e",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2977700,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S7-core-hidden-return/run/reference-closed-2977700.log",
+          "sha256": "91d01bec16030f3f00ec215b6a35dd2fe6b6ae04f7af6008abc08b0ab110c2fd",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2977711,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S7-core-hidden-return/run/filler0-closed-2977711.log",
+          "sha256": "49261f749b5d6d4f04c5a2d10b201db4bda8ebc12f1d66c3efdd1cb16ed9647b",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "5",
+              "5"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler1",
+          "pid": 2977719,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S7-core-hidden-return/run/filler1-closed-2977719.log",
+          "sha256": "58535ef2b4213bd08322462a8d8582773b8d411358a9c83c0730014a6d843bb4",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "5",
+              "5"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "tail0",
+          "pid": 2977744,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S7-core-hidden-return/run/tail0-closed-2977744.log",
+          "sha256": "7da342c406b7d0096647eee62f0f0b3846ed1142fd115024ee6e33aced5f059b",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "tail1",
+          "pid": 2977752,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S7-core-hidden-return/run/tail1-closed-2977752.log",
+          "sha256": "2650681773ca3034d61721b7ec490c793c3c01f61aa6a59ce080a9ef43c8e2c6",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "5",
+              "5"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/mosaic-build/sway/swayfx-mosaic",
+        "binary_sha256": "29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "build_id": "1b42e557e38db3440ae8dcf7ac967e4132223365",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/candidate-source-freeze.json"
+      },
+      "popup_geometry": {
+        "A": [
+          -218,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -118,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -318,
+          25
+        ],
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      },
+      "grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 59,
+          "used": 59,
+          "origin": "wl_pointer.button",
+          "ids": [
+            12,
+            11,
+            14
+          ],
+          "ack": 60,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 68,
+          "used": 68,
+          "origin": "wl_pointer.button",
+          "ids": [
+            15,
+            13,
+            17
+          ],
+          "ack": 69,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ]
+    },
+    {
+      "id": "S8-core-saved",
+      "argv": [
+        "python",
+        "-B",
+        "run.py",
+        "S8-core-saved"
+      ],
+      "cwd": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics",
+      "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+      "source_sha256": "f6954a780ede58330dc27d54f2c749066fd45133f53c56a82960ccba01d484a2",
+      "review_sha256": "dfc434f7462cc666521814d10566ff55f3b61ea11b4834f7019e14a4e1f0cce7",
+      "review_binding_note": null,
+      "preflight_sha256": "b5abc2c9feecda2ac878cb56bda6770d5c07e4cdeb968e045fc7669c01b5e942",
+      "raw_exit": 0,
+      "seconds": 8.295299,
+      "capture_count": 10,
+      "captures": [
+        {
+          "tag": "H2-reference1",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "H2-reference2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "held-H1",
+          "output": "HEADLESS-1",
+          "sha256": "0436b524cafbc60d2f39672d6a2c64cff5f54b4fc6aa0da97b0c9b7165fc0680"
+        },
+        {
+          "tag": "held-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "natural-timeout-H1",
+          "output": "HEADLESS-1",
+          "sha256": "a3db82d397af9918663524aca04195aa55503c74222c48934fbccd8a3860dadf"
+        },
+        {
+          "tag": "natural-timeout-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "restored-live-H1",
+          "output": "HEADLESS-1",
+          "sha256": "93efce2738b1e34d8e922ed22517b5f29cd21106978b021ac23ae5fb66b558cf"
+        },
+        {
+          "tag": "restored-live-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        },
+        {
+          "tag": "final-H1",
+          "output": "HEADLESS-1",
+          "sha256": "eb2c2dce86891d6a7ba027b83e218d7b64c17c6386d53291cca8f939d77c0601"
+        },
+        {
+          "tag": "final-H2",
+          "output": "HEADLESS-2",
+          "sha256": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a"
+        }
+      ],
+      "measurements": "PASS",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": null,
+      "scientific_cleanup": "PASS",
+      "mechanical_cleanup": "PASS",
+      "terminal": {
+        "ipc_exit": 1,
+        "stdout": "",
+        "stderr": "00:00:00.002 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n"
+      },
+      "processes": [
+        {
+          "name": "compositor",
+          "pid": 2978581,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2978610,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2978613,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2978625,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2978633,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2978642,
+          "exit": 0
+        }
+      ],
+      "explicit_client_closures": [
+        {
+          "name": "owner",
+          "pid": 2978642,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S8-core-saved/run/owner-closed-2978642.log",
+          "sha256": "18b43c3b0b478f68d1138efc19d5e71c454de444b7ff83079e528d98dfb38fc7",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "3",
+              "3"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "reference",
+          "pid": 2978613,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S8-core-saved/run/reference-closed-2978613.log",
+          "sha256": "ca88a77a06cab312b3f6b778e35bdb5f49df01bb3675839cf66af3804fad3355",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler0",
+          "pid": 2978625,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S8-core-saved/run/filler0-closed-2978625.log",
+          "sha256": "c8de5ea7bae36577aa74b775198dfa675410c0657c9e358a1319552aa7e43bcf",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "6",
+              "6"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        },
+        {
+          "name": "filler1",
+          "pid": 2978633,
+          "status": "PASS",
+          "failure": null,
+          "exit": 0,
+          "log": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/runs/S8-core-saved/run/filler1-closed-2978633.log",
+          "sha256": "1645eae529ab64754f067c04d8ff52f9ff97f262a1ef1588036833279b8b6fb2",
+          "close_received": true,
+          "shm_closure": [
+            [
+              "7",
+              "7"
+            ]
+          ],
+          "wayland_errors": [
+            "0"
+          ]
+        }
+      ],
+      "runtime_removed": true,
+      "binary": {
+        "binary": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/mosaic-build/sway/swayfx-mosaic",
+        "binary_sha256": "29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+        "build_id": "1b42e557e38db3440ae8dcf7ac967e4132223365",
+        "source_proof": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/audit/candidate-source-freeze.json"
+      },
+      "popup_geometry": null,
+      "grabs": null
+    }
+  ]
+}

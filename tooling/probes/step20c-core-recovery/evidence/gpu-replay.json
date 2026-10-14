@@ -1,0 +1,140 @@
+{
+  "status": "EXPERIMENTAL_OFFLINE_ONLY",
+  "historical_status": "INCONCLUSIVE_UNCHANGED",
+  "historical_hashes": {
+    "meta": "c8ca51bca694db9e21471356a4260064ed81ab7013a88d4edb4b8572044a825c",
+    "rgba": "a6dc7fd873e1ab7e52e04625bacb3251ba8e1aad2e766811efebde7ae7932a99",
+    "arm": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+  },
+  "samples": 9,
+  "raw_bytes": 8312048,
+  "sample_protocol": "PASS",
+  "native_envelope": {
+    "writes": 11,
+    "copies": 2,
+    "status": "STRUCTURAL_ONLY"
+  },
+  "epoch_validator": {
+    "status": "REJECTED",
+    "reason": "effective halfpixel"
+  },
+  "plane_evidence": {
+    "layout": "AMD_GFX11_DCC_NO_RETILE",
+    "image_stride": "PASS",
+    "auxiliary_fields": "PLAUSIBLE_ONLY",
+    "auxiliary_extent": "NOT_PROVEN",
+    "allocation_bounds": "NOT_PROVEN",
+    "fd_identity": "NOT_OBSERVED"
+  },
+  "halfpixel": [
+    {
+      "stage": 0,
+      "observed": [
+        983818240,
+        987398144
+      ],
+      "expected_float32": [
+        983815946,
+        987395086
+      ],
+      "observed_float": [
+        0.0012502670288085938,
+        0.001667022705078125
+      ]
+    },
+    {
+      "stage": 1,
+      "observed": [
+        983818240,
+        987398144
+      ],
+      "expected_float32": [
+        983815946,
+        987395086
+      ],
+      "observed_float": [
+        0.0012502670288085938,
+        0.001667022705078125
+      ]
+    },
+    {
+      "stage": 2,
+      "observed": [
+        983818240,
+        987398144
+      ],
+      "expected_float32": [
+        983815946,
+        987395086
+      ],
+      "observed_float": [
+        0.0012502670288085938,
+        0.001667022705078125
+      ]
+    },
+    {
+      "stage": 3,
+      "observed": [
+        967041024,
+        970620928
+      ],
+      "expected_float32": [
+        967038730,
+        970617870
+      ],
+      "observed_float": [
+        0.00031256675720214844,
+        0.00041675567626953125
+      ]
+    },
+    {
+      "stage": 4,
+      "observed": [
+        967041024,
+        970620928
+      ],
+      "expected_float32": [
+        967038730,
+        970617870
+      ],
+      "observed_float": [
+        0.00031256675720214844,
+        0.00041675567626953125
+      ]
+    },
+    {
+      "stage": 5,
+      "observed": [
+        967041024,
+        970620928
+      ],
+      "expected_float32": [
+        967038730,
+        970617870
+      ],
+      "observed_float": [
+        0.00031256675720214844,
+        0.00041675567626953125
+      ]
+    }
+  ],
+  "sampled_relations": {
+    "U0_cache_RGBA_exact": true,
+    "cache_presubmit_RGBA_exact": false
+  },
+  "GL_ERROR_QUEUE": "UNOBSERVED",
+  "read_success": "NOT_PROVEN",
+  "GPU_MODIFIER_AWARE_OFFLINE": "INCONCLUSIVE",
+  "plane_metadata_correction": "PASS",
+  "GPU_DCC_DESIGN_REVIEW": "NOT_PROVEN",
+  "GPU_DCC_RUNTIME": "NOT_RUN",
+  "GPU_WHOLE_FIELD_CAUSALITY": "INCONCLUSIVE",
+  "epochs_acquired": 1,
+  "causal_limit": "No B/A-return or whole-field output; no fitted precision tolerance; no physical DCC decoding.",
+  "runtime_prerequisites": [
+    "Authorized new diagnostic binary with defensible read-success and GL error observability contract",
+    "Resolve effective uniform precision validation from primary specification without fitted tolerances",
+    "Allocation/FD/auxiliary bounds observability or explicit limited contract",
+    "Independent review of exact new source and acquisition preflight before any run reservation"
+  ]
+}

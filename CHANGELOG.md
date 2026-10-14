@@ -4,6 +4,27 @@
 
 ### STEP20C experimental evidence
 
+- Record a separate CORE recovery campaign: nine new runs/102 output PNG,
+  comparable12-state standard RGB controls, two-chain horizontal return,
+  Y600 vertical clipping/input, same-chain hidden return and saved phased
+  timeout/ACK/normal-close/SHM3/3. All runner/client/compositor exits0, nine
+  terminal IPC1 and raw architecture INCONCLUSIVE remain distinct.
+- Keep fullscreen crossing NOT_EXERCISED and comparison INCONCLUSIVE for
+  non-equivalent trees. Preserve the raw vertical X/0 field while documenting
+  the executed Y/600 predicate. No historical failure or UX policy is rewritten.
+- Record private OOM A/B/C studies:40 expected C commands/six rejected mutants,
+  bounded independent review ACCEPTED, A abort/P1 and production policy
+  UNDECIDED. Modifier-aware DCC plane repair passes its isolated check, while
+  effective halfpixel/read-success/GL-error gates remain INCONCLUSIVE and G2
+  NOT_RUN. No new compositor/GPU build, staging, dependency or production edit.
+- Add V3 and the exact-CORE integration draft, retaining native lifetime,
+  coherence, complete damage/effects, whole-field GPU, maintenance and legal
+  gates. Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE, ticket
+  PARTIALLY_ADVANCED; final audit/publication pending at this edition.
+  Document prior immutable-archive whitespace exit2 and reversible EOF-only
+  normalization of new public fixture copies. STEP20C NEXT, production
+  multi-output NOT_YET_SUPPORTED, PRODUCTION_AUTHORIZED FALSE.
+
 - Record the new minimal-core campaign separately from historical source-only
   evidence: exact replay, six actual C UB reproductions, private camera guard,
   extracted C unit normal/UBSan/ASan, OOM abort/P1, static build/local ABI and

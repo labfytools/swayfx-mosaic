@@ -651,3 +651,40 @@ Scoped evidence delta review ACCEPTED; final dossier review pending and
 documentary publication PREPARED at this edition. STEP20A DONE; STEP20B
 EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED; production multi-output
 NOT YET SUPPORTED. Production integration is not authorized.
+
+## Private CORE recovery and OOM/DCC evidence — 2026-10-14
+
+The [V3 recovery decision](design/STEP20C_CORE_QUALIFICATION_DECISION_V3.md)
+records a separate campaign on exact CORE SHA29baf31, without rebuilding it.
+Nine new runs,102 output PNG/120 reserved slots, no retries, no compositor/GPU
+builds or staging. Pristine/core standard has12 exact homologous whole-RGB
+images. Two-chain horizontal Mosaic→splith, Y600 vertical clipping/input,
+same-chain hidden return and phased saved timeout/normal-close are sampled
+PARTIALLY_FEASIBLE. Fullscreen cross-output is NOT_EXERCISED and its comparison
+INCONCLUSIVE: popups remain wholly H1 and the ancestor child counts/owner
+heights differ. The raw vertical X/0 crossing field is preserved; executed
+Y/600 predicates and measured bounds establish the separate vertical result.
+
+Private OOM A/B/C extracted C studies pass their expected40 commands and six
+negative mutants. A still aborts on sidecar OOM: P1 availability blocker.
+B masks synchronously with owner admission; C reserves before publication,
+without adding an installed struct field. These are bounded private options,
+not adopted architecture. Production OOM policy remains UNDECIDED. Native
+session survival/damage/effects/saved/reparent/GPU qualification is missing.
+
+The per-plane AMD/DCC fixture correction passes locally, but the full real G1
+epoch rejects effective halfpixel; read_success NOT_PROVEN and GL error queue
+UNOBSERVED prevent a defensible new runtime under the zero-build contract.
+Whole-field GPU remains INCONCLUSIVE, G2 NOT_RUN. CORE lacks PI hooks; no native
+buffer identity or atomic generation is transferred from other diagnostics.
+Applied rendering/input coherence remains required; no particular atomic
+counter is selected. Sampled damage extents/RGB do not prove complete damage,
+frame presentation or GPU lifetime. Local ELF/static provider and historical
+five-file stage are rechecked, not future ABI/distribution qualification.
+
+Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE, ticket PARTIALLY_ADVANCED.
+Scoped reviews ACCEPTED for bounded evidence; final audit/publication pending
+at this edition. STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT;
+STEP20D–G PLANNED; production multi-output NOT_YET_SUPPORTED;
+PRODUCTION_AUTHORIZED FALSE. Compositor/tree authority and Row0 borrowing
+remain unchanged; no UX, package, public ABI or production dependency adopted.

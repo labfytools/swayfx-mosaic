@@ -1,0 +1,19 @@
+--- a/scene.c
++++ b/scene.c
+@@ -983 +983 @@
+-void wlr_scene_tree_set_clip(struct wlr_scene_tree *tree, const struct wlr_box *clip) {
++bool wlr_scene_tree_set_clip(struct wlr_scene_tree *tree, const struct wlr_box *clip) {
+@@ -989,2 +989,2 @@
+-	if (!clip && !entry) return;
+-	if (clip && entry && memcmp(&entry->box, clip, sizeof(*clip)) == 0) return;
++	if (!clip && !entry) return true;
++	if (clip && entry && memcmp(&entry->box, clip, sizeof(*clip)) == 0) return true;
+@@ -1000 +1000,5 @@
+-			abort();
++			// WHY: a mandatory clip must not fail open even if callers ignore false.
++			// CONTRACT: mask synchronously; caller owns future visibility admission.
++			// INVARIANT: never automatically re-enable an intentionally hidden tree.
++			wlr_scene_node_set_enabled(&tree->node, false);
++			return false;
+@@ -1013,0 +1018 @@
++	return true;

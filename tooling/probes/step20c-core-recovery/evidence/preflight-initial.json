@@ -1,0 +1,59 @@
+{
+  "review_kind": "INITIAL_BOUNDED_PREFLIGHT",
+  "reviewer": "/root/preflight_review",
+  "independent": true,
+  "decision": "CORRECTION_REQUIRED",
+  "baseline": "70954e26f62fb3df25995e31b0c615762ff85a60",
+  "manifest_sha256": "075724665dde40fdd00571229a2b33490634a01d39b28c97b2a64188386ee7f1",
+  "manifest_entries_verified": 562,
+  "manifest_mismatches": [],
+  "repo_lab_source_mismatches": [],
+  "authorized_runs": [],
+  "runtime": "NOT_RUN",
+  "family_decisions": {
+    "HISTORICAL_REPLAY": "ACCEPTED",
+    "STANDARD_S0_S1_S2": "CORRECTION_REQUIRED",
+    "VERTICAL_S3_S4": "CORRECTION_REQUIRED",
+    "FULLSCREEN_S5_S6": "CORRECTION_REQUIRED",
+    "HIDDEN_S7": "CORRECTION_REQUIRED",
+    "SAVED_S8": "CORRECTION_REQUIRED",
+    "GPU_OFFLINE_CORRECTION": "ACCEPTED",
+    "HISTORICAL_NATIVE_AUDIT": "ACCEPTED"
+  },
+  "findings": [
+    {
+      "id": "INITIAL-P1-01",
+      "severity": "P1",
+      "symbols": [
+        "main",
+        "Session.close_client",
+        "Session.cleanup"
+      ],
+      "evidence": "Real cleanup reproduced status PASS and scientific_cleanup PASS despite failure ValueError: client SHM release incomplete/unobserved. main retains successful measurement status when normal_remaining raises; exited invalid client is skipped by cleanup.",
+      "required_repair": "Failure must prevent overall success; archived explicit closure validation must be retained and qualify scientific cleanup; actual main/normal_remaining/cleanup adversarial regression."
+    }
+  ],
+  "tests": {
+    "graphics": 15,
+    "gpu": 36,
+    "historical_entries": 4688,
+    "historical_files": 4250,
+    "native_receipt": "PASS"
+  },
+  "transcription": "Faithful structured summary materialized by parent from independent read-only reviewer final response; not a verbatim transcript or reviewer-authored file.",
+  "gpu_limits": {
+    "plane_metadata_correction": "PASS",
+    "GPU_MODIFIER_AWARE_OFFLINE": "INCONCLUSIVE",
+    "GPU_DCC_DESIGN_REVIEW": "NOT_PROVEN",
+    "GPU_DCC_RUNTIME": "NOT_RUN",
+    "read_success": "NOT_PROVEN",
+    "GL_ERROR_QUEUE": "UNOBSERVED",
+    "real_epoch_rejection": "effective halfpixel"
+  },
+  "source_bindings": {
+    "graphics/run.py": "63396e8265cdbf2b89625792460b383cf9a4e8bd9c429e25d0a4f8c0736a2adf",
+    "graphics/engine.py": "1336a83e521c47a1800b21185ef1dcf340d2a543bbecb4a3552879469f04294c",
+    "graphics/test_recovery.py": "4862d08ff25644f4c526ef1f045e3bb49ef2efea50b4ab590cbb68b7ab5f771e",
+    "audit.py": "eee5163e4aa13720fbfc18764f198ef592ded1d544dd01de49e545c33ee15966"
+  }
+}

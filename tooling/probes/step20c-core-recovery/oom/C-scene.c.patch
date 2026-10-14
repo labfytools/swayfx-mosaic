@@ -1,0 +1,68 @@
+--- a/scene.c
++++ b/scene.c
+@@ -57,0 +58 @@
++	bool active; // Private sidecar only: no installed tree/node ABI change.
+@@ -62 +63 @@
+-static struct scene_tree_clip *scene_tree_clip_find(struct wlr_scene_tree *tree) {
++static struct scene_tree_clip *scene_tree_clip_storage(struct wlr_scene_tree *tree) {
+@@ -66,0 +68,8 @@
++}
++
++// WHY: reservation must survive clip removal to make later admission allocation-free.
++// CONTRACT: inactive reservations are absent to render/hit/get callers.
++// INVARIANT: lookup never exposes an uninitialized clip rectangle.
++static struct scene_tree_clip *scene_tree_clip_find(struct wlr_scene_tree *tree) {
++	struct scene_tree_clip *entry = scene_tree_clip_storage(tree);
++	return entry && entry->active ? entry : NULL;
+@@ -286,0 +296,5 @@
++	// WHY: failure must occur before tree publication to parent scene children.
++	// CONTRACT: both tree and reservation are acquired before scene_tree_init.
++	// INVARIANT: failed reservation frees unpublished tree, no listener attached.
++	struct scene_tree_clip *entry = calloc(1, sizeof(*entry));
++	if (!entry) { free(tree); return NULL; }
+@@ -287,0 +302,5 @@
++	entry->tree = tree;
++	entry->destroy.notify = scene_tree_clip_destroy;
++	wl_signal_add(&tree->node.events.destroy, &entry->destroy);
++	entry->next = scene_tree_clips;
++	scene_tree_clips = entry;
+@@ -984,29 +1003,10 @@
+-	// CONTRACT: tree is required; a supplied box is copied and must have
+-	// nonnegative dimensions. NULL removes the entry, while a zero box masks.
+-	assert(tree);
+-	assert(!clip || (clip->width >= 0 && clip->height >= 0));
+-	struct scene_tree_clip *entry = scene_tree_clip_find(tree);
+-	if (!clip && !entry) return;
+-	if (clip && entry && memcmp(&entry->box, clip, sizeof(*clip)) == 0) return;
+-	wlr_log(WLR_INFO, "SPIKE_CLIP tree=%p rect=%d,%d %dx%d",
+-		(void *)tree, clip ? clip->x : 0, clip ? clip->y : 0,
+-		clip ? clip->width : 0, clip ? clip->height : 0);
+-	if (clip && !entry) {
+-		entry = calloc(1, sizeof(*entry));
+-		// WHY: this void API cannot report an uninstalled mandatory clip.
+-		// CONTRACT/INVARIANT: allocation failure must never expose unclipped content.
+-		if (!entry) {
+-			wlr_log(WLR_ERROR, "Failed to allocate mandatory scene tree clip");
+-			abort();
+-		}
+-		entry->tree = tree;
+-		entry->destroy.notify = scene_tree_clip_destroy;
+-		wl_signal_add(&tree->node.events.destroy, &entry->destroy);
+-		entry->next = scene_tree_clips;
+-		scene_tree_clips = entry;
+-	}
+-	if (clip) {
+-		entry->box = *clip;
+-	} else {
+-		scene_tree_clip_remove(entry);
+-	}
++	// WHY: no heap allocation may occur when exposing an existing tree.
++	// CONTRACT: trees must come from the private reservation-aware create path.
++	// INVARIANT: NULL deactivates but never releases the reservation.
++	assert(tree && (!clip || (clip->width >= 0 && clip->height >= 0)));
++	struct scene_tree_clip *entry = scene_tree_clip_storage(tree);
++	assert(entry);
++	if (!clip && !entry->active) return;
++	if (clip && entry->active && memcmp(&entry->box, clip, sizeof(*clip)) == 0) return;
++	entry->active = clip != NULL;
++	if (clip) entry->box = *clip;

@@ -595,3 +595,39 @@ Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE, scientific status
 PARTIALLY_ADVANCED. Evidence delta review ACCEPTED; final dossier review pending,
 publication PREPARED at this edition. Production multi-output NOT YET SUPPORTED;
 STEP20C NEXT. No production, UX, package or historical evidence change.
+
+## CORE recovery limits — 2026-10-14
+
+The [V3 recovery dossier](design/STEP20C_CORE_QUALIFICATION_DECISION_V3.md)
+adds nine runs/102 output captures without reopening historical failures.
+Comparable standard controls, complete sampled two-chain horizontal return,
+vertical Y600 clipping/input, same-chain hidden return and saved normal-close
+now have targeted PARTIALLY_FEASIBLE evidence on exact CORE29baf31. All runner
+exits0, client/compositor exits0, scientific and mechanical cleanup pass;
+all nine terminal IPC exits1 and raw architecture INCONCLUSIVE remain separate.
+
+Fullscreen comparison is still INCONCLUSIVE: both actual non-leaf fullscreen
+ancestors are observed, but no popup crosses H2 and the trees differ. No UX
+policy defect follows. The vertical raw crossing field tests default X/0;
+executed Y/600 bounds establish vertical crossing without rewriting that field.
+S7 omits optional destructive dismissal; historical E5 remains historical.
+S8 qualifies timeout/ACK/normal-close/SHM3/3/final H2, but native saved identity
+and retirement remain NOT_OBSERVABLE. Buffer identity, GPU completion, atomic
+generation, complete damage and full effects coverage remain NOT_PROVEN.
+
+OOM A abort remains an integration P1 availability blocker. B/C are accepted
+only as private C studies; full-session survival, actual reparent/saved/damage
+and recovery are not proved, and production OOM policy is UNDECIDED. GPU DCC
+per-plane repair does not close the full gate: effective halfpixel rejects,
+read_success NOT_PROVEN, GL queue UNOBSERVED, G2 NOT_RUN and whole-field
+causality INCONCLUSIVE. No fitted tolerance or shader correction is adopted.
+
+Exact-pair ELF/static SceneFX and the existing five-file stage are checked;
+future ABI/maintenance, full package, PARTIAL/LEGAL_NOT_APPROVED notices and
+release/security ownership remain gates. Scoped reviews ACCEPTED do not imply
+final deep audit/publication success, still pending at this edition.
+Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE, ticket PARTIALLY_ADVANCED.
+STEP20C NEXT; production multi-output NOT_YET_SUPPORTED; production authority
+FALSE. Historical immutable archive whitespace warnings remain documented;
+new public EOF-only fixture normalization is reversible and does not change
+executed LAB evidence or CORE identity.

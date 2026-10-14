@@ -1,0 +1,50 @@
+{
+  "review_kind": "INITIAL_BOUNDED_OOM_SOURCE_ONLY",
+  "reviewer": "/root/delta_oom_review",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "manifest_sha256": "4a6dfda4f61d9c9f5a13588fe7ed7ac6ec6d9720cf2167a82e5f7c39f52d0c35",
+  "source_manifest_sha256": "59207af208d13c43d0bb0aa3a1669dae697d22d20ba1199ece12817d754d9c1c",
+  "slice_bindings_sha256": "6c7092197a5055136356f1fad113f213b37dfea189c024eaebd437d2819c592e",
+  "commands_sha256": "1c867b9a4d9a013a78ebda7ad3e5cb24b606480071afde9bbc94d26bf6eed0b5",
+  "negative_results_sha256": "c67f1d5902224f7d4a2b299d710222e439439389383523d0dca2a4b9217f5384",
+  "fixture_files_verified": 15,
+  "full_prototype_sources_verified": 9,
+  "exact_slice_bindings_verified": 25,
+  "findings": [],
+  "CORE_OOM_C_TESTS": "PARTIALLY_FEASIBLE",
+  "CORE_OOM_ALTERNATIVES_REVIEW": "ACCEPTED",
+  "CORE_PRODUCTION_OOM_POLICY": "UNDECIDED",
+  "A_status": "OOM_ABORT_EXPERIMENTAL",
+  "production_availability": "PRODUCTION_AVAILABILITY_NOT_APPROVED",
+  "independent_reproduction": {
+    "lab": "/tmp/swayfx-oom-independent-review-vb_o8bvr",
+    "run_exit": 0,
+    "commands_expected": 40,
+    "commands_pass": 40,
+    "negative_exit": 0,
+    "mutants_rejected": 6,
+    "mutant_returncodes": [
+      -6,
+      99,
+      -6,
+      -6,
+      -6,
+      -6
+    ],
+    "sidecar_bytes": {
+      "A": 56,
+      "B": 56,
+      "C": 64
+    }
+  },
+  "native_session_survival": "NOT_PROVEN",
+  "complete_native_damage": "NOT_PROVEN",
+  "native_saved_buffer_oom": "NOT_TESTED",
+  "native_reparent_damage": "NOT_TESTED",
+  "production_adoption_authorized": false,
+  "authorized_runs": [],
+  "compositor_builds": 0,
+  "runtime": "NOT_RUN",
+  "transcription": "Faithful structured summary parent-materialized from independent read-only review final; not verbatim."
+}

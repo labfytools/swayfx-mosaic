@@ -1,0 +1,23 @@
+{
+  "status": "EXPERIMENTAL_OFFLINE_ONLY",
+  "parents": {
+    "validate.py": {
+      "parent": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/gpu-field/validate.py",
+      "sha256": "158a820a2f170cabce37f7b8965ce23c3887cfbced32fecaea4914ea6f423ef7"
+    },
+    "analysis.py": {
+      "parent": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/gpu-field/analysis.py",
+      "sha256": "5341909a7fa4010f52bfc909cd76f2288cfa5c4da9126b7258c47b4ad987fa3d"
+    },
+    "test_fixture.py": {
+      "parent": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/gpu-field/test_fixture.py",
+      "sha256": "824c9fa022871076bef8b53357f6a25394706180a3eb29b1a31e993d46ef9ca1"
+    }
+  },
+  "historical_runner": {
+    "path": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/gpu-field/runner.py",
+    "sha256": "60989c77cef0656d52607869f8b37bb4071335dbbed62b6fed1cd86ee2bed3d2",
+    "copied": false,
+    "reason": "Runtime forbidden by unresolved GL observability; no launcher needed."
+  }
+}

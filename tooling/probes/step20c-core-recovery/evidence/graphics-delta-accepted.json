@@ -1,0 +1,40 @@
+{
+  "review_kind": "TARGETED_GRAPHICS_DELTA",
+  "reviewer": "/root/delta_oom_review",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "manifest_sha256": "ed0c2be50d067f273e884c338b607a47d066d3a290432df99a513c620346fbc7",
+  "manifest_entries_verified": 565,
+  "manifest_mismatches": [],
+  "repo_lab_source_mismatches": [],
+  "resolved_findings": [
+    "INITIAL-P1-01"
+  ],
+  "new_findings": [],
+  "authorized_runs": [
+    "S0-pristine-standard",
+    "S1-core-standard",
+    "S2-core-horizontal",
+    "S3-pristine-vertical",
+    "S4-core-vertical",
+    "S5-pristine-fullscreen",
+    "S6-core-fullscreen",
+    "S7-core-hidden-return",
+    "S8-core-saved"
+  ],
+  "family_decisions": {
+    "HISTORICAL_REPLAY": "ACCEPTED",
+    "STANDARD_S0_S1_S2": "ACCEPTED",
+    "VERTICAL_S3_S4": "ACCEPTED",
+    "FULLSCREEN_S5_S6": "ACCEPTED",
+    "HIDDEN_S7": "ACCEPTED",
+    "SAVED_S8": "ACCEPTED"
+  },
+  "tests": {
+    "graphics": 20,
+    "result": "PASS"
+  },
+  "runtime": "NOT_RUN",
+  "reservations_consumed": 0,
+  "transcription": "Parent materialization of independent read-only reviewer scoped message; not reviewer-authored file or verbatim transcript."
+}

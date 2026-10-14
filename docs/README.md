@@ -479,3 +479,30 @@ dossier review pending and documentary publication PREPARED at this edition.
 Actual publication refs belong to the private post-push receipt/final handoff.
 STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
 production multi-output NOT YET SUPPORTED. No production/UX/package change.
+
+## Private CORE recovery, OOM and DCC gate — 2026-10-14
+
+The new EXPERIMENTAL campaign is PARTIALLY_ADVANCED, recommendation
+PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE. Nine new runs consume102 output PNG and
+120 reserved capture slots, no retry/compositor build/GPU build/stage. Targeted
+standard/return/vertical/hidden/saved evidence is PARTIALLY_FEASIBLE; fullscreen
+comparison and GPU whole-field remain INCONCLUSIVE. OOM production policy is
+UNDECIDED; no production, UX or package contract is adopted.
+
+| Report | Scope and limits |
+| --- | --- |
+| [Standard, vertical and fullscreen recovery](design/STEP20C_CORE_STANDARD_VERTICAL_FULLSCREEN_RECOVERY.md) |12 homologous standard RGB exact, two-chain return and Y600 crossing; fullscreen NOT_EXERCISED/non-equivalent |
+| [Hidden and saved lifecycle recovery](design/STEP20C_CORE_HIDDEN_SAVED_LIFECYCLE_RECOVERY.md) | Same-chain hidden return and phased timeout/ACK/SHM closure; native identity NOT_OBSERVABLE |
+| [Modifier-aware GPU validation](design/STEP20C_GPU_DCC_MODIFIER_AWARE_VALIDATION.md) | Per-plane repair, full epoch effective halfpixel rejection, GL/read limits, G2 NOT_RUN |
+| [Mandatory clip OOM options](design/STEP20C_MANDATORY_CLIP_OOM_POLICY_OPTIONS.md) | A abort/P1, private B/C studies,40 expected commands/six mutants; production policy UNDECIDED |
+| [Qualification decision V3](design/STEP20C_CORE_QUALIFICATION_DECISION_V3.md) | Identities, budget, raw exits versus targeted verdicts, native/ELF/stage gates, prepublication markers |
+| [Current integration draft](design/STEP20C_PRODUCTION_INTEGRATION_DECISION_DRAFT.md) | CORE-specific matrix, OOM/coherence/UX/maintenance/legal decisions and rollback boundary |
+
+The [new source fixture](../tooling/probes/step20c-core-recovery/README.md)
+links provenance, scoped reviews and compact results. Nested submission
+editions remain frozen; later review receipts clarify their limited acceptance.
+Public EOF-only normalization is explicitly reversible; executed LAB sources
+and historical archives remain unchanged. Final deep audit/publication pending
+at this edition; actual postpublication identities belong to the private receipt.
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
+PRODUCTION_MULTI_OUTPUT NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.

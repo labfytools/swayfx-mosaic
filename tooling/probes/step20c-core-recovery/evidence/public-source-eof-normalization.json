@@ -1,0 +1,52 @@
+{
+  "status": "publication-format normalization; executed LAB fixtures unchanged",
+  "files": [
+    {
+      "public_path": "tooling/probes/step20c-core-recovery/graphics/cases.py",
+      "executed_path": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/cases.py",
+      "executed_sha256": "95652d9b9499c9e7bed77aa6600a6fb99d5bfb4e1b8d465d1c76e98b49778977",
+      "public_before_sha256": "95652d9b9499c9e7bed77aa6600a6fb99d5bfb4e1b8d465d1c76e98b49778977",
+      "public_after_sha256": "7ef309e39b7ac814246a0822428334cfce35d0b5c641ca7b220b0f4475709e4b",
+      "before_length": 11311,
+      "after_length": 11310,
+      "reconstruction_sha256": "95652d9b9499c9e7bed77aa6600a6fb99d5bfb4e1b8d465d1c76e98b49778977",
+      "reconstruction_matches_executed": true,
+      "ast_dump_equal_with_attributes": true,
+      "compile_marshal_equal_same_filename": true,
+      "original_final_suffix_escaped": "\\n\\n",
+      "append_suffix": "\n"
+    },
+    {
+      "public_path": "tooling/probes/step20c-core-recovery/graphics/ipc_predicates.py",
+      "executed_path": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/ipc_predicates.py",
+      "executed_sha256": "6d5a25c225685adf24978a8bd9b4a6de44a369af6620d10db95accacc892b6f8",
+      "public_before_sha256": "6d5a25c225685adf24978a8bd9b4a6de44a369af6620d10db95accacc892b6f8",
+      "public_after_sha256": "5354ba53e1b3f8d0026f4475beebee58d093a81db7d26304cad7085ae3efd352",
+      "before_length": 691,
+      "after_length": 689,
+      "reconstruction_sha256": "6d5a25c225685adf24978a8bd9b4a6de44a369af6620d10db95accacc892b6f8",
+      "reconstruction_matches_executed": true,
+      "ast_dump_equal_with_attributes": true,
+      "compile_marshal_equal_same_filename": true,
+      "original_final_suffix_escaped": "\\n\\n\\n",
+      "append_suffix": "\n\n"
+    },
+    {
+      "public_path": "tooling/probes/step20c-core-recovery/graphics/predicates.py",
+      "executed_path": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/graphics/predicates.py",
+      "executed_sha256": "d1d3505d9553444a3c6ec4b6c47eed817adac0451db1518ee15e33e0683c12fb",
+      "public_before_sha256": "d1d3505d9553444a3c6ec4b6c47eed817adac0451db1518ee15e33e0683c12fb",
+      "public_after_sha256": "222a94764bfe6d76f0b7bcdab4b28b4d90cccb479af49b87e778813f0bdc3a71",
+      "before_length": 7711,
+      "after_length": 7710,
+      "reconstruction_sha256": "d1d3505d9553444a3c6ec4b6c47eed817adac0451db1518ee15e33e0683c12fb",
+      "reconstruction_matches_executed": true,
+      "ast_dump_equal_with_attributes": true,
+      "compile_marshal_equal_same_filename": true,
+      "original_final_suffix_escaped": "\\n\\n",
+      "append_suffix": "\n"
+    }
+  ],
+  "reconstruction_rule": "Append append_suffix (JSON string decoded as ASCII) to public file bytes; verify executed_sha256. original_final_suffix_escaped describes the entire original newline suffix, not the bytes removed.",
+  "initial_mechanic_receipt_sha256": "ce7ef7860afed6515a2277fb76f5a5d790a0066641f3ca0b5770ec5b8157c45a"
+}

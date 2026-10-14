@@ -1,87 +1,55 @@
 # STEP20C — décision d’intégration production, draft
 
-> EXPERIMENTAL — édition du 2026-10-14. Ticket `SWAYFX_MOSAIC_STEP20C_SAVED_LIFETIME_INPUT_EPOCH_AND_GPU_CAUSALITY_BATCH_V1`. Revue finale indépendante du dossier complet : ACCEPTED / audit PASS pour la fidélité expérimentale ; publication PREPARED à cette édition, reçu final hors Git après push. STEP20A DONE ; STEP20B EXPERIMENTAL ; STEP20C NEXT ; STEP20D–G PLANNED ; production multi-output NOT YET SUPPORTED. Aucun contrat UX, package ou production adopté.
+> EXPERIMENTAL — édition du 2026-10-14, avant audit final et publication. Ticket `SWAYFX_MOSAIC_STEP20C_CORE_RECOVERY_OOM_AND_DCC_QUALIFICATION_BATCH_V1`. STEP20A DONE ; STEP20B EXPERIMENTAL ; STEP20C NEXT ; STEP20D–G PLANNED ; production multi-output NOT_YET_SUPPORTED ; PRODUCTION_AUTHORIZED=FALSE. Aucun contrat production, UX ou package adopté.
 
-LAB désigne `/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f`, laboratoire privé hors Git. Les chemins LAB sont des références locales, pas un kit distribué. Le [dossier V2](STEP20C_GATE_CLOSURE_DECISION_V2.md) fixe la provenance commune et les limites. Les rapports historiques restent immuables.
+LAB désigne `/home/fy59/swayfx-mosaic-core-recovery-qmhckba5`, hors Git. Le [dossier V3](STEP20C_CORE_QUALIFICATION_DECISION_V3.md), la [fixture source-only](../../tooling/probes/step20c-core-recovery/README.md), ses [résultats compacts](../../tooling/probes/step20c-core-recovery/evidence/results.json) et sa [provenance](../../tooling/probes/step20c-core-recovery/provenance.json) fixent les identités, budgets et limites. Les chemins LAB sont des références locales ; les binaires, PNG et traces restent privés. Aucun résultat historique n’est réécrit.
 
-La recommandation unique reste **PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE**. Ce draft remplace les réponses devenues obsolètes du ticket antérieur, sans modifier ses rapports immuables. Les vingt questions ci-dessous explicitent le dossier de décision du nouveau ticket ; elles ne constituent pas des décisions production. Le [dossier V2](STEP20C_GATE_CLOSURE_DECISION_V2.md) lie résultats, budget et preuves, les rapports saved/input/GPU/native/core en détaillent la portée.
+## Recommandation unique
 
-## 1. Un saved buffer naturel est-il retiré sur C3/A/G ?
+**PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE.** La tranche est PARTIALLY_ADVANCED. Ce draft actualise les réponses du dossier de décision sur le CORE exact29baf31 ; les rapports source-only, A/G/C3 et minimal-core historiques restent immuables. Il ne sélectionne aucune politique OOM ou UX et n’autorise aucune intégration. Audit final/publication encore pendants à cette édition ; reçus réels hors Git après les étapes correspondantes.
 
-C3 : instance 15 créée/dessinée puis SD_REMOVE/SD_NODE_DESTROY après timeout natif et avant post-capture. A/G : timeout wire/RGB propre validé, retrait natif NOT OBSERVABLE. Aucun transfert C3.
+## Matrice du CORE exact
 
-## 2. Le clipping saved et H2 entière sont-ils établis ?
+| Question | État réellement établi | Gate restant |
+| --- | --- | --- |
+| Périmètre minimal | CORE privé existant, SceneFX0.5 statique, wlroots0.20.2 exact, hooks PI/C3/OPT retirés dans sa provenance propre | Aucun transfert de garanties d’autres SHAs |
+| Standard pristine/CORE |12 RGB entières homologues exactes, overflow et input B/A/fermetures | Généralisation au-delà des captures NOT PROVEN |
+| Horizontal Mosaic→splith | Deux chaînes/quatre grabs, H2 exacte en Mosaic, overflow standard/B-close/A-survie/final | Complete frame/damage et autres layouts NOT TESTED ici |
+| Vertical | Traversée Y600 démontrée ; pristine H2 A6000/B19550 et CORE0 ; input ciblé | Champ brut crossing X/0 limité, matrices non mesurées NOT TESTED |
+| Fullscreen non feuille | Ancêtre current10/fullscreen1 réel dans les deux contrôles | Popups wholly H1, arbres2/1 enfants et owners275/575 : NOT_EXERCISED / INCONCLUSIVE |
+| Hidden owner | Même chaîne59/68 sans popup_done, H1 revenue exacte, input B visible | Dismissal destructif séparé non réexécuté ; politique UX UNDECIDED |
+| Saved | HOLD39→timeout naturel→release/ACK/commit, normal-close et SHM3/3, H2 exacte | Saved node identity/retirement NOT_OBSERVABLE ; GPU lifetime NOT_PROVEN |
+| OOM |40 commandes C attendues, six mutants rejetés, alternatives revues | A abort=P1 ; B/C natifs/session survival/damage NOT_PROVEN ; politique UNDECIDED |
+| GPU DCC | Correction metadata par plan isolée et36 tests offline passent | effective halfpixel rejeté ; read_success NOT_PROVEN/GL queue UNOBSERVED ; G2 NOT_RUN |
+| Rendu/input/present | Corrélations sampled applied/input/damage | Buffer identity/atomic generation/complete damage NOT_PROVEN |
+| ABI/package | ELF exact/relocations/provider statique et Stage1 historique5 fichiers revérifiés | Maintenance future pair, full package, notices/legal/release/security ouverts |
 
-Oui aux captures des trois runs : target crossing H1 réel, held avant deadline, H2 entière RGB exacte durant held/timeout/final. Cela qualifie le timeout expérimental5 000 ms et les états échantillonnés ; pas tous les frames ni timeout ordinaire 200 ms.
+Les [rapports V3](STEP20C_CORE_QUALIFICATION_DECISION_V3.md) et [résultats compacts](../../tooling/probes/step20c-core-recovery/evidence/results.json) séparent runner brut0, terminal IPC1, clients/compositeur0, scientific cleanup et mechanical cleanup PASS, et architecture brute INCONCLUSIVE. Neuf nouveaux runs,102 output PNG/120 slots réservés,9/11 cap, aucun retry/build/stage/install nouveau. Un succès de fixture n’est pas un contrat architectural.
 
-## 3. Les épisodes natifs restent-ils fiables malgré reuse ?
+## Disponibilité du clip obligatoire
 
-Oui pour le replay dérivé :23 instances non chevauchantes, cible15 ; adresse réutilisable, owner/tree/source/intervalle corrélés. Ce récit observé ne crée aucune génération native.
+L’abort actuel est **un motif P1 de blocage d’intégration** tant qu’une politique humaine n’est pas acceptée et qualifiée. Il refuse fail-open mais peut tuer tout le compositeur. Les harnais C rendent le risque reproductible, sans rendre sa disponibilité acceptable.
 
-## 4. Le lifetime CPU saved est-il entièrement clos ?
+B propose retour bool et masque synchrone sous autorité owner, avec11 callers et garde fading audités ; il laisse volontairement le popup OOM désactivé, sans récupération automatique. C réserve64 octets pour tous les arbres avant publication, contre56 aux arbres effectivement clippés pour A/B, sans ajout de champ struct installé ; ses callers create/NULL et racines embarquées restent à qualifier. Préférer l’étude future de C pour enlever l’allocation à l’exposition est un avis technique, **pas son adoption**. Session survival, damage natif complet, saved/reparent/effects/GPU restent non prouvés.
 
-Non : lock 3→4 et retrait cible observés,17 records release globaux non ambigus et12 signaux natifs distincts, conservés sous 24 rattachements ambigus conservés. Release de retraite cible NOT OBSERVED ; pas d’attribution arbitraire.
+## Contrat transactionnel obligatoire
 
-## 5. Le lifetime GPU est-il qualifié ?
+Rendu appliqué et input doivent rester cohérents avec le même état de transaction. Les snapshots et fenêtres de callback ne suffisent pas à garantir une génération atomique jusqu’au buffer présenté. Aucun mécanisme particulier de compteur n’est imposé. Une tranche minimale d’intégration doit définir les mutations couvertes, leurs frontières pending/current/applied et la preuve native de leur cohérence ; les hooks historiques d’autres binaires ne dispensent pas ce travail sur le futur SHA candidat.
 
-Non. Saved node_destroy/unlock/SHM release/readback ne démontrent pas GPU completion. Aucun fence ni identité exacte du buffer présenté : NOT PROVEN.
+Les comptes historiques57/55/2,821/789/32 et414/400/14 restent séparés par LAB/run/output/commit_seq ; missing cause UNKNOWN. CORE_NATIVE_ORDERING=INCONCLUSIVE et le run optionnel est NOT_RUN faute de discriminant. Damage soumis et RGB stabilisées ne prouvent pas all-frame coverage ni GPU completion.
 
-## 6. L’input reste-t-il fidèle après mutation focus/caméra ?
+## Questions UX à soumettre
 
-PARTIALLY_FEASIBLE sur A/G propres :full→empty→full, focus filler→owner, deux mutations caméra et six clics/treize moves chacun. L’origine temporellement compatible explique le replay historique (-314,30)→(324,5) avec origine(-638,25), sans rows[-1] arbitraire.
+Offscreen hide/dismiss/reposition, input sous grab et comportement fullscreen restent UNDECIDED. S7 démontre un retour move-only sans dismissal ; il ne choisit pas une UX finale. S5/S6 ne permettent pas d’attribuer une divergence fullscreen à Mosaic ni de promettre la préservation d’un débordement non exercé. Un futur contrôle comparable doit précéder toute proposition de changement UX canonique. Aucun click-through universel, taille finale, animation ou binding n’est adopté.
 
-## 7. Le retour standard est-il terminé ?
+## ABI statique, maintenance et distribution
 
-Oui pour les deux nouveaux runs input, ciblé splith, input standard puis close owner/error0 et H2 exacte. Runtime global INCONCLUSIVE/IPC1 et helper error32 teardown restent séparés.
+Le CORE exact est ELF64 PIE, sans DT_NEEDED SceneFX/RPATH/RUNPATH ni relocations non résolues sur sa paire locale. Les mesures historiques43 bindings/40 symboles et node112/tree128 sont des observations locales, pas une promesse ABI ;85 overlaps ne sont ni85 bugs ni un certificat de sûreté. Un changement de wlroots/SceneFX doit refaire provider/layout/headers, callers et source ownership, build/C failure, clipping/input/fullscreen/saved/damage/lifetime sur le nouveau SHA. La responsabilité de maintenance embarquée appartient déjà au projet Mosaic selon le contrat privé accepté. Les responsables nommés de release et de sécurité restent à désigner ; aucun calendrier ni SLA nouveau n’est fixé. Aucun fork permanent ou ABI publique n’est accepté.
 
-## 8. Une atomicité particulière est-elle nécessaire à une tranche minimale ?
+Le stage historique vérifié contient `/usr/bin/swayfx-mosaic`755 et quatre notices644, aucune autre entrée. Notices PARTIAL/LEGAL_NOT_APPROVED, distribution interdite sans revue juridique humaine et preuve package propre. Release/security owners restent à nommer ; aucun SLA inventé. PKGBUILD réel et patch cumulatif inchangés, aucun nouvel install/stage ni modification Packaging/Upstream/UX canonique.
 
-Le contrat exige même état appliqué pour rendu/input. Le mécanisme particulier compteur atomique reste UNDECIDED ; aucun design adopté, ATOMIC_GENERATION NOT PROVEN.
+## Rollback et prochaine décision
 
-## 9. La cause whole-H1 A/B/A est-elle identifiée ?
+Aucun déploiement n’a lieu et aucun rollback réel n’est exécuté. Le chemin existant workspace-local `layout toggle mosaic` conserve le retour au layout standard ; le binaire distinct préserve la coexistence avec SwayFX ordinaire. Ce chemin ne constitue pas une récupération de session après abort et cette dernière demeure NOT TESTED. Un éventuel plan de livraison/retrait devra être soumis avec responsabilité release/security et notice juridique avant action système.
 
-Le mécanisme local FBO history est PARTIALLY_SUPPORTED :down-1 queue hors domaine, première divergence fraîche down-2, cinq supports divergents/11 et contribution fraîche différentielle0. Whole-field et événements historiques restent INCONCLUSIVE/NOT PROVEN ; whole-H1 FAIL 34 323/max 6 conservé.
-
-## 10. Pristine a-t-il été touché ?
-
-Non. Résultats antérieurs pristine 37 252/max 6 immuables ; aucun run GPU/pristine optionnel. Le modèle froid positif/max33 n’est pas un historique natif : queues préchauffées natives plus sombres.
-
-## 11. Un correctif SceneFX est-il justifié ou autorisé ?
-
-Aucun correctif shader/cache autorisé par ce résultat local. Champ FBO entier/précision effective et requalification distincte sont nécessaires avant changement causal. Aucun seuil ou sampler ajusté.
-
-## 12. Quels buffers sont réellement identifiés ?
-
-SHM wire/source, instance saved dérivée C3 et ROI GPU avec identité intra-pass. Up0/result/cache RGBA exact local ; presubmitRGB formule exacte. Aucun outputbuffer présenté ni lifetime persistant complet identifié.
-
-## 13. Quelle instrumentation résiduelle change la provenance ?
-
-CORRECTION explicite :fx_pass_submit bind-before-failed était déjà pristineScene37, fichier SHA398d594ace7257f4b69319290be7c1f14dc1ded446545ceb337404f5caab0cd3 identique pristine/base/core. L’ancien draft prétendant un ordre différent est réfuté ; rapports historiques non réécrits. PI/listeners/logs/readback restent perturbateurs.
-
-## 14. Quelle instrumentation peut être supprimée sans perte de garantie ?
-
-Core privé omet PI/C3/OPT et conserve quatre logs intrinsèques. Retrait source revu, aucune garantie de neutralité ou qualification runtime héritée. A/G diffèrent dans sept fichiers source C, pas huit ; aucun nouveau counter adopté.
-
-## 15. Le noyau source-only privé est-il acceptable ?
-
-SOURCE_REVIEW ACCEPTED après deux cycles corrections allocation failure/arithmétique/fullscreen/intersection disjointe.417 fichiers Mosaic/85 SceneFX/30 hashes/3 forward checks. Aucun build/runtime/UBSan/OOM C effectué, archive statique future non sélectionnée par static:true.
-
-## 16. Que prouvent commit/present et damage ?
-
-Nouveaux six logs 414/400/14, missing cause UNKNOWN ; cinq logs 340/330/10. Damage 38 transitions :7 covered by sampled union/26 no change/5 NOT OBSERVABLE. Ni tous frames, ni régions minimales, ni présentation exacte. Ordering optionnel NOT_EXERCISED.
-
-## 17. Quelles décisions UX empêchent encore intégration ?
-
-Offscreen popup hide/dismiss/reposition et click-through sous grab UNDECIDED. Aucun universal click-through ni nouvelle règle focus/taille/animation ; UX canonique inchangée.
-
-## 18. Quelles décisions release/security/notice/ABI restent ouvertes ?
-
-Exact-pair seulement85 overlaps/34 bindings/17 structs/6 offsets/121 headers. Stages A/G5 fichiers, inventories895/894 ; notices nouvelle GPU non qualifiées. Full package NOT RUN, bit-reproducibility NOT PROVEN, legal HUMAN_REVIEW_REQUIRED ; release/security à nommer, sans SLA inventé.
-
-## 19. Quelles requalifications sont obligatoires pour un nouveau SHA ?
-
-Build/C/UBSan/OOM privés, modèle/ELF/ABI/pair exact/stage, pristine et matrice clipping/input/timeout/fullscreen/standard/damage/lifetime. Notices/package/legal avant distribution ; contrats canoniques avant production. Les résultats précédents ne se transfèrent pas.
-
-## 20. Quelle décision et quelle plus petite suite retenir ?
-
-PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE ; global PARTIALLY_ADVANCED, P1 GPU whole-field/lifetime/génération/damage ouverts. Revue finale ACCEPTED / audit PASS ; publication PREPARED à cette édition, reçu final hors Git après push. Aucun scope production/STEP20D ; suite documentaire puis nouveaux scopes explicites pour champ FBO/précision et core C/headless.
+La prochaine plus petite étape est la revue exacte du dossier et des fixtures publiques, puis le choix d’un scope futur borné pour OOM natif, fullscreen comparable ou observabilité GPU/précision. Native coherence/lifetime, complete damage/effects, whole-field GPU, maintenance et legal sont des gates distincts ; aucune preuve positive n’en annule une autre. STEP20C NEXT ; production multi-output NOT_YET_SUPPORTED ; PRODUCTION_AUTHORIZED=FALSE.

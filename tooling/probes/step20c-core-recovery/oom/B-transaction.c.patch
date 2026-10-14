@@ -1,0 +1,60 @@
+--- a/transaction.c
++++ b/transaction.c
+@@ -911,0 +912,2 @@
++static void probe_clip_enable_tiling(struct sway_workspace *ws, bool desired);
++
+@@ -963 +965 @@
+-			wlr_scene_node_set_enabled(&child->layers.tiling->node, !fs);
++			probe_clip_enable_tiling(child, !fs);
+@@ -1009 +1011 @@
+-					wlr_scene_tree_set_clip(child->layers.tiling, &clip);
++					if (!wlr_scene_tree_set_clip(child->layers.tiling, &clip)) return;
+@@ -1011 +1013 @@
+-					wlr_scene_tree_set_clip(child->layers.tiling, NULL);
++					if (!wlr_scene_tree_set_clip(child->layers.tiling, NULL)) return;
+@@ -1013,0 +1016 @@
++				probe_clip_enable_tiling(child, true);
+@@ -1024 +1027 @@
+-			wlr_scene_node_set_enabled(&child->layers.tiling->node, true);
++			probe_clip_enable_tiling(child, true);
+@@ -1035 +1038 @@
+-			wlr_scene_node_set_enabled(&child->layers.tiling->node, false);
++			probe_clip_enable_tiling(child, false);
+@@ -1042,0 +1046,10 @@
++}
++
++// WHY: fading-out also enables tiling without retrying clip installation.
++// CONTRACT: upstream decides desired visibility; absent mandatory clip vetoes it.
++// INVARIANT: false desired never becomes true; no OOM latch allocation is needed.
++static void probe_clip_enable_tiling(struct sway_workspace *ws, bool desired) {
++	struct wlr_box clip;
++	bool admitted = ws->current.layout != L_MOSAIC || !ws->mosaic ||
++		wlr_scene_tree_get_clip(ws->layers.tiling, &clip);
++	wlr_scene_node_set_enabled(&ws->layers.tiling->node, desired && admitted);
+@@ -1098 +1111 @@
+-		wlr_scene_tree_set_clip(popup_tree, NULL);
++		if (!wlr_scene_tree_set_clip(popup_tree, NULL)) return;
+@@ -1106 +1119 @@
+-			wlr_scene_tree_set_clip(popup_tree, NULL);
++			if (!wlr_scene_tree_set_clip(popup_tree, NULL)) return;
+@@ -1114 +1127 @@
+-		wlr_scene_tree_set_clip(popup_tree, NULL);
++		if (!wlr_scene_tree_set_clip(popup_tree, NULL)) return;
+@@ -1125 +1138 @@
+-		wlr_scene_tree_set_clip(popup_tree, &empty);
++		if (!wlr_scene_tree_set_clip(popup_tree, &empty)) return;
+@@ -1133 +1146 @@
+-		wlr_scene_tree_set_clip(popup_tree, &empty);
++		if (!wlr_scene_tree_set_clip(popup_tree, &empty)) return;
+@@ -1144 +1157 @@
+-		wlr_scene_tree_set_clip(popup_tree, &empty);
++		if (!wlr_scene_tree_set_clip(popup_tree, &empty)) return;
+@@ -1165 +1178 @@
+-		wlr_scene_tree_set_clip(popup_tree, &empty);
++		if (!wlr_scene_tree_set_clip(popup_tree, &empty)) return;
+@@ -1178 +1191 @@
+-		wlr_scene_tree_set_clip(popup_tree, &empty);
++		if (!wlr_scene_tree_set_clip(popup_tree, &empty)) return;
+@@ -1183 +1196 @@
+-	wlr_scene_tree_set_clip(popup_tree, &global);
++	if (!wlr_scene_tree_set_clip(popup_tree, &global)) return;

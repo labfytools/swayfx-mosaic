@@ -581,3 +581,28 @@ actual refs in the private post-push receipt/final handoff. Private success
 does not authorize integration, distribution, daily use or STEP20D.
 STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
 production multi-output NOT YET SUPPORTED.
+
+## CORE recovery handoff — 2026-10-14
+
+The [V3 decision](design/STEP20C_CORE_QUALIFICATION_DECISION_V3.md) records
+nine new runs/102 output captures, no retry/build/stage, and targeted progress
+on comparable standard controls, two-chain horizontal return, actual Y600
+vertical crossing, same-chain hidden return and saved closure. These are
+PARTIALLY_FEASIBLE observations on exact CORE29baf31, not production milestones.
+Fullscreen remains INCONCLUSIVE/NOT_EXERCISED for cross-output semantics;
+non-equivalent owner/ancestor geometry cannot settle popup UX.
+
+The next smallest step is exact final dossier review, then a separately scoped
+human decision about equivalent fullscreen fixtures, native OOM availability
+qualification or GPU observability/precision. A's abort remains P1; B/C harness
+acceptance does not select a production policy. The per-plane DCC repair passes
+its limited check, but effective halfpixel/read-success/GL-error limits keep
+the whole gate INCONCLUSIVE and G2 NOT_RUN. No remaining token authorizes a
+retry. Native coherence/lifetime, complete damage/effects, whole-field GPU,
+exact-pair maintenance and legal/release/security remain independent gates.
+
+Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE; ticket PARTIALLY_ADVANCED.
+Scoped reviews ACCEPTED; final independent audit/publication pending at this
+edition, with actual identities in the later private receipt. STEP20A DONE;
+STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
+PRODUCTION_MULTI_OUTPUT NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
