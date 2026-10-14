@@ -1,0 +1,20 @@
+{
+  "kind": "R2 progress-message raw-exit count correction",
+  "prior_progress_message_claim": "3 raw exit 1, 5 raw exit 0",
+  "verified_count": {
+    "raw_exit_1": 4,
+    "raw_exit_0": 4,
+    "per_run": {
+      "E1": 1,
+      "E2-fractional": 0,
+      "E2-r90": 0,
+      "E3": 0,
+      "E4": 1,
+      "E5": 1,
+      "E6": 1,
+      "E7": 0
+    }
+  },
+  "source": "R2 raw .exit files, independently consistent with per-run rows in graphics-execution-R2/summary.json",
+  "note": "Prior R2 summary and raw receipts left unchanged; only the earlier aggregate progress statement was incorrect."
+}

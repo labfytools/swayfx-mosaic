@@ -1,0 +1,20 @@
+{
+  "basis": "new read-only audit; no validator rerun, fixture edit, runtime or retroactive gate acceptance",
+  "observed_modifier": "020000001046bb04",
+  "decode": {
+    "vendor": 2,
+    "tile_version": 4,
+    "DCC": 1,
+    "DCC_RETILE": 0,
+    "DCC_PIPE_ALIGN": 1
+  },
+  "local_header": "/usr/include/libdrm/drm_fourcc.h",
+  "local_header_sha256": "992f33804acda60b0b46f1a272942c3592484ea3217d469239f1cb12249de2eb",
+  "primary_source": "https://raw.githubusercontent.com/torvalds/linux/master/include/uapi/drm/drm_fourcc.h",
+  "inference": "AMD/GFX11 DCC without retile encodes main surface plane0 and DCC surface plane1. Applying 800*4 minimum image stride to each plane is not justified by this layout. This accounts for validator rejection, not GL read success or all DMA allocation validity. All nine sample object records contain the same observed modifier.",
+  "raw_G1": "INCONCLUSIVE",
+  "read_success": "NOT_PROVEN",
+  "GL_ERROR_QUEUE": "UNOBSERVED",
+  "samples_checked": 9,
+  "uniform_modifier": true
+}

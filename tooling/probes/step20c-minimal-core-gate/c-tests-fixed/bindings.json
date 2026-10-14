@@ -1,0 +1,45 @@
+{
+  "status": "EXPERIMENTAL",
+  "bindings": [
+    {
+      "symbol": "probe_clip_box_intersection",
+      "source": "mosaic-fixed/sway/desktop/transaction.c",
+      "source_sha256": "0b1d31bb8458dceaff34cc2a2987044b3096e6ebc96e68b522c0ac3540bc8ecd",
+      "start_byte": 38141,
+      "end_byte_exclusive": 39015,
+      "start_line": 1051,
+      "sha256": "a0d4f17e4bdb7a7b0600274e8a5bee5213c3bdd945f4aa1923f532dd58a07d0b",
+      "kind": "exact_function"
+    },
+    {
+      "symbol": "scene_clip_translate",
+      "source": "scene-core/types/scene/wlr_scene.c",
+      "source_sha256": "99992429f9a1d2754042989d89904fb6d705f963d74f4456d737fc9da3e0927d",
+      "start_byte": 23041,
+      "end_byte_exclusive": 23587,
+      "start_line": 721,
+      "sha256": "403181f798637dbb18f361743e93c423a3348c12c7ef2b903dfffb54c056f437",
+      "kind": "exact_function"
+    },
+    {
+      "symbol": "workspace_tiling_scene_x",
+      "source": "mosaic-fixed/sway/desktop/transaction.c",
+      "source_sha256": "0b1d31bb8458dceaff34cc2a2987044b3096e6ebc96e68b522c0ac3540bc8ecd",
+      "start_byte": 30441,
+      "end_byte_exclusive": 31414,
+      "start_line": 873,
+      "sha256": "4630ba624924d87b5febcd9cf8dfc6dfb204cabfd147f872bd745ad7f1cbf1a3",
+      "kind": "exact_function"
+    },
+    {
+      "symbol": "arrange_output:camera_clip_conversion_statement",
+      "source": "mosaic-fixed/sway/desktop/transaction.c",
+      "source_sha256": "0b1d31bb8458dceaff34cc2a2987044b3096e6ebc96e68b522c0ac3540bc8ecd",
+      "start_byte": 36332,
+      "end_byte_exclusive": 36539,
+      "start_line": 1003,
+      "sha256": "2bdcea206578c1bba4f455e65c550e4c922f6073e41accd25723c3105ecd1aa2",
+      "kind": "exact_statement_in_adapter"
+    }
+  ]
+}

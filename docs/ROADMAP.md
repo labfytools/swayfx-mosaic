@@ -553,3 +553,31 @@ documentary publication PREPARED at this edition, with actual refs in the privat
 post-push receipt. STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT;
 STEP20D–G PLANNED; production multi-output NOT YET SUPPORTED. No production,
 UX or package contract changes, and no authorization for further graphics runs.
+
+## Minimal private core handoff — 2026-10-14
+
+The [new build/runtime/GPU dossier](design/STEP20C_MINIMAL_CORE_ABI_PACKAGE_AND_INTEGRATION_DECISION.md)
+advances the private core beyond its immutable historical source-only state:
+exact build, real extracted C normal/UBSan/ASan, local ABI and five-file Stage1
+are recorded, with actual sampled scale 1.25/R90 and resize/migration evidence.
+The campaign spends 12/14 runs and88 captures; two conditional slots remain
+NOT EXERCISED, not a new runtime authorization. No consumed case is retried.
+
+Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE; scientific result
+PARTIALLY_ADVANCED. The smallest further evidence gates are a comparable
+standard/vertical control and full horizontal return; fullscreen policy and
+viable hidden-owner return; native saved/buffer/GPU lifetime and coherent
+applied input/render/present proof; complete damage and accepted whole-field
+GPU discrimination. The real E6 timeout does not close its rejected global
+receipt or native saved identity. G1's modifier-inappropriate stride predicate
+must be addressed prospectively with valid metadata/read-success observability
+before any separately scoped diagnostic; no shader change is justified here.
+
+Human decisions still include OOM production availability, offscreen popup UX,
+release/security ownership, legal distribution and any further experiment's
+scope. Exact-pair maintenance and full future package reproduction remain gates.
+Final dossier review is pending; publication PREPARED at this edition, with
+actual refs in the private post-push receipt/final handoff. Private success
+does not authorize integration, distribution, daily use or STEP20D.
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
+production multi-output NOT YET SUPPORTED.

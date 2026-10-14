@@ -1,0 +1,35 @@
+{
+  "kind": "parent transcription of accessible independent reviewer final response; not verbatim",
+  "reviewer": "/root/core_evidence_delta_review",
+  "role": "reviewer / GPT-6.1-Sol / medium / isolated",
+  "verdict": "ACCEPTED for experimental evidence fidelity; E/F qualification PARTIAL",
+  "artifact_hash_checks": {
+    "checked": 319,
+    "matches": 319,
+    "divergences": 0
+  },
+  "mandatory_limits": [
+    "E0-pristine/E0-core/E2-vertical INCONCLUSIVE before captures; no standard comparable control",
+    "E1 first chain PARTIALLY_FEASIBLE; second owner on workspace2/H2/splith after outside click, fails wrong ancestry before standard return; run INCONCLUSIVE",
+    "E2 scale1.25 and R90 raw measurements PASS; owners error0, reference/filler error32 after compositor stop; marker swaybg cleanup timeout3s retained",
+    "E3 resize/clamp960/workspace6/owner10 migration and four input checks sampled PASS; no universal atomicity",
+    "E4 actual nonleaf con10 fullscreen1 contains owner9 fullscreen0; workspace fullscreen marker alone not evidence; policy INCONCLUSIVE missing control",
+    "E5 hide sampled pixels/input partial; outside click causes popup_done before camera restore; same-chain return NOT_EXERCISED",
+    "E6 held39 ns266629075726834; native timeout at00:00:07.998 before captures and release ns266634202244001; ACK39 ns266634202350097; global frozen validator FAIL remains INCONCLUSIVE; owner error32; saved native identity NOT OBSERVABLE",
+    "E7 classic ROI4096 changed; wholeH1 A/Areturn FAIL33789pixels bbox[480,0,800,600], maxRGB[6,5,1]; H2 exact; shadows enable but off/on identical => SHADOW_NOT_EXERCISED; three FX clients error0 normalclose1 before compositor",
+    "All E terminal IPC exit1 preserved with compositor0",
+    "Runner scientific_cleanup PASS is process recovery gate, not universal normal client close",
+    "R2 runner exits four1/four0; initial three1; total11E plus1G1; no retries",
+    "Core SHA29baf31aa3eeed259825c87d0799fa5d3dc83710afb967154604eb1c6657f965; no historical/G1 identity transfer"
+  ],
+  "F": {
+    "CORE_SAMPLED_APPLIED_INPUT": "PARTIALLY_FEASIBLE",
+    "CORE_SAMPLED_DAMAGE": "PARTIALLY_FEASIBLE",
+    "CORE_NATIVE_BUFFER_IDENTITY": "NOT_PROVEN",
+    "CORE_GPU_LIFETIME": "NOT_PROVEN",
+    "CORE_ATOMIC_GENERATION": "NOT_PROVEN",
+    "CORE_COMPLETE_DAMAGE": "NOT_PROVEN"
+  },
+  "blocking_product_findings": [],
+  "no_executions_or_edits_by_reviewer": true
+}

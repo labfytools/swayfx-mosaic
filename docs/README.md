@@ -449,3 +449,33 @@ STEP20D–G PLANNED; production multi-output NOT YET SUPPORTED. No production,
 UX or package contract changes, and no authorization for further graphics runs.
 
 New experimental batch reports: [saved natural timeout and epoch identity](design/STEP20C_SAVED_NATURAL_TIMEOUT_AND_EPOCH_IDENTITY.md), [input event time and applied camera](design/STEP20C_INPUT_EVENT_TIME_AND_APPLIED_CAMERA.md), [GPU FBO/cache causality](design/STEP20C_GPU_FBO_CACHE_CAUSALITY.md), [native present/damage/lifetime](design/STEP20C_NATIVE_PRESENT_DAMAGE_LIFETIME.md), [minimal private source-only core](design/STEP20C_MINIMAL_PRIVATE_INTEGRATION_CORE.md), [gate closure V2](design/STEP20C_GATE_CLOSURE_DECISION_V2.md) and [current integration draft](design/STEP20C_PRODUCTION_INTEGRATION_DECISION_DRAFT.md). The [fixture documentation](../tooling/probes/step20c-saved-input-gpu-batch/README.md) distinguishes sealed inputs from post-run results.
+
+## Minimal private core build/runtime/GPU gate — 2026-10-14
+
+This new campaign is EXPERIMENTAL / PARTIALLY_ADVANCED, recommendation
+PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE. It preserves the historical source-only
+core while recording the new core 29baf31 build/C unit/local ABI/Stage1 evidence
+and its own graphics. Twelve unique runs consume 88 output captures, with 90
+retained PNG files including two source markers; no retry and two conditional
+slots NOT EXERCISED. Fractional/R90 and resize/migration are sampled positive;
+standard/vertical/fullscreen/hidden return remain incomplete. Native timeout
+is observed on E6 before ACK/teardown, while its global validator fails. Core
+whole-H1 return FAIL and distinct G1 rejected first epoch remain visible.
+
+| Report | Scope and limits |
+| --- | --- |
+| [Build and C failure paths](design/STEP20C_MINIMAL_CORE_BUILD_AND_C_FAILURE_PATHS.md) | Exact parents/replay, six original UB reproductions, private camera guard, real C unit sanitizers, OOM abort/P1, ELF and Stage1 |
+| [Core graphics qualification](design/STEP20C_MINIMAL_CORE_GRAPHICS_QUALIFICATION.md) | Eleven E runs, per-case measurements/exits/normal-client closure and missing controls |
+| [Lifetime, damage and transactions](design/STEP20C_MINIMAL_CORE_LIFETIME_DAMAGE_AND_TXN.md) | Real timeout despite rejected receipt, sampled input/damage, native identity/GPU/atomic/complete-damage NOT PROVEN |
+| [GPU full-field freshness follow-up](design/STEP20C_GPU_FULL_FIELD_FRESHNESS_FOLLOWUP.md) | Separate GPU 1905a20, one rejected epoch, modifier-aware fixture diagnosis without accepting raw readback |
+| [ABI/package and integration decision](design/STEP20C_MINIMAL_CORE_ABI_PACKAGE_AND_INTEGRATION_DECISION.md) | Budget/identity/marker ledger, exact-pair/local stage limits, P0–P3 and human decisions |
+
+The [compact source/provenance fixture](../tooling/probes/step20c-minimal-core-gate/README.md)
+preserves reviewed fixture inputs and small evidence metadata; core bodies,
+functional core patches, GPU hook, binaries, raw data and build trees stay in
+the private LAB. Existing commands are provenance, not permission to replay
+spent reservations. Scoped evidence delta review ACCEPTED; final independent
+dossier review pending and documentary publication PREPARED at this edition.
+Actual publication refs belong to the private post-push receipt/final handoff.
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
+production multi-output NOT YET SUPPORTED. No production/UX/package change.

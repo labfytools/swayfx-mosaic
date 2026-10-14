@@ -1,0 +1,52 @@
+[
+  {
+    "source": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/scene-core/types/scene/wlr_scene.c",
+    "source_sha256": "99992429f9a1d2754042989d89904fb6d705f963d74f4456d737fc9da3e0927d",
+    "start_byte": 1904,
+    "end_byte_exclusive": 2939,
+    "start_line": 54,
+    "end_line": 88,
+    "slice_sha256": "d4c8f7cf78bfcc0e3177942be1d39019c1f2fbd43c35cdbdff586a1f10c4b34b",
+    "output": "sidecar.inc"
+  },
+  {
+    "source": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/scene-core/types/scene/wlr_scene.c",
+    "source_sha256": "99992429f9a1d2754042989d89904fb6d705f963d74f4456d737fc9da3e0927d",
+    "start_byte": 23041,
+    "end_byte_exclusive": 25162,
+    "start_line": 721,
+    "end_line": 787,
+    "slice_sha256": "78c83c3f11cba654b0a099aca06d10b36299f5a6a199ba2cd08df8943da02923",
+    "output": "clip.inc"
+  },
+  {
+    "source": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/scene-core/types/scene/wlr_scene.c",
+    "source_sha256": "99992429f9a1d2754042989d89904fb6d705f963d74f4456d737fc9da3e0927d",
+    "start_byte": 31395,
+    "end_byte_exclusive": 33052,
+    "start_line": 983,
+    "end_line": 1026,
+    "slice_sha256": "1e70ed409c8a55d67fea7f1d166edeaa8fd5fe1237aecd9be64cef20c75ed997",
+    "output": "setter.inc"
+  },
+  {
+    "source": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/scene-core/types/scene/wlr_scene.c",
+    "source_sha256": "99992429f9a1d2754042989d89904fb6d705f963d74f4456d737fc9da3e0927d",
+    "start_byte": 64327,
+    "end_byte_exclusive": 65551,
+    "start_line": 2037,
+    "end_line": 2082,
+    "slice_sha256": "31423e212f75590085a4ad75c3ce60555c849e579e0bc0497c04d03b71d0104b",
+    "output": "hit.inc"
+  },
+  {
+    "source": "/home/fy59/swayfx-mosaic-minimal-core-2l7riqt_/mosaic-fixed/sway/desktop/transaction.c",
+    "source_sha256": "0b1d31bb8458dceaff34cc2a2987044b3096e6ebc96e68b522c0ac3540bc8ecd",
+    "start_byte": 38141,
+    "end_byte_exclusive": 43558,
+    "start_line": 1051,
+    "end_line": 1188,
+    "slice_sha256": "cc962a736fa68496753485de7fd3dd971857cce894c977a7a3fbfd2837238511",
+    "output": "popup.inc"
+  }
+]

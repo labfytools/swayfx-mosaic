@@ -1,0 +1,21 @@
+{
+  "status": "PASS_UNIT_ONLY",
+  "core_oom_policy": "OOM_ABORT_EXPERIMENTAL",
+  "normal_defined": 0,
+  "ubsan_defined": 0,
+  "asan_defined": 0,
+  "allocation_unavailable_raw_returncode": {
+    "normal": -6,
+    "ubsan": -6,
+    "asan": -6
+  },
+  "core_dump_limit": 0,
+  "compositor_runs": 0,
+  "clients_launched": 0,
+  "functional_source_modifications": false,
+  "production_availability_qualified": false,
+  "initial_fixture_assertion_failure_preserved": "attempt-1",
+  "limitations": "README.md",
+  "source_bindings": "bindings.json",
+  "commands": "commands.json"
+}

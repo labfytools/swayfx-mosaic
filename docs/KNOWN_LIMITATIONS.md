@@ -561,3 +561,37 @@ documentary publication PREPARED at this edition, with actual refs in the privat
 post-push receipt. STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT;
 STEP20D–G PLANNED; production multi-output NOT YET SUPPORTED. No production,
 UX or package contract changes, and no authorization for further graphics runs.
+
+## Minimal private core limits — 2026-10-14
+
+The [new exact-core campaign](design/STEP20C_MINIMAL_CORE_ABI_PACKAGE_AND_INTEGRATION_DECISION.md)
+is separate from the historical source-only core: build and extracted C unit
+normal/UBSan/ASan gates now pass on their own sources. Compositor sanitizer
+remains NOT RUN; OOM sidecar allocation abort remains experimental/P1 and does
+not qualify production availability. Local ELF/relocations/layout/provider
+checks and five-file Stage1 pass, but future pairs, maintained interposition,
+full package reproduction and notices/legal review remain open.
+
+Twelve runs consume 88 captures without retries. E0-pristine/E0-core/vertical
+fail before images, leaving no comparable new standard control. E1's first
+grabbed chain is sampled but second-owner ancestry stops standard return.
+Fractional/R90 and resize/migration pass their bounded measurements; E4 has an
+actual non-leaf fullscreen ancestor without comparable standard policy control.
+E5 dismissal prevents same-chain hidden-owner return. E6 has a real native
+five-second timeout before ACK/teardown, but retains its frozen-validator FAIL,
+normal-close limit and unobserved native saved identity. Runner process cleanup
+PASS is not universal Wayland error 0 closure; E2 helpers error 32/marker timeout,
+E1/E6 closure gaps and G1 client exit 1 remain visible.
+
+Core classic blur is exercised. Whole-H1 A/A-return remains FAIL 33,789 pixels,
+max RGB 6/5/1, with H2 sampled exact; shadow contribution is NOT EXERCISED.
+G1's sole first epoch is rejected: the fixture's all-plane image-stride predicate
+is inappropriate for the observed AMD DCC modifier. Raw GPU read_success stays
+NOT PROVEN, GL error queue UNOBSERVED and whole-field causality INCONCLUSIVE.
+Native buffer/GPU lifetime, atomic generation and complete damage remain
+NOT PROVEN; damage-ring extents do not prove frame presentation.
+
+Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE, scientific status
+PARTIALLY_ADVANCED. Evidence delta review ACCEPTED; final dossier review pending,
+publication PREPARED at this edition. Production multi-output NOT YET SUPPORTED;
+STEP20C NEXT. No production, UX, package or historical evidence change.

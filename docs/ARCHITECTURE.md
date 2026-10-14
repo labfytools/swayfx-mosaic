@@ -616,3 +616,38 @@ documentary publication PREPARED at this edition, with actual refs in the privat
 post-push receipt. STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT;
 STEP20D–G PLANNED; production multi-output NOT YET SUPPORTED. No production,
 UX or package contract changes, and no authorization for further graphics runs.
+
+## Minimal private core build/runtime evidence — 2026-10-14
+
+The [new minimal-core dossier](design/STEP20C_MINIMAL_CORE_ABI_PACKAGE_AND_INTEGRATION_DECISION.md)
+supplements the historical source-only core without rewriting that state.
+Its exact private binary SHA 29baf31 is now built with static SceneFX and its
+own reviewed sources. Real extracted C bodies pass normal/UBSan/ASan checks
+after a private finite/range camera guard; sidecar/listener/popup unit proof
+does not establish full native scene or GPU lifetime. Targeted sidecar OOM
+still produces abort: OOM_ABORT_EXPERIMENTAL, P1 availability risk, with no
+production availability response adopted.
+
+Eleven E runs and one distinct GPU diagnostic consume 12/14 reservations and
+88 output captures. Core scale 1.25/R90 and resize/migration have sampled positive
+pixels/input evidence. Horizontal standard return, vertical/control and
+fullscreen/hidden-owner policy remain incomplete. E6 independently observes
+a five-second native timeout before ACK/teardown, while its frozen validator
+receipt remains INCONCLUSIVE and native saved identity is unobservable.
+SPIKE_DAMAGE records extents added to rings, not presented-buffer identity or
+complete frame coverage. Native buffer/GPU lifetime, atomic scene/input/present
+generation and complete damage remain NOT PROVEN. No particular atomic-counter
+mechanism is selected; applied rendering/input coherence remains required.
+
+Core whole-H1 optimized return fails 33,789 pixels/max RGB 6/5/1 with sampled H2
+exact; shadow contribution is NOT EXERCISED. The distinct GPU 1905a20 first epoch
+is rejected by a modifier-inappropriate all-plane stride predicate, with
+read_success NOT PROVEN; whole-field causality remains INCONCLUSIVE. These
+findings adopt no shader correction, popup UX, public ABI or production dependency.
+Native compositor/tree authority and Row0 borrowing remain unchanged.
+
+Scientific status PARTIALLY_ADVANCED; recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE.
+Scoped evidence delta review ACCEPTED; final dossier review pending and
+documentary publication PREPARED at this edition. STEP20A DONE; STEP20B
+EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED; production multi-output
+NOT YET SUPPORTED. Production integration is not authorized.

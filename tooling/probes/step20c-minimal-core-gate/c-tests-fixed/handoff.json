@@ -1,0 +1,9 @@
+{
+  "status": "EXPERIMENTAL",
+  "CORE_C_GEOMETRY_TESTS": "PASS",
+  "CORE_SANITIZER_TESTS": "PASS",
+  "scope": "exact extracted C only; no compositor integration",
+  "raw_commands": "commands.json",
+  "bindings": "bindings.json",
+  "original_evidence": "../c-tests immutable"
+}

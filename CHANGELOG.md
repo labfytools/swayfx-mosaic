@@ -4,6 +4,25 @@
 
 ### STEP20C experimental evidence
 
+- Record the new minimal-core campaign separately from historical source-only
+  evidence: exact replay, six actual C UB reproductions, private camera guard,
+  extracted C unit normal/UBSan/ASan, OOM abort/P1, static build/local ABI and
+  five-file private Stage1. No compositor sanitizer or full package build.
+- Preserve12 unique runs/88 output captures (90 PNG including two markers),
+  no retries, scale 1.25/R90 and resize/migration sampled results, incomplete
+  standard/vertical/fullscreen/hidden-return gates and E6 frozen-validator FAIL
+  despite actual native five-second timeout before ACK/teardown. All E terminal
+  IPC1/compositor0 and client-normal-closure limits remain separate.
+- Record core whole-H1 optimized return FAIL 33,789/max RGB 6/5/1, H2 exact,
+  shadow NOT EXERCISED and distinct GPU diagnostic's sole rejected epoch.
+  Modifier-aware audit establishes an all-plane stride fixture predicate defect
+  without qualifying GPU read_success or whole-field causality. Native lifetime,
+  atomic generation, complete damage and package/notices/legal/maintenance gates
+  remain open. Recommendation PRIVATE_CORE_NEEDS_TARGETED_EVIDENCE; scientific
+  result PARTIALLY_ADVANCED. Evidence delta review ACCEPTED; final dossier review
+  pending and publication PREPARED at this edition. Production STEP20C NEXT,
+  multi-output NOT YET SUPPORTED; no production/UX/package or historical rewrite.
+
 - Record the distinct saved/input/GPU batch: six runs,59 captures,240 reserved
   actions,42 common/six GPU offline tests. Native five-second saved timeout and
   whole-H2 sampled restoration pass on C3/A/G; C3 natural instance retirement
