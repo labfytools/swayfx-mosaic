@@ -518,3 +518,46 @@ Final independent review is ACCEPTED / audit PASS for experimental evidence
 fidelity. Documentary publication is authorized and prepared, not executed at
 this edition; final refs belong to the private closeout and final handoff.
 STEP20C remains NEXT; production multi-output remains NOT YET SUPPORTED.
+
+## Saved/input/GPU STEP20C batch — 2026-10-14
+
+The [new gate dossier V2](design/STEP20C_GATE_CLOSURE_DECISION_V2.md) records a
+separate six-run campaign:59 captures/240 reservations, 42 common and six GPU
+offline tests passed; two optional runs were not exercised. The previous
+14-run/125-capture/520-reservation campaign remains immutable.
+
+Three saved runs exercise an actual native five-second transaction timeout
+with client alive, held capture before deadline, normal owner close and exact
+whole-H2 RGB through hold/timeout/final. C3 identifies target lifetime instance15
+and natural node retirement; A/G qualify their own wire/RGB/timeout, without
+native saved identity transfer. Target retirement release and GPU completion
+remain NOT PROVEN. Two A/G input runs finish full/empty/full, focus/camera
+mutations and targeted splith return. Temporally compatible applied state is
+PARTIALLY_FEASIBLE, without proving atomic generation.
+
+The distinct GPU diagnostic acquires108 native ROI reads and supports local
+FBO history outside the fresh domain: first sampled fresh divergence is down-2,
+not down-1. Whole-H1 A/B/A remains FAIL and whole-field causality INCONCLUSIVE;
+no shader/cache correction follows. Native pairing is414/400/14 with unknown
+missing-event causes; damage union coverage is sampled, not all-frame proof.
+The bind-before-failed ordering already exists in pinned pristine SceneFX;
+the old draft's contrary provenance claim is explicitly corrected in the new
+[GPU report](design/STEP20C_GPU_FBO_CACHE_CAUSALITY.md), without historical rewrites.
+
+Measurements, raw runtime exit, scientific cleanup and architecture remain
+separate: all six global runtimes are INCONCLUSIVE on terminal IPC1; saved/input
+helpers error32 keep scientific cleanup INCONCLUSIVE despite owner0, while GPU
+clients error0 give scientific cleanup PASS. Mechanical process cleanup passes.
+The private core is source-only ACCEPTED for bounded review, build/runtime/C
+UBSan/OOM NOT RUN; no runtime result transfers. Whole-field GPU/lifetime,
+atomic scene/input/present, full damage, instrumentation neutrality, exact-pair
+maintenance, full package/notices/legal and release/security ownership remain
+gates. Offscreen-popup UX and a particular atomic-counter mechanism remain
+UNDECIDED. The applied rendering/input coherence contract remains required.
+
+Recommendation PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE; scientific status
+PARTIALLY_ADVANCED. Final dossier review ACCEPTED / audit PASS for experimental evidence fidelity;
+documentary publication PREPARED at this edition, with actual refs in the private
+post-push receipt. STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT;
+STEP20D–G PLANNED; production multi-output NOT YET SUPPORTED. No production,
+UX or package contract changes, and no authorization for further graphics runs.

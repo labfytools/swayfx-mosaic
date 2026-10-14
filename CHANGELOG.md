@@ -4,6 +4,21 @@
 
 ### STEP20C experimental evidence
 
+- Record the distinct saved/input/GPU batch: six runs,59 captures,240 reserved
+  actions,42 common/six GPU offline tests. Native five-second saved timeout and
+  whole-H2 sampled restoration pass on C3/A/G; C3 natural instance retirement
+  is observed without transferring native identity to A/G or GPU completion.
+  Input A/G completes mutation and targeted standard return. GPU native ROIs
+  support local outside-fresh-domain FBO history, first fresh divergence down-2;
+  whole-H1 restoration remains FAIL and whole-field causality INCONCLUSIVE.
+- Preserve six raw INCONCLUSIVE terminal IPC1 outcomes, saved/input helper
+  error32 scientific cleanup limits, GPU scientific cleanup PASS and separate
+  mechanical cleanup. Record private source-only core review ACCEPTED with
+  build/runtime/C UBSan/OOM NOT RUN. Correct current draft's bind-before-failed
+  provenance: ordering already exists in pristine SceneFX. Historical evidence
+  stays immutable. Final dossier review ACCEPTED / audit PASS; publication PREPARED at this
+  edition, with actual refs in the private post-push receipt; production STEP20C NEXT/multi-output NOT YET SUPPORTED unchanged.
+
 - Record the targeted private campaign: 14 unique runs, 125 captures and 520
   reserved events, with exact A/G/pristine/C3 identities and separate measurement,
   raw runtime, scientific cleanup and architecture statuses. Scale grabs/input

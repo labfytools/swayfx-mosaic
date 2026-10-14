@@ -1,0 +1,416 @@
+{
+  "scope": "SWAYFX_MOSAIC_STEP20C_SAVED_LIFETIME_INPUT_EPOCH_AND_GPU_CAUSALITY_BATCH_V1",
+  "status": "EXPERIMENTAL_PARTIAL_EVIDENCE",
+  "ledger": {
+    "runs": 6,
+    "captures": 59,
+    "expected_captures": 59,
+    "captures_by_run": {
+      "saved-C3": 10,
+      "saved-A": 10,
+      "saved-G": 10,
+      "input-A": 9,
+      "input-G": 9,
+      "gpu-diagnostic": 11
+    },
+    "actions": {
+      "camera": 9,
+      "capture": 59,
+      "click": 12,
+      "configuration": 70,
+      "move": 30,
+      "mutation": 26,
+      "spawn": 34
+    },
+    "build_counts": {
+      "SceneFX_gpu": {
+        "status": "COMPLETED",
+        "exit_code": 0
+      },
+      "Mosaic_gpu": {
+        "status": "COMPLETED",
+        "exit_code": 0
+      },
+      "stage_gpu": {
+        "status": "COMPLETED",
+        "exit_code": 0
+      }
+    },
+    "no_input_or_core_build": true,
+    "all_durations_seconds_max": 9.486746808019234,
+    "per_run_limit_seconds": 150,
+    "global_capture_limit": 96,
+    "captures_within_global_limit": true
+  },
+  "runs": {
+    "saved-C3": {
+      "status": "INCONCLUSIVE",
+      "failure": null,
+      "seconds": 9.486746808019234,
+      "measurements_pass": "PASS",
+      "runtime_exit": [
+        {
+          "name": "compositor",
+          "pid": 2613983,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2614035,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2614038,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2614049,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2614054,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2614062,
+          "exit": 0
+        }
+      ],
+      "scientific_cleanup": "INCONCLUSIVE",
+      "wayland_exit_errors": {
+        "reference": [
+          "32"
+        ],
+        "filler0": [
+          "32"
+        ],
+        "filler1": [
+          "32"
+        ],
+        "owner": [
+          "0"
+        ]
+      },
+      "cleanup_pass": true,
+      "transport_status": "INCONCLUSIVE",
+      "terminal_ipc_exit": 1,
+      "capture_count": 10,
+      "binary_sha256": "9c0dc0e94ccc7fcbd7a6cddf14e90f1bb7b7bf385a0740e85ec7d0e1c1c1e705",
+      "runner_exit": 1
+    },
+    "saved-A": {
+      "status": "INCONCLUSIVE",
+      "failure": null,
+      "seconds": 8.269266382005299,
+      "measurements_pass": "PASS",
+      "runtime_exit": [
+        {
+          "name": "compositor",
+          "pid": 2615808,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2615837,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2615839,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2615850,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2615857,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2615866,
+          "exit": 0
+        }
+      ],
+      "scientific_cleanup": "INCONCLUSIVE",
+      "wayland_exit_errors": {
+        "reference": [
+          "32"
+        ],
+        "filler0": [
+          "32"
+        ],
+        "filler1": [
+          "32"
+        ],
+        "owner": [
+          "0"
+        ]
+      },
+      "cleanup_pass": true,
+      "transport_status": "INCONCLUSIVE",
+      "terminal_ipc_exit": 1,
+      "capture_count": 10,
+      "binary_sha256": "979dcd95ab43fa1e465d6e9d262485b73d186cedacd0f957059dd24f482ce6f4",
+      "runner_exit": 1
+    },
+    "saved-G": {
+      "status": "INCONCLUSIVE",
+      "failure": null,
+      "seconds": 8.239786188001744,
+      "measurements_pass": "PASS",
+      "runtime_exit": [
+        {
+          "name": "compositor",
+          "pid": 2616467,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2616501,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2616503,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2616516,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2616529,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2616537,
+          "exit": 0
+        }
+      ],
+      "scientific_cleanup": "INCONCLUSIVE",
+      "wayland_exit_errors": {
+        "reference": [
+          "32"
+        ],
+        "filler0": [
+          "32"
+        ],
+        "filler1": [
+          "32"
+        ],
+        "owner": [
+          "0"
+        ]
+      },
+      "cleanup_pass": true,
+      "transport_status": "INCONCLUSIVE",
+      "terminal_ipc_exit": 1,
+      "capture_count": 10,
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "runner_exit": 1
+    },
+    "input-A": {
+      "status": "INCONCLUSIVE",
+      "failure": null,
+      "seconds": 7.159125492005842,
+      "measurements_pass": "PARTIALLY_FEASIBLE",
+      "runtime_exit": [
+        {
+          "name": "compositor",
+          "pid": 2617162,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2617193,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2617196,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2617206,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2617213,
+          "exit": 0
+        }
+      ],
+      "scientific_cleanup": "INCONCLUSIVE",
+      "wayland_exit_errors": {
+        "reference": [
+          "32"
+        ],
+        "filler0": [
+          "32"
+        ],
+        "owner": [
+          "0"
+        ]
+      },
+      "cleanup_pass": true,
+      "transport_status": "INCONCLUSIVE",
+      "terminal_ipc_exit": 1,
+      "capture_count": 9,
+      "binary_sha256": "979dcd95ab43fa1e465d6e9d262485b73d186cedacd0f957059dd24f482ce6f4",
+      "runner_exit": 1
+    },
+    "input-G": {
+      "status": "INCONCLUSIVE",
+      "failure": null,
+      "seconds": 7.058665148011642,
+      "measurements_pass": "PARTIALLY_FEASIBLE",
+      "runtime_exit": [
+        {
+          "name": "compositor",
+          "pid": 2618240,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2618269,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2618272,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2618283,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2618299,
+          "exit": 0
+        }
+      ],
+      "scientific_cleanup": "INCONCLUSIVE",
+      "wayland_exit_errors": {
+        "reference": [
+          "32"
+        ],
+        "filler0": [
+          "32"
+        ],
+        "owner": [
+          "0"
+        ]
+      },
+      "cleanup_pass": true,
+      "transport_status": "INCONCLUSIVE",
+      "terminal_ipc_exit": 1,
+      "capture_count": 9,
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "runner_exit": 1
+    },
+    "gpu-diagnostic": {
+      "status": "INCONCLUSIVE",
+      "failure": null,
+      "seconds": 5.226856699999189,
+      "measurements_pass": "PARTIALLY_FEASIBLE",
+      "runtime_exit": [
+        {
+          "name": "compositor",
+          "pid": 2682414,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2682459,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2682464,
+          "exit": 0
+        },
+        {
+          "name": "background",
+          "pid": 2682506,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2682513,
+          "exit": 0
+        },
+        {
+          "name": "glass",
+          "pid": 2682521,
+          "exit": 0
+        }
+      ],
+      "scientific_cleanup": "PASS",
+      "wayland_exit_errors": {
+        "reference": [
+          "0"
+        ],
+        "background": [
+          "0"
+        ],
+        "filler0": [
+          "0"
+        ],
+        "glass": [
+          "0"
+        ]
+      },
+      "cleanup_pass": true,
+      "transport_status": "INCONCLUSIVE",
+      "terminal_ipc_exit": 1,
+      "capture_count": 11,
+      "binary_sha256": "2d1d221ea34461e538e5b5c6bd811bc865089ac133a6e48578998347c58b97dd",
+      "runner_exit": 0
+    }
+  },
+  "native": {
+    "historical_targeted": {
+      "commits": 821,
+      "paired": 789,
+      "missing": 32
+    },
+    "historical_older": {
+      "commits": 57,
+      "paired": 55,
+      "missing": 2
+    },
+    "new_six": {
+      "commits": 414,
+      "paired": 400,
+      "missing": 14
+    },
+    "missing_cause": "UNKNOWN unless directly evidenced; no interpolation"
+  },
+  "damage_five": {
+    "transitions": 38,
+    "sampled_union_covered": 7,
+    "no_rgb_change": 26,
+    "not_observable": 5,
+    "all_frames": "NOT_PROVEN"
+  },
+  "final_independent_review": "ACCEPTED",
+  "documentary_publication": "PREPARED_AT_COMMIT_EDITION_FINAL_REFS_IN_PRIVATE_POST_PUSH_RECEIPT",
+  "architecture_verdict": "EXPERIMENTAL; source-only core ACCEPTED; production integration not authorized",
+  "recommendation": "PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE",
+  "final_independent_audit": "PASS",
+  "final_review_receipt": "final-review.json"
+}

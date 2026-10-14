@@ -1,0 +1,808 @@
+{
+  "schema": "step20c-gpu-xhigh-local-scientific-summary-v1",
+  "status": "EXPERIMENTAL_PARTIALLY_SUPPORTED_LOCAL_FBO_HISTORY",
+  "binary_sha256": "2d1d221ea34461e538e5b5c6bd811bc865089ac133a6e48578998347c58b97dd",
+  "build_id": "41a24e90859655314196efaa3d34659330000af0",
+  "source_freeze_sha256": "49baa41f0afe78b13de8d8272039081fcd9551d814d4241786720517f68bded3",
+  "private_C_patch_sha256": "b92268faf3780a3b7f57ec916cea44e57f11b768e08155c02243dba2230a0743",
+  "verdicts": {
+    "FBO_CONTENT_IDENTITY": "SAMPLED_NATIVE_ROIS_WITH_INTRA_PASS_IDENTITY",
+    "CACHE_FRESH_DOMAIN": "OUTSIDE_DOMAIN_HISTORY_OBSERVED_LOCALLY",
+    "CACHE_A_RETURN_CAUSALITY": "PARTIALLY_SUPPORTED_LOCAL_FBO_HISTORY",
+    "WHOLE_FIELD_NATIVE_CAUSALITY": "INCONCLUSIVE",
+    "HISTORICAL_A_G_PRISTINE_NATIVE_CAUSALITY": "NOT_PROVEN",
+    "OUTPUT_BUFFER_IDENTITY": "NOT_PROVEN",
+    "GPU_COMPLETION": "NOT_PROVEN",
+    "SCIENTIFIC_HUMAN_DECISION_REQUIRED": false
+  },
+  "acquisition": {
+    "epochs": 3,
+    "points_per_epoch": 12,
+    "ROIs_per_point": 3,
+    "ROI_size": [
+      16,
+      16
+    ],
+    "readbacks": 108,
+    "raw_RGBA_pixels": 27648,
+    "raw_bytes": 110592,
+    "all_observed_alpha": 255
+  },
+  "stage_change_counts": [
+    {
+      "name": "main-before-blur",
+      "fresh": [
+        0,
+        0,
+        0
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "ping-before-small-domain",
+      "fresh": [
+        256,
+        128,
+        128
+      ],
+      "outside": [
+        0,
+        128,
+        128
+      ],
+      "preexisting_reference_domain_only": true
+    },
+    {
+      "name": "pong-before-mid-domain",
+      "fresh": [
+        256,
+        128,
+        128
+      ],
+      "outside": [
+        0,
+        128,
+        128
+      ],
+      "preexisting_reference_domain_only": true
+    },
+    {
+      "name": "down-0",
+      "fresh": [
+        0,
+        0,
+        0
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "down-1",
+      "fresh": [
+        0,
+        0,
+        0
+      ],
+      "outside": [
+        0,
+        128,
+        128
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "down-2",
+      "fresh": [
+        0,
+        48,
+        48
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "up-2",
+      "fresh": [
+        0,
+        128,
+        128
+      ],
+      "outside": [
+        0,
+        128,
+        128
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "up-1",
+      "fresh": [
+        0,
+        128,
+        128
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "up-0",
+      "fresh": [
+        0,
+        256,
+        256
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "blur-result",
+      "fresh": [
+        0,
+        256,
+        256
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "optimized-cache",
+      "fresh": [
+        0,
+        256,
+        256
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    },
+    {
+      "name": "output-presubmit",
+      "fresh": [
+        0,
+        256,
+        256
+      ],
+      "outside": [
+        0,
+        0,
+        0
+      ],
+      "preexisting_reference_domain_only": false
+    }
+  ],
+  "first_observed_fresh_divergence": "down-2",
+  "prospective_down1_candidate": {
+    "xy": [
+      199,
+      75
+    ],
+    "observed_RGBA": [
+      [
+        94.0,
+        101.0,
+        114.0,
+        255.0
+      ],
+      [
+        133.0,
+        93.0,
+        119.0,
+        255.0
+      ],
+      [
+        94.0,
+        101.0,
+        114.0,
+        255.0
+      ]
+    ],
+    "signed_observed_delta": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "fresh_source_texels_exact": true,
+    "fresh_contribution": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "outside_contribution": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "down2_complete_stencils": 11,
+  "down2_central_unchanged": 6,
+  "down2_five_changed": [
+    {
+      "xy": [
+        99,
+        36
+      ],
+      "roi": 1,
+      "observed_RGBA": [
+        [
+          111.0,
+          117.0,
+          128.0,
+          255.0
+        ],
+        [
+          126.0,
+          107.0,
+          131.0,
+          255.0
+        ],
+        [
+          104.0,
+          111.0,
+          128.0,
+          255.0
+        ]
+      ],
+      "ideal_RGBA": [
+        [
+          110.125,
+          116.25,
+          128.125,
+          255.0
+        ],
+        [
+          126.125,
+          107.125,
+          130.75,
+          255.0
+        ],
+        [
+          103.625,
+          110.5,
+          127.75,
+          255.0
+        ]
+      ],
+      "observed_delta": [
+        -7.0,
+        -6.0,
+        0.0,
+        0.0
+      ],
+      "fresh_contribution": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside_contribution": [
+        -6.5,
+        -5.75,
+        -0.375,
+        0.0
+      ],
+      "residual": [
+        -0.5,
+        -0.25,
+        0.375,
+        0.0
+      ],
+      "complete_if_coordinate_error_at_most_one_texel": false
+    },
+    {
+      "xy": [
+        99,
+        37
+      ],
+      "roi": 1,
+      "observed_RGBA": [
+        [
+          111.0,
+          117.0,
+          128.0,
+          255.0
+        ],
+        [
+          126.0,
+          107.0,
+          131.0,
+          255.0
+        ],
+        [
+          104.0,
+          111.0,
+          128.0,
+          255.0
+        ]
+      ],
+      "ideal_RGBA": [
+        [
+          110.125,
+          116.25,
+          128.125,
+          255.0
+        ],
+        [
+          126.125,
+          107.125,
+          130.75,
+          255.0
+        ],
+        [
+          103.625,
+          110.5,
+          127.75,
+          255.0
+        ]
+      ],
+      "observed_delta": [
+        -7.0,
+        -6.0,
+        0.0,
+        0.0
+      ],
+      "fresh_contribution": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside_contribution": [
+        -6.5,
+        -5.75,
+        -0.375,
+        0.0
+      ],
+      "residual": [
+        -0.5,
+        -0.25,
+        0.375,
+        0.0
+      ],
+      "complete_if_coordinate_error_at_most_one_texel": true
+    },
+    {
+      "xy": [
+        99,
+        38
+      ],
+      "roi": 1,
+      "observed_RGBA": [
+        [
+          111.0,
+          117.0,
+          128.0,
+          255.0
+        ],
+        [
+          126.0,
+          107.0,
+          131.0,
+          255.0
+        ],
+        [
+          104.0,
+          111.0,
+          128.0,
+          255.0
+        ]
+      ],
+      "ideal_RGBA": [
+        [
+          110.125,
+          116.25,
+          128.125,
+          255.0
+        ],
+        [
+          126.125,
+          107.125,
+          130.75,
+          255.0
+        ],
+        [
+          103.625,
+          110.5,
+          127.75,
+          255.0
+        ]
+      ],
+      "observed_delta": [
+        -7.0,
+        -6.0,
+        0.0,
+        0.0
+      ],
+      "fresh_contribution": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside_contribution": [
+        -6.5,
+        -5.75,
+        -0.375,
+        0.0
+      ],
+      "residual": [
+        -0.5,
+        -0.25,
+        0.375,
+        0.0
+      ],
+      "complete_if_coordinate_error_at_most_one_texel": false
+    },
+    {
+      "xy": [
+        79,
+        74
+      ],
+      "roi": 2,
+      "observed_RGBA": [
+        [
+          120.0,
+          126.0,
+          137.0,
+          255.0
+        ],
+        [
+          119.0,
+          114.0,
+          138.0,
+          255.0
+        ],
+        [
+          114.0,
+          120.0,
+          137.0,
+          255.0
+        ]
+      ],
+      "ideal_RGBA": [
+        [
+          120.5,
+          126.0,
+          137.0,
+          255.0
+        ],
+        [
+          119.125,
+          114.125,
+          138.0625,
+          255.0
+        ],
+        [
+          114.125,
+          120.4375,
+          137.0,
+          255.0
+        ]
+      ],
+      "observed_delta": [
+        -6.0,
+        -6.0,
+        0.0,
+        0.0
+      ],
+      "fresh_contribution": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside_contribution": [
+        -6.375,
+        -5.5625,
+        0.0,
+        0.0
+      ],
+      "residual": [
+        0.375,
+        -0.4375,
+        0.0,
+        0.0
+      ],
+      "complete_if_coordinate_error_at_most_one_texel": true
+    },
+    {
+      "xy": [
+        80,
+        74
+      ],
+      "roi": 2,
+      "observed_RGBA": [
+        [
+          139.0,
+          143.0,
+          152.0,
+          255.0
+        ],
+        [
+          108.0,
+          127.0,
+          150.0,
+          255.0
+        ],
+        [
+          132.0,
+          137.0,
+          152.0,
+          255.0
+        ]
+      ],
+      "ideal_RGBA": [
+        [
+          138.125,
+          142.5625,
+          151.75,
+          255.0
+        ],
+        [
+          108.75,
+          126.125,
+          150.0625,
+          255.0
+        ],
+        [
+          131.625,
+          136.9375,
+          151.625,
+          255.0
+        ]
+      ],
+      "observed_delta": [
+        -7.0,
+        -6.0,
+        0.0,
+        0.0
+      ],
+      "fresh_contribution": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outside_contribution": [
+        -6.5,
+        -5.625,
+        -0.125,
+        0.0
+      ],
+      "residual": [
+        -0.5,
+        -0.375,
+        0.125,
+        0.0
+      ],
+      "complete_if_coordinate_error_at_most_one_texel": true
+    }
+  ],
+  "down2_delta_maxabs_residual_U8": 0.5,
+  "down2_fresh_source_delta_for_all_11": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "up0_result_cache_RGBA_exact_pixels_per_comparison": 2304,
+  "opaque_glass_coefficient": "119/255",
+  "composition_exact_RGB_pixels_after_nearest_round": 2304,
+  "composition_before_round_maxabs_residual": "7/15",
+  "whole_H1_A_return": {
+    "changed": 34323,
+    "min": [
+      -6,
+      -6,
+      -1
+    ],
+    "max": [
+      0,
+      0,
+      0
+    ],
+    "maxabs": 6
+  },
+  "diagnostic_versus_historical_G": [
+    {
+      "tag": "optimized-A",
+      "changed_pixels": 0,
+      "signed_min": [
+        0,
+        0,
+        0
+      ],
+      "signed_max": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "tag": "optimized-B",
+      "changed_pixels": 0,
+      "signed_min": [
+        0,
+        0,
+        0
+      ],
+      "signed_max": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "tag": "optimized-A-return",
+      "changed_pixels": 0,
+      "signed_min": [
+        0,
+        0,
+        0
+      ],
+      "signed_max": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "ideal_arithmetic_limits": {
+    "absolute_residual_down0_max": 11.5,
+    "up2_signed_delta_residual_max": 1.0364583333333002,
+    "up1_signed_delta_residual_max": 1.6145833333333428,
+    "up0_signed_delta_residual_max": 1.2552083333333428,
+    "native_mediump_precision": "UNMEASURED",
+    "no_numeric_acceptance_tolerance_fitted": true
+  },
+  "cold_model_resolution": "Positive-kernel/copy/rounding model is monotone in initial FBO state; zero is minimum. Native warm history invalidates zero-initial-state reconstruction; no history fit performed.",
+  "hypotheses": {
+    "source_SHM_mutation": "REJECTED",
+    "main_GPU_difference_at_sampled_ROIs": "REJECTED_LOCALLY",
+    "down1_difference_is_fresh": "REJECTED",
+    "outside_domain_history": "STRONGLY_SUPPORTED_LOCALLY_DOWN2_AND_UP1",
+    "outside_domain_always_previous_frame": "REJECTED_UP2_TAIL_FROM_CURRENT_DOWN0",
+    "cache_copy_local_cause": "REJECTED_LOCALLY_EXACT_RGBA",
+    "glass_composition_unexplained_local_cause": "REJECTED_LOCALLY_EXACT_ROUND_MODEL",
+    "capture_alone_local_cause": "REJECTED_LOCALLY_NATIVE_PNG_CONCORDANCE",
+    "mediump_only_history": "INSUFFICIENT_NATIVE_TAILS_ACTUALLY_DIFFER",
+    "readback_hides_sampled_defect": "REJECTED_THREE_WHOLE_RGB_EQUAL_G"
+  },
+  "limits": [
+    "Local observations only; no full-field native causality",
+    "No transfer of diagnostic native evidence to A/G/pristine",
+    "No exact presented-output buffer identity or complete GPU lifetime",
+    "No native precision or universal rounding error bound",
+    "Source witness x-only cannot independently identify y inversion; source projection and final native/PNG concordance used without flipping data",
+    "GL error queue unobserved; read_success metadata remains NOT_PROVEN",
+    "Readback/logging/fsync timing perturbation not universally neutral",
+    "Epochs are local acquisitions, not transaction generations; pointer equality not persistent lifetime identity",
+    "Raw accepted validator remains INCONCLUSIVE for CACHE_A_RETURN_CAUSALITY; refined local verdict separate"
+  ],
+  "commands_run": [
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python audit/gpu-xhigh/analyze_support.py",
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 python audit/gpu-xhigh/analyze_native.py private-gpu/runtime runs/gpu-diagnostic/run private-gpu/validate_readback.py private-gpu/gpu-freeze.json",
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 python audit/gpu-xhigh/native_details.py"
+  ],
+  "command_working_directory": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f",
+  "commands_status": "PASS_CPU_ONLY",
+  "new_runs_or_builds_by_this_agent": 0,
+  "committed": false,
+  "pushed": false,
+  "frozen_contract_impact": "NONE; STEP20C NEXT; production multi-output NOT_YET_SUPPORTED",
+  "next_smallest_step": "Preserve summary and independent documentary review; no additional GPU experiment or implementation under this handoff",
+  "raw_bindings": {
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-1.meta": {
+      "sha256": "695821a7e0d10e9bb261eae202cf435302a8ea0e52bf7006cf68018a1464fd57",
+      "bytes": 4659
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-1.rgba": {
+      "sha256": "888c6b61c8003b638dcff8f4e5c827745394c2f88fbef74a6ac118cde09ad97c",
+      "bytes": 36864
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-1.arm": {
+      "sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+      "bytes": 2
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-2.meta": {
+      "sha256": "d6a873461808d026054696ac664e7aab72792fc28287bd800069ee16ec735a16",
+      "bytes": 4659
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-2.rgba": {
+      "sha256": "54dc5227dcc12d3dc62ad391690640282b8844368f702632a16c65df578cad7b",
+      "bytes": 36864
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-2.arm": {
+      "sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+      "bytes": 2
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-3.meta": {
+      "sha256": "21956b2a1ee9f6260fee8c26febe6f92e82131677478c4cabff7985f3ee6abc1",
+      "bytes": 4659
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-3.rgba": {
+      "sha256": "9d1025f7e383682007137356e1c1fea7e93c234c0cba97d99d0b658568d5ccc4",
+      "bytes": 36864
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/runtime/epoch-3.arm": {
+      "sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+      "bytes": 2
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/build-stage.json": {
+      "sha256": "5c736b4469cae8ce98c31491549ae63516296f54ce2e54902581575e11aac296",
+      "bytes": 14360
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/gpu-freeze.json": {
+      "sha256": "49baa41f0afe78b13de8d8272039081fcd9551d814d4241786720517f68bded3",
+      "bytes": 22036
+    },
+    "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/runs/gpu-diagnostic/run/gpu-readback-validation.json": {
+      "sha256": "d6cc478bba1e0d1d77db50a1098cf7179b672814842038d54683583945f9903c",
+      "bytes": 21909
+    }
+  },
+  "analysis_bindings": {
+    "FINAL_FINDINGS.md": {
+      "sha256": "b58994389cd5f0e4ef3c0431d81683aa51b0f820c198e361d6ecbc31773bc768",
+      "bytes": 14371
+    },
+    "SOURCE_FINDINGS.md": {
+      "sha256": "b38422483748415f5c28b84ce1de90625c440c141018565acc3929e3b834a720",
+      "bytes": 11617
+    },
+    "analyze_native.py": {
+      "sha256": "3a75d9e1b04c92fab1bdd5734569daa54eeea0ee058977e0b676378cddf73c85",
+      "bytes": 9811
+    },
+    "analyze_support.py": {
+      "sha256": "efd9c347caa3678ab2bb6877fe41ce1b73b88f2ce9d9fe4b1129562f77d42ea1",
+      "bytes": 7749
+    },
+    "native-analysis.json": {
+      "sha256": "02c084402331aa5dc3a155bf0efb579498dd5aae42b19d88759a3b59862241da",
+      "bytes": 108422
+    },
+    "native-details.json": {
+      "sha256": "5ebc8270fce83bd2e64cd610a1af320574bd877c70db649ccc2ac36a97505a06",
+      "bytes": 62184
+    },
+    "native_details.py": {
+      "sha256": "27227026d62c5fa75f4cce6786bdf169ffe95f4400b442094e1033759bb12b0b",
+      "bytes": 4740
+    },
+    "source-analysis.json": {
+      "sha256": "b467d5874309971d8424f3a82b986f5860257400b8912d973d3034223fbd188d",
+      "bytes": 33109
+    }
+  }
+}

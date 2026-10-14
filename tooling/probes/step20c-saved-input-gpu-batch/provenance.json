@@ -1,0 +1,221 @@
+{
+  "scope": "SWAYFX_MOSAIC_STEP20C_SAVED_LIFETIME_INPUT_EPOCH_AND_GPU_CAUSALITY_BATCH_V1",
+  "status": "EXPERIMENTAL",
+  "baseline": "ed9375797e717e31325456970a8cfbc4fd148df4",
+  "lab": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f",
+  "scope_boundary": "Documentation and Python fixtures only; private C/SceneFX patches and binaries are excluded. STEP20C NEXT; production multi-output NOT_YET_SUPPORTED.",
+  "public_fixture_sources": {
+    "assertions.py": "96d49da1d4f11efb74292ecb7e469f4da63e691e3cfab692e2a69513516f71a9",
+    "gpu_replay.py": "8e17b6ea4375da7089cf8bd1fae5955c3bee8b33ed47cd511d707544474afd87",
+    "input.py": "f68b844cbde49959ce920c9cdd09fe59f5e89128fa6b24b82d03553f321755a1",
+    "input_validators.py": "f3d0ee960b7e3778f53a2eaa3a0da526321dc9f11b146be9bd99d5ed57493e24",
+    "ledger.py": "1f1347d4db8879fd0302c8b170a581c1f66012e9df68c9e59b8d334ba19ba267",
+    "native_replay.py": "33a4aab79f0c0c0834a05b73780fc514c42eae758d85b9a78bab2f1a1c79b77f",
+    "plans.py": "82001d0362dc2b14aa27b5858c75d88a6ef95f3ceeaef143ab8f5e9dcac03d64",
+    "runtime.py": "e9dbc8c7fa37d3abf45f127ce5a718073ae747405696ef4e9d9977729e57a374",
+    "saved.py": "1d046bd78bfffc365bba8eb7a3906f68ec2bdb13264f3d4e8c0831c6ee6dba02",
+    "saved_assertions.py": "0adaae352ca71a62f6826222973da6562f408acc112712a3beec6f40f9752dca",
+    "saved_replay.py": "94e5ccec8515929f4d0f0459d942484b5ae8bbe146b8502727df298bbacbff0f",
+    "saved_validators.py": "94d70ef36cc210905fed038d1fc42d7dbf01a58c378e48408fc4a92269ba7de4",
+    "test_gpu_replay.py": "b61ce8ce4479190d5f5d00caf19599eee33549b828046f1b811fe3d08b799355",
+    "test_input.py": "528fec86b957fcc3ec0391385c98e223598792111944ba10dd6489ae987c9ad9",
+    "test_ledger.py": "e5cfa30342db7d05f3561b3ce0c059d9caf77ecf00914db4042762bfbc169e08",
+    "test_native.py": "a95fd2aeb9d1df0ff0db0e64f9166ed431592b4b97e7280606512f271696492e",
+    "test_saved.py": "ccc97124b244cf3e2e07306bbe411357d7cd11761de146202becde4110cbaafa"
+  },
+  "binaries": {
+    "A": {
+      "path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/stage-static/usr/bin/swayfx-mosaic",
+      "sha256": "979dcd95ab43fa1e465d6e9d262485b73d186cedacd0f957059dd24f482ce6f4",
+      "build_id": [
+        "Build ID: fabfeb823754a0f5107f83eb077323ad17ddedd1"
+      ]
+    },
+    "G": {
+      "path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "build_id": [
+        "Build ID: 83896fdb36f3fd21522becec0e8c5219e15f4b8e"
+      ]
+    },
+    "C3": {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/diagnostic/stage/usr/bin/swayfx-mosaic",
+      "sha256": "9c0dc0e94ccc7fcbd7a6cddf14e90f1bb7b7bf385a0740e85ec7d0e1c1c1e705",
+      "build_id": [
+        "Build ID: 67a4bcb6a37e8ec691a0da5099d12275429a7076"
+      ]
+    },
+    "pristine": {
+      "path": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/pristine-build/sway/sway",
+      "sha256": "8ac865481bc0487344210cd0e16d8e6c7655b29db887cd58ddc11b0ca22fe494",
+      "build_id": [
+        "Build ID: 298a9626b331139ff2f081ade9c4efdde2d4fb19"
+      ]
+    },
+    "wlroots": {
+      "path": "/usr/lib/libwlroots-0.20.so",
+      "sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+      "build_id": [
+        "Build ID: 2cd3a56136647a9da32b9a682606911aa2498393"
+      ]
+    }
+  },
+  "gpu_binary": {
+    "sha256": "2d1d221ea34461e538e5b5c6bd811bc865089ac133a6e48578998347c58b97dd",
+    "build_id": "41a24e90859655314196efaa3d34659330000af0",
+    "stage_path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/mosaic-build/private-gpu/stage/usr/bin/swayfx-mosaic"
+  },
+  "private_evidence": {
+    "ticket.md": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/ticket.md",
+      "sha256": "c923eadb785b0981120c993e3f998c061ec9e429482d6345c3aef0f50ea30605",
+      "bytes": 33845
+    },
+    "freeze.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/freeze.json",
+      "sha256": "ea46a021d1453fc4842e2815faa488b0a6560ae66bc3e7900b55b8db9ac1ed7a",
+      "bytes": 59515
+    },
+    "review.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/review.json",
+      "sha256": "3da2a759e7b56f9015213a544867e558aea3a0e1ffd15430a7532b29d7b24957",
+      "bytes": 49907
+    },
+    "preflight.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/preflight.json",
+      "sha256": "98fd5ddb51c0a8207d74c767490d0f7ff92a3f8f9b35817a22d2e6148943cf76",
+      "bytes": 754
+    },
+    "reviews/preflight-review.md": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/reviews/preflight-review.md",
+      "sha256": "4fad42f4b2bdc119ead9670fc059606ef3ff2a8b3ec9f9316e3faac267f3792d",
+      "bytes": 4828
+    },
+    "reviews/preflight-review.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/reviews/preflight-review.json",
+      "sha256": "3da2a759e7b56f9015213a544867e558aea3a0e1ffd15430a7532b29d7b24957",
+      "bytes": 49907
+    },
+    "reviews/core-final-source-and-runtime-review.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/reviews/core-final-source-and-runtime-review.json",
+      "sha256": "7dd263b717d66e76f2122f661d1da0b74d8c905e17b914ad5a7a717951f0e340",
+      "bytes": 2319
+    },
+    "reviews/gpu-delta-review.md": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/reviews/gpu-delta-review.md",
+      "sha256": "c535846602b43129e1614a6ee4db147e666204b7c9a3d3c08af64f8d8a2c8d71",
+      "bytes": 1554
+    },
+    "reviews/gpu-delta-review.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/reviews/gpu-delta-review.json",
+      "sha256": "9d5a9cf085e23103c1fd68ad8a6c88dd4ee9b69650bdd163ba3505cacaf2327e",
+      "bytes": 21010
+    },
+    "private-gpu/gpu-freeze.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/gpu-freeze.json",
+      "sha256": "49baa41f0afe78b13de8d8272039081fcd9551d814d4241786720517f68bded3",
+      "bytes": 22036
+    },
+    "private-gpu/review.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/review.json",
+      "sha256": "9d5a9cf085e23103c1fd68ad8a6c88dd4ee9b69650bdd163ba3505cacaf2327e",
+      "bytes": 21010
+    },
+    "private-gpu/preflight.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/preflight.json",
+      "sha256": "11d886cd20b5361d6857cba08759cdb5d8c8d631d505236397d20a975027c716",
+      "bytes": 1923
+    },
+    "private-gpu/source-manifest.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/source-manifest.json",
+      "sha256": "b7a6e79caec6f84dbe595b7f4fb045749aaa970f9f22e61458f5148aa5adaa93",
+      "bytes": 971
+    },
+    "private-gpu/gpu-readback-source-only.patch": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/gpu-readback-source-only.patch",
+      "sha256": "b92268faf3780a3b7f57ec916cea44e57f11b768e08155c02243dba2230a0743",
+      "bytes": 12162
+    },
+    "private-gpu/build-stage.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-gpu/build-stage.json",
+      "sha256": "5c736b4469cae8ce98c31491549ae63516296f54ce2e54902581575e11aac296",
+      "bytes": 14360
+    },
+    "private-core/source-manifest.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-core/source-manifest.json",
+      "sha256": "3abf9135d4e678c825b333187dc64802489b390bec63634d7e2164c5df628d19",
+      "bytes": 121716
+    },
+    "private-core/dossier-sha256.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-core/dossier-sha256.json",
+      "sha256": "794ef350bd82f6c8b633f8c17f3aeae47a2b5b9f3ba137d8d4306c85150fca92",
+      "bytes": 2846
+    },
+    "private-core/mosaic-minimal.patch": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-core/mosaic-minimal.patch",
+      "sha256": "af680be7322a9257769cadc137c487b7f9f880a0b0d66df7701ae26b8baf1fe6",
+      "bytes": 9015
+    },
+    "private-core/scene-minimal.patch": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/private-core/scene-minimal.patch",
+      "sha256": "750337f75f9dc5ca655d3cd10f49bdd04169cca4dc53459d7f0d9eb8ad4db25a",
+      "bytes": 9785
+    },
+    "audit/run-artifacts-six.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/audit/run-artifacts-six.json",
+      "sha256": "7ff6e0b1abfedca7493278d0dcae1afe557434a1f10700faacc28106561b8703",
+      "bytes": 39131
+    },
+    "audit/batch-validation.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/audit/batch-validation.json",
+      "sha256": "52320a30cbf65be19317be4a2a9d97f75ff485b48554235c8ba272513de88912",
+      "bytes": 14342
+    },
+    "audit/abi-package.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/audit/abi-package.json",
+      "sha256": "4ac6b53828db78b156fa4c544dc53c22051cda57ebbc709f96be0be5704bb41b",
+      "bytes": 3062
+    },
+    "audit/gpu-xhigh/FINAL_FINDINGS.md": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/audit/gpu-xhigh/FINAL_FINDINGS.md",
+      "sha256": "b58994389cd5f0e4ef3c0431d81683aa51b0f820c198e361d6ecbc31773bc768",
+      "bytes": 14371
+    },
+    "audit/gpu-xhigh/XHIGH_SUMMARY.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/audit/gpu-xhigh/XHIGH_SUMMARY.json",
+      "sha256": "e9da85989cf3433824738940cc403213d1db6dba778c85152a248b37090e55ad",
+      "bytes": 17796
+    },
+    "audit/gpu-xhigh/artifact-manifest.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/audit/gpu-xhigh/artifact-manifest.json",
+      "sha256": "f9d5d8b4048b25134935e29f75290d546280afa491f35fc2b2c6d2a11248bf67",
+      "bytes": 1191
+    },
+    "baseline/historical-validation.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/baseline/historical-validation.json",
+      "sha256": "daba404ffca693bac9f12a70b3f7d37f2f90ae7b96424599b74831bee9ef3003",
+      "bytes": 344
+    },
+    "baseline/historical-critical-hashes.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/baseline/historical-critical-hashes.json",
+      "sha256": "3d13ca1e3c2643478c46b51e533409ce755b500906cd11bcddc9556dc97ac5c7",
+      "bytes": 3434
+    },
+    "baseline/protected.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/baseline/protected.json",
+      "sha256": "b1f5ef7a44b0620e29d09423eeac0de051d942f36d486cbf7ab9360c287344e9",
+      "bytes": 32483
+    },
+    "baseline/system-protected.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/baseline/system-protected.json",
+      "sha256": "e853fa01c7dbfef5436bfc51a889b807afc3a392e900f2ca3810d2ebed8fc3d3",
+      "bytes": 291
+    },
+    "reviews/final-review.json": {
+      "path": "/home/fy59/swayfx-mosaic-saved-input-gpu-pz4z428f/reviews/final-review.json",
+      "sha256": "77cb647b31139e4a390b361c08c9370958b68028fa28c5003311912d5da325ef",
+      "bytes": 7160
+    }
+  },
+  "review_materialization": "Read-only child-authored verdicts were faithfully materialized by the orchestrator; concise structured transcriptions are disclosed, not verbatim reports. Final independent dossier audit ACCEPTED; permitted closeout metadata has separate before/after hashes."
+}
