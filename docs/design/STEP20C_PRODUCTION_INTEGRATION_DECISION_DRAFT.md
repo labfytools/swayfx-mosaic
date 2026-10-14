@@ -1,109 +1,85 @@
 # STEP20C — décision d’intégration production, draft
 
-> EXPERIMENTAL — édition documentaire du 2026-10-14, après revue finale ACCEPTED / audit PASS du dossier expérimental ; publication préparée, non exécutée à cette édition. Les résultats concernent des laboratoires privés ; aucune intégration production, installation ou décision UX. STEP20A DONE ; STEP20B EXPERIMENTAL ; STEP20C NEXT ; STEP20D–G PLANNED. Multi-output de production : NOT YET SUPPORTED. Les anciens rapports restent historiques et leurs résultats ne se transfèrent pas à un nouveau SHA.
+> EXPERIMENTAL — mise à jour ciblée du 2026-10-14. Revue finale indépendante du nouveau dossier : ACCEPTED, audit PASS pour la fidélité de l’évidence expérimentale. Publication documentaire autorisée et préparée, non exécutée à cette édition. C3 exécuté : INCONCLUSIVE, observations natives partielles sans transfert à A/G. Les verdicts historiques restent inchangés. STEP20A DONE ; STEP20B EXPERIMENTAL ; STEP20C NEXT ; STEP20D–G PLANNED. Multi-output de production : NOT YET SUPPORTED. Aucune intégration, installation ou décision UX.
 
-L’autorité brute est le LAB privé `/home/fy59/swayfx-mosaic-overnight-mcolx0gq`. Les chemins LAB ci-dessous sont des références locales de preuve, pas des fichiers distribués. Les sources de fixture préservées se trouvent dans [tooling/probes/step20c-overnight](../../tooling/probes/step20c-overnight/qualification/README.md). La [provenance compacte](../../tooling/probes/step20c-overnight/qualification/provenance.json) lie les identités et reçus sans publier logs, images, binaires, archives ou patches candidats.
+La recommandation reste **PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE**. Le [rapport de clôture](STEP20C_TARGETED_CLOSURE_DECISION.md) lie les quatorze runs ciblés, les identités exactes et leurs risques à LAB `/home/fy59/swayfx-mosaic-targeted-7gge6h8b`. L’ancien LAB `/home/fy59/swayfx-mosaic-overnight-mcolx0gq` reste en lecture seule, PARTIALLY_ADVANCED, 18 runs/196 captures. Les [fixtures](../../tooling/probes/step20c-targeted/README.md) sont des sources scellées, pas des résultats de production. Les vingt réponses ci-dessous enregistrent l’évidence disponible, sans auto-approbation.
 
-## Recommandation soumise, non appliquée
+## 1. G est-il qualifié au-delà du smoke horizontal ?
 
-**PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE**. L’état global proposé est PARTIALLY_ADVANCED, sous réserve de publication observée, jamais PRODUCTION_READY. Aucun défaut P0 clip/input confirmé dans le scope mesuré, mais les gates lifetime, damage/transactions, effets, ABI-maintenance, packaging/notices et politique humaine restent ouverts. L’issue globale scientifique est PARTIALLY_ADVANCED ; ce draft ne décide pas une intégration et n’autorise ni distribution ni STEP20D.
+Oui, pour de nouveaux échantillons sur son propre SHA `8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a`, build ID `83896fdb36f3fd21522becec0e8c5219e15f4b8e` : scale, FX, input, saved, dynamic, hidden, R90. [Matrice G](STEP20C_RELEASE_SHAPE_EXTENDED_MATRIX.md) : dynamic PARTIALLY_FEASIBLE, hidden/R90/scale FEASIBLE échantillonné ; saved/input restent incomplets, whole-H1 FX FAIL. Aucun all-matrix PASS et aucun résultat A transféré.
 
-Les réponses sont liées aux [matrices exactes](STEP20C_ANNOTATED_GRAPHICS_MATRIX.md), au [build/stage](STEP20C_ANNOTATED_REBUILD_AND_PRIVATE_STAGE.md) et aux [limites lifecycle](STEP20C_LIFECYCLE_EFFECTS_AND_NATIVE_ORDERING.md). Elles distinguent preuve locale et contrat futur.
+## 2. Le scale 1,25 est-il réel avec input et grabs ?
 
-## 1. Le nouveau binaire annoté est-il réellement qualifié?
+Oui. [A/G séparément](STEP20C_TARGETED_SCALE_AND_POPUP_GATE.md) : mode physique1000×750, logique800×600, scale1,25, markers PNG, deux vrais grabs35/44, root/nested franchissant x=0, B visible livré, bouton interdit non livré/dismissal et H2 entier exact. Neuf PNG/quatre clics par run ; association bornée source, pas de join natif host/owner ID. Retour standard NOT EXERCISED dans cette allocation. Runtime brut INCONCLUSIVE sur IPC terminal1.
 
-A est qualifié localement pour source/build/model/ELF/stage et possède ses propres mesures graphiques C/D/E/F. FEASIBLE pour C horizontal ; PARTIALLY_FEASIBLE globalement. Ni qualification production complète ni READY.
+## 3. Un saved buffer réel a-t-il été observé ?
 
-## 2. Quelles matrices ont été exercées?
+Un nouveau configure réel tenu sans ACK est prouvé sur A/G : ACK 30 puis serial 39,636×573→636×513, HELD_WIRE_VALIDATED. Cela établit le trigger et le hold client ; [identité native saved-node/render](STEP20C_TARGETED_SAVED_BUFFER_LIFECYCLE.md) NOT OBSERVABLE dans ces deux runs. Les anciens saved nodes d’autres binaires restent historiques. C3 distinct observe un saved node réel créé après gaps, sa référence source et un draw H1 ; le prédicat figé unique unreused saved node rejette l’adresse réutilisée. Création/rendu/teardown partiellement observés, runtime INCONCLUSIVE, sans transfert à A/G.
 
-18 runs uniques : C0/C1/C2 horizontal négatif ; D1 vertical pair ; D2 scale1,25 pair ; D3 R90/1,25 pair ; D4 resize/migration pair ; E1 hide/return ; E2 saved trigger ; E3 effets/cache pair ; F regions/ordering pair ; G smoke. Les limites et actions non exercées restent explicites dans la matrice.
+## 4. Son clipping est-il correct ?
 
-## 3. Quels contrôles pristine sont disponibles?
+Il n’est pas qualifié par les nouveaux saved-A/G : chacun s’arrête après deux références H2 sur le champ workspace IPC gaps absent. Aucun PNG pendant hold/timeout, aucun saved render natif lié. Saved clipping INCONCLUSIVE, sans FAIL produit démontré et sans PASS rétroactif. C3 observe draw/intersection héritée sur H1 mais aucun PNG held/live ou contrôle H2 pendant hold : clipping INCONCLUSIVE. Les preuves saved historiques ne se transfèrent pas aux SHA A/G ou C3.
 
-C0 et D1/D2/D3/D4/E3/F pristine réellement exécutés sur le SHA retenu. C0/C1 full RGB égal aux huit états homologues ; D2/D3 markers et spill/input ordinary effectifs. Pristine F non modifié ne porte aucune PI privée. Ces contrôles ne qualifient pas un autre SHA.
+## 5. Le lifetime est-il prouvé ou partiellement observé ?
 
-## 4. Quels résultats restent partiels?
+L’audit natif est SOURCE_AUDIT_ONLY : création d’un nœud saved distinct, référence wlr_buffer lockée, destruction/unlock et réactivation live. Les runs FX ont normal close/error0/releases SHM avant compositeur ; saved-A/G terminent error32 pendant teardown malgré processus 0. C3 trace locks 3→4 puis destruction/release/destroy au teardown seulement ; owner error32/code0, sans timeout naturel ni normal close. Son découpage create→next destroy reste descriptif, sans génération native inventée. Lifetime complet buffers/textures/cache/GPU et commit rejeté NOT PROVEN. Cleanup mécanique, scientifique et lifetime restent distincts.
 
-D2-Mosaic association root ambiguë avant input/final ; E2 saved NOT EXERCISED ; E3 full-H1 return FAIL dans les deux contrôles, classic NOT EXERCISED ; F géométrie fixture périmée et suite non exercée ; G horizontal smoke seul ; ABI future/notices/legal/package complets non qualifiés.
+## 6. Le classic blur a-t-il vraiment filtré l’image ?
 
-## 5. Existe-t-il un défaut bloquant de clipping ou d’input?
+Oui dans pristine/A/G : [4096 pixels](STEP20C_TARGETED_EFFECTS_CACHE_DIAGNOSIS.md) de ROI centrale prospective changent à source SHM constante, contraste adjacent12,783069→0,090278. Fond haute fréquence XRGB, filler transparent et verre prémultiplié0x88442010 sont retenus. EXERCISED ; l’ancien filler opaque explique les anciens pixels uniformes selon source audit seulement, bytes historiques absents.
 
-Aucun défaut bloquant démontré dans les fenêtres échantillonnées C/D1/D3/D4/E1/G. D2/F stops sont expliqués par le fixture, sans PASS rétroactif. Cela ne prouve pas l’absence universelle de défaut.
+## 7. La restauration A/B/A passe-t-elle sur H1 entière ?
 
-## 6. Existe-t-il un risque de lifetime non résolu?
+Non. Sans masque ni ROI opportuniste : FAIL 37252 pixels pristine/34323 A/G, max 6, signes natifs non positifs ; bbox pristine[400,0,800,600], A/G[480,0,800,600]. Centre exact et source A 1/A 3 byte-exact ne changent pas ce verdict. Le modèle donne68969 pixels history/0 fresh mais signe positif max 33 différent du natif négatif max 6 ; causalité native INCONCLUSIVE.
 
-Oui : identité native buffers, locks/références/releases GPU/saved, teardown exhaustif et scénarios de commit rejeté ne sont pas prouvés. Cleanup PID propre est une preuve de processus, pas de lifetime GPU. G garde FBO bind-before-failed potentiellement non passif.
+## 8. Les différences sont-elles communes au pristine ?
 
-## 7. Quel est l’état réel du damage?
+Oui, le nouveau pristine reproduit le retour whole-H1 imparfait. Les géométries visibles pristine/Mosaic diffèrent, donc les comptages ne démontrent pas une régression clip. Les seize captures A/G homologues sont RGB exactes et état/source normalisés égaux. Cela réduit une hypothèse visible propre aux traces A ; la causalité GPU et la neutralité temporelle restent NOT PROVEN.
 
-Échantillons et traces extents conservés, H2 exact dans les états citées ; whole-H1 A-return effets échoue dans les deux contrôles. Damage exhaustif, minimal, stale pixels intermédiaires et contenu exact présenté NOT PROVEN.
+## 9. L’input suit-il l’origine appliquée après les mutations ?
 
-## 8. Quelle est la portée des preuves de transactions?
+Les observations obtenues sont cohérentes avec la dernière origine native. Au troisième clic A/G : globale(-314,30), origine pré-capturée(-318,25), dernière native(-638,25), motion(324,5), boutons45/46 livrés. La camera change via focus pendant clic ; [fixture ambigu](STEP20C_TARGETED_INPUT_NATIVE_ORDERING.md), suite camera/layout NOT EXERCISED. Pristine contrôle standard complet ; aucune panne produit ni atomicité démontrée.
 
-Source applied clip et callbacks échantillonnés, regions full/empty/full observées. Sur12 couples initiaux F,10 PAIRED/2 MISSING_PRESENT ;57 commits bruts. Pas d’epoch atomique ni de fenêtre naturelle discriminante ni d’identité pixels/hit/present complète.
+## 10. Les couples commit/present sont-ils correctement corrélés ?
 
-## 9. Le candidat release-shape existe-t-il?
+Le replay utilise (output, commit_seq). Total final 14 runs : 821 commits,789 paired,32 missing (treize initiaux788/758/30 ; C3 ajoute 33/31/2) ; pristine PI NOT OBSERVABLE. F historique complet : 57 commits, 55 paired, 2 missing(seq 2 H1/H2), sans réécrire son ancien sous-ensemble 10/12. Le pairage correct ne lie pas contenu/pixels/GPU ; fenêtre naturelle mutation entre matching commit/present NOT EXERCISED.
 
-Oui, G privé source/build/stage exact existe, SHA8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a, build ID83896fdb36f3fd21522becec0e8c5219e15f4b8e. Aucun candidat binaire/package public distribué.
+## 11. Quels buffers sont réellement identifiés ?
 
-## 10. Son comportement est-il testé ou seulement compilé?
+Les buffers SHM client/wire, dimensions et dumps sources sont identifiés dans leur espace propre. Les callbacks output portent output/commit_seq ; A FX identifie un pointeur cache/FBO choisi, sans readback contenu. A/G n’identifient pas un saved-node/buffer GPU avec locks/releases ni l’image exacte présentée. C3 identifie un nœud/source dans l’intervalle descriptif de sa création à la prochaine destruction et un draw, sans identité de génération ou preuve GPU completion. wl_buffer release, saved node, texture/cache, output-state buffer, present et fin GPU restent distincts.
 
-G est buildable et possède un smoke propre17 PNG/8 clics/4 grabs/retour splith, indépendamment revu. SMOKE_FEASIBLE horizontal seulement ; matrice G étendue et neutralité complète NOT TESTED/NOT PROVEN.
+## 12. Quelles preuves de damage restent insuffisantes ?
 
-## 11. Quels patches fonctionnels doivent être conservés?
+Les captures stabilisées et traces disponibles restent échantillonnées. Le nouvel audit `parent/damage-envelopes.json` compare99 transitions d’images adjacentes entières des treize runs initiaux : 18 différences contenues dans des enveloppes physiques A, 79 NOT OBSERVABLE(trace absente/intervalle vide), deux changements de dimensions NOT COMPARABLE. Une enveloppe extents ne prouve pas région exacte/minimale, tous frames/stale pixels, ni liaison à un buffer présenté ou génération atomique.
 
-Dans le candidat privé : subtree clip SceneFX, clip owner-derived popup, guard owner totalement caché et delta natif Mosaic. Les commentaires token-equivalent sont acceptés. Une extraction de production exige encore revue exacte source/ownership/lifetime et décision, sans appliquer ces patches maintenant.
+## 13. Quel risque d’instrumentation résiduelle demeure dans G ?
 
-## 12. Quels patches de trace peuvent être retirés?
+PI listeners, traversées scène/owner/popup, clocks et logs restent ; logging peut bloquer/allouer.26 statements OPT/helpers retirés ne rendent pas G uninstrumented. FBO bind-before-failed reste différent de pristine ; failure semantics NOT TESTED.16 images A/G exactes limitent une différence visible dans le scope, neutralité timing/GPU INCONCLUSIVE. Audit/retrait et requalification futurs exigent budget distinct.
 
-Seulement le retrait privé G déjà revu :26 logs/7 fichiers et helpers réellement orphelins. Timing/cache/PI ne se retirent pas en bloc sans audit ; PI listeners et FBO bind ordering restent. Aucun patch de production réécrit.
+## 14. Les tests graphiques G permettent-ils une revue d’intégration ?
 
-## 13. Quelle ABI SceneFX est réellement qualifiée?
+Ils permettent une revue plus informée du candidat privé, pas une approbation production. Dynamic 14 PNG resize 960/back/migrationH1/H2/H1/input frais lorsque popup_done, hidden 12 PNG même chaîne/emptyclip/retourB, R90 neuf PNG 750×1000 physique/scale1,25/logique800×600/markers sont propres à G. Saved/input partiels, FX FAIL, lifetime/damage/génération ouverts. Revue finale indépendante du dossier ciblé ACCEPTED, audit PASS pour la fidélité expérimentale ; aucune approbation d’intégration production.
 
-SceneFX0.5 statique exact local, ELF appels clip directs,17 structs/6 offsets/85 overlaps/34 diagnostic bindings. Pas une ABI externe stable, ni tous providers runtime, ni une ABI future ou full semantic safety.
+## 15. Quelles limites ABI persistent ?
 
-## 14. Quelle paire wlroots est réellement qualifiée?
+Paire locale SceneFX 0,5 commit 37ccd723bef49e6891156ffafce8f549f01446cc / wlroots 0,20,2 commitd783533489e1f75d6886c2ab5c5960090ef268f8, libSHA7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837,121 headers vérifiés.17 structs/six offsets égaux, 85 overlaps caractérisés, 34 bindings dont31 vers executable/trois wlroots. Ni incompatibilité prouvée ni safety complète ; toutes autres paires NOT QUALIFIED. Maintenance projet approuvée privé, release/security à nommer.
 
-Paire locale SceneFX37ccd723bef49e6891156ffafce8f549f01446cc + wlroots0.20.2 d783533489e1f75d6886c2ab5c5960090ef268f8, libSHA7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837 et121 headers épinglés. Tous autres builds/paires NOT QUALIFIED ; changement implique rebuild/requalification.
+## 16. Quels points packaging restent ouverts ?
 
-## 15. La future recette Arch est-elle reproductible?
+Syntaxe, septchecksums, makepkg --printsrcinfo/--verifysource local, forwardchecks deux patches PASS ; stage privé exact cinq fichiers réguliers sans symlink, DT_NEEDED sans SceneFX shared. Fullmakepkgbuild NOT RUN, reproductibilité bit à bit NOT PROVEN. Inventories895/894 entrées, 894/893 chemins uniques ; doublons/testlog ne prouvent pas incorporation. Préprocesseur/extraction archive/notices exactes et revue juridique HUMAN_REVIEW_REQUIRED. PKGBUILD réel inchangé, aucune installation/distribution.
 
-Inputs privés hashés, syntaxe shell/Python et sources PASS ; makepkg metadata/source verification/build NOT RUN. Pas de reproductibilité binaire bit à bit ni de paquet distribution publique validé. PKGBUILD.future ne modifie pas PKGBUILD réel.
+## 17. Quelles décisions UX popup restent nécessaires ?
 
-## 16. Quels textes de licence restent à valider?
+Offscreen hide/dismiss/reposition et click-through sous grab restent UNDECIDED. Les comparaisons contrôlées et routing/dismissal échantillonnés ne définissent pas une règle universelle. Aucun changement docs/UX ni bindings/configuration personnelle ; Mosaic reste opt-in dans workspace Sway ordinaire.
 
-Les quatre fichiers stage incluent LICENSE SceneFX/SwayFX/wlroots et INCORPORATED-NOTICES. Inventaires895 A/894 G conservateurs ; incorporation exacte, extraction archives et contributions conditionnelles puis suffisance juridique nécessitent validation humaine. Aucun legal PASS.
+## 18. Quels travaux exigent encore un changement de code ?
 
-## 17. Qui devra assurer les releases et la sécurité?
+Le fixture input doit mesurer/autoriser la mutation pendant livraison ; la mesure saved exige un predicate IPC adéquat et observabilité native bornée. Un discriminant GPU nécessite readback FBO/cache/output natif autorisé. Un éventuel retrait résiduel G et l’intégration clip/owner guard exigent revue exacte et requalification. Aucun correctif de produit causal n’est établi par PNG seuls ; aucun code production n’est modifié ici. C3 est un travail privé distinct consommé, runtime INCONCLUSIVE : son prédicat d’adresse globalement unique est trop strict pour la réutilisation observée. Aucun fixture gelé réparé, aucune relance.
 
-Responsabilité projet pour SceneFX embarqué déjà approuvée dans le périmètre privé ; release maintainer et security reviewer doivent être désignés avant distribution. Aucun nom ni SLA inventé. Veille, impact, rebuild, tests, notices et publication documentés comme procédure proposée.
+## 19. Quelle plus petite tranche production est éventuellement envisageable ?
 
-## 18. Quelle politique popup UX reste à décider?
+Après décisions humaines et fermeture des gates pertinents seulement : clip natif optionnel, owner-popup/hidden guard et retour standard workspace-local, Row0 empruntant workspace->tiling. Contrats Architecture/UX/Packaging/Upstream/Development avant code, puis delta petit/revu/testé sur nouveau SHA. Tests build/model/headlessIPC/pristine et matrice pertinente, ABI/header/providers, stage/notices/package complet et patch export/apply/source-equivalence/checksum. Fallback standard SwayFX indépendant,/usr/bin/sway intact, sans provides/conflicts/replaces ni remplacement système/config ; déploiement/rollback décision distincte. Aucun STEP20D ni tranche autorisée ici.
 
-Hide/dismiss/reposition de popup offscreen et comportement sous grab/click-through restent ouverts. Les observations de routing ne fixent pas une politique universelle. Aucun changement UX dans cette tranche.
+## 20. Quels risques imposent de différer toute intégration ?
 
-## 19. Quelles corrections sont nécessaires avant une intégration dans main?
-
-Nouveau fixture ciblé saved provoquant configure runtime attesté, diagnostic full-H1 effets avec contrôles, assertion input liée à géométrie appliquée, mesure lifetime/native refs/releases/temporal discriminante et neutralité G/FBO. Chaque gate pertinent doit avoir critères acceptés et nouvelle autorisation/budget ; aucun rerun dans le budget clos. Puis politiques humaines ABI/notices/release/security/UX, contrats canoniques avant code.
-
-## 20. Quelle est la plus petite tranche de production envisageable après décision utilisateur?
-
-Après décision humaine et gates pertinents clos seulement : clip natif optionnel dans workspace Sway ordinaire, Row0 empruntant workspace->tiling, owner popup clip et hidden-owner guard revus, restauration standard locale préservée. Contrats Architecture/UX/Packaging/Upstream/Development d’abord, puis petit delta revu/testé. Aucun STEP20D, ligne runtime additionnelle, animation ou taille finale ; aucune implementation ici.
-
-## 21. Quels tests doivent impérativement être refaits après une intégration?
-
-Nouveau exact SHA : compile/model/headless IPC et standard pristine, export cumulatif forward apply/source-equivalence/checksum, ELF/header/layout/providers/relocations, manifests stage/notices et package complet, toute matrice graphique C/D/E/F pertinente et smoke propre G, input/popups/grabs/retour standard, geometry scale/rotation/migration, saved/effects/damage/lifetime. Pas d’héritage automatique du LAB.
-
-## 22. Quel plan de rollback protège SwayFX standard?
-
-Proposition future : conserver package SwayFX et /usr/bin/sway indépendants, sélectionner sa session existante après quitter la candidate ; retirer seulement fichiers appartenant à Mosaic vérifiés. Aucun provides/conflicts/replaces, système lib/config/dotfiles remplacé. Déploiement et rollback nécessitent décision distincte, jamais exécutés ici.
-
-## Conditions de décision
-
-Ce dossier apporte un candidat et des preuves reviewables. La revue finale indépendante est ACCEPTED / audit PASS pour la fidélité de l’évidence expérimentale, sans adoption production. Publication documentaire préparée, non exécutée à cette édition. Publication des docs/fixtures et adoption en production sont des actes distincts ; le résultat réel et les SHAs finaux origin/github feront foi dans le reçu privé et le handoff final, sans faux hash futur dans ce draft.
-
-## Revue finale observée et publication préparée
-
-Revue indépendante finale ACCEPTED / audit PASS pour la fidélité du dossier expérimental : 0 BLOCKING, 4 NON_BLOCKING, 3 FUTURE_SCOPE ; 180 checks hors ligne et 15 mutations de preuves réelles rejetées. Rapport privé `reviews/overnight-final-review.md`, SHA256 `bb4000dffb51b07b59e86f91e8dd76bc2c4f0b9513b48a52c9f6bd6c8c3f45af` ; reçu JSON SHA256 `72ba252092ca3375d344faae1c2026c8d5626fd190e87771d5c0c1ad8212c9b0`. Index scientifique post-exécution `seals/index.json`, SHA256 `cdf034e1f8466a9ae8a0e0a33aa8d0d0195273f0d1bc782667b50c3bcf682505`, contexte de preuve courant, pas un binding pré-exécution.
-
-NB-01 est complété dans l’index compact depuis les grabs wire réels de chacun des huit runs concernés, avec lignes et hashes sources dans `parent/metadata-serial-completion.json`. Les stops fixtures, échecs E3 et incident IPC restent documentés. Les gates lifetime/génération/damage, couverture G, maintenance ABI/paquet/juridique et robustesse/coût des sidecars privés restent ouverts. L’acceptation documentaire ne qualifie pas la production et n’applique aucune décision. Publication préparée, pas encore exécutée à cette édition ; les refs/SHAs finaux et le résultat de publication feront foi dans le reçu privé et le handoff final.
+P1 whole-H1GPU, lifetime saved/génération/damage, input temporel et couverture G ; P2 neutralité/ABI-maintenance, package/notices/legal, nominations, IPCterminal/attribution runtimepaths ; P3 sorties physiques plus larges. Aucun P0 prouvé. Les [risques sourcés](STEP20C_TARGETED_CLOSURE_DECISION.md) gardent critères de clôture et décisions humaines. C3 INCONCLUSIVE ; final review ACCEPTED, publication documentaire préparée/non exécutée à cette édition ; recommandation PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE, production NEXT/NOT YET SUPPORTED.

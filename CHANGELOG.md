@@ -4,6 +4,33 @@
 
 ### STEP20C experimental evidence
 
+- Record the targeted private campaign: 14 unique runs, 125 captures and 520
+  reserved events, with exact A/G/pristine/C3 identities and separate measurement,
+  raw runtime, scientific cleanup and architecture statuses. Scale grabs/input
+  and G dynamic/hidden/R90 extend sampled evidence; terminal IPC exit 1 remains
+  INCONCLUSIVE in every run.
+- Preserve real held configure 39 with saved A/G measurement stops and client
+  error 32 during compositor teardown; timeout/native saved identity/normal
+  close remain unqualified. Classic blur is exercised, whole-H1 A/B/A RGB
+  restoration still fails in pristine/A/G, and input camera changes during the
+  click window remain an incomplete fixture measurement. New native replay
+  pairs 789 of 821 final commits without claiming atomic generation or GPU
+  lifetime.
+- Update the integration draft to the twenty requested evidence questions and
+  retain private stage/source-verification success, full package build NOT RUN,
+  ABI/notice/legal/maintenance and instrumentation limits. C3 is consumed with
+  INCONCLUSIVE runtime: native creation/draw/teardown
+  are partially observed, but a frozen unique-address predicate rejects actual
+  node-address reuse. Its bounded wait stop is not a natural transaction timeout;
+  held/live PNG, normal close and GPU completion remain unqualified. Final
+  independent review is ACCEPTED / audit PASS for experimental evidence fidelity:
+  43 offline tests,22 additional mutations rejected,0 BLOCKING,1 NON_BLOCKING
+  editorial finding and3 FUTURE_SCOPE. Documentary publication is authorized
+  and prepared, not executed at this edition; final refs belong to the private
+  closeout and final handoff. Production
+  source, current package, UX and historical evidence are unchanged; STEP20C
+  NEXT, production multi-output NOT YET SUPPORTED.
+
 - Local offline nested geometry/fixture review protocol: separate SHM, assigned/rendered, scene, XDG and PNG spaces; exhaustive assertion/source/test register and independent review required. No graphical launch authorized; final offline verdict INCONCLUSIVE.
 
 - Preserved static nested-grab fixture failure: sole unchanged-binary run confirms identity/output/camera/tiled clip and exact whole-H2 pre-popup references, then fails before any click/grab on a native-SHM versus painted-height assertion. INCONCLUSIVE / UNDECIDED; additional IPC-y/titlebar assumption invalid, offline assertion audit insufficient. Raw runner exit1 and compositor exit0 retained; popup/standard gates NOT TESTED, no retry/build/production change. Historical runner and sealed artifacts preserved.

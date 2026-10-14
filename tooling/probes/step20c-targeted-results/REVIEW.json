@@ -1,0 +1,20 @@
+{
+  "schema": "STEP20C_TARGETED_ACCEPTED_REVIEW_V1",
+  "independent": true,
+  "status": "ACCEPTED",
+  "receipt_sha256": "28f868a0d956e70290db0515f59404e9f930e7180a89e326bcabda9ff6ea47ae",
+  "report_sha256": "73f06404ccfaa985cd6e279e606debeb8899bd1dd9079c88fdf5a01be98354ec",
+  "offline_tests": 43,
+  "additional_negative_mutations_rejected": 22,
+  "blocking": 0,
+  "nonblocking": 1,
+  "future_scope": 3,
+  "private_report": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/targeted-final-review.md",
+  "private_receipt": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/targeted-final-review.json",
+  "reviewed_complete_diff_sha256": "436aa0565ec22021d38d24128165b8ac79a1586d0c97af60e9cce217018d7102",
+  "immutable_fixture_files": 21,
+  "scientific_status": "EXPERIMENTAL / PARTIALLY_ADVANCED",
+  "recommendation": "PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE",
+  "publication": "pre-commit snapshot; actual final refs in private closeout and final user report",
+  "administrative_changes": "Only accepted N01 wording, review outcome/provenance metadata, PNG accounting and final hash supplements; bounded delta review required before commit."
+}

@@ -1,0 +1,2415 @@
+{
+  "schema": "STEP20C_TARGETED_RESULTS_V1",
+  "status": "EXPERIMENTAL / PARTIALLY_ADVANCED",
+  "recommendation": "PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE",
+  "initial_head": "30dc3182ab1739a396fae3fc75bbe68589f8a950",
+  "initial_origin_main": "30dc3182ab1739a396fae3fc75bbe68589f8a950",
+  "initial_github_main": "30dc3182ab1739a396fae3fc75bbe68589f8a950",
+  "historical": {
+    "status": "PASS",
+    "closeout_sha256": "dba268a6aa415bd07c26371ec1ba9e66e4b54b5b51bd24ae05bd1d281bd27a3a",
+    "primary_sha256": "cdf034e1f8466a9ae8a0e0a33aa8d0d0195273f0d1bc782667b50c3bcf682505",
+    "verified_entries": 6138,
+    "failures": [],
+    "runs": [
+      {
+        "id": "C0",
+        "ledger": {
+          "campaign": "C",
+          "captures": 10,
+          "duration_s": 150
+        },
+        "outcome_paths": []
+      },
+      {
+        "id": "C1",
+        "ledger": {
+          "campaign": "C",
+          "captures": 10,
+          "duration_s": 150
+        },
+        "outcome_paths": []
+      },
+      {
+        "id": "C2",
+        "ledger": {
+          "campaign": "C",
+          "captures": 17,
+          "duration_s": 150
+        },
+        "outcome_paths": []
+      },
+      {
+        "id": "D1-pristine",
+        "ledger": {
+          "campaign": "D1",
+          "captures": 8,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D1-pristine/run/outcome.json"
+        ]
+      },
+      {
+        "id": "D1-mosaic",
+        "ledger": {
+          "campaign": "D1",
+          "captures": 8,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D1-mosaic/run/outcome.json"
+        ]
+      },
+      {
+        "id": "D2-pristine",
+        "ledger": {
+          "campaign": "D2",
+          "captures": 9,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D2-pristine/run/outcome.json"
+        ]
+      },
+      {
+        "id": "D2-mosaic",
+        "ledger": {
+          "campaign": "D2",
+          "captures": 7,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D2-mosaic/run/outcome.json"
+        ]
+      },
+      {
+        "id": "D3-pristine",
+        "ledger": {
+          "campaign": "D3",
+          "captures": 9,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D3-pristine/run/outcome.json"
+        ]
+      },
+      {
+        "id": "D4-pristine",
+        "ledger": {
+          "campaign": "D4",
+          "captures": 17,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D4-pristine/run/outcome.json"
+        ]
+      },
+      {
+        "id": "D4-mosaic",
+        "ledger": {
+          "campaign": "D4",
+          "captures": 17,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D4-mosaic/run/outcome.json"
+        ]
+      },
+      {
+        "id": "E1-mosaic",
+        "ledger": {
+          "campaign": "E1",
+          "captures": 12,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/E1-mosaic/run/outcome.json"
+        ]
+      },
+      {
+        "id": "E2-mosaic",
+        "ledger": {
+          "campaign": "E2",
+          "captures": 2,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/E2-mosaic/run/outcome.json"
+        ]
+      },
+      {
+        "id": "E3-pristine",
+        "ledger": {
+          "campaign": "E3",
+          "captures": 16,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/E3-pristine/run/outcome.json"
+        ]
+      },
+      {
+        "id": "E3-mosaic",
+        "ledger": {
+          "campaign": "E3",
+          "captures": 16,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/E3-mosaic/run/outcome.json"
+        ]
+      },
+      {
+        "id": "F-pristine",
+        "ledger": {
+          "campaign": "F",
+          "captures": 8,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/F-pristine/run/outcome.json"
+        ]
+      },
+      {
+        "id": "F-mosaic",
+        "ledger": {
+          "campaign": "F",
+          "captures": 4,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/F-mosaic/run/outcome.json"
+        ]
+      },
+      {
+        "id": "G-smoke",
+        "ledger": {
+          "campaign": "G",
+          "captures": 17,
+          "duration_s": 150
+        },
+        "outcome_paths": []
+      },
+      {
+        "id": "D3-mosaic",
+        "ledger": {
+          "campaign": "D3",
+          "captures": 9,
+          "duration_s": 150
+        },
+        "outcome_paths": [
+          "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/matrix/D3-mosaic/run/outcome.json"
+        ]
+      }
+    ],
+    "unique_runs": 18,
+    "captures": 196,
+    "ledger_sha256": "6ebedc65f30bf2c81f45b1487adf974a390a0049f632cfbb18bbbb00e3bfae3f",
+    "aliases_used": [
+      {
+        "category": "private-maintenance",
+        "path": "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-overnight/__pycache__/horizontal_adapter.cpython-314.pyc",
+        "sha256": "606fbc7f3ac0e18bb5a7dc3c7b2e61cdd2cd2f565e35556f47ab43c05e067837",
+        "alias": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/parent/generated-cache-archive/tooling/probes/step20c-overnight/__pycache__/horizontal_adapter.cpython-314.pyc",
+        "verified": true
+      },
+      {
+        "category": "private-maintenance",
+        "path": "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-overnight/__pycache__/ledger.cpython-314.pyc",
+        "sha256": "0172a7f64effaa4d5b0a7c2a63d7ccdf6b4cd7cccc6b3eb84b63dd1712cbb876",
+        "alias": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/parent/generated-cache-archive/tooling/probes/step20c-overnight/__pycache__/ledger.cpython-314.pyc",
+        "verified": true
+      },
+      {
+        "category": "private-maintenance",
+        "path": "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-overnight/qualification/README.md",
+        "sha256": "382905be817bc265bf2be352ff0208371c8ccaf421740d546f619803cac1df30",
+        "alias": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/parent/docs-post-final-originals/tooling/probes/step20c-overnight/qualification/README.md",
+        "verified": true
+      },
+      {
+        "category": "private-maintenance",
+        "path": "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-overnight/qualification/provenance.json",
+        "sha256": "5e18b280a5227784e7a8d253f082d74cef96c31e4edbcb57b96978ff961412df",
+        "alias": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/parent/docs-post-final-originals/tooling/probes/step20c-overnight/qualification/provenance.json",
+        "verified": true
+      },
+      {
+        "category": "private-maintenance",
+        "path": "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-overnight/release_shape/__pycache__/adapter.cpython-314.pyc",
+        "sha256": "052ce14483b093dde7d52f4bc33b700839be94d91f08cb7416fc4e622ecbfd16",
+        "alias": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/parent/generated-cache-archive/tooling/probes/step20c-overnight/release_shape/__pycache__/adapter.cpython-314.pyc",
+        "verified": true
+      },
+      {
+        "category": "private-maintenance",
+        "path": "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-overnight/release_shape/__pycache__/dispatch.cpython-314.pyc",
+        "sha256": "61184d1db32390710da8579bf398fdda344ed0bd1538668733577289077b2ada",
+        "alias": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/parent/generated-cache-archive/tooling/probes/step20c-overnight/release_shape/__pycache__/dispatch.cpython-314.pyc",
+        "verified": true
+      },
+      {
+        "category": "private-maintenance",
+        "path": "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-overnight/release_shape/__pycache__/gate.cpython-314.pyc",
+        "sha256": "d6fd930227ba34afd678c70ad7cda985d1a4a5d262aa9ec833b12f85ee2f9e26",
+        "alias": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/parent/generated-cache-archive/tooling/probes/step20c-overnight/release_shape/__pycache__/gate.cpython-314.pyc",
+        "verified": true
+      }
+    ]
+  },
+  "markers": {
+    "TARGETED_HISTORICAL_REPLAY": "PASS",
+    "TARGETED_SCALE_FIXTURE_REVIEW": "PASS",
+    "TARGETED_SAVED_FIXTURE_REVIEW": "PASS",
+    "TARGETED_EFFECTS_FIXTURE_REVIEW": "PASS",
+    "TARGETED_INPUT_FIXTURE_REVIEW": "PASS",
+    "TARGETED_SCALE_A": "FEASIBLE",
+    "TARGETED_SCALE_G": "FEASIBLE",
+    "SAVED_A_REAL_CONFIGURE": "FEASIBLE",
+    "SAVED_G_REAL_CONFIGURE": "FEASIBLE",
+    "SAVED_NODE_LIFECYCLE": "PARTIALLY_FEASIBLE",
+    "SAVED_CLIPPING": "INCONCLUSIVE",
+    "SAVED_NATIVE_LIFETIME": "INCONCLUSIVE",
+    "CLASSIC_BLUR_ACTUAL": "FEASIBLE",
+    "OPTIMIZED_BLUR_FRESHNESS": "PARTIALLY_FEASIBLE",
+    "WHOLE_H1_A_RETURN": "INCONCLUSIVE",
+    "FX_DAMAGE_COVERAGE": "PARTIALLY_FEASIBLE",
+    "FX_NORMAL_CLIENT_CLOSE": "FEASIBLE",
+    "APPLIED_INPUT_A": "PARTIALLY_FEASIBLE",
+    "APPLIED_INPUT_G": "PARTIALLY_FEASIBLE",
+    "NATIVE_COMMIT_PRESENT": "PARTIALLY_FEASIBLE",
+    "NATIVE_BUFFER_IDENTITY": "INCONCLUSIVE",
+    "BUFFER_LIFETIME": "INCONCLUSIVE",
+    "DAMAGE_COVERAGE": "PARTIALLY_FEASIBLE",
+    "ATOMIC_GENERATION": "NOT_EXERCISED",
+    "RELEASE_G_DYNAMIC": "PARTIALLY_FEASIBLE",
+    "RELEASE_G_HIDDEN_OWNER": "FEASIBLE",
+    "RELEASE_G_R90": "FEASIBLE",
+    "RELEASE_G_INSTRUMENTATION_NEUTRALITY": "INCONCLUSIVE",
+    "TARGETED_ABI_PACKAGE_MAINTENANCE": "PARTIALLY_FEASIBLE",
+    "TARGETED_INDEPENDENT_REVIEW": "ACCEPTED",
+    "TARGETED_PUBLICATION": "PARTIAL",
+    "SWAYFX_MOSAIC_STEP20C_TARGETED_CLOSURE_AND_RELEASE_SHAPE_MATRIX_BATCH_V1": "PARTIALLY_ADVANCED"
+  },
+  "final_budget": {
+    "runs": 14,
+    "captures": 125,
+    "action_events": 520,
+    "campaign_runs": {
+      "scale": 2,
+      "saved": 3,
+      "FX": 3,
+      "input": 3,
+      "G": 3
+    },
+    "campaign_captures": {
+      "scale": 18,
+      "saved": 6,
+      "FX": 48,
+      "input": 18,
+      "G": 35
+    },
+    "limit_runs": 14,
+    "limit_captures": 174,
+    "diagnostic_Mosaic_builds": 1,
+    "diagnostic_stages": 1,
+    "additional_SceneFX_builds": 0
+  },
+  "native_totals": {
+    "commits": 821,
+    "paired": 789,
+    "missing_present": 32,
+    "historical_F_commits": 57,
+    "historical_F_paired": 55,
+    "historical_F_missing": 2
+  },
+  "runs": [
+    {
+      "id": "FX-A",
+      "binary_sha256": "979dcd95ab43fa1e465d6e9d262485b73d186cedacd0f957059dd24f482ce6f4",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "PARTIALLY_FEASIBLE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2438979,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2439009,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2439014,
+          "exit": 0
+        },
+        {
+          "name": "background",
+          "pid": 2439051,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2439059,
+          "exit": 0
+        },
+        {
+          "name": "glass",
+          "pid": 2439070,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "PARTIALLY_FEASIBLE",
+      "failure": null,
+      "duration_seconds": 7.352033946983283,
+      "capture_count": 16,
+      "budget": {
+        "planned": {
+          "capture": 16,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 16,
+          "click": 0,
+          "move": 1,
+          "grab": 0,
+          "chain": 0,
+          "camera": 2,
+          "mutation": 10,
+          "configuration": 26,
+          "spawn": 6
+        },
+        "action_count": 61
+      },
+      "native": {
+        "commits": 81,
+        "paired": 77,
+        "missing_present": 4,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ],
+          [
+            "HEADLESS-2",
+            6
+          ],
+          [
+            "HEADLESS-1",
+            6
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/FX-A/run",
+      "input_observation_count": 0,
+      "classic": {
+        "status": "EXERCISED",
+        "source_same": true,
+        "changed_center_pixels": 4096,
+        "adjacent_off": 12.783068783068783,
+        "adjacent_on": 0.09027777777777778
+      },
+      "wholeH1_return": {
+        "pixels": 34323,
+        "bbox": [
+          480,
+          0,
+          800,
+          600
+        ],
+        "perchannel": [
+          {
+            "changed": 30030,
+            "total_abs": 57846,
+            "max_abs": 6
+          },
+          {
+            "changed": 30685,
+            "total_abs": 50464,
+            "max_abs": 6
+          },
+          {
+            "changed": 438,
+            "total_abs": 438,
+            "max_abs": 1
+          }
+        ],
+        "size": [
+          800,
+          600
+        ],
+        "roi": null,
+        "exact": false
+      }
+    },
+    {
+      "id": "FX-G",
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "PARTIALLY_FEASIBLE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2439878,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2439905,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2439910,
+          "exit": 0
+        },
+        {
+          "name": "background",
+          "pid": 2439951,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2439958,
+          "exit": 0
+        },
+        {
+          "name": "glass",
+          "pid": 2439970,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "PARTIALLY_FEASIBLE",
+      "failure": null,
+      "duration_seconds": 7.337901171995327,
+      "capture_count": 16,
+      "budget": {
+        "planned": {
+          "capture": 16,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 16,
+          "click": 0,
+          "move": 1,
+          "grab": 0,
+          "chain": 0,
+          "camera": 2,
+          "mutation": 10,
+          "configuration": 26,
+          "spawn": 6
+        },
+        "action_count": 61
+      },
+      "native": {
+        "commits": 80,
+        "paired": 76,
+        "missing_present": 4,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ],
+          [
+            "HEADLESS-2",
+            6
+          ],
+          [
+            "HEADLESS-1",
+            6
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/FX-G/run",
+      "input_observation_count": 0,
+      "classic": {
+        "status": "EXERCISED",
+        "source_same": true,
+        "changed_center_pixels": 4096,
+        "adjacent_off": 12.783068783068783,
+        "adjacent_on": 0.09027777777777778
+      },
+      "wholeH1_return": {
+        "pixels": 34323,
+        "bbox": [
+          480,
+          0,
+          800,
+          600
+        ],
+        "perchannel": [
+          {
+            "changed": 30030,
+            "total_abs": 57846,
+            "max_abs": 6
+          },
+          {
+            "changed": 30685,
+            "total_abs": 50464,
+            "max_abs": 6
+          },
+          {
+            "changed": 438,
+            "total_abs": 438,
+            "max_abs": 1
+          }
+        ],
+        "size": [
+          800,
+          600
+        ],
+        "roi": null,
+        "exact": false
+      }
+    },
+    {
+      "id": "FX-pristine",
+      "binary_sha256": "8ac865481bc0487344210cd0e16d8e6c7655b29db887cd58ddc11b0ca22fe494",
+      "binary_path": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/pristine-build/sway/sway",
+      "measurements_status": "PARTIALLY_FEASIBLE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2438413,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2438442,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2438447,
+          "exit": 0
+        },
+        {
+          "name": "background",
+          "pid": 2438485,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2438492,
+          "exit": 0
+        },
+        {
+          "name": "glass",
+          "pid": 2438503,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "PARTIALLY_FEASIBLE",
+      "failure": null,
+      "duration_seconds": 6.548958036990371,
+      "capture_count": 16,
+      "budget": {
+        "planned": {
+          "capture": 16,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 16,
+          "click": 0,
+          "move": 1,
+          "grab": 0,
+          "chain": 0,
+          "camera": 0,
+          "mutation": 10,
+          "configuration": 24,
+          "spawn": 6
+        },
+        "action_count": 57
+      },
+      "native": {
+        "commits": 0,
+        "paired": 0,
+        "missing_present": 0,
+        "missing_keys": [],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/FX-pristine/run",
+      "input_observation_count": 0,
+      "classic": {
+        "status": "EXERCISED",
+        "source_same": true,
+        "changed_center_pixels": 4096,
+        "adjacent_off": 12.783068783068783,
+        "adjacent_on": 0.09027777777777778
+      },
+      "wholeH1_return": {
+        "pixels": 37252,
+        "bbox": [
+          400,
+          0,
+          800,
+          600
+        ],
+        "perchannel": [
+          {
+            "changed": 32903,
+            "total_abs": 62770,
+            "max_abs": 6
+          },
+          {
+            "changed": 32865,
+            "total_abs": 53059,
+            "max_abs": 6
+          },
+          {
+            "changed": 518,
+            "total_abs": 518,
+            "max_abs": 1
+          }
+        ],
+        "size": [
+          800,
+          600
+        ],
+        "roi": null,
+        "exact": false
+      }
+    },
+    {
+      "id": "G-R90-G",
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "PASS",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2447726,
+          "exit": 0
+        },
+        {
+          "name": "marker-background",
+          "pid": 2447755,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2447787,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2447790,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2447801,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2447814,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "FEASIBLE",
+      "failure": null,
+      "duration_seconds": 7.526858723984333,
+      "capture_count": 9,
+      "budget": {
+        "planned": {
+          "capture": 10,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 9,
+          "click": 4,
+          "move": 5,
+          "grab": 2,
+          "chain": 1,
+          "camera": 1,
+          "mutation": 0,
+          "configuration": 7,
+          "spawn": 6
+        },
+        "action_count": 35
+      },
+      "native": {
+        "commits": 80,
+        "paired": 78,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/G-R90-G/run",
+      "input_observation_count": 4,
+      "popup_grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 35,
+          "used": 35,
+          "origin": "wl_pointer.button",
+          "ids": [
+            11,
+            12,
+            14
+          ],
+          "ack": 36,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 44,
+          "used": 44,
+          "origin": "wl_pointer.button",
+          "ids": [
+            13,
+            15,
+            17
+          ],
+          "ack": 45,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ],
+      "popup_geometry": {
+        "A": [
+          -218,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -118,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -318,
+          25
+        ],
+        "provenance": {
+          "owner": 9,
+          "workspace": 6,
+          "generation": "bounded-opening-window",
+          "evidence": "00:00:01.893 [INFO] [sway/desktop/output.c:406] PI_OWNER output=HEADLESS-1 ns=220551337801243 id=9 current=-160,0,640,600 scene_valid=1 scene=-320,0 applied_size=640,600",
+          "state": "applied"
+        },
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      }
+    },
+    {
+      "id": "G-dynamic-G",
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "PASS",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2444702,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2444732,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2444735,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2444747,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2444756,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2444765,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "PARTIALLY_FEASIBLE",
+      "failure": null,
+      "duration_seconds": 9.172385050012963,
+      "capture_count": 14,
+      "budget": {
+        "planned": {
+          "capture": 14,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 14,
+          "click": 6,
+          "move": 7,
+          "grab": 2,
+          "chain": 1,
+          "camera": 1,
+          "mutation": 4,
+          "configuration": 9,
+          "spawn": 6
+        },
+        "action_count": 50
+      },
+      "native": {
+        "commits": 119,
+        "paired": 113,
+        "missing_present": 6,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ],
+          [
+            "HEADLESS-2",
+            26
+          ],
+          [
+            "HEADLESS-1",
+            33
+          ],
+          [
+            "HEADLESS-2",
+            33
+          ],
+          [
+            "HEADLESS-1",
+            41
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/G-dynamic-G/run",
+      "input_observation_count": 6,
+      "popup_grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 42,
+          "used": 42,
+          "origin": "wl_pointer.button",
+          "ids": [
+            11,
+            12,
+            14
+          ],
+          "ack": 43,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 51,
+          "used": 51,
+          "origin": "wl_pointer.button",
+          "ids": [
+            13,
+            15,
+            17
+          ],
+          "ack": 52,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ],
+      "popup_geometry": {
+        "A": [
+          -218,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -118,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -318,
+          25
+        ],
+        "provenance": {
+          "owner": 10,
+          "workspace": 6,
+          "generation": "bounded-opening-window",
+          "evidence": "00:00:01.469 [INFO] [sway/desktop/output.c:406] PI_OWNER output=HEADLESS-1 ns=220419148605041 id=10 current=480,0,640,600 scene_valid=1 scene=-320,0 applied_size=640,600",
+          "state": "applied"
+        },
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      }
+    },
+    {
+      "id": "G-hidden-G",
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "PASS",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2447428,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2447457,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2447460,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2447472,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2447480,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2447489,
+          "exit": 0
+        },
+        {
+          "name": "tail0",
+          "pid": 2447497,
+          "exit": 0
+        },
+        {
+          "name": "tail1",
+          "pid": 2447505,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "FEASIBLE",
+      "failure": null,
+      "duration_seconds": 8.48908168100752,
+      "capture_count": 12,
+      "budget": {
+        "planned": {
+          "capture": 12,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 12,
+          "click": 4,
+          "move": 6,
+          "grab": 2,
+          "chain": 1,
+          "camera": 3,
+          "mutation": 0,
+          "configuration": 9,
+          "spawn": 8
+        },
+        "action_count": 45
+      },
+      "native": {
+        "commits": 91,
+        "paired": 89,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/G-hidden-G/run",
+      "input_observation_count": 4,
+      "popup_grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 61,
+          "used": 61,
+          "origin": "wl_pointer.button",
+          "ids": [
+            11,
+            12,
+            14
+          ],
+          "ack": 62,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 70,
+          "used": 70,
+          "origin": "wl_pointer.button",
+          "ids": [
+            13,
+            15,
+            17
+          ],
+          "ack": 71,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ],
+      "popup_geometry": {
+        "A": [
+          -218,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -118,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -318,
+          25
+        ],
+        "provenance": {
+          "owner": 10,
+          "workspace": 6,
+          "generation": "bounded-opening-window",
+          "evidence": "00:00:02.071 [INFO] [sway/desktop/output.c:406] PI_OWNER output=HEADLESS-1 ns=220542607343424 id=10 current=480,0,640,600 scene_valid=1 scene=-320,0 applied_size=640,600",
+          "state": "applied"
+        },
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      }
+    },
+    {
+      "id": "input-A",
+      "binary_sha256": "979dcd95ab43fa1e465d6e9d262485b73d186cedacd0f957059dd24f482ce6f4",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "INCONCLUSIVE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2443413,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2443444,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2443446,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2443458,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2443470,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "INCONCLUSIVE",
+      "architecture_verdict": "PARTIALLY_FEASIBLE",
+      "failure": {
+        "type": "Ambiguous",
+        "message": "logical pointer correlation"
+      },
+      "duration_seconds": 4.760868192999624,
+      "capture_count": 5,
+      "budget": {
+        "planned": {
+          "capture": 12,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 5,
+          "click": 3,
+          "move": 4,
+          "grab": 0,
+          "chain": 0,
+          "camera": 1,
+          "mutation": 2,
+          "configuration": 6,
+          "spawn": 5
+        },
+        "action_count": 26
+      },
+      "native": {
+        "commits": 58,
+        "paired": 56,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/input-A/run",
+      "input_observation_count": 3
+    },
+    {
+      "id": "input-G",
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "INCONCLUSIVE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2443595,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2443622,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2443625,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2443637,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2443645,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "INCONCLUSIVE",
+      "architecture_verdict": "PARTIALLY_FEASIBLE",
+      "failure": {
+        "type": "Ambiguous",
+        "message": "logical pointer correlation"
+      },
+      "duration_seconds": 4.672432378982194,
+      "capture_count": 5,
+      "budget": {
+        "planned": {
+          "capture": 12,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 5,
+          "click": 3,
+          "move": 4,
+          "grab": 0,
+          "chain": 0,
+          "camera": 1,
+          "mutation": 2,
+          "configuration": 6,
+          "spawn": 5
+        },
+        "action_count": 26
+      },
+      "native": {
+        "commits": 59,
+        "paired": 57,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/input-G/run",
+      "input_observation_count": 3
+    },
+    {
+      "id": "input-pristine",
+      "binary_sha256": "8ac865481bc0487344210cd0e16d8e6c7655b29db887cd58ddc11b0ca22fe494",
+      "binary_path": "/home/fy59/swayfx-mosaic-optimized-edge-a55yjb8n/pristine-build/sway/sway",
+      "measurements_status": "INCONCLUSIVE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2440437,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2440468,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2440470,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2440481,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2440490,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "FEASIBLE sampled standard input; native PI NOT OBSERVABLE",
+      "failure": null,
+      "duration_seconds": 5.128657159017166,
+      "capture_count": 8,
+      "budget": {
+        "planned": {
+          "capture": 12,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 8,
+          "click": 4,
+          "move": 5,
+          "grab": 0,
+          "chain": 0,
+          "camera": 0,
+          "mutation": 4,
+          "configuration": 6,
+          "spawn": 5
+        },
+        "action_count": 32
+      },
+      "native": {
+        "commits": 0,
+        "paired": 0,
+        "missing_present": 0,
+        "missing_keys": [],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/input-pristine/run",
+      "input_observation_count": 4
+    },
+    {
+      "id": "saved-A",
+      "binary_sha256": "979dcd95ab43fa1e465d6e9d262485b73d186cedacd0f957059dd24f482ce6f4",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "INCONCLUSIVE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2437458,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2437485,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2437488,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2437500,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2437507,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2437516,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "INCONCLUSIVE; connection destroyed by compositor before natural timeout/normal close",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": {
+        "type": "Ambiguous",
+        "message": "same ws1 owner and requested runtime gaps"
+      },
+      "duration_seconds": 3.0453717909986153,
+      "capture_count": 2,
+      "budget": {
+        "planned": {
+          "capture": 10,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 2,
+          "click": 0,
+          "move": 1,
+          "grab": 0,
+          "chain": 0,
+          "camera": 1,
+          "mutation": 2,
+          "configuration": 7,
+          "spawn": 6
+        },
+        "action_count": 19
+      },
+      "native": {
+        "commits": 31,
+        "paired": 29,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/saved-A/run",
+      "input_observation_count": 0,
+      "held_configure": {
+        "ns": 220102060696840,
+        "serial": 39,
+        "prior_serial": 30,
+        "initial_size": [
+          636,
+          573
+        ],
+        "requested_size": [
+          636,
+          513
+        ],
+        "status": "HELD_WIRE_VALIDATED",
+        "native_saved_identity": "NOT OBSERVABLE"
+      }
+    },
+    {
+      "id": "saved-G",
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "INCONCLUSIVE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2437879,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2437908,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2437910,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2437923,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2437930,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2437940,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "INCONCLUSIVE; connection destroyed by compositor before natural timeout/normal close",
+      "architecture_verdict": "INCONCLUSIVE",
+      "failure": {
+        "type": "Ambiguous",
+        "message": "same ws1 owner and requested runtime gaps"
+      },
+      "duration_seconds": 3.0733372299873736,
+      "capture_count": 2,
+      "budget": {
+        "planned": {
+          "capture": 10,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 2,
+          "click": 0,
+          "move": 1,
+          "grab": 0,
+          "chain": 0,
+          "camera": 1,
+          "mutation": 2,
+          "configuration": 7,
+          "spawn": 6
+        },
+        "action_count": 19
+      },
+      "native": {
+        "commits": 31,
+        "paired": 29,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/saved-G/run",
+      "input_observation_count": 0,
+      "held_configure": {
+        "ns": 220120034767022,
+        "serial": 39,
+        "prior_serial": 30,
+        "initial_size": [
+          636,
+          573
+        ],
+        "requested_size": [
+          636,
+          513
+        ],
+        "status": "HELD_WIRE_VALIDATED",
+        "native_saved_identity": "NOT OBSERVABLE"
+      }
+    },
+    {
+      "id": "scale-A",
+      "binary_sha256": "979dcd95ab43fa1e465d6e9d262485b73d186cedacd0f957059dd24f482ce6f4",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "PASS",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2436559,
+          "exit": 0
+        },
+        {
+          "name": "marker-background",
+          "pid": 2436611,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2436648,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2436650,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2436665,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2436677,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "FEASIBLE",
+      "failure": null,
+      "duration_seconds": 8.503376756998478,
+      "capture_count": 9,
+      "budget": {
+        "planned": {
+          "capture": 12,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 9,
+          "click": 4,
+          "move": 5,
+          "grab": 2,
+          "chain": 1,
+          "camera": 1,
+          "mutation": 0,
+          "configuration": 7,
+          "spawn": 6
+        },
+        "action_count": 35
+      },
+      "native": {
+        "commits": 79,
+        "paired": 77,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/scale-A/run",
+      "input_observation_count": 4,
+      "popup_grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 35,
+          "used": 35,
+          "origin": "wl_pointer.button",
+          "ids": [
+            11,
+            12,
+            14
+          ],
+          "ack": 36,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 44,
+          "used": 44,
+          "origin": "wl_pointer.button",
+          "ids": [
+            13,
+            15,
+            17
+          ],
+          "ack": 45,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ],
+      "popup_geometry": {
+        "A": [
+          -218,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -118,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -318,
+          25
+        ],
+        "provenance": {
+          "owner": 9,
+          "workspace": 6,
+          "generation": "bounded-opening-window",
+          "evidence": "00:00:03.016 [INFO] [sway/desktop/output.c:407] PI_OWNER output=HEADLESS-1 ns=220067904321406 id=9 current=-160,0,640,600 scene_valid=1 scene=-320,0 applied_size=640,600",
+          "state": "applied"
+        },
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      }
+    },
+    {
+      "id": "scale-G",
+      "binary_sha256": "8063478b2d5948da3eb8b1a329978882dc1d045cf36932cc2145a78af20ba76a",
+      "binary_path": "/home/fy59/swayfx-mosaic-overnight-mcolx0gq/release-shape/stage-static/usr/bin/swayfx-mosaic",
+      "measurements_status": "PASS",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2437054,
+          "exit": 0
+        },
+        {
+          "name": "marker-background",
+          "pid": 2437086,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2437115,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2437118,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2437130,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2437142,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "PASS",
+      "architecture_verdict": "FEASIBLE",
+      "failure": null,
+      "duration_seconds": 7.191376830975059,
+      "capture_count": 9,
+      "budget": {
+        "planned": {
+          "capture": 12,
+          "click": 14,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 4,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 9,
+          "click": 4,
+          "move": 5,
+          "grab": 2,
+          "chain": 1,
+          "camera": 1,
+          "mutation": 0,
+          "configuration": 7,
+          "spawn": 6
+        },
+        "action_count": 35
+      },
+      "native": {
+        "commits": 79,
+        "paired": 77,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/scale-G/run",
+      "input_observation_count": 4,
+      "popup_grabs": [
+        {
+          "popup": "POPUP_A",
+          "parent": "TOPLEVEL",
+          "serial": 35,
+          "used": 35,
+          "origin": "wl_pointer.button",
+          "ids": [
+            11,
+            12,
+            14
+          ],
+          "ack": 36,
+          "native_buffer": 15,
+          "native_size": [
+            350,
+            170
+          ]
+        },
+        {
+          "popup": "POPUP_B",
+          "parent": "POPUP_A",
+          "serial": 44,
+          "used": 44,
+          "origin": "wl_pointer.button",
+          "ids": [
+            13,
+            15,
+            17
+          ],
+          "ack": 45,
+          "native_buffer": 18,
+          "native_size": [
+            300,
+            130
+          ]
+        }
+      ],
+      "popup_geometry": {
+        "A": [
+          -218,
+          105,
+          350,
+          170
+        ],
+        "B": [
+          -118,
+          165,
+          300,
+          130
+        ],
+        "configured_A": [
+          100,
+          80,
+          350,
+          170
+        ],
+        "configured_B": [
+          100,
+          60,
+          300,
+          130
+        ],
+        "origin": [
+          -318,
+          25
+        ],
+        "provenance": {
+          "owner": 9,
+          "workspace": 6,
+          "generation": "bounded-opening-window",
+          "evidence": "00:00:01.724 [INFO] [sway/desktop/output.c:406] PI_OWNER output=HEADLESS-1 ns=220085417999890 id=9 current=-160,0,640,600 scene_valid=1 scene=-320,0 applied_size=640,600",
+          "state": "applied"
+        },
+        "crossing": {
+          "A": "EXERCISED",
+          "B": "EXERCISED"
+        }
+      }
+    },
+    {
+      "id": "saved-diagnostic-A",
+      "binary_sha256": "9c0dc0e94ccc7fcbd7a6cddf14e90f1bb7b7bf385a0740e85ec7d0e1c1c1e705",
+      "binary_path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/diagnostic/stage/usr/bin/swayfx-mosaic",
+      "measurements_status": "INCONCLUSIVE",
+      "raw_runtime_status": "INCONCLUSIVE",
+      "runner_exit": 1,
+      "terminal_ipc_exit": 1,
+      "process_exits": [
+        {
+          "name": "compositor",
+          "pid": 2485327,
+          "exit": 0
+        },
+        {
+          "name": "pointer",
+          "pid": 2485364,
+          "exit": 0
+        },
+        {
+          "name": "reference",
+          "pid": 2485367,
+          "exit": 0
+        },
+        {
+          "name": "filler0",
+          "pid": 2485379,
+          "exit": 0
+        },
+        {
+          "name": "filler1",
+          "pid": 2485391,
+          "exit": 0
+        },
+        {
+          "name": "owner",
+          "pid": 2485399,
+          "exit": 0
+        }
+      ],
+      "rescue": false,
+      "reaped": true,
+      "runtime_removed": true,
+      "scientific_cleanup": "INCONCLUSIVE; compositor teardown, owner EXIT error32 despite code0",
+      "architecture_verdict": "INCONCLUSIVE; native observations only on diagnostic binary",
+      "failure": {
+        "type": "Ambiguous",
+        "message": "bounded wait timeout"
+      },
+      "duration_seconds": 3.681766207999317,
+      "capture_count": 2,
+      "budget": {
+        "planned": {
+          "capture": 10,
+          "click": 2,
+          "move": 20,
+          "grab": 2,
+          "chain": 1,
+          "camera": 1,
+          "mutation": 28,
+          "configuration": 64,
+          "spawn": 12
+        },
+        "reserved": {
+          "capture": 2,
+          "click": 0,
+          "move": 1,
+          "grab": 0,
+          "chain": 0,
+          "camera": 1,
+          "mutation": 2,
+          "configuration": 7,
+          "spawn": 6
+        },
+        "action_count": 19
+      },
+      "native": {
+        "commits": 33,
+        "paired": 31,
+        "missing_present": 2,
+        "missing_keys": [
+          [
+            "HEADLESS-2",
+            2
+          ],
+          [
+            "HEADLESS-1",
+            2
+          ]
+        ],
+        "physical_pixels_buffer_identity": "NOT_PROVEN"
+      },
+      "private_evidence_prefix": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/runs/saved-diagnostic-A/run",
+      "input_observation_count": 0,
+      "held_configure": {
+        "ns": 222246273557020,
+        "serial": 39,
+        "prior_serial": 30,
+        "initial_size": [
+          636,
+          573
+        ],
+        "requested_size": [
+          636,
+          513
+        ],
+        "status": "HELD_WIRE_VALIDATED",
+        "native_saved_identity": "NOT OBSERVABLE"
+      },
+      "frozen_predicate": "REJECTED unique unreused saved node",
+      "natural_timeout": "NOT_EXERCISED",
+      "held_and_after_live_PNG": "NOT_EXERCISED"
+    }
+  ],
+  "provenance": [
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/historical-verification.json",
+      "sha256": "20008befe1eac51aa7704b90956985c1691a0ab62ce9c382b71cf2f3cb1312fc"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/run-summary-final.json",
+      "sha256": "e8e7cd27bdbe45af8ca4b349493731ed082e5f045ebe2397f5698cdb347e8afb"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/c3-observations.json",
+      "sha256": "2b9b5fb65f5d7a0f6dd94285dd09c07ef6a24f18017e56513fed15c0f8a651ec"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/abi-maintenance.json",
+      "sha256": "6348ecd0d9b8a34aea8d4c30bc080df075d651284578e43545de89f24182995e"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/package-audit.json",
+      "sha256": "d65dc65202176e128d5269f62e68b258a506caaba1ddbbb1cf20d742dcd23f18"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/damage-envelopes.json",
+      "sha256": "e03ca533da64e01530c3fc0d9ced11396a2e3c9ae6032b653f185a595b9b0050"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/native-lifetime-audit.json",
+      "sha256": "721c4f23820aa7e8b4f94f65f93821ca5cd8eb24a8c531807f16db6b0f8fd015"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/offline-native-summary.json",
+      "sha256": "80fa58764083b8f9f207b24d2c7ce624e042df0b6b242d53f93f4b3a17efd3df"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/results/fx-diagnosis/diagnosis.json",
+      "sha256": "f46bbd4aaadd12d2db0808a19c6cfbdd1e716870def5e55d1ee8362ab8146ce8"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/results/fx-diagnosis-input-snapshots/aliases.json",
+      "sha256": "aa9f853affcb0b18864f8e6d40796cc243b97f7d439541c3712f1404e56bcae3"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/freeze.json",
+      "sha256": "ba30fb2298b4ed9b11e807741541ce99b337e00d6086840ecac9714a55f927d5"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/review.json",
+      "sha256": "5843196534ab88188f0c9b942b4c28a7bd49b35fea9da82b19215125c3442747"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/diagnostic/preparation-freeze.json",
+      "sha256": "f329182b16e34a3a9c803a6da3ef341e4a1c49414129dfc98570701c09555ee1"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/diagnostic/runtime-freeze.json",
+      "sha256": "4a5a6e26f4806cb7a8bd4d6e4651acafeaf1953771ca443e671576358f3470f6"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/diagnostic/runtime-review.json",
+      "sha256": "df1d6d959a7b5b97bb46e1ed3310ea8a7b4ee8350e8fd07669fc04a4c48e24e2"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/diagnostic/build-stage.json",
+      "sha256": "e1e36e93b9200436912e099cdc410dec3d13a1ff69913bd0cc47144f589bdc8a"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/runtime-validation-13.json",
+      "sha256": "b5ed420251a5fb03d7703b101e0edc3d6dc9bcaf985b35e90b539fc6626ebe6a"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/final-evidence-validation.json",
+      "sha256": "d0c9126b6c22ab5e85c775b04d357a901211272aa303617edfe045228636a1cf"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/targeted-final-review.json",
+      "sha256": "28f868a0d956e70290db0515f59404e9f930e7180a89e326bcabda9ff6ea47ae"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/targeted-final-review.md",
+      "sha256": "73f06404ccfaa985cd6e279e606debeb8899bd1dd9079c88fdf5a01be98354ec"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/targeted-final-review-checks.json",
+      "sha256": "d7fc905061080e579b150628c94ef759b2f8af54ae8f6a826e55fca6c0dab328"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/targeted-final-review-metadata-checks.json",
+      "sha256": "229aa7d95fe95a82597e68bb511b785f8d00c273a32ec0a5bc5b6c5eb4597a7d"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/reviews/c3-result-delta-review.json",
+      "sha256": "3c7886296b0a9ac602b268396def6881abc9d091c8c21a6d35858e279f22a6a3"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/final-historical-reverification.json",
+      "sha256": "20008befe1eac51aa7704b90956985c1691a0ab62ce9c382b71cf2f3cb1312fc"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-targeted-7gge6h8b/parent/final-safety-validation.json",
+      "sha256": "2271c431026e17b84182a4ee6f24709c63b0c8a803ce43a7503a428b95bf2c9f"
+    }
+  ],
+  "frozen_source_bindings": [
+    {
+      "path": "tooling/probes/step20c-targeted/README.md",
+      "sha256": "2b7865b0e428df61370834c1bc39be2e2659c7c880788e15a075bc238669193e"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/cases.py",
+      "sha256": "c2b82840bdc1060e14ced8d3a3d48833abc178268eca53123ba9ffce8f58490a"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/engine.py",
+      "sha256": "a1132e5d5622809f0791e14f622363cc098adf3d3c3a28975fa0f53f773778e7"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/fx-client.c",
+      "sha256": "f1abd428f6b35cea4ad3a82f30e39d79314324ce9652556e11118666ad2453a4"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/fx.py",
+      "sha256": "69d3297a0e76ee99f7ddc08180c7003bc8872843b1e1b2aeb6389935b63e786c"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/fx_validators.py",
+      "sha256": "3a46ff7ab5dd1e45941c0c30d944ff0763e4426e70cf762571b1f06c75f2e8f0"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/gate.py",
+      "sha256": "21ae0faba1bc9f71aafd77c39fd8a7d1b7fafe9ff88772e3667b712c648be960"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/geometry.py",
+      "sha256": "c328a96f7dcc3f16fe8800c793dbb9ca86e48c66afc65e586936e62a7c3f11a4"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/plans.py",
+      "sha256": "3d5f7d22707ee117af73f1e543ff733c2a61d8e6ca572afc13d7c3ed5cd4c9af"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/prepare.py",
+      "sha256": "f670e61bed8d9e4d57cba82dde5adde5e4dd4763120652a2f8b40fddfb37864c"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/replay.py",
+      "sha256": "ea7e2da4dc2d018054f7ac5fe6cb67a52c4c2773e37422d5f7a7a00915c7b496"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/run.py",
+      "sha256": "4fe6ab9cb531721ea9ef42eee22f0cecf93664712a44a4568c69f711c1bdf257"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/test_fx.py",
+      "sha256": "aea9c113aadc15f0c1867899dd52dfcf792c63249ead7b53d55e1449f4fad974"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/test_targeted.py",
+      "sha256": "cd3061f4b2002afe80600cf58f7934472eb0198a0d0297b13bdb11b1cfdb3255"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted/validators.py",
+      "sha256": "72c30edb0788d8ef1818106226f1ab42e20b6d3582e8b1b8d6b745c22c76afa4"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted-diagnostic/README.md",
+      "sha256": "cdee5747a19bdd1b6ec8cab97ddbb65c6ccac739e2d874e6116abc4cadb87fe0"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted-diagnostic/diagnostic.py",
+      "sha256": "d496a83475b28d8ad46d7c682eed8b4fa1003180612314e65db7dd2eb879932e"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted-diagnostic/prepare.py",
+      "sha256": "7a075b5d0d099bafe0e480518a0bcfecf34f0285cf36edd2738ace503ae14b72"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted-diagnostic/run.py",
+      "sha256": "d1d3c091bf65c8ebbcf23fa7efe196fa06fc8b7529e529b358ef85f6bea212aa"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted-diagnostic/saved-passive.patch",
+      "sha256": "290d35d89e93f8bde04a0047276af672bd6b199f544c86e7c4b6cc9d851c2bc1"
+    },
+    {
+      "path": "tooling/probes/step20c-targeted-diagnostic/test_diagnostic.py",
+      "sha256": "6d3f8c8a5d11907a9def3c449f3f4a4893901bd3d26c82372449160d6a8f5ddf"
+    }
+  ],
+  "publication": {
+    "state": "REVIEW_ACCEPTED; pre-commit snapshot, normal publication pending actual pushes",
+    "authoritative_final_receipt": "private LAB publication manifest and final user report",
+    "self_commit_sha": "No self-referential future SHA embedded"
+  },
+  "limits": [
+    "Whole-H1 RGB return inequality is observed FAIL; marker INCONCLUSIVE concerns cause and integration gate, not equality.",
+    "Saved A/G have actual held configure only; diagnostic native observations belong to its distinct SHA; natural timeout not exercised.",
+    "Raw runner/runtime status remains INCONCLUSIVE for all14 attempts; sampled measurement feasibility is separate.",
+    "No output/client/saved/GPU buffer identity equivalence, all-frame damage or atomic generation proven.",
+    "A/G input fails after focus-induced camera mutation during third click; subsequent cases unexercised.",
+    "No production change, installation, live IPC, STEP20D, UX decision or legal approval."
+  ],
+  "review": {
+    "status": "ACCEPTED",
+    "receipt_sha256": "28f868a0d956e70290db0515f59404e9f930e7180a89e326bcabda9ff6ea47ae",
+    "report_sha256": "73f06404ccfaa985cd6e279e606debeb8899bd1dd9079c88fdf5a01be98354ec",
+    "offline_tests": 43,
+    "additional_negative_mutations_rejected": 22,
+    "blocking": 0,
+    "nonblocking": 1,
+    "future_scope": 3
+  },
+  "PNG_file_count": 128,
+  "output_capture_count": 125,
+  "source_marker_PNG_count": 3
+}

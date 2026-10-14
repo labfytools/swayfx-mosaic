@@ -1,0 +1,205 @@
+"""Bounded owned headless session, usable only after the separate matrix review gate."""
+import json,os,re,shutil,signal,subprocess,tempfile,threading,time
+from pathlib import Path
+from PIL import Image,ImageDraw
+from geometry import *
+from gate import BASE,sha,clean_environment,action_debit
+import sys
+sys.path.insert(1,str(BASE))
+from ipc_predicates import nodes,workspace
+from predicates import protocol,geometry,pair,dismissal
+from lifecycle import opening_pair
+from model import Provenance
+COLORS={'TOPLEVEL':(35,68,204),'POPUP_A':(224,192,32),'POPUP_B':(32,208,160)}
+
+class Session:
+    def __init__(self,spec,auth,lab):
+        self.spec=spec;self.auth=auth;self.lab=Path(lab);self.folder=self.lab/'runs'/spec['id'];self.run=self.folder/'run';self.run.mkdir();self.coordinate_epoch=0;self.proofs={}
+        self.runtime=Path(tempfile.mkdtemp(prefix='m20-',dir='/tmp'));self.runtime.chmod(0o700)
+        self.env=clean_environment();self.env.update(XDG_RUNTIME_DIR=str(self.runtime),WLR_BACKENDS='headless',WLR_HEADLESS_OUTPUTS='2',OPT_TRACE='1')
+        self.outputs=[dict(o) for o in spec['outputs']];self.frames={o['name']:'logical' for o in self.outputs}
+        self.proc={};self.handles=[];self.started=time.monotonic();self.finished=threading.Event();self.expired=False;self.events=[];self.pointer=None
+    def start(self):
+        spec=self.spec;auth=self.auth
+        cfg='\n'.join(f"output {o['name']} resolution {o['mode'][0]}x{o['mode'][1]} scale {o['scale']} transform {o['transform']} position {o['logical'][0]} {o['logical'][1]}" for o in self.outputs)
+        cfg+='\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n'
+        if spec.get('marker',False):
+            marker=Image.new('RGB',(800,600),(30,30,46));draw=ImageDraw.Draw(marker)
+            for k,box in [('TL',(15,15,44,44)),('TR',(755,15,784,44)),('BL',(15,555,44,584)),('BR',(755,555,784,584)),('C',(385,285,414,314))]:draw.rectangle(box,fill=MARKERS[k])
+            marker.save(self.run/'marker-source.png');self.marker_source=self.run/'marker-source.png';self.record('generated-content-PNG',path=str(self.marker_source),counts_as_capture=False)
+        (self.run/'config').write_text(cfg);self.watch=threading.Thread(target=self.watchdog,daemon=True);self.watch.start()
+        self.comp=self.spawn('compositor',[auth['binary'],'-d',*(['-Dtxn-timeout=2500'] if spec['campaign']=='saved' else []),'-c',self.run/'config'])
+        self.sock=self.wait(lambda:next(iter(self.runtime.glob('sway-ipc.*.sock')),None));display=self.wait(lambda:next((p for p in self.runtime.glob('wayland-*') if p.is_socket()),None))
+        self.env.update(WAYLAND_DISPLAY=display.name,SWAYSOCK=str(self.sock));need(Path(f'/proc/{self.comp.pid}/exe').resolve()==Path(auth['binary']).resolve(),'actual executable')
+        maps=Path(f'/proc/{self.comp.pid}/maps').read_text();(self.run/'proc-maps.txt').write_text(maps)
+        paths={s.split()[-1] for s in maps.splitlines() if len(s.split())>=6 and s.split()[-1].startswith('/')}
+        wl=[Path(p).resolve() for p in paths if 'libwlroots' in p];need(wl==[Path(auth['wlroots'])] and sha(wl[0])==auth['wlroots_sha256'],'mapped wlroots')
+        scene=[Path(p).resolve() for p in paths if 'libscenefx' in p]
+        if spec['mode']=='mosaic':need(not scene,'static SceneFX')
+        else:need(scene==[Path(auth['pristine_scene'])] and sha(scene[0])==auth['pristine_scene_sha256'],'mapped pristine SceneFX')
+        render=[s for s in self.log('compositor').splitlines() if any(x in s for x in ('Creating scenefx FX renderer','GL renderer:','GL vendor:','Using OpenGL ES'))]
+        need(any('Creating scenefx FX renderer' in s for s in render) and any('GL renderer:' in s for s in render),'actual renderer')
+        self.record('actual-renderer',lines=render);self.snapshot('startup')
+        if spec.get('marker',False):
+            self.spawn('marker-background',['swaybg','-o','HEADLESS-1','-i',self.marker_source,'-m','fill']);time.sleep(.35)
+            im=self.capture('marker-H1','HEADLESS-1',orientation_pending=True);m=marker_frame(im,self.outputs[0]['scale'],self.outputs[0]['transform']=='90');self.frames['HEADLESS-1']=m['frame'];self.record('marker-frame',**m)
+        self.pointer=self.spawn('pointer',[self.lab/'clients/pointer-daemon']);self.wait(lambda:'POINTER_READY' in self.log('pointer'))
+    def record(self,kind,**fields):
+        e=dict(kind=kind,ns=time.monotonic_ns(),**fields);self.events.append(e)
+        with (self.run/'events.jsonl').open('a') as f:f.write(json.dumps(e)+'\n')
+    def save(self,name,value):
+        (self.run/(name+'.json')).write_text(json.dumps(value,indent=2)+'\n')
+    def debit(self,*kinds):action_debit(self.lab,self.spec['id'],*kinds)
+    def spawn(self,name,argv,debug=False):
+        need(not self.expired,'expired before spawn');self.debit('spawn');f=(self.run/(name+'.log')).open('w');self.handles.append(f)
+        p=subprocess.Popen(list(map(str,argv)),stdin=subprocess.PIPE,stdout=f,stderr=subprocess.STDOUT,text=True,start_new_session=True,env={**self.env,**({'WAYLAND_DEBUG':'1'} if debug else {})})
+        self.proc[name]=p;self.record('spawn',name=name,pid=p.pid,argv=list(map(str,argv)));return p
+    def log(self,name):return (self.run/(name+'.log')).read_text(errors='replace')
+    def wait(self,fn,seconds=5):
+        end=min(self.started+143,time.monotonic()+seconds)
+        while time.monotonic()<end:
+            need(not self.expired,'watchdog')
+            if hasattr(self,'comp'):need(self.comp.poll() is None,'unexpected compositor exit')
+            v=fn()
+            if v:return v
+            time.sleep(.02)
+        raise Ambiguous('bounded wait timeout')
+    def watchdog(self):
+        while not self.finished.wait(.1):
+            if time.monotonic()-self.started>143 or sum(p.stat().st_size for p in self.run.glob('*.log'))>32*1024*1024:
+                self.expired=True
+                for p in list(self.proc.values()):
+                    try:os.killpg(p.pid,signal.SIGTERM)
+                    except ProcessLookupError:pass
+                return
+    def ipc(self,*args,strict=True):
+        need(self.sock.is_relative_to(self.runtime) and self.sock.is_socket(),'private socket')
+        self.record('ipc-request',args=args)
+        p=subprocess.run(['swaymsg','-s',str(self.sock),*args],env=self.env,capture_output=True,text=True,timeout=4)
+        self.record('ipc-reply',args=args,exit=p.returncode,stdout=p.stdout,stderr=p.stderr)
+        if strict:need(p.returncode==0,'IPC command failure')
+        return json.loads(p.stdout) if p.returncode==0 else None
+    def cmd(self,command,business=False):
+        self.invalidate('IPC '+command);self.debit('mutation' if business else 'configuration');reply=self.ipc(command);need(all(r['success'] for r in reply),'command rejected')
+    def snapshot(self,tag,validate=True):
+        snap=dict(tree=self.ipc('-t','get_tree'),outputs=self.ipc('-t','get_outputs'),workspaces=self.ipc('-t','get_workspaces'),ns=time.monotonic_ns())
+        if validate:expected_outputs(snap['outputs'],self.outputs)
+        self.save(tag+'-snapshot',snap);return snap
+    def find(self,name):
+        pid=self.proc[name].pid;rows=[n for n in nodes(self.ipc('-t','get_tree')) if n.get('pid')==pid];need(len(rows)<=1,'client owner ambiguity');return rows[0] if rows else None
+    def launch_client(self,name,client,*args):
+        p=self.spawn(name,[self.lab/'clients'/client,*args],True);self.wait(lambda:self.find(name));time.sleep(.25);return p
+    def capture(self,tag,out,orientation_pending=False):
+        self.debit('capture');spec=next(o for o in self.outputs if o['name']==out);p=self.run/(tag+'.png');need(not p.exists(),'capture unique')
+        t=time.monotonic_ns();r=subprocess.run(['grim','-s',str(spec['scale']),'-o',out,str(p)],env=self.env,capture_output=True,text=True,timeout=4)
+        self.record('capture',tag=tag,output=out,start_ns=t,end_ns=time.monotonic_ns(),exit=r.returncode,path=str(p),sha256=sha(p) if p.exists() else None)
+        need(r.returncode==0,'capture failure');im=Image.open(p).convert('RGB')
+        logical=tuple(round(v*spec['scale']) for v in spec['logical'][2:]);physical=tuple(spec['mode'])
+        need(im.size==logical or (orientation_pending and im.size==physical) or (self.frames[out]=='physical90' and im.size==physical),'PNG size')
+        return im
+    def pair_capture(self,tag):return [self.capture(tag+'-H1','HEADLESS-1'),self.capture(tag+'-H2','HEADLESS-2')]
+    def inject(self,action,point,grab=False):
+        need(action in ('move','left','right'),'injection action');outs=self.ipc('-t','get_outputs');active=[o for o in outs if o['active']]
+        rects=[[o['rect'][k] for k in ('x','y','width','height')] for o in active];need(any(contains(r,point) for r in rects),'logical point outside output')
+        minx=min(r[0] for r in rects);miny=min(r[1] for r in rects);w=max(r[0]+r[2] for r in rects)-minx;h=max(r[1]+r[3] for r in rects)-miny
+        self.debit('move',*(['click'] if action!='move' else []),*(['grab'] if grab else []))
+        sent=[point[0]-minx,point[1]-miny];marker=f'INJECT_DONE {action} {sent[0]},{sent[1]}';before=self.log('pointer').count(marker)
+        self.pointer.stdin.write(f'{action} {sent[0]} {sent[1]} {w} {h}\n');self.pointer.stdin.flush();self.wait(lambda:self.log('pointer').count(marker)>before)
+        self.record('injection',action=action,global_logical=point,sent=sent,logical_extent=[w,h],grab=grab);time.sleep(.12)
+    def click(self,name,point,action='right',grab=False):
+        before={n:len(self.log(n)) for n in self.proc if n not in ('compositor','pointer','background')};t=time.monotonic_ns();self.inject(action,point,grab)
+        tails={n:self.log(n)[i:] for n,i in before.items()};lines={n:[s for s in v.splitlines() if s.startswith(('POINTER_BUTTON ','BUTTON '))] for n,v in tails.items()}
+        self.record('click-observation',name=name,point=point,start_ns=t,tails=tails,buttons=lines)
+        return tails,lines
+    def delivery(self,name,rect,point,tails,lines,target,opening_serial=None):
+        need(not any(v for n,v in lines.items() if n!=name),'wrong client received popup button')
+        proof=opening_pair(lines[name],target,opening_serial) if opening_serial else pair(lines[name],target)
+        rows=re.findall(rf'POINTER_(?:ENTER|MOTION) target={target} .*?x=([\d.-]+) y=([\d.-]+)',tails[name]);need(rows,'fresh pointer local coordinates')
+        local=list(map(float,rows[-1]));need(local==[point[0]-rect[0],point[1]-rect[1]],'logical pointer correlation')
+        for e in proof:need(re.search(rf'wl_pointer#\d+\.button\({e[1]}, \d+, {e[2]}, {e[3]}\)',tails[name]) is not None,'button actual wire')
+        return proof
+    def owner(self,name):
+        snap=self.snapshot(name+'-owner');owner=self.find(name);need(owner is not None and owner.get('visible'),'owner visibility')
+        ws=workspace(snap['tree'],'1');need(any(n['id']==owner['id'] for n in nodes(ws)),'owner workspace ancestry')
+        if self.spec['mode']=='mosaic':origin,scene,raw=actual_origin(owner,self.log('compositor'))
+        else:origin=assigned_origin(owner);scene=exterior_ipc(owner);raw='current IPC assigned exterior inverse; applied scene NOT OBSERVABLE; paint/pointer corroboration required'
+        data=dict(owner=owner,workspace=ws,origin=origin,scene=scene,evidence=raw,snapshot=snap);self.save(name+'-geometry',data);return data
+    def calibrate(self,name):
+        state=self.owner(name)
+        if self.spec['mode']=='mosaic' and self.spec['axis']==0:
+            delta=int(state['origin'][0]+state['owner']['window_rect']['width']//2)
+            if delta:self.scroll(name,delta)
+            state=self.owner(name);need(crossing([*state['origin'],state['owner']['window_rect']['width'],state['owner']['window_rect']['height']],0,0),'owner real x0 crossing')
+        return state
+    def scroll(self,name,delta):
+        self.debit('camera');self.cmd(f'[con_id={self.find(name)["id"]}] layout mosaic scroll {int(delta)}');time.sleep(.35)
+        self.record('camera',owner=self.find(name)['id'],delta=int(delta))
+    def client_cmd(self,name,cmd,marker=None):
+        self.invalidate('client '+cmd);self.debit('configuration' if cmd.startswith('close') else 'mutation');before=len(self.log(name));self.record('client-request',name=name,command=cmd)
+        self.proc[name].stdin.write(cmd+'\n');self.proc[name].stdin.flush()
+        if marker:self.wait(lambda:marker in self.log(name)[before:])
+    def close_client(self,name,command='close_owner'):
+        self.client_cmd(name,command);code=self.proc[name].wait(timeout=3);need(code==0,'normal client exit');self.wait(lambda:self.find(name) is None)
+    def invalidate(self,reason):
+        self.coordinate_epoch+=1;self.proofs.clear();self.record('coordinate-invalidation',epoch=self.coordinate_epoch,reason=reason)
+    def painted_point(self,name,tag,target='TOPLEVEL',rectangle=None):
+        state=self.owner(name);out=next(o for o in self.outputs if o['name']==state['workspace']['output'])
+        image=self.capture(tag,out['name']);win=state['owner']['window_rect']
+        rect=rectangle or [*state['origin'],min(win['width'],420),min(win['height'],320)]
+        point=solid_point(image,COLORS[target],out,self.frames[out['name']],rect)
+        self.proofs[tuple(point)]=dict(epoch=self.coordinate_epoch,state=state,rectangle=rect,target=target)
+        self.record('painted-point',name=name,point=point,epoch=self.coordinate_epoch,rectangle=rect,target=target)
+        return state,rect,point,image
+    def fresh_delivery(self,name,tag,target='TOPLEVEL'):
+        state,rect,point,image=self.painted_point(name,tag,target)
+        proof=self.proofs[tuple(point)];need(proof['epoch']==self.coordinate_epoch,'stale selected point')
+        tails,buttons=self.click(name,point)
+        delivery=self.delivery(name,rect,point,tails,buttons,target)
+        self.save(tag+'-input',dict(state=state,rectangle=rect,point=point,delivery=delivery,epoch=self.coordinate_epoch))
+        return point
+    def cleanup(self,measurement_status,failure=None):
+        terminal=None;rescue=False
+        if hasattr(self,'comp') and self.comp.poll() is None and hasattr(self,'sock') and self.sock.is_socket():
+            try:
+                p=subprocess.run(['swaymsg','-s',str(self.sock),'exit'],env=self.env,capture_output=True,text=True,timeout=2)
+                terminal=dict(ipc_exit=p.returncode,stdout=p.stdout,stderr=p.stderr)
+                self.save('terminal-ipc',terminal)
+            except Exception as e:
+                terminal=dict(ipc_error=str(e));self.save('terminal-ipc',terminal)
+            if terminal is not None and 'ipc_exit' in terminal:
+                try:self.comp.wait(timeout=1)
+                except Exception as e:
+                    terminal['wait_error']=str(e);self.save('terminal-ipc',terminal)
+        codes=[]
+        # One shared cleanup deadline prevents N owned clients multiplying waits.
+        cleanup_end=time.monotonic()+2
+        if self.pointer and self.pointer.poll() is None and self.pointer.stdin and not self.pointer.stdin.closed:self.pointer.stdin.close()
+        for name,p in reversed(list(self.proc.items())):
+            if p.poll() is None:
+                try:p.wait(timeout=max(.01,cleanup_end-time.monotonic()))
+                except subprocess.TimeoutExpired:pass
+        residual=[p for p in self.proc.values() if p.poll() is None]
+        if residual:
+            rescue=True
+            for p in residual:
+                try:os.killpg(p.pid,signal.SIGKILL)
+                except ProcessLookupError:pass
+            kill_end=time.monotonic()+1
+            for p in residual:p.wait(timeout=max(.01,kill_end-time.monotonic()))
+        for name,p in self.proc.items():
+            codes.append(dict(name=name,pid=p.pid,exit=p.returncode))
+            if p.stdin and not p.stdin.closed:p.stdin.close()
+        self.finished.set();self.watch.join(timeout=1)
+        for h in self.handles:h.close()
+        for p in self.proc.values():
+            try:os.killpg(p.pid,0)
+            except ProcessLookupError:pass
+            else:rescue=True;os.killpg(p.pid,signal.SIGKILL)
+        reaped=all(not Path('/proc',str(p.pid)).exists() for p in self.proc.values());need(reaped,'owned process residual');shutil.rmtree(self.runtime)
+        seconds=time.monotonic()-self.started
+        protocol_errors=[n for n in self.proc if n not in ('compositor','pointer') and re.search(r'wl_display[^\n]*\.error\(|protocol error|invalid_popup_parent|not_the_topmost_popup',self.log(n),re.I)]
+        cleanup_pass=bool(not rescue and reaped and seconds<=150 and not self.expired and not protocol_errors and all(p['exit']==0 for p in codes))
+        transport_pass=terminal is not None and terminal.get('ipc_exit')==0 and 'wait_error' not in terminal and 'ipc_error' not in terminal
+        final_status=measurement_status if cleanup_pass and transport_pass else 'INCONCLUSIVE'
+        self.save('outcome',dict(status=final_status,measurements_status=measurement_status,failure=failure,terminal=terminal,processes=codes,rescue=rescue,reaped=reaped,runtime_removed=not self.runtime.exists(),seconds=seconds,watchdog=self.expired,protocol_errors=protocol_errors,cleanup_pass=cleanup_pass,transport_status='PASS' if transport_pass else 'INCONCLUSIVE'))
+        return final_status

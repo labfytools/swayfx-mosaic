@@ -483,3 +483,30 @@ Production multi-output remains NOT YET SUPPORTED. No STEP20D work or production
 integration follows automatically from documentary publication. Final independent
 review is ACCEPTED / audit PASS for experimental evidence fidelity. Documentary
 publication is prepared, not executed at this edition.
+
+## Targeted STEP20C handoff — 2026-10-14
+
+The [targeted closure](design/STEP20C_TARGETED_CLOSURE_DECISION.md) advances
+private scale/popup and release-shape output evidence, actually exercises
+classic blur and obtains a held configure on A/G. It preserves whole-H1 effects
+FAIL, incomplete saved/input measurements and INCONCLUSIVE terminal IPC outcomes.
+The recommendation remains PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE.
+
+C3 is a consumed distinct diagnostic with INCONCLUSIVE runtime and partial
+native saved creation/draw/teardown observations. Its frozen unique-address
+predicate rejects actual node-address reuse; no fixture repair or retry follows.
+Natural transaction timeout, held/live PNG, normal close and GPU completion are
+unqualified. The final campaign is 14 runs/125 PNG/520 reserved events; independent
+review is ACCEPTED for experimental evidence fidelity, without closing production
+gates. Remaining smallest gates
+are saved/native lifetime, input mutation
+measurement and bounded native GPU discrimination, followed by relevant
+transaction/damage/neutrality and exact-pair/package/legal/maintenance closure.
+Any further runtime or production change requires its own accepted scope and
+budget. Popup UX remains undecided; canonical contracts precede any eventual
+implementation. Final independent dossier review is ACCEPTED / audit PASS for experimental
+evidence fidelity. Publication is authorized and prepared, not executed at this
+edition; final refs belong to the private closeout and final handoff.
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED. Production
+multi-output NOT YET SUPPORTED; documentary publication does not authorize
+integration or STEP20D.

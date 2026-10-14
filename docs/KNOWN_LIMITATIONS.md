@@ -486,3 +486,35 @@ Production multi-output remains NOT YET SUPPORTED. No production, UX or current
 package contract is changed. Final independent review is ACCEPTED / audit PASS for experimental evidence
 fidelity. Documentary publication is prepared, not executed at this edition;
 production integration remains undecided.
+
+## Targeted STEP20C limits — 2026-10-14
+
+The [targeted dossier](design/STEP20C_TARGETED_CLOSURE_DECISION.md) adds exact-SHA
+scale and G dynamic/hidden/R90 observations. It retains 14 raw INCONCLUSIVE
+runtime outcomes (terminal IPC exit 1), distinct from positive measurements and
+process codes 0. Saved A/G show a real held configure, but no natural timeout,
+held image/native saved identity or normal close; error 32 during compositor
+teardown keeps scientific cleanup INCONCLUSIVE. The distinct C3 run also stops:
+its frozen unique-address predicate rejects actual node-address reuse. C3
+creation/H1 draw/teardown and lock 3 to 4 are partially observed, but the bounded
+wait failure is not a natural transaction timeout. Held/live PNG, H2 held
+clipping, normal owner close and GPU completion remain unqualified; no result
+transfers to A/G.
+
+Classic blur is genuinely exercised in pristine/A/G. Whole-H1 optimized return
+still fails by 37,252 pristine and 34,323 A/G pixels, maximum channel delta 6,
+without masks. A/G's 16 homologous RGB frames are exact; a deterministic source
+kernel model does not reproduce the native signed deltas, so GPU causality and
+neutrality remain INCONCLUSIVE. Permitted interior shadow is NOT EXERCISED.
+Input A/G stops at a focus/camera mutation during delivery; observed local
+coordinates agree with the latest native origin, but remaining camera/layout
+coverage and atomic generation are unqualified. Native replay pairs 789 of 821
+final commits (13 initial runs: 758/788; C3: 31/33); buffer identity, complete damage and lifetime remain NOT PROVEN.
+
+Private recipe metadata/source verification and five-file stages are validated;
+full package build is NOT RUN. Exact incorporation/legal notices, named
+release/security ownership and all other SceneFX/wlroots pairs remain open.
+Final independent review is ACCEPTED / audit PASS for experimental evidence
+fidelity. Documentary publication is authorized and prepared, not executed at
+this edition; final refs belong to the private closeout and final handoff.
+STEP20C remains NEXT; production multi-output remains NOT YET SUPPORTED.

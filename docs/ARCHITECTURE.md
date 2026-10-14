@@ -541,3 +541,35 @@ recommendation is PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE, not integration.
 Final independent review is ACCEPTED / audit PASS for experimental evidence
 fidelity. Documentary publication is prepared, not executed at this edition;
 final publication identities belong to the private receipt and final handoff.
+
+## Targeted STEP20C evidence — 2026-10-14
+
+The [targeted closure dossier](design/STEP20C_TARGETED_CLOSURE_DECISION.md)
+records 14 unique private runs/125 captures/520 reserved events, with exact
+A/G/pristine/C3 identities.
+Scale root/nested grabs and sampled G hidden/R90/dynamic paths have their own
+observations beyond the historical horizontal smoke. Owner/root association is
+bounded by source and opening-window evidence; no direct native host/owner ID
+join or atomic generation is established. G dynamic uses fresh toplevel input
+when popup_done has ended the chain, without recreating it.
+
+All raw runtime outcomes remain INCONCLUSIVE on terminal IPC exit 1. Mechanical
+process cleanup, scientific cleanup, measurement and architectural verdicts are
+separate. Held XDG configure 39 is real on A/G, but native saved-node/render
+identity and natural timeout/normal close are not observed; client error 32 at
+compositor teardown prevents a scientific cleanup PASS. Whole-H1 optimized
+A/B/A restoration fails in pristine/A/G; 16 homologous A/G captures are RGB exact
+but do not establish instrumentation neutrality. Native buffer/GPU lifetime,
+atomic scene/input/present generation and complete damage remain NOT PROVEN.
+
+The consumed C3 diagnostic has its own exact binary and remains INCONCLUSIVE:
+a frozen globally unique-address predicate rejects a reused saved-node address.
+It observes creation, H1 drawing and teardown only, with lock 3 to 4; no natural
+transaction timeout or held/live PNG was observed. Offline create-to-next-destroy
+intervals are descriptive and establish no native generation identity. Owner
+error 32 despite process code 0 keeps scientific cleanup INCONCLUSIVE; saved
+clipping and GPU lifetime remain unqualified. No result transfers to A/G. Final independent review is ACCEPTED / audit PASS for experimental evidence
+fidelity. Documentary publication is authorized and prepared, not executed at
+this edition; final refs belong to the private closeout and final handoff. These observations adopt no architecture, UX or production
+dependency. Native compositor/tree authority and Row 0 borrowing are unchanged;
+STEP20C NEXT, production multi-output NOT YET SUPPORTED.

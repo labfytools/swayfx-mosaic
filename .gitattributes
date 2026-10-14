@@ -2,3 +2,4 @@
 tooling/probes/step20c-valid-grab/*.patch -whitespace
 tooling/probes/step20c-saved-target-timeout-input/target-hit-trace.patch -whitespace
 tooling/probes/step20c-optimized-blur-cache/*.patch -whitespace
+tooling/probes/step20c-targeted-diagnostic/saved-passive.patch -whitespace

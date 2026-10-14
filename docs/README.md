@@ -374,3 +374,33 @@ preserves exact identities, budget and private provenance references. Recommenda
 PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE; no production decision applied.
 STEP20C NEXT; production multi-output NOT YET SUPPORTED. Final independent review is ACCEPTED / audit PASS for experimental evidence
 fidelity. Documentary publication is prepared, not executed at this edition.
+
+## Targeted STEP20C evidence — 2026-10-14
+
+These new experimental reports supplement immutable historical evidence; they
+do not supersede canonical contracts or qualify production. The targeted
+campaign records 14 unique runs/125 PNG/520 reserved events. Raw runtime remains
+INCONCLUSIVE for all terminal IPC exits, with measurement/scientific cleanup
+separate. C3 observes native creation/draw/teardown partially, but stops on a
+frozen predicate rejecting reused node addresses; no natural transaction timeout
+or held/live PNG. Final independent review is ACCEPTED / audit PASS for experimental evidence
+fidelity. Publication is authorized and prepared, not executed at this edition;
+final refs belong to the private closeout and final handoff. STEP20C NEXT; production multi-output NOT YET SUPPORTED.
+
+| Report | Scope and retained limits |
+| --- | --- |
+| [Targeted scale/popup gate](design/STEP20C_TARGETED_SCALE_AND_POPUP_GATE.md) | Own A/G scale1.25 grabs/pixels/input, sampled FEASIBLE; association bounded |
+| [Targeted saved lifecycle](design/STEP20C_TARGETED_SAVED_BUFFER_LIFECYCLE.md) | Real held configure; C3 creation/draw/teardown partial; timeout/held PNG/GPU lifetime unqualified, INCONCLUSIVE |
+| [Targeted effects/cache diagnosis](design/STEP20C_TARGETED_EFFECTS_CACHE_DIAGNOSIS.md) | Classic EXERCISED, whole-H1 FAIL, GPU attribution INCONCLUSIVE |
+| [Targeted input/native ordering](design/STEP20C_TARGETED_INPUT_NATIVE_ORDERING.md) | Focus/camera mutation during click; 789/821 final paired, no atomic generation |
+| [Release-shape extended matrix](design/STEP20C_RELEASE_SHAPE_EXTENDED_MATRIX.md) | Exact-G dynamic/hidden/R90, residual neutrality and ABI/package/legal limits |
+| [Targeted closure decision](design/STEP20C_TARGETED_CLOSURE_DECISION.md) | Exact identities, 14-run matrix, risks and distinct lifecycle markers |
+| [Production decision draft](design/STEP20C_PRODUCTION_INTEGRATION_DECISION_DRAFT.md) | Twenty current questions; PRIVATE_CANDIDATE_NEEDS_TARGETED_EVIDENCE |
+
+Public evidence: [results README](../tooling/probes/step20c-targeted-results/README.md),
+[compact results](../tooling/probes/step20c-targeted-results/RESULTS.json) and
+[artifact hashes](../tooling/probes/step20c-targeted-results/ARTIFACTS.json).
+The 460 retained run artifacts include 125 output captures and three marker-source
+PNGs (128 PNG files total); source PNGs are not output captures. The [review supplement](../tooling/probes/step20c-targeted-results/REVIEW.json)
+is maintained separately by the parent. See the closure report for the exact private review
+paths/hashes, 43 offline tests, 22 rejected mutations and finalization limits.

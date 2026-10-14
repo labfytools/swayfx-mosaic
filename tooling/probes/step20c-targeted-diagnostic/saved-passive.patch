@@ -1,0 +1,152 @@
+--- a/sway/tree/view.c
++++ b/sway/tree/view.c
+@@ -1,4 +1,5 @@
+ #include <stdlib.h>
++#include <inttypes.h>
+ #include <strings.h>
+ #include <wayland-server-core.h>
+ #include <wlr/config.h>
+@@ -1276,11 +1277,121 @@
+ 	return view->urgent.tv_sec || view->urgent.tv_nsec;
+ }
+ 
++/* EXPERIMENTAL diagnostic only. WHY: identify actual saved copies rather than
++ * infer them from SHM pixels. CONTRACT: signal observation only; no reference,
++ * ACK, scene mutation, rendering, readback, or timeline wait. INVARIANT: native
++ * Sway/SceneFX ownership and ABI are unchanged. Logging perturbs CPU timing.
++ * A release/destroy signal does not prove GPU completion. */
++struct saved_diag {
++	struct wlr_scene_buffer *saved;
++	struct wlr_buffer *source;
++	void *node_id, *source_id;
++	struct wl_listener sample, node_destroy, release, buffer_destroy;
++};
++
++static uint64_t saved_diag_ns(void) {
++	struct timespec ts;
++	clock_gettime(CLOCK_MONOTONIC, &ts);
++	return (uint64_t)ts.tv_sec * 1000000000 + ts.tv_nsec;
++}
++
++static void saved_diag_free(struct saved_diag *d) {
++	if (!d->saved && !d->source) {
++		free(d);
++	}
++}
++
++static void saved_diag_release(struct wl_listener *listener, void *data) {
++	struct saved_diag *d = wl_container_of(listener, d, release);
++	sway_log(SWAY_DEBUG, "SD_RELEASE ns=%" PRIu64 " node=%p source=%p locks=%zu gpu_complete=NOT_PROVEN",
++		saved_diag_ns(), d->node_id, d->source_id, d->source->n_locks);
++}
++
++static void saved_diag_buffer_destroy(struct wl_listener *listener, void *data) {
++	struct saved_diag *d = wl_container_of(listener, d, buffer_destroy);
++	sway_log(SWAY_DEBUG, "SD_BUFFER_DESTROY ns=%" PRIu64 " node=%p source=%p gpu_complete=NOT_PROVEN",
++		saved_diag_ns(), d->node_id, d->source_id);
++	wl_list_remove(&d->release.link);
++	wl_list_remove(&d->buffer_destroy.link);
++	d->source = NULL;
++	saved_diag_free(d);
++}
++
++static void saved_diag_node_destroy(struct wl_listener *listener, void *data) {
++	struct saved_diag *d = wl_container_of(listener, d, node_destroy);
++	sway_log(SWAY_DEBUG, "SD_NODE_DESTROY ns=%" PRIu64 " node=%p source=%p",
++		saved_diag_ns(), d->node_id, d->source_id);
++	wl_list_remove(&d->sample.link);
++	wl_list_remove(&d->node_destroy.link);
++	d->saved = NULL;
++	saved_diag_free(d);
++}
++
++static void saved_diag_sample(struct wl_listener *listener, void *data) {
++	struct saved_diag *d = wl_container_of(listener, d, sample);
++	struct wlr_scene_output_sample_event *e = data;
++	struct wlr_scene_buffer *s = d->saved;
++	uint64_t sample_ns = saved_diag_ns();
++	int x = 0, y = 0;
++	bool enabled = wlr_scene_node_coords(&s->node, &x, &y);
++	sway_log(SWAY_DEBUG, "SD_SAMPLE ns=%" PRIu64 " node=%p source=%p live_source=%p output=%s global=%d,%d dest=%d,%d src=%g,%g,%g,%g transform=%d enabled=%d node_enabled=%d viewport=%d,%d,%d,%d timeline=%p point=%" PRIu64 " direct=%d",
++		sample_ns, d->node_id, d->source_id, d->source, e->output->output->name,
++		x, y, s->dst_width, s->dst_height, s->src_box.x, s->src_box.y,
++		s->src_box.width, s->src_box.height, s->transform, enabled, s->node.enabled,
++		e->output->x, e->output->y, e->output->output->width, e->output->output->height,
++		e->release_timeline, e->release_point, e->direct_scanout);
++	for (struct wlr_scene_tree *p = s->node.parent; p; p = p->node.parent) {
++		struct wlr_box clip = {0};
++		int px = 0, py = 0;
++		bool pe = wlr_scene_node_coords(&p->node, &px, &py);
++		bool valid = wlr_scene_tree_get_clip(p, &clip);
++		sway_log(SWAY_DEBUG, "SD_ANCESTOR ns=%" PRIu64 " sample_ns=%" PRIu64 " node=%p output=%s tree=%p global=%d,%d enabled=%d clip_valid=%d clip=%d,%d,%d,%d",
++			saved_diag_ns(), sample_ns, d->node_id, e->output->output->name, p, px, py, pe,
++			valid, clip.x, clip.y, clip.width, clip.height);
++	}
++}
++
++static void saved_diag_attach(struct wlr_scene_buffer *saved,
++		struct wlr_scene_buffer *original, size_t before) {
++	if (!getenv("SAVED_DIAGNOSTIC")) {
++		return;
++	}
++	struct saved_diag *d = calloc(1, sizeof(*d));
++	if (!d) {
++		sway_log(SWAY_ERROR, "SD_ALLOCATION_FAILED");
++		return;
++	}
++	d->saved = saved;
++	d->source = original->buffer;
++	d->node_id = &saved->node;
++	d->source_id = original->buffer;
++	d->sample.notify = saved_diag_sample;
++	d->node_destroy.notify = saved_diag_node_destroy;
++	wl_signal_add(&saved->events.output_sample, &d->sample);
++	wl_signal_add(&saved->node.events.destroy, &d->node_destroy);
++	if (d->source) {
++		d->release.notify = saved_diag_release;
++		d->buffer_destroy.notify = saved_diag_buffer_destroy;
++		wl_signal_add(&d->source->events.release, &d->release);
++		wl_signal_add(&d->source->events.destroy, &d->buffer_destroy);
++	}
++	sway_log(SWAY_DEBUG, "SD_CREATE ns=%" PRIu64 " node=%p source_node=%p source=%p tree=%p parent=%p locks_before=%zu locks_after=%zu dest=%d,%d src=%g,%g,%g,%g transform=%d",
++		saved_diag_ns(), d->node_id, &original->node, d->source_id,
++		saved->node.parent, saved->node.parent->node.parent, before,
++		d->source ? d->source->n_locks : 0, saved->dst_width, saved->dst_height,
++		saved->src_box.x, saved->src_box.y, saved->src_box.width,
++		saved->src_box.height, saved->transform);
++}
++
+ void view_remove_saved_buffer(struct sway_view *view) {
+ 	if (!sway_assert(view->saved_surface_tree, "Expected a saved buffer")) {
+ 		return;
+ 	}
+ 
++	if (getenv("SAVED_DIAGNOSTIC")) {
++		sway_log(SWAY_DEBUG, "SD_REMOVE ns=%" PRIu64 " owner=%zu tree=%p content=%p",
++			saved_diag_ns(), (size_t)view->container->node.id, view->saved_surface_tree, view->content_tree);
++	}
+ 	wlr_scene_node_destroy(&view->saved_surface_tree->node);
+ 	view->saved_surface_tree = NULL;
+ 	wlr_scene_node_set_enabled(&view->content_tree->node, true);
+@@ -1306,7 +1417,9 @@
+ 	wlr_scene_buffer_set_source_box(sbuf, &buffer->src_box);
+ 	wlr_scene_node_set_position(&sbuf->node, sx, sy);
+ 	wlr_scene_buffer_set_transform(sbuf, buffer->transform);
++	size_t diagnostic_locks = buffer->buffer ? buffer->buffer->n_locks : 0;
+ 	wlr_scene_buffer_set_buffer(sbuf, buffer->buffer);
++	saved_diag_attach(sbuf, buffer, diagnostic_locks);
+ 	wlr_scene_buffer_set_corner_radii(sbuf, buffer->corners);
+ 	scene_descriptor_assign(&sbuf->node, SWAY_SCENE_DESC_SAVED_BUFFER, tree);
+ }
+@@ -1333,6 +1446,11 @@
+ 
+ 	wlr_scene_node_set_enabled(&view->content_tree->node, false);
+ 	wlr_scene_node_set_enabled(&view->saved_surface_tree->node, true);
++	if (getenv("SAVED_DIAGNOSTIC")) {
++		sway_log(SWAY_DEBUG, "SD_TREE ns=%" PRIu64 " owner=%zu tree=%p parent=%p content=%p saved_enabled=%d content_enabled=%d",
++			saved_diag_ns(), (size_t)view->container->node.id, view->saved_surface_tree, view->scene_tree, view->content_tree,
++			view->saved_surface_tree->node.enabled, view->content_tree->node.enabled);
++	}
+ }
+ 
+ bool view_is_transient_for(struct sway_view *child,
