@@ -1,0 +1,168 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_OOM_PREALLOC_NATIVE_CORE_AND_GPU_PRECISION_BATCH_V1",
+  "edition": "pre-final-review and pre-publication snapshot; later actual review and publication receipts are separate",
+  "baseline": "c9a35ce13726b592072aae52352b74403784551d",
+  "lab": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi",
+  "initial_lab": "/home/fy59/swayfx-mosaic-corec-prealloc-hm3xzpzi",
+  "storage": "small receipts moved to /tmp following user clarification; no new home lab remains",
+  "user_confirmed": "Historical labs intentionally deleted; no reconstruction or retry authorized by their summaries",
+  "markers": {
+    "COREC_CONTRACTS_AND_HISTORICAL_EVIDENCE": "BLOCKED",
+    "COREC_PREALLOCATION_SOURCE_AND_C_TESTS": "BLOCKED",
+    "COREC_BUILD_ELF_AND_STAGE": "NOT_RUN",
+    "COREC_HORIZONTAL": "NOT_RUN",
+    "COREC_VERTICAL": "NOT_RUN",
+    "COREC_HIDDEN_SAME_CHAIN": "NOT_RUN",
+    "COREC_SAVED_NATURAL_TIMEOUT": "NOT_RUN",
+    "COREC_DYNAMIC": "NOT_RUN",
+    "COREC_FULLSCREEN_CONTROL": "NOT_RUN",
+    "COREC_FULLSCREEN_COMPARISON": "NOT_RUN",
+    "COREC_FRACTIONAL_OR_R90": "NOT_RUN",
+    "COREC_NATIVE_OOM_INJECTION": "NOT_RUN",
+    "COREC_OOM_POLICY_RECOMMENDATION": "UNDECIDED",
+    "COREC_PRODUCTION_OOM_POLICY": "UNDECIDED",
+    "GPU_G2_PREFLIGHT": "NOT_PROVEN",
+    "GPU_G2_RUNTIME": "NOT_RUN",
+    "GPU_EFFECTIVE_HALFP_PIXEL": "NOT_PROVEN",
+    "GPU_READ_SUCCESS": "NOT_PROVEN",
+    "GPU_DCC_METADATA": "NOT_PROVEN",
+    "GPU_WHOLE_FIELD_CAUSALITY": "NOT_PROVEN",
+    "GPU_OUTPUT_BUFFER_IDENTITY": "NOT_PROVEN",
+    "COREC_SAMPLED_DAMAGE": "NOT_PROVEN",
+    "COREC_NATIVE_LIFETIME": "NOT_PROVEN",
+    "COREC_INPUT_COHERENCE": "NOT_PROVEN",
+    "COREC_ATOMIC_GENERATION": "NOT_PROVEN",
+    "COREC_FINAL_INDEPENDENT_REVIEW": "NOT_PROVEN",
+    "COREC_DOCUMENTARY_PUBLICATION": "BLOCKED",
+    "SWAYFX_MOSAIC_STEP20C_OOM_PREALLOC_NATIVE_CORE_AND_GPU_PRECISION_BATCH_V1": "BLOCKED",
+    "STEP20A": "DONE",
+    "STEP20B": "EXPERIMENTAL",
+    "STEP20C": "NEXT",
+    "STEP20D_G": "PLANNED",
+    "PRODUCTION_MULTI_OUTPUT": "NOT_YET_SUPPORTED",
+    "PRODUCTION_AUTHORIZED": false
+  },
+  "recommendation": "UNDECIDED",
+  "reason": "Mandatory historical seal, exact native sources and GPU payload/hook missing; no admissible CORE-C candidate",
+  "new_identities": {
+    "CORE_C_SHA256": null,
+    "CORE_C_BUILD_ID": null,
+    "O1_SHA256": null,
+    "G2_SHA256": null
+  },
+  "counts": {
+    "runs": 0,
+    "output_captures": 0,
+    "source_marker_png": 0,
+    "scenefx_builds": 0,
+    "mosaic_builds": 0,
+    "stages": 0
+  },
+  "limits": {
+    "runs": 11,
+    "output_captures": 176,
+    "captures_per_run": 18,
+    "duration_s": 150,
+    "scenefx_builds": 3,
+    "mosaic_builds": 3,
+    "stages": 3
+  },
+  "run_matrix": [
+    {
+      "id": "C1",
+      "binary": "CORE-C",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "C2",
+      "binary": "CORE-C",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "C3",
+      "binary": "CORE-C",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "C4",
+      "binary": "CORE-C",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "C5",
+      "binary": "CORE-C",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "C6",
+      "binary": "pristine",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "C7",
+      "binary": "CORE-C",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "C8",
+      "binary": "CORE-C",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "O1",
+      "binary": "OOM diagnostic",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "mandatory source/provenance gate unavailable"
+    },
+    {
+      "id": "G2",
+      "binary": "GPU diagnostic",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "GPU source/payload/hook and complete prospective observation contract unavailable"
+    },
+    {
+      "id": "G3",
+      "binary": "optional pristine GPU",
+      "status": "NOT_RUN",
+      "reserved": false,
+      "captures": 0,
+      "reason": "GPU source/payload/hook and complete prospective observation contract unavailable"
+    }
+  ],
+  "unrun_checks": [
+    "full exclusive reservation and negative admission tests",
+    "all new exact-body C/native/sanitizer/OOM tests",
+    "all ELF/ABI/link/model/staging checks",
+    "all graphics/fullscreen geometry certificates",
+    "new prospective hook tests and all adversarial runtime mutations"
+  ],
+  "historical_evidence": "Existing published historical conclusions unchanged and not reverified here; no transfer to CORE-C"
+}

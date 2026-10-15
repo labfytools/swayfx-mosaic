@@ -1,0 +1,101 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_OOM_PREALLOC_NATIVE_CORE_AND_GPU_PRECISION_BATCH_V1",
+  "baseline": "c9a35ce13726b592072aae52352b74403784551d",
+  "scope": "Complete proposed documentary delta including untracked sources/receipts; no native candidate",
+  "excluded_self_reference_outputs": [
+    "tooling/probes/step20c-corec-prealloc-gate/evidence/source-review-manifest.json",
+    "tooling/probes/step20c-corec-prealloc-gate/evidence/final-independent-review.json"
+  ],
+  "entries": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 26472,
+      "mode": "0o644",
+      "sha256": "7193c96110467cd4a5916eebb312fd0d783002fd91f738aa34a8acd736850a34"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 51286,
+      "mode": "0o644",
+      "sha256": "cbf167aa7de45adc2d4675c97d45c9e99594d871199c969f88c9ff61dd8faa14"
+    },
+    {
+      "path": "docs/KNOWN_LIMITATIONS.md",
+      "bytes": 46645,
+      "mode": "0o644",
+      "sha256": "65627751e73c01e5a62a57534bb758bc674e32884e575a3f0680e73dd25d113f"
+    },
+    {
+      "path": "docs/README.md",
+      "bytes": 44394,
+      "mode": "0o644",
+      "sha256": "0b588cf8b3994a80f620aa3de38878d0f253739087e497e0a1e1575cc366bc34"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "bytes": 44882,
+      "mode": "0o644",
+      "sha256": "e219805fca8ea47ebe6f8162591b3c97b52645423ba436454abfca6b8338bc1a"
+    },
+    {
+      "path": "docs/design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md",
+      "bytes": 19919,
+      "mode": "0o644",
+      "sha256": "28d4a04fb3b38c332f6661112000b4e6b2819c3b592cafdbefbd43d251bc6702"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/README.md",
+      "bytes": 3553,
+      "mode": "0o644",
+      "sha256": "37190e499b9037f4aba2b6fda2f1a6d977c536fccb9d53c19729e2a9369c619e"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/gate-a.json",
+      "bytes": 1628,
+      "mode": "0o644",
+      "sha256": "9950fce481309bfaef9b19b8ebf68048a29fdf888590fb15390480268af2c5b2"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/git-initial.json",
+      "bytes": 242,
+      "mode": "0o644",
+      "sha256": "0b2566a38fbd2c3a063d393764a08c469cc3bd320d897f91c50b3f906cdbf494"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/khronos-primary-sources.json",
+      "bytes": 1212,
+      "mode": "0o644",
+      "sha256": "5bec3ea98f5a582a36b3348954bfe5ca37724738cfd42e3453955bca98bac95b"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/offline-commands.json",
+      "bytes": 4979,
+      "mode": "0o644",
+      "sha256": "b94d7169d8e2638a8637df107d7251d1fd6337fd08bac1997f973ee4bd5e794f"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/private-input-manifest.json",
+      "bytes": 5635,
+      "mode": "0o644",
+      "sha256": "b7d5874a915a1605b7971ce78b6eab029d19a646abbdc7f44be5ef844e86fa6c"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/relocation.json",
+      "bytes": 445,
+      "mode": "0o644",
+      "sha256": "07987fec2af99084e1a17cf93b092095d39a59d974b9c515a5de121375daa111"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/results.json",
+      "bytes": 5410,
+      "mode": "0o644",
+      "sha256": "f782c10ea55f574a06e3b0148bcfbcb5ae62b00f4cd7e095db95f5279981e110"
+    },
+    {
+      "path": "tooling/probes/step20c-corec-prealloc-gate/evidence/safety.json",
+      "bytes": 2811,
+      "mode": "0o644",
+      "sha256": "4eed40377f36e09f8deee634743a4a27ae7eb872fe3f0e78ff8509e293ec30f0"
+    }
+  ]
+}

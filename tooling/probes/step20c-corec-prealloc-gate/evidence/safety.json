@@ -1,0 +1,70 @@
+{
+  "protected": [
+    {
+      "path": "/home/fy59/Documents/Development/swayfx-mosaic/PKGBUILD",
+      "before": "fe376925b8a33dd5e52ee98fc1bba95576831002eb5d32b55c109775bb6676f3",
+      "after": "fe376925b8a33dd5e52ee98fc1bba95576831002eb5d32b55c109775bb6676f3",
+      "unchanged": true
+    },
+    {
+      "path": "/home/fy59/Documents/Development/swayfx-mosaic/patches/0001-mosaic-layout-viewport.patch",
+      "before": "a04cd06a6ef4fc58e3b40333a53226849e82d9a4757b9ccee58ad7b59a23ff4b",
+      "after": "a04cd06a6ef4fc58e3b40333a53226849e82d9a4757b9ccee58ad7b59a23ff4b",
+      "unchanged": true
+    },
+    {
+      "path": "/home/fy59/Documents/Development/swayfx-mosaic/AGENTS.md",
+      "before": "d4fdf1ab809b3ae8361f8c928468a3224fc30041bf01b5e5d10f3530b336ba91",
+      "after": "d4fdf1ab809b3ae8361f8c928468a3224fc30041bf01b5e5d10f3530b336ba91",
+      "unchanged": true
+    },
+    {
+      "path": "/home/fy59/Documents/Development/swayfx-mosaic/docs/UX.md",
+      "before": "fd5f2540f9201df94688265c0023bf09351cb8c77146d53c2712c7a7a1dc7d34",
+      "after": "fd5f2540f9201df94688265c0023bf09351cb8c77146d53c2712c7a7a1dc7d34",
+      "unchanged": true
+    },
+    {
+      "path": "/home/fy59/Documents/Development/swayfx-mosaic/docs/PACKAGING.md",
+      "before": "6bbb7b07033878e5689d769a838547693d875ef32e0d5661b36b7ad238c7dc1f",
+      "after": "6bbb7b07033878e5689d769a838547693d875ef32e0d5661b36b7ad238c7dc1f",
+      "unchanged": true
+    },
+    {
+      "path": "/usr/bin/sway",
+      "before": "94967c15529e89fecd23f0a6b60e8b1c9bc87618101e95d585d14df510e81460",
+      "after": "94967c15529e89fecd23f0a6b60e8b1c9bc87618101e95d585d14df510e81460",
+      "unchanged": true
+    },
+    {
+      "path": "/usr/lib/libwlroots-0.20.so",
+      "before": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+      "after": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+      "unchanged": true
+    },
+    {
+      "path": "/usr/lib/libscenefx-0.5.so",
+      "before": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62",
+      "after": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62",
+      "unchanged": true
+    }
+  ],
+  "production_files_count": 314,
+  "production_delta": [],
+  "private_sockets": [],
+  "gui_processes_spawned_by_ticket": [],
+  "current_sway_processes_readonly": [
+    {
+      "pid": 2325,
+      "comm": "sway",
+      "exe": "/usr/bin/sway",
+      "start_ticks": "2833"
+    }
+  ],
+  "process_comparison": "No initial process snapshot recorded; do not claim measured PID continuity",
+  "live_IPC_calls": 0,
+  "home_lab_remaining": false,
+  "lab_current": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi",
+  "lab_regular_bytes": 179747,
+  "source_receipt_sha256": "9c0fc1843c7d86fbaa2b8ce2d81d0ba5795b9258c38edfeea91da2c69d511e47"
+}

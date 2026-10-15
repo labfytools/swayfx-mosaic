@@ -1,0 +1,158 @@
+{
+  "scope": "offline validation only; no source edits, builds, compositor, IPC, or staging",
+  "commands": [
+    {
+      "name": "step20c graphics fixtures",
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tooling/probes/step20c-core-recovery/graphics",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/home/fy59/Documents/Development/swayfx-mosaic",
+      "monotonic_start_ns": 308247524130913,
+      "monotonic_end_ns": 308247789179123,
+      "return_code": 1,
+      "stdout_file": "graphics.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_file": "graphics.stderr.txt",
+      "stderr_sha256": "6d2503554ff1228008ad9414edec0f775843b986de05c89c791d97819efe2106",
+      "test_count": 20,
+      "status": "FAIL",
+      "counts": {
+        "passed": 15,
+        "failed": 0,
+        "errors": 5
+      }
+    },
+    {
+      "name": "gpu-field synthetic fixture",
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tooling/probes/step20c-core-recovery/gpu-field",
+        "-p",
+        "test_fixture.py",
+        "-v"
+      ],
+      "cwd": "/home/fy59/Documents/Development/swayfx-mosaic",
+      "monotonic_start_ns": 308251942523578,
+      "monotonic_end_ns": 308252336265125,
+      "return_code": 1,
+      "stdout_file": "gpu-fixture.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_file": "gpu-fixture.stderr.txt",
+      "stderr_sha256": "0bea73e35442b8302edc121e357430b7249363a91d639fd23043f5bd1e955638",
+      "test_count": 4,
+      "status": "FAIL",
+      "counts": {
+        "passed": 4,
+        "failed": 0,
+        "errors": 1,
+        "note": "RuntimeValidator setUpClass error; 4 test methods completed"
+      }
+    },
+    {
+      "name": "gpu-field historical replay",
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tooling/probes/step20c-core-recovery/gpu-field",
+        "-p",
+        "test_replay.py",
+        "-v"
+      ],
+      "cwd": "/home/fy59/Documents/Development/swayfx-mosaic",
+      "monotonic_start_ns": 308256916290341,
+      "monotonic_end_ns": 308257028094086,
+      "return_code": 1,
+      "stdout_file": "gpu-replay.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_file": "gpu-replay.stderr.txt",
+      "stderr_sha256": "2b86443c5229222175584385bc2234dccdab6d1def2ba6e0668c9f163980a5b5",
+      "test_count": 0,
+      "status": "FAIL",
+      "counts": {
+        "passed": 0,
+        "failed": 0,
+        "errors": 1
+      }
+    },
+    {
+      "name": "saved-input GPU batch native tests",
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tooling/probes/step20c-saved-input-gpu-batch",
+        "-p",
+        "test_native.py",
+        "-v"
+      ],
+      "cwd": "/home/fy59/Documents/Development/swayfx-mosaic",
+      "monotonic_start_ns": 308261355767172,
+      "monotonic_end_ns": 308261414041143,
+      "return_code": 1,
+      "stdout_file": "native.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_file": "native.stderr.txt",
+      "stderr_sha256": "347cba4722be98c4922dd538328b4ee692f478014b8c96a7d611a9b19ad0ee0c",
+      "test_count": 5,
+      "status": "FAIL",
+      "counts": {
+        "passed": 3,
+        "failed": 1,
+        "errors": 1
+      }
+    },
+    {
+      "name": "read-only historical auditor",
+      "argv": [
+        "python",
+        "-B",
+        "tooling/probes/step20c-core-recovery/audit.py",
+        "--output",
+        "/home/fy59/swayfx-mosaic-corec-prealloc-hm3xzpzi/tests/legacy-audit-result.json"
+      ],
+      "cwd": "/home/fy59/Documents/Development/swayfx-mosaic",
+      "monotonic_start_ns": 308266337129460,
+      "monotonic_end_ns": 308266385417182,
+      "return_code": 1,
+      "stdout_file": "legacy-audit.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_file": "legacy-audit.stderr.txt",
+      "stderr_sha256": "bc133e3b7ba41d3ae6838b825240409a0cc4c05c3cd21b20a3ede751a00a4225",
+      "test_count": null,
+      "status": "FAIL",
+      "requested_output": "/home/fy59/swayfx-mosaic-corec-prealloc-hm3xzpzi/tests/legacy-audit-result.json",
+      "output_created": false
+    }
+  ],
+  "classification": {
+    "legacy_fixture_and_replay_suites": "executed; results limited by missing historical inputs and disk quota as recorded",
+    "new_CORE_C_native_tests": "NOT_RUN",
+    "builds": 0,
+    "compositor_runs": 0,
+    "IPC_runs": 0,
+    "staging_runs": 0,
+    "source_edits": 0,
+    "unexpected_tracked_modifications": "to be checked"
+  }
+}

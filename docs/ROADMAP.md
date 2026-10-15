@@ -606,3 +606,24 @@ Scoped reviews ACCEPTED; final independent audit/publication pending at this
 edition, with actual identities in the later private receipt. STEP20A DONE;
 STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
 PRODUCTION_MULTI_OUTPUT NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
+
+## CORE-C source/provenance handoff — 2026-10-15
+
+The [new CORE-C/OOM/GPU ticket](design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md)
+is **BLOCKED**, recommendation and OOM policy **UNDECIDED**. Historical LABs
+were deliberately deleted; required seals, native exact sources and GPU
+hook/payload are unavailable. The new budget remains unconsumed: 0/11 runs,
+0/176 output captures, 0/3 SceneFX builds, 0/3 Mosaic builds and 0/3 stages.
+All C1–C8/O1/G2/G3 cases and new native/C/sanitizer checks remain NOT_RUN.
+Historical outcomes are unchanged and are not requalified by the failing
+current offline replays.
+
+The smallest justified next step is a separately scoped instruction changing
+or redefining the provenance gate, or restoration of authoritative exact
+inputs if a backup exists. Recovery of deliberately deleted data is not
+promised. A new design inferred from summaries cannot satisfy the existing
+gate. GPU observation requirements are prospective, with G2 preflight
+NOT_PROVEN and runtime NOT_RUN; no runtime admission or production decision
+follows from documentary review. STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C
+NEXT; STEP20D–G PLANNED; PRODUCTION_MULTI_OUTPUT NOT_YET_SUPPORTED;
+PRODUCTION_AUTHORIZED FALSE.

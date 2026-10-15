@@ -631,3 +631,24 @@ STEP20C NEXT; production multi-output NOT_YET_SUPPORTED; production authority
 FALSE. Historical immutable archive whitespace warnings remain documented;
 new public EOF-only fixture normalization is reversible and does not change
 executed LAB evidence or CORE identity.
+
+## CORE-C provenance and native/GPU qualification — 2026-10-15
+
+The [CORE-C dossier](design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md)
+is **BLOCKED**, recommendation **UNDECIDED**. Three mandatory historical seal
+receipts are missing; 0/979 entries and 0/916 files were reverified. The user
+confirmed deliberate deletion of the historical LABs. Published summaries do
+not replace exact native sources or G1 hook/payload; old identities and
+positive samples are REPORTED, without transfer to an absent CORE-C.
+
+Five existing offline commands all exit 1: graphics 15 successes/5 errors of 20;
+GPU model 4 successes plus RuntimeValidator setUpClass EDQUOT; G1 replay 0 tests
+and missing-input setUpClass error; native 3 successes/1 failure/1 error of 5;
+auditor traceback without result. No existing fixture was repaired or rerun
+for this dossier. All new exact-body C/native/sanitizer tests, C1–C8/O1/G2/G3
+runs, builds, stages and captures are NOT_RUN/zero. GPU G2 preflight remains
+NOT_PROVEN; no accepted precision/read-success/GL-error contract or fitted
+epsilon exists. Native coherence/lifetime, atomic generation, buffer/GPU
+completion, complete damage/effects and exact-pair/package/legal gates remain
+open. Production OOM policy UNDECIDED; STEP20C NEXT; production multi-output
+NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.

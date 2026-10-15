@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/KhronosGroup/OpenGL-Refpages/main/es3.0/glGetUniform.xml",
+    "path": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi/inputs/glGetUniform.xml",
+    "sha256": "71c2972674a2cd8d5c401ea5632616e282d167235d9b8ae79234bee6aecaee14",
+    "bytes": 8303
+  },
+  {
+    "url": "https://raw.githubusercontent.com/KhronosGroup/OpenGL-Refpages/main/es3.0/glGetShaderPrecisionFormat.xml",
+    "path": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi/inputs/glGetShaderPrecisionFormat.xml",
+    "sha256": "628c8393230ea003fe1cc0aca57bee4c62be7cf5b6a0d2d754c71d07d90f24ef",
+    "bytes": 5933
+  },
+  {
+    "url": "https://raw.githubusercontent.com/KhronosGroup/OpenGL-Refpages/main/es3.0/glReadPixels.xml",
+    "path": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi/inputs/glReadPixels.xml",
+    "sha256": "95748aa75385deaaeb1c415612e89848fea6897d1f35e5c18223181a96f141bf",
+    "bytes": 33095
+  },
+  {
+    "url": "https://raw.githubusercontent.com/KhronosGroup/OpenGL-Refpages/main/es3.0/glGetError.xml",
+    "path": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi/inputs/glGetError.xml",
+    "sha256": "ea8d403f39f142c8b2ca9307febd0f7baf15427fac6fa755722b9cf6de44e9df",
+    "bytes": 7199
+  }
+]

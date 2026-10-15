@@ -506,3 +506,15 @@ and historical archives remain unchanged. Final deep audit/publication pending
 at this edition; actual postpublication identities belong to the private receipt.
 STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
 PRODUCTION_MULTI_OUTPUT NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
+
+[CORE-C preallocation/native/GPU precision dossier](design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md)
+and [evidence-only receipts](../tooling/probes/step20c-corec-prealloc-gate/README.md):
+EXPERIMENTAL / **BLOCKED**, recommendation and OOM policy **UNDECIDED**.
+Historical LAB deletion prevents mandatory seal/exact-source/GPU-hook
+verification; 0/979 entries and 0/916 files reverified. Five offline commands
+exit 1 with explicit missing-input/EDQUOT limits. No new native tests, builds,
+stages, runs or captures; no CORE-C identity or GPU observation contract
+qualified. Historical reports remain unchanged. Next step is a separately
+scoped provenance-gate instruction or exact authoritative inputs restored
+from an existing backup. STEP20C NEXT; production multi-output
+NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.

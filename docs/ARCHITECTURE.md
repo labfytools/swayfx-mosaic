@@ -688,3 +688,20 @@ at this edition. STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT;
 STEP20D–G PLANNED; production multi-output NOT_YET_SUPPORTED;
 PRODUCTION_AUTHORIZED FALSE. Compositor/tree authority and Row0 borrowing
 remain unchanged; no UX, package, public ABI or production dependency adopted.
+
+## CORE-C preallocation source gate — 2026-10-15
+
+The [CORE-C/OOM/GPU dossier](design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md)
+records a **BLOCKED** provenance gate: required historical seals, exact native
+sources and G1 hook/payload are absent after user-confirmed deletion. No CORE-C
+candidate, native preallocation redesign, C/sanitizer test, build, ELF/ABI/stage
+or compositor run is established. Historical A/B/C studies do not adopt an OOM
+policy; recommendation and production OOM policy remain **UNDECIDED**.
+
+GPU precision/read-success/error attribution is discussed prospectively from
+primary references; the actual shader/hook linkage remains NOT_PROVEN. No new
+atomic generation, buffer identity, GPU completion, native input coherence or
+complete damage claim follows. Applied rendering/input coherence remains the
+accepted requirement. No architecture, UX, production or package decision changes.
+STEP20C remains NEXT; production multi-output NOT_YET_SUPPORTED; production
+authority FALSE.

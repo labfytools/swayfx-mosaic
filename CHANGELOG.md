@@ -4,6 +4,19 @@
 
 ### STEP20C experimental evidence
 
+- Record the separate [CORE-C preallocation/native/GPU precision source gate](docs/design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md)
+  as BLOCKED after user-confirmed deletion of required historical LABs:
+  three seal receipts absent, 0/979 entries and 0/916 files reverified. Keep
+  historical identities/results REPORTED without transfer to CORE-C.
+- Preserve five failed current offline commands and their raw exit 1 receipts,
+  including missing-input and EDQUOT limits. Record zero new native C/sanitizer
+  tests, builds, stages, runs and captures; all 11 intended scenarios NOT_RUN.
+  Document prospective GPU precision/read-success/error-attribution limits
+  without adopting a hook contract, tolerance, OOM policy or candidate redesign.
+  Recommendation UNDECIDED; final review NOT_PROVEN/publication BLOCKED at this
+  edition. STEP20C NEXT, production multi-output NOT_YET_SUPPORTED and
+  PRODUCTION_AUTHORIZED FALSE.
+
 - Record a separate CORE recovery campaign: nine new runs/102 output PNG,
   comparable12-state standard RGB controls, two-chain horizontal return,
   Y600 vertical clipping/input, same-chain hidden return and saved phased

@@ -1,0 +1,145 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_OOM_PREALLOC_NATIVE_CORE_AND_GPU_PRECISION_BATCH_V1",
+  "decision": "ACCEPTED",
+  "audit_result": "PASS",
+  "independent": true,
+  "reviewer": "/root/final_review",
+  "reviewer_authored": true,
+  "reviewed_at_utc": "2026-10-15T04:35:59.769295+00:00",
+  "baseline": "c9a35ce13726b592072aae52352b74403784551d",
+  "manifest_path": "tooling/probes/step20c-corec-prealloc-gate/evidence/source-review-manifest.json",
+  "manifest_sha256": "dd6495b5e352126e09e58afa61463169551a2e03f6f370ff3187431e1dd66aba",
+  "manifest_entries": 15,
+  "scope": "Actual complete documentary delta: 15 hash-bound Markdown/JSON files plus source-review-manifest itself; final-independent-review.json excluded by the manifest. No native candidate, runtime admission or production qualification.",
+  "file_set_check": {
+    "status": "PASS",
+    "actual_delta_files": 16,
+    "missing": [],
+    "extra": [],
+    "modes_and_regular_file_types": "PASS"
+  },
+  "checks": {
+    "source_manifest_rehash": {
+      "status": "PASS",
+      "files": 15
+    },
+    "private_input_manifest_rehash": {
+      "status": "PASS",
+      "files": 34
+    },
+    "production_source_rehash": {
+      "status": "PASS",
+      "files": 314,
+      "changed": []
+    },
+    "protected_paths_rehash": {
+      "status": "PASS",
+      "files": 8,
+      "details": "PKGBUILD, cumulative patch, AGENTS.md, UX.md, PACKAGING.md, /usr/bin/sway, installed wlroots and SceneFX match before/after receipts"
+    },
+    "raw_command_logs": {
+      "status": "PASS",
+      "commands": 5,
+      "stdout_stderr_files": 10,
+      "all_hashes_match": true,
+      "exit_codes": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "graphics": "20 methods, 15 ok, 5 errors: missing historical owner/events/saved files",
+      "gpu_fixture": "4 model methods ok; RuntimeValidator setUpClass EDQUOT errno 122; runtime-validator methods not run",
+      "gpu_replay": "0 methods; setUpClass missing epoch-1.meta",
+      "native": "5 methods, 3 ok, 1 failure, 1 error; empty aggregate differs from (821,789,32); missing overnight log",
+      "legacy_auditor": "traceback on missing minimal-core closeout.json; requested result absent"
+    },
+    "links": {
+      "status": "PASS",
+      "local_targets": 334
+    },
+    "markers": {
+      "status": "PASS",
+      "count": 34,
+      "source": "results.json compared with exact report markers"
+    },
+    "whitespace": {
+      "status": "PASS",
+      "git_diff_check_rc": 0,
+      "new_file_checks": 10,
+      "new_file_no_index_raw_rc": 1,
+      "diagnostics": [],
+      "note": "no-index rc1 indicates differing content; no whitespace diagnostic"
+    },
+    "absence_and_budget": {
+      "status": "PASS",
+      "historical_required_labs_absent": true,
+      "initial_home_lab_absent": true,
+      "private_lab_sockets": 0,
+      "reserved_runs": 0,
+      "builds": 0,
+      "stages": 0,
+      "captures": 0
+    },
+    "primary_gpu_references": {
+      "status": "PASS_WITH_DOCUMENTED_SCOPE",
+      "local_xml_files_rehashed": 4,
+      "glsl_reference": "https://registry.khronos.org/OpenGL/specs/es/3.2/GLSL_ES_Specification_3.20.html",
+      "scope": "Prospective precision limits only; actual G1 shader/hook/context applicability remains NOT_PROVEN"
+    }
+  },
+  "coverage": {
+    "canonical_documentation": "Additions consistently preserve authority order, STEP20C NEXT, production multi-output NOT_YET_SUPPORTED, OOM UNDECIDED and no production authority.",
+    "correctness_and_scientific_identity": "Historical identities and outcomes are REPORTED; installed wlroots independently rehashed; no invented CORE-C/O1/G2 identity or transfer of previous runtime evidence.",
+    "frozen_contract": "Full actual delta matches manifest; historical files unchanged; pre-review markers explicitly frozen snapshots and later receipts separate.",
+    "api_abi": "No production source/header/build/package changes; no public ABI or dependency change. Candidate ABI/ELF/stage checks explicitly NOT_RUN.",
+    "ownership_lifetime_resources": "No new operational code; factory/embedded-root/NULL/listener/reparent/destroy/saved/OOM proofs explicitly absent. Existing graphics test main uses mocked Session/start/subprocess/killpg; offline checks do not establish native lifecycle.",
+    "process_lifecycle": "No reviewer compositor/IPC/build command. Budget has no reservations or runs; no lab socket. Process continuity expressly not measured; no claim upgraded from current process snapshot.",
+    "persistence": "Relocation explains old argv paths; hashes bind private receipts available at review time. Temporary raw-log retention limitation is explicit.",
+    "determinism_malformed_input_complexity": "No new executable behavior to regress. Hashes/markers agree; new admission/adversarial/native malformed-input tests remain NOT_RUN. Historical C memory costs are not a measured CORE-C complexity result.",
+    "tests": "Current failures faithfully preserved. No missing runtime test is concealed or required for acceptance of a documentary BLOCKED handoff. No old failing suite rerun during review."
+  },
+  "findings": [
+    {
+      "id": "N1",
+      "classification": "NON_BLOCKING",
+      "path": "docs/design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md",
+      "line": 11,
+      "finding": "Raw current test logs and the four primary XML copies are retained only in a temporary /tmp LAB. Their future availability is not guaranteed; hashes alone cannot recreate lost bytes.",
+      "evidence": "All 34 private manifest entries are present and rehashed now. The report explicitly states temporary retention and no reconstructible kit.",
+      "required_correction": false,
+      "disposition": "Accepted, disclosed persistence limit of this documentary publication; no recovery or new archive requirement imposed."
+    }
+  ],
+  "classification_counts": {
+    "BLOCKING": 0,
+    "NON_BLOCKING": 1,
+    "FUTURE_SCOPE": 0
+  },
+  "review_actions": {
+    "commands": "Read-only git status/branch/log/diff; cat/sed/rg source and receipt inspection; Python -B rehash/file-set/link/marker checks; git diff --check and git diff --no-index --check; primary Khronos reference lookup.",
+    "new_runtime_tests": "NOT_RUN",
+    "new_builds": "NOT_RUN",
+    "native_sanitizers": "NOT_RUN",
+    "missing_data_suites_reexecuted": false,
+    "repository_edits": false,
+    "git_mutations": false,
+    "live_IPC": false,
+    "compositors_launched": false,
+    "sole_created_output": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi/reviews/final-independent-review.json"
+  },
+  "publication_eligibility": {
+    "documentary_delta_only": true,
+    "production_or_runtime": false,
+    "conditions": "Preserve these exact reviewed bytes; byte-copy this reviewer receipt only to the excluded public receipt path. Normal publication and post-push remote verification belong to separate actual receipts; this review does not attest a commit/push."
+  },
+  "remaining_scientific_status": {
+    "overall_ticket": "BLOCKED",
+    "recommendation": "UNDECIDED",
+    "STEP20C": "NEXT",
+    "PRODUCTION_MULTI_OUTPUT": "NOT_YET_SUPPORTED",
+    "PRODUCTION_AUTHORIZED": false
+  },
+  "limitations": "Read-only audit of available evidence, not reconstruction of deliberately deleted historical LABs. Missing raw historical artifacts remain unverified; no runtime or production PASS is granted."
+}

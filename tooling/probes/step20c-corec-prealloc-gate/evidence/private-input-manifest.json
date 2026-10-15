@@ -1,0 +1,176 @@
+{
+  "lab": "/tmp/swayfx-mosaic-corec-prealloc-hm3xzpzi",
+  "scope": "New ticket receipts and raw offline command logs only; none of the missing historical lab contents",
+  "entries": [
+    {
+      "path": "audit/admission-closed.txt",
+      "bytes": 49,
+      "sha256": "d857f0fb4245ebca628f91f8f98d149535cedb14714fa64a3a2f60bca62e4c3c"
+    },
+    {
+      "path": "audit/evidence-before-review-manifest.json",
+      "bytes": 5943,
+      "sha256": "041c4f70fbd66d911aa5e4ae5c99231fdc0512c959bd5f0a2df08ae414759640"
+    },
+    {
+      "path": "audit/gate-a.json",
+      "bytes": 1628,
+      "sha256": "9950fce481309bfaef9b19b8ebf68048a29fdf888590fb15390480268af2c5b2"
+    },
+    {
+      "path": "audit/git-initial.json",
+      "bytes": 242,
+      "sha256": "0b2566a38fbd2c3a063d393764a08c469cc3bd320d897f91c50b3f906cdbf494"
+    },
+    {
+      "path": "audit/gpu-discovery.json",
+      "bytes": 7391,
+      "sha256": "8b11c49742dab1ea8d62118e0c9a1f57152e7ce2a26fa6f554144de188b4347d"
+    },
+    {
+      "path": "audit/initial-safety.json",
+      "bytes": 45745,
+      "sha256": "27c914c9f04a70adfb5a08bfd2c9dd028fde3ff8ce16dbaf2328e3bf88da9bf1"
+    },
+    {
+      "path": "audit/khronos-primary-sources.json",
+      "bytes": 1212,
+      "sha256": "5bec3ea98f5a582a36b3348954bfe5ca37724738cfd42e3453955bca98bac95b"
+    },
+    {
+      "path": "audit/khronos-sources.json",
+      "bytes": 583,
+      "sha256": "79fe64ea33e8c9be7e7985cecaeae183250850e0eebb5951c87bdf004851b40a"
+    },
+    {
+      "path": "audit/offline-temp-cleanup.json",
+      "bytes": 507,
+      "sha256": "5a97a9ac7653dbb8b8a92075a8a970d72524a6ccd776eb0b94d96aae18672049"
+    },
+    {
+      "path": "audit/relocation.json",
+      "bytes": 445,
+      "sha256": "07987fec2af99084e1a17cf93b092095d39a59d974b9c515a5de121375daa111"
+    },
+    {
+      "path": "audit/safety-before-review.json",
+      "bytes": 2716,
+      "sha256": "9c0fc1843c7d86fbaa2b8ce2d81d0ba5795b9258c38edfeea91da2c69d511e47"
+    },
+    {
+      "path": "audit/source-discovery-correction.json",
+      "bytes": 300,
+      "sha256": "a56bbe0c957a35fe97a1bf3fb94a604f7b542dac228e3ee90ab3a43521428aec"
+    },
+    {
+      "path": "audit/source-discovery-original.json",
+      "bytes": 5996,
+      "sha256": "ada0f00febd21c577a8c381239fc2845b88fd7c93d092e02efd74ed356af7bed"
+    },
+    {
+      "path": "audit/user-input.json",
+      "bytes": 219,
+      "sha256": "f41aa22316f8d785867fe45b44be264c1889da494262532f7dba5e7dbddc2200"
+    },
+    {
+      "path": "budget.json",
+      "bytes": 1588,
+      "sha256": "67752228091328554bc6ecab6cc30397b08779f935a24bb28aa7d05fc9e0d797"
+    },
+    {
+      "path": "inputs/glGetError.xml",
+      "bytes": 7199,
+      "sha256": "ea8d403f39f142c8b2ca9307febd0f7baf15427fac6fa755722b9cf6de44e9df"
+    },
+    {
+      "path": "inputs/glGetShaderPrecisionFormat.xml",
+      "bytes": 5933,
+      "sha256": "628c8393230ea003fe1cc0aca57bee4c62be7cf5b6a0d2d754c71d07d90f24ef"
+    },
+    {
+      "path": "inputs/glGetUniform.xml",
+      "bytes": 8303,
+      "sha256": "71c2972674a2cd8d5c401ea5632616e282d167235d9b8ae79234bee6aecaee14"
+    },
+    {
+      "path": "inputs/glReadPixels.xml",
+      "bytes": 33095,
+      "sha256": "95748aa75385deaaeb1c415612e89848fea6897d1f35e5c18223181a96f141bf"
+    },
+    {
+      "path": "inputs/ticket.json",
+      "bytes": 194,
+      "sha256": "9a2ac605678bb344e572a5312ca860d96352116dcedf8dae9803b85fcc457024"
+    },
+    {
+      "path": "inputs/ticket.md",
+      "bytes": 37660,
+      "sha256": "5d6794802a838f17dfdd8c941d9f524d072d1787958a132116bdc1f492f4d1ee"
+    },
+    {
+      "path": "owner.json",
+      "bytes": 323,
+      "sha256": "6927384bdccc997b26b6f674aa6a6a16c3d94d0ed8e48ced97e232ca381ebe37"
+    },
+    {
+      "path": "tests/documentary-validation.json",
+      "bytes": 2850,
+      "sha256": "f375049bbdae8392e59fcafcf805031a6580a096f3f61ce77a45a1589d3178ec"
+    },
+    {
+      "path": "tests/gpu-fixture.stderr.txt",
+      "bytes": 1208,
+      "sha256": "0bea73e35442b8302edc121e357430b7249363a91d639fd23043f5bd1e955638"
+    },
+    {
+      "path": "tests/gpu-fixture.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/gpu-replay.stderr.txt",
+      "bytes": 1374,
+      "sha256": "2b86443c5229222175584385bc2234dccdab6d1def2ba6e0668c9f163980a5b5"
+    },
+    {
+      "path": "tests/gpu-replay.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/graphics.stderr.txt",
+      "bytes": 9789,
+      "sha256": "6d2503554ff1228008ad9414edec0f775843b986de05c89c791d97819efe2106"
+    },
+    {
+      "path": "tests/graphics.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/legacy-audit.stderr.txt",
+      "bytes": 1335,
+      "sha256": "bc133e3b7ba41d3ae6838b825240409a0cc4c05c3cd21b20a3ede751a00a4225"
+    },
+    {
+      "path": "tests/legacy-audit.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/native.stderr.txt",
+      "bytes": 2450,
+      "sha256": "347cba4722be98c4922dd538328b4ee692f478014b8c96a7d611a9b19ad0ee0c"
+    },
+    {
+      "path": "tests/native.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/offline-commands.json",
+      "bytes": 4979,
+      "sha256": "b94d7169d8e2638a8637df107d7251d1fd6337fd08bac1997f973ee4bd5e794f"
+    }
+  ]
+}

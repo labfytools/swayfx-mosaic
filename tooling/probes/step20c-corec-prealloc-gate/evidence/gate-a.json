@@ -1,0 +1,41 @@
+{
+  "COREC_CONTRACTS_AND_HISTORICAL_EVIDENCE": "BLOCKED",
+  "required_seal": [
+    {
+      "path": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/closeout-manifest.json",
+      "expected_sha256": "5bd327e106c48ae92d3b00d77041a11b78aec1fbf0e405d27e0ae52e256c7cd4",
+      "errno": 2,
+      "error": "[Errno 2] No such file or directory: '/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/closeout-manifest.json'"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/closeout.json",
+      "expected_sha256": "4281fa76a6e9e8077378c4b772ddd92a5e23dbee225f57b221ae996f93c6e71e",
+      "errno": 2,
+      "error": "[Errno 2] No such file or directory: '/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/closeout.json'"
+    },
+    {
+      "path": "/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/publication-receipt.json",
+      "expected_sha256": "300ac4f7a7a0abdcf6406c41e4a86daac56be2df64da7fe017b252987f518d7d",
+      "errno": 2,
+      "error": "[Errno 2] No such file or directory: '/home/fy59/swayfx-mosaic-core-recovery-qmhckba5/publication-receipt.json'"
+    }
+  ],
+  "entries_expected": 979,
+  "files_expected": 916,
+  "entries_reverified": 0,
+  "files_reverified": 0,
+  "old_runs_reported": 9,
+  "old_captures_reported": 102,
+  "runtime_revalidation": "NOT_RUN",
+  "reason": "user confirmed historical labs deleted",
+  "budget": {
+    "runs": 0,
+    "output_captures": 0,
+    "source_marker_png": 0,
+    "scenefx_builds": 0,
+    "mosaic_builds": 0,
+    "stages": 0
+  },
+  "admission_negative_tests": "NOT_RUN: no admissible frozen runtime inputs, reviewer or launcher",
+  "native_COREC_tests": "NOT_RUN"
+}
