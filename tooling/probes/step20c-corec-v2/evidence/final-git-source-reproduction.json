@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "source_commit": "9d4e7942f5a45b4be37ba75682cd146a58295659",
+  "archive_sha256": "0a28d4b9cb186454f23e9125fa1f594ad7bb168a5562af8df666e57b2f14a96c",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-kit/tooling/probes/step20c-corec-v2/assemble.py",
+        "--project-git",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "--scene-git",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/sources/scenefx.git",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-repro-core"
+      ],
+      "exit": 0,
+      "log_sha256": "9dc570fa367c2b71cd44ec78c46fc83b3f3484584c9047cf47287c84258a694b"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-kit/tooling/probes/step20c-corec-v2/verify.py",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-repro-core"
+      ],
+      "exit": 0,
+      "log_sha256": "2bb2d634194772d28cced35b57e9a56a9054d15f530c47352d6c48efcf21920a"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-kit/tooling/probes/step20c-corec-v2/oom/assemble-variant.py",
+        "--core",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-repro-core",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-repro-oom"
+      ],
+      "exit": 0,
+      "log_sha256": "a7f3cf3d706edee3375ce77239c97a31dfa4d79a7228b2d00931093951eab315"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-kit/tooling/probes/step20c-corec-v2/gpu/reproduce.py",
+        "--core",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-repro-core/scene",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-repro-gpu",
+        "--work",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-repro-work"
+      ],
+      "exit": 0,
+      "log_sha256": "7e794b1a1095bb6c71d3351e94ff1c1d289e2df4b8c64d7e43e2020952001331"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/final-git-kit/tooling/probes/step20c-corec-v2/graphics/validate_offline.py",
+        "--lab",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po",
+        "--gpu-source-manifest",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/results/gpu-source-freeze-corrected.json"
+      ],
+      "exit": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "checks": {
+    "final-git-repro-core/scene": {
+      "files": 85,
+      "exact_bytes_and_modes": true
+    },
+    "final-git-repro-core/mosaic": {
+      "files": 417,
+      "exact_bytes_and_modes": true
+    },
+    "final-git-repro-oom/scene": {
+      "files": 86,
+      "exact_bytes_and_modes": true
+    },
+    "final-git-repro-oom/mosaic": {
+      "files": 417,
+      "exact_bytes_and_modes": true
+    },
+    "final-git-repro-gpu": {
+      "files": 87,
+      "exact_bytes_and_modes": true
+    }
+  },
+  "offline_tests": "48/48 PASS from committed Git extraction",
+  "new_native_builds": 0,
+  "new_native_runs": 0,
+  "budget_sha256": "dfe1897e255ca5a96b7b66b0af0728acdffdf3ddf397a3fa3c6b1011b07c9db6"
+}

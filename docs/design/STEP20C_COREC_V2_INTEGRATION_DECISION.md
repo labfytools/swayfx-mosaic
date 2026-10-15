@@ -56,7 +56,8 @@ Les commits source-only suivants étaient publiés normalement sur `origin`
 - `c0a822a0799ef024727b4a51a7442b8626223a69` : fixtures headless revues ;
 - `bf00b0b0ed3e20bfb7c68d2fbbe6553594f3167a` : diagnostics OOM/G2 revus.
 
-Le dernier kit compte 105 fichiers, environ 1,18 Mo. La reproduction depuis
+Le kit publié à bf00b0b0 compte 105 fichiers, environ 1,18 Mo ; les reçus
+de clôture et le correctif du test offline sont conservés ensuite séparément. La reproduction depuis
 une archive Git vierge (`results/git-next-kit-reproduction.json`) vérifie les
 octets et modes des arbres CORE SceneFX/Mosaic 85/417 fichiers, OOM 86/417,
 GPU SceneFX 87 ; une reconstruction CORE indépendante avec fetch public avait
@@ -64,15 +65,18 @@ déjà été acceptée. Cela prouve **EXACT_FOR_NEW_TREE**, sans garantir un bin
 reproductible bit à bit. La [recette de build](../../tooling/probes/step20c-corec-v2/BUILD_RECIPE.md)
 décrit les prérequis et les limites.
 
-La publication documentaire finale reste à sceller par le closeout final ;
-aucun SHA futur n'est inventé ici. Le contrôle système pré-final confirme
+La publication documentaire a été vérifiée directement sur origin puis github
+au commit `9d4e7942f5a45b4be37ba75682cd146a58295659`. Son extraction Git
+vierge reproduit aussi CORE/OOM/GPU exactement et passe 48 tests offline.
+Le closeout externe scelle l'inventaire final et la présente mise à jour
+administrative, sans référence circulaire à son propre futur SHA. Le contrôle système pré-final confirme
 les huit hashes protégés, le PID Sway quotidien 2325, son exécutable
 `/usr/bin/sway` et son startticks 2833 inchangés par lecture seule. Tous les
 PIDs privés vérifiés sont absents ; aucun `/tmp/smx-*` ne reste. Les huit
 premières entrées du ledger sont structurellement identiques aux reçus initiaux.
-À cette édition, `bf00b0b0ed3e20bfb7c68d2fbbe6553594f3167a` est la dernière
-publication vérifiée. Ce dossier ne prétend pas déjà publié sous son propre
-futur commit.
+Les observations de publication sont conservées dans
+evidence/documentary-publication.json ; elles portent sur ce commit réellement
+interrogé, pas sur un SHA futur.
 
 ## 2. Contrat technique V2 et audit C
 
@@ -407,8 +411,8 @@ Les anciennes preuves perdues ne sont pas récupérées par cette procédure.
 
 Les PASS suivants désignent les gates bornées réellement validées, jamais
 STEP20C production. L'audit HOME/protections pré-final et la revue globale indépendante sont
-acceptés. La publication documentaire finale doit encore être liée à ses
-observations directes de remotes dans les reçus de clôture.
+acceptés. La publication documentaire est liée aux observations directes des
+deux remotes au commit 9d4e7942 ; les reçus de clôture conservent le SHA final.
 
 ```text
 COREC_V2_STORAGE_GATE=PASS
@@ -452,7 +456,7 @@ COREC_V2_GPU_COMPLETION=NOT_PROVEN
 COREC_V2_ATOMIC_GENERATION=NOT_PROVEN
 COREC_V2_REPRODUCIBLE_KIT=PASS
 COREC_V2_INDEPENDENT_REVIEW=ACCEPTED
-COREC_V2_DOCUMENTARY_PUBLICATION=PARTIAL
+COREC_V2_DOCUMENTARY_PUBLICATION=PASS
 COREC_V2_HOME_CLEAN=PASS
 SWAYFX_MOSAIC_STEP20C_REBUILD_FROM_GIT_COREC_OOM_GPU_NIGHT_SHIFT_V1=PARTIALLY_ADVANCED
 ```
@@ -549,7 +553,8 @@ jeton O1 et le ledger sont inchangés, le jeton factice existant est refusé.
 L'échec initial reste conservé. Les reçus reviews/offline-post-run-delta-review.json
 et reviews/final-global-review.json sont matérialisés explicitement par le
 parent depuis les retours structurés des reviewers en lecture seule. La revue
-globale est ACCEPTED sans blocage ; la publication reste à sceller.
+globale est ACCEPTED sans blocage ; la publication documentaire est vérifiée
+au commit 9d4e7942. Le scellement externe conserve ensuite l'inventaire final.
 
 Les autres validations finales transmises à cette édition réussissent : AST
 des 43 Python, C17 fullscreen/G2, cinq bindings, manifests historiques
