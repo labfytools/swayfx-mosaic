@@ -1,0 +1,155 @@
+--- a/render/fx_renderer/g2_gl.h
++++ b/render/fx_renderer/g2_gl.h
+@@ -1,4 +1,4 @@
+-/* G2 new source-only intrusive diagnostic. No production API. */
++/* G3 private admission delta; G2 hook symbols retained. No production API. */
+ #ifndef G2_GL_H
+ #define G2_GL_H
+ #include <EGL/egl.h>
+@@ -18,8 +18,9 @@
+ };
+ struct g2_sample {
+  EGLContext context; EGLint client_version; EGLenum api;
+- char version[160]; struct g2_state before, after;
+- struct g2_errors pre, query, read, restore;
++ EGLDisplay display; char version[160], glsl[160]; GLint major, minor;
++ bool capability_queried, version_queried, state_saved, bound, read_attempted, restore_attempted; struct g2_state before, after;
++ struct g2_errors pre, version_errors, capability, state_errors, query, read, restore;
+  GLint object_type, object, level, width, height, format, channels[4];
+  GLint read_buffer, samples; GLenum status; size_t bytes; unsigned char *pixels;
+  bool success; const char *reason;
+@@ -64,29 +65,44 @@
+  glPixelStorei(GL_PACK_SKIP_ROWS,s->skip_rows);
+  glPixelStorei(GL_PACK_SKIP_PIXELS,s->skip_pixels);
+ }
+-/* Called with the actual current native target. ES2 is explicitly unsupported:
+- * no ES3-only enum is ever queried before both EGL and GL attest ES3.
+- * Only native RBO color attachments are accepted. Texture attachments retain
+- * type/name/level, but safe dimensions on this pinned API are NOT_PROVEN.
+- * Error queue consumption and synchronous readback cannot be restored. */
++/* WHY: EGL creation allows a newer compatible ES context (§3.7.1), while
++ * EGL's context query describes supported version (§3.7.4). Preserve any
++ * EGL/GL divergence as evidence; never relabel EGL as a creation request.
++ * CONTRACT: attest bounded GL_VERSION first, then safely query ES3 enums.
++ * INVARIANT: only ES 3.0..3.2 native RBO reads; no shader or error-queue neutrality. */
++static bool g2_version(const char *v, GLint *minor) {
++ if(!v || strnlen(v,160)>=160 || strncmp(v,"OpenGL ES 3.",12))return false;
++ if(v[12]<'0' || v[12]>'2' || (v[13] && v[13]!=' '))return false;
++ for(size_t i=13;v[i];i++)if((unsigned char)v[i]<32 || (unsigned char)v[i]>126)return false;
++ *minor=v[12]-'0';return true;
++}
+ static struct g2_sample g2_read(GLuint fbo,int width,int height,size_t used) {
+- struct g2_sample s={.reason="NOT_PROVEN"}; bool saved=false, changed=false;
+- s.context=eglGetCurrentContext(); s.api=eglQueryAPI();
+- if(s.context==EGL_NO_CONTEXT || s.api!=EGL_OPENGL_ES_API) {s.reason="UNKNOWN_CONTEXT"; return s;}
+- if(!eglQueryContext(eglGetCurrentDisplay(),s.context,EGL_CONTEXT_CLIENT_VERSION,&s.client_version)) {
++ struct g2_sample s={.reason="NOT_PROVEN"};
++ s.context=eglGetCurrentContext(); s.api=eglQueryAPI(); s.display=eglGetCurrentDisplay();
++ if(s.context==EGL_NO_CONTEXT || s.display==EGL_NO_DISPLAY || s.api!=EGL_OPENGL_ES_API) {s.reason="UNKNOWN_CONTEXT"; return s;}
++ if(!eglQueryContext(s.display,s.context,EGL_CONTEXT_CLIENT_VERSION,&s.client_version)) {
+   s.reason="EGL_QUERY_FAILED"; return s;
+  }
+  s.pre=g2_drain(); if(!g2_clean(s.pre)) {s.reason="PREEXISTING_GL_ERRORS"; return s;}
++ s.version_queried=true;
+  const char *v=(const char *)glGetString(GL_VERSION);
+- if(v) snprintf(s.version,sizeof(s.version),"%s",v);
+- s.query=g2_drain(); if(!g2_clean(s.query)) {s.reason="VERSION_QUERY_ERROR"; return s;}
+- if(s.client_version<3 || !v || strncmp(v,"OpenGL ES 3.",12)!=0) {
++ if(v && strnlen(v,sizeof(s.version))<sizeof(s.version))snprintf(s.version,sizeof(s.version),"%s",v);
++ s.version_errors=g2_drain(); if(!g2_clean(s.version_errors)) {s.reason="VERSION_QUERY_ERROR"; return s;}
++ GLint parsed_minor=0;
++ if(s.client_version<2 || s.client_version>3 || !g2_version(v,&parsed_minor)) {
+   s.reason="GLES_STATE_NOT_SUPPORTED"; return s;
+  }
++ s.capability_queried=true;
++ glGetIntegerv(GL_MAJOR_VERSION,&s.major);glGetIntegerv(GL_MINOR_VERSION,&s.minor);
++ const char *glsl=(const char *)glGetString(GL_SHADING_LANGUAGE_VERSION);
++ if(glsl && strnlen(glsl,sizeof(s.glsl))<sizeof(s.glsl))snprintf(s.glsl,sizeof(s.glsl),"%s",glsl);
++ s.capability=g2_drain();
++ if(!g2_clean(s.capability)) {s.reason="CAPABILITY_QUERY_ERROR";return s;}
++ if(s.major!=3 || s.minor!=parsed_minor || !s.glsl[0]) {s.reason="VERSION_INCONSISTENT";return s;}
+  if(!g2_size(width,height,used,&s.bytes)) {s.reason="RAW_BUDGET_OR_OVERFLOW"; return s;}
+- g2_state_get(&s.before); s.query=g2_drain();
+- if(!g2_clean(s.query)) {s.reason="STATE_QUERY_ERROR"; return s;}
+- saved=true; changed=true;
++ g2_state_get(&s.before); s.state_errors=g2_drain();
++ if(!g2_clean(s.state_errors)) {s.reason="STATE_QUERY_ERROR"; return s;}
++ s.state_saved=true; s.bound=true;
+  glBindFramebuffer(GL_READ_FRAMEBUFFER,fbo);
+  glGetFramebufferAttachmentParameteriv(GL_READ_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,
+   GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE,&s.object_type);
+@@ -118,14 +134,16 @@
+  s.query=g2_drain(); if(!g2_clean(s.query)) {s.reason="PACK_QUERY_ERROR"; goto done;}
+  s.pixels=malloc(s.bytes); if(!s.pixels) {s.reason="ALLOCATION_FAILED"; goto done;}
+  /* glReadPixels returns void. NO alpha sentinel or file hash success gate. */
++ s.read_attempted=true;
+  glReadPixels(0,0,width,height,GL_RGBA,GL_UNSIGNED_BYTE,s.pixels);
+  s.read=g2_drain();
+  if(!g2_clean(s.read)) {s.reason="READ_GL_ERROR"; goto done;}
+  s.success=true; s.reason="READ_SUCCESS";
+  done:
+- if(saved && changed) {
++ if(s.state_saved && s.bound) {
++  s.restore_attempted=true;
+   g2_state_restore(&s.before); g2_state_get(&s.after); s.restore=g2_drain();
+-  if(!g2_clean(s.restore) || memcmp(&s.before,&s.after,sizeof(s.before)) || eglGetCurrentContext()!=s.context) {
++  if(!g2_clean(s.restore) || memcmp(&s.before,&s.after,sizeof(s.before)) || eglGetCurrentContext()!=s.context || eglGetCurrentDisplay()!=s.display || eglQueryAPI()!=s.api) {
+    s.success=false; s.reason="RESTORE_FAILED";
+   }
+  }
+--- a/render/fx_renderer/g2_native.h
++++ b/render/fx_renderer/g2_native.h
+@@ -1,4 +1,4 @@
+-/* PRIVATE G2. Included only by the new diagnostic fx_pass.c. */
++/* PRIVATE G3 admission; G2 symbols/hooks preserved. No public API. */
+ #ifndef G2_NATIVE_H
+ #define G2_NATIVE_H
+ #include "g2_gl.h"
+@@ -10,7 +10,10 @@
+ #include <wlr/render/dmabuf.h>
+ #include <drm_fourcc.h>
+ #include <wlr/types/wlr_buffer.h>
+-#define G2_ROOT "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/gpu-work/acquisition"
++#ifndef G3_ROOT
++#error "Define G3_ROOT as the reviewed new LAB acquisition path"
++#endif
++#define G2_ROOT G3_ROOT
+ static struct {
+  bool stopped, active; unsigned epoch, point; size_t used;
+  int dir; FILE *meta; const void *pass, *output;
+@@ -70,7 +73,7 @@
+ static bool g2_owned(int fd,mode_t mode) {struct stat s;return fstat(fd,&s)==0 && s.st_uid==geteuid() && (s.st_mode&0777)==mode;}
+ static bool g2_open(void) {
+  if(g2.dir>=0)return true;
+- const char *d=getenv("MOSAIC_G2_DIR"),*nonce=getenv("MOSAIC_G2_NONCE"); char real[PATH_MAX];
++ const char *d=getenv("MOSAIC_G3_DIR"),*nonce=getenv("MOSAIC_G3_NONCE"); char real[PATH_MAX];
+  if(!d || !nonce)return false;
+  if(strlen(nonce)!=64 || !realpath(d,real) || strcmp(real,G2_ROOT) || strcmp(d,G2_ROOT)) {g2.stopped=true;return false;}
+  for(unsigned i=0;i<64;i++)if(!((nonce[i]>='0'&&nonce[i]<='9')||(nonce[i]>='a'&&nonce[i]<='f'))) {g2.stopped=true;return false;}
+@@ -96,10 +99,15 @@
+  if(!g2_dmabuf_supported(b)) {g2_fail("DMABUF_METADATA_UNSUPPORTED");return;}
+  struct g2_sample s=g2_read(b->fbo,b->buffer->width,b->buffer->height,g2.used);
+  fprintf(g2.meta,"{\"kind\":\"sample\",\"epoch\":%u,\"pass_sequence\":%"PRIuPTR",\"point\":%u,\"stage\":\"%s\",\"context\":\"%"PRIxPTR"\",\"api\":%u,\"client_version\":%d,\"result\":\"%s\",\"bytes\":%zu,\"attachment\":[%d,%d,%d,%d,%d,%d],\"channels\":[%d,%d,%d,%d],\"status\":%u",g2.epoch,g2.pass_sequence,point,g2_names[point],(uintptr_t)s.context,s.api,s.client_version,s.reason,s.bytes,s.object_type,s.object,s.level,s.width,s.height,s.format,s.channels[0],s.channels[1],s.channels[2],s.channels[3],s.status);
+- fprintf(g2.meta,",\"read_buffer\":%d,\"samples\":%d",s.read_buffer,s.samples);
++ fprintf(g2.meta,",\"read_success\":%s,\"read_buffer\":%d,\"samples\":%d",s.success?"true":"false",s.read_buffer,s.samples);
+  fputs(",\"gl_version_hex\":\"",g2.meta);for(size_t i=0;i<strlen(s.version);i++)fprintf(g2.meta,"%02x",(unsigned char)s.version[i]);fputc('"',g2.meta);
+  g2_error_json("pre_errors",s.pre);g2_error_json("query_errors",s.query);g2_error_json("read_errors",s.read);g2_error_json("restore_errors",s.restore);
+- g2_state_json("before",&s.before);g2_state_json("after",&s.after);g2_native_object(b);g2_region(region);
++ fprintf(g2.meta,",\"version_queried\":%s,\"state_saved\":%s,\"bound\":%s,\"read_attempted\":%s,\"restore_attempted\":%s",s.version_queried?"true":"false",s.state_saved?"true":"false",s.bound?"true":"false",s.read_attempted?"true":"false",s.restore_attempted?"true":"false");
++ if(s.capability_queried)fprintf(g2.meta,",\"gl_major\":%d,\"gl_minor\":%d",s.major,s.minor);else fputs(",\"gl_major\":null,\"gl_minor\":null",g2.meta);
++ fputs(",\"glsl_hex\":\"",g2.meta);for(size_t i=0;i<strlen(s.glsl);i++)fprintf(g2.meta,"%02x",(unsigned char)s.glsl[i]);fputc('"',g2.meta);
++ g2_error_json("version_errors",s.version_errors);g2_error_json("capability_errors",s.capability);g2_error_json("state_errors",s.state_errors);
++ if(s.state_saved)g2_state_json("before",&s.before);else fputs(",\"before\":null",g2.meta);
++ if(s.restore_attempted)g2_state_json("after",&s.after);else fputs(",\"after\":null",g2.meta);g2_native_object(b);g2_region(region);
+  if(!s.success) {fputs("}\n",g2.meta);free(s.pixels);g2_fail(s.reason);return;}
+  char name[64];snprintf(name,sizeof(name),"epoch-%u-point-%u.rgba",g2.epoch,point);
+  int fd=openat(g2.dir,name,O_WRONLY|O_CREAT|O_EXCL|O_NOFOLLOW|O_CLOEXEC,0600);
+@@ -171,7 +179,7 @@
+  g2.epoch=e;g2.point=0;g2.pass=pass;g2.pass_sequence++;g2.active=true;
+  snprintf(meta,sizeof(meta),"epoch-%u.jsonl",e);fd=openat(g2.dir,meta,O_WRONLY|O_CREAT|O_EXCL|O_NOFOLLOW|O_CLOEXEC,0600);
+  if(fd<0 || !(g2.meta=fdopen(fd,"w"))) {if(fd>=0)close(fd);g2.stopped=true;g2.active=false;return;}
+- fprintf(g2.meta,"{\"kind\":\"begin\",\"schema\":\"G2-new-v1\",\"epoch\":%u,\"label\":\"%s\",\"nonce\":\"%s\",\"output\":\"HEADLESS-1\",\"pass\":\"%"PRIxPTR"\",\"offscreen_output_key\":\"%"PRIxPTR"\",\"intrusive_error_queue\":true,\"error_queue_restorable\":false,\"readback_may_synchronize\":true,\"rows\":\"GL_LOW_TO_HIGH\",\"present_buffer\":\"NOT_PROVEN\",\"gpu_completion\":\"NOT_PROVEN\",\"lifetime\":\"NOT_PROVEN\"}\n",e,e==1?"A":e==2?"B":"A-return",g2.nonce,(uintptr_t)pass,(uintptr_t)pass->fx_offscreen_buffers);
++ fprintf(g2.meta,"{\"kind\":\"begin\",\"schema\":\"G3-followup-v1\",\"epoch\":%u,\"label\":\"%s\",\"nonce\":\"%s\",\"output\":\"HEADLESS-1\",\"pass\":\"%"PRIxPTR"\",\"offscreen_output_key\":\"%"PRIxPTR"\",\"intrusive_error_queue\":true,\"error_queue_restorable\":false,\"readback_may_synchronize\":true,\"rows\":\"GL_LOW_TO_HIGH\",\"present_buffer\":\"NOT_PROVEN\",\"gpu_completion\":\"NOT_PROVEN\",\"lifetime\":\"NOT_PROVEN\"}\n",e,e==1?"A":e==2?"B":"A-return",g2.nonce,(uintptr_t)pass,(uintptr_t)pass->fx_offscreen_buffers);
+  if(options->blur_data->num_passes!=3 || options->blur_strength!=1.0f || blur_data_should_parameters_blur_effects(options->blur_data)) {g2_fail("NON_PROSPECTIVE_BLUR_CONFIGURATION");return;}
+  g2_sample_native(pass,source,0,options->tex_options.base.clip);
+ }
