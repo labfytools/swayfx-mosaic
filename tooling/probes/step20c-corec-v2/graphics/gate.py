@@ -66,7 +66,13 @@ class Ledger:
  def admit(self,rid,manifest,review,publication):
   auth=validate_review(self.lab,manifest,review,publication,rid,offline=self.offline)
   def reserve(d):
-   spec=RUNS[rid];need(not any(r["id"]==rid for r in d["runs"]),"consumed run")
+   spec=RUNS[rid]
+   # WHY/CONTRACT/INVARIANT: O2 is dependent evidence, never a retry after O1
+   # availability or invariant failure. Missing/unfinished O1 blocks admission.
+   if rid=='O2':
+    prior=[r for r in d['runs'] if r['id']=='O1']
+    need(len(prior)==1 and prior[0]['status']=='COMPLETED' and prior[0].get('outcome',{}).get('status')=='PARTIALLY_FEASIBLE',"O1 critical/unresolved failure blocks O2")
+   need(not any(r["id"]==rid for r in d["runs"]),"consumed run")
    need(len(d["runs"])<14 and sum(r["capture_limit"] for r in d["runs"])+spec["capture_limit"]<=180,"global budget")
    token=uuid.uuid4().hex;r=dict(id=rid,token=token,started_ns=time.monotonic_ns(),capture_limit=spec["capture_limit"],action_limits=spec["action_limits"],actions={},status="RESERVED",bindings=auth)
    d["runs"].append(r);return dict(auth,token=token,run_id=rid,lab=str(self.lab),offline=self.offline),d
@@ -98,7 +104,21 @@ def validate_review(lab,manifest,review,publication,rid,offline=False):
  need(m.get("schema")=="graphics-v2-frozen-inputs" and m.get("limits")==LIMITS and m.get("plans")==RUNS,"manifest schema/plans/caps")
  need(r.get("decision")=="ACCEPTED" and r.get("independent") is True and r.get("reviewer")!=m.get("author") and r.get("reviewer"),"independent review absent")
  need(r.get("manifest_sha256")==sha(manifest) and rid in r.get("authorized_runs",[]),"stale review/case not admitted")
- need(RUNS[rid]["admission"]!="NOT_ADMITTED","scenario NOT_ADMITTED: "+RUNS[rid].get("reason",""))
+ if RUNS[rid]["admission"]=="NOT_ADMITTED":
+  need(rid in ('P1','C8','O1','O2','G2'),"scenario NOT_ADMITTED")
+  prospective=r.get('prospective',{}).get(rid,{})
+  need(prospective.get('decision')=='ACCEPTED' and prospective.get('source_manifest_sha256')==sha(manifest),"prospective case review absent/stale")
+  need(prospective.get('client_build_review')=='ACCEPTED',"new client/build review absent")
+  if rid in ('P1','C8'):
+   cb=Path(prospective.get('client_binary',''));cr=Path(prospective.get('client_build_receipt',''))
+   need(cb==lab/'graphics-next-work/client-build/fullscreen-client' and sha(cb)==prospective.get('client_binary_sha256'),"new fullscreen client bytes")
+   need(cr.resolve().is_relative_to(lab) and sha(cr)==prospective.get('client_build_receipt_sha256'),"new client build receipt bytes")
+   compile_receipt=json.loads(cr.read_text())
+   need(compile_receipt.get('status')=='PASS' and compile_receipt['generated']['fullscreen-client']==sha(cb) and compile_receipt['inputs']['clients/fullscreen-client.c']==m['files']['clients/fullscreen-client.c'],"client compile/source binding")
+  if rid in ('O1','O2'):
+   need(prospective.get('oom_source_review_sha256')=='a953a38b49bea11e9c19e84ed2d8218a16b2e5d980e0ba57677eeee0ddf62c6c',"OOM source review binding")
+   need(sha(lab/'review-oom-runtime/oom-source-receipt.json')==prospective['oom_source_review_sha256'],"OOM source review bytes changed")
+   need(prospective.get('variant_identity')=='COREC_V2_NATIVE_OOM_DIAGNOSTIC',"OOM variant identity")
  root=Path(m["source_root"]);need(root.resolve()==root and root.is_relative_to(lab),"source root outside LAB")
  need(m.get("files"),"empty inputs")
  for rel,h in m["files"].items():
@@ -125,8 +145,14 @@ def validate_review(lab,manifest,review,publication,rid,offline=False):
  source_digest=digest(m["files"])
  need(p.get("ticket")==TICKET and p.get("source_digest")==source_digest and p.get("decision")=="VERIFIED" and p.get("origin_sha")==p.get("github_sha") and re.fullmatch(r"[0-9a-f]{40}",p.get("origin_sha","")),"source kit unpublished")
  need(p.get("offline_test_only",False)==offline,"publication namespace")
+ if rid=='G2':
+  from gpu_handler import validate_source_binding
+  validate_source_binding(lab,r.get('prospective',{}).get(rid,{}))
  auth=m["identities"][RUNS[rid]["binary"]]
  need(sha(auth["binary"])==auth["binary_sha256"],"binary changed")
+ if rid in ('O1','O2','G2'):
+  need(auth['binary_sha256'] not in (m['identities']['core']['binary_sha256'],m['identities']['pristine']['binary_sha256']),"distinct diagnostic ELF required")
  need(sha(auth["wlroots"])==auth["wlroots_sha256"]==WL_SHA,"wlroots changed")
+ if rid=='G2':need(all(other.get('binary_sha256')!=auth['binary_sha256'] for name,other in m['identities'].items() if name!='gpu'),'GPU pair3 must differ from every other ELF')
  need(auth.get("build_review")=="ACCEPTED" and auth.get("source_qualification")=="ACCEPTED","binary/source qualification pending")
- return dict(auth,manifest=str(manifest),review=str(review),publication=str(publication),manifest_sha256=sha(manifest),review_sha256=sha(review),publication_sha256=sha(publication),source_digest=source_digest)
+ return dict(auth,prospective=r.get('prospective',{}).get(rid,{}),manifest=str(manifest),review=str(review),publication=str(publication),manifest_sha256=sha(manifest),review_sha256=sha(review),publication_sha256=sha(publication),source_digest=source_digest)

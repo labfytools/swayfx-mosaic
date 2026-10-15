@@ -30,6 +30,9 @@ class Session:
             for k,box in [('TL',(15,15,44,44)),('TR',(755,15,784,44)),('BL',(15,555,44,584)),('BR',(755,555,784,584)),('C',(385,285,414,314))]:draw.rectangle(box,fill=MARKERS[k])
             marker.save(self.run/'marker-source.png');self.marker_source=self.run/'marker-source.png';self.record('generated-content-PNG',path=str(self.marker_source),counts_as_capture=False)
         need(cfg==self.spec['config'],'sealed config bytes');(self.run/'config').write_text(cfg);self.watch=threading.Thread(target=self.watchdog,daemon=True);self.watch.start()
+        if spec['id'] in ('O1','O2'):
+            from oom import process_environment
+            self.oom_env=process_environment(self.lab,spec['id'],auth['token'])
         self.comp=self.spawn('compositor',[auth['binary'],'-d',*(['-Dtxn-timeout=5000'] if spec['id']=='C6' else []),'-c',self.run/'config'])
         self.sock=self.wait(lambda:next(iter(self.runtime.glob('sway-ipc.*.sock')),None));display=self.wait(lambda:next((p for p in self.runtime.glob('wayland-*') if p.is_socket()),None))
         self.env.update(WAYLAND_DISPLAY=display.name,SWAYSOCK=str(self.sock));need(Path(f'/proc/{self.comp.pid}/exe').resolve()==Path(auth['binary']).resolve() and sha(Path(f'/proc/{self.comp.pid}/exe'))==auth['binary_sha256'],'actual executable')
@@ -37,7 +40,7 @@ class Session:
         paths={s.split()[-1] for s in maps.splitlines() if len(s.split())>=6 and s.split()[-1].startswith('/')}
         wl=[Path(p).resolve() for p in paths if 'libwlroots' in p];need(wl==[Path(auth['wlroots'])] and sha(wl[0])==auth['wlroots_sha256'],'mapped wlroots')
         scene=[Path(p).resolve() for p in paths if 'libscenefx' in p]
-        if spec['binary']=='core':need(not scene,'static SceneFX')
+        if spec['binary'] in ('core','oom','gpu'):need(not scene,'static SceneFX')
         else:need(scene==[Path(auth['pristine_scene'])] and sha(scene[0])==auth['pristine_scene_sha256'],'mapped pristine SceneFX')
         render=[s for s in self.log('compositor').splitlines() if any(x in s for x in ('Creating scenefx FX renderer','GL renderer:','GL vendor:','Using OpenGL ES'))]
         need(any('Creating scenefx FX renderer' in s for s in render) and any('GL renderer:' in s for s in render),'actual renderer')
@@ -80,7 +83,13 @@ class Session:
         # can escape the watchdog's owned-group snapshot by racing its deadline.
         with getattr(self,'proc_lock',threading.RLock()):
             need(not self.expired,'expired before process creation')
-            p=subprocess.Popen(actual_argv,stdin=subprocess.PIPE,stdout=f,stderr=subprocess.STDOUT,text=True,start_new_session=True,env={**self.env,**({'WAYLAND_DEBUG':'1'} if debug else {})})
+            # WHY/CONTRACT/INVARIANT: diagnostics are compositor-private and
+            # never enter the environment shared with capture, IPC or clients.
+            child_env={**self.env,**({'WAYLAND_DEBUG':'1'} if debug else {})}
+            need(not any(k.startswith(('SMX_OOM_','MOSAIC_G2_')) for k in child_env),'diagnostic environment leaked into common environment')
+            if name=='compositor':
+                child_env.update(getattr(self,'oom_env',{}));child_env.update(getattr(self,'compositor_environment',{}))
+            p=subprocess.Popen(actual_argv,stdin=subprocess.PIPE,stdout=f,stderr=subprocess.STDOUT,text=True,start_new_session=True,env=child_env)
             self.proc[name]=p
         self.record('spawn',name=name,pid=p.pid,requested_argv=requested_argv,actual_argv=actual_argv);return p
     def log(self,name):return (self.run/(name+'.log')).read_text(errors='replace')
@@ -129,7 +138,12 @@ class Session:
     def find(self,name):
         pid=self.proc[name].pid;rows=[n for n in nodes(self.ipc('-t','get_tree')) if n.get('pid')==pid];need(len(rows)<=1,'client owner ambiguity');return rows[0] if rows else None
     def launch_client(self,name,client,*args):
-        p=self.spawn(name,[self.lab/'graphics-tests/client-build'/client,*args],True);self.wait(lambda:self.find(name));time.sleep(.25);return p
+        build=self.lab/('graphics-next-work/client-build' if client=='fullscreen-client' else 'graphics-tests/client-build')
+        p=self.spawn(name,[build/client,*args],True);self.wait(lambda:self.find(name));time.sleep(.25)
+        if client=='fullscreen-client':
+            exe=Path(f'/proc/{p.pid}/exe');need(exe.resolve()==build/client and sha(exe)==self.auth['prospective']['client_binary_sha256'],'actual fullscreen client executable')
+            self.record('fullscreen-client-identity',pid=p.pid,binary=str(exe.resolve()),sha256=sha(exe))
+        return p
     def capture(self,tag,out,orientation_pending=False):
         self.debit('capture');spec=next(o for o in self.outputs if o['name']==out);p=self.run/(tag+'.png');need(not p.exists(),'capture unique')
         t=time.monotonic_ns();r=subprocess.run(['grim','-s',str(spec['scale']),'-o',out,str(p)],env=self.env,capture_output=True,text=True,timeout=4)
@@ -268,7 +282,7 @@ class Session:
         reaped=all(not Path('/proc',str(p.pid)).exists() for p in self.proc.values());need(reaped,'owned process residual');shutil.rmtree(self.runtime)
         seconds=time.monotonic()-self.started
         protocol_errors=[n for n in self.proc if n not in ('compositor','pointer') and re.search(r'wl_display[^\n]*\.error\(|protocol error|invalid_popup_parent|not_the_topmost_popup',self.log(n),re.I)]
-        cleanup_pass=bool(closure_coverage and all(c['status']=='PASS' for c in closures) and not rescue and reaped and seconds<=150 and not self.expired and not protocol_errors and all(p['exit']==0 for p in codes))
+        cleanup_pass=bool(closure_coverage and all(c['status']=='PASS' for c in closures) and not rescue and reaped and seconds<=150 and not self.expired and all(any(c['name']==n and c.get('expected_enomem') for c in closures) for n in protocol_errors) and all(p['exit']==0 or any(c['pid']==p['pid'] and c.get('expected_enomem') for c in closures) for p in codes))
         transport_pass=terminal is not None and terminal.get('ipc_exit') in (0,1) and 'wait_error' not in terminal and 'ipc_error' not in terminal
         final_status=measurement_status if failure is None and cleanup_pass and transport_pass else 'INCONCLUSIVE'
         self.save('outcome',dict(status=final_status,measurements_pass=measurement_status,architecture_verdict='INCONCLUSIVE',evidence_provenance=self.auth,untested_matrix_cells=['ATOMIC_GENERATION','COMPLETE_DAMAGE','NATIVE_BUFFER_IDENTITY','GPU_LIFETIME'],scientific_cleanup='PASS' if cleanup_pass else 'INCONCLUSIVE',runtime_exit=codes,measurements_status=measurement_status,failure=failure,terminal=terminal,helper_exits=getattr(self,'helper_exits',[]),explicit_client_closures=self.closed,mechanical_cleanup='PASS' if reaped and not rescue and not self.runtime.exists() else 'INCONCLUSIVE',client_closures=closures,processes=codes,rescue=rescue,reaped=reaped,runtime_removed=not self.runtime.exists(),seconds=seconds,watchdog=self.expired,protocol_errors=protocol_errors,cleanup_pass=cleanup_pass,transport_status='PASS' if transport_pass else 'INCONCLUSIVE'))

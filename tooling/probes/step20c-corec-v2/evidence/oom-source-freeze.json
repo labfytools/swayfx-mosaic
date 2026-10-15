@@ -1,0 +1,86 @@
+{
+  "schema": "corec-v2-oom-source-freeze-v1",
+  "identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC",
+  "status": "READY_FOR_INDEPENDENT_R_OOM_NOT_RUNTIME_ADMISSION",
+  "created_utc": "2026-10-15T05:58:14.328317+00:00",
+  "source_root": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit",
+  "files": {
+    "GRAPHICS_HANDLER_CONTRACT.md": "4590268e8bdd67214a80c7e3a0fa840ad14921b44bc55b3d3698207433016da8",
+    "README.md": "9d15adc03d66896b1ac5433a78274b02b2b1c0a9d598c30e7b550ebc61207244",
+    "assemble-variant.py": "13c8e72a23d005b5720a037fcbf4aa3678313b45158e6f16d3a647b20136895c",
+    "evidence/adapter-result.json": "f80e1e082ee69b352066170b10c2575065be4f60d2a0b5280f12625137f36c0d",
+    "evidence/bindings.json": "eebe8faa58f33d2d1570c6d1ad22d0591c3cf2592dc66b3ad2e72b83e6963dd4",
+    "evidence/result.json": "61c9ed452aac0e00ca7240bacbb4ed7fc0eb123ad52e74a57233f699426ea8e7",
+    "graphics-adapter.py": "9f22bab4f3f2d5f1bc702a1ca17ba753e703e7ff04b947a1774582993c68358d",
+    "patches/oom-mosaic.patch": "d9a255a9d6c1ca4aeb2c9b787daeb2d3e70a7e0ab040af211bb6c8c7720d77a2",
+    "patches/oom-scene.patch": "7981e55523eb9b66789a38655162dc81f3872a19629912522f51d6eeaa60dc3d",
+    "provenance.json": "0c253406d314591793f561333435431de8c03d38ee3dff997096f108617369fd",
+    "tests/extract.py": "6b9618c5cfbc41212d9dce53f4b803d2559d5e9abdb668b06f4a49f5d8099987",
+    "tests/ime-support.inc": "dd39d568e52af445a05a0ba9543a5717b1be3a62dd91f3af03cc8516e3d9b375",
+    "tests/offline-adapter.py": "e0881879d791511fbde15fb063b4b1b882a23bf924efd624e5d698d2d86ee737",
+    "tests/oom.c": "4fc85f8b11dd321cc3b1554a770244f96f10b4504e5435bc3baa9b5318cc28e6",
+    "tests/run.py": "8b4108d5327147363c274d0d6cc120915d938f3e9d31bb0f3aae1b3266c946ae",
+    "tests/transaction-support.inc": "fe58b77be6efa6b6f02676211988d00cbf8a5796656f6485b61af094d4aae7e0"
+  },
+  "source_digest": "bf53e28e6e71c2029e80f4ec616cfec9f09081121dae0b29205143a37a74e1f2",
+  "parent_review_sha256": "26aa862c741196fdbb8d7cdf5509301e49f763cdd22ffa7bcb1a4bbf09c66f90",
+  "parent_unchanged": true,
+  "components": {
+    "scene": {
+      "patch": "patches/oom-scene.patch",
+      "patch_sha256": "7981e55523eb9b66789a38655162dc81f3872a19629912522f51d6eeaa60dc3d",
+      "source_manifest_sha256": "6867919bf660c15e34893966402a0756ece9fa94f756db6f60b3a690c011f704",
+      "changed_files": [
+        "types/scene/oom-diagnostic.inc",
+        "types/scene/wlr_scene.c"
+      ]
+    },
+    "mosaic": {
+      "patch": "patches/oom-mosaic.patch",
+      "patch_sha256": "d9a255a9d6c1ca4aeb2c9b787daeb2d3e70a7e0ab040af211bb6c8c7720d77a2",
+      "source_manifest_sha256": "5580346d00caf05fe09b85dd67ef98496ecbb6994b44a3d7908e174ac25fbaf9",
+      "changed_files": [
+        "sway/desktop/xdg_shell.c"
+      ]
+    }
+  },
+  "evidence": {
+    "c_status": "PASS_BOUNDED",
+    "positive_runs": 27,
+    "mutants_compiled": 6,
+    "mutants_killed": 6,
+    "native_header_callsite": "PASS_SYNTAX_ONLY",
+    "adapter": "PASS_OFFLINE",
+    "exact_bindings_sha256": "eebe8faa58f33d2d1570c6d1ad22d0591c3cf2592dc66b3ad2e72b83e6963dd4",
+    "reproduction_receipt_sha256": "a7f3cf3d706edee3375ce77239c97a31dfa4d79a7228b2d00931093951eab315",
+    "mutation_oracles": {
+      "global_scope": "ordinary native factory must succeed; SIGABRT assertion b",
+      "after_publication": "exact single scene_tree_init moved before reserve; SIGABRT parent child list assertion before free",
+      "wrong_role": "nonmatching primary role must succeed; SIGABRT assertion b",
+      "token_reuse": "second matching call must succeed with failures1; SIGABRT assertion",
+      "malformed_accepted": "malformed token must not fail reservation; SIGABRT assertion b",
+      "nonce_ignored": "wrong nonce must not fail reservation; SIGABRT assertion b"
+    }
+  },
+  "gates": {
+    "R_OOM": "NOT_PROVEN_PENDING_INDEPENDENT_REVIEW",
+    "build_pair_2": "NOT_RUN",
+    "O1": "NOT_ADMITTED_NOT_RUN",
+    "O2": "NOT_ADMITTED_NOT_RUN",
+    "availability_policy": "UNDECIDED",
+    "complete_damage": "NOT_PROVEN",
+    "production_authorized": false
+  },
+  "limitations": [
+    "No complete SceneFX/Mosaic Meson build, compositor, Wayland client, IPC, GPU or native injection",
+    "Graphics adapter requires parent settled-handler/ledger integration and independent admission",
+    "Initial shell quoting compile failure preserved at oom-work/h1-extension-1; not counted mutant kill",
+    "Factory tests use exact source with reduced rendering/damage adapters; native stale sidecars/listeners and survival NOT_PROVEN"
+  ],
+  "git_mutation": "NONE_BY_THIS_AGENT",
+  "supersedes_unreviewed_freeze": {
+    "sha256": "83450c97655064957caade4cf0235810edcfb66da875ea4cb6053b1bd334b250",
+    "reason": "test oracle strengthened only; native patches and source unchanged",
+    "archive": "results/oom-source-freeze-pre-oracle.json"
+  }
+}

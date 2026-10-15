@@ -1,3 +1,100 @@
+# Prospective private revision: P1/C8/O1/O2 and G2 wiring
+
+EXPERIMENTAL SOURCE ONLY. No new reservation, IPC, native injection, capture,
+compositor launch or GPU execution has been performed by this revision. The
+accepted graphics-kit and runtime-git-kit remain immutable. The real budget
+retains P0/C1..C7; C7 remains INCONCLUSIVE. G2 and R1 remain NOT_ADMITTED unless
+the exact prospective gate below is satisfied (R1 has no override).
+
+The old published commit had a C7 fixture oracle bug: resize uses
+max(0,min(previous,max_scroll)), but migration invokes move.c661
+workspace_move_to_output, then move.c668 seat_set_focus, then seat.c1204-1212
+focused-cell reveal. The observed old800 ->1120 for focused logical1280..1920
+and viewport800 was legal. This revision fixes only future/offline predicates;
+it never reruns or relabels the consumed C7. C2 future geometry now records
+crossing_axis/crossing_boundary; old raw crossingX0 receipts stay immutable.
+
+P1/C8 select an explicit two-equal-child nonleaf splith group by con_id, then
+fullscreen that group. The separate fullscreen-client requests legal anchors
+350/80 and100/60, widths900, and draws after each configure. Actual configure,
+ACK, native buffer, paint and pointer-local input qualify measured crossing.
+Noncrossing is NOT_EXERCISED. No Mosaic camera scroll is used in that branch.
+P1 captures10; C8 captures12 including a fresh post-fullscreen/splith pair.
+C8 compares its actual role/configure/geometry record against P1. This does not
+prove an atomic current fullscreen generation; that property is NOT_PROVEN.
+Both fullscreen samples compare the complete H2 RGB field against the stable
+reference with measured configured popup rectangles clipped to H2 and composed
+in A-then-B order. This P1/C8 source correction remains pending independent
+delta review; it does not admit either run.
+
+O1/O2 use a distinct oom ELF, captures8, hook1. SMX_OOM_* belongs solely to the
+compositor process environment after the clean allowlist. The exclusive nonce
+and role token is debited before writing, only after stable reference/owner;
+O2 additionally requires real rootA native success and configure/ACK/buffer/map.
+The failed popup validates its real button serial/grab wire without awaiting
+MAP. Native role, nonce, PID, counters, unpublished pointers and NULL result are
+required. Raw client no_memory/errno/exit remain separate from ordinary close.
+Only a demonstrated no_memory disconnect has its own scientific cleanup path;
+arbitrary errors and compositor death stay INCONCLUSIVE. Any unresolved O1
+outcome blocks O2 admission. Missing observations are retained as NOT_PROVEN.
+
+G2 uses the unchanged gpu-kit/scenario.py via GPUSceneSession/AdapterSession.
+The actual Session identity is gpu/static SceneFX. The frozen adapter's legacy
+'core' name is translated only by that narrow view. MOSAIC_G2_* and WLR_RENDERER
+are compositor-only. Every epoch debits mutation+hook before native arm; three
+hooks maximum, eight actual captures within the unchanged cap16. Layer-client
+closure validates its actual layer role independently of XDG ownership. The
+source freeze is supplied by the independent final review and reconciled against
+the current immutable GPU manifest and every source SHA/size. No superseded
+prospective freeze is hardcoded.
+Source-only tests never establish actual GL observability. Capability preflight
+acceptance is distinct from native observation; native_gl_status stays NOT_RUN. Rejected A stops B
+and A-return; native error queue/readback remains intrusive. Present buffer,
+GPU completion, whole-field causality and atomic generations remain NOT_PROVEN.
+
+Independent review/publication and a new complete manifest are mandatory before
+any run. All plans stay NOT_ADMITTED by default. The existing independent review
+must additionally bind prospective[run] with decision=ACCEPTED,
+source_manifest_sha256 equal to that manifest and client_build_review=ACCEPTED.
+P1/C8 also bind client_binary/client_binary_sha256 (the dedicated fullscreen-client)
+and client_build_receipt/client_build_receipt_sha256; the gate reconciles the
+receipt's source SHA and generated ELF SHA before every action.
+O1/O2 additionally bind variant_identity=COREC_V2_NATIVE_OOM_DIAGNOSTIC and
+accepted oom_source_review_sha256=a953a38b49bea11e9c19e84ed2d8218a16b2e5d980e0ba57677eeee0ddf62c6c.
+G2 additionally binds gpu_source_review=ACCEPTED,
+gl_observability_preflight=ACCEPTED, native_gl_status=NOT_RUN,
+build_review=ACCEPTED, pair=3, gpu_source_manifest as the canonical final freeze path below LAB and
+gpu_source_manifest_sha256 equal to its independently accepted SHA; each of those
+three acceptance statuses requires its *_receipt path and *_receipt_sha256. It also binds
+gate_file/gate_file_sha256 and binding={binary, client, client_sha256,
+source_manifest_sha256, gate_file}. The run nonce is derived from the fresh
+ledger reservation token, never prefilled in a source review. The frozen native G2
+gate independently requires source_review ACCEPTED, legacy gl_observability PASS,
+runtime_authorized true, pair3 and the exact binary SHA. Its legacy PASS is
+accepted only with gl_observability_scope=PREFLIGHT_CAPABILITY_ONLY and
+native_gl_status=NOT_RUN; real ES3/RBO acceptance comes from epoch metadata. No test invents those
+acceptances. The full kit publication must include new graphics and diagnostic
+source bytes; source review does not authorize binary build or native execution.
+
+Portable preparation from any working directory (LAB must already be canonical
+and owned, all outputs remain under it):
+
+```sh
+LAB=/var/tmp/swayfx-mosaic-corec-v2-i516p6po
+"$LAB/run-env" python "$LAB/graphics-next-kit/prepare_fullscreen.py" --lab "$LAB"
+"$LAB/run-env" python "$LAB/graphics-next-kit/validate_offline.py" --lab "$LAB" --gpu-source-manifest "$LAB/results/gpu-source-freeze-corrected.json"
+"$LAB/run-env" python "$LAB/graphics-next-kit/freeze.py" --lab "$LAB"
+```
+
+Preparation refuses an existing new client-build directory and never replaces
+any of the five accepted clients. No client is executed. Freeze and validation
+write graphics-next-work only; no old results or budget files are overwritten.
+
+---
+
+The following historical base README describes the original engine; its old
+freeze/preparation destinations are not this revision's commands.
+
 # STEP20C CORE-C V2 graphics source fixture
 
 EXPERIMENTAL. Source implementation and offline controls; graphics preflight is
@@ -80,7 +177,7 @@ client/compositor and outer runner raw exits remain distinct.
 | ID | Captures | Scenario/admission before independent review |
 | --- | ---: | --- |
 | P0 | 10 | pristine standard reduced homologous chain, B close/A survives |
-| P1 | 10 | NOT_ADMITTED: no comparable fullscreen offline certificate |
+| P1 | 10 | NOT_ADMITTED: pending fullscreen whole-H2 source delta review |
 | C1 | 18 | horizontal B/forbidden dismissal, new second chain, splith return |
 | C2 | 12 | vertical y600 actual root/nested configure geometry |
 | C3 | 12 | H1 physical1000x750 scale1.25 logical800x600 negative origin; marker |
@@ -88,7 +185,7 @@ client/compositor and outer runner raw exits remain distinct.
 | C5 | 12 | hidden motion only until return, same objects/grabs, fresh B input |
 | C6 | 12 | real SHM held configure, txn-timeout5000 argv, natural timeout/ACK |
 | C7 | 14 | 800→960→800, H1→H2→H1 stable IDs, input after each mutation |
-| C8 | 12 | NOT_ADMITTED: same fullscreen certificate missing as P1 |
+| C8 | 12 | NOT_ADMITTED: pending fullscreen whole-H2 source delta review |
 | O1 | 8 | NOT_ADMITTED: first-allocation diagnostic source/binary unavailable |
 | O2 | 8 | NOT_ADMITTED: second-allocation diagnostic source/binary unavailable |
 | G2 | 16 | NOT_ADMITTED: new GPU hook/observability unavailable |

@@ -12,8 +12,13 @@ RUNS['C4']['outputs'][0]=output('HEADLESS-1',[-800,0,800,600],[750,1000],1.25,'9
 # Geometry certificates and distinct diagnostics are prerequisite source evidence.
 for rid in ('P1','C8'):
  RUNS[rid].update(admission='NOT_ADMITTED',reason='No offline equal-child nonleaf fullscreen configure/crossing certificate; no empirical calibration authorized')
+for rid in ('P1','C8'):
+ RUNS[rid].update(client='fullscreen-client',placement='fullscreen_cross')
+for rid in ('O1','O2'):
+ RUNS[rid]['binary']='oom';RUNS[rid]['action_limits']['hook']=1
 for rid in ('O1','O2','G2','R1'):
  RUNS[rid].update(admission='NOT_ADMITTED',reason='Separately reviewed diagnostic/discriminant source hook and exact binary unavailable')
+RUNS['G2']['binary']='gpu';RUNS['G2']['action_limits']['hook']=3
 assert len(RUNS)==14 and sum(CAPS.values())==170 and max(CAPS.values())==18
 
 def config(spec):

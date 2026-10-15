@@ -187,3 +187,28 @@ is serial, within j<=8, and never exhausts real RAM. `gates.json` gives the smal
 machine-readable source-only gate contract. Generated output remains private;
 retain LAB for audit and do not automatically purge it. Publication and the
 outer source-only bundle manifest are owned by the parent workflow after review.
+
+## Reviewed diagnostic and prospective graphics supplements
+
+`oom/` contains complete separately reviewed deltas and parent/result manifests;
+`gpu/` contains the new, separately reviewed G2 instrumentation and a portable
+source reconstruction helper. These diagnostics are distinct from the CORE
+binary. `graphics/` contains the reviewed prospective P1/C8/O1/O2/G2 handlers;
+all remain NOT_ADMITTED by default until per-case publication/binary/client and
+independent review bindings pass. No source-only receipt grants a native run.
+
+Always run the root `verify.py` on reconstructed CORE before variant helpers.
+For G2 compare the complete reproduced tree, including modes, against the parent
+manifest plus the three declared exact changed files. Its helper checks those
+changed files and does not independently qualify an arbitrary parent. To syntax
+check the GPU fx_pass body use test-targeted.py --core with the reconstructed GPU
+target (the CORE argument shown in its historical CLI example instead checks the
+CORE body). compile_commands supplies declared includes only; generated headers
+must be prepared in an explicit private directory. See BUILD_RECIPE.md.
+
+Small historical receipts under reviews/ and evidence/ retain the input paths
+and status at their time of review. They are audit evidence, not executable
+requirements for a vanished LAB. Source reconstruction requires only this Git
+kit, pinned Git objects/public sources and declared tools. G2_ROOT is a declared
+candidate-bound constant: changing it requires a new source/binary identity.
+The surviving-source derivation never recovers historical lost bytes.

@@ -1,0 +1,147 @@
+{
+  "schema": "graphics-next-independent-source-review-v1",
+  "decision": "CORRECTION_REQUIRED",
+  "reviewer": "resume_graphics_next_review",
+  "independent": true,
+  "scope": "Exactly new graphics-next-kit source delta (16 new/changed files), prospective P1/C8/O1/O2/G2 wiring and immutable source/client bindings; no production or broad architecture review",
+  "source_root": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-kit",
+  "source_manifest": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-work/graphics-source-freeze.json",
+  "source_manifest_sha256": "402d2393d07e4e423a402ff4a508c5beb61121c22723939be2d1a0fb767f5085",
+  "source_files": {
+    "README.md": "c0d3722e993a6268998c70da34116095bfa5a0378ee38555191ec97825486b72",
+    "cases.py": "668230af8439e7cbe3b275a06dfd2d3f04e44cdcc133892a18e7d950fa2f0a8e",
+    "clients/fullscreen-client.c": "7c1a41875a5406b796c05695736e9f6d937d0fc87e8297b80fdccfdc34096605",
+    "clients/nested-client.c": "957f81886122256afd1dd5712185a021c08927899d3d7664041c64a366bc7438",
+    "clients/pointer-daemon.c": "8e4eaad95882d0d73866f801899007240b01cb6e15a712e820b3e3f71a78bbe5",
+    "clients/saved-client.c": "fb23512dea7b74b2ec7468a4e45d12d1a6ee83bf22f261a3d12e9c1077dda8f6",
+    "clients/static-reference.c": "e346a85ded3345b232cd6edca5a1ac57aebfd548a60e12b3c47a5cf515e6c50e",
+    "clients/vertical-client.c": "5f15adce7304839cc46150c0153a186724ea5f1f4f51b69aacf01a242a54e9db",
+    "engine.py": "af2e22687a58803a87d8a406f5d3f780a80194fa5c84595b2a0d98025862cece",
+    "evidence.py": "70c6bd58bf30c1cb8e4909aa7f2e8d71cbe4ad5ba49253ae94beff067151736a",
+    "freeze.py": "ff4372f3bedc41b1dae950ee58ca877ca602f24878020b443df72cd0daeece3e",
+    "fullscreen.py": "e8853fe436a489794ec82d623bc4515684625352f4afe4bdc12060114fc84b43",
+    "gate.py": "59d078db0701b80a453dd5971f21e5c6dd2e9f76c42d3d8865159cbd1c13c631",
+    "geometry.py": "76a80e98887d3a3707ee942b48a49c1850cdc4aeeb28237d9fea33fa3470fb12",
+    "gpu_handler.py": "78f93a9d067cd7f2f5dd40941c3deba955c1cddeb7131bc222208c3c26d4c58b",
+    "ipc_predicates.py": "5354ba53e1b3f8d0026f4475beebee58d093a81db7d26304cad7085ae3efd352",
+    "lifecycle.py": "df0c11027b3b8b0ef371ddb6ec4bcfd28dac09835644d0c3ce6e273d5e565e92",
+    "model.py": "a578fc589fb092dae3ccdcf8c4eec12a97e515f721decc4c968078dedcb2367a",
+    "offline/test_graphics_v2.py": "455d0297e2deaa14623561a0c893e6e84ea891c74decb38748ef04dbd90e598f",
+    "offline/test_prospective.py": "d377e5a4800fdeafe35491ab572e5c38cc56ddf602d1e69897b370fa7ff2b5c5",
+    "oom.py": "7afc9bd27840bbc5b4a3c0eca96dba45d1b90d9a2975b72c897832ba06d9bb0a",
+    "oom_handler.py": "1ae766b759e58d8fcdc991fa64d3218d159d8a3b90825b7cba555c24aa4501a2",
+    "parent-provenance.json": "cd4a768a1c4cac81c4d102b7c37346060269b5d56a020c129bf79f31ec79ae80",
+    "pixels.py": "d315ddad978238ffbf1c8e4d712d4608ba23564703332d814f627f57f7b6e7f5",
+    "plans.py": "082ef1ecb16a7c4225008c030f9fa3e446837e9569dbf4fae910dab77d80c70b",
+    "predicates.py": "abe0c4c5b3b6d533d2714e13d317d68cd02e1f1c6180d2972ff94d00c9069cd1",
+    "prepare.py": "c43bf58bd8668758e101f8437470e820a94251f48536b8c73267b43904ebd21f",
+    "prepare_fullscreen.py": "eda437d6c4a8e3903e974ee118edcfd33de757e3afd931d35a4ce441c20cdc3d",
+    "protocols/wlr-virtual-pointer-unstable-v1.xml": "3ff6d540be0bc5228195bf072bde42117ea17945a5c2061add5d3cf97d6bb524",
+    "protocols/xdg-shell.xml": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+    "run.py": "67b3a71c2ab0e8c5f5f807a3fab93b4aa08ba3d8895dd374d83ed49ded0c20b2",
+    "saved.py": "3838829f11f539971d0fdeeea44bf9658e9a0383aa228496d27678f06254d8a0",
+    "saved_validators.py": "b412fedc24869274c8b1506a2800c8d4815c93df859785c6e96f719d692014af",
+    "validate_offline.py": "b552a74ef5c346ccd2c24fd3bf6134ca171c63e2b5f7604cc029e544985a1cf7",
+    "validators.py": "d8ae5e72ed507653e7631cda233bd6bdfd7f31a97f6d4fd6f53427437b28b054",
+    "wire-fixture.txt": "c6c9fc072f78fbcf9cfdeebcc5becdbdfb61824352495a0e767d7d390267f640"
+  },
+  "handoff_sha256": "4a238b15af8f11ad8602550663a3ae0786a906d3139d71ae72416702e6029780",
+  "gpu_source_manifest": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/results/gpu-source-freeze-corrected.json",
+  "gpu_source_manifest_sha256": "38b1daba551758e0969312a1ed5fc459af877ee7d443f2135d6aa62e4831af0e",
+  "external_bindings": {
+    "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-oom-runtime/oom-source-receipt.json": "a953a38b49bea11e9c19e84ed2d8218a16b2e5d980e0ba57677eeee0ddf62c6c",
+    "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/ownreview-gpu-oom-build/oom-built-bytes-receipt.json": "1e5fb11882dcdc1a2cf916f3d6c4d47a8959b59169262ff9470c4b5a9009154a"
+  },
+  "client_build_review": {
+    "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-work/client-build/fullscreen-client",
+    "sha256": "82fc218f15f2405cca0f2290cc41bbbc6dfead18c641f796f8fcd4012a16af70",
+    "compile_receipt_sha256": "00c97bec3f87077f7edb6fd5e0d0e7ced7ed6c4c1ac76c9d8456647eb59ee793",
+    "c17": true,
+    "generated_exact": true,
+    "library": "/usr/lib/libwayland-client.so.0.26.0",
+    "library_sha256": "39c83ae7b73d22f18b4f81da14749c4535c304b7e62910a2f1aae682f279cc9d",
+    "wayland_imports": [
+      "wl_display_connect",
+      "wl_display_disconnect",
+      "wl_display_dispatch",
+      "wl_display_flush",
+      "wl_display_get_error",
+      "wl_display_get_fd",
+      "wl_display_roundtrip",
+      "wl_output_interface",
+      "wl_proxy_add_listener",
+      "wl_proxy_get_id",
+      "wl_proxy_get_version",
+      "wl_proxy_marshal_flags"
+    ],
+    "missing_imports": [],
+    "execution": "NOT_RUN",
+    "verification_note": "Initial stdout regeneration uses different header guard; corrected regeneration uses identical output basenames under reviewer directory and is byte-exact."
+  },
+  "offline": {
+    "status": "PASS",
+    "count": 46,
+    "source_manifest_sha256": "402d2393d07e4e423a402ff4a508c5beb61121c22723939be2d1a0fb767f5085",
+    "receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-graphics-next/offline-validation.json",
+    "receipt_sha256": "1f451302e027843ef6fe5b1d6f437e3b5646438bb1554cbe1661dfad76a2c0a0",
+    "method": "Imported original validate_offline.py. In-memory ReviewPath overrides LAB/graphics-next-work only; clean_environment wrapper redirects reviewer temp/cache. Original test_prospective.py executed unmodified with --gpu-source-manifest equivalent explicit argument supplied to validate().validate.",
+    "coverage": "32 original direct regression tests + 14 prospective direct tests, actual handlers/fake I/O, fullscreen ancestor/leaf/noncrossing/mismatch, OOM PID/nonce/roles/counts/error/closure/token, GPU manifest binding/caps/first A stop, publication/budget/watchdog"
+  },
+  "findings": [
+    {
+      "id": "GN-P2-1",
+      "severity": "P2",
+      "file": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-kit/fullscreen.py",
+      "symbol": "run",
+      "lines": [
+        58,
+        68
+      ],
+      "violated_requirement": "FULLSCREEN_PROSPECTIVE_EXTENSION.md: wholeH2expectedspill; inputs/ticket.md E4: count expected regions and verify whole-output H2 for standard overflow",
+      "evidence": "The new fullscreen branch only calls validators.standard_spill. That predicate accepts any H2 image containing at least one pixel each of A and B. Direct falsification accepted two pixels at H2 (799,599)/(798,599), outside configured A[-448,105,900,170]/B[-348,165,900,130]; all other H2 pixels reference background. H1 geometry/input and P1/C8 role/configuration equality do not reject this wrong H2 field.",
+      "falsification": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-graphics-next/fullscreen-spill-falsification.json",
+      "smallest_correction": "Add a fullscreen-specific expected H2 field/regions check based on the measured configured global A/B rectangles and stack order, using the existing capture pairs. Reject missing, misplaced, excess and stale A/B pixels; preserve zero tolerance and no added captures. Add direct negative tests against this actual new check. Do not broaden changes to historical scenarios."
+    }
+  ],
+  "per_case_source_offline_admissibility": {
+    "P1": "CORRECTION_REQUIRED: GN-P2-1",
+    "C8": "CORRECTION_REQUIRED: GN-P2-1",
+    "O1": "ACCEPTED_SOURCE_OFFLINE_ONLY",
+    "O2": "ACCEPTED_SOURCE_OFFLINE_ONLY; actual successful O1 dependency remains mandatory",
+    "G2": "ADAPTER_ACCEPTED_SOURCE_OFFLINE_ONLY; independent GPU source and capability preflight plus exact pair3 build review still required",
+    "R1": "NOT_ADMITTED; no override"
+  },
+  "runtime_authorized": false,
+  "authorized_runs": [],
+  "runtime": "NOT_RUN",
+  "native_gl_status": "NOT_RUN",
+  "actual_GL_observability": "NOT_TESTED",
+  "new_reservations": 0,
+  "new_native_captures": 0,
+  "new_client_executions": 0,
+  "old_budget": {
+    "sha256": "8ce8a4134ff841dd0a60e2b108cd8dd688ff891f0867facb377bd0013263d839",
+    "unchanged": true
+  },
+  "limits": {
+    "runs": 14,
+    "capture_cap_sum": 170,
+    "captures_global": 180,
+    "seconds_per_run": 150
+  },
+  "source_edits": false,
+  "committed": false,
+  "pushed": false,
+  "verification_notes": [
+    "46 tests PASS does not discharge the directly falsified fullscreen field requirement.",
+    "Readelf, pkg-config, wayland-scanner source regeneration only; no new build or client execution.",
+    "First header regeneration assertion failed because stdout changes header guard; corrected identical output basenames produced byte-identical generated header/C.",
+    "Initial pwd/ls discovery commands did not use run-env; every subsequent command used run-env. No session environment or masked transcript content was accessed."
+  ],
+  "review_artifacts": {
+    "offline-validation.json": "1f451302e027843ef6fe5b1d6f437e3b5646438bb1554cbe1661dfad76a2c0a0",
+    "hash-abi-audit.json": "51ce192b64e66406c8209ffcdd9ce34e22ed8eed205171485c08df4f9113461a",
+    "fullscreen-spill-falsification.json": "adbcdc65e21205adf40859353b88b36dc930f024adc6383bb3d05cb8946e0c0b"
+  },
+  "next_smallest_step": "One bounded fullscreen-only correction with direct field/region negatives, then freeze and independent delta re-review; source publication and per-case actual binary freeze remain prerequisites for any run."
+}

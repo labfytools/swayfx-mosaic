@@ -1,0 +1,149 @@
+{
+  "schema": "independent-G2-portable-clientbuild-bounded-review-v1",
+  "decision": "PASS",
+  "portability_decision": "PASS_BOUNDED_P2_CORRECTED",
+  "clientbuild_decision": "PASS_EXACT_ELF_REGENERATED_OFFLINE",
+  "scope": "Portable CLI delta README/reproduce/test-targeted and exact standalone G2 client build only; no new compositor build or runtime qualification",
+  "prior_separate_finding_receipt": {
+    "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/ownreview-gpu-built/receipt.json",
+    "sha256": "00e78a136ea39a873adbee07653969f7265607c91d5dec5226f9708a14cc0aec",
+    "resolved_finding": "P2 portable-publication CLI inputs and outside-LAB dependencies"
+  },
+  "source_freeze_sha256": "38b1daba551758e0969312a1ed5fc459af877ee7d443f2135d6aa62e4831af0e",
+  "publication_manifest_sha256": "891e4aae2c23dadf3a79c185af73d0cd86a1daff6e880e0fa6f277a7b5c79011",
+  "publication_receipt_sha256": "0969c3b620063ef32abbd2a4206997ab8d8df779e74efc39bfc5573418e9825f",
+  "kit_review_copy": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/kit",
+  "only_changed_files": [
+    "README.md",
+    "reproduce.py",
+    "test-targeted.py"
+  ],
+  "immutable_files_manifest_verified": true,
+  "core_explicit": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene",
+  "core_tree_sha256": "e7d3fb7b4b76fcf1f9692981759e8070915c2072415a060351c4ff580c42eba1",
+  "target_tree_sha256": "324b546ca85378cc48c4fe323d0e2f8e5e43687c6226de4267386adff5ff008f",
+  "entire_target_matches_frozen_tree": true,
+  "parent_unchanged": true,
+  "fresh_reproduction": {
+    "exit": 0,
+    "argv": [
+      "python",
+      "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/kit/reproduce.py",
+      "--core",
+      "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene",
+      "--destination",
+      "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/scene-gpu",
+      "--work",
+      "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/work"
+    ],
+    "log": "positive.log"
+  },
+  "negative_tests": {
+    "wrong_parent": {
+      "exit": 1,
+      "argv": [
+        "python",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/kit/reproduce.py",
+        "--core",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/wrong-parent",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/wrong-result",
+        "--work",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/work"
+      ],
+      "log": "wrong-parent.log"
+    },
+    "existing_destination": {
+      "exit": 2,
+      "argv": [
+        "python",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/kit/reproduce.py",
+        "--core",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/scene-gpu",
+        "--work",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/work"
+      ],
+      "log": "existing-destination.log"
+    },
+    "corrupt_patch": {
+      "exit": 2,
+      "argv": [
+        "python",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/corrupt-kit/reproduce.py",
+        "--core",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/corrupt-result",
+        "--work",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/work"
+      ],
+      "log": "corrupt-patch.log"
+    }
+  },
+  "independent_targeted_tests": {
+    "result": "10_COMMANDS_PASS",
+    "receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/targeted/gpu-targeted-tests.json",
+    "sha256": "2bd54eee3366af1f8111c45f98aa2c197b1585b2e935ed1145d61f640d2fe3ab",
+    "source_syntax_checked": "private reconstructed GPU fx_pass.c",
+    "compile_commands": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-portable/compile_commands.json",
+    "prerequisites": "Explicit private source/include and empty private syntax-prerequisites plus installed system headers; no old LAB source/include/build or ccache prerequisite",
+    "readme_CORE_invocation": "ALSO_PASS; checks CORE fx_pass syntax. GPU invocation separately checks actual patched fx_pass."
+  },
+  "client": {
+    "receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/gpu-work/client-compile.json",
+    "receipt_sha256": "ecd564f648a1ad3709ee54801a718733fc8572e73ab5d393ca334681ac10c047",
+    "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/gpu-work/client-build/g2-client",
+    "sha256": "45b98828e84b94954b4382a3ec1a72d92624667e74534463c133eb3118a689f8",
+    "expected_sha256": "45b98828e84b94954b4382a3ec1a72d92624667e74534463c133eb3118a689f8",
+    "original_input_and_generated_hashes": "PASS_ALL",
+    "independently_regenerated_headers_protocol_code_and_ELF": "PASS_BYTE_IDENTICAL_ALL",
+    "compiler": "cc -std=c17 -O2 -Wall -Wextra -Werror -Wno-unused-parameter",
+    "elf": "ELF64 little-endian x86-64 PIE; NEEDED libwayland-client.so.0 libm.so.6 libc.so.6; no RPATH/RUNPATH",
+    "executed": false
+  },
+  "contract_boundary": "CORE is an explicitly reconstructed and verified prerequisite. Helper verifies changed files only; this review additionally compared complete CORE/target tree identities to frozen manifest. No new requirement to duplicate CORE verification in every helper. Native G2_ROOT remains intentionally bound to accepted diagnostic identity. freeze.py remains historical, not a reproduction prerequisite. test_protocol BASE explicitly overridden into private work by runner.",
+  "findings": [],
+  "source_edits": 0,
+  "new_compositor_builds": 0,
+  "build_pair_changes": 0,
+  "budget_changes": 0,
+  "stage_changes": 0,
+  "native_runs": 0,
+  "GL_runs": 0,
+  "client_runs": 0,
+  "IPC_calls": 0,
+  "git_mutations": 0,
+  "masked_content_accessed": false,
+  "runtime_authorization_granted": false,
+  "preflight_is_observed_GL": false,
+  "actual_native_GL_context": "NOT_RUN",
+  "actual_readbacks": "NOT_RUN",
+  "actual_gl_observability": "NOT_PROVEN",
+  "native_present_buffer": "NOT_PROVEN",
+  "gpu_completion": "NOT_PROVEN",
+  "whole_field_causality": "NOT_PROVEN",
+  "legal_status": "LEGAL_NOT_APPROVED",
+  "next_smallest_step": "Parent may bind this independent bounded result to its explicit CORE reconstruction/verify and complete-target comparison before source-only publication; no runtime authority follows.",
+  "evidence_sha256": {
+    "client-checks.json": "b0d45a2829444f152ca4b47876cbd0e1dc08005dc1c51810b88bef85880c1f2a",
+    "client-command-0.log": "daeb877303c6117ce9622ed510740569c724d685d27e3401d358afb0ab932236",
+    "client-command-1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "client-command-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "client-command-3.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "client-command-4.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "client-command-5.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "client-elf-dynamic.log": "9fa3ae153ebaf2e1e90a68d3eb4cecbc31e2cceec3ce4080d5ceb8c815beecc8",
+    "client-elf-header.log": "e80af45dc2349924dc7d33535d43b595b4798c5aacfea98f13fa3a7597564dd0",
+    "compile_commands.json": "d143056cc46ba6414a1fed0dfc001da1ea838589ca497ab133ea55f617575bbe",
+    "corrupt-patch.log": "eac777d04b90374ea285b12d3c7adea0b0ee807faea3738e5be3cb268fd94eee",
+    "existing-destination.log": "287be885a888cefc2379fec937a2a24b61b325faaa0949c82469cf92db58ce0c",
+    "positive.log": "be31b47cc2ac70adbc85d33944150ec588705ed2f64c2e8ff5a2028370060317",
+    "preliminary.json": "5e6298bc09ad4e973ca24ec0d1f09de408efb31c76708eedb346c5e5af67b749",
+    "targeted-readme.log": "17b223fa8fc494dfb4e151783f04ce0c2493d8bc1f93fb975a87210e98f1fa2b",
+    "targeted.log": "17b223fa8fc494dfb4e151783f04ce0c2493d8bc1f93fb975a87210e98f1fa2b",
+    "wrong-parent.log": "54f298bb3fbe4b2f911500b264aa1f54bdd6000794321a903d6d32811f5693a1"
+  },
+  "per_case_runtime_admission": "NOT_GRANTED; separate independent admission required after publication/freeze for each distinct prospective case"
+}

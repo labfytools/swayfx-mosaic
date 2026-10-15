@@ -1,0 +1,125 @@
+diff --git a/types/scene/oom-diagnostic.inc b/types/scene/oom-diagnostic.inc
+new file mode 100644
+--- /dev/null
++++ b/types/scene/oom-diagnostic.inc
+@@ -0,0 +1,99 @@
++/* PRIVATE EXPERIMENTAL diagnostic; never an installed API or availability policy.
++ * WHY: fail the native sidecar reservation, not an unrelated global allocation.
++ * CONTRACT: constructor snapshots process-private configuration; a later owned
++ * token arms one matching primary popup call only. Invalid input disables it.
++ * INVARIANT: no scene init, listener or parent publication precedes reservation.
++ */
++#include <errno.h>
++#include <fcntl.h>
++#include <sys/stat.h>
++#include <unistd.h>
++
++static struct {
++	char path[4096], nonce[33], role[13];
++	bool configured, consumed, scoped;
++	const char *call_role;
++	const void *xdg, *xdg_parent;
++	unsigned matched, failures, successes;
++} oom_diag;
++
++static bool oom_role_valid(const char *s) {
++	return s && (!strcmp(s, "root_popup") || !strcmp(s, "nested_popup"));
++}
++
++__attribute__((constructor)) static void oom_diag_startup(void) {
++	const char *path = getenv("SMX_OOM_TOKEN_PATH");
++	const char *nonce = getenv("SMX_OOM_NONCE");
++	const char *role = getenv("SMX_OOM_ROLE");
++	if (!path || path[0] != '/' || strlen(path) >= sizeof(oom_diag.path) ||
++			!nonce || strlen(nonce) != 32 || !oom_role_valid(role)) return;
++	for (unsigned i = 0; i < 32; ++i) {
++		if (!((nonce[i] >= '0' && nonce[i] <= '9') ||
++				(nonce[i] >= 'a' && nonce[i] <= 'f'))) return;
++	}
++	strcpy(oom_diag.path, path);
++	strcpy(oom_diag.nonce, nonce);
++	strcpy(oom_diag.role, role);
++	oom_diag.configured = true;
++}
++
++static bool oom_diag_token(void) {
++	/* NONBLOCK avoids blocking even on an unexpected FIFO. NOFOLLOW refuses the
++	 * final symlink; the runner owns the canonical private LAB parent directory. */
++	int fd = open(oom_diag.path, O_RDONLY | O_NOFOLLOW | O_NONBLOCK | O_CLOEXEC);
++	if (fd < 0) return false;
++	struct stat st;
++	char token[80], expected[80];
++	int length = snprintf(expected, sizeof(expected), "SMXOOM1 %s %s\n",
++		oom_diag.nonce, oom_diag.role);
++	bool valid = fstat(fd, &st) == 0 && S_ISREG(st.st_mode) &&
++		st.st_uid == getuid() && (st.st_mode & 0777) == 0600 &&
++		st.st_nlink == 1 && st.st_size == length;
++	ssize_t got = valid ? read(fd, token, sizeof(token)) : -1;
++	close(fd);
++	return valid && got == length && !memcmp(token, expected, (size_t)length);
++}
++
++static void *oom_diag_reserve(struct wlr_scene_tree *parent,
++		struct wlr_scene_tree *tree, size_t size) {
++	if (oom_diag.scoped && oom_diag.configured && !oom_diag.consumed &&
++			!strcmp(oom_diag.call_role, oom_diag.role) && oom_diag_token()) {
++		oom_diag.matched++;
++		oom_diag.consumed = true;
++		oom_diag.failures++;
++		fprintf(stderr, "SMX_OOM ENOMEM role=%s nonce=%s pid=%ld xdg=%p "
++			"xdg_parent=%p parent=%p tree=%p children=%d matched=%u failures=%u "
++			"successes=%u initialized=0 listeners=0 published=0\n",
++			oom_diag.call_role, oom_diag.nonce, (long)getpid(), oom_diag.xdg,
++			oom_diag.xdg_parent, (void *)parent, (void *)tree,
++			wl_list_length(&parent->children), oom_diag.matched,
++			oom_diag.failures, oom_diag.successes);
++		errno = ENOMEM;
++		return NULL;
++	}
++	return calloc(1, size);
++}
++
++/* Private link declaration repeated only in native xdg_shell.c. No public
++ * header/struct or installed ABI is changed. Scope cannot escape this call. */
++struct wlr_scene_tree *smx_oom_popup_tree_create(struct wlr_scene_tree *parent,
++        const char *role, const void *xdg, const void *xdg_parent);
++
++struct wlr_scene_tree *smx_oom_popup_tree_create(struct wlr_scene_tree *parent,
++		const char *role, const void *xdg, const void *xdg_parent) {
++	assert(!oom_diag.scoped && oom_role_valid(role));
++	oom_diag.scoped = true;
++	oom_diag.call_role = role;
++	oom_diag.xdg = xdg;
++	oom_diag.xdg_parent = xdg_parent;
++	struct wlr_scene_tree *tree = wlr_scene_tree_create(parent);
++	oom_diag.scoped = false;
++	if (tree) oom_diag.successes++;
++	fprintf(stderr, "SMX_OOM result role=%s pid=%ld xdg=%p xdg_parent=%p "
++		"parent=%p tree=%p successes=%u failures=%u\n", role, (long)getpid(),
++		xdg, xdg_parent, (void *)parent, (void *)tree,
++		oom_diag.successes, oom_diag.failures);
++	oom_diag.call_role = NULL;
++	oom_diag.xdg = oom_diag.xdg_parent = NULL;
++	return tree;
++}
+diff --git a/types/scene/wlr_scene.c b/types/scene/wlr_scene.c
+--- a/types/scene/wlr_scene.c
++++ b/types/scene/wlr_scene.c
+@@ -275,6 +275,8 @@
+ 	return scene;
+ }
+ 
++#include "oom-diagnostic.inc"
++
+ struct wlr_scene_tree *wlr_scene_tree_create(struct wlr_scene_tree *parent) {
+ 	assert(parent);
+ 
+@@ -286,7 +288,7 @@
+ 	// WHY: admission failure must precede parent publication and listeners.
+ 	// CONTRACT: every factory tree has an inactive reservation until destroy.
+ 	// INVARIANT: failed reservation leaves no published node or listener.
+-	struct scene_tree_clip *entry = calloc(1, sizeof(*entry));
++	struct scene_tree_clip *entry = oom_diag_reserve(parent, tree, sizeof(*entry));
+ 	if (entry == NULL) {
+ 		free(tree);
+ 		return NULL;

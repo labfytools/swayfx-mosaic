@@ -1,0 +1,696 @@
+{
+  "status": "PASS_BOUNDED",
+  "campaign": "existing H1 source-corpus extension; no native runtime reservation",
+  "cases": [
+    "root",
+    "nested",
+    "unarmed",
+    "wrongrole",
+    "malformed",
+    "nonce",
+    "mode",
+    "symlink",
+    "invalidenv"
+  ],
+  "mutants": [
+    "global_scope",
+    "after_publication",
+    "wrong_role",
+    "token_reuse",
+    "malformed_accepted",
+    "nonce_ignored"
+  ],
+  "records": [
+    {
+      "label": "extract",
+      "argv": [
+        "/usr/bin/python",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/extract.py",
+        "--sources",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input",
+        "--output",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "native-header-callsite-syntax",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fsyntax-only",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/callsite.c"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-root",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "root"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-nested",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "nested"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-unarmed",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "unarmed"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-wrongrole",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "wrongrole"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-malformed",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "malformed"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-nonce",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "nonce"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-mode",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "mode"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-symlink",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "symlink"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "normal-invalidenv",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/normal",
+        "invalidenv"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-fsanitize=undefined",
+        "-fno-sanitize-recover=all",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-root",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "root"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-nested",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "nested"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-unarmed",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "unarmed"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-wrongrole",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "wrongrole"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-malformed",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "malformed"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-nonce",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "nonce"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-mode",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "mode"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-symlink",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "symlink"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "ubsan-invalidenv",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/ubsan",
+        "invalidenv"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-fsanitize=address,undefined",
+        "-fno-sanitize-recover=all",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-root",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "root"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-nested",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "nested"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-unarmed",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "unarmed"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-wrongrole",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "wrongrole"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-malformed",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "malformed"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-nonce",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "nonce"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-mode",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "mode"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-symlink",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "symlink"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "asan-ubsan-invalidenv",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/asan-ubsan",
+        "invalidenv"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "global_scope-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-Wno-unused-variable",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-global_scope"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "mutant-global_scope",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-global_scope",
+        "root"
+      ],
+      "rc": -6,
+      "expected": "nonzero runtime assertion/sanitizer",
+      "passed": true
+    },
+    {
+      "label": "after_publication-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-Wno-unused-variable",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-after_publication"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "mutant-after_publication",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-after_publication",
+        "root"
+      ],
+      "rc": -6,
+      "expected": "nonzero runtime assertion/sanitizer",
+      "passed": true
+    },
+    {
+      "label": "wrong_role-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-Wno-unused-variable",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-wrong_role"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "mutant-wrong_role",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-wrong_role",
+        "wrongrole"
+      ],
+      "rc": -6,
+      "expected": "nonzero runtime assertion/sanitizer",
+      "passed": true
+    },
+    {
+      "label": "token_reuse-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-Wno-unused-variable",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-token_reuse"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "mutant-token_reuse",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-token_reuse",
+        "root"
+      ],
+      "rc": -6,
+      "expected": "nonzero runtime assertion/sanitizer",
+      "passed": true
+    },
+    {
+      "label": "malformed_accepted-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-Wno-unused-variable",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-malformed_accepted"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "mutant-malformed_accepted",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-malformed_accepted",
+        "malformed"
+      ],
+      "rc": -6,
+      "expected": "nonzero runtime assertion/sanitizer",
+      "passed": true
+    },
+    {
+      "label": "nonce_ignored-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/input/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-kit/tests/oom.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-Wno-unused-variable",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-nonce_ignored"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "label": "mutant-nonce_ignored",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/oom-work/h1-extension-oracle-final/mutant-nonce_ignored",
+        "nonce"
+      ],
+      "rc": -6,
+      "expected": "nonzero runtime assertion/sanitizer",
+      "passed": true
+    }
+  ],
+  "limits": [
+    "native compositor survival NOT_RUN",
+    "popup C callsite source binding only; no complete Sway build",
+    "damage/render use inherited reduced adapters; complete damage NOT_PROVEN"
+  ],
+  "core_limit": [
+    0,
+    0
+  ],
+  "dumpability": "PR_SET_DUMPABLE0 and PR_GET_DUMPABLE0 asserted in each executable before test assertions"
+}

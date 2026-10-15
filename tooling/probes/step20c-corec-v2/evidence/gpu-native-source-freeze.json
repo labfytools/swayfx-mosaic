@@ -1,0 +1,143 @@
+{
+  "schema": "G2-new-source-freeze-v1",
+  "status": "EXPERIMENTAL_SOURCE_ONLY",
+  "review": "PENDING_INDEPENDENT_R_GPU",
+  "runtime": "NOT_RUN",
+  "actual_gl_observability": "NOT_PROVEN",
+  "port": "PARTIAL: GLES3 RBO only; GLES2/texture attachments refused",
+  "metadata_offline": "PASS_CONTROLLED_ONLY",
+  "whole_field_causality": "NOT_PROVEN",
+  "present_buffer": "NOT_PROVEN",
+  "gpu_completion": "NOT_PROVEN",
+  "pair3_build": "NOT_RUN",
+  "new_gpu_acquisitions": 0,
+  "parent_scene_base": "37ccd723bef49e6891156ffafce8f549f01446cc + accepted CORE",
+  "parent_fx_pass_sha256": "398d594ace7257f4b69319290be7c1f14dc1ded446545ceb337404f5caab0cd3",
+  "parent_scene_tree": "e7d3fb7b4b76fcf1f9692981759e8070915c2072415a060351c4ff580c42eba1",
+  "target_scene_tree": "324b546ca85378cc48c4fe323d0e2f8e5e43687c6226de4267386adff5ff008f",
+  "mosaic_unchanged_tree": "514689ef65925d960acd5b424a10e30c1b7f004926e6fde5247c73ac427dfa91",
+  "drm_header": {
+    "path": "/usr/include/libdrm/drm_fourcc.h",
+    "sha256": "992f33804acda60b0b46f1a272942c3592484ea3217d469239f1cb12249de2eb"
+  },
+  "historical_controls": {
+    "status": "HISTORICAL_REPORTED_ONLY",
+    "sources": {
+      "tooling/probes/step20c-core-recovery/gpu-field/validate.py": "204ea3693eeedd61f9f83ca466fa224f5d4d495ab07c78936fd3a9a034ad3f67",
+      "tooling/probes/step20c-core-recovery/gpu-field/analysis.py": "5341909a7fa4010f52bfc909cd76f2288cfa5c4da9126b7258c47b4ad987fa3d",
+      "tooling/probes/step20c-optimized-blur-edge/clients.c": "cc913ff83ce20e430d17eda99504278c8cacafb56b81cb44d7bd99ad3f2cf31a"
+    }
+  },
+  "raw_plan": {
+    "epochs": 3,
+    "points_per_epoch": 10,
+    "physical_dimensions": [
+      800,
+      600
+    ],
+    "bytes": 57600000,
+    "cap": 268435456
+  },
+  "capture_plan": {
+    "H2_baseline": 2,
+    "H1_H2_epoch_pairs": 3,
+    "total": 8,
+    "G2_cap": 16
+  },
+  "test_receipt": {
+    "path": "gpu-fifo-fix/gpu-targeted-tests-corrected.json",
+    "sha256": "fef54d91e087b3ac131e996200eba88245de0062865079c4337c5d5768b5886d"
+  },
+  "files": {
+    "gpu-kit/README.md": {
+      "sha256": "929f9c7c91849538a0d910f5448043e288c97dd532f8efe99d94ba9f19596f35",
+      "bytes": 8311
+    },
+    "gpu-kit/clients-g2.c": {
+      "sha256": "555b59d3e9b765a709d8740b62ebbc5f2de10ad093e34fd22daac0730d957bd3",
+      "bytes": 13270
+    },
+    "gpu-kit/freeze.py": {
+      "sha256": "7f52460ffa05db52ade985e6bde6f0525e536d09f808a8acc88c7166280687fa",
+      "bytes": 4112
+    },
+    "gpu-kit/g2-native.patch": {
+      "sha256": "77d7445ceaf643fd5cc708d31c3f2c77feaeb80f8130c419c55e5514ecc8a75d",
+      "bytes": 27014
+    },
+    "gpu-kit/g2_gl.h": {
+      "sha256": "cd175030be6a2e5d0af036c714c03455ef417f78f20360e00f7e6d1d7be7ab13",
+      "bytes": 6839
+    },
+    "gpu-kit/g2_native.h": {
+      "sha256": "0dfa9e089853a078094736da7f4e133d7fd648500d380dd7f536a7a6f80fdd8e",
+      "bytes": 17010
+    },
+    "gpu-kit/protocol.py": {
+      "sha256": "c1cb2b2876178d4f2308dc19bd2a9c3bd9666a684f4b85acc241572420c20496",
+      "bytes": 7960
+    },
+    "gpu-kit/protocols/wlr-layer-shell-unstable-v1.xml": {
+      "sha256": "996b8c66e1c2276c443336d4cb174634e8e5948823779042f244930525b79cc2",
+      "bytes": 18462
+    },
+    "gpu-kit/protocols/xdg-shell.xml": {
+      "sha256": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+      "bytes": 63846
+    },
+    "gpu-kit/reproduce.py": {
+      "sha256": "b7849df36bbe0635c540245aa7a8b5c661f055ac6043c47ffe708590a450213c",
+      "bytes": 2145
+    },
+    "gpu-kit/scenario.py": {
+      "sha256": "a894a74d5b1a9c0378485f0291a8ae788a56bb33ab26665dc6cd033a9271c738",
+      "bytes": 5161
+    },
+    "gpu-kit/test-targeted.py": {
+      "sha256": "a629807ad31849d600e2a66f7718230da7e4fdbf52442c026e139fc9bf3ff907",
+      "bytes": 2628
+    },
+    "gpu-kit/test_fifo.py": {
+      "sha256": "a750d98ced8735e52cc3925facf9b68f124ca5451d72ceeb2fe4f0a4d1232274",
+      "bytes": 2203
+    },
+    "gpu-kit/test_gl.c": {
+      "sha256": "b29598ce74266a7fcec26eeebf26dc85c1dfa70bd437a0a0093e640a80149ed3",
+      "bytes": 5671
+    },
+    "gpu-kit/test_native.c": {
+      "sha256": "caa9b36831e1223508d1df8885ef287dbe14c92efd7be185efc349e181d46929",
+      "bytes": 3293
+    },
+    "gpu-kit/test_protocol.py": {
+      "sha256": "d211548d959836edd30256216d66a5d0557dffda0185e8b4c3c2260adce49521",
+      "bytes": 7378
+    },
+    "gpu-kit/validate_source.py": {
+      "sha256": "00ab0e5822be31dc0cbc9c32656ccad56fb4afc28155a421339616f3a5ce1dc0",
+      "bytes": 3705
+    },
+    "sources/scene-gpu/render/fx_renderer/fx_pass.c": {
+      "sha256": "c2886ef259fc91431dfe97841387082420ab80a0fe2f07e7dcdb71fc95731181",
+      "bytes": 49449
+    },
+    "sources/scene-gpu/render/fx_renderer/g2_gl.h": {
+      "sha256": "cd175030be6a2e5d0af036c714c03455ef417f78f20360e00f7e6d1d7be7ab13",
+      "bytes": 6839
+    },
+    "sources/scene-gpu/render/fx_renderer/g2_native.h": {
+      "sha256": "0dfa9e089853a078094736da7f4e133d7fd648500d380dd7f536a7a6f80fdd8e",
+      "bytes": 17010
+    },
+    "sources/scene-gpu/render/fx_renderer/shaders/blur1.frag": {
+      "sha256": "01664694e4201efb35ec698e89783e220ed930972b5396b86fa842814cd82d4d",
+      "bytes": 509,
+      "unchanged": true
+    },
+    "sources/scene-gpu/render/fx_renderer/shaders/blur2.frag": {
+      "sha256": "1db325237c9a6c70c2d97518e2f690d448cd006139e9f410cd16e097a1677ad1",
+      "bytes": 822,
+      "unchanged": true
+    }
+  }
+}

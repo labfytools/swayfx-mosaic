@@ -1,0 +1,23 @@
+{
+  "status": "PASS_BOUNDED_BUILT_BYTES",
+  "source_files_verified": 503,
+  "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+  "archive_sha256": "bca4b749eadc551f78712d7e1e7bda769125d2e596524a582988ca5346f8eceb",
+  "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+  "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+  "source_freeze_sha256": "b471b0029bdb0ce4398660988cb0855eecad99a859ce9224c6c0cdea872a8f02",
+  "source_review_sha256": "a953a38b49bea11e9c19e84ed2d8218a16b2e5d980e0ba57677eeee0ddf62c6c",
+  "negative_controls": {
+    "false_hash": "PASS rejected binary hash",
+    "wrong_wlroots": "PASS rejected wlroots hash",
+    "dynamic_archive": "PASS rejected archive hash",
+    "stale_source": "PASS rejected stale source",
+    "old_LAB": "PASS rejected old LAB"
+  },
+  "stage": "5 exact regular files; 0755/0644; pinned original notices",
+  "legal": "LEGAL_NOT_APPROVED",
+  "runtime": "NOT_RUN_BY_REVIEWER",
+  "O1": "NOT_ADMITTED_NOT_RUN",
+  "O2": "NOT_ADMITTED_NOT_RUN",
+  "blocking_findings": []
+}

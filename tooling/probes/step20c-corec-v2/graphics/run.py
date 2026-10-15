@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """WHY/CONTRACT/INVARIANT: reserve once, reviewed bytes only, no retry."""
-import argparse,time,re
+import argparse,time,re,json
 from gate import Ledger,need
 from plans import RUNS
 from engine import Session
@@ -46,8 +46,26 @@ COLORS=cases.COLORS
 def execute(rid,lab,manifest,review,publication,session_factory=Session):
  auth=Ledger(lab).admit(rid,manifest,review,publication);s=None;status='INCONCLUSIVE';failure=None
  try:
-  s=session_factory(RUNS[rid],auth);s.start()
-  if rid=='C1':status=horizontal(s)
+  if rid=='G2' and session_factory is Session:
+   from gpu_handler import GPUSceneSession
+   s=GPUSceneSession(RUNS[rid],auth)
+  else:s=session_factory(RUNS[rid],auth)
+  if rid!='G2':s.start()
+  if rid=='G2':
+   from gpu_handler import run as gpu_run
+   status=gpu_run(s)
+  elif rid in ('P1','C8'):
+   from fullscreen import run as fullscreen_run
+   status=fullscreen_run(s)
+   if rid=='C8' and status=='PARTIALLY_FEASIBLE':
+    from fullscreen import comparable
+    control=s.lab/'graphics-runs/P1/run/fullscreen-comparability.json'
+    need(control.is_file(),'P1 actual comparability evidence missing')
+    s.save('fullscreen-pair-comparison',comparable(json.loads(control.read_text()),json.loads((s.run/'fullscreen-comparability.json').read_text())))
+  elif rid in ('O1','O2'):
+   from oom_handler import run as oom_run
+   status=oom_run(s)
+  elif rid=='C1':status=horizontal(s)
   elif rid=='C5':status=cases.hidden_campaign(s)
   elif rid=='C6':
    from saved import run
@@ -61,6 +79,8 @@ def execute(rid,lab,manifest,review,publication,session_factory=Session):
   normal_remaining(s)
  except Exception as error:
   failure=f'{type(error).__name__}: {error}';status='INCONCLUSIVE'
+  if rid in ('O1','O2') and s is not None:
+   s.save('oom-partial-failure',dict(status='INCONCLUSIVE',failure=failure,critical_or_unresolved=True,blocks_O2=rid=='O1',owner_exit=s.proc['owner'].poll() if 'owner' in s.proc else None,compositor_exit=s.comp.poll() if hasattr(s,'comp') else None,events=s.events,captures_observed=sum(e['kind']=='capture' for e in s.events),captures_expected=8,missing_evidence='NOT_PROVEN; no retry',raw_owner=s.log('owner') if 'owner' in s.proc else None))
  finally:
   if s is not None:status=s.cleanup(status,failure)
   else:Ledger(lab).complete(auth,dict(status='INCONCLUSIVE',failure=failure,session_constructed=False))

@@ -1,0 +1,30 @@
+diff --git a/sway/desktop/xdg_shell.c b/sway/desktop/xdg_shell.c
+--- a/sway/desktop/xdg_shell.c
++++ b/sway/desktop/xdg_shell.c
+@@ -19,6 +19,13 @@
+ #include "sway/tree/workspace.h"
+ #include "sway/xdg_decoration.h"
+ 
++// PRIVATE EXPERIMENTAL: exact primary-popup reservation diagnostic only.
++// WHY/CONTRACT: actual XDG parent role scopes only this native factory call.
++// INVARIANT: all existing NULL cleanup/Wayland behavior remains native.
++extern struct wlr_scene_tree *smx_oom_popup_tree_create(
++    struct wlr_scene_tree *parent, const char *role,
++    const void *xdg, const void *xdg_parent);
++
+ static struct sway_xdg_popup *popup_create(
+ 	struct wlr_xdg_popup *wlr_popup, struct sway_view *view,
+ 	struct wlr_scene_tree *parent, struct wlr_scene_tree *image_capture_parent);
+@@ -90,7 +97,11 @@
+ 	popup->wlr_xdg_popup = wlr_popup;
+ 	popup->view = view;
+ 
+-	popup->scene_tree = wlr_scene_tree_create(parent);
++	struct wlr_xdg_surface *xdg_parent =
++        wlr_xdg_surface_try_from_wlr_surface(wlr_popup->parent);
++    popup->scene_tree = smx_oom_popup_tree_create(parent,
++        xdg_parent && xdg_parent->role == WLR_XDG_SURFACE_ROLE_POPUP ?
++            "nested_popup" : "root_popup", xdg_surface, xdg_parent);
+ 	if (!popup->scene_tree) {
+ 		free(popup);
+ 		return NULL;

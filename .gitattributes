@@ -4,3 +4,5 @@ tooling/probes/step20c-saved-target-timeout-input/target-hit-trace.patch -whites
 tooling/probes/step20c-optimized-blur-cache/*.patch -whitespace
 tooling/probes/step20c-targeted-diagnostic/saved-passive.patch -whitespace
 tooling/probes/step20c-corec-v2/patches/*.patch -whitespace
+tooling/probes/step20c-corec-v2/oom/patches/*.patch -whitespace
+tooling/probes/step20c-corec-v2/gpu/*.patch -whitespace

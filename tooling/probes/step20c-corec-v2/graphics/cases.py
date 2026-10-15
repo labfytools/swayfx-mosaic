@@ -39,7 +39,7 @@ def open_chain(s,tail_fillers=0):
     aim=s.capture('popup-A-'+str(sum(e['kind']=='spawn' and e['name']=='owner' for e in s.events)),'HEADLESS-1');prov=Provenance(state['owner']['id'],state['workspace']['id'],'NOT OBSERVABLE',state['evidence'])
     xyA=solid_point(aim,COLORS['POPUP_A'],s.outputs[0],s.frames['HEADLESS-1'])
     tb,bb=s.click('owner',xyA,'left',True);s.wait(lambda:'POPUP_B MAP ' in s.log('owner'));time.sleep(.2)
-    window=time.monotonic_ns();time.sleep(.15);p=validators.grab(s.log('owner'));g=geometry(s.log('owner'),state['origin'],prov)
+    window=time.monotonic_ns();time.sleep(.15);p=validators.grab(s.log('owner'));g=geometry(s.log('owner'),state['origin'],prov,s.spec['axis'],s.spec['boundary'])
     s.delivery('owner',rect,xy,ta,ba,'TOPLEVEL',p['grabs'][0]['serial']);s.delivery('owner',g['A'],xyA,tb,bb,'POPUP_A',p['grabs'][1]['serial'])
     [validators.crosses(g[k],s.spec['axis'],s.spec['boundary']) for k in ('A','B')]
     left,right=s.pair_capture('mapped-'+str(sum(e['kind']=='spawn' and e['name']=='owner' for e in s.events)))
@@ -89,7 +89,7 @@ def sample_surviving(s,images,tag):
         s.save(tag+'-input',dict(status='NOT_EXERCISED',reason='B has no measured visible interior'));return
     tails,buttons=s.click('owner',point);s.delivery('owner',geo['B'],point,tails,buttons,'POPUP_B');s.save(tag+'-input',dict(status='PASS',point=point,protocol=prot))
 
-def dynamic_geometry(snap,previous=None):
+def dynamic_geometry(snap,previous=None,mutation="resize"):
     # WHY: scroll IPC alone does not demonstrate the resize clamp.
     # CONTRACT: pinned arrange.c105-131 / mosaic.c125-153, zero inner gap,
     # three direct tiled children; calloc row state has no minimum-width setter
@@ -108,9 +108,20 @@ def dynamic_geometry(snap,previous=None):
                 geometry_status='IPC_PENDING_CANDIDATE; native generation NOT OBSERVABLE')
     if previous is not None:
         need(ws['id']==previous['workspace_id'] and ids==previous['children'],'dynamic workspace/order changed')
-        expected=min(previous['scroll'],maximum)
-        need(scroll==expected,'reconstructed camera clamp mismatch')
-        result.update(expected_scroll=expected,clamp='PASS')
+        # WHY: move.c661/668 refocuses after migration; seat.c1204-1212
+        # reveals the focused logical cell after the ordinary resize clamp.
+        # CONTRACT/INVARIANT: never conflate refocus with resize-only clamp.
+        expected=max(0,min(previous['scroll'],maximum))
+        need(mutation in ('resize','migration'),'unknown camera mutation')
+        if mutation=='migration':
+            focused=[c for c in children if c.get('focused')]
+            need(len(focused)==1,'migration exact focused direct child required')
+            lo=ids.index(focused[0]['id'])*640;hi=lo+640
+            if lo<expected:expected=lo
+            elif hi>expected+width:expected=hi-width
+            expected=max(0,min(expected,maximum))
+        need(scroll==expected,'reconstructed camera '+mutation+' mismatch')
+        result.update(expected_scroll=expected,clamp='PASS',mutation=mutation)
     return result
 
 def dynamic_pixels(images,outputs,frames,viewport,reference=None):
@@ -135,7 +146,7 @@ def dynamic_campaign(s):
         s.cmd('workspace 1');s.cmd(command,True);s.expected_output=out
         if tag=='resized960':s.outputs[0]={**s.outputs[0],'logical':[-960,0,960,600],'mode':[960,600]}
         elif tag=='resized-back':s.outputs[0]=dict(s.spec['outputs'][0])
-        time.sleep(.35);snap=s.snapshot(tag);current=dynamic_geometry(snap,previous)
+        time.sleep(.35);snap=s.snapshot(tag);current=dynamic_geometry(snap,previous,"migration" if tag.startswith("migrated") else "resize")
         need(current['output']==out and s.find('owner')['id']==owner_id,'dynamic exact owner/output')
         expected_viewport=next(o['logical'] for o in s.outputs if o['name']==out)
         need(current['viewport']==expected_viewport,'dynamic viewport/output reconstruction')

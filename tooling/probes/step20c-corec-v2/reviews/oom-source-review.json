@@ -1,0 +1,40 @@
+{
+  "schema": "corec-v2-independent-R-OOM-source",
+  "decision": "PASS_BOUNDED_SOURCE_ONLY",
+  "blocking_findings": [],
+  "freeze_sha256": "b471b0029bdb0ce4398660988cb0855eecad99a859ce9224c6c0cdea872a8f02",
+  "source_files_verified": 16,
+  "source_digest": "bf53e28e6e71c2029e80f4ec616cfec9f09081121dae0b29205143a37a74e1f2",
+  "parent_review_sha256": "26aa862c741196fdbb8d7cdf5509301e49f763cdd22ffa7bcb1a4bbf09c66f90",
+  "assembly_sha256": "a7f3cf3d706edee3375ce77239c97a31dfa4d79a7228b2d00931093951eab315",
+  "c_result_sha256": "250f6465c1132ea0cef90bb16dc368df235d95ed04eaf80975db5fb544330d23",
+  "positive_runs": 27,
+  "mutants_compiled": 6,
+  "mutants_direct_SIGABRT": 6,
+  "direct_negatives_sha256": "6d3293f0c81e50065be82a1e93c32476d52cc1c35ef93434212cef874abf5f4e",
+  "direct_negative_cases": 9,
+  "source_evidence": [
+    "Only primary popup_create factory call scoped; parent role uses native try_from_wlr_surface",
+    "Actual sidecar calloc replaced before scene_tree_init; tree calloc ordinary; NULL cleanup unchanged",
+    "Constructor snapshots env; one-shot consumed; O_NOFOLLOW/O_NONBLOCK regular UID0600 single-link bounded exact token",
+    "No installed header/public struct changes; adapters do not establish native survival"
+  ],
+  "gates": {
+    "pair_2_source": "ACCEPTED_FOR_SEPARATE_BUILD_REVIEW",
+    "native_preflight": "NOT_PROVEN",
+    "O1": "NOT_ADMITTED_NOT_RUN",
+    "O2": "NOT_ADMITTED_NOT_RUN",
+    "availability_policy": "UNDECIDED",
+    "production": false
+  },
+  "reviewer_native_runs": 0,
+  "source_edits": false,
+  "limitations": [
+    "Syntax-only native wlroots callsite; reduced lifecycle adapters; complete compositor build NOT_RUN",
+    "Final settled graphics handler/admission not implemented by this adapter",
+    "Native sidecar/listener stale lifetime, complete damage NOT_PROVEN"
+  ],
+  "review_execution_notes": [
+    "First assemble invocation failed because new output parent absent; created owned parent and reran exact assembly successfully. No source correction."
+  ]
+}

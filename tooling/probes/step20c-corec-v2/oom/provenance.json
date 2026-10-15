@@ -1,0 +1,4051 @@
+{
+  "identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC",
+  "status": "EXPERIMENTAL_SOURCE_ONLY",
+  "parent_review_sha256": "26aa862c741196fdbb8d7cdf5509301e49f763cdd22ffa7bcb1a4bbf09c66f90",
+  "parent_kit_provenance_sha256": "5a60533190a46617b3a28d8119a81dd91a4b19945f0bf50e79fd0f2289d41a0f",
+  "components": {
+    "scene": {
+      "patch": "patches/oom-scene.patch",
+      "patch_sha256": "7981e55523eb9b66789a38655162dc81f3872a19629912522f51d6eeaa60dc3d",
+      "changed_files": [
+        "types/scene/oom-diagnostic.inc",
+        "types/scene/wlr_scene.c"
+      ],
+      "parent_files": {
+        ".editorconfig": {
+          "sha256": "f657e0d327b5b04863ae58f939b3f63508b9ad7ec806b2d7f52060b1e0d1c81e",
+          "mode": "0o644"
+        },
+        ".github/workflows/flake-update.yml": {
+          "sha256": "531209240bd5d611183cf9243964b245b4db868605ff82f341627c8a5767e64e",
+          "mode": "0o644"
+        },
+        ".gitignore": {
+          "sha256": "ad2dea4e346e00c0f30a5fb5a3ce915a8c3b93872f58293c89a1a673d38e290d",
+          "mode": "0o644"
+        },
+        "LICENSE": {
+          "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b",
+          "mode": "0o644"
+        },
+        "README.md": {
+          "sha256": "be5f14929473664c2870c809ef0357746beb2aa02abd1b131c00899a57fa986d",
+          "mode": "0o644"
+        },
+        "examples/meson.build": {
+          "sha256": "b5b16783d917be0d42f6f22cedb740b5f492922f88fd65322722023914fe3b9a",
+          "mode": "0o644"
+        },
+        "examples/scene-graph.c": {
+          "sha256": "47851418cc9ddd73ee1ee0035bb09bded7c1bae2e4bdfd4030688cebe1d23284",
+          "mode": "0o644"
+        },
+        "flake.lock": {
+          "sha256": "890ccb0126ac4c7ec2cc35d5ecc35f868970e831b398b0f44480ed0ebcca98bd",
+          "mode": "0o644"
+        },
+        "flake.nix": {
+          "sha256": "c1e0f02d092a77feeea8067f5229f18d95ea89f7eaa3cd7c81de94dd367692d9",
+          "mode": "0o644"
+        },
+        "include/meson.build": {
+          "sha256": "a468b574032875e78f7718a5789aa89ac9d35fe7378d5697c0c166323844f31f",
+          "mode": "0o644"
+        },
+        "include/render/color.h": {
+          "sha256": "91f3f33dd1f68aef6ae0c6455d54ec909f795c5027d7a88c3e0ac24c38133a60",
+          "mode": "0o644"
+        },
+        "include/render/egl.h": {
+          "sha256": "74dfad259e12cc03d62074bc226025018628ef3596656d3472c04a6662213b78",
+          "mode": "0o644"
+        },
+        "include/render/fx_renderer/fx_renderer.h": {
+          "sha256": "e97f677e3bae2fd351061aadbbbbc8d182d5b0f67e74ba719a31ae7489e5e82a",
+          "mode": "0o644"
+        },
+        "include/render/fx_renderer/shaders.h": {
+          "sha256": "0ed28c89fc78292f51ae7ce79ac5847ec873e084d215e53931b665ca463ded51",
+          "mode": "0o644"
+        },
+        "include/render/fx_renderer/util.h": {
+          "sha256": "1618974649e116d39041d82a0d8dee121643ce957de153963052f97d4f0945d0",
+          "mode": "0o644"
+        },
+        "include/render/pass.h": {
+          "sha256": "fd8d3172e498b1fbccb1a621ba2bb4efbc1b46b3f0a3cda47e6c3f6f3421e306",
+          "mode": "0o644"
+        },
+        "include/render/pixel_format.h": {
+          "sha256": "8a501f1c0cbbd93adb4e55cd22bc1460bd625f000e9d921830427bcb3d4831f7",
+          "mode": "0o644"
+        },
+        "include/render/tracy.h": {
+          "sha256": "adea322cceb324f2145aba0fcfe26ab33c82601657aebc3795325873ba43263e",
+          "mode": "0o644"
+        },
+        "include/scenefx/render/fx_renderer/fx_offscreen_buffers.h": {
+          "sha256": "eb701e2ab894edeb41761eabae7d2562f5e4075ba6d486429fb107217ceb909b",
+          "mode": "0o644"
+        },
+        "include/scenefx/render/fx_renderer/fx_renderer.h": {
+          "sha256": "fee5d12e35ba082a007d3c225a3a3f5b912ee205e7ca9b6748af08b14ef7901d",
+          "mode": "0o644"
+        },
+        "include/scenefx/render/pass.h": {
+          "sha256": "4cbf0dccb49f8f90de6c304a9e64b4975058fc45f729f7a1353486e4040bfc0c",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/fx/blur_data.h": {
+          "sha256": "9c1f93e5bbf58a291ecd772f0e88ef7840414a95bdfeec7a99a7795f173d00f1",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/fx/clipped_region.h": {
+          "sha256": "1c1b3ae493b5b9c25900d2f412ae67e4a78bbb23eb54c969026ecff6c15dfd2b",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/linked_node.h": {
+          "sha256": "d1bad0f29be9ff72fc5e4bca4a497365c09f2226ac3f6a92a5e9c847b15f1a31",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/wlr_scene.h": {
+          "sha256": "5deca2caa4e4c74a0da3f4a63478580feac4f23d0974a4b19694aa26e17ac010",
+          "mode": "0o644"
+        },
+        "include/types/fx/clipped_region.h": {
+          "sha256": "1ce77ad8d39d39d327ab617c55d283815aa6053696e4e8888439fb5a86a6ee80",
+          "mode": "0o644"
+        },
+        "include/types/wlr_output.h": {
+          "sha256": "2ffed01c59005e21c27490ea0d8017b4c3c183d1e1784ed88ef7d5df8bd96884",
+          "mode": "0o644"
+        },
+        "include/types/wlr_scene.h": {
+          "sha256": "61b4f54bde6d5d1fcca58b3c6b633b92ec808e690b925edc17a1299e6f1281b2",
+          "mode": "0o644"
+        },
+        "include/util/array.h": {
+          "sha256": "90d56d2ac5b805512cb39d9bc94b6c7ddab3046408af3811a4d34a71460c8482",
+          "mode": "0o644"
+        },
+        "include/util/env.h": {
+          "sha256": "75397337f58bfacdf377f2cbca0567347f1e82ba0f74685a0f60ff7fa13bc90f",
+          "mode": "0o644"
+        },
+        "include/util/matrix.h": {
+          "sha256": "58fc8b42038f624abfcd42913aa6a18653bfee4cccae90dcbe81dd4338f55be9",
+          "mode": "0o644"
+        },
+        "include/util/time.h": {
+          "sha256": "f70109bcf91950d1901004fc456a0f50befa91d04c67a92083a74a67f04b14d0",
+          "mode": "0o644"
+        },
+        "meson.build": {
+          "sha256": "b03836197fe5b0a774f604e80c2c395ccfc11d08e12c2aa4cc04aa2378f78af7",
+          "mode": "0o644"
+        },
+        "meson_options.txt": {
+          "sha256": "bc405fbe11730b43b8259c75b66ecd4c3d7b99b50e01c6cfa58b8080d87d4c95",
+          "mode": "0o644"
+        },
+        "protocol/meson.build": {
+          "sha256": "a4f2d3b4d67585a4c07dcc5b9ec5cd39463eab3a8e192b12f96c4abb1a897f39",
+          "mode": "0o644"
+        },
+        "render/color.c": {
+          "sha256": "afeb92ae756cd035c90eec2d1999f97543b7b711f67f106e566670942641f57d",
+          "mode": "0o644"
+        },
+        "render/color_fallback.c": {
+          "sha256": "e7c28fa0d68341ed06de29c176831d49003ab7237495ca2210d4399b79d96ad1",
+          "mode": "0o644"
+        },
+        "render/color_lcms2.c": {
+          "sha256": "0e2fe4f7b076c4cb7dae4949932b8da50ea1590dedac7c8e63337528793b86b3",
+          "mode": "0o644"
+        },
+        "render/egl.c": {
+          "sha256": "e02044e928b1940b674286c102fa2acba384442b022f76fbf802762a75cf78a0",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_framebuffer.c": {
+          "sha256": "9d6e4e40c02cf60a7cff2ba3018b5fb2c8ee58a0f8fe34155a00dddf7a29032b",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_offscreen_buffers.c": {
+          "sha256": "eea124b4bb2d3ad6b0492a18945ddb5ee303a23095b94311c105ccf60146a742",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_pass.c": {
+          "sha256": "398d594ace7257f4b69319290be7c1f14dc1ded446545ceb337404f5caab0cd3",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_renderer.c": {
+          "sha256": "2f3ac10ee1b2b96d0e8f1797a4902d7e5d767ad4a16fd6b84065f4c01021430f",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_texture.c": {
+          "sha256": "4c6ed26dc1eb909830f8c140995d3a21f1d0656a130e2afe5219d4d969b699f4",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/meson.build": {
+          "sha256": "7c572e962712f0d813a0ac40ef4ecf9ef14349e3079d85624adf30d2bc59a64c",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/pixel_format.c": {
+          "sha256": "1ade66631600f30c283e4abdba53e47440756ba7919210c7289effa88b61979f",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/blur1.frag": {
+          "sha256": "01664694e4201efb35ec698e89783e220ed930972b5396b86fa842814cd82d4d",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/blur2.frag": {
+          "sha256": "1db325237c9a6c70c2d97518e2f690d448cd006139e9f410cd16e097a1677ad1",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/blur_effects.frag": {
+          "sha256": "95e2d0c148760ba4665525a5532ea6bccead5ece604ddd39a2fe132749ab5d48",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/box_shadow.frag": {
+          "sha256": "f8b040d35f62ff9423c5f072cfd7f4467a2ac5c3912d343decde009ae678bfe8",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/common.vert": {
+          "sha256": "1988124d090e4522220965a9d428339f6737039a6a8755c4632a9f603c2cf38e",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/corner_alpha.frag": {
+          "sha256": "f06ba27d291e15e2f12a1446929c3a83c4488881032cd81555963b980ac25857",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/embed.sh": {
+          "sha256": "c007958c4c1d33fc4ad6f4a83d28329df29b265066d6a65fb811b71f83c50b5b",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/gradient.frag": {
+          "sha256": "5cd34215fefaa6640c03d5b82f01055d575b4cca21432b953295adf2c735d8c9",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/meson.build": {
+          "sha256": "65744b6350408bdb667bafd3ecb4e27fa38be0aa1f971904f798048dbf18c6fe",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad.frag": {
+          "sha256": "5b8b4ca7dad5913ae9a52fd01c9561b26a78b0a51e7c5572a4f9d8c924694000",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad_grad.frag": {
+          "sha256": "b19077c64bda8b4ee1d972125902e8270037ff331661eb3b718a8f5674e094f0",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad_grad_round.frag": {
+          "sha256": "0001dac362e6264eb5f445668173166744f6b79934877df9848d1b7b5097e47e",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad_round.frag": {
+          "sha256": "550ff94b051eb1b3fc9e1f8dcda71344b92211aa7b0b8e85c5e34bd7cd7be163",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/tex.frag": {
+          "sha256": "7b11b7239c4cbb3494fe881f11738558f20696174583c2bbd9f9a5d12c158878",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders.c": {
+          "sha256": "33fb47e0ff49f844326ad0ac16c9c4ca5fbe61990cf7ee15bf5eb9d3bcfa01b4",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/tracy.c": {
+          "sha256": "715e0bdf7ef14ab7c67293b9d63888ee8abcc41f5c4d02f8dd7febc50bc2a3f2",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/util.c": {
+          "sha256": "cb413b004eceebab746b6af4e45098bd429bba1fe0473958ace7772791b27d63",
+          "mode": "0o644"
+        },
+        "render/meson.build": {
+          "sha256": "1b07081a6b355524819ed906cd316bef81e623dae458e442032faaa4f72f9695",
+          "mode": "0o644"
+        },
+        "render/pixel_format.c": {
+          "sha256": "7f5c0d2cde8560b3c958e6f3bf4bcf6e08910e761e6c51f6269d746c590d2b1c",
+          "mode": "0o644"
+        },
+        "subprojects/packagefiles/tracy_v0_13_1_build_fix.patch": {
+          "sha256": "a31bf747d885f4dd0e53362c6ab4fc837fb85a6f28f5fdca05f02356af331bca",
+          "mode": "0o644"
+        },
+        "subprojects/tracy.wrap": {
+          "sha256": "e0a4817e6c4de9276ebc77aaffde9e535cf070535789efa073ac891a96492ed3",
+          "mode": "0o644"
+        },
+        "tinywl/.gitignore": {
+          "sha256": "33603931bb1d52b882db0cbb5a0b1402523fb3fde0ca6a1c3eeae45b2d485d9e",
+          "mode": "0o644"
+        },
+        "tinywl/LICENSE": {
+          "sha256": "9ae58252b35106323701066c033a6b86023f59732a9c52a2d882a0777ffe55a5",
+          "mode": "0o644"
+        },
+        "tinywl/Makefile": {
+          "sha256": "18cfd66e63e6c97d0764cfa77d90368eafcf7dbaa4465d2c9072acbdaa2704d2",
+          "mode": "0o644"
+        },
+        "tinywl/README.md": {
+          "sha256": "b7e46dde37cedaa877f6d70723a2cd105a321aa6daf98cbb8d19ab0fdea458a5",
+          "mode": "0o644"
+        },
+        "tinywl/meson.build": {
+          "sha256": "8ceac5d9a5b7c4bba9d6b1a7c73459fb1c88d76db81bad9cb945a13b1b4d19cd",
+          "mode": "0o644"
+        },
+        "tinywl/tinywl.c": {
+          "sha256": "296c56efa46f97563b4dde94779bababf9a457e66abc727c422927a3796c23e8",
+          "mode": "0o644"
+        },
+        "types/fx/blur_data.c": {
+          "sha256": "ab41375a77cacac540a7b6c32656a6a9aa0a165f7f12a9816486451ca2103f49",
+          "mode": "0o644"
+        },
+        "types/fx/clipped_region.c": {
+          "sha256": "196880a8097779d72c86b47fc24acba7ccc85b354de04919c5fa928b05e0ec40",
+          "mode": "0o644"
+        },
+        "types/fx/meson.build": {
+          "sha256": "066ec5e95c81b7e49a126cf447236000bd87c05af3bcba9bd567b2a2df019593",
+          "mode": "0o644"
+        },
+        "types/meson.build": {
+          "sha256": "74306db6ab689380ebed646bdf09682845443d9f9ce1327a2b69cf8c2afb7697",
+          "mode": "0o644"
+        },
+        "types/output/output.c": {
+          "sha256": "7dcbf5a57f7a0343ed01f64874c51598ef5cbcc0c2c248bb827f542d5dd40a16",
+          "mode": "0o644"
+        },
+        "types/scene/linked_node.c": {
+          "sha256": "9a0a9ad550a5e3db42064a63f1a160aa383b9aba652ee7574b192df5943c83d3",
+          "mode": "0o644"
+        },
+        "types/scene/wlr_scene.c": {
+          "sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+          "mode": "0o644"
+        },
+        "util/array.c": {
+          "sha256": "eff1ba42d5e3ad2ade902b863bff0f4814139ad190d8c19e7943b28f58171e7d",
+          "mode": "0o644"
+        },
+        "util/env.c": {
+          "sha256": "da05c018455df1857e2f0e78924c405e000d4f6886069bdbdf1f40ebcba5d6ba",
+          "mode": "0o644"
+        },
+        "util/matrix.c": {
+          "sha256": "7211a9d3010011fd39b83d9efb5d807e2c0d314297c48e291ba8047f176b8bd4",
+          "mode": "0o644"
+        },
+        "util/meson.build": {
+          "sha256": "b2ef08bdd2ecf8f2d8aac583009548d64015616694a2ac9f37f61a8b5b0deb07",
+          "mode": "0o644"
+        },
+        "util/time.c": {
+          "sha256": "0f611ad471ef0b55bfafcb745c47c8fd7ae3621febafd49b69075ddb7e35ffb9",
+          "mode": "0o644"
+        }
+      },
+      "files": {
+        ".editorconfig": {
+          "sha256": "f657e0d327b5b04863ae58f939b3f63508b9ad7ec806b2d7f52060b1e0d1c81e",
+          "mode": "0o644"
+        },
+        ".github/workflows/flake-update.yml": {
+          "sha256": "531209240bd5d611183cf9243964b245b4db868605ff82f341627c8a5767e64e",
+          "mode": "0o644"
+        },
+        ".gitignore": {
+          "sha256": "ad2dea4e346e00c0f30a5fb5a3ce915a8c3b93872f58293c89a1a673d38e290d",
+          "mode": "0o644"
+        },
+        "LICENSE": {
+          "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b",
+          "mode": "0o644"
+        },
+        "README.md": {
+          "sha256": "be5f14929473664c2870c809ef0357746beb2aa02abd1b131c00899a57fa986d",
+          "mode": "0o644"
+        },
+        "examples/meson.build": {
+          "sha256": "b5b16783d917be0d42f6f22cedb740b5f492922f88fd65322722023914fe3b9a",
+          "mode": "0o644"
+        },
+        "examples/scene-graph.c": {
+          "sha256": "47851418cc9ddd73ee1ee0035bb09bded7c1bae2e4bdfd4030688cebe1d23284",
+          "mode": "0o644"
+        },
+        "flake.lock": {
+          "sha256": "890ccb0126ac4c7ec2cc35d5ecc35f868970e831b398b0f44480ed0ebcca98bd",
+          "mode": "0o644"
+        },
+        "flake.nix": {
+          "sha256": "c1e0f02d092a77feeea8067f5229f18d95ea89f7eaa3cd7c81de94dd367692d9",
+          "mode": "0o644"
+        },
+        "include/meson.build": {
+          "sha256": "a468b574032875e78f7718a5789aa89ac9d35fe7378d5697c0c166323844f31f",
+          "mode": "0o644"
+        },
+        "include/render/color.h": {
+          "sha256": "91f3f33dd1f68aef6ae0c6455d54ec909f795c5027d7a88c3e0ac24c38133a60",
+          "mode": "0o644"
+        },
+        "include/render/egl.h": {
+          "sha256": "74dfad259e12cc03d62074bc226025018628ef3596656d3472c04a6662213b78",
+          "mode": "0o644"
+        },
+        "include/render/fx_renderer/fx_renderer.h": {
+          "sha256": "e97f677e3bae2fd351061aadbbbbc8d182d5b0f67e74ba719a31ae7489e5e82a",
+          "mode": "0o644"
+        },
+        "include/render/fx_renderer/shaders.h": {
+          "sha256": "0ed28c89fc78292f51ae7ce79ac5847ec873e084d215e53931b665ca463ded51",
+          "mode": "0o644"
+        },
+        "include/render/fx_renderer/util.h": {
+          "sha256": "1618974649e116d39041d82a0d8dee121643ce957de153963052f97d4f0945d0",
+          "mode": "0o644"
+        },
+        "include/render/pass.h": {
+          "sha256": "fd8d3172e498b1fbccb1a621ba2bb4efbc1b46b3f0a3cda47e6c3f6f3421e306",
+          "mode": "0o644"
+        },
+        "include/render/pixel_format.h": {
+          "sha256": "8a501f1c0cbbd93adb4e55cd22bc1460bd625f000e9d921830427bcb3d4831f7",
+          "mode": "0o644"
+        },
+        "include/render/tracy.h": {
+          "sha256": "adea322cceb324f2145aba0fcfe26ab33c82601657aebc3795325873ba43263e",
+          "mode": "0o644"
+        },
+        "include/scenefx/render/fx_renderer/fx_offscreen_buffers.h": {
+          "sha256": "eb701e2ab894edeb41761eabae7d2562f5e4075ba6d486429fb107217ceb909b",
+          "mode": "0o644"
+        },
+        "include/scenefx/render/fx_renderer/fx_renderer.h": {
+          "sha256": "fee5d12e35ba082a007d3c225a3a3f5b912ee205e7ca9b6748af08b14ef7901d",
+          "mode": "0o644"
+        },
+        "include/scenefx/render/pass.h": {
+          "sha256": "4cbf0dccb49f8f90de6c304a9e64b4975058fc45f729f7a1353486e4040bfc0c",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/fx/blur_data.h": {
+          "sha256": "9c1f93e5bbf58a291ecd772f0e88ef7840414a95bdfeec7a99a7795f173d00f1",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/fx/clipped_region.h": {
+          "sha256": "1c1b3ae493b5b9c25900d2f412ae67e4a78bbb23eb54c969026ecff6c15dfd2b",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/linked_node.h": {
+          "sha256": "d1bad0f29be9ff72fc5e4bca4a497365c09f2226ac3f6a92a5e9c847b15f1a31",
+          "mode": "0o644"
+        },
+        "include/scenefx/types/wlr_scene.h": {
+          "sha256": "5deca2caa4e4c74a0da3f4a63478580feac4f23d0974a4b19694aa26e17ac010",
+          "mode": "0o644"
+        },
+        "include/types/fx/clipped_region.h": {
+          "sha256": "1ce77ad8d39d39d327ab617c55d283815aa6053696e4e8888439fb5a86a6ee80",
+          "mode": "0o644"
+        },
+        "include/types/wlr_output.h": {
+          "sha256": "2ffed01c59005e21c27490ea0d8017b4c3c183d1e1784ed88ef7d5df8bd96884",
+          "mode": "0o644"
+        },
+        "include/types/wlr_scene.h": {
+          "sha256": "61b4f54bde6d5d1fcca58b3c6b633b92ec808e690b925edc17a1299e6f1281b2",
+          "mode": "0o644"
+        },
+        "include/util/array.h": {
+          "sha256": "90d56d2ac5b805512cb39d9bc94b6c7ddab3046408af3811a4d34a71460c8482",
+          "mode": "0o644"
+        },
+        "include/util/env.h": {
+          "sha256": "75397337f58bfacdf377f2cbca0567347f1e82ba0f74685a0f60ff7fa13bc90f",
+          "mode": "0o644"
+        },
+        "include/util/matrix.h": {
+          "sha256": "58fc8b42038f624abfcd42913aa6a18653bfee4cccae90dcbe81dd4338f55be9",
+          "mode": "0o644"
+        },
+        "include/util/time.h": {
+          "sha256": "f70109bcf91950d1901004fc456a0f50befa91d04c67a92083a74a67f04b14d0",
+          "mode": "0o644"
+        },
+        "meson.build": {
+          "sha256": "b03836197fe5b0a774f604e80c2c395ccfc11d08e12c2aa4cc04aa2378f78af7",
+          "mode": "0o644"
+        },
+        "meson_options.txt": {
+          "sha256": "bc405fbe11730b43b8259c75b66ecd4c3d7b99b50e01c6cfa58b8080d87d4c95",
+          "mode": "0o644"
+        },
+        "protocol/meson.build": {
+          "sha256": "a4f2d3b4d67585a4c07dcc5b9ec5cd39463eab3a8e192b12f96c4abb1a897f39",
+          "mode": "0o644"
+        },
+        "render/color.c": {
+          "sha256": "afeb92ae756cd035c90eec2d1999f97543b7b711f67f106e566670942641f57d",
+          "mode": "0o644"
+        },
+        "render/color_fallback.c": {
+          "sha256": "e7c28fa0d68341ed06de29c176831d49003ab7237495ca2210d4399b79d96ad1",
+          "mode": "0o644"
+        },
+        "render/color_lcms2.c": {
+          "sha256": "0e2fe4f7b076c4cb7dae4949932b8da50ea1590dedac7c8e63337528793b86b3",
+          "mode": "0o644"
+        },
+        "render/egl.c": {
+          "sha256": "e02044e928b1940b674286c102fa2acba384442b022f76fbf802762a75cf78a0",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_framebuffer.c": {
+          "sha256": "9d6e4e40c02cf60a7cff2ba3018b5fb2c8ee58a0f8fe34155a00dddf7a29032b",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_offscreen_buffers.c": {
+          "sha256": "eea124b4bb2d3ad6b0492a18945ddb5ee303a23095b94311c105ccf60146a742",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_pass.c": {
+          "sha256": "398d594ace7257f4b69319290be7c1f14dc1ded446545ceb337404f5caab0cd3",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_renderer.c": {
+          "sha256": "2f3ac10ee1b2b96d0e8f1797a4902d7e5d767ad4a16fd6b84065f4c01021430f",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/fx_texture.c": {
+          "sha256": "4c6ed26dc1eb909830f8c140995d3a21f1d0656a130e2afe5219d4d969b699f4",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/meson.build": {
+          "sha256": "7c572e962712f0d813a0ac40ef4ecf9ef14349e3079d85624adf30d2bc59a64c",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/pixel_format.c": {
+          "sha256": "1ade66631600f30c283e4abdba53e47440756ba7919210c7289effa88b61979f",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/blur1.frag": {
+          "sha256": "01664694e4201efb35ec698e89783e220ed930972b5396b86fa842814cd82d4d",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/blur2.frag": {
+          "sha256": "1db325237c9a6c70c2d97518e2f690d448cd006139e9f410cd16e097a1677ad1",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/blur_effects.frag": {
+          "sha256": "95e2d0c148760ba4665525a5532ea6bccead5ece604ddd39a2fe132749ab5d48",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/box_shadow.frag": {
+          "sha256": "f8b040d35f62ff9423c5f072cfd7f4467a2ac5c3912d343decde009ae678bfe8",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/common.vert": {
+          "sha256": "1988124d090e4522220965a9d428339f6737039a6a8755c4632a9f603c2cf38e",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/corner_alpha.frag": {
+          "sha256": "f06ba27d291e15e2f12a1446929c3a83c4488881032cd81555963b980ac25857",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/embed.sh": {
+          "sha256": "c007958c4c1d33fc4ad6f4a83d28329df29b265066d6a65fb811b71f83c50b5b",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/gradient.frag": {
+          "sha256": "5cd34215fefaa6640c03d5b82f01055d575b4cca21432b953295adf2c735d8c9",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/meson.build": {
+          "sha256": "65744b6350408bdb667bafd3ecb4e27fa38be0aa1f971904f798048dbf18c6fe",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad.frag": {
+          "sha256": "5b8b4ca7dad5913ae9a52fd01c9561b26a78b0a51e7c5572a4f9d8c924694000",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad_grad.frag": {
+          "sha256": "b19077c64bda8b4ee1d972125902e8270037ff331661eb3b718a8f5674e094f0",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad_grad_round.frag": {
+          "sha256": "0001dac362e6264eb5f445668173166744f6b79934877df9848d1b7b5097e47e",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/quad_round.frag": {
+          "sha256": "550ff94b051eb1b3fc9e1f8dcda71344b92211aa7b0b8e85c5e34bd7cd7be163",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders/tex.frag": {
+          "sha256": "7b11b7239c4cbb3494fe881f11738558f20696174583c2bbd9f9a5d12c158878",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/shaders.c": {
+          "sha256": "33fb47e0ff49f844326ad0ac16c9c4ca5fbe61990cf7ee15bf5eb9d3bcfa01b4",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/tracy.c": {
+          "sha256": "715e0bdf7ef14ab7c67293b9d63888ee8abcc41f5c4d02f8dd7febc50bc2a3f2",
+          "mode": "0o644"
+        },
+        "render/fx_renderer/util.c": {
+          "sha256": "cb413b004eceebab746b6af4e45098bd429bba1fe0473958ace7772791b27d63",
+          "mode": "0o644"
+        },
+        "render/meson.build": {
+          "sha256": "1b07081a6b355524819ed906cd316bef81e623dae458e442032faaa4f72f9695",
+          "mode": "0o644"
+        },
+        "render/pixel_format.c": {
+          "sha256": "7f5c0d2cde8560b3c958e6f3bf4bcf6e08910e761e6c51f6269d746c590d2b1c",
+          "mode": "0o644"
+        },
+        "subprojects/packagefiles/tracy_v0_13_1_build_fix.patch": {
+          "sha256": "a31bf747d885f4dd0e53362c6ab4fc837fb85a6f28f5fdca05f02356af331bca",
+          "mode": "0o644"
+        },
+        "subprojects/tracy.wrap": {
+          "sha256": "e0a4817e6c4de9276ebc77aaffde9e535cf070535789efa073ac891a96492ed3",
+          "mode": "0o644"
+        },
+        "tinywl/.gitignore": {
+          "sha256": "33603931bb1d52b882db0cbb5a0b1402523fb3fde0ca6a1c3eeae45b2d485d9e",
+          "mode": "0o644"
+        },
+        "tinywl/LICENSE": {
+          "sha256": "9ae58252b35106323701066c033a6b86023f59732a9c52a2d882a0777ffe55a5",
+          "mode": "0o644"
+        },
+        "tinywl/Makefile": {
+          "sha256": "18cfd66e63e6c97d0764cfa77d90368eafcf7dbaa4465d2c9072acbdaa2704d2",
+          "mode": "0o644"
+        },
+        "tinywl/README.md": {
+          "sha256": "b7e46dde37cedaa877f6d70723a2cd105a321aa6daf98cbb8d19ab0fdea458a5",
+          "mode": "0o644"
+        },
+        "tinywl/meson.build": {
+          "sha256": "8ceac5d9a5b7c4bba9d6b1a7c73459fb1c88d76db81bad9cb945a13b1b4d19cd",
+          "mode": "0o644"
+        },
+        "tinywl/tinywl.c": {
+          "sha256": "296c56efa46f97563b4dde94779bababf9a457e66abc727c422927a3796c23e8",
+          "mode": "0o644"
+        },
+        "types/fx/blur_data.c": {
+          "sha256": "ab41375a77cacac540a7b6c32656a6a9aa0a165f7f12a9816486451ca2103f49",
+          "mode": "0o644"
+        },
+        "types/fx/clipped_region.c": {
+          "sha256": "196880a8097779d72c86b47fc24acba7ccc85b354de04919c5fa928b05e0ec40",
+          "mode": "0o644"
+        },
+        "types/fx/meson.build": {
+          "sha256": "066ec5e95c81b7e49a126cf447236000bd87c05af3bcba9bd567b2a2df019593",
+          "mode": "0o644"
+        },
+        "types/meson.build": {
+          "sha256": "74306db6ab689380ebed646bdf09682845443d9f9ce1327a2b69cf8c2afb7697",
+          "mode": "0o644"
+        },
+        "types/output/output.c": {
+          "sha256": "7dcbf5a57f7a0343ed01f64874c51598ef5cbcc0c2c248bb827f542d5dd40a16",
+          "mode": "0o644"
+        },
+        "types/scene/linked_node.c": {
+          "sha256": "9a0a9ad550a5e3db42064a63f1a160aa383b9aba652ee7574b192df5943c83d3",
+          "mode": "0o644"
+        },
+        "types/scene/oom-diagnostic.inc": {
+          "sha256": "738d3bdfb536ad0a3e3a53e7a1794456864e3305ff6b859ff799491acee80b93",
+          "mode": "0o644"
+        },
+        "types/scene/wlr_scene.c": {
+          "sha256": "ad797ab689ebb739582c79142e352ca0781e4a02126927558b813b13ec1b2173",
+          "mode": "0o644"
+        },
+        "util/array.c": {
+          "sha256": "eff1ba42d5e3ad2ade902b863bff0f4814139ad190d8c19e7943b28f58171e7d",
+          "mode": "0o644"
+        },
+        "util/env.c": {
+          "sha256": "da05c018455df1857e2f0e78924c405e000d4f6886069bdbdf1f40ebcba5d6ba",
+          "mode": "0o644"
+        },
+        "util/matrix.c": {
+          "sha256": "7211a9d3010011fd39b83d9efb5d807e2c0d314297c48e291ba8047f176b8bd4",
+          "mode": "0o644"
+        },
+        "util/meson.build": {
+          "sha256": "b2ef08bdd2ecf8f2d8aac583009548d64015616694a2ac9f37f61a8b5b0deb07",
+          "mode": "0o644"
+        },
+        "util/time.c": {
+          "sha256": "0f611ad471ef0b55bfafcb745c47c8fd7ae3621febafd49b69075ddb7e35ffb9",
+          "mode": "0o644"
+        }
+      }
+    },
+    "mosaic": {
+      "patch": "patches/oom-mosaic.patch",
+      "patch_sha256": "d9a255a9d6c1ca4aeb2c9b787daeb2d3e70a7e0ab040af211bb6c8c7720d77a2",
+      "changed_files": [
+        "sway/desktop/xdg_shell.c"
+      ],
+      "parent_files": {
+        ".editorconfig": {
+          "sha256": "23e71f452fa47f146ee1054594d853a955359da606f550551afd352244300a7b",
+          "mode": "0o644"
+        },
+        ".github/ISSUE_TEMPLATE/bug_report.md": {
+          "sha256": "0d9a334dcdb6e1ee717fd5db2840937134c78da5358bfc64995312f3ebfc3525",
+          "mode": "0o644"
+        },
+        ".github/ISSUE_TEMPLATE/config.yml": {
+          "sha256": "a0adec10c3e2c09efb3f1a70798bd487937d322285014f522f6a73e8e2ad9123",
+          "mode": "0o644"
+        },
+        ".github/ISSUE_TEMPLATE/enhancement.md": {
+          "sha256": "2c2fe7ad3fb4e020b4b598265b464f25a49f0da10902e2af19aeadedd2fb3473",
+          "mode": "0o644"
+        },
+        ".gitignore": {
+          "sha256": "87d59d0a790f0f60f27473ea3b20c1b3e590b5e053560317367c272dcb4bba9d",
+          "mode": "0o644"
+        },
+        "CHANGELOG.md": {
+          "sha256": "1d0b9066ac4e5686a70c83414fe6b737f9d0ee7b6144f79992c688d4d953d814",
+          "mode": "0o644"
+        },
+        "CONTRIBUTING.md": {
+          "sha256": "a2ce38a9fe4ebd5bbf4914ee44acf9885d56c8602bcec34921afeeb266027f6f",
+          "mode": "0o644"
+        },
+        "Dockerfile": {
+          "sha256": "8468e46d9422354a4595d8aa971488fb40c26332dbf74e864c28caa7b8f9d81b",
+          "mode": "0o644"
+        },
+        "INSTALL-deb.md": {
+          "sha256": "87d04f7d152cb01461a945384478f0afe2297b822a941a30effc475beff1329b",
+          "mode": "0o644"
+        },
+        "LICENSE": {
+          "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b",
+          "mode": "0o644"
+        },
+        "NOTICE.md": {
+          "sha256": "d37274160243a0b5e592c91a024af1fb1dd84227d8bb1472f76e40abf4a23dc7",
+          "mode": "0o644"
+        },
+        "PKGBUILD": {
+          "sha256": "fe376925b8a33dd5e52ee98fc1bba95576831002eb5d32b55c109775bb6676f3",
+          "mode": "0o644"
+        },
+        "README.md": {
+          "sha256": "a944f673ca216a1820d04ea553e5639161e84c440f3bd7102937ed1bc8d8402b",
+          "mode": "0o644"
+        },
+        "assets/LICENSE": {
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1136x640.png": {
+          "sha256": "5afd7ef84e9d4638510eccf24c53151bb4ecce7823f80bba542c4542ff456e19",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1136x640_Portrait.png": {
+          "sha256": "c5f84b445058ef73234cffbb1c55b3b4bc2a44f61c5408ba4154a5550127d300",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1366x768.png": {
+          "sha256": "f2743f3ac702dca3b9e9e1fb2cd7008022ebb6ff7e97a36bc606302bb5edf531",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1920x1080.png": {
+          "sha256": "5ff3679f5e99db5e05eba21ee6c6b677b0b6cbcc73cc6357a497187e206878e6",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_2048x1536.png": {
+          "sha256": "205ac46f075e8474d22001f00ab418acee3fb9a71036a2a0a90b9d461638a742",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_2048x1536_Portrait.png": {
+          "sha256": "d875455faacbe383558a552178aac70391a5c62c927494d26e52005929d9a44b",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_768x1024.png": {
+          "sha256": "0e92ff093501799b33a1ecae29410cfd9b106429a81d18edb8b1d18b1fb8a463",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_768x1024_Portrait.png": {
+          "sha256": "f5f71413340a73ce999a8a731b1f0c6295bbebc7631f750a0c3a697c1046cc03",
+          "mode": "0o644"
+        },
+        "assets/swayfx_legacy_mascot_1066x600.png": {
+          "sha256": "e73e178e8a1d1ab92317198f793b58cb2e43f286984fefdfed2c0b30fa0c2378",
+          "mode": "0o644"
+        },
+        "assets/swayfx_logo.svg": {
+          "sha256": "a416110b518f510143937b24c964e9e1cf0548e90a1ae81179f9193213f5c459",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot.jpg": {
+          "sha256": "6aa56a412571acbc3611468ea958706e4a838b6b98a7df0a556b171582d2108c",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_1366x768.png": {
+          "sha256": "6f49efa31dd24a5d86d279ea408e0d3dd96a16338f1ad5f1b02194dde3cc3c65",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_1920x1080.png": {
+          "sha256": "b31162f8f7359ad3d5147fb782d7a5e14b5b5d9c212b4fd9e9fba2a7438e92a3",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_3840x2160.png": {
+          "sha256": "21063cd2e6decb83147910703cf008028fe2562bf249b87fb29293bbb57fe9a5",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_4096x4096.png": {
+          "sha256": "b2a3f9644f94a69048c929baaebf1454a4aaedf096614af462a038deff79f197",
+          "mode": "0o644"
+        },
+        "assets/swayfx_screenshot.jpg": {
+          "sha256": "7f72681a60a5458cfc778bb663e19a6bf248346114a7a7eba7e117cf895c6994",
+          "mode": "0o644"
+        },
+        "build.sh": {
+          "sha256": "5d9564f6a1ddd33e345c6a28fc151bffa92e6e8eea766ae8ec878cfacff40530",
+          "mode": "0o644"
+        },
+        "client/meson.build": {
+          "sha256": "ceb3d97c2c4d23fffaf3ca8818c9aebc67adeb0e318e62d97bd370824e46c29e",
+          "mode": "0o644"
+        },
+        "client/pool-buffer.c": {
+          "sha256": "08473cb03a5d1dc6af53880c9a65d064d0941aaade96e959b399b91570abc4ed",
+          "mode": "0o644"
+        },
+        "common/cairo.c": {
+          "sha256": "4205b2c283db62280c84eb0145912dd50d09aabd9d2513b88465efb028e9230c",
+          "mode": "0o644"
+        },
+        "common/gesture.c": {
+          "sha256": "c17f5a9a80262537b31edaab421b18db422eda7f344571eea65d372389340a8d",
+          "mode": "0o644"
+        },
+        "common/ipc-client.c": {
+          "sha256": "23216c1280e37be1d60b84cf9d0e20b3c8a2f25ee2e02fa205ee0d047d36fa8c",
+          "mode": "0o644"
+        },
+        "common/list.c": {
+          "sha256": "5c6b3612c53197056dc065d123e06a083f3676864d2e8ee14af603bb6ed9595c",
+          "mode": "0o644"
+        },
+        "common/log.c": {
+          "sha256": "bc8ff9d7187a92f85181cf6f90b0f440261e96b66aa7c5d2b573ad91f852336d",
+          "mode": "0o644"
+        },
+        "common/loop.c": {
+          "sha256": "92e20037d8ba9fead99625eb0418b5daa19290e2107493c7a80d8e57a86daab8",
+          "mode": "0o644"
+        },
+        "common/meson.build": {
+          "sha256": "42eeb8609442fb3179122156a250809410b1fdb7de9cdd8e304d2bf8d4101ee4",
+          "mode": "0o644"
+        },
+        "common/pango.c": {
+          "sha256": "b76a5fbeb6debd7be4bd79566014ebc548640bac20c9f018aa8d20c9880f0867",
+          "mode": "0o644"
+        },
+        "common/stringop.c": {
+          "sha256": "a34859dfeac87ae6dc236e4c2fe7a43232cc25e4f5e17fc83379d9a44382a42b",
+          "mode": "0o644"
+        },
+        "common/util.c": {
+          "sha256": "84ca254084ca5809a15ae8b2438390a13539d397a6122314ffed761261d3dede",
+          "mode": "0o644"
+        },
+        "completions/bash/sway": {
+          "sha256": "c89c9469ed3d601c5c57852d03917453685ff87e5b69fc6d06a8b0d3eb0687a9",
+          "mode": "0o644"
+        },
+        "completions/bash/swaybar": {
+          "sha256": "e72a869fe03635f8f2bed58c8b591ae9e1e05da859ac870c6e9c21af6e214c03",
+          "mode": "0o644"
+        },
+        "completions/bash/swaymsg": {
+          "sha256": "e32ffa036912a33b69dc594852d7419bb83819db75f5133a259d8a59eba3c04c",
+          "mode": "0o644"
+        },
+        "completions/fish/sway.fish": {
+          "sha256": "c986ed6ee773d3d0882eeeba199375b9f9fabdeed823236328031a88a67f6300",
+          "mode": "0o644"
+        },
+        "completions/fish/swaymsg.fish": {
+          "sha256": "505d628bebe5d5261cc45d61ff40f9fe11c108fffdce1cd74ddf6e090835733c",
+          "mode": "0o644"
+        },
+        "completions/fish/swaynag.fish": {
+          "sha256": "5645a9ceca185d4767b0f7df4f6427c00fc39cc6cf670a1a302ebfeb2351dc88",
+          "mode": "0o644"
+        },
+        "completions/meson.build": {
+          "sha256": "764c1170709d142f8c1916c80dd4aad81f75982e25e7f33bd133d80cf59281f8",
+          "mode": "0o644"
+        },
+        "completions/zsh/_sway": {
+          "sha256": "d8b57a88071d9c7709caa5acaff9e6d3f9679c26dc780f2e18b845d6a6d9d1c8",
+          "mode": "0o644"
+        },
+        "completions/zsh/_swaybar": {
+          "sha256": "332f20483c63a52c4f5ec0b4798f94cb4f52b4eb83fa39852024854166dc00fb",
+          "mode": "0o644"
+        },
+        "completions/zsh/_swaymsg": {
+          "sha256": "55c303accda033ee376ba8171c71a764341cc52e47098522d7191d0371a08c1f",
+          "mode": "0o644"
+        },
+        "compose.yml": {
+          "sha256": "d12da2a18d095559c6c5ee23c492f72d33909859d5a84527885fb580005f8fa2",
+          "mode": "0o644"
+        },
+        "config.in": {
+          "sha256": "57a068ae37305b944f0ceca1743bcac7ff6606f0b167d62f7bd24e4417270566",
+          "mode": "0o644"
+        },
+        "docs/ARCHITECTURE.md": {
+          "sha256": "72947a3d7d2aa0ea89ceb2647e13f81a7b81cc58351e2ff42920ab9bd0834473",
+          "mode": "0o644"
+        },
+        "docs/DEVELOPMENT.md": {
+          "sha256": "cc305a2d2e306f477b8bc43d68827ffbbf9e27d9a3361bc5e12d2c7f543c5908",
+          "mode": "0o644"
+        },
+        "docs/KNOWN_LIMITATIONS.md": {
+          "sha256": "6755af3d77ea608fe4f68e289c618fbcea4304233e871eaa8d6478b00c29f527",
+          "mode": "0o644"
+        },
+        "docs/PACKAGING.md": {
+          "sha256": "fd38502bc2568a692ed2e5893ce6d7f2ec5ae966f1b2aa4b4010e1dbf6f5d74d",
+          "mode": "0o644"
+        },
+        "docs/README.md": {
+          "sha256": "54d3c483f7875fbe22f56d4e10c998b5a3f180235463cb0d51263c7127f3aa04",
+          "mode": "0o644"
+        },
+        "docs/ROADMAP.md": {
+          "sha256": "86801dd88cc6cc5bd791bd019f6be34a1f607fa6f167f54b3752c1f3941f8fe7",
+          "mode": "0o644"
+        },
+        "docs/STEP20A.md": {
+          "sha256": "d32ff670df762a5eb71cc19720f2e945679cfd5e24e3f9d9e6ff95e5d35467bf",
+          "mode": "0o644"
+        },
+        "docs/STEP20B.md": {
+          "sha256": "6a3a076defda2b3ec1440a22c3d1b8124d0e3d6ab669a5f246bb37541362601a",
+          "mode": "0o644"
+        },
+        "docs/UPSTREAM.md": {
+          "sha256": "0797d4a78973cb3f7491bbca292d9947d176ea3f25f05cc9fc577b9921bae5bb",
+          "mode": "0o644"
+        },
+        "docs/UX.md": {
+          "sha256": "fd5f2540f9201df94688265c0023bf09351cb8c77146d53c2712c7a7a1dc7d34",
+          "mode": "0o644"
+        },
+        "docs/assets/swayfx-mosaic-banner.svg": {
+          "sha256": "167920ec442f5553eaae072a12bc10c64cdf1e0cd3a7287c5a963e305d870158",
+          "mode": "0o644"
+        },
+        "docs/design/STEP20C_FEASIBILITY_PROBE.md": {
+          "sha256": "666d9dc1539f721a50ff89bde36b77ea6472367252b4ac91a76a40309516c19e",
+          "mode": "0o644"
+        },
+        "docs/design/STEP20C_SCENEFX_CLIPPING_SPIKE.md": {
+          "sha256": "0c4faabc6f76178c3bfd93695823a860e4d7c18a71f564be0b32e3a855374aa8",
+          "mode": "0o644"
+        },
+        "docs/design/STEP20C_VIEWPORT_DESIGN.md": {
+          "sha256": "32bc81d43fcad822c4bd497547a9d56841eef594b22e809faa890aabb874b35b",
+          "mode": "0o644"
+        },
+        "flake.lock": {
+          "sha256": "3bdbc42eb03317cad9b9c060fe7cb9f5efdf636332f6f77cf95659a9bea5b559",
+          "mode": "0o644"
+        },
+        "flake.nix": {
+          "sha256": "6c27cae5e431e5705f8c4e2f7c9f5bf3d131ea6693a8e4eae6d44ceb903e442b",
+          "mode": "0o644"
+        },
+        "include/cairo_util.h": {
+          "sha256": "33b7f1594b95dd47ccad31b124834406acc102862342958e0dda3025aa44f38f",
+          "mode": "0o644"
+        },
+        "include/gesture.h": {
+          "sha256": "1f22b0386f2f815e9e6ac051c576a0e5e8acb9c8aaf792c8cec65a11d00109be",
+          "mode": "0o644"
+        },
+        "include/ipc-client.h": {
+          "sha256": "e49ed607fbc7c303088b978bca377f89121f3e57bfbba1024c9ffa8b31bd103e",
+          "mode": "0o644"
+        },
+        "include/ipc.h": {
+          "sha256": "59d7a9dea3ff36c6416c14d7958d918696f50c96aea2ed26f22bb58559149423",
+          "mode": "0o644"
+        },
+        "include/list.h": {
+          "sha256": "a579aa5d722b4b8731c336b5e096307c0ed522222a94fbb7752ad93309a06a21",
+          "mode": "0o644"
+        },
+        "include/log.h": {
+          "sha256": "7a6c96928d160d5c7c849f636543bb3932aada06b6720ea9a59711807c72da7f",
+          "mode": "0o644"
+        },
+        "include/loop.h": {
+          "sha256": "818e22ca2940fa7f5b3885e9c8fba8b416b47f29396e93651968a9b8b3695805",
+          "mode": "0o644"
+        },
+        "include/meson.build": {
+          "sha256": "c3a06214f3bae17958389539531b8ade5f77dccbc4fd749b08bbeb0b692ebbfa",
+          "mode": "0o644"
+        },
+        "include/pango.h": {
+          "sha256": "d3afcd0730de2c3a24d512354b46206a61bc26e07260b8b8983b0b78d8884ea2",
+          "mode": "0o644"
+        },
+        "include/pool-buffer.h": {
+          "sha256": "74a3add27a409cecf570363bd8ab066726181e1e75263dbbfc8d8669ac7aa89c",
+          "mode": "0o644"
+        },
+        "include/stringop.h": {
+          "sha256": "cdce8ff0b1f673f81b47d0bb5c80175f9f031adf2ca54057d64d3340517eafb2",
+          "mode": "0o644"
+        },
+        "include/sway/animation_manager.h": {
+          "sha256": "8226c5b37d8a21cd801701c00c87488435ab63feb706902ab92c85ba36dc9cf7",
+          "mode": "0o644"
+        },
+        "include/sway/commands.h": {
+          "sha256": "3f006d83628197fb63a4c1b1b22ce0a83c19faec15893f1607c7af481142b75c",
+          "mode": "0o644"
+        },
+        "include/sway/config.h": {
+          "sha256": "8dec1e7e1ddebe800480a831f9fd94a23666a0ec7a8becdc1c8d79b28ef1f7fe",
+          "mode": "0o644"
+        },
+        "include/sway/criteria.h": {
+          "sha256": "b9420fc1fb6511a3d573a9666508d016d6b665fdd91156e5e6532e4a1e0582c9",
+          "mode": "0o644"
+        },
+        "include/sway/decoration.h": {
+          "sha256": "bac8be0a3da884a0a1236748c0c3075b6f0dfee6f07ab9797c31be67cf21a86e",
+          "mode": "0o644"
+        },
+        "include/sway/desktop/idle_inhibit_v1.h": {
+          "sha256": "9bb3387b724937a282742dbd988cca06b69c7a24059533c17398a9b9f5187406",
+          "mode": "0o644"
+        },
+        "include/sway/desktop/launcher.h": {
+          "sha256": "f6dba6a1717d7663867e9e17e722a6e150fa68f73c2ea9755bcdbfad10872b29",
+          "mode": "0o644"
+        },
+        "include/sway/desktop/transaction.h": {
+          "sha256": "50b4d8b8bf5bea3b2f19dabf000ee5d234b7c1038561de930027ae5d87b7c1c1",
+          "mode": "0o644"
+        },
+        "include/sway/input/cursor.h": {
+          "sha256": "9e3ab878dfa399b61bf88165a00b9e862e15910133b6d2db908888f27384e784",
+          "mode": "0o644"
+        },
+        "include/sway/input/input-manager.h": {
+          "sha256": "09087250ab1a620f27914f06fd18a6e0f3b66d019e40869e3d49a727a21f7200",
+          "mode": "0o644"
+        },
+        "include/sway/input/keyboard.h": {
+          "sha256": "31c1ef55a92c4428169b176df750242585602acef0c65500934808bd188a24a2",
+          "mode": "0o644"
+        },
+        "include/sway/input/libinput.h": {
+          "sha256": "e51a978b1db6903acc528eca24f0df57747c81cc8f876bf669733332322018e0",
+          "mode": "0o644"
+        },
+        "include/sway/input/seat.h": {
+          "sha256": "eb8ec5887ba297354e3d0e0917d6abdf64f9aeaa62f4dc793a160cd67cfb60cf",
+          "mode": "0o644"
+        },
+        "include/sway/input/switch.h": {
+          "sha256": "12169553506c8a1f3d87a80f5efe82247820a8b289ac59c3be8152aa2e551f54",
+          "mode": "0o644"
+        },
+        "include/sway/input/tablet.h": {
+          "sha256": "cd2f9b280ba95fdc4cdf537e56585e46e7417595e1786d198f174dac92af1e21",
+          "mode": "0o644"
+        },
+        "include/sway/input/text_input.h": {
+          "sha256": "3d46b7c64ead593b7deca2f1e973a64c8d4837617fd165ac2efbe9dca11980d7",
+          "mode": "0o644"
+        },
+        "include/sway/input/text_input_popup.h": {
+          "sha256": "ede58c140fe94a0861e3765edc6ecffb212476780fcbf4f7fd2246ec887c67c6",
+          "mode": "0o644"
+        },
+        "include/sway/ipc-json.h": {
+          "sha256": "1a546b74a6397d04f065cac988726d2c767c90df0f098bb4da5c4d5eb21b1c3c",
+          "mode": "0o644"
+        },
+        "include/sway/ipc-server.h": {
+          "sha256": "e401fd13fcf159fc0e0bf982853841464ebc35cde36e0cecd31ab8313ce56537",
+          "mode": "0o644"
+        },
+        "include/sway/layer_criteria.h": {
+          "sha256": "ed5859460d0b3f24b8e9cc0b4bbdd70bfee0d5b918dc345827b79c40d3d1377c",
+          "mode": "0o644"
+        },
+        "include/sway/layers.h": {
+          "sha256": "69a633983d0e6fb0e8c76d734c6fb6ede7328c8f7a3ca270ac4d74094ca4ce93",
+          "mode": "0o644"
+        },
+        "include/sway/lock.h": {
+          "sha256": "1afe8ad126a3615f08eb7918871ebba3cf47394590f8b89313185ff0eee67884",
+          "mode": "0o644"
+        },
+        "include/sway/output.h": {
+          "sha256": "1544bf99342e862905082e22b79d9401d8baa3117673d641060e3a05bc16d96b",
+          "mode": "0o644"
+        },
+        "include/sway/scene_descriptor.h": {
+          "sha256": "97fb1d19285632668cb69afbca7641fd5449493b3429793ccca1337d44b808d4",
+          "mode": "0o644"
+        },
+        "include/sway/server.h": {
+          "sha256": "80af1b5ae13164f4d09851201a931d8aea7a3838b093391fc94e8337e4c1d3e5",
+          "mode": "0o644"
+        },
+        "include/sway/sway_text_node.h": {
+          "sha256": "6fdbafc32ea648e3452e736384a8907c225d64c413d8285b3548936537715bb3",
+          "mode": "0o644"
+        },
+        "include/sway/swaynag.h": {
+          "sha256": "6b11045900252acd92cb65877b369dbad229edbef47b3c8fb06340b2cae6de9b",
+          "mode": "0o644"
+        },
+        "include/sway/tree/arrange.h": {
+          "sha256": "7c5b468a8ac5b47f930e7ffd936272a02e8d3591c56ff8f9f4c4690aaed363ef",
+          "mode": "0o644"
+        },
+        "include/sway/tree/container.h": {
+          "sha256": "94191e04198f18ef8a8c412e6f39201b357077399ad6a423cfecf6044cb1ad41",
+          "mode": "0o644"
+        },
+        "include/sway/tree/mosaic.h": {
+          "sha256": "b6014e1a4a0e5573118d0575cd97274c0dcfd420b555ee7dae075e4708ce7aa1",
+          "mode": "0o644"
+        },
+        "include/sway/tree/node.h": {
+          "sha256": "2d20bc090c3d4ac150e78f63ad0e194a6788fe06c5c4c1330c76eaf689cd4811",
+          "mode": "0o644"
+        },
+        "include/sway/tree/root.h": {
+          "sha256": "33b107497beff433146cf4d77424f7a732ed8bdb6f0749f9dbf619f17f301c90",
+          "mode": "0o644"
+        },
+        "include/sway/tree/view.h": {
+          "sha256": "486c4cd339eaf72ccbe33afffde0d90f7b1a10ca35810d0b1f45bcce2792b67e",
+          "mode": "0o644"
+        },
+        "include/sway/tree/workspace.h": {
+          "sha256": "14e42b64a09a9d857d1a53658fab8f36e6c490879f98b57a8139a85bc6296880",
+          "mode": "0o644"
+        },
+        "include/sway/xdg_decoration.h": {
+          "sha256": "1e13445ecb75859ead926bcb3cd0a8498ef4a21104afb227f46a35d38268140c",
+          "mode": "0o644"
+        },
+        "include/sway/xwayland.h": {
+          "sha256": "aecbbff238f068570785ea6f99bb0540acebfe08b372d3f59cf5f3412576e939",
+          "mode": "0o644"
+        },
+        "include/swaybar/bar.h": {
+          "sha256": "ef4b495a7d3a65c41b22ac01f335aa14c07982d7e0018b3caf96a7f7c02087d0",
+          "mode": "0o644"
+        },
+        "include/swaybar/config.h": {
+          "sha256": "219f292f90a201234f33f9b492a798636cb64a47abf29924d3fca006978f9e53",
+          "mode": "0o644"
+        },
+        "include/swaybar/i3bar.h": {
+          "sha256": "88f7facf1eacd5bcf1b3ed22e6af485b51034b9958ea414b73a31cf14a3b1574",
+          "mode": "0o644"
+        },
+        "include/swaybar/image.h": {
+          "sha256": "5f38f90d35ec6c57cd2781f1cc57060454bd4cdbd0e21cf0b17377ecc0d6e734",
+          "mode": "0o644"
+        },
+        "include/swaybar/input.h": {
+          "sha256": "903846bd5ecdf8640e10536c6e440e92051a78b431beca03b30ec8d68b236dcf",
+          "mode": "0o644"
+        },
+        "include/swaybar/ipc.h": {
+          "sha256": "147385478a4caf4f9fe88f3100df25976fd4fbd4f14fba619e4256055cb18bef",
+          "mode": "0o644"
+        },
+        "include/swaybar/render.h": {
+          "sha256": "cacd28c498330305ec56092af6cd5abecdd3e1f30699f136965038e8f27517c5",
+          "mode": "0o644"
+        },
+        "include/swaybar/status_line.h": {
+          "sha256": "504d93c8f4330ec8451bda731bd77294b4a46b937e36cfacb90bfae6b1a8a9bc",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/host.h": {
+          "sha256": "34630ea2de2806580d455e12896513430f7e9c1b6776d2b4227a39bde51bfd52",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/icon.h": {
+          "sha256": "924cc93a5a3aca1df10e0130bb207d74022af227f54e04ab43e349892c53d5c8",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/item.h": {
+          "sha256": "92f2a28d394578bb08e2015d9d05224e7d5a58a49df09e236d7ecce185a7daeb",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/tray.h": {
+          "sha256": "cfde265ec087fbcbda75400a7a1aeaf295913c2b9962a90b25b484b9a740739b",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/watcher.h": {
+          "sha256": "9287dcb41d2f87c8024a7616495f162eaec480e4ec15bd6baa69d0819fc51412",
+          "mode": "0o644"
+        },
+        "include/swaynag/config.h": {
+          "sha256": "e23723a039f5ace574cb40c80586d08d33ebcf2ffa1b90529963f5be831763e3",
+          "mode": "0o644"
+        },
+        "include/swaynag/render.h": {
+          "sha256": "1f8140a247a1af8c11de9ffb977c57f1ca8e5d1e73a217f62ee2ca927a7f4200",
+          "mode": "0o644"
+        },
+        "include/swaynag/swaynag.h": {
+          "sha256": "669e86a27c4e22a678228445d8574460fdd69ce14df70866eedf4bbbbdbd7567",
+          "mode": "0o644"
+        },
+        "include/swaynag/types.h": {
+          "sha256": "c75cc9da4e278c210b34d609a8e694fc8fd96edcbb4f1e34ce466cc6a65a86be",
+          "mode": "0o644"
+        },
+        "include/util.h": {
+          "sha256": "203a7649fd909f65fde95c60b3ea5f9808b0d64c2e14558a58b6f284f81d3e29",
+          "mode": "0o644"
+        },
+        "meson.build": {
+          "sha256": "6351d5cc9e231169481acfb987750fa374def8bf501c705e2f2da2bd2a73fc79",
+          "mode": "0o644"
+        },
+        "meson_options.txt": {
+          "sha256": "c2fb3dcefba07d7f01a266a6634e5c140537798cd3c1098c6b1372ea434f0cb5",
+          "mode": "0o644"
+        },
+        "patches/0001-mosaic-layout-viewport.patch": {
+          "sha256": "a04cd06a6ef4fc58e3b40333a53226849e82d9a4757b9ccee58ad7b59a23ff4b",
+          "mode": "0o644"
+        },
+        "protocols/meson.build": {
+          "sha256": "076b568285d3a10e80b3b7dec7e4583e1eca726b4b0dcd39e7e58e9a4bdc2965",
+          "mode": "0o644"
+        },
+        "protocols/wlr-layer-shell-unstable-v1.xml": {
+          "sha256": "87e0b9c837aecd6977f76f3c47d73088b7159871f5d979dc1840f6cadb5e2ed8",
+          "mode": "0o644"
+        },
+        "protocols/wlr-output-power-management-unstable-v1.xml": {
+          "sha256": "7ebd98f3449d246a57829e4b4dd9fbc3ef98e3dd42fa94ea102f14f490eb20de",
+          "mode": "0o644"
+        },
+        "sway/animation_manager.c": {
+          "sha256": "3b6bc749bf80c7f1e76f9c4209700c32440e8e856e0f75bd8326aa37db9e0024",
+          "mode": "0o644"
+        },
+        "sway/commands/allow_tearing.c": {
+          "sha256": "9be9b69ea2c7c8aec697523c9a851b8514d076ae7dd4249337e62ee1acb956a5",
+          "mode": "0o644"
+        },
+        "sway/commands/animation_duration_ms.c": {
+          "sha256": "94729ae4a887cc7ed87f6942028bb8ad3c508811812de99b93639487f1b896b6",
+          "mode": "0o644"
+        },
+        "sway/commands/assign.c": {
+          "sha256": "faa7d488332e009d744d15170a1afc14f184446487ad3fdb12ec2cc60579499c",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/bind.c": {
+          "sha256": "40ec19935fa08c7847248b2f1c10ba1f5f4504a7b5cec4cc1932c0eb566d11b3",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/binding_mode_indicator.c": {
+          "sha256": "93c448fc5e745d72f0fd7f1147d816746aaf33b5379ef540b455111ba342d574",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/colors.c": {
+          "sha256": "84675e71b8515e00d96b213e2d66ba07deb3516f021a7c64d8b775f0632ecb6f",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/font.c": {
+          "sha256": "c655c961871c4d85458625b4315ff9849fa39ecbeccbe7c9d2935ed5a16d04b5",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/gaps.c": {
+          "sha256": "457f2fcbdedf88e2112778a4d32c4696fb6182a0267f2516ff2e9c799c1179ba",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/height.c": {
+          "sha256": "b7aa53ed38246894f26c3e5914d3ce2729fe5c109f137d74bedb6b6ed694560f",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/hidden_state.c": {
+          "sha256": "1f466c2f3bfad7119fb208d332ef716324b68ba5e2b63736dd22f3b01b932213",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/icon_theme.c": {
+          "sha256": "589b8da76cce3b2392f2f033f0006bc496edc418aa0a412318813fd4d6cfaa61",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/id.c": {
+          "sha256": "55555518e74ad774f4ff85c0b187386c45a5b17d6adcd8a8435e10c353181a6d",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/mode.c": {
+          "sha256": "3769f674b5f7c1b5573f64b11fe1f9b1125df92f2ac681dace0d0621d81a3e6e",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/modifier.c": {
+          "sha256": "9ee7c1fa6f4e9a5463ce2e99cf795165b84238d274bdc6f7d70cc68c2b270fbd",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/output.c": {
+          "sha256": "a89a32e04aa4f720482b2230e6d1ed61945f32a9ac2e0f823152a04676231f59",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/pango_markup.c": {
+          "sha256": "3675dd7960e7170ef557c18e6410b54c7bce6ab954461770ff3a9930620c3abd",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/position.c": {
+          "sha256": "0a30952f116261d929e3407c0b03fd3ddb733d7184dcfc7994db0ab32848e2e1",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/separator_symbol.c": {
+          "sha256": "4fd2209c827fb32225e0ca5e05641037be9314fb45b2e53502848ac6b479536d",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/status_command.c": {
+          "sha256": "7c8027dcb43adfe099da0046fc01bdc2ba8917eff9522b51b2d383220ee19e06",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/status_edge_padding.c": {
+          "sha256": "308e5df26c6e8434184eb43a4e92011ff80f6c13426d63030203db762abffae7",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/status_padding.c": {
+          "sha256": "02372eaa508af4312df15b84aad32b118c9860d2e434b67a9c341319f77d32fa",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/strip_workspace_name.c": {
+          "sha256": "928f610bfdc2fd3b29a8d1ad025ce25e86c51a4aeaffd438f8ff26b793d6d8b1",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/strip_workspace_numbers.c": {
+          "sha256": "a59448653b8db16def017fd55007c1529a13f47053cad3cea55d0385b35c2ce9",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/swaybar_command.c": {
+          "sha256": "3f2fcfc7c0beedbd704160fdf9df155bdf2f1ead867fcce39212438c90e6d115",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/tray_bind.c": {
+          "sha256": "55e9141c39fbadd2206975354809add6a518b660fb1daecb832d55ed862810a1",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/tray_output.c": {
+          "sha256": "72517de59311d2b4df5017fd26baa75122090a8545bf22f9896c126fee111222",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/tray_padding.c": {
+          "sha256": "17dce36ce21e398ce898094b6c0bb00d6e448e092631e5e871e3eb742340a27f",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/workspace_buttons.c": {
+          "sha256": "5463bdf3ebc1d388096649c67150769338300c7732cf39cc974693e0aff250c3",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/workspace_min_width.c": {
+          "sha256": "6dcf6985825aa3670610cf6db7c450203ed511ca82cce4065c51375fda0d87dc",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/wrap_scroll.c": {
+          "sha256": "53a0cf503f02bd1aa86665dedfabdaf5e37fc829944c05ba2bdfddc6869af4cb",
+          "mode": "0o644"
+        },
+        "sway/commands/bar.c": {
+          "sha256": "e05d02dec7b773038dea68bbb715777bec01e26a4d9d0e172e745456137d8c93",
+          "mode": "0o644"
+        },
+        "sway/commands/bind.c": {
+          "sha256": "943e67ec30d577581a623b8382fd5965bb0397a7fdc65ed98eea3b8348106955",
+          "mode": "0o644"
+        },
+        "sway/commands/blur.c": {
+          "sha256": "9b4e33641f9215a179f0539728ad8945c0858d7b8db45b9e9349e7b29fd79245",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_brightness.c": {
+          "sha256": "2a7bc4becfc600c370d8631226b048144c57f6bd3c9258ee4a49543b2c2e49dd",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_contrast.c": {
+          "sha256": "1c060459bfd48d79682941c946eb24481700d7856473f744b0f4b421ec349839",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_noise.c": {
+          "sha256": "401f6a3e727ca5416a9abe63cde09448680fa419b2b310ee54f758b8195b779c",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_passes.c": {
+          "sha256": "5457a746e76ce7d5ebfaaaebcbb5c3e21080d48f96050e211dd6e8c981ac5655",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_radius.c": {
+          "sha256": "6d2aedc635cd14f8cf364398054d10a71ee612e08b18cfb913707267840cebc7",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_saturation.c": {
+          "sha256": "eca7868aea5fbacb6a47684c436a6de746892bef9e971954d5355c4ae4bad637",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_xray.c": {
+          "sha256": "ab489ac959a807107528cb2b239834a5c318263541f20d6493d23fe381b20162",
+          "mode": "0o644"
+        },
+        "sway/commands/border.c": {
+          "sha256": "25be8f78fb298261306cfb8e065837f928238775ea47016de4319a4276cb881e",
+          "mode": "0o644"
+        },
+        "sway/commands/client.c": {
+          "sha256": "38dce366dc2bc1a8f57b219df0cb7519ef4908c2f463ea33c9585caf83fbb228",
+          "mode": "0o644"
+        },
+        "sway/commands/corner_radius.c": {
+          "sha256": "175a45b712c98ead46a4f783ab258a6c2c6dbaedc6f9b4a827292a18042d3592",
+          "mode": "0o644"
+        },
+        "sway/commands/create_output.c": {
+          "sha256": "ffd60a66eb8fe0211030ce8cf002f0dfb4b7b37db50f570dbd69ba1a7995491f",
+          "mode": "0o644"
+        },
+        "sway/commands/default_border.c": {
+          "sha256": "897e948108f6cae7c98a5997cf4c0f47e4165d4dbd72ac3ffcf96fc41c6427f4",
+          "mode": "0o644"
+        },
+        "sway/commands/default_dim_inactive.c": {
+          "sha256": "72e1bb42a80cf9bc1b5ee66d62f2c7dd04ee8ff130fa4fec6807b3d0c6c6e07c",
+          "mode": "0o644"
+        },
+        "sway/commands/default_floating_border.c": {
+          "sha256": "5e8368b15844f4b205690407fd7d6f26506822521c3186e04aa1a7e500d2a7f8",
+          "mode": "0o644"
+        },
+        "sway/commands/default_orientation.c": {
+          "sha256": "cbdb516d198178b54cbe645c7c5d859b4f5cd37767378624ff71094bc33af315",
+          "mode": "0o644"
+        },
+        "sway/commands/dim_inactive.c": {
+          "sha256": "6869e4c91784518806d457632b3aa4d4a0d1772f61eb07e150d3cae1927a90f9",
+          "mode": "0o644"
+        },
+        "sway/commands/dim_inactive_colors.c": {
+          "sha256": "da5c381410384c7e9ad24656eadb2a5a489fc77da5de60408596a88ea4cbf962",
+          "mode": "0o644"
+        },
+        "sway/commands/exec.c": {
+          "sha256": "b5cbd3a241348436208f1b238e2060fd1b985cf2cfebcbbeba97b95e2b0e35ec",
+          "mode": "0o644"
+        },
+        "sway/commands/exec_always.c": {
+          "sha256": "35b29925267428d9fbeff1c9fdcab406f8cc11a564940ea410db5e04b048560c",
+          "mode": "0o644"
+        },
+        "sway/commands/exit.c": {
+          "sha256": "f8390d323311124a95bc0cea3147ac46137246f83332b6cd20c270d76ec654ee",
+          "mode": "0o644"
+        },
+        "sway/commands/floating.c": {
+          "sha256": "6bf86f1ef0aa467f482ee185e8fa090f2091cc0b0aeb407b6b1488a7a9cb9768",
+          "mode": "0o644"
+        },
+        "sway/commands/floating_minmax_size.c": {
+          "sha256": "4642443b5a8e19b6044e5859057dbceff98569263e3efee4311560f79c153015",
+          "mode": "0o644"
+        },
+        "sway/commands/floating_modifier.c": {
+          "sha256": "f27ce2d40bee27c52b187365eda9193b9a69458860d8b1097b493a2356d6c89b",
+          "mode": "0o644"
+        },
+        "sway/commands/focus.c": {
+          "sha256": "f02cbfecab1d131cf6a6b59a16e01cda17c496c9425e09fcbec2af4f6d8d1b5b",
+          "mode": "0o644"
+        },
+        "sway/commands/focus_follows_mouse.c": {
+          "sha256": "4c88d10e2ef1598490dd7451d3f79fc80f06e574318754522657752f7441559a",
+          "mode": "0o644"
+        },
+        "sway/commands/focus_on_window_activation.c": {
+          "sha256": "17a9d456434a5a652b82dfaed98477de26c34b9e437cf08ce68f40e5c6b2f135",
+          "mode": "0o644"
+        },
+        "sway/commands/focus_wrapping.c": {
+          "sha256": "ccdd64e25cc8507318b6e0727e4f03c5db846f2231bc0e476e47f8bd42a1919a",
+          "mode": "0o644"
+        },
+        "sway/commands/font.c": {
+          "sha256": "55c543a0a968952854664424ad38811f7bbfa967199fa8cab40dde6af325107d",
+          "mode": "0o644"
+        },
+        "sway/commands/for_window.c": {
+          "sha256": "9f2ef2e5e499e0b4da8ace24c0a0abe46a45559bdb42ee2d2b0081154dabddec",
+          "mode": "0o644"
+        },
+        "sway/commands/force_display_urgency_hint.c": {
+          "sha256": "b8411f0cc5ad1a4c268d9b93e1c696a85c54fe8b2cafabdb1e31c4b814986326",
+          "mode": "0o644"
+        },
+        "sway/commands/force_focus_wrapping.c": {
+          "sha256": "04cdb47659b79fd2e1a275c0237405c3c1a7586e8aafec0299dd59685c55c768",
+          "mode": "0o644"
+        },
+        "sway/commands/fullscreen.c": {
+          "sha256": "b5e142add221d4d938976d279007499d3d57f8ced1c668bf3157a06a9a05f6ac",
+          "mode": "0o644"
+        },
+        "sway/commands/gaps.c": {
+          "sha256": "2beecc8287a3cba5270d595aca041321fadb73355434ecb56a2b9e709401ca5b",
+          "mode": "0o644"
+        },
+        "sway/commands/gesture.c": {
+          "sha256": "db145063bf3a45cfd4180adfa08d60e9d5bb428d7cf9b3dcb953fb2a50c00274",
+          "mode": "0o644"
+        },
+        "sway/commands/hide_edge_borders.c": {
+          "sha256": "26aeee6f25095f1bccae9d9461fe51db2998f6777f89fd3ed83e33c398c0d3ec",
+          "mode": "0o644"
+        },
+        "sway/commands/include.c": {
+          "sha256": "fbe426799aad5d8223c35bc779b2fb1e22cbce26067891ca6e9283d87b11dfa9",
+          "mode": "0o644"
+        },
+        "sway/commands/inhibit_idle.c": {
+          "sha256": "5ffd10bedb290c206b945fefcf42b609084ff6f9ce079f4f022ab376d043cb7c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/accel_profile.c": {
+          "sha256": "4890d432a0bb514fa5d567f263d10b8ad43d37215ac2c61c34cac1f3bc2fb710",
+          "mode": "0o644"
+        },
+        "sway/commands/input/calibration_matrix.c": {
+          "sha256": "3139c3f39f9c1674e17acfa83196b2df02a8948ffac653dfbf950f5c67db0516",
+          "mode": "0o644"
+        },
+        "sway/commands/input/click_method.c": {
+          "sha256": "9651f543220b652c66ab2c860a5e1e25492b732591f342e50e53e85818c72b8c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/clickfinger_button_map.c": {
+          "sha256": "7a22415319c3cb838d43c3d31d9061a04b95619dd21779e303bf09a9e3ebbf0f",
+          "mode": "0o644"
+        },
+        "sway/commands/input/drag.c": {
+          "sha256": "60650f423f720a67c710ac4bad2fc9987327426e0b9f52e556e1d5426cd61b35",
+          "mode": "0o644"
+        },
+        "sway/commands/input/drag_lock.c": {
+          "sha256": "a27fe9ec7cdca583dbada27b136621265477f794879545881d717135911f7cf2",
+          "mode": "0o644"
+        },
+        "sway/commands/input/dwt.c": {
+          "sha256": "d03bc4ff40d10b21a065ebf26938f4ff6bf66eef0d3c4b15c93e3cc0d3722239",
+          "mode": "0o644"
+        },
+        "sway/commands/input/dwtp.c": {
+          "sha256": "6fd35f2d5a8a0aab026c04d5052f7b46938c1dbf63010a577fab37bb31a81ebb",
+          "mode": "0o644"
+        },
+        "sway/commands/input/events.c": {
+          "sha256": "a8542fb065e43f1c76665b8d5d4d156ad5fba7a093a8517914c4fa74101bb067",
+          "mode": "0o644"
+        },
+        "sway/commands/input/left_handed.c": {
+          "sha256": "a33b6617d3fe2a9397038d748ce9467b4ae5db52d63fb3c658dd920f2d7f85dd",
+          "mode": "0o644"
+        },
+        "sway/commands/input/map_from_region.c": {
+          "sha256": "a8d4e18e53607b9f17821c870e121a04cce131c99b7807f6299930a485461850",
+          "mode": "0o644"
+        },
+        "sway/commands/input/map_to_output.c": {
+          "sha256": "4d5ad17dbc98ae309bc070109a09f392bc9c455b768feee6024e0ed07af92eda",
+          "mode": "0o644"
+        },
+        "sway/commands/input/map_to_region.c": {
+          "sha256": "2578b7ffdb692eb66bea3f8e8018cf2943a1889d720c150c4e1d59e3920606c7",
+          "mode": "0o644"
+        },
+        "sway/commands/input/middle_emulation.c": {
+          "sha256": "27224c35357a0cafe01500e0a942861841d347f6010ee5b29e2e168163d2cf4c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/natural_scroll.c": {
+          "sha256": "9de28fa150f58201c7cf820af646a3c47b64d5a69cb3d6e15df6b5f10209b8f3",
+          "mode": "0o644"
+        },
+        "sway/commands/input/pointer_accel.c": {
+          "sha256": "b5e7fc6e4cca4e44c2bb0cef02bbd4b8e3b6c7e5d80b2467cca5c5952f6b2620",
+          "mode": "0o644"
+        },
+        "sway/commands/input/repeat_delay.c": {
+          "sha256": "c7e785dcae0d077dbcb58867a5df5751078303d09ea581ce970c0494686de67d",
+          "mode": "0o644"
+        },
+        "sway/commands/input/repeat_rate.c": {
+          "sha256": "e7c3fd9c11f36e5f5cb958a53e1d120a2ae6696a2cee3834d447bf84255ce4bc",
+          "mode": "0o644"
+        },
+        "sway/commands/input/rotation_angle.c": {
+          "sha256": "136a23f06f20699b2811be306901841ad5cc35df6c2c0745a06171dc7c29ba64",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_button.c": {
+          "sha256": "7d292abf572811df63cf595e475d7fcc34353f79bfdbacb4da929fcd70f99532",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_button_lock.c": {
+          "sha256": "5958ed64c2d47d2969991299eb04c4f11f63c3ddb788c09eb5c093599f8a0cc6",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_factor.c": {
+          "sha256": "cd7427e51dc35ae0954c75545dd29ef422b40a166d706dcdae1d16703f58318c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_method.c": {
+          "sha256": "57f4aa970998918c12d184750eaec9663acfe16e5d9e7803919e2d04d45040dd",
+          "mode": "0o644"
+        },
+        "sway/commands/input/tap.c": {
+          "sha256": "022e4c9ff70460b906b04c925308dd925a4df7716c2dca4a094acec66bcccb3a",
+          "mode": "0o644"
+        },
+        "sway/commands/input/tap_button_map.c": {
+          "sha256": "ecbca464a5abe9dff41616ba88cdf40b201411b57109c34e7d7bd894a454cb38",
+          "mode": "0o644"
+        },
+        "sway/commands/input/tool_mode.c": {
+          "sha256": "90e5ad0b4953dc6bcbc3bb6788c7310dda4e87b04b21d471826734b67f9184ba",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_capslock.c": {
+          "sha256": "f484dd6e897a90f1b6494c2797c860be20d3f95957f3f4b56b0a619a9f459411",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_file.c": {
+          "sha256": "8d1e260fc268066ef648aa15dcd25b9221ca5b6d099db527f145c0aac0643158",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_layout.c": {
+          "sha256": "136b097203d0a5e11913e82dc8ff3a5f419af2d6d927e4be4939fd0b9a9d5b21",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_model.c": {
+          "sha256": "3a7d8473ff0aaa474d0595e3217f5da8338ef847ebb3097f4a46e0fb9e7f5e76",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_numlock.c": {
+          "sha256": "3b495a4ff7c21a74551a9808880dab7568e3dba9eff0b51cd8db8870ea56bd40",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_options.c": {
+          "sha256": "feceebe2359f7dc4ab9cbf66eb794c592ae8e8400038182161c00a95d46c4348",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_rules.c": {
+          "sha256": "84604ca9cdd3ffea7351adf3372124c341a7bc8214127d6749d0910c0d7ea54c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_switch_layout.c": {
+          "sha256": "45b807149f7958be557e4301317c675051faf33b4ad061e77b1d0807acf4882b",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_variant.c": {
+          "sha256": "7c5933519356494ffa0bb866f42bf70fe71297cfb94648b2099f09f09a929b7b",
+          "mode": "0o644"
+        },
+        "sway/commands/input.c": {
+          "sha256": "a0ff84377f69782edde70faff88489926b65352891d13a2023ea95206fc1058f",
+          "mode": "0o644"
+        },
+        "sway/commands/kill.c": {
+          "sha256": "06aa410bd12967501c51299f8fcfcd478144c9af0e4f86426bdc2a7be8d65070",
+          "mode": "0o644"
+        },
+        "sway/commands/layer_effects.c": {
+          "sha256": "fafd4f4fa7f3bcff877250134c208acddcfbc6d8923d8575613bf83760b86eae",
+          "mode": "0o644"
+        },
+        "sway/commands/layout.c": {
+          "sha256": "4b3c0d2626ee61affa7ae64d816d8800b9098d39564523aab1d4c0fe3c489d7c",
+          "mode": "0o644"
+        },
+        "sway/commands/mark.c": {
+          "sha256": "017f66cda9c35952f1bbdaa020117253c75c2ff0a4b8f170d55804283d4ce75c",
+          "mode": "0o644"
+        },
+        "sway/commands/max_render_time.c": {
+          "sha256": "fc7cf4e1c745ff8fc5d4b2c40634a747465910461d9f6907430159f1d6b5c363",
+          "mode": "0o644"
+        },
+        "sway/commands/mode.c": {
+          "sha256": "245500bcf4dd1b6d1946af58834fc2406d1c4376e996fc8a35d0da7df7dc547d",
+          "mode": "0o644"
+        },
+        "sway/commands/mouse_warping.c": {
+          "sha256": "69fbcf7699a110dca1dd9734fbc56f084db976380e38bab0c0ba839e0a3c9c95",
+          "mode": "0o644"
+        },
+        "sway/commands/move.c": {
+          "sha256": "375539d6d4a2f019569480709c8b9ba002655727386209494a8c4c95e490b5fe",
+          "mode": "0o644"
+        },
+        "sway/commands/new_float.c": {
+          "sha256": "e33c2fe01a21c08451b1040323085534fc2f06b8a328e9dcad4931583b10dab7",
+          "mode": "0o644"
+        },
+        "sway/commands/new_window.c": {
+          "sha256": "dc62a4c869c4ec71f0b5f5f875f49f674c75ea71fcc765495d2f141197b2a5ad",
+          "mode": "0o644"
+        },
+        "sway/commands/no_focus.c": {
+          "sha256": "b4e445f8380a21c508bcfc8704ee9fffa80d48aaaaa16316941d8b1ccfa5f309",
+          "mode": "0o644"
+        },
+        "sway/commands/nop.c": {
+          "sha256": "dee46c3c52b0a7ebd336e94c9c3fdeb1f9b8309ebcc2522d6974efb3d6cac0ef",
+          "mode": "0o644"
+        },
+        "sway/commands/opacity.c": {
+          "sha256": "822cda3535bc7221be57a2a41ea364fa3883f1023ea7d32e8d4216bfd6ebb333",
+          "mode": "0o644"
+        },
+        "sway/commands/output/adaptive_sync.c": {
+          "sha256": "40b5c955ec8ed54d9977ae00b8197917c4077d2913e30afe4ffa74816f33dbd8",
+          "mode": "0o644"
+        },
+        "sway/commands/output/allow_tearing.c": {
+          "sha256": "d0fbc2608a2f95d329da346c03cace9213879c748400f7e2b7c1f04d20b303ff",
+          "mode": "0o644"
+        },
+        "sway/commands/output/background.c": {
+          "sha256": "281f74ecf910e2bccb49bdcbd0809adb63afb323e6aa957a7ddd54bb6538fd2e",
+          "mode": "0o644"
+        },
+        "sway/commands/output/color_profile.c": {
+          "sha256": "d60b18f0b145ab3b9cbdb774a6880ba30ddb2718b5e4954fcd7104e947ef6ac7",
+          "mode": "0o644"
+        },
+        "sway/commands/output/disable.c": {
+          "sha256": "a9705cb3dcdc6f6f71133618a27114c8d1cdc3ab6cb33f4a4591149813d5536e",
+          "mode": "0o644"
+        },
+        "sway/commands/output/dpms.c": {
+          "sha256": "79d00635e9218687066b996c866b074b10f463ca59af0da9f5dbdcddcf3416e3",
+          "mode": "0o644"
+        },
+        "sway/commands/output/enable.c": {
+          "sha256": "40f02c19aa0cd7e27807222da1c1007ace853958e138842c26c94540fde61e3f",
+          "mode": "0o644"
+        },
+        "sway/commands/output/hdr.c": {
+          "sha256": "b002111c03444e25c01a1fe9dacd49c3534d65e966fd8848be090d5be8ffe03b",
+          "mode": "0o644"
+        },
+        "sway/commands/output/max_render_time.c": {
+          "sha256": "4e04b7143e73d73e037684fd7f0979e7f537910693087682180d66d06fb4257e",
+          "mode": "0o644"
+        },
+        "sway/commands/output/mode.c": {
+          "sha256": "914bdaa8f5fa3bdc349af76947e31d5f78086581c37a245e55b0bd8fd99ff8f0",
+          "mode": "0o644"
+        },
+        "sway/commands/output/position.c": {
+          "sha256": "87bbcd1fabaf38d668df6401a21f48621c3c052663c817c46563a1ec36ada0ad",
+          "mode": "0o644"
+        },
+        "sway/commands/output/power.c": {
+          "sha256": "275fa7060a14869cba0f752d2908d79a8d608dc1cbb15cc7073a7f8143c11f47",
+          "mode": "0o644"
+        },
+        "sway/commands/output/render_bit_depth.c": {
+          "sha256": "8c7214921a0cb7d9d11eec37b0e6b4ff5aa27e0c614092159ec423ccca25f062",
+          "mode": "0o644"
+        },
+        "sway/commands/output/scale.c": {
+          "sha256": "077f3fa5c785d9874e4423f9990e18202ccc57b1833fe5577b2d6a367d8224bb",
+          "mode": "0o644"
+        },
+        "sway/commands/output/scale_filter.c": {
+          "sha256": "103f32d13234ac90e29ae1572f6de711fda2e2ed6ae887610bdf5a696d156d66",
+          "mode": "0o644"
+        },
+        "sway/commands/output/subpixel.c": {
+          "sha256": "fb1f7473063baba02da27cbbf7dbb0173fbd8e2cc02a076386d3cf2f24ba12ed",
+          "mode": "0o644"
+        },
+        "sway/commands/output/toggle.c": {
+          "sha256": "b075e310fbfe41f26e42ef56a6bbcdb5a708bb60971102bfda8aaa731590839b",
+          "mode": "0o644"
+        },
+        "sway/commands/output/transform.c": {
+          "sha256": "336fea758488150e58f0264209e483136a1da20181e13b36bc863fc0ff1c0504",
+          "mode": "0o644"
+        },
+        "sway/commands/output/unplug.c": {
+          "sha256": "16fc74be2b4ba87228d68fcfa42316a5a6aa43d71dea06711d90b5e4519917ab",
+          "mode": "0o644"
+        },
+        "sway/commands/output.c": {
+          "sha256": "fb90f38fcfdb344715739bdb798c4918f75898910fec646801b3d7cb0e241bd3",
+          "mode": "0o644"
+        },
+        "sway/commands/popup_during_fullscreen.c": {
+          "sha256": "1a6bb344225bca8fc90486247c61b737551b2c6d05135c672428588b7b9829f7",
+          "mode": "0o644"
+        },
+        "sway/commands/primary_selection.c": {
+          "sha256": "cc68710d5db4f52fb03965ee26ad2bee98c0f1005c97a5ef15a762d79db03827",
+          "mode": "0o644"
+        },
+        "sway/commands/reload.c": {
+          "sha256": "5523ef128ac2f82f87fea3e8ceb476dbc76aacbbf6f96a5aa632b2137b398d51",
+          "mode": "0o644"
+        },
+        "sway/commands/rename.c": {
+          "sha256": "a1d4ea4502f5042db5e2a5f827fbb34bea7f72029678d503e7c149e7f23d747b",
+          "mode": "0o644"
+        },
+        "sway/commands/resize.c": {
+          "sha256": "4adf25726c15ae352a4cfc21050cbc8a8b19aeae0094a44823511298e2251115",
+          "mode": "0o644"
+        },
+        "sway/commands/scratchpad.c": {
+          "sha256": "099f61126933c3260d4f25d1aeecb1171261ae1dd70b5379fb740577a4282652",
+          "mode": "0o644"
+        },
+        "sway/commands/scratchpad_minimize.c": {
+          "sha256": "596e1835b5628391ef491e428a3632c62b14afc7038b2cf6b4ab9a372e7acf45",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/attach.c": {
+          "sha256": "65635ecbc9d3a86b285ab0946721ea2ae362f519bc94c3089b1d270fefbb8967",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/cursor.c": {
+          "sha256": "9939f46159cb17a1da82e92473bcc726675770a9b887956bc5475d8b1bc47327",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/fallback.c": {
+          "sha256": "8b0d78f9f77a69ba6bdf49c8e617fca6e4251d4fec9e472c90a1cd9287bd0212",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/hide_cursor.c": {
+          "sha256": "c1241af9d915a4d7143b5fa4fcd3d6b8690237d8fda1008d5acaa0ba6136ccf3",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/idle.c": {
+          "sha256": "219a62420ba2ac28c425a11b7e71193f2d652e8b3efb426ff1167f3ad748d216",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/keyboard_grouping.c": {
+          "sha256": "cba1ffe0f26448c277f46cb55a424776423d18da3dac95bf38906d5db94e2a27",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/pointer_constraint.c": {
+          "sha256": "32a5e1e4befbbb49dd5e869df760806e3677f49b684def0706cf66c6b961db2d",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/shortcuts_inhibitor.c": {
+          "sha256": "79053e71ced7a6e915da8b47e3e858428e74d71897619c68dbb42adde69f8b02",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/xcursor_theme.c": {
+          "sha256": "b02340466414f12f0d014e3c838c8ae81ab0158f819a959d4ca9db6e3301de8d",
+          "mode": "0o644"
+        },
+        "sway/commands/seat.c": {
+          "sha256": "7c51a964164f080739c76d1a102288e06b9e1bb3400a54e494784a02a1c7da6d",
+          "mode": "0o644"
+        },
+        "sway/commands/set.c": {
+          "sha256": "294611bd3727bba49ff25c5d7abc43685cfa47ff65db65d6061762d08d4db54a",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_blur_radius.c": {
+          "sha256": "f7dc588dbc1b81b6038c9a5df91a387c2ff01b40056e3ab1e900ba937485406a",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_color.c": {
+          "sha256": "1bb8d20498d49dc1e4634c498735afe3a3e7cd93d0c0726aa2577044fa9d9a05",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_inactive_color.c": {
+          "sha256": "fa3b36e539deeaff98de3fc1c04a2232c936347a122e4c19514b6ac68724e8f1",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_offset.c": {
+          "sha256": "e32765e4b50c2156a61f41239859ec8cee4ca9841cca2f54926ccae8876d7234",
+          "mode": "0o644"
+        },
+        "sway/commands/shadows.c": {
+          "sha256": "767de9ba343b16b4980a45595266bdfaaac396c39f49b18920946a6f4f15c208",
+          "mode": "0o644"
+        },
+        "sway/commands/shadows_on_csd.c": {
+          "sha256": "a4e8cab5d319fceedc1a80cc86421dc3e78c193c45e67ce5f1e2760cdb16ab0c",
+          "mode": "0o644"
+        },
+        "sway/commands/shortcuts_inhibitor.c": {
+          "sha256": "d55be514dc34e0058be4b23f1c7313f154f75c7d352c17abef070bc9bef89b8f",
+          "mode": "0o644"
+        },
+        "sway/commands/show_marks.c": {
+          "sha256": "9f9612069e4e4f5f0cb0e3367c6f8206d2f66847d07b8c8e9c17213324d3a578",
+          "mode": "0o644"
+        },
+        "sway/commands/smart_borders.c": {
+          "sha256": "e453f12139549bbca2f94c5a71721b8eda4abe32d56f1d69521da640dd24492b",
+          "mode": "0o644"
+        },
+        "sway/commands/smart_corner_radius.c": {
+          "sha256": "d67dc650f6cfceb07eb1d6fab2be611b012b5d98f8e9e97c4a64ee9372a73a02",
+          "mode": "0o644"
+        },
+        "sway/commands/smart_gaps.c": {
+          "sha256": "b956d09063b19671f725ca1a2e9cd825ebf2e7a1c6452458b86ae419c1551977",
+          "mode": "0o644"
+        },
+        "sway/commands/split.c": {
+          "sha256": "737da40a1a156cd5f772fe4d584d6b8d96116f2de782418ec24cf834b661a849",
+          "mode": "0o644"
+        },
+        "sway/commands/sticky.c": {
+          "sha256": "5e898f1c3964bf6ab47caff2d1018bf68a8b3b6ef4de2e324947e9064f728a17",
+          "mode": "0o644"
+        },
+        "sway/commands/swap.c": {
+          "sha256": "f7504ebb1d59bb1e6b93699c7169dac3e426f07aaa2a2460ccbec4b2bcf2ab7b",
+          "mode": "0o644"
+        },
+        "sway/commands/swaybg_command.c": {
+          "sha256": "4d98d1ab14abdfefc8097150ad61936b4573d6d03ed64e7e09b3f44e97e293d3",
+          "mode": "0o644"
+        },
+        "sway/commands/swaynag_command.c": {
+          "sha256": "294a8bfe509d878810554644c02310d19c8d09633260a728678d0626c280345b",
+          "mode": "0o644"
+        },
+        "sway/commands/tiling_drag.c": {
+          "sha256": "e4ac31cc9e153676175e0a8de925b1768c6ede66504d6fa42571fc5674cd58bf",
+          "mode": "0o644"
+        },
+        "sway/commands/tiling_drag_threshold.c": {
+          "sha256": "87bb0644193c2911532c5cce3c4d7c703d23027b64167ec34b457437f6bcac87",
+          "mode": "0o644"
+        },
+        "sway/commands/title_align.c": {
+          "sha256": "f2e375f8a5db3385550f474781fd68bb1ad3eed566dc8ab8c58e974c42ab5904",
+          "mode": "0o644"
+        },
+        "sway/commands/title_format.c": {
+          "sha256": "3388200dce72dd13f8fd9e9495790950911291c72e60eebc86e9fb23e61c3417",
+          "mode": "0o644"
+        },
+        "sway/commands/titlebar_border_thickness.c": {
+          "sha256": "86d87194992077fb5854ea723235d49bed987dac81fb9d8812f1f8b027333e31",
+          "mode": "0o644"
+        },
+        "sway/commands/titlebar_padding.c": {
+          "sha256": "a36e4fe14ff62a30debdb3b05809a433a0e108a0017e657faadced04b1396f4f",
+          "mode": "0o644"
+        },
+        "sway/commands/titlebar_separator.c": {
+          "sha256": "4d10842adf0fb4b36aa5ec7b37c194417295f18e32ea8c85d71724dad58ed851",
+          "mode": "0o644"
+        },
+        "sway/commands/unmark.c": {
+          "sha256": "5c4cd02f8c9bbb3fba5cec3f369baf12e94dec579740c8bbcbc6917657b54ce8",
+          "mode": "0o644"
+        },
+        "sway/commands/urgent.c": {
+          "sha256": "b6d9915e33eb6ec968fd7ca2b1cc6f1bccf9836adbba4ed6043ebc570046d682",
+          "mode": "0o644"
+        },
+        "sway/commands/workspace.c": {
+          "sha256": "113eb352e3075dad5f09e0e09617556d2a48164be6daada0f9752787076f5e2f",
+          "mode": "0o644"
+        },
+        "sway/commands/workspace_layout.c": {
+          "sha256": "66c75fed81b6b717662f9ddfac5cdaf5bab30e7a4548ac8d21793aca01956c8b",
+          "mode": "0o644"
+        },
+        "sway/commands/ws_auto_back_and_forth.c": {
+          "sha256": "7cfa7a6632d03f127eb72585f8cca21503738327661925dcffe3903c7750ea1e",
+          "mode": "0o644"
+        },
+        "sway/commands/xwayland.c": {
+          "sha256": "d538ab44f7ac57858f0491d56e39960536ead8e6b75a201b197a0398b9fd8fde",
+          "mode": "0o644"
+        },
+        "sway/commands.c": {
+          "sha256": "c4d18d9982594da0813cbd74786971bb34fd11cf966f8d226a93f15029022f28",
+          "mode": "0o644"
+        },
+        "sway/config/bar.c": {
+          "sha256": "d1e74900dd7dc464f2bba373ada61b8c87e793544ad442d83b8d10d9f8c343b7",
+          "mode": "0o644"
+        },
+        "sway/config/input.c": {
+          "sha256": "9b3ad8616350a0927516e9adc2f80eaf2c98d071ee2a3c28066778ca9454f129",
+          "mode": "0o644"
+        },
+        "sway/config/output.c": {
+          "sha256": "20de3ddbb794c5cba75ba74eb839cbc8bdf4aa347d1f12d0d7e09c628da1e851",
+          "mode": "0o644"
+        },
+        "sway/config/seat.c": {
+          "sha256": "54da4011e0afefe9a4dc6838881a23f36ff71d986bf9e1099b0196b99ba9b727",
+          "mode": "0o644"
+        },
+        "sway/config.c": {
+          "sha256": "e6c1261746a962b7991fbb5cace3a3c48abfe9f783b40407364ff941ba82c204",
+          "mode": "0o644"
+        },
+        "sway/criteria.c": {
+          "sha256": "759448a412d0810b911ce2452f16f27ddb138bf54df45de2b7c08cb54d5f60a6",
+          "mode": "0o644"
+        },
+        "sway/decoration.c": {
+          "sha256": "85d30146a2997aafbf01ee5fe97f43bf0dd6a4b87bcbb80c7cb5591571417ef1",
+          "mode": "0o644"
+        },
+        "sway/desktop/idle_inhibit_v1.c": {
+          "sha256": "9344b4fa4e3f0fe8658adac26d957a59ed92e024804dfad2c5c5e134e46f4253",
+          "mode": "0o644"
+        },
+        "sway/desktop/launcher.c": {
+          "sha256": "ce65bffb68ea7cc495ed7ab9e4e2dc27bb6970a50da56a06fedad494b309c6ec",
+          "mode": "0o644"
+        },
+        "sway/desktop/layer_shell.c": {
+          "sha256": "bb4b7793f4c9f058086193ccf3cef28a4f8a72914b5a9d515d5d02f6e334d634",
+          "mode": "0o644"
+        },
+        "sway/desktop/output.c": {
+          "sha256": "0932d0aee143d8f3ec82b4d7e2c971371879f36f888f42b05aa72408fc624e5a",
+          "mode": "0o644"
+        },
+        "sway/desktop/tearing.c": {
+          "sha256": "59a2f453ca721d888c5887c6cea5fa18f27e7ec64d3e956206246abcda2fe861",
+          "mode": "0o644"
+        },
+        "sway/desktop/transaction.c": {
+          "sha256": "972b2e6d7f897c9e469a5d85e38d43d9e4c9199964a612b871a3fb2f06b27c16",
+          "mode": "0o644"
+        },
+        "sway/desktop/xdg_shell.c": {
+          "sha256": "26e5885b34ddf23c1ac7c2c7c3590ced0134c256ed68bb3a0ec30bfd2d7c890b",
+          "mode": "0o644"
+        },
+        "sway/desktop/xwayland.c": {
+          "sha256": "f01d786a10fa2638f77613da540ba184ce3464a9b0cfebdd3c8c8b6a409519c5",
+          "mode": "0o644"
+        },
+        "sway/input/cursor.c": {
+          "sha256": "f162cbef45dbc497f4482c24a2cd5f6f2b13caad4e313d7daccf7b67d8c08543",
+          "mode": "0o644"
+        },
+        "sway/input/input-manager.c": {
+          "sha256": "1b07ba753e5043cbe740f6c6d63ae8e3f15dd0897056647d4e3da9b7838b5bfb",
+          "mode": "0o644"
+        },
+        "sway/input/keyboard.c": {
+          "sha256": "425cf9befbb2387a3df02da0c16b9fa77725181502f3dad0cbbb7d708e21f459",
+          "mode": "0o644"
+        },
+        "sway/input/libinput.c": {
+          "sha256": "aa1c86c70656c6d437ed89d509beab201bcbde1c00e8f801f94b4fe981640fc8",
+          "mode": "0o644"
+        },
+        "sway/input/seat.c": {
+          "sha256": "5661df9f70b66ca4b105a3787de0cad57a7f340b632ed1622d6dca49807de820",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_default.c": {
+          "sha256": "66ce185397b45b0150c6c9fe776e8ad21765f9c6ac8227f8f52af8b8341d4866",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_down.c": {
+          "sha256": "5dcdfa3039919448e3adf1c2d210c6fff89a46b897ac0c34f1f615411c3c6efe",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_move_floating.c": {
+          "sha256": "610309f263f0069f029d7e2dad7ebae94b6e66ff365945b1052cd9753a229dab",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_move_tiling.c": {
+          "sha256": "2e58235f78165cf23f9fdb17e922872831693c7b03a807ef83aeba1e5c0cbfbc",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_resize_floating.c": {
+          "sha256": "5a70f8cb54963d92885ae679f9058526b1b14a4b338757bf287aa6175db13f60",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_resize_tiling.c": {
+          "sha256": "e1ccccd1a1cf48fb42d17dff876ec4372efff69b8d6458fffabc738349a34f85",
+          "mode": "0o644"
+        },
+        "sway/input/switch.c": {
+          "sha256": "fc44f83ab5856abd12672a82ebcc0b03544d2ccfa4e840f5a3d7f69a2e869c21",
+          "mode": "0o644"
+        },
+        "sway/input/tablet.c": {
+          "sha256": "04370bf51f7fc04e206f9b36b78128661def7d256c4d2fbdf5b5e49d493b3790",
+          "mode": "0o644"
+        },
+        "sway/input/text_input.c": {
+          "sha256": "fe7864d08cd89b3b3d57b4c8373fa4928a353ad483b72fe9c72d93d839d7a7f0",
+          "mode": "0o644"
+        },
+        "sway/ipc-json.c": {
+          "sha256": "710408ede2fcaa11518577c199d1e1b009ac44e231ff050e7c9ef76e2d2371e8",
+          "mode": "0o644"
+        },
+        "sway/ipc-server.c": {
+          "sha256": "2af7f2449cf42474ab17678133fe5425fb80f5ed749234ae0022b3761a4a4d9c",
+          "mode": "0o644"
+        },
+        "sway/layer_criteria.c": {
+          "sha256": "501574143ae69a0add8717db95814739932cea17c9eb0959f8b773363740e6bc",
+          "mode": "0o644"
+        },
+        "sway/lock.c": {
+          "sha256": "3fdca6aab166ae17e4aa803693c1907605036207aae50fa417b04349b62ca25c",
+          "mode": "0o644"
+        },
+        "sway/main.c": {
+          "sha256": "70cea63271e5915e229086dd5f899c070ab372b89f7229154a02730cb4b7ac55",
+          "mode": "0o644"
+        },
+        "sway/meson.build": {
+          "sha256": "cfd40fde1a29e2b8fc142bfe44d87c398bc861e01d25bf2767007318faca55d2",
+          "mode": "0o644"
+        },
+        "sway/realtime.c": {
+          "sha256": "7fea79c25f1b174f679178b7bbe99c8ec8727fecc397433292b8051324b23b26",
+          "mode": "0o644"
+        },
+        "sway/scene_descriptor.c": {
+          "sha256": "a95a41b374e1ef6d57b56b9ba14d9bad7773ce8f136bb86bce218519d1289a5e",
+          "mode": "0o644"
+        },
+        "sway/server.c": {
+          "sha256": "a9367d25a18605a6b20c8fd9a690b475c48d2ad9a73ffa929c29856060890d32",
+          "mode": "0o644"
+        },
+        "sway/sway-bar.5.scd": {
+          "sha256": "57968b8c63bd481b918a868b4eaca1c08ffb75518361a795f9b04d9480cf1336",
+          "mode": "0o644"
+        },
+        "sway/sway-input.5.scd": {
+          "sha256": "834eb8a6b73d9ec7bb02908d1f0498d9253978d4d1c65bce47f6f3f96fbb3bbb",
+          "mode": "0o644"
+        },
+        "sway/sway-ipc.7.scd": {
+          "sha256": "db44cb2a4823c85d49cddd95086fe1d00a32974c5922abb409fd04c66e995f31",
+          "mode": "0o644"
+        },
+        "sway/sway-output.5.scd": {
+          "sha256": "7b4503a0d3e1c4be08f6081f250236c862344ef8e8f45ec01f4333c9a7ad51f1",
+          "mode": "0o644"
+        },
+        "sway/sway.1.scd": {
+          "sha256": "cacca5a3d95ed91fae4ba5cbce63696eb826ed55770a1fe7ebc75348bbba5def",
+          "mode": "0o644"
+        },
+        "sway/sway.5.scd": {
+          "sha256": "e0dd6eebeebc2894b49f84937439a61c0dd20d468820c43cdfdfe46e1dfc99a6",
+          "mode": "0o644"
+        },
+        "sway/sway_text_node.c": {
+          "sha256": "253a789f5916b2457b48a9dd67fc3c51a39799fb3c9080b7949b55feffe836f1",
+          "mode": "0o644"
+        },
+        "sway/swaynag.c": {
+          "sha256": "77b4cbd3407f6625e700e36d23f4fe148cbf718b33e74412fa6569bafc634196",
+          "mode": "0o644"
+        },
+        "sway/tree/arrange.c": {
+          "sha256": "c9c1e4ae3df273b67fc8b3a115a8eb49c113250a6f0fcd9ab94bc760757dee75",
+          "mode": "0o644"
+        },
+        "sway/tree/container.c": {
+          "sha256": "8cb622caec02ddaa5df9877556f778678989025e3863f49e862dc040a3eb8f40",
+          "mode": "0o644"
+        },
+        "sway/tree/mosaic.c": {
+          "sha256": "cb7b506dc4cca63d1bd1c237502ebe9e2d757d614d4c2210df8951bbc3ee20f5",
+          "mode": "0o644"
+        },
+        "sway/tree/node.c": {
+          "sha256": "a2bf7c00838f3485de75840d760321267353f1720e67656d6dddb7543e7ebab7",
+          "mode": "0o644"
+        },
+        "sway/tree/output.c": {
+          "sha256": "910d81998f50a53fd04444f66e132b3e7e48e92b900e875e14ae80f793472c85",
+          "mode": "0o644"
+        },
+        "sway/tree/root.c": {
+          "sha256": "1e222bc862c2531008ea70848559d13d1c92340d1537c99a67425e2470addbb7",
+          "mode": "0o644"
+        },
+        "sway/tree/view.c": {
+          "sha256": "39d8a3dc5619890b9d05c0c0bbee1b20f9157847cff216f5cbad5bc0bc0b0e44",
+          "mode": "0o644"
+        },
+        "sway/tree/workspace.c": {
+          "sha256": "7e262293ec875ae052e534c79b5eb874aa7aa2ad2c22262d931107a3d57c351b",
+          "mode": "0o644"
+        },
+        "sway/xdg_activation_v1.c": {
+          "sha256": "31faae11b19ca0f9c4998862b8527d09b10f2211a37e321bcdbd79965cbeb521",
+          "mode": "0o644"
+        },
+        "sway/xdg_decoration.c": {
+          "sha256": "6c78ee9ad6b298368f496e4b6f181aeccdeeea28ce7665bdfb96f0560ee87c30",
+          "mode": "0o644"
+        },
+        "sway.desktop": {
+          "sha256": "71961593632ccb4a88ae5af6c0ec02350295a0842678b6fbcc002326469f60a2",
+          "mode": "0o644"
+        },
+        "swaybar/bar.c": {
+          "sha256": "7ddd5242991c9f8f845620f041efa848ef21b52742065b6777a27813c1c826c2",
+          "mode": "0o644"
+        },
+        "swaybar/config.c": {
+          "sha256": "b6bac70fcb4c5b3d594979b9a73ce57a67cb9f51313044d7a3d2ec33657f8ec4",
+          "mode": "0o644"
+        },
+        "swaybar/i3bar.c": {
+          "sha256": "bae0594f2ac8912f66a9edcdca8c6c61d0b430e6d186a844d1ab6b198b30fa4a",
+          "mode": "0o644"
+        },
+        "swaybar/image.c": {
+          "sha256": "c20616b697300ad964d9bcfbc783a41d8d28a048203af4858255a1b55455d2f6",
+          "mode": "0o644"
+        },
+        "swaybar/input.c": {
+          "sha256": "047261e57f33168021c34f430b56ee73b9715a63efdc133cd9c6372f659d5ae8",
+          "mode": "0o644"
+        },
+        "swaybar/ipc.c": {
+          "sha256": "1686abe12a4a2f2018e1d83e620cf59d83b3251074c4c7e01db95253ffa0fbf1",
+          "mode": "0o644"
+        },
+        "swaybar/main.c": {
+          "sha256": "7e291521fc58ae4e7a6e5e275b44ee90fe4147966d0ed8413f918eb99f29123c",
+          "mode": "0o644"
+        },
+        "swaybar/meson.build": {
+          "sha256": "4ff797ae256f9b39975cbeea785a9c675f15c03bd510d2470a7e2d016ae261cc",
+          "mode": "0o644"
+        },
+        "swaybar/render.c": {
+          "sha256": "3a42b3abc5a8bc8983bbf0dda1b19553a042f1701c64fcb26bb185e8808dd61d",
+          "mode": "0o644"
+        },
+        "swaybar/status_line.c": {
+          "sha256": "905eb415175611158fdfc721dca12ad875858b14cb067cefbad701b926790795",
+          "mode": "0o644"
+        },
+        "swaybar/swaybar-protocol.7.scd": {
+          "sha256": "9ed114f97663a4f1bf2aed805cdf4bfeb099690cae9f1bb3a210b46b73055ec3",
+          "mode": "0o644"
+        },
+        "swaybar/tray/host.c": {
+          "sha256": "58dcada1c5eb9a45120b2d9fcf58f341fccaa132ccb4436fbeca17a5a71172a2",
+          "mode": "0o644"
+        },
+        "swaybar/tray/icon.c": {
+          "sha256": "06ba6864c13db0c176186137c9efa1ec4fb9e84361d3650c149d53bace3fa0c0",
+          "mode": "0o644"
+        },
+        "swaybar/tray/item.c": {
+          "sha256": "bb4d245397f366d8130d64004355f2f0d5fedd221b127e9d3714171ebb716bc8",
+          "mode": "0o644"
+        },
+        "swaybar/tray/tray.c": {
+          "sha256": "c0d6fd4f37730ccee30afdd24109051d335dc30be6da428ff8a3b7068283467b",
+          "mode": "0o644"
+        },
+        "swaybar/tray/watcher.c": {
+          "sha256": "1e3ad8180025d91e2e5dafa8417bb4f3db900d8622e224e181a95ed28434ff7c",
+          "mode": "0o644"
+        },
+        "swaymsg/main.c": {
+          "sha256": "effbc69497b61016335575dde5bb7e6164e87b80578d533de1bc3082245a2f75",
+          "mode": "0o644"
+        },
+        "swaymsg/meson.build": {
+          "sha256": "eccd929e8470713def7b4ffb90b0b8142b0851f91756e949a1bc655e0272ee82",
+          "mode": "0o644"
+        },
+        "swaymsg/swaymsg.1.scd": {
+          "sha256": "5b8d557c242e96eb2ef781e90b7ec3a5b17c59e04755382f7125ab5e2cdf03fd",
+          "mode": "0o644"
+        },
+        "swaynag/config.c": {
+          "sha256": "108ab4d962e85c52f7f975d90b1d4ce5e55d53d1be14681d518e97646efdd568",
+          "mode": "0o644"
+        },
+        "swaynag/main.c": {
+          "sha256": "537dc7a49d9d7967905313df19584e241bc104ab2011f2996048f6bc99f972ca",
+          "mode": "0o644"
+        },
+        "swaynag/meson.build": {
+          "sha256": "6f65aee69158c04cc24fe68956ea8c0932692448af45d9ecce0649efd32e6aa4",
+          "mode": "0o644"
+        },
+        "swaynag/render.c": {
+          "sha256": "d0d4e85ecc53fab6d9d6dbf096a4607b29107a1f37ff5f5c8eaefd041ceca400",
+          "mode": "0o644"
+        },
+        "swaynag/swaynag.1.scd": {
+          "sha256": "3e9dd1de9551cb291f92481b69c1512a076d6a6d0e5b5362a9b93fb9c6e0e070",
+          "mode": "0o644"
+        },
+        "swaynag/swaynag.5.scd": {
+          "sha256": "8220198348026765f76178210ab7f285e0186ec3fb7a9e84fcc0957366ccf874",
+          "mode": "0o644"
+        },
+        "swaynag/swaynag.c": {
+          "sha256": "9ecc055d654f8a5092b582c35ecccfefb5ce56fa3f3206728acec0935608bb14",
+          "mode": "0o644"
+        },
+        "swaynag/types.c": {
+          "sha256": "833cf37e75e2e37fb947a621252e8e9395b3ca45f3a82fa2ee6a964c24f1a795",
+          "mode": "0o644"
+        },
+        "tests/headless-ipc.py": {
+          "sha256": "0a16c887ca6a87f0392c2eef498b4fad78b9f32afaf7d2a6c0e5e0e37c3c1744",
+          "mode": "0o644"
+        },
+        "tests/mosaic-model.c": {
+          "sha256": "8970999af64fe6afe017f709551ed70bbb0171ab4a790e3effe81c83e392ba6e",
+          "mode": "0o644"
+        },
+        "tooling/export-patch.sh": {
+          "sha256": "fe215fc36e7d3ed32a422b85c1479c6f52cb562a02d400036e99733f2b37eef8",
+          "mode": "0o755"
+        }
+      },
+      "files": {
+        ".editorconfig": {
+          "sha256": "23e71f452fa47f146ee1054594d853a955359da606f550551afd352244300a7b",
+          "mode": "0o644"
+        },
+        ".github/ISSUE_TEMPLATE/bug_report.md": {
+          "sha256": "0d9a334dcdb6e1ee717fd5db2840937134c78da5358bfc64995312f3ebfc3525",
+          "mode": "0o644"
+        },
+        ".github/ISSUE_TEMPLATE/config.yml": {
+          "sha256": "a0adec10c3e2c09efb3f1a70798bd487937d322285014f522f6a73e8e2ad9123",
+          "mode": "0o644"
+        },
+        ".github/ISSUE_TEMPLATE/enhancement.md": {
+          "sha256": "2c2fe7ad3fb4e020b4b598265b464f25a49f0da10902e2af19aeadedd2fb3473",
+          "mode": "0o644"
+        },
+        ".gitignore": {
+          "sha256": "87d59d0a790f0f60f27473ea3b20c1b3e590b5e053560317367c272dcb4bba9d",
+          "mode": "0o644"
+        },
+        "CHANGELOG.md": {
+          "sha256": "1d0b9066ac4e5686a70c83414fe6b737f9d0ee7b6144f79992c688d4d953d814",
+          "mode": "0o644"
+        },
+        "CONTRIBUTING.md": {
+          "sha256": "a2ce38a9fe4ebd5bbf4914ee44acf9885d56c8602bcec34921afeeb266027f6f",
+          "mode": "0o644"
+        },
+        "Dockerfile": {
+          "sha256": "8468e46d9422354a4595d8aa971488fb40c26332dbf74e864c28caa7b8f9d81b",
+          "mode": "0o644"
+        },
+        "INSTALL-deb.md": {
+          "sha256": "87d04f7d152cb01461a945384478f0afe2297b822a941a30effc475beff1329b",
+          "mode": "0o644"
+        },
+        "LICENSE": {
+          "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b",
+          "mode": "0o644"
+        },
+        "NOTICE.md": {
+          "sha256": "d37274160243a0b5e592c91a024af1fb1dd84227d8bb1472f76e40abf4a23dc7",
+          "mode": "0o644"
+        },
+        "PKGBUILD": {
+          "sha256": "fe376925b8a33dd5e52ee98fc1bba95576831002eb5d32b55c109775bb6676f3",
+          "mode": "0o644"
+        },
+        "README.md": {
+          "sha256": "a944f673ca216a1820d04ea553e5639161e84c440f3bd7102937ed1bc8d8402b",
+          "mode": "0o644"
+        },
+        "assets/LICENSE": {
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1136x640.png": {
+          "sha256": "5afd7ef84e9d4638510eccf24c53151bb4ecce7823f80bba542c4542ff456e19",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1136x640_Portrait.png": {
+          "sha256": "c5f84b445058ef73234cffbb1c55b3b4bc2a44f61c5408ba4154a5550127d300",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1366x768.png": {
+          "sha256": "f2743f3ac702dca3b9e9e1fb2cd7008022ebb6ff7e97a36bc606302bb5edf531",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_1920x1080.png": {
+          "sha256": "5ff3679f5e99db5e05eba21ee6c6b677b0b6cbcc73cc6357a497187e206878e6",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_2048x1536.png": {
+          "sha256": "205ac46f075e8474d22001f00ab418acee3fb9a71036a2a0a90b9d461638a742",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_2048x1536_Portrait.png": {
+          "sha256": "d875455faacbe383558a552178aac70391a5c62c927494d26e52005929d9a44b",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_768x1024.png": {
+          "sha256": "0e92ff093501799b33a1ecae29410cfd9b106429a81d18edb8b1d18b1fb8a463",
+          "mode": "0o644"
+        },
+        "assets/Sway_Wallpaper_Blue_768x1024_Portrait.png": {
+          "sha256": "f5f71413340a73ce999a8a731b1f0c6295bbebc7631f750a0c3a697c1046cc03",
+          "mode": "0o644"
+        },
+        "assets/swayfx_legacy_mascot_1066x600.png": {
+          "sha256": "e73e178e8a1d1ab92317198f793b58cb2e43f286984fefdfed2c0b30fa0c2378",
+          "mode": "0o644"
+        },
+        "assets/swayfx_logo.svg": {
+          "sha256": "a416110b518f510143937b24c964e9e1cf0548e90a1ae81179f9193213f5c459",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot.jpg": {
+          "sha256": "6aa56a412571acbc3611468ea958706e4a838b6b98a7df0a556b171582d2108c",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_1366x768.png": {
+          "sha256": "6f49efa31dd24a5d86d279ea408e0d3dd96a16338f1ad5f1b02194dde3cc3c65",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_1920x1080.png": {
+          "sha256": "b31162f8f7359ad3d5147fb782d7a5e14b5b5d9c212b4fd9e9fba2a7438e92a3",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_3840x2160.png": {
+          "sha256": "21063cd2e6decb83147910703cf008028fe2562bf249b87fb29293bbb57fe9a5",
+          "mode": "0o644"
+        },
+        "assets/swayfx_mascot_4096x4096.png": {
+          "sha256": "b2a3f9644f94a69048c929baaebf1454a4aaedf096614af462a038deff79f197",
+          "mode": "0o644"
+        },
+        "assets/swayfx_screenshot.jpg": {
+          "sha256": "7f72681a60a5458cfc778bb663e19a6bf248346114a7a7eba7e117cf895c6994",
+          "mode": "0o644"
+        },
+        "build.sh": {
+          "sha256": "5d9564f6a1ddd33e345c6a28fc151bffa92e6e8eea766ae8ec878cfacff40530",
+          "mode": "0o644"
+        },
+        "client/meson.build": {
+          "sha256": "ceb3d97c2c4d23fffaf3ca8818c9aebc67adeb0e318e62d97bd370824e46c29e",
+          "mode": "0o644"
+        },
+        "client/pool-buffer.c": {
+          "sha256": "08473cb03a5d1dc6af53880c9a65d064d0941aaade96e959b399b91570abc4ed",
+          "mode": "0o644"
+        },
+        "common/cairo.c": {
+          "sha256": "4205b2c283db62280c84eb0145912dd50d09aabd9d2513b88465efb028e9230c",
+          "mode": "0o644"
+        },
+        "common/gesture.c": {
+          "sha256": "c17f5a9a80262537b31edaab421b18db422eda7f344571eea65d372389340a8d",
+          "mode": "0o644"
+        },
+        "common/ipc-client.c": {
+          "sha256": "23216c1280e37be1d60b84cf9d0e20b3c8a2f25ee2e02fa205ee0d047d36fa8c",
+          "mode": "0o644"
+        },
+        "common/list.c": {
+          "sha256": "5c6b3612c53197056dc065d123e06a083f3676864d2e8ee14af603bb6ed9595c",
+          "mode": "0o644"
+        },
+        "common/log.c": {
+          "sha256": "bc8ff9d7187a92f85181cf6f90b0f440261e96b66aa7c5d2b573ad91f852336d",
+          "mode": "0o644"
+        },
+        "common/loop.c": {
+          "sha256": "92e20037d8ba9fead99625eb0418b5daa19290e2107493c7a80d8e57a86daab8",
+          "mode": "0o644"
+        },
+        "common/meson.build": {
+          "sha256": "42eeb8609442fb3179122156a250809410b1fdb7de9cdd8e304d2bf8d4101ee4",
+          "mode": "0o644"
+        },
+        "common/pango.c": {
+          "sha256": "b76a5fbeb6debd7be4bd79566014ebc548640bac20c9f018aa8d20c9880f0867",
+          "mode": "0o644"
+        },
+        "common/stringop.c": {
+          "sha256": "a34859dfeac87ae6dc236e4c2fe7a43232cc25e4f5e17fc83379d9a44382a42b",
+          "mode": "0o644"
+        },
+        "common/util.c": {
+          "sha256": "84ca254084ca5809a15ae8b2438390a13539d397a6122314ffed761261d3dede",
+          "mode": "0o644"
+        },
+        "completions/bash/sway": {
+          "sha256": "c89c9469ed3d601c5c57852d03917453685ff87e5b69fc6d06a8b0d3eb0687a9",
+          "mode": "0o644"
+        },
+        "completions/bash/swaybar": {
+          "sha256": "e72a869fe03635f8f2bed58c8b591ae9e1e05da859ac870c6e9c21af6e214c03",
+          "mode": "0o644"
+        },
+        "completions/bash/swaymsg": {
+          "sha256": "e32ffa036912a33b69dc594852d7419bb83819db75f5133a259d8a59eba3c04c",
+          "mode": "0o644"
+        },
+        "completions/fish/sway.fish": {
+          "sha256": "c986ed6ee773d3d0882eeeba199375b9f9fabdeed823236328031a88a67f6300",
+          "mode": "0o644"
+        },
+        "completions/fish/swaymsg.fish": {
+          "sha256": "505d628bebe5d5261cc45d61ff40f9fe11c108fffdce1cd74ddf6e090835733c",
+          "mode": "0o644"
+        },
+        "completions/fish/swaynag.fish": {
+          "sha256": "5645a9ceca185d4767b0f7df4f6427c00fc39cc6cf670a1a302ebfeb2351dc88",
+          "mode": "0o644"
+        },
+        "completions/meson.build": {
+          "sha256": "764c1170709d142f8c1916c80dd4aad81f75982e25e7f33bd133d80cf59281f8",
+          "mode": "0o644"
+        },
+        "completions/zsh/_sway": {
+          "sha256": "d8b57a88071d9c7709caa5acaff9e6d3f9679c26dc780f2e18b845d6a6d9d1c8",
+          "mode": "0o644"
+        },
+        "completions/zsh/_swaybar": {
+          "sha256": "332f20483c63a52c4f5ec0b4798f94cb4f52b4eb83fa39852024854166dc00fb",
+          "mode": "0o644"
+        },
+        "completions/zsh/_swaymsg": {
+          "sha256": "55c303accda033ee376ba8171c71a764341cc52e47098522d7191d0371a08c1f",
+          "mode": "0o644"
+        },
+        "compose.yml": {
+          "sha256": "d12da2a18d095559c6c5ee23c492f72d33909859d5a84527885fb580005f8fa2",
+          "mode": "0o644"
+        },
+        "config.in": {
+          "sha256": "57a068ae37305b944f0ceca1743bcac7ff6606f0b167d62f7bd24e4417270566",
+          "mode": "0o644"
+        },
+        "docs/ARCHITECTURE.md": {
+          "sha256": "72947a3d7d2aa0ea89ceb2647e13f81a7b81cc58351e2ff42920ab9bd0834473",
+          "mode": "0o644"
+        },
+        "docs/DEVELOPMENT.md": {
+          "sha256": "cc305a2d2e306f477b8bc43d68827ffbbf9e27d9a3361bc5e12d2c7f543c5908",
+          "mode": "0o644"
+        },
+        "docs/KNOWN_LIMITATIONS.md": {
+          "sha256": "6755af3d77ea608fe4f68e289c618fbcea4304233e871eaa8d6478b00c29f527",
+          "mode": "0o644"
+        },
+        "docs/PACKAGING.md": {
+          "sha256": "fd38502bc2568a692ed2e5893ce6d7f2ec5ae966f1b2aa4b4010e1dbf6f5d74d",
+          "mode": "0o644"
+        },
+        "docs/README.md": {
+          "sha256": "54d3c483f7875fbe22f56d4e10c998b5a3f180235463cb0d51263c7127f3aa04",
+          "mode": "0o644"
+        },
+        "docs/ROADMAP.md": {
+          "sha256": "86801dd88cc6cc5bd791bd019f6be34a1f607fa6f167f54b3752c1f3941f8fe7",
+          "mode": "0o644"
+        },
+        "docs/STEP20A.md": {
+          "sha256": "d32ff670df762a5eb71cc19720f2e945679cfd5e24e3f9d9e6ff95e5d35467bf",
+          "mode": "0o644"
+        },
+        "docs/STEP20B.md": {
+          "sha256": "6a3a076defda2b3ec1440a22c3d1b8124d0e3d6ab669a5f246bb37541362601a",
+          "mode": "0o644"
+        },
+        "docs/UPSTREAM.md": {
+          "sha256": "0797d4a78973cb3f7491bbca292d9947d176ea3f25f05cc9fc577b9921bae5bb",
+          "mode": "0o644"
+        },
+        "docs/UX.md": {
+          "sha256": "fd5f2540f9201df94688265c0023bf09351cb8c77146d53c2712c7a7a1dc7d34",
+          "mode": "0o644"
+        },
+        "docs/assets/swayfx-mosaic-banner.svg": {
+          "sha256": "167920ec442f5553eaae072a12bc10c64cdf1e0cd3a7287c5a963e305d870158",
+          "mode": "0o644"
+        },
+        "docs/design/STEP20C_FEASIBILITY_PROBE.md": {
+          "sha256": "666d9dc1539f721a50ff89bde36b77ea6472367252b4ac91a76a40309516c19e",
+          "mode": "0o644"
+        },
+        "docs/design/STEP20C_SCENEFX_CLIPPING_SPIKE.md": {
+          "sha256": "0c4faabc6f76178c3bfd93695823a860e4d7c18a71f564be0b32e3a855374aa8",
+          "mode": "0o644"
+        },
+        "docs/design/STEP20C_VIEWPORT_DESIGN.md": {
+          "sha256": "32bc81d43fcad822c4bd497547a9d56841eef594b22e809faa890aabb874b35b",
+          "mode": "0o644"
+        },
+        "flake.lock": {
+          "sha256": "3bdbc42eb03317cad9b9c060fe7cb9f5efdf636332f6f77cf95659a9bea5b559",
+          "mode": "0o644"
+        },
+        "flake.nix": {
+          "sha256": "6c27cae5e431e5705f8c4e2f7c9f5bf3d131ea6693a8e4eae6d44ceb903e442b",
+          "mode": "0o644"
+        },
+        "include/cairo_util.h": {
+          "sha256": "33b7f1594b95dd47ccad31b124834406acc102862342958e0dda3025aa44f38f",
+          "mode": "0o644"
+        },
+        "include/gesture.h": {
+          "sha256": "1f22b0386f2f815e9e6ac051c576a0e5e8acb9c8aaf792c8cec65a11d00109be",
+          "mode": "0o644"
+        },
+        "include/ipc-client.h": {
+          "sha256": "e49ed607fbc7c303088b978bca377f89121f3e57bfbba1024c9ffa8b31bd103e",
+          "mode": "0o644"
+        },
+        "include/ipc.h": {
+          "sha256": "59d7a9dea3ff36c6416c14d7958d918696f50c96aea2ed26f22bb58559149423",
+          "mode": "0o644"
+        },
+        "include/list.h": {
+          "sha256": "a579aa5d722b4b8731c336b5e096307c0ed522222a94fbb7752ad93309a06a21",
+          "mode": "0o644"
+        },
+        "include/log.h": {
+          "sha256": "7a6c96928d160d5c7c849f636543bb3932aada06b6720ea9a59711807c72da7f",
+          "mode": "0o644"
+        },
+        "include/loop.h": {
+          "sha256": "818e22ca2940fa7f5b3885e9c8fba8b416b47f29396e93651968a9b8b3695805",
+          "mode": "0o644"
+        },
+        "include/meson.build": {
+          "sha256": "c3a06214f3bae17958389539531b8ade5f77dccbc4fd749b08bbeb0b692ebbfa",
+          "mode": "0o644"
+        },
+        "include/pango.h": {
+          "sha256": "d3afcd0730de2c3a24d512354b46206a61bc26e07260b8b8983b0b78d8884ea2",
+          "mode": "0o644"
+        },
+        "include/pool-buffer.h": {
+          "sha256": "74a3add27a409cecf570363bd8ab066726181e1e75263dbbfc8d8669ac7aa89c",
+          "mode": "0o644"
+        },
+        "include/stringop.h": {
+          "sha256": "cdce8ff0b1f673f81b47d0bb5c80175f9f031adf2ca54057d64d3340517eafb2",
+          "mode": "0o644"
+        },
+        "include/sway/animation_manager.h": {
+          "sha256": "8226c5b37d8a21cd801701c00c87488435ab63feb706902ab92c85ba36dc9cf7",
+          "mode": "0o644"
+        },
+        "include/sway/commands.h": {
+          "sha256": "3f006d83628197fb63a4c1b1b22ce0a83c19faec15893f1607c7af481142b75c",
+          "mode": "0o644"
+        },
+        "include/sway/config.h": {
+          "sha256": "8dec1e7e1ddebe800480a831f9fd94a23666a0ec7a8becdc1c8d79b28ef1f7fe",
+          "mode": "0o644"
+        },
+        "include/sway/criteria.h": {
+          "sha256": "b9420fc1fb6511a3d573a9666508d016d6b665fdd91156e5e6532e4a1e0582c9",
+          "mode": "0o644"
+        },
+        "include/sway/decoration.h": {
+          "sha256": "bac8be0a3da884a0a1236748c0c3075b6f0dfee6f07ab9797c31be67cf21a86e",
+          "mode": "0o644"
+        },
+        "include/sway/desktop/idle_inhibit_v1.h": {
+          "sha256": "9bb3387b724937a282742dbd988cca06b69c7a24059533c17398a9b9f5187406",
+          "mode": "0o644"
+        },
+        "include/sway/desktop/launcher.h": {
+          "sha256": "f6dba6a1717d7663867e9e17e722a6e150fa68f73c2ea9755bcdbfad10872b29",
+          "mode": "0o644"
+        },
+        "include/sway/desktop/transaction.h": {
+          "sha256": "50b4d8b8bf5bea3b2f19dabf000ee5d234b7c1038561de930027ae5d87b7c1c1",
+          "mode": "0o644"
+        },
+        "include/sway/input/cursor.h": {
+          "sha256": "9e3ab878dfa399b61bf88165a00b9e862e15910133b6d2db908888f27384e784",
+          "mode": "0o644"
+        },
+        "include/sway/input/input-manager.h": {
+          "sha256": "09087250ab1a620f27914f06fd18a6e0f3b66d019e40869e3d49a727a21f7200",
+          "mode": "0o644"
+        },
+        "include/sway/input/keyboard.h": {
+          "sha256": "31c1ef55a92c4428169b176df750242585602acef0c65500934808bd188a24a2",
+          "mode": "0o644"
+        },
+        "include/sway/input/libinput.h": {
+          "sha256": "e51a978b1db6903acc528eca24f0df57747c81cc8f876bf669733332322018e0",
+          "mode": "0o644"
+        },
+        "include/sway/input/seat.h": {
+          "sha256": "eb8ec5887ba297354e3d0e0917d6abdf64f9aeaa62f4dc793a160cd67cfb60cf",
+          "mode": "0o644"
+        },
+        "include/sway/input/switch.h": {
+          "sha256": "12169553506c8a1f3d87a80f5efe82247820a8b289ac59c3be8152aa2e551f54",
+          "mode": "0o644"
+        },
+        "include/sway/input/tablet.h": {
+          "sha256": "cd2f9b280ba95fdc4cdf537e56585e46e7417595e1786d198f174dac92af1e21",
+          "mode": "0o644"
+        },
+        "include/sway/input/text_input.h": {
+          "sha256": "3d46b7c64ead593b7deca2f1e973a64c8d4837617fd165ac2efbe9dca11980d7",
+          "mode": "0o644"
+        },
+        "include/sway/input/text_input_popup.h": {
+          "sha256": "ede58c140fe94a0861e3765edc6ecffb212476780fcbf4f7fd2246ec887c67c6",
+          "mode": "0o644"
+        },
+        "include/sway/ipc-json.h": {
+          "sha256": "1a546b74a6397d04f065cac988726d2c767c90df0f098bb4da5c4d5eb21b1c3c",
+          "mode": "0o644"
+        },
+        "include/sway/ipc-server.h": {
+          "sha256": "e401fd13fcf159fc0e0bf982853841464ebc35cde36e0cecd31ab8313ce56537",
+          "mode": "0o644"
+        },
+        "include/sway/layer_criteria.h": {
+          "sha256": "ed5859460d0b3f24b8e9cc0b4bbdd70bfee0d5b918dc345827b79c40d3d1377c",
+          "mode": "0o644"
+        },
+        "include/sway/layers.h": {
+          "sha256": "69a633983d0e6fb0e8c76d734c6fb6ede7328c8f7a3ca270ac4d74094ca4ce93",
+          "mode": "0o644"
+        },
+        "include/sway/lock.h": {
+          "sha256": "1afe8ad126a3615f08eb7918871ebba3cf47394590f8b89313185ff0eee67884",
+          "mode": "0o644"
+        },
+        "include/sway/output.h": {
+          "sha256": "1544bf99342e862905082e22b79d9401d8baa3117673d641060e3a05bc16d96b",
+          "mode": "0o644"
+        },
+        "include/sway/scene_descriptor.h": {
+          "sha256": "97fb1d19285632668cb69afbca7641fd5449493b3429793ccca1337d44b808d4",
+          "mode": "0o644"
+        },
+        "include/sway/server.h": {
+          "sha256": "80af1b5ae13164f4d09851201a931d8aea7a3838b093391fc94e8337e4c1d3e5",
+          "mode": "0o644"
+        },
+        "include/sway/sway_text_node.h": {
+          "sha256": "6fdbafc32ea648e3452e736384a8907c225d64c413d8285b3548936537715bb3",
+          "mode": "0o644"
+        },
+        "include/sway/swaynag.h": {
+          "sha256": "6b11045900252acd92cb65877b369dbad229edbef47b3c8fb06340b2cae6de9b",
+          "mode": "0o644"
+        },
+        "include/sway/tree/arrange.h": {
+          "sha256": "7c5b468a8ac5b47f930e7ffd936272a02e8d3591c56ff8f9f4c4690aaed363ef",
+          "mode": "0o644"
+        },
+        "include/sway/tree/container.h": {
+          "sha256": "94191e04198f18ef8a8c412e6f39201b357077399ad6a423cfecf6044cb1ad41",
+          "mode": "0o644"
+        },
+        "include/sway/tree/mosaic.h": {
+          "sha256": "b6014e1a4a0e5573118d0575cd97274c0dcfd420b555ee7dae075e4708ce7aa1",
+          "mode": "0o644"
+        },
+        "include/sway/tree/node.h": {
+          "sha256": "2d20bc090c3d4ac150e78f63ad0e194a6788fe06c5c4c1330c76eaf689cd4811",
+          "mode": "0o644"
+        },
+        "include/sway/tree/root.h": {
+          "sha256": "33b107497beff433146cf4d77424f7a732ed8bdb6f0749f9dbf619f17f301c90",
+          "mode": "0o644"
+        },
+        "include/sway/tree/view.h": {
+          "sha256": "486c4cd339eaf72ccbe33afffde0d90f7b1a10ca35810d0b1f45bcce2792b67e",
+          "mode": "0o644"
+        },
+        "include/sway/tree/workspace.h": {
+          "sha256": "14e42b64a09a9d857d1a53658fab8f36e6c490879f98b57a8139a85bc6296880",
+          "mode": "0o644"
+        },
+        "include/sway/xdg_decoration.h": {
+          "sha256": "1e13445ecb75859ead926bcb3cd0a8498ef4a21104afb227f46a35d38268140c",
+          "mode": "0o644"
+        },
+        "include/sway/xwayland.h": {
+          "sha256": "aecbbff238f068570785ea6f99bb0540acebfe08b372d3f59cf5f3412576e939",
+          "mode": "0o644"
+        },
+        "include/swaybar/bar.h": {
+          "sha256": "ef4b495a7d3a65c41b22ac01f335aa14c07982d7e0018b3caf96a7f7c02087d0",
+          "mode": "0o644"
+        },
+        "include/swaybar/config.h": {
+          "sha256": "219f292f90a201234f33f9b492a798636cb64a47abf29924d3fca006978f9e53",
+          "mode": "0o644"
+        },
+        "include/swaybar/i3bar.h": {
+          "sha256": "88f7facf1eacd5bcf1b3ed22e6af485b51034b9958ea414b73a31cf14a3b1574",
+          "mode": "0o644"
+        },
+        "include/swaybar/image.h": {
+          "sha256": "5f38f90d35ec6c57cd2781f1cc57060454bd4cdbd0e21cf0b17377ecc0d6e734",
+          "mode": "0o644"
+        },
+        "include/swaybar/input.h": {
+          "sha256": "903846bd5ecdf8640e10536c6e440e92051a78b431beca03b30ec8d68b236dcf",
+          "mode": "0o644"
+        },
+        "include/swaybar/ipc.h": {
+          "sha256": "147385478a4caf4f9fe88f3100df25976fd4fbd4f14fba619e4256055cb18bef",
+          "mode": "0o644"
+        },
+        "include/swaybar/render.h": {
+          "sha256": "cacd28c498330305ec56092af6cd5abecdd3e1f30699f136965038e8f27517c5",
+          "mode": "0o644"
+        },
+        "include/swaybar/status_line.h": {
+          "sha256": "504d93c8f4330ec8451bda731bd77294b4a46b937e36cfacb90bfae6b1a8a9bc",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/host.h": {
+          "sha256": "34630ea2de2806580d455e12896513430f7e9c1b6776d2b4227a39bde51bfd52",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/icon.h": {
+          "sha256": "924cc93a5a3aca1df10e0130bb207d74022af227f54e04ab43e349892c53d5c8",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/item.h": {
+          "sha256": "92f2a28d394578bb08e2015d9d05224e7d5a58a49df09e236d7ecce185a7daeb",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/tray.h": {
+          "sha256": "cfde265ec087fbcbda75400a7a1aeaf295913c2b9962a90b25b484b9a740739b",
+          "mode": "0o644"
+        },
+        "include/swaybar/tray/watcher.h": {
+          "sha256": "9287dcb41d2f87c8024a7616495f162eaec480e4ec15bd6baa69d0819fc51412",
+          "mode": "0o644"
+        },
+        "include/swaynag/config.h": {
+          "sha256": "e23723a039f5ace574cb40c80586d08d33ebcf2ffa1b90529963f5be831763e3",
+          "mode": "0o644"
+        },
+        "include/swaynag/render.h": {
+          "sha256": "1f8140a247a1af8c11de9ffb977c57f1ca8e5d1e73a217f62ee2ca927a7f4200",
+          "mode": "0o644"
+        },
+        "include/swaynag/swaynag.h": {
+          "sha256": "669e86a27c4e22a678228445d8574460fdd69ce14df70866eedf4bbbbdbd7567",
+          "mode": "0o644"
+        },
+        "include/swaynag/types.h": {
+          "sha256": "c75cc9da4e278c210b34d609a8e694fc8fd96edcbb4f1e34ce466cc6a65a86be",
+          "mode": "0o644"
+        },
+        "include/util.h": {
+          "sha256": "203a7649fd909f65fde95c60b3ea5f9808b0d64c2e14558a58b6f284f81d3e29",
+          "mode": "0o644"
+        },
+        "meson.build": {
+          "sha256": "6351d5cc9e231169481acfb987750fa374def8bf501c705e2f2da2bd2a73fc79",
+          "mode": "0o644"
+        },
+        "meson_options.txt": {
+          "sha256": "c2fb3dcefba07d7f01a266a6634e5c140537798cd3c1098c6b1372ea434f0cb5",
+          "mode": "0o644"
+        },
+        "patches/0001-mosaic-layout-viewport.patch": {
+          "sha256": "a04cd06a6ef4fc58e3b40333a53226849e82d9a4757b9ccee58ad7b59a23ff4b",
+          "mode": "0o644"
+        },
+        "protocols/meson.build": {
+          "sha256": "076b568285d3a10e80b3b7dec7e4583e1eca726b4b0dcd39e7e58e9a4bdc2965",
+          "mode": "0o644"
+        },
+        "protocols/wlr-layer-shell-unstable-v1.xml": {
+          "sha256": "87e0b9c837aecd6977f76f3c47d73088b7159871f5d979dc1840f6cadb5e2ed8",
+          "mode": "0o644"
+        },
+        "protocols/wlr-output-power-management-unstable-v1.xml": {
+          "sha256": "7ebd98f3449d246a57829e4b4dd9fbc3ef98e3dd42fa94ea102f14f490eb20de",
+          "mode": "0o644"
+        },
+        "sway/animation_manager.c": {
+          "sha256": "3b6bc749bf80c7f1e76f9c4209700c32440e8e856e0f75bd8326aa37db9e0024",
+          "mode": "0o644"
+        },
+        "sway/commands/allow_tearing.c": {
+          "sha256": "9be9b69ea2c7c8aec697523c9a851b8514d076ae7dd4249337e62ee1acb956a5",
+          "mode": "0o644"
+        },
+        "sway/commands/animation_duration_ms.c": {
+          "sha256": "94729ae4a887cc7ed87f6942028bb8ad3c508811812de99b93639487f1b896b6",
+          "mode": "0o644"
+        },
+        "sway/commands/assign.c": {
+          "sha256": "faa7d488332e009d744d15170a1afc14f184446487ad3fdb12ec2cc60579499c",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/bind.c": {
+          "sha256": "40ec19935fa08c7847248b2f1c10ba1f5f4504a7b5cec4cc1932c0eb566d11b3",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/binding_mode_indicator.c": {
+          "sha256": "93c448fc5e745d72f0fd7f1147d816746aaf33b5379ef540b455111ba342d574",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/colors.c": {
+          "sha256": "84675e71b8515e00d96b213e2d66ba07deb3516f021a7c64d8b775f0632ecb6f",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/font.c": {
+          "sha256": "c655c961871c4d85458625b4315ff9849fa39ecbeccbe7c9d2935ed5a16d04b5",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/gaps.c": {
+          "sha256": "457f2fcbdedf88e2112778a4d32c4696fb6182a0267f2516ff2e9c799c1179ba",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/height.c": {
+          "sha256": "b7aa53ed38246894f26c3e5914d3ce2729fe5c109f137d74bedb6b6ed694560f",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/hidden_state.c": {
+          "sha256": "1f466c2f3bfad7119fb208d332ef716324b68ba5e2b63736dd22f3b01b932213",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/icon_theme.c": {
+          "sha256": "589b8da76cce3b2392f2f033f0006bc496edc418aa0a412318813fd4d6cfaa61",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/id.c": {
+          "sha256": "55555518e74ad774f4ff85c0b187386c45a5b17d6adcd8a8435e10c353181a6d",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/mode.c": {
+          "sha256": "3769f674b5f7c1b5573f64b11fe1f9b1125df92f2ac681dace0d0621d81a3e6e",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/modifier.c": {
+          "sha256": "9ee7c1fa6f4e9a5463ce2e99cf795165b84238d274bdc6f7d70cc68c2b270fbd",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/output.c": {
+          "sha256": "a89a32e04aa4f720482b2230e6d1ed61945f32a9ac2e0f823152a04676231f59",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/pango_markup.c": {
+          "sha256": "3675dd7960e7170ef557c18e6410b54c7bce6ab954461770ff3a9930620c3abd",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/position.c": {
+          "sha256": "0a30952f116261d929e3407c0b03fd3ddb733d7184dcfc7994db0ab32848e2e1",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/separator_symbol.c": {
+          "sha256": "4fd2209c827fb32225e0ca5e05641037be9314fb45b2e53502848ac6b479536d",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/status_command.c": {
+          "sha256": "7c8027dcb43adfe099da0046fc01bdc2ba8917eff9522b51b2d383220ee19e06",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/status_edge_padding.c": {
+          "sha256": "308e5df26c6e8434184eb43a4e92011ff80f6c13426d63030203db762abffae7",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/status_padding.c": {
+          "sha256": "02372eaa508af4312df15b84aad32b118c9860d2e434b67a9c341319f77d32fa",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/strip_workspace_name.c": {
+          "sha256": "928f610bfdc2fd3b29a8d1ad025ce25e86c51a4aeaffd438f8ff26b793d6d8b1",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/strip_workspace_numbers.c": {
+          "sha256": "a59448653b8db16def017fd55007c1529a13f47053cad3cea55d0385b35c2ce9",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/swaybar_command.c": {
+          "sha256": "3f2fcfc7c0beedbd704160fdf9df155bdf2f1ead867fcce39212438c90e6d115",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/tray_bind.c": {
+          "sha256": "55e9141c39fbadd2206975354809add6a518b660fb1daecb832d55ed862810a1",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/tray_output.c": {
+          "sha256": "72517de59311d2b4df5017fd26baa75122090a8545bf22f9896c126fee111222",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/tray_padding.c": {
+          "sha256": "17dce36ce21e398ce898094b6c0bb00d6e448e092631e5e871e3eb742340a27f",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/workspace_buttons.c": {
+          "sha256": "5463bdf3ebc1d388096649c67150769338300c7732cf39cc974693e0aff250c3",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/workspace_min_width.c": {
+          "sha256": "6dcf6985825aa3670610cf6db7c450203ed511ca82cce4065c51375fda0d87dc",
+          "mode": "0o644"
+        },
+        "sway/commands/bar/wrap_scroll.c": {
+          "sha256": "53a0cf503f02bd1aa86665dedfabdaf5e37fc829944c05ba2bdfddc6869af4cb",
+          "mode": "0o644"
+        },
+        "sway/commands/bar.c": {
+          "sha256": "e05d02dec7b773038dea68bbb715777bec01e26a4d9d0e172e745456137d8c93",
+          "mode": "0o644"
+        },
+        "sway/commands/bind.c": {
+          "sha256": "943e67ec30d577581a623b8382fd5965bb0397a7fdc65ed98eea3b8348106955",
+          "mode": "0o644"
+        },
+        "sway/commands/blur.c": {
+          "sha256": "9b4e33641f9215a179f0539728ad8945c0858d7b8db45b9e9349e7b29fd79245",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_brightness.c": {
+          "sha256": "2a7bc4becfc600c370d8631226b048144c57f6bd3c9258ee4a49543b2c2e49dd",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_contrast.c": {
+          "sha256": "1c060459bfd48d79682941c946eb24481700d7856473f744b0f4b421ec349839",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_noise.c": {
+          "sha256": "401f6a3e727ca5416a9abe63cde09448680fa419b2b310ee54f758b8195b779c",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_passes.c": {
+          "sha256": "5457a746e76ce7d5ebfaaaebcbb5c3e21080d48f96050e211dd6e8c981ac5655",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_radius.c": {
+          "sha256": "6d2aedc635cd14f8cf364398054d10a71ee612e08b18cfb913707267840cebc7",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_saturation.c": {
+          "sha256": "eca7868aea5fbacb6a47684c436a6de746892bef9e971954d5355c4ae4bad637",
+          "mode": "0o644"
+        },
+        "sway/commands/blur_xray.c": {
+          "sha256": "ab489ac959a807107528cb2b239834a5c318263541f20d6493d23fe381b20162",
+          "mode": "0o644"
+        },
+        "sway/commands/border.c": {
+          "sha256": "25be8f78fb298261306cfb8e065837f928238775ea47016de4319a4276cb881e",
+          "mode": "0o644"
+        },
+        "sway/commands/client.c": {
+          "sha256": "38dce366dc2bc1a8f57b219df0cb7519ef4908c2f463ea33c9585caf83fbb228",
+          "mode": "0o644"
+        },
+        "sway/commands/corner_radius.c": {
+          "sha256": "175a45b712c98ead46a4f783ab258a6c2c6dbaedc6f9b4a827292a18042d3592",
+          "mode": "0o644"
+        },
+        "sway/commands/create_output.c": {
+          "sha256": "ffd60a66eb8fe0211030ce8cf002f0dfb4b7b37db50f570dbd69ba1a7995491f",
+          "mode": "0o644"
+        },
+        "sway/commands/default_border.c": {
+          "sha256": "897e948108f6cae7c98a5997cf4c0f47e4165d4dbd72ac3ffcf96fc41c6427f4",
+          "mode": "0o644"
+        },
+        "sway/commands/default_dim_inactive.c": {
+          "sha256": "72e1bb42a80cf9bc1b5ee66d62f2c7dd04ee8ff130fa4fec6807b3d0c6c6e07c",
+          "mode": "0o644"
+        },
+        "sway/commands/default_floating_border.c": {
+          "sha256": "5e8368b15844f4b205690407fd7d6f26506822521c3186e04aa1a7e500d2a7f8",
+          "mode": "0o644"
+        },
+        "sway/commands/default_orientation.c": {
+          "sha256": "cbdb516d198178b54cbe645c7c5d859b4f5cd37767378624ff71094bc33af315",
+          "mode": "0o644"
+        },
+        "sway/commands/dim_inactive.c": {
+          "sha256": "6869e4c91784518806d457632b3aa4d4a0d1772f61eb07e150d3cae1927a90f9",
+          "mode": "0o644"
+        },
+        "sway/commands/dim_inactive_colors.c": {
+          "sha256": "da5c381410384c7e9ad24656eadb2a5a489fc77da5de60408596a88ea4cbf962",
+          "mode": "0o644"
+        },
+        "sway/commands/exec.c": {
+          "sha256": "b5cbd3a241348436208f1b238e2060fd1b985cf2cfebcbbeba97b95e2b0e35ec",
+          "mode": "0o644"
+        },
+        "sway/commands/exec_always.c": {
+          "sha256": "35b29925267428d9fbeff1c9fdcab406f8cc11a564940ea410db5e04b048560c",
+          "mode": "0o644"
+        },
+        "sway/commands/exit.c": {
+          "sha256": "f8390d323311124a95bc0cea3147ac46137246f83332b6cd20c270d76ec654ee",
+          "mode": "0o644"
+        },
+        "sway/commands/floating.c": {
+          "sha256": "6bf86f1ef0aa467f482ee185e8fa090f2091cc0b0aeb407b6b1488a7a9cb9768",
+          "mode": "0o644"
+        },
+        "sway/commands/floating_minmax_size.c": {
+          "sha256": "4642443b5a8e19b6044e5859057dbceff98569263e3efee4311560f79c153015",
+          "mode": "0o644"
+        },
+        "sway/commands/floating_modifier.c": {
+          "sha256": "f27ce2d40bee27c52b187365eda9193b9a69458860d8b1097b493a2356d6c89b",
+          "mode": "0o644"
+        },
+        "sway/commands/focus.c": {
+          "sha256": "f02cbfecab1d131cf6a6b59a16e01cda17c496c9425e09fcbec2af4f6d8d1b5b",
+          "mode": "0o644"
+        },
+        "sway/commands/focus_follows_mouse.c": {
+          "sha256": "4c88d10e2ef1598490dd7451d3f79fc80f06e574318754522657752f7441559a",
+          "mode": "0o644"
+        },
+        "sway/commands/focus_on_window_activation.c": {
+          "sha256": "17a9d456434a5a652b82dfaed98477de26c34b9e437cf08ce68f40e5c6b2f135",
+          "mode": "0o644"
+        },
+        "sway/commands/focus_wrapping.c": {
+          "sha256": "ccdd64e25cc8507318b6e0727e4f03c5db846f2231bc0e476e47f8bd42a1919a",
+          "mode": "0o644"
+        },
+        "sway/commands/font.c": {
+          "sha256": "55c543a0a968952854664424ad38811f7bbfa967199fa8cab40dde6af325107d",
+          "mode": "0o644"
+        },
+        "sway/commands/for_window.c": {
+          "sha256": "9f2ef2e5e499e0b4da8ace24c0a0abe46a45559bdb42ee2d2b0081154dabddec",
+          "mode": "0o644"
+        },
+        "sway/commands/force_display_urgency_hint.c": {
+          "sha256": "b8411f0cc5ad1a4c268d9b93e1c696a85c54fe8b2cafabdb1e31c4b814986326",
+          "mode": "0o644"
+        },
+        "sway/commands/force_focus_wrapping.c": {
+          "sha256": "04cdb47659b79fd2e1a275c0237405c3c1a7586e8aafec0299dd59685c55c768",
+          "mode": "0o644"
+        },
+        "sway/commands/fullscreen.c": {
+          "sha256": "b5e142add221d4d938976d279007499d3d57f8ced1c668bf3157a06a9a05f6ac",
+          "mode": "0o644"
+        },
+        "sway/commands/gaps.c": {
+          "sha256": "2beecc8287a3cba5270d595aca041321fadb73355434ecb56a2b9e709401ca5b",
+          "mode": "0o644"
+        },
+        "sway/commands/gesture.c": {
+          "sha256": "db145063bf3a45cfd4180adfa08d60e9d5bb428d7cf9b3dcb953fb2a50c00274",
+          "mode": "0o644"
+        },
+        "sway/commands/hide_edge_borders.c": {
+          "sha256": "26aeee6f25095f1bccae9d9461fe51db2998f6777f89fd3ed83e33c398c0d3ec",
+          "mode": "0o644"
+        },
+        "sway/commands/include.c": {
+          "sha256": "fbe426799aad5d8223c35bc779b2fb1e22cbce26067891ca6e9283d87b11dfa9",
+          "mode": "0o644"
+        },
+        "sway/commands/inhibit_idle.c": {
+          "sha256": "5ffd10bedb290c206b945fefcf42b609084ff6f9ce079f4f022ab376d043cb7c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/accel_profile.c": {
+          "sha256": "4890d432a0bb514fa5d567f263d10b8ad43d37215ac2c61c34cac1f3bc2fb710",
+          "mode": "0o644"
+        },
+        "sway/commands/input/calibration_matrix.c": {
+          "sha256": "3139c3f39f9c1674e17acfa83196b2df02a8948ffac653dfbf950f5c67db0516",
+          "mode": "0o644"
+        },
+        "sway/commands/input/click_method.c": {
+          "sha256": "9651f543220b652c66ab2c860a5e1e25492b732591f342e50e53e85818c72b8c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/clickfinger_button_map.c": {
+          "sha256": "7a22415319c3cb838d43c3d31d9061a04b95619dd21779e303bf09a9e3ebbf0f",
+          "mode": "0o644"
+        },
+        "sway/commands/input/drag.c": {
+          "sha256": "60650f423f720a67c710ac4bad2fc9987327426e0b9f52e556e1d5426cd61b35",
+          "mode": "0o644"
+        },
+        "sway/commands/input/drag_lock.c": {
+          "sha256": "a27fe9ec7cdca583dbada27b136621265477f794879545881d717135911f7cf2",
+          "mode": "0o644"
+        },
+        "sway/commands/input/dwt.c": {
+          "sha256": "d03bc4ff40d10b21a065ebf26938f4ff6bf66eef0d3c4b15c93e3cc0d3722239",
+          "mode": "0o644"
+        },
+        "sway/commands/input/dwtp.c": {
+          "sha256": "6fd35f2d5a8a0aab026c04d5052f7b46938c1dbf63010a577fab37bb31a81ebb",
+          "mode": "0o644"
+        },
+        "sway/commands/input/events.c": {
+          "sha256": "a8542fb065e43f1c76665b8d5d4d156ad5fba7a093a8517914c4fa74101bb067",
+          "mode": "0o644"
+        },
+        "sway/commands/input/left_handed.c": {
+          "sha256": "a33b6617d3fe2a9397038d748ce9467b4ae5db52d63fb3c658dd920f2d7f85dd",
+          "mode": "0o644"
+        },
+        "sway/commands/input/map_from_region.c": {
+          "sha256": "a8d4e18e53607b9f17821c870e121a04cce131c99b7807f6299930a485461850",
+          "mode": "0o644"
+        },
+        "sway/commands/input/map_to_output.c": {
+          "sha256": "4d5ad17dbc98ae309bc070109a09f392bc9c455b768feee6024e0ed07af92eda",
+          "mode": "0o644"
+        },
+        "sway/commands/input/map_to_region.c": {
+          "sha256": "2578b7ffdb692eb66bea3f8e8018cf2943a1889d720c150c4e1d59e3920606c7",
+          "mode": "0o644"
+        },
+        "sway/commands/input/middle_emulation.c": {
+          "sha256": "27224c35357a0cafe01500e0a942861841d347f6010ee5b29e2e168163d2cf4c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/natural_scroll.c": {
+          "sha256": "9de28fa150f58201c7cf820af646a3c47b64d5a69cb3d6e15df6b5f10209b8f3",
+          "mode": "0o644"
+        },
+        "sway/commands/input/pointer_accel.c": {
+          "sha256": "b5e7fc6e4cca4e44c2bb0cef02bbd4b8e3b6c7e5d80b2467cca5c5952f6b2620",
+          "mode": "0o644"
+        },
+        "sway/commands/input/repeat_delay.c": {
+          "sha256": "c7e785dcae0d077dbcb58867a5df5751078303d09ea581ce970c0494686de67d",
+          "mode": "0o644"
+        },
+        "sway/commands/input/repeat_rate.c": {
+          "sha256": "e7c3fd9c11f36e5f5cb958a53e1d120a2ae6696a2cee3834d447bf84255ce4bc",
+          "mode": "0o644"
+        },
+        "sway/commands/input/rotation_angle.c": {
+          "sha256": "136a23f06f20699b2811be306901841ad5cc35df6c2c0745a06171dc7c29ba64",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_button.c": {
+          "sha256": "7d292abf572811df63cf595e475d7fcc34353f79bfdbacb4da929fcd70f99532",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_button_lock.c": {
+          "sha256": "5958ed64c2d47d2969991299eb04c4f11f63c3ddb788c09eb5c093599f8a0cc6",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_factor.c": {
+          "sha256": "cd7427e51dc35ae0954c75545dd29ef422b40a166d706dcdae1d16703f58318c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/scroll_method.c": {
+          "sha256": "57f4aa970998918c12d184750eaec9663acfe16e5d9e7803919e2d04d45040dd",
+          "mode": "0o644"
+        },
+        "sway/commands/input/tap.c": {
+          "sha256": "022e4c9ff70460b906b04c925308dd925a4df7716c2dca4a094acec66bcccb3a",
+          "mode": "0o644"
+        },
+        "sway/commands/input/tap_button_map.c": {
+          "sha256": "ecbca464a5abe9dff41616ba88cdf40b201411b57109c34e7d7bd894a454cb38",
+          "mode": "0o644"
+        },
+        "sway/commands/input/tool_mode.c": {
+          "sha256": "90e5ad0b4953dc6bcbc3bb6788c7310dda4e87b04b21d471826734b67f9184ba",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_capslock.c": {
+          "sha256": "f484dd6e897a90f1b6494c2797c860be20d3f95957f3f4b56b0a619a9f459411",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_file.c": {
+          "sha256": "8d1e260fc268066ef648aa15dcd25b9221ca5b6d099db527f145c0aac0643158",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_layout.c": {
+          "sha256": "136b097203d0a5e11913e82dc8ff3a5f419af2d6d927e4be4939fd0b9a9d5b21",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_model.c": {
+          "sha256": "3a7d8473ff0aaa474d0595e3217f5da8338ef847ebb3097f4a46e0fb9e7f5e76",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_numlock.c": {
+          "sha256": "3b495a4ff7c21a74551a9808880dab7568e3dba9eff0b51cd8db8870ea56bd40",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_options.c": {
+          "sha256": "feceebe2359f7dc4ab9cbf66eb794c592ae8e8400038182161c00a95d46c4348",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_rules.c": {
+          "sha256": "84604ca9cdd3ffea7351adf3372124c341a7bc8214127d6749d0910c0d7ea54c",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_switch_layout.c": {
+          "sha256": "45b807149f7958be557e4301317c675051faf33b4ad061e77b1d0807acf4882b",
+          "mode": "0o644"
+        },
+        "sway/commands/input/xkb_variant.c": {
+          "sha256": "7c5933519356494ffa0bb866f42bf70fe71297cfb94648b2099f09f09a929b7b",
+          "mode": "0o644"
+        },
+        "sway/commands/input.c": {
+          "sha256": "a0ff84377f69782edde70faff88489926b65352891d13a2023ea95206fc1058f",
+          "mode": "0o644"
+        },
+        "sway/commands/kill.c": {
+          "sha256": "06aa410bd12967501c51299f8fcfcd478144c9af0e4f86426bdc2a7be8d65070",
+          "mode": "0o644"
+        },
+        "sway/commands/layer_effects.c": {
+          "sha256": "fafd4f4fa7f3bcff877250134c208acddcfbc6d8923d8575613bf83760b86eae",
+          "mode": "0o644"
+        },
+        "sway/commands/layout.c": {
+          "sha256": "4b3c0d2626ee61affa7ae64d816d8800b9098d39564523aab1d4c0fe3c489d7c",
+          "mode": "0o644"
+        },
+        "sway/commands/mark.c": {
+          "sha256": "017f66cda9c35952f1bbdaa020117253c75c2ff0a4b8f170d55804283d4ce75c",
+          "mode": "0o644"
+        },
+        "sway/commands/max_render_time.c": {
+          "sha256": "fc7cf4e1c745ff8fc5d4b2c40634a747465910461d9f6907430159f1d6b5c363",
+          "mode": "0o644"
+        },
+        "sway/commands/mode.c": {
+          "sha256": "245500bcf4dd1b6d1946af58834fc2406d1c4376e996fc8a35d0da7df7dc547d",
+          "mode": "0o644"
+        },
+        "sway/commands/mouse_warping.c": {
+          "sha256": "69fbcf7699a110dca1dd9734fbc56f084db976380e38bab0c0ba839e0a3c9c95",
+          "mode": "0o644"
+        },
+        "sway/commands/move.c": {
+          "sha256": "375539d6d4a2f019569480709c8b9ba002655727386209494a8c4c95e490b5fe",
+          "mode": "0o644"
+        },
+        "sway/commands/new_float.c": {
+          "sha256": "e33c2fe01a21c08451b1040323085534fc2f06b8a328e9dcad4931583b10dab7",
+          "mode": "0o644"
+        },
+        "sway/commands/new_window.c": {
+          "sha256": "dc62a4c869c4ec71f0b5f5f875f49f674c75ea71fcc765495d2f141197b2a5ad",
+          "mode": "0o644"
+        },
+        "sway/commands/no_focus.c": {
+          "sha256": "b4e445f8380a21c508bcfc8704ee9fffa80d48aaaaa16316941d8b1ccfa5f309",
+          "mode": "0o644"
+        },
+        "sway/commands/nop.c": {
+          "sha256": "dee46c3c52b0a7ebd336e94c9c3fdeb1f9b8309ebcc2522d6974efb3d6cac0ef",
+          "mode": "0o644"
+        },
+        "sway/commands/opacity.c": {
+          "sha256": "822cda3535bc7221be57a2a41ea364fa3883f1023ea7d32e8d4216bfd6ebb333",
+          "mode": "0o644"
+        },
+        "sway/commands/output/adaptive_sync.c": {
+          "sha256": "40b5c955ec8ed54d9977ae00b8197917c4077d2913e30afe4ffa74816f33dbd8",
+          "mode": "0o644"
+        },
+        "sway/commands/output/allow_tearing.c": {
+          "sha256": "d0fbc2608a2f95d329da346c03cace9213879c748400f7e2b7c1f04d20b303ff",
+          "mode": "0o644"
+        },
+        "sway/commands/output/background.c": {
+          "sha256": "281f74ecf910e2bccb49bdcbd0809adb63afb323e6aa957a7ddd54bb6538fd2e",
+          "mode": "0o644"
+        },
+        "sway/commands/output/color_profile.c": {
+          "sha256": "d60b18f0b145ab3b9cbdb774a6880ba30ddb2718b5e4954fcd7104e947ef6ac7",
+          "mode": "0o644"
+        },
+        "sway/commands/output/disable.c": {
+          "sha256": "a9705cb3dcdc6f6f71133618a27114c8d1cdc3ab6cb33f4a4591149813d5536e",
+          "mode": "0o644"
+        },
+        "sway/commands/output/dpms.c": {
+          "sha256": "79d00635e9218687066b996c866b074b10f463ca59af0da9f5dbdcddcf3416e3",
+          "mode": "0o644"
+        },
+        "sway/commands/output/enable.c": {
+          "sha256": "40f02c19aa0cd7e27807222da1c1007ace853958e138842c26c94540fde61e3f",
+          "mode": "0o644"
+        },
+        "sway/commands/output/hdr.c": {
+          "sha256": "b002111c03444e25c01a1fe9dacd49c3534d65e966fd8848be090d5be8ffe03b",
+          "mode": "0o644"
+        },
+        "sway/commands/output/max_render_time.c": {
+          "sha256": "4e04b7143e73d73e037684fd7f0979e7f537910693087682180d66d06fb4257e",
+          "mode": "0o644"
+        },
+        "sway/commands/output/mode.c": {
+          "sha256": "914bdaa8f5fa3bdc349af76947e31d5f78086581c37a245e55b0bd8fd99ff8f0",
+          "mode": "0o644"
+        },
+        "sway/commands/output/position.c": {
+          "sha256": "87bbcd1fabaf38d668df6401a21f48621c3c052663c817c46563a1ec36ada0ad",
+          "mode": "0o644"
+        },
+        "sway/commands/output/power.c": {
+          "sha256": "275fa7060a14869cba0f752d2908d79a8d608dc1cbb15cc7073a7f8143c11f47",
+          "mode": "0o644"
+        },
+        "sway/commands/output/render_bit_depth.c": {
+          "sha256": "8c7214921a0cb7d9d11eec37b0e6b4ff5aa27e0c614092159ec423ccca25f062",
+          "mode": "0o644"
+        },
+        "sway/commands/output/scale.c": {
+          "sha256": "077f3fa5c785d9874e4423f9990e18202ccc57b1833fe5577b2d6a367d8224bb",
+          "mode": "0o644"
+        },
+        "sway/commands/output/scale_filter.c": {
+          "sha256": "103f32d13234ac90e29ae1572f6de711fda2e2ed6ae887610bdf5a696d156d66",
+          "mode": "0o644"
+        },
+        "sway/commands/output/subpixel.c": {
+          "sha256": "fb1f7473063baba02da27cbbf7dbb0173fbd8e2cc02a076386d3cf2f24ba12ed",
+          "mode": "0o644"
+        },
+        "sway/commands/output/toggle.c": {
+          "sha256": "b075e310fbfe41f26e42ef56a6bbcdb5a708bb60971102bfda8aaa731590839b",
+          "mode": "0o644"
+        },
+        "sway/commands/output/transform.c": {
+          "sha256": "336fea758488150e58f0264209e483136a1da20181e13b36bc863fc0ff1c0504",
+          "mode": "0o644"
+        },
+        "sway/commands/output/unplug.c": {
+          "sha256": "16fc74be2b4ba87228d68fcfa42316a5a6aa43d71dea06711d90b5e4519917ab",
+          "mode": "0o644"
+        },
+        "sway/commands/output.c": {
+          "sha256": "fb90f38fcfdb344715739bdb798c4918f75898910fec646801b3d7cb0e241bd3",
+          "mode": "0o644"
+        },
+        "sway/commands/popup_during_fullscreen.c": {
+          "sha256": "1a6bb344225bca8fc90486247c61b737551b2c6d05135c672428588b7b9829f7",
+          "mode": "0o644"
+        },
+        "sway/commands/primary_selection.c": {
+          "sha256": "cc68710d5db4f52fb03965ee26ad2bee98c0f1005c97a5ef15a762d79db03827",
+          "mode": "0o644"
+        },
+        "sway/commands/reload.c": {
+          "sha256": "5523ef128ac2f82f87fea3e8ceb476dbc76aacbbf6f96a5aa632b2137b398d51",
+          "mode": "0o644"
+        },
+        "sway/commands/rename.c": {
+          "sha256": "a1d4ea4502f5042db5e2a5f827fbb34bea7f72029678d503e7c149e7f23d747b",
+          "mode": "0o644"
+        },
+        "sway/commands/resize.c": {
+          "sha256": "4adf25726c15ae352a4cfc21050cbc8a8b19aeae0094a44823511298e2251115",
+          "mode": "0o644"
+        },
+        "sway/commands/scratchpad.c": {
+          "sha256": "099f61126933c3260d4f25d1aeecb1171261ae1dd70b5379fb740577a4282652",
+          "mode": "0o644"
+        },
+        "sway/commands/scratchpad_minimize.c": {
+          "sha256": "596e1835b5628391ef491e428a3632c62b14afc7038b2cf6b4ab9a372e7acf45",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/attach.c": {
+          "sha256": "65635ecbc9d3a86b285ab0946721ea2ae362f519bc94c3089b1d270fefbb8967",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/cursor.c": {
+          "sha256": "9939f46159cb17a1da82e92473bcc726675770a9b887956bc5475d8b1bc47327",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/fallback.c": {
+          "sha256": "8b0d78f9f77a69ba6bdf49c8e617fca6e4251d4fec9e472c90a1cd9287bd0212",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/hide_cursor.c": {
+          "sha256": "c1241af9d915a4d7143b5fa4fcd3d6b8690237d8fda1008d5acaa0ba6136ccf3",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/idle.c": {
+          "sha256": "219a62420ba2ac28c425a11b7e71193f2d652e8b3efb426ff1167f3ad748d216",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/keyboard_grouping.c": {
+          "sha256": "cba1ffe0f26448c277f46cb55a424776423d18da3dac95bf38906d5db94e2a27",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/pointer_constraint.c": {
+          "sha256": "32a5e1e4befbbb49dd5e869df760806e3677f49b684def0706cf66c6b961db2d",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/shortcuts_inhibitor.c": {
+          "sha256": "79053e71ced7a6e915da8b47e3e858428e74d71897619c68dbb42adde69f8b02",
+          "mode": "0o644"
+        },
+        "sway/commands/seat/xcursor_theme.c": {
+          "sha256": "b02340466414f12f0d014e3c838c8ae81ab0158f819a959d4ca9db6e3301de8d",
+          "mode": "0o644"
+        },
+        "sway/commands/seat.c": {
+          "sha256": "7c51a964164f080739c76d1a102288e06b9e1bb3400a54e494784a02a1c7da6d",
+          "mode": "0o644"
+        },
+        "sway/commands/set.c": {
+          "sha256": "294611bd3727bba49ff25c5d7abc43685cfa47ff65db65d6061762d08d4db54a",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_blur_radius.c": {
+          "sha256": "f7dc588dbc1b81b6038c9a5df91a387c2ff01b40056e3ab1e900ba937485406a",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_color.c": {
+          "sha256": "1bb8d20498d49dc1e4634c498735afe3a3e7cd93d0c0726aa2577044fa9d9a05",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_inactive_color.c": {
+          "sha256": "fa3b36e539deeaff98de3fc1c04a2232c936347a122e4c19514b6ac68724e8f1",
+          "mode": "0o644"
+        },
+        "sway/commands/shadow_offset.c": {
+          "sha256": "e32765e4b50c2156a61f41239859ec8cee4ca9841cca2f54926ccae8876d7234",
+          "mode": "0o644"
+        },
+        "sway/commands/shadows.c": {
+          "sha256": "767de9ba343b16b4980a45595266bdfaaac396c39f49b18920946a6f4f15c208",
+          "mode": "0o644"
+        },
+        "sway/commands/shadows_on_csd.c": {
+          "sha256": "a4e8cab5d319fceedc1a80cc86421dc3e78c193c45e67ce5f1e2760cdb16ab0c",
+          "mode": "0o644"
+        },
+        "sway/commands/shortcuts_inhibitor.c": {
+          "sha256": "d55be514dc34e0058be4b23f1c7313f154f75c7d352c17abef070bc9bef89b8f",
+          "mode": "0o644"
+        },
+        "sway/commands/show_marks.c": {
+          "sha256": "9f9612069e4e4f5f0cb0e3367c6f8206d2f66847d07b8c8e9c17213324d3a578",
+          "mode": "0o644"
+        },
+        "sway/commands/smart_borders.c": {
+          "sha256": "e453f12139549bbca2f94c5a71721b8eda4abe32d56f1d69521da640dd24492b",
+          "mode": "0o644"
+        },
+        "sway/commands/smart_corner_radius.c": {
+          "sha256": "d67dc650f6cfceb07eb1d6fab2be611b012b5d98f8e9e97c4a64ee9372a73a02",
+          "mode": "0o644"
+        },
+        "sway/commands/smart_gaps.c": {
+          "sha256": "b956d09063b19671f725ca1a2e9cd825ebf2e7a1c6452458b86ae419c1551977",
+          "mode": "0o644"
+        },
+        "sway/commands/split.c": {
+          "sha256": "737da40a1a156cd5f772fe4d584d6b8d96116f2de782418ec24cf834b661a849",
+          "mode": "0o644"
+        },
+        "sway/commands/sticky.c": {
+          "sha256": "5e898f1c3964bf6ab47caff2d1018bf68a8b3b6ef4de2e324947e9064f728a17",
+          "mode": "0o644"
+        },
+        "sway/commands/swap.c": {
+          "sha256": "f7504ebb1d59bb1e6b93699c7169dac3e426f07aaa2a2460ccbec4b2bcf2ab7b",
+          "mode": "0o644"
+        },
+        "sway/commands/swaybg_command.c": {
+          "sha256": "4d98d1ab14abdfefc8097150ad61936b4573d6d03ed64e7e09b3f44e97e293d3",
+          "mode": "0o644"
+        },
+        "sway/commands/swaynag_command.c": {
+          "sha256": "294a8bfe509d878810554644c02310d19c8d09633260a728678d0626c280345b",
+          "mode": "0o644"
+        },
+        "sway/commands/tiling_drag.c": {
+          "sha256": "e4ac31cc9e153676175e0a8de925b1768c6ede66504d6fa42571fc5674cd58bf",
+          "mode": "0o644"
+        },
+        "sway/commands/tiling_drag_threshold.c": {
+          "sha256": "87bb0644193c2911532c5cce3c4d7c703d23027b64167ec34b457437f6bcac87",
+          "mode": "0o644"
+        },
+        "sway/commands/title_align.c": {
+          "sha256": "f2e375f8a5db3385550f474781fd68bb1ad3eed566dc8ab8c58e974c42ab5904",
+          "mode": "0o644"
+        },
+        "sway/commands/title_format.c": {
+          "sha256": "3388200dce72dd13f8fd9e9495790950911291c72e60eebc86e9fb23e61c3417",
+          "mode": "0o644"
+        },
+        "sway/commands/titlebar_border_thickness.c": {
+          "sha256": "86d87194992077fb5854ea723235d49bed987dac81fb9d8812f1f8b027333e31",
+          "mode": "0o644"
+        },
+        "sway/commands/titlebar_padding.c": {
+          "sha256": "a36e4fe14ff62a30debdb3b05809a433a0e108a0017e657faadced04b1396f4f",
+          "mode": "0o644"
+        },
+        "sway/commands/titlebar_separator.c": {
+          "sha256": "4d10842adf0fb4b36aa5ec7b37c194417295f18e32ea8c85d71724dad58ed851",
+          "mode": "0o644"
+        },
+        "sway/commands/unmark.c": {
+          "sha256": "5c4cd02f8c9bbb3fba5cec3f369baf12e94dec579740c8bbcbc6917657b54ce8",
+          "mode": "0o644"
+        },
+        "sway/commands/urgent.c": {
+          "sha256": "b6d9915e33eb6ec968fd7ca2b1cc6f1bccf9836adbba4ed6043ebc570046d682",
+          "mode": "0o644"
+        },
+        "sway/commands/workspace.c": {
+          "sha256": "113eb352e3075dad5f09e0e09617556d2a48164be6daada0f9752787076f5e2f",
+          "mode": "0o644"
+        },
+        "sway/commands/workspace_layout.c": {
+          "sha256": "66c75fed81b6b717662f9ddfac5cdaf5bab30e7a4548ac8d21793aca01956c8b",
+          "mode": "0o644"
+        },
+        "sway/commands/ws_auto_back_and_forth.c": {
+          "sha256": "7cfa7a6632d03f127eb72585f8cca21503738327661925dcffe3903c7750ea1e",
+          "mode": "0o644"
+        },
+        "sway/commands/xwayland.c": {
+          "sha256": "d538ab44f7ac57858f0491d56e39960536ead8e6b75a201b197a0398b9fd8fde",
+          "mode": "0o644"
+        },
+        "sway/commands.c": {
+          "sha256": "c4d18d9982594da0813cbd74786971bb34fd11cf966f8d226a93f15029022f28",
+          "mode": "0o644"
+        },
+        "sway/config/bar.c": {
+          "sha256": "d1e74900dd7dc464f2bba373ada61b8c87e793544ad442d83b8d10d9f8c343b7",
+          "mode": "0o644"
+        },
+        "sway/config/input.c": {
+          "sha256": "9b3ad8616350a0927516e9adc2f80eaf2c98d071ee2a3c28066778ca9454f129",
+          "mode": "0o644"
+        },
+        "sway/config/output.c": {
+          "sha256": "20de3ddbb794c5cba75ba74eb839cbc8bdf4aa347d1f12d0d7e09c628da1e851",
+          "mode": "0o644"
+        },
+        "sway/config/seat.c": {
+          "sha256": "54da4011e0afefe9a4dc6838881a23f36ff71d986bf9e1099b0196b99ba9b727",
+          "mode": "0o644"
+        },
+        "sway/config.c": {
+          "sha256": "e6c1261746a962b7991fbb5cace3a3c48abfe9f783b40407364ff941ba82c204",
+          "mode": "0o644"
+        },
+        "sway/criteria.c": {
+          "sha256": "759448a412d0810b911ce2452f16f27ddb138bf54df45de2b7c08cb54d5f60a6",
+          "mode": "0o644"
+        },
+        "sway/decoration.c": {
+          "sha256": "85d30146a2997aafbf01ee5fe97f43bf0dd6a4b87bcbb80c7cb5591571417ef1",
+          "mode": "0o644"
+        },
+        "sway/desktop/idle_inhibit_v1.c": {
+          "sha256": "9344b4fa4e3f0fe8658adac26d957a59ed92e024804dfad2c5c5e134e46f4253",
+          "mode": "0o644"
+        },
+        "sway/desktop/launcher.c": {
+          "sha256": "ce65bffb68ea7cc495ed7ab9e4e2dc27bb6970a50da56a06fedad494b309c6ec",
+          "mode": "0o644"
+        },
+        "sway/desktop/layer_shell.c": {
+          "sha256": "bb4b7793f4c9f058086193ccf3cef28a4f8a72914b5a9d515d5d02f6e334d634",
+          "mode": "0o644"
+        },
+        "sway/desktop/output.c": {
+          "sha256": "0932d0aee143d8f3ec82b4d7e2c971371879f36f888f42b05aa72408fc624e5a",
+          "mode": "0o644"
+        },
+        "sway/desktop/tearing.c": {
+          "sha256": "59a2f453ca721d888c5887c6cea5fa18f27e7ec64d3e956206246abcda2fe861",
+          "mode": "0o644"
+        },
+        "sway/desktop/transaction.c": {
+          "sha256": "972b2e6d7f897c9e469a5d85e38d43d9e4c9199964a612b871a3fb2f06b27c16",
+          "mode": "0o644"
+        },
+        "sway/desktop/xdg_shell.c": {
+          "sha256": "a72c00cf08020160a564d89b2e4d8a9e65ed985c2a94e05a4e134ec4bf790ac7",
+          "mode": "0o644"
+        },
+        "sway/desktop/xwayland.c": {
+          "sha256": "f01d786a10fa2638f77613da540ba184ce3464a9b0cfebdd3c8c8b6a409519c5",
+          "mode": "0o644"
+        },
+        "sway/input/cursor.c": {
+          "sha256": "f162cbef45dbc497f4482c24a2cd5f6f2b13caad4e313d7daccf7b67d8c08543",
+          "mode": "0o644"
+        },
+        "sway/input/input-manager.c": {
+          "sha256": "1b07ba753e5043cbe740f6c6d63ae8e3f15dd0897056647d4e3da9b7838b5bfb",
+          "mode": "0o644"
+        },
+        "sway/input/keyboard.c": {
+          "sha256": "425cf9befbb2387a3df02da0c16b9fa77725181502f3dad0cbbb7d708e21f459",
+          "mode": "0o644"
+        },
+        "sway/input/libinput.c": {
+          "sha256": "aa1c86c70656c6d437ed89d509beab201bcbde1c00e8f801f94b4fe981640fc8",
+          "mode": "0o644"
+        },
+        "sway/input/seat.c": {
+          "sha256": "5661df9f70b66ca4b105a3787de0cad57a7f340b632ed1622d6dca49807de820",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_default.c": {
+          "sha256": "66ce185397b45b0150c6c9fe776e8ad21765f9c6ac8227f8f52af8b8341d4866",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_down.c": {
+          "sha256": "5dcdfa3039919448e3adf1c2d210c6fff89a46b897ac0c34f1f615411c3c6efe",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_move_floating.c": {
+          "sha256": "610309f263f0069f029d7e2dad7ebae94b6e66ff365945b1052cd9753a229dab",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_move_tiling.c": {
+          "sha256": "2e58235f78165cf23f9fdb17e922872831693c7b03a807ef83aeba1e5c0cbfbc",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_resize_floating.c": {
+          "sha256": "5a70f8cb54963d92885ae679f9058526b1b14a4b338757bf287aa6175db13f60",
+          "mode": "0o644"
+        },
+        "sway/input/seatop_resize_tiling.c": {
+          "sha256": "e1ccccd1a1cf48fb42d17dff876ec4372efff69b8d6458fffabc738349a34f85",
+          "mode": "0o644"
+        },
+        "sway/input/switch.c": {
+          "sha256": "fc44f83ab5856abd12672a82ebcc0b03544d2ccfa4e840f5a3d7f69a2e869c21",
+          "mode": "0o644"
+        },
+        "sway/input/tablet.c": {
+          "sha256": "04370bf51f7fc04e206f9b36b78128661def7d256c4d2fbdf5b5e49d493b3790",
+          "mode": "0o644"
+        },
+        "sway/input/text_input.c": {
+          "sha256": "fe7864d08cd89b3b3d57b4c8373fa4928a353ad483b72fe9c72d93d839d7a7f0",
+          "mode": "0o644"
+        },
+        "sway/ipc-json.c": {
+          "sha256": "710408ede2fcaa11518577c199d1e1b009ac44e231ff050e7c9ef76e2d2371e8",
+          "mode": "0o644"
+        },
+        "sway/ipc-server.c": {
+          "sha256": "2af7f2449cf42474ab17678133fe5425fb80f5ed749234ae0022b3761a4a4d9c",
+          "mode": "0o644"
+        },
+        "sway/layer_criteria.c": {
+          "sha256": "501574143ae69a0add8717db95814739932cea17c9eb0959f8b773363740e6bc",
+          "mode": "0o644"
+        },
+        "sway/lock.c": {
+          "sha256": "3fdca6aab166ae17e4aa803693c1907605036207aae50fa417b04349b62ca25c",
+          "mode": "0o644"
+        },
+        "sway/main.c": {
+          "sha256": "70cea63271e5915e229086dd5f899c070ab372b89f7229154a02730cb4b7ac55",
+          "mode": "0o644"
+        },
+        "sway/meson.build": {
+          "sha256": "cfd40fde1a29e2b8fc142bfe44d87c398bc861e01d25bf2767007318faca55d2",
+          "mode": "0o644"
+        },
+        "sway/realtime.c": {
+          "sha256": "7fea79c25f1b174f679178b7bbe99c8ec8727fecc397433292b8051324b23b26",
+          "mode": "0o644"
+        },
+        "sway/scene_descriptor.c": {
+          "sha256": "a95a41b374e1ef6d57b56b9ba14d9bad7773ce8f136bb86bce218519d1289a5e",
+          "mode": "0o644"
+        },
+        "sway/server.c": {
+          "sha256": "a9367d25a18605a6b20c8fd9a690b475c48d2ad9a73ffa929c29856060890d32",
+          "mode": "0o644"
+        },
+        "sway/sway-bar.5.scd": {
+          "sha256": "57968b8c63bd481b918a868b4eaca1c08ffb75518361a795f9b04d9480cf1336",
+          "mode": "0o644"
+        },
+        "sway/sway-input.5.scd": {
+          "sha256": "834eb8a6b73d9ec7bb02908d1f0498d9253978d4d1c65bce47f6f3f96fbb3bbb",
+          "mode": "0o644"
+        },
+        "sway/sway-ipc.7.scd": {
+          "sha256": "db44cb2a4823c85d49cddd95086fe1d00a32974c5922abb409fd04c66e995f31",
+          "mode": "0o644"
+        },
+        "sway/sway-output.5.scd": {
+          "sha256": "7b4503a0d3e1c4be08f6081f250236c862344ef8e8f45ec01f4333c9a7ad51f1",
+          "mode": "0o644"
+        },
+        "sway/sway.1.scd": {
+          "sha256": "cacca5a3d95ed91fae4ba5cbce63696eb826ed55770a1fe7ebc75348bbba5def",
+          "mode": "0o644"
+        },
+        "sway/sway.5.scd": {
+          "sha256": "e0dd6eebeebc2894b49f84937439a61c0dd20d468820c43cdfdfe46e1dfc99a6",
+          "mode": "0o644"
+        },
+        "sway/sway_text_node.c": {
+          "sha256": "253a789f5916b2457b48a9dd67fc3c51a39799fb3c9080b7949b55feffe836f1",
+          "mode": "0o644"
+        },
+        "sway/swaynag.c": {
+          "sha256": "77b4cbd3407f6625e700e36d23f4fe148cbf718b33e74412fa6569bafc634196",
+          "mode": "0o644"
+        },
+        "sway/tree/arrange.c": {
+          "sha256": "c9c1e4ae3df273b67fc8b3a115a8eb49c113250a6f0fcd9ab94bc760757dee75",
+          "mode": "0o644"
+        },
+        "sway/tree/container.c": {
+          "sha256": "8cb622caec02ddaa5df9877556f778678989025e3863f49e862dc040a3eb8f40",
+          "mode": "0o644"
+        },
+        "sway/tree/mosaic.c": {
+          "sha256": "cb7b506dc4cca63d1bd1c237502ebe9e2d757d614d4c2210df8951bbc3ee20f5",
+          "mode": "0o644"
+        },
+        "sway/tree/node.c": {
+          "sha256": "a2bf7c00838f3485de75840d760321267353f1720e67656d6dddb7543e7ebab7",
+          "mode": "0o644"
+        },
+        "sway/tree/output.c": {
+          "sha256": "910d81998f50a53fd04444f66e132b3e7e48e92b900e875e14ae80f793472c85",
+          "mode": "0o644"
+        },
+        "sway/tree/root.c": {
+          "sha256": "1e222bc862c2531008ea70848559d13d1c92340d1537c99a67425e2470addbb7",
+          "mode": "0o644"
+        },
+        "sway/tree/view.c": {
+          "sha256": "39d8a3dc5619890b9d05c0c0bbee1b20f9157847cff216f5cbad5bc0bc0b0e44",
+          "mode": "0o644"
+        },
+        "sway/tree/workspace.c": {
+          "sha256": "7e262293ec875ae052e534c79b5eb874aa7aa2ad2c22262d931107a3d57c351b",
+          "mode": "0o644"
+        },
+        "sway/xdg_activation_v1.c": {
+          "sha256": "31faae11b19ca0f9c4998862b8527d09b10f2211a37e321bcdbd79965cbeb521",
+          "mode": "0o644"
+        },
+        "sway/xdg_decoration.c": {
+          "sha256": "6c78ee9ad6b298368f496e4b6f181aeccdeeea28ce7665bdfb96f0560ee87c30",
+          "mode": "0o644"
+        },
+        "sway.desktop": {
+          "sha256": "71961593632ccb4a88ae5af6c0ec02350295a0842678b6fbcc002326469f60a2",
+          "mode": "0o644"
+        },
+        "swaybar/bar.c": {
+          "sha256": "7ddd5242991c9f8f845620f041efa848ef21b52742065b6777a27813c1c826c2",
+          "mode": "0o644"
+        },
+        "swaybar/config.c": {
+          "sha256": "b6bac70fcb4c5b3d594979b9a73ce57a67cb9f51313044d7a3d2ec33657f8ec4",
+          "mode": "0o644"
+        },
+        "swaybar/i3bar.c": {
+          "sha256": "bae0594f2ac8912f66a9edcdca8c6c61d0b430e6d186a844d1ab6b198b30fa4a",
+          "mode": "0o644"
+        },
+        "swaybar/image.c": {
+          "sha256": "c20616b697300ad964d9bcfbc783a41d8d28a048203af4858255a1b55455d2f6",
+          "mode": "0o644"
+        },
+        "swaybar/input.c": {
+          "sha256": "047261e57f33168021c34f430b56ee73b9715a63efdc133cd9c6372f659d5ae8",
+          "mode": "0o644"
+        },
+        "swaybar/ipc.c": {
+          "sha256": "1686abe12a4a2f2018e1d83e620cf59d83b3251074c4c7e01db95253ffa0fbf1",
+          "mode": "0o644"
+        },
+        "swaybar/main.c": {
+          "sha256": "7e291521fc58ae4e7a6e5e275b44ee90fe4147966d0ed8413f918eb99f29123c",
+          "mode": "0o644"
+        },
+        "swaybar/meson.build": {
+          "sha256": "4ff797ae256f9b39975cbeea785a9c675f15c03bd510d2470a7e2d016ae261cc",
+          "mode": "0o644"
+        },
+        "swaybar/render.c": {
+          "sha256": "3a42b3abc5a8bc8983bbf0dda1b19553a042f1701c64fcb26bb185e8808dd61d",
+          "mode": "0o644"
+        },
+        "swaybar/status_line.c": {
+          "sha256": "905eb415175611158fdfc721dca12ad875858b14cb067cefbad701b926790795",
+          "mode": "0o644"
+        },
+        "swaybar/swaybar-protocol.7.scd": {
+          "sha256": "9ed114f97663a4f1bf2aed805cdf4bfeb099690cae9f1bb3a210b46b73055ec3",
+          "mode": "0o644"
+        },
+        "swaybar/tray/host.c": {
+          "sha256": "58dcada1c5eb9a45120b2d9fcf58f341fccaa132ccb4436fbeca17a5a71172a2",
+          "mode": "0o644"
+        },
+        "swaybar/tray/icon.c": {
+          "sha256": "06ba6864c13db0c176186137c9efa1ec4fb9e84361d3650c149d53bace3fa0c0",
+          "mode": "0o644"
+        },
+        "swaybar/tray/item.c": {
+          "sha256": "bb4d245397f366d8130d64004355f2f0d5fedd221b127e9d3714171ebb716bc8",
+          "mode": "0o644"
+        },
+        "swaybar/tray/tray.c": {
+          "sha256": "c0d6fd4f37730ccee30afdd24109051d335dc30be6da428ff8a3b7068283467b",
+          "mode": "0o644"
+        },
+        "swaybar/tray/watcher.c": {
+          "sha256": "1e3ad8180025d91e2e5dafa8417bb4f3db900d8622e224e181a95ed28434ff7c",
+          "mode": "0o644"
+        },
+        "swaymsg/main.c": {
+          "sha256": "effbc69497b61016335575dde5bb7e6164e87b80578d533de1bc3082245a2f75",
+          "mode": "0o644"
+        },
+        "swaymsg/meson.build": {
+          "sha256": "eccd929e8470713def7b4ffb90b0b8142b0851f91756e949a1bc655e0272ee82",
+          "mode": "0o644"
+        },
+        "swaymsg/swaymsg.1.scd": {
+          "sha256": "5b8d557c242e96eb2ef781e90b7ec3a5b17c59e04755382f7125ab5e2cdf03fd",
+          "mode": "0o644"
+        },
+        "swaynag/config.c": {
+          "sha256": "108ab4d962e85c52f7f975d90b1d4ce5e55d53d1be14681d518e97646efdd568",
+          "mode": "0o644"
+        },
+        "swaynag/main.c": {
+          "sha256": "537dc7a49d9d7967905313df19584e241bc104ab2011f2996048f6bc99f972ca",
+          "mode": "0o644"
+        },
+        "swaynag/meson.build": {
+          "sha256": "6f65aee69158c04cc24fe68956ea8c0932692448af45d9ecce0649efd32e6aa4",
+          "mode": "0o644"
+        },
+        "swaynag/render.c": {
+          "sha256": "d0d4e85ecc53fab6d9d6dbf096a4607b29107a1f37ff5f5c8eaefd041ceca400",
+          "mode": "0o644"
+        },
+        "swaynag/swaynag.1.scd": {
+          "sha256": "3e9dd1de9551cb291f92481b69c1512a076d6a6d0e5b5362a9b93fb9c6e0e070",
+          "mode": "0o644"
+        },
+        "swaynag/swaynag.5.scd": {
+          "sha256": "8220198348026765f76178210ab7f285e0186ec3fb7a9e84fcc0957366ccf874",
+          "mode": "0o644"
+        },
+        "swaynag/swaynag.c": {
+          "sha256": "9ecc055d654f8a5092b582c35ecccfefb5ce56fa3f3206728acec0935608bb14",
+          "mode": "0o644"
+        },
+        "swaynag/types.c": {
+          "sha256": "833cf37e75e2e37fb947a621252e8e9395b3ca45f3a82fa2ee6a964c24f1a795",
+          "mode": "0o644"
+        },
+        "tests/headless-ipc.py": {
+          "sha256": "0a16c887ca6a87f0392c2eef498b4fad78b9f32afaf7d2a6c0e5e0e37c3c1744",
+          "mode": "0o644"
+        },
+        "tests/mosaic-model.c": {
+          "sha256": "8970999af64fe6afe017f709551ed70bbb0171ab4a790e3effe81c83e392ba6e",
+          "mode": "0o644"
+        },
+        "tooling/export-patch.sh": {
+          "sha256": "fe215fc36e7d3ed32a422b85c1479c6f52cb562a02d400036e99733f2b37eef8",
+          "mode": "0o755"
+        }
+      }
+    }
+  }
+}

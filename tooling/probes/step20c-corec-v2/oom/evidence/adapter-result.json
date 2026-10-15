@@ -1,0 +1,11 @@
+{
+  "status": "PASS_OFFLINE",
+  "checks": [
+    "exclusive owned token exact bytes0600",
+    "debit before write",
+    "rearm refused retaining debit",
+    "single native failure synthetic parser with nonce/PID/role",
+    "O2 no stable rootA refused before hook"
+  ],
+  "runtime": "NOT_RUN"
+}

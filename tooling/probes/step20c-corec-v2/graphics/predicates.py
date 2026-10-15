@@ -41,7 +41,7 @@ def configured(text,name):
     assert rows,(name,'no configure')
     return list(map(int,rows[-1]))
 
-def geometry(text,origin,provenance=None):
+def geometry(text,origin,provenance=None,axis=0,boundary=0):
     a=configured(text,'POPUP_A');b=configured(text,'POPUP_B')
     require(provenance is not None,'popup-owner-provenance-required')
     p=provenance
@@ -55,7 +55,7 @@ def geometry(text,origin,provenance=None):
         parent=popup(parent,Rect(Space.POPUP,*c,p),parent_id,ids[parent_name][1],ack,name+' MAP ' in text)
         result[key]=parent.values()
     result.update(configured_A=a,configured_B=b,origin=origin,provenance=dict(owner=p.owner,workspace=p.workspace,generation=p.generation,evidence=p.evidence,state=p.state),
-                  crossing={key:crossing(Rect(Space.GLOBAL,*result[key],p),0) for key in ('A','B')})
+                  crossing_axis=axis,crossing_boundary=boundary,crossing={key:(result[key][axis]<boundary<result[key][axis]+result[key][axis+2]) for key in ('A','B')})
     return result
 
 def mapped(text):
