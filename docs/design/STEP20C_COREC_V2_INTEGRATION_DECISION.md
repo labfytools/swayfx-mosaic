@@ -561,4 +561,3 @@ des 43 Python, C17 fullscreen/G2, cinq bindings, manifests historiques
 54/105, budget immuable et diff-check. Les nouveaux fichiers de preuves et
 la correction offline du parent sont visibles séparément dans le worktree ;
 ils ne sont pas des changements effectués par cette rédaction documentaire.
-
