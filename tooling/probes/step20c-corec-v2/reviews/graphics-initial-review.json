@@ -1,0 +1,70 @@
+{
+  "schema": "corec-v2-graphics-independent-source-offline-review",
+  "decision": "CORRECTION_REQUIRED",
+  "reviewer": "independent R-runtime reviewer",
+  "source_freeze_sha256": "be6666d6b2c6fd6ea73d989f53190d6a851d32d267527fe58a1eb15c889578d6",
+  "source_files_verified": 28,
+  "offline_tests": {
+    "command": "LAB/run-env Python unittest loader of graphics-kit/offline/test_graphics_v2.py; V2.setUp redirects only temporary fixtures into LAB/review-graphics/OFFLINE_TEST_ONLY; source modules unchanged",
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "log_sha256": "e9f994eccd1e04cf7263f694745c59d46347bce2e8f2d813f4d270af5d130431"
+  },
+  "negative_controls": {
+    "file": "negative-controls.json",
+    "sha256": "a34f071e8cbf1de5a9358d54d561475849cd0a7afa7370a4051b7c5a9b836944"
+  },
+  "blockers": [
+    {
+      "id": "B1",
+      "severity": "HIGH / BLOCKING",
+      "file": "graphics-kit/engine.py",
+      "symbol": "Session.watchdog / Session.cleanup",
+      "lines": [
+        91,
+        98,
+        202,
+        205
+      ],
+      "requirement": "Ticket section4: duree150s/run; owned-process watchdog confinement",
+      "evidence": "watchdog_at_144 returns after SIGTERM only. SIGKILL is reached only from main-thread cleanup, after sequential close_client waits and other cleanup waits. No autonomous hard deadline or escalation exists.",
+      "smallest_correction": "Keep watchdog active through bounded TERM grace and SIGKILL before the150s ceiling; make cleanup use the same absolute deadline and test TERM-resistant owned process/group offline."
+    },
+    {
+      "id": "B2",
+      "severity": "HIGH / BLOCKING for C7 admission",
+      "file": "graphics-kit/cases.py",
+      "symbol": "dynamic_campaign",
+      "lines": [
+        95,
+        97,
+        98,
+        103,
+        105
+      ],
+      "requirement": "Ticket F7: reconstructed camera clamp and old/new clips/residual pixels after resize and migration",
+      "evidence": "clamp is assigned NOT_PROVEN unconditionally. Both resize captures only feed sample_surviving (B input); no residual/whole-H2 check or reconstructed clamp assertion is applied before dynamic-ownership PASS and PARTIALLY_FEASIBLE.",
+      "smallest_correction": "Implement offline-reviewed clamp and per-mutation rendered-region predicates within frozen caps, or mark C7 NOT_ADMITTED pending its narrower review; do not claim complete F7 qualification."
+    }
+  ],
+  "accepted_components": [
+    "Exact28-file source freeze verified",
+    "27 offline tests pass",
+    "prlimit core0:0 real non-graphic child test passes with stablePID and unchanged parent limits; argv traces validated; no preexec_fn",
+    "budgets/reuse/completion/token/source/pub bindings negative controls pass",
+    "additional UID/duration/publication/symlink negatives pass",
+    "P1,C8,O1,O2,G2,R1 NOT_ADMITTED",
+    "native generation/damage/saved/buffer/GPU limitations declared honestly"
+  ],
+  "non_blocking": [
+    "C7 post-close capture NOT_TESTED is explicit; no additional capture budget requested",
+    "Synthetic transports do not prove native input, graphics or cleanup"
+  ],
+  "runtime": "NOT_RUN",
+  "real_reservations": 0,
+  "native_builds": 0,
+  "sources_edited": false,
+  "commit_push": false,
+  "scope": "No production/live IPC/headless/capture/GPU execution"
+}

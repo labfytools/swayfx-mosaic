@@ -1,0 +1,115 @@
+{
+  "baseline": "339dda45bc81b953e2f0afadf28765149e3a1ba1",
+  "deltas": [
+    "New V2 explicit canonical LAB and fixed14-run plan; old gate/run/prepare/replay/seal not copied",
+    "Durable full-kit+review+publication+binary binding and offline-only ledger namespace; no reset/refund",
+    "Socket-only /tmp/smx runtime, scrubbed environment, LAB-backed checked-length C SHM paths",
+    "Actual second-chain pre/post workspace/layout/PID/tiling validation and fresh ownerID/PID",
+    "P0 ten captures; C1 sixteen; C2 eight; C3/C4 nine including marker; C5 twelve; C6 ten; C7 fourteen with postclose pixels explicitly NOT_TESTED",
+    "Fullscreen/OOM/GPU/discriminant NOT_ADMITTED pending specific proof/hooks",
+    "Scientific closure includes archived same-name/already-exited clients and separates mechanical forced cleanup",
+    "No old raw replay; native generation/saved identity/complete damage/present/buffer/GPU claims NOT_PROVEN absent actual native evidence"
+  ],
+  "historical_raw": "MISSING_NOT_RECOVERABLE",
+  "new_runtime": "NOT_RUN",
+  "parents": {
+    "cases.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "7ef309e39b7ac814246a0822428334cfce35d0b5c641ca7b220b0f4475709e4b",
+      "source": "tooling/probes/step20c-core-recovery/graphics/cases.py"
+    },
+    "clients/nested-client.c": {
+      "sha256": "c4baa574baf04c944f5b8b0012b434369a30afdbf3f989d6f26e554783f82d86",
+      "source": "tooling/probes/step20c-core-recovery/graphics/clients/nested-client.c"
+    },
+    "clients/pointer-daemon.c": {
+      "sha256": "8e4eaad95882d0d73866f801899007240b01cb6e15a712e820b3e3f71a78bbe5",
+      "source": "tooling/probes/step20c-minimal-core-gate/graphics/clients/pointer-daemon.c"
+    },
+    "clients/saved-client.c": {
+      "sha256": "3c78af047af5834957fee16a25e42f0bd6f02e85e4385a52116e9d5beb63e912",
+      "source": "tooling/probes/step20c-core-recovery/graphics/clients/saved-client.c"
+    },
+    "clients/static-reference.c": {
+      "sha256": "e346a85ded3345b232cd6edca5a1ac57aebfd548a60e12b3c47a5cf515e6c50e",
+      "source": "tooling/probes/step20c-minimal-core-gate/graphics/clients/static-reference.c"
+    },
+    "clients/vertical-client.c": {
+      "sha256": "63b7e1615a452a87f4d790e46456a7cc66d58cc2755ca2801fc1ab23c8e9b179",
+      "source": "tooling/probes/step20c-core-recovery/graphics/clients/vertical-client.c"
+    },
+    "engine.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "c6fd4118dd1def6f2dede2eaa4a6c1461a47b3fcd2ce8d6a40577b381ffd24e5",
+      "source": "tooling/probes/step20c-core-recovery/graphics/engine.py"
+    },
+    "geometry.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "76a80e98887d3a3707ee942b48a49c1850cdc4aeeb28237d9fea33fa3470fb12",
+      "source": "tooling/probes/step20c-core-recovery/graphics/geometry.py"
+    },
+    "ipc_predicates.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "5354ba53e1b3f8d0026f4475beebee58d093a81db7d26304cad7085ae3efd352",
+      "source": "tooling/probes/step20c-core-recovery/graphics/ipc_predicates.py"
+    },
+    "lifecycle.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "df0c11027b3b8b0ef371ddb6ec4bcfd28dac09835644d0c3ce6e273d5e565e92",
+      "source": "tooling/probes/step20c-core-recovery/graphics/lifecycle.py"
+    },
+    "model.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "a578fc589fb092dae3ccdcf8c4eec12a97e515f721decc4c968078dedcb2367a",
+      "source": "tooling/probes/step20c-core-recovery/graphics/model.py"
+    },
+    "pixels.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "d315ddad978238ffbf1c8e4d712d4608ba23564703332d814f627f57f7b6e7f5",
+      "source": "tooling/probes/step20c-core-recovery/graphics/pixels.py"
+    },
+    "predicates.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "222a94764bfe6d76f0b7bcdab4b28b4d90cccb479af49b87e778813f0bdc3a71",
+      "source": "tooling/probes/step20c-core-recovery/graphics/predicates.py"
+    },
+    "protocols/wlr-virtual-pointer-unstable-v1.xml": {
+      "classification": "REUSED_VERSIONED_SOURCE",
+      "sha256": "3ff6d540be0bc5228195bf072bde42117ea17945a5c2061add5d3cf97d6bb524",
+      "source": "tooling/probes/step20c-valid-grab/wlr-virtual-pointer-unstable-v1.xml"
+    },
+    "protocols/xdg-shell.xml": {
+      "classification": "SYSTEM_PROTOCOL_SOURCE",
+      "sha256": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+      "source": "/usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml"
+    },
+    "saved.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "f3e969781c1f0c90094babad0dffb08f63544a03da4c084d2fb4c3bdb37d9abf",
+      "source": "tooling/probes/step20c-core-recovery/graphics/saved.py"
+    },
+    "saved_validators.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "b412fedc24869274c8b1506a2800c8d4815c93df859785c6e96f719d692014af",
+      "source": "tooling/probes/step20c-core-recovery/graphics/saved_validators.py"
+    },
+    "validators.py": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "dfc3e0c6a57b032a311a7ccfc3ac0f30447f9029fa933819bd65f2610d763908",
+      "source": "tooling/probes/step20c-core-recovery/graphics/validators.py"
+    },
+    "wire-fixture.txt": {
+      "classification": "REUSED_VERSIONED_SOURCE_WITH_DECLARED_V2_DELTAS",
+      "sha256": "c6c9fc072f78fbcf9cfdeebcc5becdbdfb61824352495a0e767d7d390267f640",
+      "source": "tooling/probes/step20c-core-recovery/graphics/wire-fixture.txt"
+    }
+  },
+  "retained_core_traces": {
+    "PI_OPT": "REMOVED",
+    "PROBE_POPUP_CLIP": "owner=%p local=%d,%d %dx%d",
+    "PROBE_POPUP_HIDDEN_OWNER": "owner=%p applied=%d,%d %dx%d viewport=%d,%d %dx%d",
+    "SPIKE_CLIP": "tree=%p rect=%d,%d %dx%d",
+    "SPIKE_DAMAGE": "REMOVED",
+    "temporal_neutrality": "NOT_PROVEN"
+  }
+}

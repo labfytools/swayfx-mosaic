@@ -1,0 +1,54 @@
+{
+  "baseline_sha256": "be6666d6b2c6fd6ea73d989f53190d6a851d32d267527fe58a1eb15c889578d6",
+  "blockers_addressed": [
+    "B1",
+    "B2"
+  ],
+  "caps": {
+    "C7": 14,
+    "global_captures": 180,
+    "planned_captures": 170,
+    "runs": 14
+  },
+  "captures": 0,
+  "commit_push": false,
+  "decision": "PENDING_INDEPENDENT_DELTA_REVIEW",
+  "files_changed": [
+    "README.md",
+    "cases.py",
+    "engine.py",
+    "offline/test_graphics_v2.py"
+  ],
+  "limitations": [
+    "IPC_PENDING_CANDIDATE; native applied generation NOT OBSERVABLE",
+    "Sampled pixels cannot prove complete damage",
+    "Post-close C7 capture NOT_TESTED; no extra budget",
+    "A nonsaturating expected clamp is recorded as such by numeric old/new values; no extra camera mutation",
+    "Offline synthetic cases do not qualify native C7"
+  ],
+  "native_builds": 0,
+  "new_freeze": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/results/graphics-source-freeze-repaired.json",
+  "new_freeze_sha256": "a905cd571e92668d8352f13ca2b7eef5b19ce7baf0f2c497855ac3c81c8e64fb",
+  "offline_tests": {
+    "errors": 0,
+    "exit": 0,
+    "failures": 0,
+    "log": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/repair-graphics/offline-final.log",
+    "log_sha256": "fff3f5ec74611f5bcad65c8b8029e6b185b9a2d5e91ee25221c78d0f0c493a28",
+    "tests": 32
+  },
+  "original_failures_preserved": [
+    "offline-attempt1.log: fixture path lacked OFFLINE_TEST_ONLY; 7 errors",
+    "offline-attempt2.log: synthetic quota state missing snapshot; 1 error",
+    "offline-attempt3.log: repeated synthetic snapshot keyword; SyntaxError"
+  ],
+  "production_changes": false,
+  "real_reservations": 0,
+  "runtime": "NOT_RUN",
+  "schema": "corec-v2-graphics-bounded-repair",
+  "solution": {
+    "B1": "Atomic registration/expiry; independent TERM143 and KILL<=146; shared absolute cleanup deadline146 and reap147; private group only",
+    "B2": "Pinned calloc/fallback640 corroborated with three actual IPC widths and zero-gap positions; per-mutation clamp min(previous,content-viewport), owner/ws/order/output identity, popup-color exclusion, H2 whole reference on H1, fresh surviving B paint/pointer input or dismissal NOT_EXERCISED"
+  },
+  "source_identity_publication_native_limits": "UNCHANGED"
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "corec-v2-graphics-independent-delta-review",
+  "decision": "ACCEPTED",
+  "audit": "PASS",
+  "scope": "B1/B2 correction and direct regressions only; SOURCE/OFFLINE",
+  "reviewer": "independent R-runtime reviewer",
+  "baseline_sha256": "be6666d6b2c6fd6ea73d989f53190d6a851d32d267527fe58a1eb15c889578d6",
+  "source_freeze_sha256": "a905cd571e92668d8352f13ca2b7eef5b19ce7baf0f2c497855ac3c81c8e64fb",
+  "repair_receipt_sha256": "4845ea64e43830b686940e62950e830f9e98e14e01612f9de9f2ff45fd237ffe",
+  "source_files_verified": 28,
+  "changed_files": [
+    "README.md",
+    "cases.py",
+    "engine.py",
+    "offline/test_graphics_v2.py"
+  ],
+  "blocking_findings": [],
+  "resolved": {
+    "B1": "Watchdog independently escalates TERM to KILL with absolute146 deadline; spawn registration/expiry lock; cleanup absolute deadlines. Real nongraphic TERM-resistant owned group test passes without main cleanup.",
+    "B2": "Actual640 widths/zero-gap row reconstruction; each resize/migration checks min(previous_scroll,1920-viewport_width), stable owner/workspace/order/output; sampled popup viewport exclusion and wholeH2 on H1; fresh B input or explicit dismissal NOT_EXERCISED."
+  },
+  "tests": {
+    "command": "LAB/run-env Python unittest loader; original32 tests with only temporary fixture location redirected in memory to LAB/review-graphics/OFFLINE_TEST_ONLY",
+    "tests": 32,
+    "failures": 0,
+    "errors": 0,
+    "result": "PASS",
+    "log": "delta-offline-tests.log",
+    "log_sha256": "32d6d619f9a7ccf0676fedbf52258fd9a9c04f84df37febc46b40661ab8a43d6"
+  },
+  "additional_negatives": {
+    "file": "delta-negative-controls.json",
+    "sha256": "827d30d43691c6e90a993a3698f0ab06c6af1c6d4c835ce7f8f2375999b6a90b",
+    "result": "PASS",
+    "checks": [
+      "late TERM145.92 / KILL146.00 absolute deadline",
+      "wrong scroll900 within legal max960 rejected (expected960)",
+      "one-pixel wrong row position rejected"
+    ]
+  },
+  "conditional_source_offline_admissible": [
+    "P0",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7"
+  ],
+  "admission_conditions": [
+    "Verified source-only publication binds exact graphics/full kit bytes and source_commit==origin==github",
+    "Accepted exact build/source identities",
+    "Fresh proper frozen manifest and per-case independent review binding the repaired bytes",
+    "Real ledger admission by parent only; no retroactive authorization"
+  ],
+  "not_admitted": [
+    "P1",
+    "C8",
+    "O1",
+    "O2",
+    "G2",
+    "R1"
+  ],
+  "limitations": [
+    "All native runtime NOT_RUN by this reviewer",
+    "Synthetic protocols/pixels do not qualify native behavior",
+    "C7 post-close capture NOT_TESTED at14cap",
+    "Nonsaturating clamp may remain so, numeric evidence must state it",
+    "Native generation/full damage/saved-buffer/GPU lifetime not proven"
+  ],
+  "real_reservations": 0,
+  "native_runs": 0,
+  "source_edits": false,
+  "commit_push_by_reviewer": false,
+  "git_diff_check": "PASS",
+  "working_tree_observed": "clean"
+}

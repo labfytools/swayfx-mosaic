@@ -1,0 +1,116 @@
+{
+  "reviewer": "/root/v2_build_review",
+  "identity": "COREC_V2_REDERIVED",
+  "scope": "D5 independent exact private build/ELF/current pair/stage/compiled client identities and bounded retained pristine control; no compositor main/client execution, IPC, headless, ledger reservation, rebuild or Git mutation",
+  "verdict": "PASS",
+  "gate_results": {
+    "COREC_V2_PRIVATE_BUILD": "PASS",
+    "COREC_V2_PRIVATE_ELF_ABI": "PASS_BOUNDED_EXACT_CURRENT_PAIR",
+    "COREC_V2_PRIVATE_STAGE": "PASS",
+    "COREC_V2_BUILD_REVIEW": "ACCEPTED"
+  },
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "classification": "HISTORICAL_LIMITATION",
+      "file": "inputs/run-env-before-desktop-clear.sh; logs/run-command.py",
+      "symbol": "inherited subprocess environment",
+      "exact_requirement": "D5 environnement sans h\u00e9ritage de session",
+      "evidence": "Original wrapper retained SWAYSOCK/WAYLAND_DISPLAY/DISPLAY sentinels; historical command receipts lack full environment. No compositor/client main or IPC consumer executed in this build scope; no session access observed. Historical clear is NOT_PROVEN. Prospective wrapper corrected by parent, independently retested and clean_environment allowlist rejects session/loader/backend sentinels.",
+      "correction_direction": "Preserve historical NOT_PROVEN; use corrected wrapper and independently reviewed allowlist for future commands. No rebuild or identity replacement is justified by this traceability limitation."
+    }
+  ],
+  "identities": {
+    "source_review_sha256": "26aa862c741196fdbb8d7cdf5509301e49f763cdd22ffa7bcb1a4bbf09c66f90",
+    "archive_sha256": "769b56c4a11bef13f0abdcfd189b11af954eebbfa69fd06c972e01508d8d376b",
+    "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+    "build_id": "d5d304533f2c8db9d738365e9bd7f2c96779ef8d",
+    "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+    "pristine_sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+    "pristine_build_id": "ba9751c82e73d4043b7651354f20936d070c2227"
+  },
+  "evidence": {
+    "source_files_verified": 502,
+    "overlap_count": 85,
+    "wlroots_relocations_bound_to_executable": 64,
+    "stage": "5 exact regular files; binary0755 and notices0644; pinned license bytes verified; legal PARTIAL_NOT_APPROVED",
+    "clients": "7 input files and 9 generated files match receipt; five C17 compiler exits0; old receipt paths relocated to graphics-tests/client-build disclosed",
+    "pristine_files": 395,
+    "pristine_qualification": "QUALIFIED_BOUNDED_RETAINED_CONTROL: current 395 pinned sources exact, retained build metadata and binary identities exact; original compile-time manifest absent, not bit-rebuild proof; runtime /proc mapping and renderer NOT_RUN"
+  },
+  "native_bits_inspection": [
+    "factory disassembly: parent assertion; calloc128 -> checked NULL; calloc64 -> free unpublished tree and NULL on failure; scene_tree_init and destroy-listener registration only afterwards",
+    "setter disassembly: reserved-sidecar lookup; abort on unreserved/embedded root; no calloc; storage pointer private",
+    "private set/get/sidecar absent from executable dynsym; no scenefx DT_NEEDED; no RPATH/RUNPATH; link command names exact private static archive before shared wlroots",
+    "85 exact overlap inventory; 64 wlroots overlap symbols with dynamic relocations resolved to executable in loader trace; remaining21 have no wlroots dynamic relocation; ldd-r and explicit LD_TRACE_LOADED_OBJECTS1/LD_WARNyes/LD_BIND_NOWyes/LD_DEBUGbindings exit0, no unresolved symbol",
+    "Accepted source/C review binds NULL/embedded-root caller audit, full native types and unchanged public layout; 502 current source bytes/modes reverified rather than re-auditing unrelated code"
+  ],
+  "compiler_policy": {
+    "scene": "C23 native build; werror true; examples false; default_library static",
+    "mosaic": "C11 native build; werror true with only c_args=-Wno-error=switch",
+    "clients": "five C17 compile exits0, no execution",
+    "initial_failure": "Preserved GCC16.2.1 LIBINPUT_CONFIG_SCROLL_CIRCULAR Werror switch failure; attempt2 warning remains. ipc-json.c1174 initializes scroll_method unknown; unhandled enum does not read an uninitialized pointer. No source mutation."
+  },
+  "negative_controls": {
+    "file": "negative-controls.json",
+    "sha256": "0767205142e82a9836b848cf18c6ba8ef50d7ff0cc044059f09d71abaf298858",
+    "status": "PASS five direct review-validator rejections; actual modified source copy resides only review-build, never a build input; independent static magic rejects ELF shared object",
+    "boundary": "These are reviewer identity checks, not proof of runtime launcher/reservation correctness; separate graphics review owns those gates"
+  },
+  "pristine_control": "QUALIFIED_BOUNDED_RETAINED_CONTROL; current395 pinned source files independently compared against git fd71a6bdc061bd633b488ae7b83e8a6981d22f86, retained cached source/build directory agrees, original/copied binary SHA and BuildID exact. Historical compile-time source manifest absent; no claim of immutable compile-time source provenance or bit rebuild. Runtime mapping/renderer NOT_RUN.",
+  "recipe_review": "BUILD_RECIPE.md consistent with assembled scene/mosaic paths, accepted source precondition, private static link closure, warning policy, model check and 5-file DESTDIR contract; no rebuild requested or performed",
+  "commands_run": [
+    "git status --short --branch; git log -3 --oneline; git diff --stat; git diff --check",
+    "LAB/run-env python review-build/validate.py",
+    "readelf -n/-d/--dyn-syms/-rW; nm archive and wlroots; objdump factory/setter",
+    "ldd -r with LD_DEBUG=bindings (loader trace only)",
+    "explicit binary argv under LD_TRACE_LOADED_OBJECTS=1 LD_WARN=yes LD_BIND_NOW=yes LD_DEBUG=bindings (loader trace only, no compositor init/main)",
+    "LAB/run-env Python sentinel env checks and direct gate.clean_environment check; git show pin:file comparisons"
+  ],
+  "verification_notes": [
+    "Reviewer initial C17 selector mistakenly included cc --version and failed; selector corrected to actual compile commands; final five commands pass. This was a reviewer harness error, not a client/build defect.",
+    "Parent initial build failure retained; accepted attempt2 and model PASS verified from logs and final Meson introspection, no build/model rerun necessary."
+  ],
+  "limitations": [
+    "No compositor main/init, Wayland client, IPC, native graphics/OOM/damage/runtime test executed. Runtime wlroots /proc mapping NOT_RUN; loader mapping is separate evidence.",
+    "ABI qualification limited to the exact linked pair and reviewed native source/header contract, not future libraries or full semantic/runtime behavior.",
+    "Graphics Python repair and publication binding remain separate; compiled client input identities alone do not accept scenario behavior.",
+    "Legal PARTIAL_NOT_APPROVED; no distribution authorization."
+  ],
+  "headless_authorization": "NOT_AUTHORIZED_BY_THIS_REVIEW_ALONE; require independent final graphics fixture/scenario review, publication binding, resource and runtime guards; no reservation made",
+  "input_hashes": {
+    "results/core-build.json": "7ca04d1b719c0a977b8fd94e0b4c58e7107bc9b1532ece9adbdf88c4b09d81f8",
+    "private-build-recipe.json": "bea6e3e3e10705a77981bd70d744fe51ddf3a283b58e4ece47e820bf5f1ce757",
+    "BUILD_RECIPE.md": "e68766c02f93feaf8128dbd57e645ec3c93b650d077a90b6e1cb2476e804f859",
+    "sources/manifest.json": "0058cf56348f3c70dffbdea85e85a73b923c4d830c86efe859048b58ce8ce7e3",
+    "review-source-c/source-c-review.json": "26aa862c741196fdbb8d7cdf5509301e49f763cdd22ffa7bcb1a4bbf09c66f90",
+    "results/pristine-candidate.json": "4df5ddf322595598cc5bd227650e18c10f99ea34a75873364f1e5df8508c2f67",
+    "results/pristine-elf.json": "1f27292aec0701a987c44e8f8c1a9808139a7e02f9500f87dbc0dd9a45e35e07",
+    "results/graphics-client-compile.json": "d1b1c2ebb13994ecc85f2ba166734637f8848dca6e99cd9acab3bb89c4bddc22",
+    "results/wrapper-environment-correction.json": "3c2a685587782c6cd0a91c0317e9be9aef27ddb45048918cb7f092ac021ec853",
+    "run-env": "51ed9377c74510c1e7bd9d4278920fd2f37cb79ec56c513a63a23f069edcb756",
+    "inputs/run-env-before-desktop-clear.sh": "717a90063329433b90fba966c8338ed94be98ac3ca0418bd4e2192eafabe0c2c",
+    "inputs/ticket.md": "8a082b63ea28a06a192f002a985642ba4108edf41ce32d0a1245980797af0dad"
+  },
+  "artifact_hashes": {
+    "loader-bindings.log": "fa6fa27ef4d1812a795d5896beb766d6c9bb1cc9ee3c42c065bfea3da2ff4f21",
+    "loader-list.log": "28a042ca26f1ed4385a2bf3a085a2434d4303be4adc33e7dc3cfe9086c064535",
+    "archive-symbols.txt": "e13aea4515dbe6f7706b1b15045646d243d35b0870b709fa43a09dfde40f8043",
+    "wlroots-symbols.txt": "729e5b57302da74d90adb1da7cd092b68d0abd69761c6bf2cea2df57f9ccbe61",
+    "factory-disassembly.txt": "5c822f765729dbd32550f9f1f39083a1ba0756b9b08f3ab44d7788a512a894c8",
+    "setter-disassembly.txt": "39fa43770608db5016d1fa9c6f15ea0a8e02a7e0f77254caa0a37145f197d860",
+    "overlap-symbols.json": "6c6f0c0fe19460c0ce3456bb3ee1ac43ab1fe736f17295390585eeb58c2c2c04",
+    "environment-before.json": "dd87762bcc48cd5304f780fed330198c98925363d5e881a316ec2e40e00bd48e",
+    "validate.py": "b4a80f13b7e6b87bf170ebe176fa197a012d7f919042205d2e07e8580d1eb297",
+    "negative-controls.json": "0767205142e82a9836b848cf18c6ba8ef50d7ff0cc044059f09d71abaf298858",
+    "overlap-bindings.json": "963d10e0059eebe9b77b92262f8a785951c55cc423737a0e64eaf2593bd56781",
+    "validation.json": "c3287d45c82967af9ec739ca809bd77eda7f2006aee2c573b93773983c8a3cdb",
+    "environment-after.json": "1004c9f5cc5914aaa42c2236d58406b1f3726e72f8dd0f8d0a19e108bc10a628",
+    "explicit-loader-trace.stdout": "faa5cfea9253ba0b59d8091a41a94e24bcf1f5cd4be595788a8288275f98fe01",
+    "explicit-loader-trace.stderr": "a32f0ea3475edc81597d00d39e901ccea267db561cb999ef6eb0fb573439cd20",
+    "core-scene-options.json": "b470a74b0269b5caf3154253464ea59e6a3746f6e2af3f3208b0ae3cf743bab7",
+    "core-mosaic-options.json": "439515b193d5bda2e790988c6a1a8dc9f9fbfa502a37d932e083ee6a0ad6d941",
+    "mutated-source-NOT-A-BUILD-INPUT.c": "103e4b9eda942c7616d26c2e3f2d1dea25beb1bc3428c219ead3bb4021cb547e"
+  },
+  "changes": "Only review-build artifacts created/updated by reviewer. No source/doc/fixture edit, commit, push or Git mutation. Parent prospective wrapper correction reviewed."
+}
