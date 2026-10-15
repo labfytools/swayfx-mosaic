@@ -7,6 +7,46 @@ ticket. Its parent is project commit
 [parent kit](../step20c-corec-v2/README.md) and its closed runtime receipts
 remain unchanged. This directory does not add a production dependency.
 
+## Post-campaign portability repair — OFFLINE_ONLY
+
+The closed campaign executed commit
+`c55373eab3c53132bf1157acc9cfc9edd451156e`, source manifest v2 SHA256
+`2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7`.
+Its historical GPU client SHA256 is
+`4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4`;
+its G3 compositor SHA256 is
+`9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658`.
+These identities and their original receipts remain authoritative for that
+campaign. FS-P was NOT_EXERCISED at the client identity guard. A separate
+post-campaign probe reproduced EACCES for a nondumpable child, while the
+original FS-P errno remains NOT_OBSERVABLE. GPU-G3 was INCONCLUSIVE with zero
+captures, epochs and arms: reference exited2 after configure/ACK and before SHM.
+The old client required the retired LAB's absolute TMPDIR. DY-C, OM-ROOT and
+OM-NESTED were PARTIALLY_FEASIBLE in the sampled scope (32 captures total).
+
+The following source changes are **OFFLINE_ONLY**, made after that campaign,
+and have never run in a compositor. The GPU SHM path helper requires SMX_LAB
+to be a canonical owned0700 direct child of `/var/tmp` whose name begins
+`swayfx-mosaic-step20c-native-closure-`, and TMPDIR to be its exact canonical
+owned0700 `scratch` directory. It rejects missing values, old-ticket/outside
+paths, symlinks, foreign ownership, wrong modes and truncation, with explicit
+stderr diagnostics. mkstemp stays in that scratch directory. Existing core and
+dumpability guards remain mandatory.
+
+Fullscreen client identity still requires an observed matching PID/proc/exe
+path and SHA. Inaccessible proc identity now saves NOT_OBSERVABLE plus the
+operation and original OS error/errno before the same mandatory gate refuses.
+This improves diagnostics and does not fix or exercise the native fullscreen
+gate; a future observable identity proof remains to be designed. No self-report
+substitute or weakened dumpability is admitted.
+
+The new helper tests execute only extracted production C path-validation code,
+and Python identity predicates. A corrected client may be compiled offline;
+that is not a native qualification. The campaign budget is closed: these bytes
+authorize no retry, new reservation, GPU-CTRL or other headless run. They require
+a new parent-owned source freeze and independent review, without rewriting any
+historical manifest, review, admission, ledger or runtime receipt.
+
 The follow-up derives prospective fullscreen, migration/refocus and root/nested
 OOM fixtures in `graphics/`, and a distinct intrusive GLES diagnostic in `gpu/`.
 Each implementation has its own offline tests. Independent acceptance of the

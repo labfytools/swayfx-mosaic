@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "evidence": "agent report in execution conversation; source manifests and after-inventories",
+      "issue": "Initial offline tester generated two Python bytecode files in the source kit",
+      "resolution": "Agent removed its generated files before final freeze; all later source checks reject pycache"
+    },
+    {
+      "evidence": "repair-preflight-v1/receipt.json incident",
+      "issue": "Initial resolver documentation redirection wrote /var/tmp/preflight-contract-read.txt outside the LAB",
+      "resolution": "Immediately moved into LAB/repair-preflight-v1/contracts.txt"
+    },
+    {
+      "evidence": "g3-offline/initial-failure-notes.txt; receipt-initial-failed.json; receipt-second-failed.json",
+      "issue": "Two initial G3 offline attempts failed",
+      "limit": "Full immutable initial raw log sets are not retained",
+      "resolution": "Failure receipts retained; final per-index log names overwrite the initial per-index raw logs"
+    },
+    {
+      "evidence": "tester-offline/graphics-tests.json",
+      "issue": "Initial offline graphics import failed",
+      "resolution": "Corrected module path, preserved failure; final62 and subsequent66/73 pass"
+    },
+    {
+      "evidence": "gpu-client-guard/receipt.json; clone-validation/receipt.json",
+      "issue": "Initial GPU client link and clone compile missing generated protocol or expected header name",
+      "resolution": "Generate correct protocol code/header name; actual compilation passes; client never exercised by those compile checks"
+    },
+    {
+      "evidence": "source-publication-attempt1.json; source-publication-attempt2.json; source-publication-progress.json",
+      "issue": "First source publication remote check lacked SSH_AUTH_SOCK; first commit attempt lacked HOME configuration",
+      "resolution": "Kept failure receipts; used existing agent socket and Git user configuration for Git only, changed no Git configuration"
+    },
+    {
+      "evidence": "build-g3/receipt.json; build-g3-repair/receipt.json",
+      "issue": "G3 initial Meson setup fused two preprocessor arguments",
+      "resolution": "One explicit continuation of same reserved pair; originalFAIL retained; no source or shader change"
+    },
+    {
+      "evidence": "evidence/khronos-download-refusal.json",
+      "issue": "Direct Khronos PDF download returned HTTP403",
+      "resolution": "No retry or alternate download; refusal receipt preserved"
+    }
+  ],
+  "scope": "Factual workflow deviations; no runtime evidence repaired or upgraded"
+}

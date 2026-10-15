@@ -1,0 +1,35 @@
+{
+  "commands_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/source-publication-progress.json",
+  "decision": "VERIFIED",
+  "github_sha": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "offline_test_only": false,
+  "origin_sha": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "remote_observations": {
+    "github": {
+      "argv": [
+        "git",
+        "ls-remote",
+        "github",
+        "refs/heads/main"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "c55373eab3c53132bf1157acc9cfc9edd451156e\trefs/heads/main\n"
+    },
+    "origin": {
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "c55373eab3c53132bf1157acc9cfc9edd451156e\trefs/heads/main\n"
+    }
+  },
+  "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

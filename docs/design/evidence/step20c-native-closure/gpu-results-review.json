@@ -1,0 +1,115 @@
+{
+  "schema": "independent-gpu-results-review-v1",
+  "reviewer": "codex-source-review-independent",
+  "independent": true,
+  "decision": "ACCEPTED_RESULT_INTERPRETATION",
+  "runtime_result": "INCONCLUSIVE",
+  "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "historical_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "source_used": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup",
+  "findings": [
+    {
+      "id": "GPU-RUNTIME-FIXTURE-TMPDIR",
+      "severity": "P2",
+      "file": "gpu/clients-g2.c",
+      "symbol": "draw",
+      "line": 92,
+      "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+      "violated_requirement": "Phase C portable new LAB source kit without historical absolute paths; Phase G setup must permit reference SHM draw before GPU acquisitions",
+      "evidence": "Old source compares TMPDIR literally to /var/tmp/swayfx-mosaic-corec-v2-i516p6po/scratch then exit(2); Session supplies /var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/scratch. Client wire ends after configure ACK before SHM; actual client exit2, no closure/SHM receipts. This deterministic path blocks the intended experiment before arming.",
+      "smallest_correction": "For future offline-only fixture: validate caller-supplied new owned private LAB scratch with bounded creation and diagnostics; test actual draw environment branch. Separate review/freeze; no runtime retry and no reclassification of this run."
+    }
+  ],
+  "scope_note": "Concrete historical fixture failure recorded; no requalification from ongoing offline correction",
+  "actual_binary": {
+    "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+    "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+    "build_id": "afdde13d52f3a5fe07c096c1221fcf0c8ae223fc",
+    "pid": 3510983
+  },
+  "actual_client": {
+    "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-client-guard/clients-g2",
+    "sha256": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+    "source_sha256": "66658e99704c32d90b073f7664dd4aa9ff1cbf3530c81f7f7ac40e2fa49d9ca7",
+    "pid": 3511049
+  },
+  "observed_startup": [
+    "00:00:00.544 [INFO] [wlr] [render/egl.c:369] Using EGL 1.5",
+    "00:00:00.555 [DEBUG] [wlr] [render/egl.c:439] Created EGL context using OpenGL ES 2.0",
+    "00:00:00.556 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:474] Using OpenGL ES 3.2 Mesa 26.2.4-arch1.1",
+    "00:00:00.556 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:475] GL vendor: AMD",
+    "00:00:00.556 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:476] GL renderer: AMD Radeon 780M Graphics (radeonsi, phoenix, ACO, DRM 3.64, 7.2.9-zen1-1-zen)"
+  ],
+  "native_hook_measurements": "NOT_EXERCISED",
+  "markers": {
+    "GPU_GLES_CAPABILITY_AND_READBACK_PREFLIGHT": "ACCEPTED_OFFLINE_ONLY",
+    "GPU_GLES_ADMISSION": "NOT_EXERCISED",
+    "GPU_G3_NATIVE_READBACK": "NOT_EXERCISED",
+    "GPU_WHOLE_FIELD_CAUSALITY": "NOT_PROVEN"
+  },
+  "actions": {
+    "configuration": 2,
+    "spawn": 3,
+    "tool": 29
+  },
+  "acquisition": "EMPTY; no epoch/arm/raw",
+  "captures": 0,
+  "raw_codes": {
+    "runner": 1,
+    "processes": [
+      {
+        "exit": 0,
+        "name": "compositor",
+        "pid": 3510983
+      },
+      {
+        "exit": 0,
+        "name": "pointer",
+        "pid": 3511036
+      },
+      {
+        "exit": 2,
+        "name": "g2-reference",
+        "pid": 3511049
+      }
+    ],
+    "terminal": {
+      "ipc_exit": 1,
+      "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+      "stdout": ""
+    }
+  },
+  "scientific_cleanup": false,
+  "mechanical_cleanup": "PASS",
+  "rescue": false,
+  "watchdog": false,
+  "seconds": {
+    "outcome": 7.614715491014067,
+    "execution": 8.184041837,
+    "ledger": 7.623459039
+  },
+  "total_runs": 5,
+  "total_captures": 32,
+  "retry_authorized": false,
+  "artifacts": {
+    "graphics-runs/GPU-G3/run/outcome.json": "df0fd1028dfe0e48bf20a74fafb964fd14f6f0f76fb46b82791a45b3269c44eb",
+    "graphics-runs/GPU-G3/run/partial-failure.json": "418bd295830dbe15568695de751aaa4be6246496fdb9a167a8cea211bf461bff",
+    "graphics-runs/GPU-G3/run/runtime-identity.json": "323d1ba4cba45ee9d6c5270431516edf6389e4e713fe0a960fee9f053b245bfd",
+    "graphics-runs/GPU-G3/run/events.jsonl": "c2866efe46406b5b025d340d8fd69ac91c02d0e0fb7eb2f2156ffe2d34f55e1e",
+    "graphics-runs/GPU-G3/run/g2-reference.log": "b4b0fb7cb7b3fa5b62abad70fc26fea8f0b70ec80d93dd12847b927408a1a0cc",
+    "graphics-runs/GPU-G3/run/g2-reference-closed-3511049.log": "b4b0fb7cb7b3fa5b62abad70fc26fea8f0b70ec80d93dd12847b927408a1a0cc",
+    "graphics-runs/GPU-G3/run/compositor.log": "ebe27849e576b13ad900ece6d7d4884388d4107d8a4126337229e7821873b5db",
+    "graphics-runs/GPU-G3/run/proc-maps.txt": "c2a1b48db5791ba6a2350f08f912a2e65c9d9ef1ab2445f1299dc4218166d55c",
+    "execution/GPU-G3-command.json": "c21049d1e22b769f8467a9a86794e5a51654f325ba913efdec199baeaaf07cbf",
+    "execution/GPU-G3-runner.log": "c0b113182d60f107a4d8aa90d3ff4f71bcd78403062ba6877a6f98abf06044c0",
+    "followup-work/source-manifest-v2.json": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+    "reviews/gpu-admission.json": "b3109371c1fe54c545291742f91432d38f70e77fa54f93abae536a5ae29c03de",
+    "reviews/g3-build/receipt.json": "f0a2f8089977da0039afe2fcf9203f38dfc3752d373b3c76ad9b453f6a6b123e",
+    "reviews/g3-build/b4-semantic.json": "72f3528fc34a19f50525a1665aa965e56998170d1d406b632b0fd8c5834e6d5d",
+    "g3-source-freeze-v3.json": "03b3cdb4b665aeca860cf3e1363d4fbe5c2cbcb0372f3b4fe582e88488ccb5d2"
+  },
+  "notes_sha256": "22553811a3dbdff89c9f4e271e03e41866144f6764b05957eb3481c2c66ea39e",
+  "reviewer_actions": "READ_ONLY plus exclusive review receipts; no runtime/build/stage/source edits",
+  "previous_review_limit": "Hardcoded historical TMPDIR missed; offline coverage did not execute first client draw with new LAB environment"
+}

@@ -14,6 +14,26 @@ from lifecycle import opening_pair
 from model import Provenance
 COLORS={'TOPLEVEL':(35,68,204),'POPUP_A':(224,192,32),'POPUP_B':(32,208,160)}
 
+def client_executable_identity(pid,binary,expected_sha):
+    # WHY: PR_SET_DUMPABLE0 can make /proc/PID/exe inaccessible to the parent.
+    # CONTRACT: preserve OS error and NOT_OBSERVABLE; identity remains mandatory.
+    # INVARIANT: no fallback, self-reported identity or weakened dumpability.
+    exe=Path(f'/proc/{pid}/exe');operation='resolve'
+    proof=dict(pid=pid,proc=str(exe),expected_binary=str(binary),expected_sha256=expected_sha)
+    try:
+        actual=exe.resolve(strict=True);operation='sha256';observed=sha(exe)
+    except OSError as error:
+        return dict(proof,status='NOT_OBSERVABLE',matches=False,operation=operation,
+                    errno=error.errno,error_type=type(error).__name__,error=str(error))
+    return dict(proof,status='OBSERVED',binary=str(actual),sha256=observed,
+                matches=actual==Path(binary) and observed==expected_sha)
+
+def require_client_identity(proof):
+    # The exact predicate used by launch_client remains fail-closed offline too.
+    need(proof['status']=='OBSERVED' and proof['matches'],
+         'actual fullscreen client executable: '+json.dumps(proof,sort_keys=True))
+    return proof
+
 def storage_guard(lab):
     # WHY/CONTRACT/INVARIANT: stop before new action at 9GiB or <20GiB free;
     # never purge old evidence to manufacture space.
@@ -196,8 +216,10 @@ class Session:
         build=self.lab/'followup-work/client-build'
         p=self.spawn(name,[build/client,*args],True);self.wait(lambda:self.find(name));time.sleep(.25)
         if client=='fullscreen-client':
-            exe=Path(f'/proc/{p.pid}/exe');need(exe.resolve()==build/client and sha(exe)==self.auth['client_binary_sha256'],'actual fullscreen client executable')
-            self.record('fullscreen-client-identity',pid=p.pid,binary=str(exe.resolve()),sha256=sha(exe))
+            proof=client_executable_identity(p.pid,build/client,self.auth['client_binary_sha256'])
+            self.save('fullscreen-client-identity',proof)
+            self.record('fullscreen-client-identity',**proof)
+            require_client_identity(proof)
         return p
     def capture(self,tag,out,orientation_pending=False):
         self.debit('capture');spec=next(o for o in self.outputs if o['name']==out);p=self.run/(tag+'.png');need(not p.exists(),'capture unique')

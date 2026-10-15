@@ -1,0 +1,598 @@
+{
+  "G3_stage": {
+    "binary_sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+    "file_count": 5,
+    "matches_receipt": true
+  },
+  "builds_rerun": 0,
+  "checks": [
+    {
+      "detail": {
+        "bytes_hashed": 721484458,
+        "closeout_sha256": "4411aa97a16996e70f97f91e67adb0484a1759509e153a008dcee0f640504b59",
+        "entries": 19612,
+        "extra": 0,
+        "manifest_sha256": "f16c6bfa4bbd46474193401c64521d05240a52fc2d2bfe050875a6881407626a",
+        "max_file_bytes": 19937280,
+        "mismatches": 0,
+        "missing": 0,
+        "types": {
+          "fifo": 1,
+          "file": 19594,
+          "symlink": 17
+        }
+      },
+      "name": "old_lab_manifest_all_19612_entries",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "count": 316,
+        "mismatches": []
+      },
+      "name": "protected_hashes_316",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "files": 50,
+        "manifest_sha256": "1db849c1152bb29d512bf62e3db53cba18d0179c0008ca116887eb572d76a080",
+        "mode_set": [
+          "0o644"
+        ],
+        "source_digest": "14e24501658f1c4c29e7d8c06db71ed07a77b8e80e283453420bbc5b3e2f03c8"
+      },
+      "name": "final_source_freeze_50_files",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "decision": "ACCEPTED",
+        "delta": [
+          "gpu/README.md"
+        ],
+        "gpu_freeze_sha256": "a89926241a871bdc492348f922df1232962e622c4703720984ef681b5e6d98cb",
+        "prior_failures": 0,
+        "prior_tests_run": 73,
+        "review_sha256": "4d459c0963c6535a404bfaa68d11dff0cf738e2d21167c148c12315e954ffe86"
+      },
+      "name": "doc_only_delta_independent_recheck",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "identities": {
+          "core": {
+            "expected": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+            "match": true,
+            "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic",
+            "sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb"
+          },
+          "gpu": {
+            "expected": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+            "match": true,
+            "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+            "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658"
+          },
+          "oom": {
+            "expected": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+            "match": true,
+            "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+            "sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835"
+          },
+          "pristine": {
+            "expected": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+            "match": true,
+            "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway",
+            "sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6"
+          }
+        },
+        "mismatches": []
+      },
+      "name": "historical_core_oom_pristine_g3_binaries",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "pristine_scene": {
+          "expected": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62",
+          "match": true,
+          "path": "/usr/lib/libscenefx-0.5.so",
+          "sha256": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62"
+        },
+        "wlroots": {
+          "expected": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+          "match": true,
+          "path": "/usr/lib/libwlroots-0.20.so",
+          "sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+        }
+      },
+      "name": "pristine_scene_and_wlroots",
+      "status": "PASS"
+    },
+    {
+      "detail": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+      "name": "historical_gpu_client",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "core_commands": 14,
+        "core_sha256": "0a8b9b0177cd22877130903210a8a39852fa7c539f88db999ca91e9ba67af18b",
+        "core_status": "PASS_BOUNDED",
+        "oom_commands": 44,
+        "oom_sha256": "fa980c65859cc590ecc6a36d580ef77bfb70dcd6c42320753c577910236b5384",
+        "oom_status": "PASS_BOUNDED"
+      },
+      "name": "offline_core_oom_receipts",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "captures": 32,
+        "limits": {
+          "captures": 110,
+          "captures_per_run": 18,
+          "duration_s": 150,
+          "runs": 8
+        },
+        "operations": [
+          {
+            "continuations": [
+              {
+                "authorization": "parent explicit same reserved pair continuation; original FAIL retained",
+                "finished_monotonic_ns": 327835502157972,
+                "id": "same-pair-argument-repair",
+                "receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/receipt.json",
+                "reserved_monotonic_ns": 327815215522156,
+                "state": "PASS"
+              }
+            ],
+            "failure": "SceneFX Meson setup rc=1: Could not get define EGL_EGLEXT_VERSION",
+            "finished_monotonic_ns": 327600914563309,
+            "id": "G3_BUILD_PAIR",
+            "mosaic_builds": 1,
+            "reserved_monotonic_ns": 327510465794426,
+            "scene_builds": 1,
+            "setup_retried": false,
+            "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+            "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+            "state": "FAIL"
+          },
+          {
+            "destination": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/stage-g3",
+            "finished_monotonic_ns": 327835502199749,
+            "id": "G3_DESTDIR",
+            "reserved_monotonic_ns": 327834532865939,
+            "state": "PASS"
+          }
+        ],
+        "runs": 5,
+        "sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c",
+        "violations": []
+      },
+      "name": "ledger_runs_caps_and_G3_pair",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "binary_sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+        "files": 5,
+        "mismatches": []
+      },
+      "name": "G3_stage_exact_five",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "pids_checked": 267,
+        "residual_pids": [],
+        "residual_runtimes": [],
+        "runtime_paths_absent": {
+          "/tmp/smx-gkdlhcvk": true,
+          "/tmp/smx-insrpz6u": true,
+          "/tmp/smx-it7zqf9a": true,
+          "/tmp/smx-ndlyp6ct": true,
+          "/tmp/smx-vly7lmrg": true
+        },
+        "sha256": "8053a9a21a910432aea9dde8fc344d11dfa34485747d46c49a2cdb962760ce92"
+      },
+      "name": "267_owned_PIDs_and_runtimes",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "bad": [],
+        "count": 33
+      },
+      "name": "public_JSON_parse_and_modes",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "existing_ignored_artifact_counts": {
+          ".a": 3,
+          ".o": 538,
+          "pycache": 13
+        },
+        "ignored_count": 554,
+        "kit_generated": [],
+        "large_files": [],
+        "observed_artifacts": 554,
+        "temp_candidates": [],
+        "top_level": {
+          "build-baseline": 286,
+          "build-mosaic": 255,
+          "tooling": 13
+        },
+        "tracked_artifacts": []
+      },
+      "name": "versionable_tree_artifact_scope",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "free_bytes": 277253046272,
+        "free_min": 21474836480,
+        "lab_bytes_before_receipt": 231149356,
+        "lab_max": 9663676416,
+        "old_lab_bytes_final": 726154900
+      },
+      "name": "storage_bounds",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "returncode": 0,
+        "stderr": ""
+      },
+      "name": "git-diff-check",
+      "status": "PASS"
+    },
+    {
+      "detail": {
+        "returncode": 0,
+        "stderr": ""
+      },
+      "name": "git-status",
+      "status": "PASS"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-"
+      ],
+      "bytes_hashed": 721484458,
+      "entries": 19612,
+      "name": "old_LAB_manifest_stream_verification",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-"
+      ],
+      "name": "source_freeze_review_and_historical_bindings",
+      "returncode": 0,
+      "source_files": 50
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-"
+      ],
+      "name": "protected_316_and_system_audit",
+      "owned_pids_checked": 267,
+      "protected_files": 316,
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "ls-files",
+        "-z"
+      ],
+      "name": "git_ls_files_inventory",
+      "returncode": 0,
+      "tracked_generated_artifacts": 0,
+      "tracked_paths": 1115
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "diff",
+        "--check"
+      ],
+      "name": "git-diff-check",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/pre-freeze-validation/git-diff-check-final.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/pre-freeze-validation/git-diff-check-final.stdout",
+      "stdout_excerpt": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "name": "git-status",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/pre-freeze-validation/git-status-final.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/pre-freeze-validation/git-status-final.stdout",
+      "stdout_excerpt": "## main...origin/main\n M CHANGELOG.md\n M docs/ARCHITECTURE.md\n M docs/KNOWN_LIMITATIONS.md\n M docs/README.md\n M docs/ROADMAP.md\n M tooling/probes/step20c-corec-v2-followup/README.md\n M tooling/probes/step20c-corec-v2-followup/gpu/README.md\n M tooling/probes/step20c-corec-v2-followup/gpu/clients-g2.c\n M tooling/probes/step20c-corec-v2-followup/graphics/engine.py\n M tooling/probes/step20c-corec-v2-followup/graphics/offline/test_followup.py\n?? docs/design/STEP20C_COREC_V2_FULLSCREEN_COMPARATIVE_GATE.md\n?? docs/design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md\n?? docs/design/STEP20C_COREC_V2_MIGRATION_REFOCUS_GATE.md\n?? docs/design/STEP20C_COREC_V2_NATIVE_OOM_COMPLETION.md\n?? docs/design/STEP20C_GLES_CONTEXT_READBACK_FOLLOWUP.md\n?? docs/design/evidence/\n?? tooling/probes/step20c-corec-v2-followup/gpu/test_tmpdir.py\n",
+      "stdout_sha256": "dcb62c61ce158b2c4f0d315b7027d63bc9d0da2acdb45ec49a8e77c7f2e32e51"
+    }
+  ],
+  "current_source": {
+    "changed_from_tested_v3": [
+      "gpu/README.md"
+    ],
+    "code_and_tests_unchanged": true,
+    "doc_recheck_decision": "ACCEPTED",
+    "doc_recheck_sha256": "4d459c0963c6535a404bfaa68d11dff0cf738e2d21167c148c12315e954ffe86",
+    "file_count": 50,
+    "gpu_freeze_sha256": "a89926241a871bdc492348f922df1232962e622c4703720984ef681b5e6d98cb",
+    "manifest_sha256": "1db849c1152bb29d512bf62e3db53cba18d0179c0008ca116887eb572d76a080",
+    "modes": {
+      "README.md": "0o644",
+      "gpu/README.md": "0o644",
+      "gpu/clients-g2.c": "0o644",
+      "gpu/freeze.py": "0o644",
+      "gpu/g2_gl.h": "0o644",
+      "gpu/g2_native.h": "0o644",
+      "gpu/g3-admission.patch": "0o644",
+      "gpu/protocol.py": "0o644",
+      "gpu/protocols/wlr-layer-shell-unstable-v1.xml": "0o644",
+      "gpu/protocols/xdg-shell.xml": "0o644",
+      "gpu/reproduce.py": "0o644",
+      "gpu/scenario.py": "0o644",
+      "gpu/test-targeted.py": "0o644",
+      "gpu/test_begin.py": "0o644",
+      "gpu/test_gl.c": "0o644",
+      "gpu/test_mutations.py": "0o644",
+      "gpu/test_native.c": "0o644",
+      "gpu/test_protocol.py": "0o644",
+      "gpu/test_tmpdir.py": "0o644",
+      "gpu/validate_source.py": "0o644",
+      "graphics/README.md": "0o644",
+      "graphics/cases.py": "0o644",
+      "graphics/clients/fullscreen-client.c": "0o644",
+      "graphics/clients/nested-client.c": "0o644",
+      "graphics/clients/pointer-daemon.c": "0o644",
+      "graphics/clients/saved-client.c": "0o644",
+      "graphics/clients/static-reference.c": "0o644",
+      "graphics/clients/vertical-client.c": "0o644",
+      "graphics/engine.py": "0o644",
+      "graphics/freeze.py": "0o644",
+      "graphics/fullscreen.py": "0o644",
+      "graphics/gate.py": "0o644",
+      "graphics/geometry.py": "0o644",
+      "graphics/gpu_handler.py": "0o644",
+      "graphics/ipc_predicates.py": "0o644",
+      "graphics/lifecycle.py": "0o644",
+      "graphics/model.py": "0o644",
+      "graphics/offline/test_followup.py": "0o644",
+      "graphics/oom.py": "0o644",
+      "graphics/oom_handler.py": "0o644",
+      "graphics/pixels.py": "0o644",
+      "graphics/plans.py": "0o644",
+      "graphics/predicates.py": "0o644",
+      "graphics/prepare.py": "0o644",
+      "graphics/protocols/wlr-virtual-pointer-unstable-v1.xml": "0o644",
+      "graphics/protocols/xdg-shell.xml": "0o644",
+      "graphics/run.py": "0o644",
+      "graphics/validate_offline.py": "0o644",
+      "graphics/validators.py": "0o644",
+      "graphics/wire-fixture.txt": "0o644"
+    },
+    "source_digest": "14e24501658f1c4c29e7d8c06db71ed07a77b8e80e283453420bbc5b3e2f03c8"
+  },
+  "failures": [],
+  "historical_binaries": {
+    "core": {
+      "expected": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "match": true,
+      "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic",
+      "sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb"
+    },
+    "gpu": {
+      "expected": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+      "match": true,
+      "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+      "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658"
+    },
+    "oom": {
+      "expected": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "match": true,
+      "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+      "sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835"
+    },
+    "pristine": {
+      "expected": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+      "match": true,
+      "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway",
+      "sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6"
+    }
+  },
+  "ledger": {
+    "capture_used_total": 32,
+    "limits": {
+      "captures": 110,
+      "captures_per_run": 18,
+      "duration_s": 150,
+      "runs": 8
+    },
+    "mutated": false,
+    "operations": [
+      {
+        "continuations": [
+          {
+            "authorization": "parent explicit same reserved pair continuation; original FAIL retained",
+            "finished_monotonic_ns": 327835502157972,
+            "id": "same-pair-argument-repair",
+            "receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/receipt.json",
+            "reserved_monotonic_ns": 327815215522156,
+            "state": "PASS"
+          }
+        ],
+        "failure": "SceneFX Meson setup rc=1: Could not get define EGL_EGLEXT_VERSION",
+        "finished_monotonic_ns": 327600914563309,
+        "id": "G3_BUILD_PAIR",
+        "mosaic_builds": 1,
+        "reserved_monotonic_ns": 327510465794426,
+        "scene_builds": 1,
+        "setup_retried": false,
+        "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+        "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "state": "FAIL"
+      },
+      {
+        "destination": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/stage-g3",
+        "finished_monotonic_ns": 327835502199749,
+        "id": "G3_DESTDIR",
+        "reserved_monotonic_ns": 327834532865939,
+        "state": "PASS"
+      }
+    ],
+    "runs": [
+      {
+        "capture_limit": 12,
+        "capture_used": 0,
+        "id": "FS-P",
+        "status": "COMPLETED"
+      },
+      {
+        "capture_limit": 16,
+        "capture_used": 16,
+        "id": "DY-C",
+        "status": "COMPLETED"
+      },
+      {
+        "capture_limit": 10,
+        "capture_used": 8,
+        "id": "OM-ROOT",
+        "status": "COMPLETED"
+      },
+      {
+        "capture_limit": 10,
+        "capture_used": 8,
+        "id": "OM-NESTED",
+        "status": "COMPLETED"
+      },
+      {
+        "capture_limit": 12,
+        "capture_used": 0,
+        "id": "GPU-G3",
+        "status": "COMPLETED"
+      }
+    ],
+    "sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c"
+  },
+  "offline_core_oom_receipts": {
+    "core_sha256": "0a8b9b0177cd22877130903210a8a39852fa7c539f88db999ca91e9ba67af18b",
+    "oom_sha256": "fa980c65859cc590ecc6a36d580ef77bfb70dcd6c42320753c577910236b5384",
+    "record_counts": [
+      14,
+      44
+    ],
+    "statuses": [
+      "PASS_BOUNDED",
+      "PASS_BOUNDED"
+    ]
+  },
+  "old_gpu_client_sha256": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+  "old_lab": {
+    "bytes_hashed": 721484458,
+    "closeout_sha256": "4411aa97a16996e70f97f91e67adb0484a1759509e153a008dcee0f640504b59",
+    "entries": 19612,
+    "extra": 0,
+    "manifest_sha256": "f16c6bfa4bbd46474193401c64521d05240a52fc2d2bfe050875a6881407626a",
+    "max_file_bytes": 19937280,
+    "mismatches": 0,
+    "missing": 0,
+    "modified": false,
+    "types": {
+      "fifo": 1,
+      "file": 19594,
+      "symlink": 17
+    }
+  },
+  "pinned_shared_objects": {
+    "pristine_scene": {
+      "expected": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62",
+      "match": true,
+      "path": "/usr/lib/libscenefx-0.5.so",
+      "sha256": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62"
+    },
+    "wlroots": {
+      "expected": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+      "match": true,
+      "path": "/usr/lib/libwlroots-0.20.so",
+      "sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+    }
+  },
+  "protected_before": {
+    "files": 316,
+    "mismatches": [],
+    "status": "PASS"
+  },
+  "public_json": {
+    "all_dict_mode_0644": true,
+    "parsed": 33
+  },
+  "repo_files_changed_by_this_validator": false,
+  "repository_inventory": {
+    "existing_ignored_artifacts": {
+      ".a": 3,
+      ".o": 538,
+      "pycache": 13
+    },
+    "files_ge_50MiB": [],
+    "frozen_kit_generated_artifacts": [],
+    "ignored_paths_count": 554,
+    "note": "Ignored build-baseline/build-mosaic object/archive files and prior __pycache__ files were observed outside the frozen kit; preserved unchanged.",
+    "observed_artifacts_count": 554,
+    "temp_candidates": [],
+    "tracked_generated_artifacts": []
+  },
+  "runtime_or_ipc": false,
+  "schema": "step20c-prefreeze-readonly-validation-v1",
+  "scope": "PRE_FREEZE_READ_ONLY",
+  "stage_rerun": false,
+  "status": "PASS",
+  "storage": {
+    "available_bytes": 277253046272,
+    "new_lab_bytes_before_receipt": 231149356,
+    "old_lab_bytes_final": 726154900,
+    "old_lab_modified": false
+  },
+  "system_audit": {
+    "owned_pids_checked": 267,
+    "residual_owned_pids": [],
+    "residual_owned_runtimes": [],
+    "runtime_paths_absent": {
+      "/tmp/smx-gkdlhcvk": true,
+      "/tmp/smx-insrpz6u": true,
+      "/tmp/smx-it7zqf9a": true,
+      "/tmp/smx-ndlyp6ct": true,
+      "/tmp/smx-vly7lmrg": true
+    },
+    "sha256": "8053a9a21a910432aea9dde8fc344d11dfa34485747d46c49a2cdb962760ce92"
+  },
+  "tests_rerun": 0
+}

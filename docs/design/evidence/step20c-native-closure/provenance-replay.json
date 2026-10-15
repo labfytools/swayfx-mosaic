@@ -1,0 +1,152 @@
+{
+  "schema": "native-closure-provenance-replay-v1",
+  "gate": "PASS",
+  "git_head": "d46f854b3026e911659528fe94792aa13837a1d6",
+  "historical_seals": {
+    "closeout.json": "4411aa97a16996e70f97f91e67adb0484a1759509e153a008dcee0f640504b59",
+    "artifact-manifest.json": "f16c6bfa4bbd46474193401c64521d05240a52fc2d2bfe050875a6881407626a",
+    "budget.json": "dfe1897e255ca5a96b7b66b0af0728acdffdf3ddf397a3fa3c6b1011b07c9db6"
+  },
+  "historical_manifest_entries_checked": 19612,
+  "historical_manifest_failures": [],
+  "historical_runs": 12,
+  "historical_captures": 102,
+  "elf": {
+    "core": {
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "build_id": "d5d304533f2c8db9d738365e9bd7f2c96779ef8d",
+      "scene_archive_sha256": "769b56c4a11bef13f0abdcfd189b11af954eebbfa69fd06c972e01508d8d376b",
+      "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic",
+      "dynamic": "\nDynamic section at offset 0xe6c58 contains 49 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libcairo.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libpixman-1.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libdrm.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libjson-c.so.5]\n 0x0000000000000001 (NEEDED)             Shared library: [libevdev.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libinput.so.10]\n 0x0000000000000001 (NEEDED)             Shared library: [libudev.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libpango-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libgobject-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libglib-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libpcre2-8.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libwlroots-0.20.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libwayland-client.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb-icccm.so.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libwayland-server.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libxkbcommon.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libEGL.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libgbm.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libGLESv2.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [liblcms2.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libpangocairo-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x000000000000000c (INIT)               0x1a000\n 0x000000000000000d (FINI)               0xb4be4\n 0x0000000000000019 (INIT_ARRAY)         0xe4010\n 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0xe4018\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3c8\n 0x0000000000000005 (STRTAB)             0x62b0\n 0x0000000000000006 (SYMTAB)             0x688\n 0x000000000000000a (STRSZ)              26650 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0xe6fe8\n 0x0000000000000002 (PLTRELSZ)           21192 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x14270\n 0x0000000000000007 (RELA)               0xd4d8\n 0x0000000000000008 (RELASZ)             28056 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000006ffffffb (FLAGS_1)            Flags: PIE\n 0x000000006ffffffe (VERNEED)            0xd278\n 0x000000006fffffff (VERNEEDNUM)         8\n 0x000000006ffffff0 (VERSYM)             0xcaca\n 0x000000006ffffff9 (RELACOUNT)          1141\n 0x0000000000000000 (NULL)               0x0\n",
+      "note": "\nDisplaying notes found in: .note.gnu.build-id\n  Owner                Data size \tDescription\n  GNU                  0x00000014\tNT_GNU_BUILD_ID (unique build ID bitstring)\n    Build ID: d5d304533f2c8db9d738365e9bd7f2c96779ef8d\n\nDisplaying notes found in: .note.gnu.property\n  Owner                Data size \tDescription\n  GNU                  0x00000030\tNT_GNU_PROPERTY_TYPE_0\n      Properties: x86 ISA needed: x86-64-baseline\n\tx86 feature used: x86, XMM\n\tx86 ISA used: x86-64-baseline\n\nDisplaying notes found in: .note.ABI-tag\n  Owner                Data size \tDescription\n  GNU                  0x00000010\tNT_GNU_ABI_TAG (ABI version tag)\n    OS: Linux, ABI: 4.4.0\n"
+    },
+    "oom": {
+      "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+      "scene_archive_sha256": "bca4b749eadc551f78712d7e1e7bda769125d2e596524a582988ca5346f8eceb",
+      "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+      "dynamic": "\nDynamic section at offset 0xe7c58 contains 49 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libcairo.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libpixman-1.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libdrm.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libjson-c.so.5]\n 0x0000000000000001 (NEEDED)             Shared library: [libevdev.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libinput.so.10]\n 0x0000000000000001 (NEEDED)             Shared library: [libudev.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libpango-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libgobject-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libglib-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libpcre2-8.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libwlroots-0.20.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libwayland-client.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb-icccm.so.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libwayland-server.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libxkbcommon.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libEGL.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libgbm.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libGLESv2.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [liblcms2.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libpangocairo-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x000000000000000c (INIT)               0x1a000\n 0x000000000000000d (FINI)               0xb5234\n 0x0000000000000019 (INIT_ARRAY)         0xe5008\n 0x000000000000001b (INIT_ARRAYSZ)       16 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0xe5018\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3c8\n 0x0000000000000005 (STRTAB)             0x62b0\n 0x0000000000000006 (SYMTAB)             0x688\n 0x000000000000000a (STRSZ)              26650 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0xe7fe8\n 0x0000000000000002 (PLTRELSZ)           21192 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x14288\n 0x0000000000000007 (RELA)               0xd4d8\n 0x0000000000000008 (RELASZ)             28080 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000006ffffffb (FLAGS_1)            Flags: PIE\n 0x000000006ffffffe (VERNEED)            0xd278\n 0x000000006fffffff (VERNEEDNUM)         8\n 0x000000006ffffff0 (VERSYM)             0xcaca\n 0x000000006ffffff9 (RELACOUNT)          1142\n 0x0000000000000000 (NULL)               0x0\n",
+      "note": "\nDisplaying notes found in: .note.gnu.build-id\n  Owner                Data size \tDescription\n  GNU                  0x00000014\tNT_GNU_BUILD_ID (unique build ID bitstring)\n    Build ID: 9bc3dc9055106b343c80a51ded111a382e98442d\n\nDisplaying notes found in: .note.gnu.property\n  Owner                Data size \tDescription\n  GNU                  0x00000030\tNT_GNU_PROPERTY_TYPE_0\n      Properties: x86 ISA needed: x86-64-baseline\n\tx86 feature used: x86, XMM\n\tx86 ISA used: x86-64-baseline\n\nDisplaying notes found in: .note.ABI-tag\n  Owner                Data size \tDescription\n  GNU                  0x00000010\tNT_GNU_ABI_TAG (ABI version tag)\n    OS: Linux, ABI: 4.4.0\n"
+    },
+    "gpu": {
+      "binary_sha256": "b2ba890908e385b0a8884e786b279bfb2e582eed38c7fcd0587b418326eca5bc",
+      "build_id": "b6a52111beabe3c2122e0142a802415d3c84f9a5",
+      "scene_archive_sha256": "06ccfad8c7dfe4ee425b8de44d22d8daa69e2daa14085d6e6998b201a7ad111b",
+      "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/gpu-mosaic/sway/swayfx-mosaic",
+      "dynamic": "\nDynamic section at offset 0xebc58 contains 49 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libcairo.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libpixman-1.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libdrm.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libjson-c.so.5]\n 0x0000000000000001 (NEEDED)             Shared library: [libevdev.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libinput.so.10]\n 0x0000000000000001 (NEEDED)             Shared library: [libudev.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libpango-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libgobject-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libglib-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libpcre2-8.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libwlroots-0.20.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libwayland-client.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb-icccm.so.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libwayland-server.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libxkbcommon.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libEGL.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libgbm.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libGLESv2.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [liblcms2.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libpangocairo-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x000000000000000c (INIT)               0x1a000\n 0x000000000000000d (FINI)               0xb8f94\n 0x0000000000000019 (INIT_ARRAY)         0xe9010\n 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0xe9018\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3c8\n 0x0000000000000005 (STRTAB)             0x6490\n 0x0000000000000006 (SYMTAB)             0x688\n 0x000000000000000a (STRSZ)              26936 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0xebfe8\n 0x0000000000000002 (PLTRELSZ)           21672 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x14688\n 0x0000000000000007 (RELA)               0xd800\n 0x0000000000000008 (RELASZ)             28296 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000006ffffffb (FLAGS_1)            Flags: PIE\n 0x000000006ffffffe (VERNEED)            0xd5a0\n 0x000000006fffffff (VERNEEDNUM)         8\n 0x000000006ffffff0 (VERSYM)             0xcdc8\n 0x000000006ffffff9 (RELACOUNT)          1151\n 0x0000000000000000 (NULL)               0x0\n",
+      "note": "\nDisplaying notes found in: .note.gnu.build-id\n  Owner                Data size \tDescription\n  GNU                  0x00000014\tNT_GNU_BUILD_ID (unique build ID bitstring)\n    Build ID: b6a52111beabe3c2122e0142a802415d3c84f9a5\n\nDisplaying notes found in: .note.gnu.property\n  Owner                Data size \tDescription\n  GNU                  0x00000030\tNT_GNU_PROPERTY_TYPE_0\n      Properties: x86 ISA needed: x86-64-baseline\n\tx86 feature used: x86, XMM\n\tx86 ISA used: x86-64-baseline\n\nDisplaying notes found in: .note.ABI-tag\n  Owner                Data size \tDescription\n  GNU                  0x00000010\tNT_GNU_ABI_TAG (ABI version tag)\n    OS: Linux, ABI: 4.4.0\n"
+    },
+    "pristine": {
+      "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway",
+      "binary_sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+      "build_id": "ba9751c82e73d4043b7651354f20936d070c2227",
+      "dynamic": "\nDynamic section at offset 0xb9c90 contains 45 entries:\n  Tag        Type                         Name/Value\n 0x0000000000000001 (NEEDED)             Shared library: [libcairo.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libdrm.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libjson-c.so.5]\n 0x0000000000000001 (NEEDED)             Shared library: [libevdev.so.2]\n 0x0000000000000001 (NEEDED)             Shared library: [libinput.so.10]\n 0x0000000000000001 (NEEDED)             Shared library: [libudev.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]\n 0x0000000000000001 (NEEDED)             Shared library: [libpango-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libgobject-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libglib-2.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libpcre2-8.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libpixman-1.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libscenefx-0.5.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libwayland-server.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libwlroots-0.20.so]\n 0x0000000000000001 (NEEDED)             Shared library: [libxkbcommon.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb.so.1]\n 0x0000000000000001 (NEEDED)             Shared library: [libxcb-icccm.so.4]\n 0x0000000000000001 (NEEDED)             Shared library: [libpangocairo-1.0.so.0]\n 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]\n 0x000000000000000c (INIT)               0x17000\n 0x000000000000000d (FINI)               0x93274\n 0x0000000000000019 (INIT_ARRAY)         0xb7110\n 0x000000000000001b (INIT_ARRAYSZ)       8 (bytes)\n 0x000000000000001a (FINI_ARRAY)         0xb7118\n 0x000000000000001c (FINI_ARRAYSZ)       8 (bytes)\n 0x000000006ffffef5 (GNU_HASH)           0x3c8\n 0x0000000000000005 (STRTAB)             0x4d98\n 0x0000000000000006 (SYMTAB)             0x400\n 0x000000000000000a (STRSZ)              22392 (bytes)\n 0x000000000000000b (SYMENT)             24 (bytes)\n 0x0000000000000015 (DEBUG)              0x0\n 0x0000000000000003 (PLTGOT)             0xb9fe8\n 0x0000000000000002 (PLTRELSZ)           18480 (bytes)\n 0x0000000000000014 (PLTREL)             RELA\n 0x0000000000000017 (JMPREL)             0x11910\n 0x0000000000000007 (RELA)               0xad88\n 0x0000000000000008 (RELASZ)             27528 (bytes)\n 0x0000000000000009 (RELAENT)            24 (bytes)\n 0x000000006ffffffb (FLAGS_1)            Flags: PIE\n 0x000000006ffffffe (VERNEED)            0xab38\n 0x000000006fffffff (VERNEEDNUM)         8\n 0x000000006ffffff0 (VERSYM)             0xa510\n 0x000000006ffffff9 (RELACOUNT)          1119\n 0x0000000000000000 (NULL)               0x0\n",
+      "note": "\nDisplaying notes found in: .note.gnu.build-id\n  Owner                Data size \tDescription\n  GNU                  0x00000014\tNT_GNU_BUILD_ID (unique build ID bitstring)\n    Build ID: ba9751c82e73d4043b7651354f20936d070c2227\n\nDisplaying notes found in: .note.gnu.property\n  Owner                Data size \tDescription\n  GNU                  0x00000030\tNT_GNU_PROPERTY_TYPE_0\n      Properties: x86 ISA needed: x86-64-baseline\n\tx86 feature used: x86, XMM\n\tx86 ISA used: x86-64-baseline\n\nDisplaying notes found in: .note.ABI-tag\n  Owner                Data size \tDescription\n  GNU                  0x00000010\tNT_GNU_ABI_TAG (ABI version tag)\n    OS: Linux, ABI: 4.4.0\n"
+    }
+  },
+  "wlroots": {
+    "path": "/usr/lib/libwlroots-0.20.so",
+    "sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+  },
+  "source_replay": {
+    "identity": "COREC_V2_REDERIVED",
+    "status": "EXACT_FOR_NEW_TREE",
+    "components": {
+      "scene": {
+        "files": 85,
+        "manifest_sha256": "a29661e0eb2e96d2c8884955ae1221cd1598a1089c258dff813e97833f03945a"
+      },
+      "mosaic": {
+        "files": 417,
+        "manifest_sha256": "e8f3cba2fa0ccb90ad35985ec35ce5edd1fa413c3b544076bed58168a831e896"
+      }
+    },
+    "receipts": [
+      {
+        "component": "scene",
+        "parent_pin": "37ccd723bef49e6891156ffafce8f549f01446cc",
+        "parent_tree": "685a78b94f9e44ee683e5fea93874557a9fed457",
+        "archive_sha256": "79de4e9fff96d80f65a77d4eae33f571320840dc48e4918c4bbe4f2d3c071e49",
+        "patch_sha256": "6039799046d052bb4cf2b15fbeb132983d6e3c1a45ad63752a6a63e83b585627",
+        "forward_apply_rc": 0
+      },
+      {
+        "component": "mosaic",
+        "parent_pin": "cd550382b311efdbfe3ed892f4e1d281d852e754",
+        "parent_tree": "6be2d6cada19bd84673c30dfc4fb900a48b87e86",
+        "archive_sha256": "058ab3594e3918b2b60065c21cfe3453df4e44cd4aa873df0f0a8a96728a769f",
+        "patch_sha256": "9eb6afac0be5c747fbf1a1ee5a33a633c193c4ebae0a36b17636abde7a64c879",
+        "forward_apply_rc": 0
+      }
+    ]
+  },
+  "resources": {
+    "lab": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+    "uid": 1000,
+    "mode": "0o700",
+    "historical_runs": 12,
+    "historical_captures": 102,
+    "disk_free": 277502246912,
+    "runtime_probes": [
+      {
+        "base": "/tmp",
+        "socket_bind": "PASS",
+        "path_length": 28
+      },
+      {
+        "base": "/var/tmp",
+        "socket_bind": "PASS",
+        "path_length": 32
+      }
+    ]
+  },
+  "limits": {
+    "runs": 8,
+    "captures": 110,
+    "duration_s": 150,
+    "captures_per_run": 18,
+    "lab_max_bytes": 12884901888,
+    "lab_stop_bytes": 9663676416,
+    "disk_min_free_bytes": 21474836480,
+    "build_jobs": 8,
+    "new_core_oom_pristine_builds_default": 0,
+    "gpu_build_pairs_max": 1,
+    "conditional_oom_build_pairs_max": 1,
+    "stages_max": 2
+  },
+  "open_scenarios": [
+    "FS-P",
+    "FS-C",
+    "DY-C",
+    "OM-ROOT",
+    "OM-NESTED",
+    "GPU-G3"
+  ],
+  "optional_not_admitted": [
+    "OM-EXTRA",
+    "GPU-CTRL"
+  ],
+  "inventory": [
+    {
+      "state": "SOURCE",
+      "evidence": "fresh Git archive + exact CORE assembly85/417"
+    },
+    {
+      "state": "OFFLINE",
+      "evidence": "published C/Python historical receipts; no new C test yet"
+    },
+    {
+      "state": "RUNTIME_RAW",
+      "evidence": "old LAB C7/C8/O1/G2 immutable logs"
+    },
+    {
+      "state": "SAMPLED",
+      "evidence": "old positive cases only on own SHA"
+    },
+    {
+      "state": "NOT OBSERVED",
+      "evidence": "presented buffer identity, GPU completion, atomic generation, complete damage"
+    }
+  ],
+  "no_new_runtime": true
+}

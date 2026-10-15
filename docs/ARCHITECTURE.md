@@ -1,15 +1,20 @@
 # Architecture
 
-The [new CORE-C V2 dossier](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
-records an experimental prepublication sidecar reservation, reviewed nullable
-constructor rollback and sampled native clipping/input on its own binary SHA.
-O1 observes zero initialized/published nodes and listeners plus bounded native
-survival, but remains INCONCLUSIVE because its closure oracle rejects the
-root-only lifecycle. Applied/input and damage evidence is partial; native
-commit/present, exact presented-buffer identity, GPU completion and atomic
-generation remain NOT_PROVEN. Compositor/tree authority and Row 0 borrowing
-remain the accepted contracts. No public ABI, production OOM policy or
-dependency is adopted; STEP20C NEXT, production NOT_YET_SUPPORTED.
+The [CORE-C V2 follow-up decision V4](design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md)
+records PARTIALLY_ADVANCED private evidence: four migration/refocus states and
+root/nested sidecar allocation failures are SAMPLED_ONLY / PARTIALLY_FEASIBLE.
+The IPC snapshots remain pending candidates; pixels and delivered input
+corroborate sampled states without exposing an atomic native generation.
+OOM caller NULL, zero initialization/listeners/publication and live identity/
+IPC/neighbor input are observed before cleanup in the two targeted injections.
+Availability production and OOM policy remain UNDECIDED. Fullscreen comparison
+is NOT_EXERCISED; G3 stops on a client fixture before diagnostic acquisition.
+Native buffer identity, atomic generation, complete damage and GPU completion
+remain NOT_PROVEN. Compositor/tree authority and Row 0 borrowing remain the
+accepted contracts; no public ABI, dependency or production mechanism is
+adopted. STEP20C NEXT; production multi-output NOT_YET_SUPPORTED;
+PRODUCTION_AUTHORIZED FALSE. The [parent V2 dossier](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
+and its consumed runs retain their historical verdicts.
 
 This is the canonical technical contract for SwayFX Mosaic. The current implementation is an experimental single-row compositor layout. [UX](UX.md) specifies user-visible behavior; [known limitations](KNOWN_LIMITATIONS.md) identifies unvalidated boundaries.
 

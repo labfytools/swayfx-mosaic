@@ -1,0 +1,207 @@
+{
+  "all_frozen_modes_0644": true,
+  "audits": [
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/readelf-dynamic.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/readelf-dynamic.stdout",
+      "stdout_sha256": "0580e1345ccc1b4764d62a55f00e6168baa91338868dedab8dedfb3fa1f1112c"
+    },
+    {
+      "argv": [
+        "ldd",
+        "-r",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/ldd-relocations.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/ldd-relocations.stdout",
+      "stdout_sha256": "fffc12cad740a17834277e81ef04ab07c6fc779553fc942cd46b6a0fd70629a2"
+    },
+    {
+      "argv": [
+        "nm",
+        "-a",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/nm-symbols.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/nm-symbols.stdout",
+      "stdout_sha256": "be8bb80e683637762d31d82d2cb75570759db533d758055ae8c7fa471772fd26"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-n",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/readelf-buildid.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-g3-final/readelf-buildid.stdout",
+      "stdout_sha256": "51b4e850e7e14cfdca8bea0a2a4da375c031ed270924e0351a77e8ea13e417fa"
+    }
+  ],
+  "binary": {
+    "build_id": "afdde13d52f3a5fe07c096c1221fcf0c8ae223fc",
+    "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+    "runtime": "NOT_RUN",
+    "scene_archive_sha256": "e8995f125c3eba6669aa3a8a44be1e075f6807e91055243e67731118303faec5",
+    "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+    "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+  },
+  "elf_properties": {
+    "dynamic_scenefx": false,
+    "required_symbols": [
+      "wlr_scene_tree_set_clip",
+      "g2_read",
+      "wlr_scene_xdg_surface_create"
+    ],
+    "rpath": false,
+    "runpath": false,
+    "unresolved": false
+  },
+  "ledger": {
+    "capture_actions_total": 32,
+    "capture_limit": 110,
+    "mutated": false,
+    "operations": [
+      {
+        "continuations": [
+          {
+            "authorization": "parent explicit same reserved pair continuation; original FAIL retained",
+            "finished_monotonic_ns": 327835502157972,
+            "id": "same-pair-argument-repair",
+            "receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/receipt.json",
+            "reserved_monotonic_ns": 327815215522156,
+            "state": "PASS"
+          }
+        ],
+        "failure": "SceneFX Meson setup rc=1: Could not get define EGL_EGLEXT_VERSION",
+        "finished_monotonic_ns": 327600914563309,
+        "id": "G3_BUILD_PAIR",
+        "mosaic_builds": 1,
+        "reserved_monotonic_ns": 327510465794426,
+        "scene_builds": 1,
+        "setup_retried": false,
+        "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+        "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "state": "FAIL"
+      },
+      {
+        "destination": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/stage-g3",
+        "finished_monotonic_ns": 327835502199749,
+        "id": "G3_DESTDIR",
+        "reserved_monotonic_ns": 327834532865939,
+        "state": "PASS"
+      }
+    ],
+    "runs": [
+      {
+        "capture_actions": 0,
+        "capture_limit": 12,
+        "id": "FS-P",
+        "status": "COMPLETED"
+      },
+      {
+        "capture_actions": 16,
+        "capture_limit": 16,
+        "id": "DY-C",
+        "status": "COMPLETED"
+      },
+      {
+        "capture_actions": 8,
+        "capture_limit": 10,
+        "id": "OM-ROOT",
+        "status": "COMPLETED"
+      },
+      {
+        "capture_actions": 8,
+        "capture_limit": 10,
+        "id": "OM-NESTED",
+        "status": "COMPLETED"
+      }
+    ]
+  },
+  "legal_status": "LEGAL_NOT_APPROVED",
+  "macro_flags": {
+    "compile_commands_checked": 23,
+    "flags": [
+      "-D_XOPEN_SOURCE=700",
+      "-DG3_ROOT=\"/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition\""
+    ],
+    "root": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition",
+    "standalone_preprocess_syntax": "PASS",
+    "xopen_source": 700
+  },
+  "mosaic_model_test": {
+    "command": {
+      "argv": [
+        "meson",
+        "test",
+        "-C",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic",
+        "--print-errorlogs",
+        "mosaic-model"
+      ],
+      "name": "mosaic-model",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-model.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-model.stdout"
+    },
+    "rerun": "NOT_RUN",
+    "status": "PASS"
+  },
+  "repair_receipt_sha256": "61455c537183a7c70b8a64949dbb67050f8aa076f1ebed62e514f0e961e93e24",
+  "repo_source_changed": false,
+  "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "source_file_count": 49,
+  "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_tree_digests": {
+    "mosaic": "70fb049bc28522783c9b6a76dc3d66e944a25dc5e6f5fa7f52d56665917b4125",
+    "scene": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da"
+  },
+  "stage": {
+    "file_count": 5,
+    "files": {
+      "usr/bin/swayfx-mosaic": {
+        "mode": "0o755",
+        "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+        "size": 6790360
+      },
+      "usr/share/licenses/swayfx-mosaic/INCORPORATED-NOTICES": {
+        "mode": "0o644",
+        "sha256": "a46f71dccc10aec01844fc59974e3094b2951365b191b8b3819ed93effcc3919",
+        "size": 325
+      },
+      "usr/share/licenses/swayfx-mosaic/SceneFX-LICENSE": {
+        "mode": "0o644",
+        "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b",
+        "size": 1096
+      },
+      "usr/share/licenses/swayfx-mosaic/SwayFX-LICENSE": {
+        "mode": "0o644",
+        "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b",
+        "size": 1061
+      },
+      "usr/share/licenses/swayfx-mosaic/wlroots-LICENSE": {
+        "mode": "0o644",
+        "sha256": "35d427c043dcafe8893b9e7247348f599847c81d9a067703587c80707f3d58df",
+        "size": 1140
+      }
+    },
+    "matches_repair_manifest": true,
+    "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/stage-g3"
+  },
+  "status": "PASS",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "independent-nongpu-clone-condition-closure-v1",
+  "reviewer": "codex-source-review-independent",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "admission_receipt_sha256": "dcbd9c8259153c33f33dbfb2c7761794defa92ab86a21a514f7aeb28ae94b3d7",
+  "clone_receipt_sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282",
+  "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "clone_condition": "CLOSED PASS: published49SHA/modes and6clients checked against actual clone artifacts,66test receipt/log verified",
+  "transposition": "ACCEPTED",
+  "runtime": "NOT_RUN",
+  "reservation": "NOT_RUN",
+  "dependencies": "unchanged: FS-C after qualified FS-P; OM-NESTED after safe OM-ROOT or separately accepted explicit override; no override currently",
+  "note": "Initial GPU client missing generated header is retained as failed command in clone receipt; corrected compile passes; it does not affect nonGPU admission and no nativeG3build accepted here"
+}

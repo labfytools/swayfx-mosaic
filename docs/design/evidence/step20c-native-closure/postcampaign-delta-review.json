@@ -1,0 +1,40 @@
+{
+  "schema": "independent-postcampaign-doc-recheck-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "reviewer": "codex-source-review-independent",
+  "author": "codex-postcampaign-offline-repair",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "scope": "POST-DOC-1 only; all code/tests unchanged from already reviewed postcampaign delta",
+  "manifest_sha256": "1db849c1152bb29d512bf62e3db53cba18d0179c0008ca116887eb572d76a080",
+  "source_digest": "14e24501658f1c4c29e7d8c06db71ed07a77b8e80e283453420bbc5b3e2f03c8",
+  "gpu_freeze_sha256": "a89926241a871bdc492348f922df1232962e622c4703720984ef681b5e6d98cb",
+  "source_files": 50,
+  "source_modes": "all0644",
+  "changed_since_previous_freeze": [
+    "gpu/README.md"
+  ],
+  "closed_findings": [
+    "POST-DOC-1"
+  ],
+  "findings": [],
+  "previous_manifest_sha256": "f13da7228c0c9f61cdefa23fa80f3dea3322cb8551edb62f459aa69a1ba7c20f",
+  "previous_review_sha256": "bc188f87b012c8acdb5c5a8cdb4ca7db0f0266d9597d6c170ec24ba7615d5afa",
+  "tests": {
+    "previous_tests_run": 73,
+    "previous_failures": 0,
+    "reexecuted_this_recheck": false,
+    "basis": "code/test byte equality; prior independent73PASS",
+    "tester_receipt_sha256": "5905e2002041148d7a104e195132f56c8b4152952547be4ed0985da4eacc3852"
+  },
+  "README_command": "PASS explicit env-i SMX_LAB plus seven private temp/cache vars and python-B test_tmpdir.py; exact helper-only scope",
+  "ledger_sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c",
+  "historical_runtime_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "historical_result_reviews": "UNCHANGED",
+  "runtime": "NOT_RUN",
+  "admission": "NOT_AUTHORIZED",
+  "source_edit": "NOT_RUN",
+  "build_stage": "NOT_RUN",
+  "git_mutation": "NOT_RUN",
+  "notes_sha256": "a8c957daca696345e055f353235149233f2447206d3b6c1dbef86d2133e6d34e"
+}

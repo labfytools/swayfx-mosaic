@@ -1,0 +1,454 @@
+{
+  "scope": "exact retained binary pair only; no future ABI or legal approval",
+  "results": {
+    "core": {
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "commands": [
+        {
+          "argv": [
+            "readelf",
+            "-d",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/core-needed.txt",
+          "sha256": "99d0fc6a70b68f32fb879989e395c9f8401408202c28e0b3ae0b9d23535aca93"
+        },
+        {
+          "argv": [
+            "readelf",
+            "-Ws",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/core-symbols.txt",
+          "sha256": "20617fb1b1c4bc249e6f7f62c5f7ba3dd31fb1433eb969dd01b15334531806ae"
+        },
+        {
+          "argv": [
+            "ldd",
+            "-r",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/core-relocations.txt",
+          "sha256": "22539eeb4e0f425eeba74ca72700d46a2fe8244d3bca18342f1bbadb5d42b725"
+        }
+      ],
+      "shared_wlroots_overlapping_exports": [
+        "wlr_color_primaries_from_named",
+        "wlr_color_primaries_to_xyz",
+        "wlr_color_primaries_transform_absolute_colorimetric",
+        "wlr_color_transfer_function_get_default_luminance",
+        "wlr_color_transform_eval",
+        "wlr_color_transform_init",
+        "wlr_color_transform_init_linear_to_icc",
+        "wlr_color_transform_init_linear_to_inverse_eotf",
+        "wlr_color_transform_init_lut_3x1d",
+        "wlr_color_transform_init_matrix",
+        "wlr_color_transform_init_pipeline",
+        "wlr_color_transform_inverse_eotf_from_base",
+        "wlr_color_transform_ref",
+        "wlr_color_transform_unref",
+        "wlr_egl_create_image_from_dmabuf",
+        "wlr_egl_create_sync",
+        "wlr_egl_create_with_context",
+        "wlr_egl_create_with_drm_fd",
+        "wlr_egl_destroy",
+        "wlr_egl_destroy_image",
+        "wlr_egl_destroy_sync",
+        "wlr_egl_dup_drm_fd",
+        "wlr_egl_dup_fence_fd",
+        "wlr_egl_get_context",
+        "wlr_egl_get_display",
+        "wlr_egl_get_dmabuf_render_formats",
+        "wlr_egl_get_dmabuf_texture_formats",
+        "wlr_egl_make_current",
+        "wlr_egl_restore_context",
+        "wlr_egl_unset_current",
+        "wlr_egl_wait_sync",
+        "wlr_matrix_identity",
+        "wlr_matrix_multiply",
+        "wlr_matrix_project_box",
+        "wlr_matrix_scale",
+        "wlr_matrix_transform",
+        "wlr_matrix_translate",
+        "wlr_scene_buffer_create",
+        "wlr_scene_buffer_from_node",
+        "wlr_scene_buffer_send_frame_done",
+        "wlr_scene_buffer_set_buffer",
+        "wlr_scene_buffer_set_buffer_with_damage",
+        "wlr_scene_buffer_set_buffer_with_options",
+        "wlr_scene_buffer_set_color_encoding",
+        "wlr_scene_buffer_set_color_range",
+        "wlr_scene_buffer_set_dest_size",
+        "wlr_scene_buffer_set_filter_mode",
+        "wlr_scene_buffer_set_opacity",
+        "wlr_scene_buffer_set_opaque_region",
+        "wlr_scene_buffer_set_primaries",
+        "wlr_scene_buffer_set_source_box",
+        "wlr_scene_buffer_set_transfer_function",
+        "wlr_scene_buffer_set_transform",
+        "wlr_scene_create",
+        "wlr_scene_get_scene_output",
+        "wlr_scene_node_at",
+        "wlr_scene_node_coords",
+        "wlr_scene_node_destroy",
+        "wlr_scene_node_for_each_buffer",
+        "wlr_scene_node_lower_to_bottom",
+        "wlr_scene_node_place_above",
+        "wlr_scene_node_place_below",
+        "wlr_scene_node_raise_to_top",
+        "wlr_scene_node_reparent",
+        "wlr_scene_node_set_enabled",
+        "wlr_scene_node_set_position",
+        "wlr_scene_output_build_state",
+        "wlr_scene_output_commit",
+        "wlr_scene_output_create",
+        "wlr_scene_output_destroy",
+        "wlr_scene_output_for_each_buffer",
+        "wlr_scene_output_needs_frame",
+        "wlr_scene_output_send_frame_done",
+        "wlr_scene_output_set_position",
+        "wlr_scene_rect_create",
+        "wlr_scene_rect_from_node",
+        "wlr_scene_rect_set_color",
+        "wlr_scene_rect_set_size",
+        "wlr_scene_set_color_manager_v1",
+        "wlr_scene_set_gamma_control_manager_v1",
+        "wlr_scene_set_linux_dmabuf_v1",
+        "wlr_scene_timer_finish",
+        "wlr_scene_timer_get_duration_ns",
+        "wlr_scene_tree_create",
+        "wlr_scene_tree_from_node"
+      ],
+      "private_clip_set_get_exported": false,
+      "historical_stage_rechecked": {
+        "usr/bin/swayfx-mosaic": {
+          "sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+          "mode": "0o755"
+        },
+        "usr/share/licenses/swayfx-mosaic/SwayFX-LICENSE": {
+          "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/SceneFX-LICENSE": {
+          "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/wlroots-LICENSE": {
+          "sha256": "35d427c043dcafe8893b9e7247348f599847c81d9a067703587c80707f3d58df",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/INCORPORATED-NOTICES": {
+          "sha256": "e8deaa846abebbde21beb3a6ba2924833f0f3233d358b2744cb677bfb048260f",
+          "mode": "0o644"
+        }
+      },
+      "new_stage": false
+    },
+    "oom": {
+      "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "commands": [
+        {
+          "argv": [
+            "readelf",
+            "-d",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/oom-needed.txt",
+          "sha256": "a843b228b5ab61a45a43c1bcd18156eda8c728d33748d0e6085b9159237506f2"
+        },
+        {
+          "argv": [
+            "readelf",
+            "-Ws",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/oom-symbols.txt",
+          "sha256": "7a7dd6a7f7f2aedfca2ccb3458802248892022d87f774144557fc095823a1297"
+        },
+        {
+          "argv": [
+            "ldd",
+            "-r",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/oom-relocations.txt",
+          "sha256": "5a70bb929b60953a64a313aebd4c55a429cd0ebf7333dc9f09db73cff4d76278"
+        }
+      ],
+      "shared_wlroots_overlapping_exports": [
+        "wlr_color_primaries_from_named",
+        "wlr_color_primaries_to_xyz",
+        "wlr_color_primaries_transform_absolute_colorimetric",
+        "wlr_color_transfer_function_get_default_luminance",
+        "wlr_color_transform_eval",
+        "wlr_color_transform_init",
+        "wlr_color_transform_init_linear_to_icc",
+        "wlr_color_transform_init_linear_to_inverse_eotf",
+        "wlr_color_transform_init_lut_3x1d",
+        "wlr_color_transform_init_matrix",
+        "wlr_color_transform_init_pipeline",
+        "wlr_color_transform_inverse_eotf_from_base",
+        "wlr_color_transform_ref",
+        "wlr_color_transform_unref",
+        "wlr_egl_create_image_from_dmabuf",
+        "wlr_egl_create_sync",
+        "wlr_egl_create_with_context",
+        "wlr_egl_create_with_drm_fd",
+        "wlr_egl_destroy",
+        "wlr_egl_destroy_image",
+        "wlr_egl_destroy_sync",
+        "wlr_egl_dup_drm_fd",
+        "wlr_egl_dup_fence_fd",
+        "wlr_egl_get_context",
+        "wlr_egl_get_display",
+        "wlr_egl_get_dmabuf_render_formats",
+        "wlr_egl_get_dmabuf_texture_formats",
+        "wlr_egl_make_current",
+        "wlr_egl_restore_context",
+        "wlr_egl_unset_current",
+        "wlr_egl_wait_sync",
+        "wlr_matrix_identity",
+        "wlr_matrix_multiply",
+        "wlr_matrix_project_box",
+        "wlr_matrix_scale",
+        "wlr_matrix_transform",
+        "wlr_matrix_translate",
+        "wlr_scene_buffer_create",
+        "wlr_scene_buffer_from_node",
+        "wlr_scene_buffer_send_frame_done",
+        "wlr_scene_buffer_set_buffer",
+        "wlr_scene_buffer_set_buffer_with_damage",
+        "wlr_scene_buffer_set_buffer_with_options",
+        "wlr_scene_buffer_set_color_encoding",
+        "wlr_scene_buffer_set_color_range",
+        "wlr_scene_buffer_set_dest_size",
+        "wlr_scene_buffer_set_filter_mode",
+        "wlr_scene_buffer_set_opacity",
+        "wlr_scene_buffer_set_opaque_region",
+        "wlr_scene_buffer_set_primaries",
+        "wlr_scene_buffer_set_source_box",
+        "wlr_scene_buffer_set_transfer_function",
+        "wlr_scene_buffer_set_transform",
+        "wlr_scene_create",
+        "wlr_scene_get_scene_output",
+        "wlr_scene_node_at",
+        "wlr_scene_node_coords",
+        "wlr_scene_node_destroy",
+        "wlr_scene_node_for_each_buffer",
+        "wlr_scene_node_lower_to_bottom",
+        "wlr_scene_node_place_above",
+        "wlr_scene_node_place_below",
+        "wlr_scene_node_raise_to_top",
+        "wlr_scene_node_reparent",
+        "wlr_scene_node_set_enabled",
+        "wlr_scene_node_set_position",
+        "wlr_scene_output_build_state",
+        "wlr_scene_output_commit",
+        "wlr_scene_output_create",
+        "wlr_scene_output_destroy",
+        "wlr_scene_output_for_each_buffer",
+        "wlr_scene_output_needs_frame",
+        "wlr_scene_output_send_frame_done",
+        "wlr_scene_output_set_position",
+        "wlr_scene_rect_create",
+        "wlr_scene_rect_from_node",
+        "wlr_scene_rect_set_color",
+        "wlr_scene_rect_set_size",
+        "wlr_scene_set_color_manager_v1",
+        "wlr_scene_set_gamma_control_manager_v1",
+        "wlr_scene_set_linux_dmabuf_v1",
+        "wlr_scene_timer_finish",
+        "wlr_scene_timer_get_duration_ns",
+        "wlr_scene_tree_create",
+        "wlr_scene_tree_from_node"
+      ],
+      "private_clip_set_get_exported": false,
+      "historical_stage_rechecked": {
+        "usr/bin/swayfx-mosaic": {
+          "sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+          "mode": "0o755"
+        },
+        "usr/share/licenses/swayfx-mosaic/SwayFX-LICENSE": {
+          "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/SceneFX-LICENSE": {
+          "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/wlroots-LICENSE": {
+          "sha256": "35d427c043dcafe8893b9e7247348f599847c81d9a067703587c80707f3d58df",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/INCORPORATED-NOTICES": {
+          "sha256": "2df3fb19dd2fadb92b3b81e4048566603f6971b0a388bf36e43450bc56c8c093",
+          "mode": "0o644"
+        }
+      },
+      "new_stage": false
+    },
+    "gpu": {
+      "binary_sha256": "b2ba890908e385b0a8884e786b279bfb2e582eed38c7fcd0587b418326eca5bc",
+      "commands": [
+        {
+          "argv": [
+            "readelf",
+            "-d",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/gpu-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/gpu-needed.txt",
+          "sha256": "6786cc65b9e019e92e3897d6a6e98592620218c6a845ef37736642f4046489c9"
+        },
+        {
+          "argv": [
+            "readelf",
+            "-Ws",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/gpu-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/gpu-symbols.txt",
+          "sha256": "bd384ac7d5eb56de15907c2725b16553cadc1a4172548d4724187e02159d317c"
+        },
+        {
+          "argv": [
+            "ldd",
+            "-r",
+            "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/gpu-mosaic/sway/swayfx-mosaic"
+          ],
+          "exit": 0,
+          "log": "evidence/abi/gpu-relocations.txt",
+          "sha256": "8ffb71517708309933d0296f24c161b6002f9afda69f0207c3c9dfd052ac79e5"
+        }
+      ],
+      "shared_wlroots_overlapping_exports": [
+        "wlr_color_primaries_from_named",
+        "wlr_color_primaries_to_xyz",
+        "wlr_color_primaries_transform_absolute_colorimetric",
+        "wlr_color_transfer_function_get_default_luminance",
+        "wlr_color_transform_eval",
+        "wlr_color_transform_init",
+        "wlr_color_transform_init_linear_to_icc",
+        "wlr_color_transform_init_linear_to_inverse_eotf",
+        "wlr_color_transform_init_lut_3x1d",
+        "wlr_color_transform_init_matrix",
+        "wlr_color_transform_init_pipeline",
+        "wlr_color_transform_inverse_eotf_from_base",
+        "wlr_color_transform_ref",
+        "wlr_color_transform_unref",
+        "wlr_egl_create_image_from_dmabuf",
+        "wlr_egl_create_sync",
+        "wlr_egl_create_with_context",
+        "wlr_egl_create_with_drm_fd",
+        "wlr_egl_destroy",
+        "wlr_egl_destroy_image",
+        "wlr_egl_destroy_sync",
+        "wlr_egl_dup_drm_fd",
+        "wlr_egl_dup_fence_fd",
+        "wlr_egl_get_context",
+        "wlr_egl_get_display",
+        "wlr_egl_get_dmabuf_render_formats",
+        "wlr_egl_get_dmabuf_texture_formats",
+        "wlr_egl_make_current",
+        "wlr_egl_restore_context",
+        "wlr_egl_unset_current",
+        "wlr_egl_wait_sync",
+        "wlr_matrix_identity",
+        "wlr_matrix_multiply",
+        "wlr_matrix_project_box",
+        "wlr_matrix_scale",
+        "wlr_matrix_transform",
+        "wlr_matrix_translate",
+        "wlr_scene_buffer_create",
+        "wlr_scene_buffer_from_node",
+        "wlr_scene_buffer_send_frame_done",
+        "wlr_scene_buffer_set_buffer",
+        "wlr_scene_buffer_set_buffer_with_damage",
+        "wlr_scene_buffer_set_buffer_with_options",
+        "wlr_scene_buffer_set_color_encoding",
+        "wlr_scene_buffer_set_color_range",
+        "wlr_scene_buffer_set_dest_size",
+        "wlr_scene_buffer_set_filter_mode",
+        "wlr_scene_buffer_set_opacity",
+        "wlr_scene_buffer_set_opaque_region",
+        "wlr_scene_buffer_set_primaries",
+        "wlr_scene_buffer_set_source_box",
+        "wlr_scene_buffer_set_transfer_function",
+        "wlr_scene_buffer_set_transform",
+        "wlr_scene_create",
+        "wlr_scene_get_scene_output",
+        "wlr_scene_node_at",
+        "wlr_scene_node_coords",
+        "wlr_scene_node_destroy",
+        "wlr_scene_node_for_each_buffer",
+        "wlr_scene_node_lower_to_bottom",
+        "wlr_scene_node_place_above",
+        "wlr_scene_node_place_below",
+        "wlr_scene_node_raise_to_top",
+        "wlr_scene_node_reparent",
+        "wlr_scene_node_set_enabled",
+        "wlr_scene_node_set_position",
+        "wlr_scene_output_build_state",
+        "wlr_scene_output_commit",
+        "wlr_scene_output_create",
+        "wlr_scene_output_destroy",
+        "wlr_scene_output_for_each_buffer",
+        "wlr_scene_output_needs_frame",
+        "wlr_scene_output_send_frame_done",
+        "wlr_scene_output_set_position",
+        "wlr_scene_rect_create",
+        "wlr_scene_rect_from_node",
+        "wlr_scene_rect_set_color",
+        "wlr_scene_rect_set_size",
+        "wlr_scene_set_color_manager_v1",
+        "wlr_scene_set_gamma_control_manager_v1",
+        "wlr_scene_set_linux_dmabuf_v1",
+        "wlr_scene_timer_finish",
+        "wlr_scene_timer_get_duration_ns",
+        "wlr_scene_tree_create",
+        "wlr_scene_tree_from_node"
+      ],
+      "private_clip_set_get_exported": false,
+      "historical_stage_rechecked": {
+        "usr/bin/swayfx-mosaic": {
+          "sha256": "b2ba890908e385b0a8884e786b279bfb2e582eed38c7fcd0587b418326eca5bc",
+          "mode": "0o755"
+        },
+        "usr/share/licenses/swayfx-mosaic/SwayFX-LICENSE": {
+          "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/SceneFX-LICENSE": {
+          "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/wlroots-LICENSE": {
+          "sha256": "35d427c043dcafe8893b9e7247348f599847c81d9a067703587c80707f3d58df",
+          "mode": "0o644"
+        },
+        "usr/share/licenses/swayfx-mosaic/INCORPORATED-NOTICES": {
+          "sha256": "68859b1a1088a6b4e084b6ba611a1487e3d71130ef75544bc33a2c746727d45f",
+          "mode": "0o644"
+        }
+      },
+      "new_stage": false
+    }
+  },
+  "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+  "legal": "LEGAL_NOT_APPROVED",
+  "release_owner": "UNASSIGNED",
+  "security_owner": "UNASSIGNED",
+  "sidecar_bytes": 64,
+  "tree_bytes": 128,
+  "allocator_overhead": "NOT_MEASURED",
+  "new_runtime_native_buffer_identity": "NOT_PROVEN",
+  "atomic_generation": "NOT_PROVEN",
+  "complete_damage": "NOT_PROVEN",
+  "gpu_completion": "NOT_PROVEN"
+}

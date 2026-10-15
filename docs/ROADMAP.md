@@ -1,13 +1,20 @@
 # Roadmap
 
-The [CORE-C V2 handoff](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
-is PARTIALLY_ADVANCED, with a Git-reconstructible experimental kit and 12
-consumed runs / 102 captures. Disposition remains
-PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE, recommendation C_FURTHER_NATIVE_REVIEW,
-production availability UNDECIDED. The next smallest justified tranche is
-prospective offline repair/review of the C7 migration, C8 group and O1 closure
-fixtures plus targeted native C review; any later run requires separate
-admission and budget. No consumed run may be retried under this ticket.
+The [CORE-C V2 follow-up V4](design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md)
+is PARTIALLY_ADVANCED: five consumed runs/32 output captures, sampled migration/
+refocus and root/nested OOM progress, fullscreen comparison and native G3
+readback NOT_EXERCISED. Disposition remains
+PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE; production OOM policy UNDECIDED.
+The separate OFFLINE_ONLY fixture repair and its review are complete. The next
+scientific evidence is an observable fullscreen client identity without
+relaxing dumpability or the identity guard, before a new fullscreen campaign;
+native readback acquisition also remains outstanding. Those campaigns require
+a distinct instruction and budget; no retry, refund, optional-slot substitution
+or reopening of either closed campaign is admitted.
+The historical [V2 evidence](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md),
+12 runs/102 captures and its failures remain unchanged. Buffer identity,
+atomic generation, complete damage and GPU completion remain NOT_PROVEN;
+legal approval and named maintenance owners remain open.
 STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
 PRODUCTION_MULTI_OUTPUT NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
 

@@ -1,0 +1,190 @@
+{
+  "contract": "Entry hashes seal the small published receipts; this index excludes its own bytes to avoid a self-reference. Heavy originals stay in the retained LAB.",
+  "entries": {
+    "abi-baseline.json": {
+      "bytes": 17280,
+      "mode": "0o644",
+      "sha256": "d7661a1b4e1db35069d47bd9f74fa4d20ac03d2fadf05a9299c44f700114b55e"
+    },
+    "clone-acceptance-review.json": {
+      "bytes": 1024,
+      "mode": "0o644",
+      "sha256": "c926c727ee56bcf850076d77c2b9db43e08a742bfeddbb742092b5177793008b"
+    },
+    "clone-validation.json": {
+      "bytes": 18117,
+      "mode": "0o644",
+      "sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282"
+    },
+    "coredump-final.json": {
+      "bytes": 272,
+      "mode": "0o644",
+      "sha256": "0af38848c5908959227455290d38014f4deafd01ed407ae7a1f370cb675c419f"
+    },
+    "final-review.json": {
+      "bytes": 2955,
+      "mode": "0o644",
+      "sha256": "3b15b5093730d6c43897e0adad4a1b2987fbc1097694a03645e928023ba23814"
+    },
+    "final-validation.json": {
+      "bytes": 7596,
+      "mode": "0o644",
+      "sha256": "aeef27c8f92f1939c0db868bab17a0175cf5c2e5c2a734f2854ad09b28ba1da2"
+    },
+    "fullscreen-dumpability-probe.json": {
+      "bytes": 669,
+      "mode": "0o644",
+      "sha256": "fdcca6d786067f0bd91d3c728e4db7926e23e87c1c104ae3cb8d8295756a7a7d"
+    },
+    "g3-build-initial.json": {
+      "bytes": 4750,
+      "mode": "0o644",
+      "sha256": "cba4f3380e88c9d2facfb468d26d1d8831b875fe2dea7722a36b118ca877d4ae"
+    },
+    "g3-build-repair.json": {
+      "bytes": 10562,
+      "mode": "0o644",
+      "sha256": "61455c537183a7c70b8a64949dbb67050f8aa076f1ebed62e514f0e961e93e24"
+    },
+    "g3-build-validation.json": {
+      "bytes": 7915,
+      "mode": "0o644",
+      "sha256": "27b886227043621098c56b16e4e6501ff7cbf34151c3c937e5580ee10e035147"
+    },
+    "gpu-b4-semantic.json": {
+      "bytes": 1140,
+      "mode": "0o644",
+      "sha256": "72f3528fc34a19f50525a1665aa965e56998170d1d406b632b0fd8c5834e6d5d"
+    },
+    "gpu-build-review.json": {
+      "bytes": 8021,
+      "mode": "0o644",
+      "sha256": "f0a2f8089977da0039afe2fcf9203f38dfc3752d373b3c76ad9b453f6a6b123e"
+    },
+    "gpu-results-review.json": {
+      "bytes": 6139,
+      "mode": "0o644",
+      "sha256": "78ce6fe03955d62d1b079b9a8e81161dcb5bfceef71bd2b71d13892bcf7e4d78"
+    },
+    "gpu-source-manifest-v3.json": {
+      "bytes": 2706,
+      "mode": "0o644",
+      "sha256": "03b3cdb4b665aeca860cf3e1363d4fbe5c2cbcb0372f3b4fe582e88488ccb5d2"
+    },
+    "ledger.json": {
+      "bytes": 23987,
+      "mode": "0o644",
+      "sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c"
+    },
+    "nongpu-admission-review.json": {
+      "bytes": 23730,
+      "mode": "0o644",
+      "sha256": "dcbd9c8259153c33f33dbfb2c7761794defa92ab86a21a514f7aeb28ae94b3d7"
+    },
+    "nongpu-results-review.json": {
+      "bytes": 15929,
+      "mode": "0o644",
+      "sha256": "a8a9ea6c9c1fab09687c1b43378d53d7add0eb421a9b2e626d60d59445578e86"
+    },
+    "offline-validation.json": {
+      "bytes": 17393,
+      "mode": "0o644",
+      "sha256": "f026a1fa3fe6f2a8471de4ee9693a70a807b3ed79cd52dd26f5651ed52f582b6"
+    },
+    "postcampaign-delta-initial-review.json": {
+      "bytes": 3003,
+      "mode": "0o644",
+      "sha256": "bc188f87b012c8acdb5c5a8cdb4ca7db0f0266d9597d6c170ec24ba7615d5afa"
+    },
+    "postcampaign-delta-review.json": {
+      "bytes": 1910,
+      "mode": "0o644",
+      "sha256": "4d459c0963c6535a404bfaa68d11dff0cf738e2d21167c148c12315e954ffe86"
+    },
+    "postcampaign-gpu-manifest-final.json": {
+      "bytes": 2843,
+      "mode": "0o644",
+      "sha256": "a89926241a871bdc492348f922df1232962e622c4703720984ef681b5e6d98cb"
+    },
+    "postcampaign-gpu-manifest.json": {
+      "bytes": 2843,
+      "mode": "0o644",
+      "sha256": "230f131aae824dfafb938f38f77aad08d225ea2fa5496ee65a3b45f3062e8df1"
+    },
+    "postcampaign-offline-validation.json": {
+      "bytes": 7887,
+      "mode": "0o644",
+      "sha256": "5905e2002041148d7a104e195132f56c8b4152952547be4ed0985da4eacc3852"
+    },
+    "postcampaign-repair.json": {
+      "bytes": 15323,
+      "mode": "0o644",
+      "sha256": "eae6bb85b21cbd6876e8340384314c21749040cadad89b313eae4b2d9bf7e7a4"
+    },
+    "postcampaign-source-manifest-final.json": {
+      "bytes": 18962,
+      "mode": "0o644",
+      "sha256": "1db849c1152bb29d512bf62e3db53cba18d0179c0008ca116887eb572d76a080"
+    },
+    "postcampaign-source-manifest.json": {
+      "bytes": 18962,
+      "mode": "0o644",
+      "sha256": "f13da7228c0c9f61cdefa23fa80f3dea3322cb8551edb62f459aa69a1ba7c20f"
+    },
+    "pre-freeze-validation.json": {
+      "bytes": 20434,
+      "mode": "0o644",
+      "sha256": "ad6696e7114a128cd5e7b5456c04f85b5ca9b3c22b5945d0ff387d9f50af324a"
+    },
+    "provenance-replay.json": {
+      "bytes": 20273,
+      "mode": "0o644",
+      "sha256": "e09a9da09141903fad33da178272c52fac7a29ee7cf0e9bed5b718619bf1f543"
+    },
+    "runtime-summary.json": {
+      "bytes": 28666,
+      "mode": "0o644",
+      "sha256": "8bebfdb30c0eaa3c7f4df95bcbf7590557b7b74fc05353b5afe77a1339c7c202"
+    },
+    "source-binding-review.json": {
+      "bytes": 10088,
+      "mode": "0o644",
+      "sha256": "afdeb78d8d0e60f78c3f7f25e7b66ef92bbc34dfb02ac1e37020e501f8d14766"
+    },
+    "source-delta-review.json": {
+      "bytes": 1708,
+      "mode": "0o644",
+      "sha256": "895dfc1870b70c49039c773cbc6012b742514f30da508a2997c352d9ea12f781"
+    },
+    "source-initial-review.json": {
+      "bytes": 8590,
+      "mode": "0o644",
+      "sha256": "58ee0ef4535c0e5e47cc68cb2bc35e20b73563e47438b3dee718d24194c535cc"
+    },
+    "source-manifest-v2.json": {
+      "bytes": 18835,
+      "mode": "0o644",
+      "sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7"
+    },
+    "source-publication.json": {
+      "bytes": 1138,
+      "mode": "0o644",
+      "sha256": "3dbdfc66fa48e61ef8593ac9e85481baf9dab8fff30f480e8ad38b75cb1231a2"
+    },
+    "system-audit.json": {
+      "bytes": 579,
+      "mode": "0o644",
+      "sha256": "8053a9a21a910432aea9dde8fc344d11dfa34485747d46c49a2cdb962760ce92"
+    },
+    "workflow-deviations.json": {
+      "bytes": 2547,
+      "mode": "0o644",
+      "sha256": "dc99325d5d1b97d0b4c2f5a88f4b78a083edb50fc6adfd3f5556d8722faf9f3b"
+    }
+  },
+  "excludes": [
+    "manifest.json"
+  ],
+  "schema": "native-closure-public-evidence-index-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

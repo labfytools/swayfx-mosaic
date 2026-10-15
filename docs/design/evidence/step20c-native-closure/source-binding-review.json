@@ -1,0 +1,201 @@
+{
+  "schema": "independent-nongpu-binding-review-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "reviewer": "codex-source-review-independent",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_review_receipt_sha256": "895dfc1870b70c49039c773cbc6012b742514f30da508a2997c352d9ea12f781",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "artifacts": {
+    "A-PROVENANCE-REPLAY.json": "e09a9da09141903fad33da178272c52fac7a29ee7cf0e9bed5b718619bf1f543",
+    "H-ABI-BASELINE.json": "d7661a1b4e1db35069d47bd9f74fa4d20ac03d2fadf05a9299c44f700114b55e",
+    "followup-work/client-compile.json": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528"
+  },
+  "identities": {
+    "core": {
+      "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic",
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "build_id": "d5d304533f2c8db9d738365e9bd7f2c96779ef8d",
+      "wlroots": "/usr/lib/libwlroots-0.20.so",
+      "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+      "build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "scope": "exact retained ELF/source provenance; conditional pre-run binding only"
+    },
+    "oom": {
+      "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+      "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+      "wlroots": "/usr/lib/libwlroots-0.20.so",
+      "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+      "build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "scope": "exact retained ELF/source provenance; conditional pre-run binding only"
+    },
+    "pristine": {
+      "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway",
+      "binary_sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+      "build_id": "ba9751c82e73d4043b7651354f20936d070c2227",
+      "wlroots": "/usr/lib/libwlroots-0.20.so",
+      "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+      "build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "scope": "exact retained ELF/source provenance; conditional pre-run binding only"
+    }
+  },
+  "runs": {
+    "FS-P": {
+      "decision": "ACCEPTED",
+      "client_build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "build_review": "ACCEPTED",
+      "identity": "pristine",
+      "client": "fullscreen-client",
+      "client_sha256": "ccf3ce2f7ac4ba116057f2c266e837e8dd5df020785430f6843557423ed6a24a",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+      "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+      "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7"
+    },
+    "FS-C": {
+      "decision": "ACCEPTED",
+      "client_build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "build_review": "ACCEPTED",
+      "identity": "core",
+      "client": "fullscreen-client",
+      "client_sha256": "ccf3ce2f7ac4ba116057f2c266e837e8dd5df020785430f6843557423ed6a24a",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+      "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+      "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7"
+    },
+    "DY-C": {
+      "decision": "ACCEPTED",
+      "client_build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "build_review": "ACCEPTED",
+      "identity": "core",
+      "client": "nested-client",
+      "client_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+      "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+      "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7"
+    },
+    "OM-ROOT": {
+      "decision": "ACCEPTED",
+      "client_build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "build_review": "ACCEPTED",
+      "identity": "oom",
+      "client": "nested-client",
+      "client_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+      "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+      "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+      "oom_source_review": "ACCEPTED",
+      "variant_identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC"
+    },
+    "OM-NESTED": {
+      "decision": "ACCEPTED",
+      "client_build_review": "ACCEPTED",
+      "source_qualification": "ACCEPTED",
+      "build_review": "ACCEPTED",
+      "identity": "oom",
+      "client": "nested-client",
+      "client_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+      "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+      "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+      "oom_source_review": "ACCEPTED",
+      "variant_identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC"
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "readelf",
+        "-n",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic"
+      ],
+      "exit": 0,
+      "stdout_sha256": "779d0f0868f12f6c0d573cb5c4daa94c356bdaf65767286b63e5127a631b6c4f"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic"
+      ],
+      "exit": 0,
+      "stdout_sha256": "99d0fc6a70b68f32fb879989e395c9f8401408202c28e0b3ae0b9d23535aca93"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-n",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic"
+      ],
+      "exit": 0,
+      "stdout_sha256": "9152478c8b41320676cd5f4b644b19af7cb47109ec1761a3d90964398488226e"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic"
+      ],
+      "exit": 0,
+      "stdout_sha256": "a843b228b5ab61a45a43c1bcd18156eda8c728d33748d0e6085b9159237506f2"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-n",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway"
+      ],
+      "exit": 0,
+      "stdout_sha256": "742d73bff7455fa5388f8e25a8fbef04dc27ecbf99ca94fd803f3fb392a32bac"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway"
+      ],
+      "exit": 0,
+      "stdout_sha256": "8e7a5fb22031fe10c1de5bb1abe53d80520ea50ca4a050659983ba693e94702c"
+    }
+  ],
+  "client_inputs": {
+    "clients/fullscreen-client.c": "f71a818ec850bc54bd154f14f5bb300387c3d7340a2f19704f93e49dfbbca2bc",
+    "clients/nested-client.c": "88f6ad3f6a2843ac13e2ea9a1fe5407e47d23694197408a096046b9ada9bb5cd",
+    "clients/pointer-daemon.c": "a03188a445c4ecef09f420d000315ce71ca70e5c3fd4a2ba8cc60110c32635c3",
+    "clients/saved-client.c": "2858fed56cc5384ba325affddbcf35e011cca700015868d42c53ff8ec4ba0867",
+    "clients/static-reference.c": "e346a85ded3345b232cd6edca5a1ac57aebfd548a60e12b3c47a5cf515e6c50e",
+    "clients/vertical-client.c": "52e050929a21bd5df0aac21a1156f033bca94e3f90950ef5bcfc3d37daa840e5",
+    "protocols/wlr-virtual-pointer-unstable-v1.xml": "3ff6d540be0bc5228195bf072bde42117ea17945a5c2061add5d3cf97d6bb524",
+    "protocols/xdg-shell.xml": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df"
+  },
+  "client_generated": {
+    "fullscreen-client": "ccf3ce2f7ac4ba116057f2c266e837e8dd5df020785430f6843557423ed6a24a",
+    "nested-client": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+    "pointer-daemon": "3188215af9ee0e2c79e1a5efc1b023ee8be47d0cade28f7c1ebe56ff140ae7db",
+    "saved-client": "10d766c660b0ed35cd5e002d594fc776ebc4754c6b596cf61dd53facaa29d875",
+    "static-reference": "3eebddbc3989ce0d9d2987382c8232a9cc6444cdfb29a5ca3a09e37251f6443c",
+    "vertical-client": "49f4999aafc800192c50d5d1439ba5dd80c22a1e994dee591d9a780e018f0383",
+    "virtual-pointer-client.h": "0dcb6107cf948a007dcef0a6b2192e4f7b9166c0f57b499ca49b7aaf48adc56c",
+    "virtual-pointer-protocol.c": "a72e9b38dd5ed0c49fae22aa2f01883aea76075ad33f6399d9b2033df4330675",
+    "xdg-shell-client.h": "a09726137ea9fe1a23d58c95f1d33ab77a3fc692c63726bc82fbc91ab8e5c6fc",
+    "xdg-shell-protocol.c": "9e12fcd5676d8c6b6cfd233c2eba563163c0ea7e586cb6e27f202a328323c7f0"
+  },
+  "runtime": "NOT_RUN",
+  "conditional_on": [
+    "Phase C source-only publication to origin/github and clone verification",
+    "exact published kit bytes/modes equal manifestV2",
+    "parent runtime-manifest construction and gate.validate_review before debit",
+    "FS-C requires qualified FS-P",
+    "OM-NESTED requires qualified OM-ROOT or separately reviewed explicit dependency override",
+    "actual compositor startup/mappings/private outputs/input/capture evidence remains to be measured"
+  ],
+  "authorization": "ACCEPTED pre-run source/client/retained-build bindings only; NO_RUNTIME_AUTHORIZATION; no historical runtime evidence upgraded"
+}

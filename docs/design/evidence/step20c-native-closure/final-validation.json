@@ -1,0 +1,201 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "result": "PASS; expected documentation/probe changes are visible.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "result": "PASS.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<targeted whitespace scan over git diff + git ls-files --others --exclude-standard>"
+      ],
+      "result": "PASS; 52 paths, 16 Markdown/C/header/Python files scanned, zero trailing whitespace.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<local Markdown link and public JSON validation>"
+      ],
+      "result": "PASS; 661 local links, 0 missing; 36 public evidence JSON files parse, ordinary regular files, mode 0644.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<source manifest, final review, historical receipts and artifact bindings>"
+      ],
+      "result": "PASS; final source and GPU hashes match; final audit and prior 73-test receipt match expected SHA.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<protected source and changed/new path inventory>"
+      ],
+      "result": "PASS; 316 protected hashes match; 52 changed/new paths are regular portable-mode files with no binary/generated suffix or NUL.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<graphics.gate.validate_review(..., old source-manifest-v2, nongpu-admission, publication, FS-P)>"
+      ],
+      "result": "PASS negative contract; rejected before reservation with source changed/added/removed/mode after freeze; ledger SHA identical before and after.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<reused prior old-LAB manifest verification receipt>"
+      ],
+      "result": "PASS reused immutable prior evidence: 19,612/19,612 entries match old manifest; old LAB not modified.",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<repo-wide whitespace diagnostic>"
+      ],
+      "result": "Non-blocking diagnostic: three pre-existing trailing-whitespace lines in unchanged INSTALL-deb.md:93, tooling/probes/step20c-minimal-core-gate/graphics/cases.py:27, sway/desktop/output.c:324. None is in changed/new paths; git diff --check passes.",
+      "returncode": 1
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "<initial GPU manifest path probe>"
+      ],
+      "result": "Non-blocking checker path mistake: looked under followup-work; actual frozen GPU manifest is at LAB root and then matched expected SHA.",
+      "returncode": 1
+    }
+  ],
+  "files_created_by_this_validator": [
+    "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/final-normal-validation/receipt.json"
+  ],
+  "historical_lab": {
+    "closeout_sha256": "4411aa97a16996e70f97f91e67adb0484a1759509e153a008dcee0f640504b59",
+    "entries_verified_by_prior_receipt": 19612,
+    "expected_closeout_sha256": "4411aa97a16996e70f97f91e67adb0484a1759509e153a008dcee0f640504b59",
+    "expected_manifest_sha256": "f16c6bfa4bbd46474193401c64521d05240a52fc2d2bfe050875a6881407626a",
+    "manifest_sha256": "f16c6bfa4bbd46474193401c64521d05240a52fc2d2bfe050875a6881407626a",
+    "modified": false,
+    "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po",
+    "status": "PASS_REUSED_PRIOR_IMMUTABLE_VERIFICATION"
+  },
+  "independent_review": {
+    "audit_source_manifest_sha256": "1db849c1152bb29d512bf62e3db53cba18d0179c0008ca116887eb572d76a080",
+    "blocking_findings": 0,
+    "decision": "PASS",
+    "future_scope_findings": 1,
+    "historical_test_failures": 0,
+    "non_blocking_findings": 1,
+    "path": "/home/fy59/Documents/Development/swayfx-mosaic/docs/design/evidence/step20c-native-closure/final-review.json",
+    "sha256": "3b15b5093730d6c43897e0adad4a1b2987fbc1097694a03645e928023ba23814",
+    "status": "PASS",
+    "tests_rerun_this_stage": 0,
+    "tests_run_historically": 73
+  },
+  "ledger": {
+    "capture_limit": 110,
+    "captures_used": 32,
+    "changed_by_negative_preflight": false,
+    "expected_sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c",
+    "operations": [
+      "G3_BUILD_PAIR initial FAIL, same-pair continuation PASS",
+      "G3_DESTDIR PASS, exactly five staged files"
+    ],
+    "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/native-closure-budget.json",
+    "runs_completed": 5,
+    "sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c"
+  },
+  "offline_tests": {
+    "docs_only_source_delta_after_tests": [
+      "gpu/README.md"
+    ],
+    "failures": 0,
+    "prior_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/receipt.json",
+    "prior_receipt_sha256": "5905e2002041148d7a104e195132f56c8b4152952547be4ed0985da4eacc3852",
+    "replayed_this_stage": false,
+    "source_digest_at_test": "96d02f7f90f46fcd4572850b826a894c02d0061f2014d1b2c257c43ed3577897",
+    "status": "PASS",
+    "tests_run_historically": 73
+  },
+  "protected_files": {
+    "baseline_path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/evidence/protected-before.json",
+    "baseline_receipt_sha256": "ad6696e7114a128cd5e7b5456c04f85b5ca9b3c22b5945d0ff387d9f50af324a",
+    "count": 316,
+    "matches": 316,
+    "mismatches": 0
+  },
+  "public_final_validation_marker": {
+    "note": "Placeholder remains pending for parent replacement with the actual validation receipt.",
+    "path": "/home/fy59/Documents/Development/swayfx-mosaic/docs/design/evidence/step20c-native-closure/final-validation.json",
+    "status": "VALIDATION_PENDING"
+  },
+  "repository": {
+    "changed_tracked_paths": 10,
+    "commit_or_push": "NOT_RUN",
+    "generated_or_binary_changed_paths": 0,
+    "git_diff_check": "PASS",
+    "invalid_json_or_modes": 0,
+    "local_markdown_links_checked": 661,
+    "missing_local_links": 0,
+    "preexisting_ignored_build_and_cache_artifacts_preserved": true,
+    "public_json_count": 36,
+    "targeted_whitespace": "PASS",
+    "total_changed_or_new_paths": 52,
+    "untracked_paths": 42,
+    "validator_changed_repo_files": false
+  },
+  "runtime_build_stage": {
+    "meson_build": false,
+    "production_authorized": false,
+    "runtime_or_IPC": false,
+    "stage": false,
+    "tests_rerun": false
+  },
+  "schema": "step20c-native-closure-final-normal-validation-v1",
+  "scope": "Post-audit, read-only final validation; no test/build/runtime/stage replay.",
+  "source": {
+    "HEAD": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+    "all_bytes_and_modes_match": true,
+    "file_count": 50,
+    "gpu_freeze_path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/g3-source-freeze-v5-postcampaign-docfix.json",
+    "gpu_freeze_sha256": "a89926241a871bdc492348f922df1232962e622c4703720984ef681b5e6d98cb",
+    "manifest_path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v4-postcampaign-docfix.json",
+    "manifest_sha256": "1db849c1152bb29d512bf62e3db53cba18d0179c0008ca116887eb572d76a080",
+    "modes": {
+      "0644": 50
+    },
+    "source_digest": "14e24501658f1c4c29e7d8c06db71ed07a77b8e80e283453420bbc5b3e2f03c8",
+    "tested_C_and_Python_sources_unchanged": true,
+    "v3_to_v4_delta": [
+      "gpu/README.md"
+    ]
+  },
+  "status": "PASS",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

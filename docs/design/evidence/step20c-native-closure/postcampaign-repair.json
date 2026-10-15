@@ -1,0 +1,309 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "wayland-scanner",
+        "client-header",
+        "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/protocols/xdg-shell.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/xdg-shell-client.h"
+      ],
+      "name": "xdg-shell-header",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "private-code",
+        "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/protocols/xdg-shell.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/xdg-shell-protocol.c"
+      ],
+      "name": "xdg-shell-code",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "client-header",
+        "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/protocols/wlr-layer-shell-unstable-v1.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/layer-shell-client.h"
+      ],
+      "name": "layer-shell-header",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "private-code",
+        "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/protocols/wlr-layer-shell-unstable-v1.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/layer-shell-protocol.c"
+      ],
+      "name": "layer-shell-code",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "pkg-config",
+        "--cflags",
+        "--libs",
+        "wayland-client"
+      ],
+      "name": "wayland-pkgconfig",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "daeb877303c6117ce9622ed510740569c724d685d27e3401d358afb0ab932236"
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build",
+        "-fsyntax-only",
+        "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/clients-g2.c",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "name": "client-syntax",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build",
+        "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/clients-g2.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/xdg-shell-protocol.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/layer-shell-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/clients-g2-offline-only",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "name": "client-compile",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "diff",
+        "--check"
+      ],
+      "name": "diff-check",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "name": "git-status",
+      "rc": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e24e148aea3e1c3a0b3fb8d27e6033f4b5b6ddeff78f1867df6df9f9320fc922"
+    }
+  ],
+  "commit": "NOT_RUN",
+  "deltas": {
+    "README.md": {
+      "after": "fce1ac7d7a430d94654270b88775b8720f8c5caf998f2320dd9e55c48c486b7f",
+      "before": "3d4e66160ba6191a3ec381f7104b37f8bda6e378f6001110d6048fd79ad25515"
+    },
+    "gpu/README.md": {
+      "after": "a569fad78ed04658aed422c6acac529e17cdb8c7179042561acaaf244d531981",
+      "before": "83e333c6718ef05c9009ac8340c564f39094abb8353393576f9464ea2a70042c"
+    },
+    "gpu/clients-g2.c": {
+      "after": "633bb3bea0eefc40bc87647edb3d550bceefef9b319b302e893ebd225e79addf",
+      "before": "66658e99704c32d90b073f7664dd4aa9ff1cbf3530c81f7f7ac40e2fa49d9ca7"
+    },
+    "gpu/test_tmpdir.py": {
+      "after": "6326f087c3f03f33b5c525bbd82381b94b13d4cbcfad5347bcf25d79c02cdc6d",
+      "before": null
+    },
+    "graphics/engine.py": {
+      "after": "defb24b3ffb1973aefeda1928a59455bf3f8586b4bee209d118f9db8e17d8479",
+      "before": "34a322aad76200a4ef497305ad47b6aeff7f3944fbc2500381e50cd9040c2bc4"
+    },
+    "graphics/offline/test_followup.py": {
+      "after": "7d3fdd228651960b044f82d863eebede181da791e3f7ceab7a2194d7d3cee10f",
+      "before": "8316d7804ef2afe88d6fb6e6ab07410481217d5daab23efbaf399bfb84850df4"
+    }
+  },
+  "headless": "NOT_RUN",
+  "historical_inputs": {
+    "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+    "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+    "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-client-guard/clients-g2": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+    "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/native-closure-budget.json": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c"
+  },
+  "historical_inputs_unchanged": true,
+  "ledger_unchanged": true,
+  "meson_build": "NOT_RUN",
+  "new_client": {
+    "executed": false,
+    "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/client-build/clients-g2-offline-only",
+    "sha256": "bfc7d47596d5f69b68cd7000e257c7819949081ee7c6d66635eb9accf9ad7f36",
+    "source_sha256": "633bb3bea0eefc40bc87647edb3d550bceefef9b319b302e893ebd225e79addf"
+  },
+  "push": "NOT_RUN",
+  "runtime": "NOT_RUN",
+  "scope": "POSTCAMPAIGN_OFFLINE_ONLY; no run authorized",
+  "source_digest_after": "96d02f7f90f46fcd4572850b826a894c02d0061f2014d1b2c257c43ed3577897",
+  "source_digest_before": "96d02f7f90f46fcd4572850b826a894c02d0061f2014d1b2c257c43ed3577897",
+  "source_files": {
+    "README.md": "fce1ac7d7a430d94654270b88775b8720f8c5caf998f2320dd9e55c48c486b7f",
+    "gpu/README.md": "a569fad78ed04658aed422c6acac529e17cdb8c7179042561acaaf244d531981",
+    "gpu/clients-g2.c": "633bb3bea0eefc40bc87647edb3d550bceefef9b319b302e893ebd225e79addf",
+    "gpu/freeze.py": "1e823aa00aface9416ac687116f51867824973cca5da1ce1b5e1077d7b6d65b8",
+    "gpu/g2_gl.h": "f7862768293f290044feb013e6c25422ace76ec670813537e96b71f373af5969",
+    "gpu/g2_native.h": "0ed910ab4285c0db848b715867b0c98241a77f81d7afe0739583bf834fc40263",
+    "gpu/g3-admission.patch": "0d0717b006d88ade5503431f8e0d20bb1d0416eb745ae37a00a5c9bb1a20e81b",
+    "gpu/protocol.py": "3b664f1400394980913870cc3de5e0c1e70b7f14a96bee259a21fff954816394",
+    "gpu/protocols/wlr-layer-shell-unstable-v1.xml": "996b8c66e1c2276c443336d4cb174634e8e5948823779042f244930525b79cc2",
+    "gpu/protocols/xdg-shell.xml": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+    "gpu/reproduce.py": "169701e803ef0f5cfc1e0e66483a465c5390f841702a905b3f07e381a0d1a4c1",
+    "gpu/scenario.py": "d844c85d08866bfd07d6324d4f089b87f825ea83234132b2258b0fca4eae2672",
+    "gpu/test-targeted.py": "09401232887a741cb65ab98ebd44da3786495265410a390cadce7e174d014ce4",
+    "gpu/test_begin.py": "8e9addbfee3491170dec3303024ddd901aa3d4ead6b25bbafe32424890891f5f",
+    "gpu/test_gl.c": "7ed342e2119e31a873a90b011466a17bbf08e1c4416397c65c80554636a6483d",
+    "gpu/test_mutations.py": "b29058af2be2d13a5378bd93aebb2066247a7e5b5434f7c40f73bac463d1cfd3",
+    "gpu/test_native.c": "53aa4635095b91164140bd0272803c1335b235a42a688da2680fe654c0f2b82a",
+    "gpu/test_protocol.py": "0ed67c714971b35750c510458ca4d6f358a4d29ad354bfd2aeb6446e7cd19421",
+    "gpu/test_tmpdir.py": "6326f087c3f03f33b5c525bbd82381b94b13d4cbcfad5347bcf25d79c02cdc6d",
+    "gpu/validate_source.py": "00ab0e5822be31dc0cbc9c32656ccad56fb4afc28155a421339616f3a5ce1dc0",
+    "graphics/README.md": "304c6dc3feaf7d48d7e1bddd0cae427bea8a75fe93a5c027f2defd45c2e9382a",
+    "graphics/cases.py": "1c5bc411a4fb0572955bdefa5fb67032c682a72788bb92d6d9a390cb7055bcc4",
+    "graphics/clients/fullscreen-client.c": "f71a818ec850bc54bd154f14f5bb300387c3d7340a2f19704f93e49dfbbca2bc",
+    "graphics/clients/nested-client.c": "88f6ad3f6a2843ac13e2ea9a1fe5407e47d23694197408a096046b9ada9bb5cd",
+    "graphics/clients/pointer-daemon.c": "a03188a445c4ecef09f420d000315ce71ca70e5c3fd4a2ba8cc60110c32635c3",
+    "graphics/clients/saved-client.c": "2858fed56cc5384ba325affddbcf35e011cca700015868d42c53ff8ec4ba0867",
+    "graphics/clients/static-reference.c": "e346a85ded3345b232cd6edca5a1ac57aebfd548a60e12b3c47a5cf515e6c50e",
+    "graphics/clients/vertical-client.c": "52e050929a21bd5df0aac21a1156f033bca94e3f90950ef5bcfc3d37daa840e5",
+    "graphics/engine.py": "defb24b3ffb1973aefeda1928a59455bf3f8586b4bee209d118f9db8e17d8479",
+    "graphics/freeze.py": "d41cf96717341a64c258d418043a5da5fdb35baa244231c5b0fca2199c8e60ca",
+    "graphics/fullscreen.py": "601388834f049c2baa0d4fee993437b0fe5b024abc6d07ea3bda27e3199b9953",
+    "graphics/gate.py": "33d2f61d3d75300774185c15c4426fafdbad803bf247718c640649643875b8ee",
+    "graphics/geometry.py": "76a80e98887d3a3707ee942b48a49c1850cdc4aeeb28237d9fea33fa3470fb12",
+    "graphics/gpu_handler.py": "9f8a1cb7bbb0dccea7d84f96bdd2ccdab9937030958c22ca1b996f99e0ab676c",
+    "graphics/ipc_predicates.py": "5354ba53e1b3f8d0026f4475beebee58d093a81db7d26304cad7085ae3efd352",
+    "graphics/lifecycle.py": "df0c11027b3b8b0ef371ddb6ec4bcfd28dac09835644d0c3ce6e273d5e565e92",
+    "graphics/model.py": "a578fc589fb092dae3ccdcf8c4eec12a97e515f721decc4c968078dedcb2367a",
+    "graphics/offline/test_followup.py": "7d3fdd228651960b044f82d863eebede181da791e3f7ceab7a2194d7d3cee10f",
+    "graphics/oom.py": "bf4a07f0337be34c548a0f1752782b36b684bdf4e249f9f7bf757b4fb47c7607",
+    "graphics/oom_handler.py": "37c5852ad8e5a084b58ad1a5ae842445096eb104f59059b493687792f3e68d6a",
+    "graphics/pixels.py": "d315ddad978238ffbf1c8e4d712d4608ba23564703332d814f627f57f7b6e7f5",
+    "graphics/plans.py": "5fe84f4024aa0a8fa0d17a86343cd15d96131d30df3610094b86cfa0d045374c",
+    "graphics/predicates.py": "abe0c4c5b3b6d533d2714e13d317d68cd02e1f1c6180d2972ff94d00c9069cd1",
+    "graphics/prepare.py": "bf17e0019f5fa56b4c4c3b86d9a92ef1a6d1526fda64741cc2b5b62fc4a7f4a8",
+    "graphics/protocols/wlr-virtual-pointer-unstable-v1.xml": "3ff6d540be0bc5228195bf072bde42117ea17945a5c2061add5d3cf97d6bb524",
+    "graphics/protocols/xdg-shell.xml": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+    "graphics/run.py": "27891c4e499457bfedceed623679addddb15e722259d976716e268800c72fb8f",
+    "graphics/validate_offline.py": "15e231eae78e38b38fa0edbec73b2f27440191f7c581f7eb9e4e413113473b1e",
+    "graphics/validators.py": "a7a19322bfeff1c1122e50f351aebfa46f4b144eb5b795c4389eae5c934e4b1d",
+    "graphics/wire-fixture.txt": "c6c9fc072f78fbcf9cfdeebcc5becdbdfb61824352495a0e767d7d390267f640"
+  },
+  "source_freeze": "NOT_WRITTEN; parent owns new freeze/review",
+  "source_modes": {
+    "README.md": "0o644",
+    "gpu/README.md": "0o644",
+    "gpu/clients-g2.c": "0o644",
+    "gpu/freeze.py": "0o644",
+    "gpu/g2_gl.h": "0o644",
+    "gpu/g2_native.h": "0o644",
+    "gpu/g3-admission.patch": "0o644",
+    "gpu/protocol.py": "0o644",
+    "gpu/protocols/wlr-layer-shell-unstable-v1.xml": "0o644",
+    "gpu/protocols/xdg-shell.xml": "0o644",
+    "gpu/reproduce.py": "0o644",
+    "gpu/scenario.py": "0o644",
+    "gpu/test-targeted.py": "0o644",
+    "gpu/test_begin.py": "0o644",
+    "gpu/test_gl.c": "0o644",
+    "gpu/test_mutations.py": "0o644",
+    "gpu/test_native.c": "0o644",
+    "gpu/test_protocol.py": "0o644",
+    "gpu/test_tmpdir.py": "0o644",
+    "gpu/validate_source.py": "0o644",
+    "graphics/README.md": "0o644",
+    "graphics/cases.py": "0o644",
+    "graphics/clients/fullscreen-client.c": "0o644",
+    "graphics/clients/nested-client.c": "0o644",
+    "graphics/clients/pointer-daemon.c": "0o644",
+    "graphics/clients/saved-client.c": "0o644",
+    "graphics/clients/static-reference.c": "0o644",
+    "graphics/clients/vertical-client.c": "0o644",
+    "graphics/engine.py": "0o644",
+    "graphics/freeze.py": "0o644",
+    "graphics/fullscreen.py": "0o644",
+    "graphics/gate.py": "0o644",
+    "graphics/geometry.py": "0o644",
+    "graphics/gpu_handler.py": "0o644",
+    "graphics/ipc_predicates.py": "0o644",
+    "graphics/lifecycle.py": "0o644",
+    "graphics/model.py": "0o644",
+    "graphics/offline/test_followup.py": "0o644",
+    "graphics/oom.py": "0o644",
+    "graphics/oom_handler.py": "0o644",
+    "graphics/pixels.py": "0o644",
+    "graphics/plans.py": "0o644",
+    "graphics/predicates.py": "0o644",
+    "graphics/prepare.py": "0o644",
+    "graphics/protocols/wlr-virtual-pointer-unstable-v1.xml": "0o644",
+    "graphics/protocols/xdg-shell.xml": "0o644",
+    "graphics/run.py": "0o644",
+    "graphics/validate_offline.py": "0o644",
+    "graphics/validators.py": "0o644",
+    "graphics/wire-fixture.txt": "0o644"
+  },
+  "stage": "NOT_RUN",
+  "status": "PASS",
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "harness_compile_argv": [
+      "cc",
+      "-std=c17",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/scratch/g3-path-uwd7gg9m/guard.c",
+      "-o",
+      "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/postcampaign-repair/scratch/g3-path-uwd7gg9m/guard"
+    ],
+    "run": 73,
+    "skips": 0,
+    "status": "PASS"
+  }
+}

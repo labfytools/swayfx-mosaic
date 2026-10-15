@@ -1,0 +1,202 @@
+{
+  "schema": "independent-source-review-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "reviewer": "codex-source-review-independent",
+  "author": "codex-native-closure-implementation",
+  "independent": true,
+  "manifest_sha256": "36722a891c9dddf4234f64de0f7804158c52d29f42dc4158627f69df0fec5fda",
+  "source_digest": "ac97791e6bcfee3e02a0fbe9aea20d06ea325fab3c08fe0625ea5a0fd9a215a0",
+  "decision": "CORRECTION_REQUIRED",
+  "gates": {
+    "B1": "ACCEPTED",
+    "B2": "ACCEPTED",
+    "B3": "CORRECTION_REQUIRED",
+    "B4": "ACCEPTED",
+    "B5_C_publication_modes": "CORRECTION_REQUIRED"
+  },
+  "findings": [
+    {
+      "id": "SR-B3-1",
+      "severity": "P2",
+      "file": "graphics/oom_handler.py",
+      "symbol": "run",
+      "line": 128,
+      "requirement": "Phase F OM-NESTED: Tester input A visible si vivant.",
+      "evidence": "La branche A vivant qualifie uniquement count(post[0], POPUP_A)>0; ensuite les seuls clicks visent reference et peuvent fermer A par dismissal. Aucun delivery POPUP_A après injection.",
+      "correction": "Avant le clic voisin, sélectionner un intérieur A fraîchement peint, injecter et valider paire/wire/pointer-local sur A; conserver séparément le dismissal réellement observé et ajouter un négatif absence/mauvais destinataire."
+    },
+    {
+      "id": "SR-B3-2",
+      "severity": "P2",
+      "file": "graphics/oom_handler.py",
+      "symbol": "run",
+      "line": 126,
+      "requirement": "B3 et phase F: avant/post/final sans image de popup raté, surfaces effectivement retirées.",
+      "evidence": "oom-post vérifie uniquement exact(baseline,post[1]); H1 autorise toute couleur du popup échoué. oom-final vérifie uniquement H2 et ne refuse aucun résidu A/B sur H1.",
+      "correction": "Sur captures post, refuser la couleur du rôle échoué sur les deux outputs tout en permettant A survivant dans OM-NESTED; sur final après close, refuser couleurs A/B sur les deux outputs. Tests négatifs vrai validateur appelé par run."
+    },
+    {
+      "id": "SR-C-1",
+      "severity": "P2",
+      "file": "graphics/gate.py",
+      "symbol": "validate_review / source_modes",
+      "line": 103,
+      "requirement": "Phase C kit reconstructible depuis clone Git; phase I exactitude modes; parent exige SHA/modes Git avant débit.",
+      "evidence": "source_modes compare modes POSIX locaux au manifeste; la boucle Git lit uniquement git show et SHA des blobs, sans ls-tree/type/mode. Le manifeste fourni contient 16 fichiers en0600; Git stocke les fichiers ordinaires non exécutables en100644 et un clone ne conserve pas0600. Donc ni comparaison modeGit ni replay identique des modes gelés depuis clone.",
+      "correction": "Normaliser les sources non exécutables au mode portable0644 avant nouveau freeze; comparer les types/modes Git canoniques attendus avec ls-tree, plus ensemble des entrées souskit et SHA, et rejouer refus d’un mode exécutable ou symlink divergent. Ne pas prétendre préserver0600 viaGit."
+    }
+  ],
+  "tests": {
+    "graphics": {
+      "manifest_sha256": "36722a891c9dddf4234f64de0f7804158c52d29f42dc4158627f69df0fec5fda",
+      "files": 49,
+      "modes": "PASS",
+      "tests": 62,
+      "failures": 0,
+      "historical_C7": {
+        "workspace_id": 6,
+        "output": "HEADLESS-2",
+        "children": [
+          8,
+          9,
+          10
+        ],
+        "viewport": [
+          0,
+          0,
+          800,
+          600
+        ],
+        "minimum_width": 640,
+        "cell_width": 640,
+        "gap": 0,
+        "content_width": 1920,
+        "min_scroll": 0,
+        "max_scroll": 1120,
+        "scroll": 1120.0,
+        "focused": 10,
+        "geometry_status": "IPC_PENDING_CANDIDATE; native generation NOT_OBSERVABLE",
+        "expected_scroll": 1120,
+        "resize_candidate": 800.0,
+        "mutation": "migration",
+        "clamp": "PASS"
+      }
+    },
+    "gpu_commands": [
+      {
+        "argv": [
+          "cc",
+          "-std=c17",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-I/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/test_gl.c",
+          "-o",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/source-review/test_gl"
+        ],
+        "exit": 0,
+        "log": "gpu-0.log"
+      },
+      {
+        "argv": [
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/source-review/test_gl"
+        ],
+        "exit": 0,
+        "log": "gpu-1.log"
+      },
+      {
+        "argv": [
+          "/usr/bin/python",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/test_mutations.py"
+        ],
+        "exit": 0,
+        "log": "gpu-2.log"
+      },
+      {
+        "argv": [
+          "/usr/bin/python",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/validate_source.py"
+        ],
+        "exit": 0,
+        "log": "gpu-3.log"
+      },
+      {
+        "argv": [
+          "/usr/bin/python",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/test_protocol.py"
+        ],
+        "exit": 0,
+        "log": "gpu-4.log"
+      },
+      {
+        "argv": [
+          "/usr/bin/python",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/test_begin.py"
+        ],
+        "exit": 0,
+        "log": "gpu-5.log"
+      }
+    ]
+  },
+  "artifacts": {
+    "followup-work/source-manifest.json": {
+      "sha256": "36722a891c9dddf4234f64de0f7804158c52d29f42dc4158627f69df0fec5fda",
+      "mode": "0o600"
+    },
+    "followup-work/offline-tests.json": {
+      "sha256": "a264c23a82a8b0b01d0a24d27a28d0d9401afe0a112c307cbda89c6c29ba4cc9",
+      "mode": "0o600"
+    },
+    "followup-work/client-compile.json": {
+      "sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+      "mode": "0o600"
+    },
+    "g3-source-freeze-v2.json": {
+      "sha256": "acc575eaa4e836368b40077f8362f73bfa725187fb69c750cb55b29badc54611",
+      "mode": "0o600"
+    },
+    "g3-offline/receipt.json": {
+      "sha256": "8578ad7ad8a1188b0e215c49684034e1acdc59702bfc85c2162451e163c3b93e",
+      "mode": "0o644"
+    },
+    "gpu-client-guard/receipt.json": {
+      "sha256": "7dc827169937b2dfeadad9d0a802527c4e43d58b3457d07f3a25b39c56e59475",
+      "mode": "0o644"
+    },
+    "offline-core-c/result.json": {
+      "sha256": "0a8b9b0177cd22877130903210a8a39852fa7c539f88db999ca91e9ba67af18b",
+      "mode": "0o644"
+    },
+    "offline-oom-c/result.json": {
+      "sha256": "fa980c65859cc590ecc6a36d580ef77bfb70dcd6c42320753c577910236b5384",
+      "mode": "0o644"
+    },
+    "offline-core-mutants/mutations.json": {
+      "sha256": "42ffcc875e9aa1639f3a9ceb40f127feff52670bd42e2c54c54de6baf5d76aa2",
+      "mode": "0o644"
+    }
+  },
+  "g3_freeze_sha256": "acc575eaa4e836368b40077f8362f73bfa725187fb69c750cb55b29badc54611",
+  "runtime": "NOT_RUN",
+  "build": "NOT_RUN",
+  "stage": "NOT_RUN",
+  "commit_push": "NOT_RUN",
+  "authorization": "NO_RUNTIME_AUTHORIZATION; B4 source-only supports independent private G3 build gate, subject to parent review",
+  "notes_sha256": "a305fccd492a72265ae23e17185cf6262739050b58e4aca52a791b43dc2ada59",
+  "review_artifacts": {
+    "check.py": "ad38b81d5814605fb1d977f0357fbcebcc6bab98c6a1712a1d15f9725f6d9247",
+    "graphics-tests.log": "0939b29211a441f77ba669edebef394a9138cb6a85caee7a0292c528db8a8fa2",
+    "checks.json": "c275ac1329274ce66d71c02a76919a56120469dd4c373a4b23aeb265ec1f1342",
+    "gpu-check.py": "53c171f40261cae5413c357f10acc7456e4c9b06a13a8a9fded20b62d314ede7",
+    "test_gl": "689b3508d111a00bd88b22a3222a86df5e98433a10fc6134c2415ce680128784",
+    "gpu-0.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "gpu-1.log": "6ec803c703a1a998847fa09bfa5f3924f53c589c240c84e3254044d11b5d5614",
+    "gpu-2.log": "e14c1178c590c2c109134f4e15d3a594d98506e8eab1908936042e747c7709e1",
+    "gpu-3.log": "8d38bb336ccc12945a1e9485bc6e8d0edccfb00370a600ff839e3cf5a7a7fa11",
+    "gpu-4.log": "2a13d035481d175f8def601c56189df95a040b49c038fb244405cafb31981588",
+    "gpu-5.log": "7f8ce6c940016515a9dfc2ac2871bfeb33450110fc34111e4fc443333e8d0593",
+    "gpu-checks.json": "8ecf0b244bf1d10aa033cfd6ef85ac7722ba9ad253e227a4a4df38c816e70b99",
+    "notes.md": "a305fccd492a72265ae23e17185cf6262739050b58e4aca52a791b43dc2ada59"
+  }
+}

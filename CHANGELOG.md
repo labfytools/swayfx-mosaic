@@ -4,6 +4,21 @@
 
 ### STEP20C experimental evidence
 
+- Record the separate [CORE-C V2 follow-up V4](docs/design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md):
+  five consumed runs/32 output captures, migration/refocus and root/nested OOM
+  SAMPLED_ONLY / PARTIALLY_FEASIBLE. FS-P and fullscreen comparison remain
+  NOT_EXERCISED, FS-C NOT_RUN; G3 INCONCLUSIVE after client exit2 before SHM,
+  with no diagnostic acquisition. Preserve scientific cleanup false for G3,
+  raw process/terminal IPC codes and the historical V2 results.
+- Record c553 source publication before runs, distinct G3 build/stage identity,
+  scoped offline reviews and the separate OFFLINE_ONLY post-campaign fixture
+  repairs. No consumed run is retried or requalified. Result PARTIALLY_ADVANCED,
+  recommendation PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE, production OOM policy
+  UNDECIDED; STEP20C NEXT, production multi-output NOT_YET_SUPPORTED,
+  PRODUCTION_AUTHORIZED FALSE. Native buffer identity, atomic generation,
+  complete damage, GPU completion, legal approval and maintenance owners remain
+  open; no production, UX or package change.
+
 - Record the [new CORE-C V2 integration decision](docs/design/STEP20C_COREC_V2_INTEGRATION_DECISION.md):
   reconstructible source-only CORE/OOM/G2 kit, three private binary identities,
   12 consumed runs and 102 output captures. C7/C8/O1/G2 stay INCONCLUSIVE,

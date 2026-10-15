@@ -1,11 +1,51 @@
 # GPU-G3 — private GLES admission follow-up
 
-EXPERIMENTAL_SOURCE_ONLY. This kit derives a new diagnostic from the published
-[G2 sources](../../step20c-corec-v2/gpu/README.md). It carries no G2 binary or
-runtime qualification. B4 is INCONCLUSIVE until an independent reviewer accepts
-the exact final bytes and receipts. Compositor build, staging and native GPU
-run are NOT_RUN. STEP20C remains NEXT; production multi-output is
-NOT_YET_SUPPORTED and PRODUCTION_AUTHORIZED is FALSE.
+EXPERIMENTAL_SOURCE_ONLY. This kit derives a diagnostic from the published
+[G2 sources](../../step20c-corec-v2/gpu/README.md). The historical B4 acceptance,
+private build/stage and failed GPU-G3 attempt concern the frozen campaign bytes
+identified below. They do not qualify this post-campaign repair. STEP20C remains
+NEXT; production multi-output is NOT_YET_SUPPORTED and PRODUCTION_AUTHORIZED is
+FALSE.
+
+## Post-campaign portability repair — OFFLINE_ONLY
+
+The closed campaign executed commit
+`c55373eab3c53132bf1157acc9cfc9edd451156e`, source manifest v2 SHA256
+`2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7`.
+Its historical GPU client SHA256 is
+`4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4`;
+its G3 compositor SHA256 is
+`9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658`.
+These identities and their original receipts remain authoritative for that
+campaign. FS-P was NOT_EXERCISED at the client identity guard. A separate
+post-campaign probe reproduced EACCES for a nondumpable child, while the
+original FS-P errno remains NOT_OBSERVABLE. GPU-G3 was INCONCLUSIVE with zero
+captures, epochs and arms: reference exited2 after configure/ACK and before SHM.
+The old client required the retired LAB's absolute TMPDIR. DY-C, OM-ROOT and
+OM-NESTED were PARTIALLY_FEASIBLE in the sampled scope (32 captures total).
+
+The following source changes are **OFFLINE_ONLY**, made after that campaign,
+and have never run in a compositor. The GPU SHM path helper requires SMX_LAB
+to be a canonical owned0700 direct child of `/var/tmp` whose name begins
+`swayfx-mosaic-step20c-native-closure-`, and TMPDIR to be its exact canonical
+owned0700 `scratch` directory. It rejects missing values, old-ticket/outside
+paths, symlinks, foreign ownership, wrong modes and truncation, with explicit
+stderr diagnostics. mkstemp stays in that scratch directory. Existing core and
+dumpability guards remain mandatory.
+
+Fullscreen client identity still requires an observed matching PID/proc/exe
+path and SHA. Inaccessible proc identity now saves NOT_OBSERVABLE plus the
+operation and original OS error/errno before the same mandatory gate refuses.
+This improves diagnostics and does not fix or exercise the native fullscreen
+gate; a future observable identity proof remains to be designed. No self-report
+substitute or weakened dumpability is admitted.
+
+The new helper tests execute only extracted production C path-validation code,
+and Python identity predicates. A corrected client may be compiled offline;
+that is not a native qualification. The campaign budget is closed: these bytes
+authorize no retry, new reservation, GPU-CTRL or other headless run. They require
+a new parent-owned source freeze and independent review, without rewriting any
+historical manifest, review, admission, ledger or runtime receipt.
 
 ## Normative basis and bounded contract
 
@@ -64,7 +104,8 @@ env -i PATH=/usr/bin:/bin LANG=C.UTF-8 \
   TMPDIR="$LAB/scratch" TMP="$LAB/scratch" TEMP="$LAB/scratch" \
   XDG_CACHE_HOME="$LAB/cache" XDG_DATA_HOME="$LAB/data" \
   PYTHONPYCACHEPREFIX="$LAB/pycache" CCACHE_DIR="$LAB/ccache" \
-  python "$KIT/reproduce.py" --lab "$LAB" --core "$CORE/scene" \
+  SMX_LAB="$LAB" PYTHONDONTWRITEBYTECODE=1 \
+  python -B "$KIT/reproduce.py" --lab "$LAB" --core "$CORE/scene" \
   --destination "$LAB/replay-g3-scene"
 ```
 
@@ -85,7 +126,23 @@ python "$KIT/test-targeted.py" --lab "$LAB" --scene "$LAB/replay-g3-scene"
 python "$KIT/freeze.py" --lab "$LAB" --output "$LAB/g3-source-freeze-v2.json"
 ```
 
-This performs C17 FakeGL execution of the exact header, controlled wrong
+The four post-campaign TMPDIR helper tests are **OFFLINE_ONLY** and require
+their own explicit command. The unchanged 12-command `test-targeted.py`
+suite did not run `test_tmpdir.py`:
+
+```sh
+env -i PATH=/usr/bin:/bin LANG=C.UTF-8 \
+  TMPDIR="$LAB/scratch" TMP="$LAB/scratch" TEMP="$LAB/scratch" \
+  XDG_CACHE_HOME="$LAB/cache" XDG_DATA_HOME="$LAB/data" \
+  PYTHONPYCACHEPREFIX="$LAB/pycache" CCACHE_DIR="$LAB/ccache" \
+  SMX_LAB="$LAB" PYTHONDONTWRITEBYTECODE=1 \
+  python -B "$KIT/test_tmpdir.py"
+```
+
+These tests execute the extracted C validation/template helper, not a Wayland
+draw or a native GPU acquisition. They do not qualify the consumed G3 run.
+
+The targeted suite performs C17 FakeGL execution of the exact header, controlled wrong
 native variants, exact arm-consumer C extraction, actual native helper C,
 Python parser/scenario negative tests, source syntax checking, Wayland header
 generation and client syntax compilation. The client is not executed. It

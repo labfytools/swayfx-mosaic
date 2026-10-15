@@ -216,6 +216,32 @@ class RepairPredicates(unittest.TestCase):
   p.chmod(0o600);self.rejects(gate.source_modes,root)
   p.unlink();p.symlink_to('/dev/null');self.rejects(gate.source_modes,root)
 
+class IdentityDiagnostic(unittest.TestCase):
+ def test_observed_exact_identity_and_mismatch_stays_refused(self):
+  pid=os.getpid();exe=Path(f'/proc/{pid}/exe');binary=exe.resolve(strict=True)
+  proof=engine.client_executable_identity(pid,binary,gate.sha(exe))
+  self.assertEqual(proof['status'],'OBSERVED');engine.require_client_identity(proof)
+  self.assertEqual(proof['pid'],pid);self.assertEqual(proof['proc'],str(exe))
+  for target,digest in ((binary,'0'*64),(Path('/wrong/binary'),gate.sha(exe))):
+   proof=engine.client_executable_identity(pid,target,digest)
+   with self.assertRaises(ValueError):engine.require_client_identity(proof)
+ def test_EACCES_diagnostic_is_saved_and_same_final_predicate_refuses(self):
+  import errno
+  for phase in ('resolve','sha256'):
+   failure=PermissionError(errno.EACCES,'offline actual OS error fixture','/proc/123/exe')
+   if phase=='resolve':context=patch.object(Path,'resolve',side_effect=failure)
+   else:context=patch.object(engine,'sha',side_effect=failure)
+   with context:proof=engine.client_executable_identity(os.getpid(),Path('/expected'),'a'*64)
+   self.assertEqual(proof['status'],'NOT_OBSERVABLE');self.assertFalse(proof['matches'])
+   self.assertEqual(proof['errno'],errno.EACCES);self.assertEqual(proof['operation'],phase)
+   self.assertIn('PermissionError',proof['error_type']);self.assertIn('offline actual OS error fixture',proof['error'])
+   with self.assertRaisesRegex(ValueError,'NOT_OBSERVABLE'):engine.require_client_identity(proof)
+ def test_missing_proc_preserves_errno(self):
+  import errno
+  proof=engine.client_executable_identity(2147483647,Path('/expected'),'a'*64)
+  self.assertEqual(proof['status'],'NOT_OBSERVABLE');self.assertEqual(proof['errno'],errno.ENOENT)
+  with self.assertRaises(ValueError):engine.require_client_identity(proof)
+
 class Admission(Scientific):
  def setUp(self):
   self.root=Path(tempfile.mkdtemp(prefix='gate-',dir=os.environ.get('TMPDIR',str(LAB/'scratch'))));self.ns=self.root/'OFFLINE_TEST_ONLY';self.ns.mkdir(mode=0o700)

@@ -1,15 +1,20 @@
 # Known limitations
 
-The [CORE-C V2 decision](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
-adds reproducible new sources and bounded private native evidence, without
-recovering the historical deleted bytes. C7 migration uses an incomplete
-camera oracle; C8 fails group comparability before captures; O1 survives the
-injection but its root-only closure is rejected; G2 stops at first A on the
-strict EGL/GLES capability guard, with no raw GPU readback. All four runs stay
-INCONCLUSIVE; fullscreen comparison is NOT_EXERCISED, O2/R1 NOT_RUN.
-Damage/lifetime/whole-field GPU gates, legal approval and release/security
-ownership remain open. STEP20C NEXT; production multi-output
-NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
+The [CORE-C V2 follow-up decision V4](design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md)
+records five new consumed reservations and 32 output captures, separately from
+the historical 12 runs/102 captures. Migration/refocus and root/nested OOM are
+SAMPLED_ONLY / PARTIALLY_FEASIBLE. Fullscreen FS-P is NOT_EXERCISED before the
+group/fullscreen stage; FS-C is NOT_RUN. The original FS-P errno was not saved;
+a controlled dumpability probe supplies a plausible explanation, not proven
+specific causality or a native fullscreen defect. G3 is INCONCLUSIVE after a
+hardcoded historical TMPDIR makes its client exit2 before SHM; native diagnostic
+admission/readback are NOT_EXERCISED. Its scientific cleanup is false despite
+mechanical cleanup and compositor0. Post-campaign fixture repairs are OFFLINE_ONLY
+and cannot qualify consumed runs. OOM availability is sampled, production
+policy UNDECIDED; native buffer identity, atomic generation, complete damage,
+GPU completion, legal approval and release/security/static-SceneFX ownership
+remain open. Historical C7/C8/O1/G2 verdicts remain unchanged. STEP20C NEXT;
+production multi-output NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
 
 This document describes the development tree at the documentation foundation pass. `EXPERIMENTAL` means implemented but incompletely validated; `PLANNED` means absent from runtime; `NOT YET SUPPORTED` means it must not be presented as ready for general use.
 

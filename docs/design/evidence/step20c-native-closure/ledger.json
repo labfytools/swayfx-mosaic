@@ -1,0 +1,585 @@
+{
+  "campaign_closure": {
+    "closed_ns": 328443332204579,
+    "consumed": [
+      "FS-P",
+      "DY-C",
+      "OM-ROOT",
+      "OM-NESTED",
+      "GPU-G3"
+    ],
+    "consumed_runs": 5,
+    "executed_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+    "executed_source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+    "no_further_runtime_authorized": true,
+    "no_reset_refund_retry": true,
+    "not_run": {
+      "FS-C": "qualified FS-P dependency not satisfied",
+      "GPU-CTRL": "cannot replace failed GPU-G3; no new attribution question or equivalent reviewed control",
+      "OM-EXTRA": "no distinct reviewed discriminant; NOT_ADMITTED"
+    },
+    "output_captures": 32,
+    "postcampaign_source_repair": "OFFLINE_ONLY; no runtime qualification or reservation"
+  },
+  "lab": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+  "limits": {
+    "captures": 110,
+    "captures_per_run": 18,
+    "duration_s": 150,
+    "runs": 8
+  },
+  "namespace": "REAL",
+  "operations": [
+    {
+      "continuations": [
+        {
+          "authorization": "parent explicit same reserved pair continuation; original FAIL retained",
+          "finished_monotonic_ns": 327835502157972,
+          "id": "same-pair-argument-repair",
+          "receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/receipt.json",
+          "reserved_monotonic_ns": 327815215522156,
+          "state": "PASS"
+        }
+      ],
+      "failure": "SceneFX Meson setup rc=1: Could not get define EGL_EGLEXT_VERSION",
+      "finished_monotonic_ns": 327600914563309,
+      "id": "G3_BUILD_PAIR",
+      "mosaic_builds": 1,
+      "reserved_monotonic_ns": 327510465794426,
+      "scene_builds": 1,
+      "setup_retried": false,
+      "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+      "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+      "state": "FAIL"
+    },
+    {
+      "destination": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/stage-g3",
+      "finished_monotonic_ns": 327835502199749,
+      "id": "G3_DESTDIR",
+      "reserved_monotonic_ns": 327834532865939,
+      "state": "PASS"
+    }
+  ],
+  "runs": [
+    {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "actions": {
+        "chain": 1,
+        "configuration": 8,
+        "spawn": 5,
+        "tool": 15
+      },
+      "bindings": {
+        "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway",
+        "binary_sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+        "build_id": "ba9751c82e73d4043b7651354f20936d070c2227",
+        "build_review": "ACCEPTED",
+        "client_binary_sha256": "ccf3ce2f7ac4ba116057f2c266e837e8dd5df020785430f6843557423ed6a24a",
+        "manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+        "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "pristine_scene": "/usr/lib/libscenefx-0.5.so",
+        "pristine_scene_sha256": "63586ffbe268c6830b5782d5327e8ca3624dbd9b9c9b0e93e591e94ca28a6e62",
+        "prospective": {
+          "build_review": "ACCEPTED",
+          "client": "fullscreen-client",
+          "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+          "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+          "client_build_review": "ACCEPTED",
+          "client_sha256": "ccf3ce2f7ac4ba116057f2c266e837e8dd5df020785430f6843557423ed6a24a",
+          "decision": "ACCEPTED",
+          "identity": "pristine",
+          "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+          "source_qualification": "ACCEPTED"
+        },
+        "publication": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json",
+        "publication_sha256": "3dbdfc66fa48e61ef8593ac9e85481baf9dab8fff30f480e8ad38b75cb1231a2",
+        "review": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+        "review_sha256": "1e0f95eea63e4178b413e5f62190bae28f91c1b68a6530d485e42a675010caf0",
+        "runtime_manifest_sha256": "cbfd1ac0d2453f3144d566efa227639f648840093179bfc70ad9f53fcf52cf3c",
+        "scope": "exact retained ELF/source provenance; conditional pre-run binding only",
+        "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+        "source_qualification": "ACCEPTED",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+      },
+      "capture_limit": 12,
+      "finished_ns": 327481893644422,
+      "id": "FS-P",
+      "outcome": {
+        "mechanical_rescue": false,
+        "processes": [
+          {
+            "exit": 0,
+            "name": "compositor",
+            "pid": 3491656
+          },
+          {
+            "exit": 0,
+            "name": "pointer",
+            "pid": 3491708
+          },
+          {
+            "exit": 0,
+            "name": "reference",
+            "pid": 3491722
+          },
+          {
+            "exit": 0,
+            "name": "filler0",
+            "pid": 3491772
+          },
+          {
+            "exit": 0,
+            "name": "owner",
+            "pid": 3491797
+          }
+        ],
+        "runner_failure": null,
+        "scientific_cleanup": true,
+        "status": "NOT_EXERCISED",
+        "terminal": {
+          "ipc_exit": 1,
+          "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+          "stdout": ""
+        }
+      },
+      "started_ns": 327475796122506,
+      "status": "COMPLETED",
+      "token": "e0ce392108fe4003ad35117f515135ee"
+    },
+    {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "actions": {
+        "camera": 1,
+        "capture": 16,
+        "chain": 1,
+        "click": 6,
+        "configuration": 18,
+        "grab": 2,
+        "move": 7,
+        "mutation": 4,
+        "spawn": 6,
+        "tool": 96
+      },
+      "bindings": {
+        "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic",
+        "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+        "build_id": "d5d304533f2c8db9d738365e9bd7f2c96779ef8d",
+        "build_review": "ACCEPTED",
+        "client_binary_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+        "manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+        "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "prospective": {
+          "build_review": "ACCEPTED",
+          "client": "nested-client",
+          "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+          "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+          "client_build_review": "ACCEPTED",
+          "client_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+          "decision": "ACCEPTED",
+          "identity": "core",
+          "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+          "source_qualification": "ACCEPTED"
+        },
+        "publication": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json",
+        "publication_sha256": "3dbdfc66fa48e61ef8593ac9e85481baf9dab8fff30f480e8ad38b75cb1231a2",
+        "review": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+        "review_sha256": "1e0f95eea63e4178b413e5f62190bae28f91c1b68a6530d485e42a675010caf0",
+        "runtime_manifest_sha256": "cbfd1ac0d2453f3144d566efa227639f648840093179bfc70ad9f53fcf52cf3c",
+        "scope": "exact retained ELF/source provenance; conditional pre-run binding only",
+        "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+        "source_qualification": "ACCEPTED",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+      },
+      "capture_limit": 16,
+      "finished_ns": 327550717540527,
+      "id": "DY-C",
+      "outcome": {
+        "mechanical_rescue": false,
+        "processes": [
+          {
+            "exit": 0,
+            "name": "compositor",
+            "pid": 3492726
+          },
+          {
+            "exit": 0,
+            "name": "pointer",
+            "pid": 3492769
+          },
+          {
+            "exit": 0,
+            "name": "reference",
+            "pid": 3492782
+          },
+          {
+            "exit": 0,
+            "name": "filler0",
+            "pid": 3492817
+          },
+          {
+            "exit": 0,
+            "name": "filler1",
+            "pid": 3492833
+          },
+          {
+            "exit": 0,
+            "name": "owner",
+            "pid": 3492898
+          }
+        ],
+        "runner_failure": null,
+        "scientific_cleanup": true,
+        "status": "PARTIALLY_FEASIBLE",
+        "terminal": {
+          "ipc_exit": 1,
+          "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+          "stdout": ""
+        }
+      },
+      "started_ns": 327514722064470,
+      "status": "COMPLETED",
+      "token": "375adfc1bcef41088ebcb381f44d9db0"
+    },
+    {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 1,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "actions": {
+        "camera": 1,
+        "capture": 8,
+        "chain": 1,
+        "click": 2,
+        "configuration": 10,
+        "grab": 1,
+        "hook": 1,
+        "move": 3,
+        "spawn": 5,
+        "tool": 49
+      },
+      "bindings": {
+        "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+        "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+        "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+        "build_review": "ACCEPTED",
+        "client_binary_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+        "manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+        "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "prospective": {
+          "build_review": "ACCEPTED",
+          "client": "nested-client",
+          "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+          "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+          "client_build_review": "ACCEPTED",
+          "client_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+          "decision": "ACCEPTED",
+          "identity": "oom",
+          "oom_source_review": "ACCEPTED",
+          "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+          "source_qualification": "ACCEPTED",
+          "variant_identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC"
+        },
+        "publication": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json",
+        "publication_sha256": "3dbdfc66fa48e61ef8593ac9e85481baf9dab8fff30f480e8ad38b75cb1231a2",
+        "review": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+        "review_sha256": "1e0f95eea63e4178b413e5f62190bae28f91c1b68a6530d485e42a675010caf0",
+        "runtime_manifest_sha256": "cbfd1ac0d2453f3144d566efa227639f648840093179bfc70ad9f53fcf52cf3c",
+        "scope": "exact retained ELF/source provenance; conditional pre-run binding only",
+        "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+        "source_qualification": "ACCEPTED",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+      },
+      "capture_limit": 10,
+      "finished_ns": 327602262992266,
+      "id": "OM-ROOT",
+      "outcome": {
+        "mechanical_rescue": false,
+        "processes": [
+          {
+            "exit": 0,
+            "name": "compositor",
+            "pid": 3494614
+          },
+          {
+            "exit": 0,
+            "name": "pointer",
+            "pid": 3494653
+          },
+          {
+            "exit": 0,
+            "name": "reference",
+            "pid": 3494681
+          },
+          {
+            "exit": 0,
+            "name": "filler0",
+            "pid": 3494717
+          },
+          {
+            "exit": 0,
+            "name": "owner",
+            "pid": 3494749
+          }
+        ],
+        "runner_failure": null,
+        "scientific_cleanup": true,
+        "status": "PARTIALLY_FEASIBLE",
+        "terminal": {
+          "ipc_exit": 1,
+          "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+          "stdout": ""
+        }
+      },
+      "started_ns": 327584501389229,
+      "status": "COMPLETED",
+      "token": "0a825259ea7740c5a7704f149dfa0649"
+    },
+    {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 1,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "actions": {
+        "camera": 1,
+        "capture": 8,
+        "chain": 1,
+        "click": 4,
+        "configuration": 10,
+        "grab": 2,
+        "hook": 1,
+        "move": 5,
+        "spawn": 5,
+        "tool": 54
+      },
+      "bindings": {
+        "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+        "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+        "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+        "build_review": "ACCEPTED",
+        "client_binary_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+        "manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+        "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "prospective": {
+          "build_review": "ACCEPTED",
+          "client": "nested-client",
+          "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+          "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+          "client_build_review": "ACCEPTED",
+          "client_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+          "decision": "ACCEPTED",
+          "identity": "oom",
+          "oom_source_review": "ACCEPTED",
+          "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+          "source_qualification": "ACCEPTED",
+          "variant_identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC"
+        },
+        "publication": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json",
+        "publication_sha256": "3dbdfc66fa48e61ef8593ac9e85481baf9dab8fff30f480e8ad38b75cb1231a2",
+        "review": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+        "review_sha256": "1e0f95eea63e4178b413e5f62190bae28f91c1b68a6530d485e42a675010caf0",
+        "runtime_manifest_sha256": "cbfd1ac0d2453f3144d566efa227639f648840093179bfc70ad9f53fcf52cf3c",
+        "scope": "exact retained ELF/source provenance; conditional pre-run binding only",
+        "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+        "source_qualification": "ACCEPTED",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+      },
+      "capture_limit": 10,
+      "finished_ns": 327723731507334,
+      "id": "OM-NESTED",
+      "outcome": {
+        "mechanical_rescue": false,
+        "processes": [
+          {
+            "exit": 0,
+            "name": "compositor",
+            "pid": 3497491
+          },
+          {
+            "exit": 0,
+            "name": "pointer",
+            "pid": 3497533
+          },
+          {
+            "exit": 0,
+            "name": "reference",
+            "pid": 3497545
+          },
+          {
+            "exit": 0,
+            "name": "filler0",
+            "pid": 3497579
+          },
+          {
+            "exit": 0,
+            "name": "owner",
+            "pid": 3497605
+          }
+        ],
+        "runner_failure": null,
+        "scientific_cleanup": true,
+        "status": "PARTIALLY_FEASIBLE",
+        "terminal": {
+          "ipc_exit": 1,
+          "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+          "stdout": ""
+        }
+      },
+      "started_ns": 327703322633743,
+      "status": "COMPLETED",
+      "token": "39b4767924344003ad80fb9b87da4e20"
+    },
+    {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 3,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "actions": {
+        "configuration": 2,
+        "spawn": 3,
+        "tool": 29
+      },
+      "bindings": {
+        "binary": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+        "binary_sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+        "build_id": "afdde13d52f3a5fe07c096c1221fcf0c8ae223fc",
+        "build_review": "ACCEPTED",
+        "client_binary_sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82",
+        "manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+        "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "prospective": {
+          "binding": {
+            "binary": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+            "client": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-client-guard/clients-g2",
+            "client_sha256": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+            "gate_file": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/g3-native-gate.json",
+            "reviewed_scene_sha256": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da",
+            "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7"
+          },
+          "build_review": "ACCEPTED",
+          "build_review_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/g3-build/receipt.json",
+          "build_review_receipt_sha256": "f0a2f8089977da0039afe2fcf9203f38dfc3752d373b3c76ad9b453f6a6b123e",
+          "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+          "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+          "client_build_review": "ACCEPTED",
+          "decision": "ACCEPTED",
+          "gate_file": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/g3-native-gate.json",
+          "gate_file_sha256": "46630653e1989c02bbfa0a7cc5b01bed8358cd23327efbbf23eec0f551302595",
+          "gl_observability_preflight": "ACCEPTED",
+          "gl_observability_preflight_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/g3-build/receipt.json",
+          "gl_observability_preflight_receipt_sha256": "f0a2f8089977da0039afe2fcf9203f38dfc3752d373b3c76ad9b453f6a6b123e",
+          "gpu_client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-client-build-normalized.json",
+          "gpu_client_build_receipt_sha256": "d1f5e51b463963b8c0804aaaa7a3216f8f4e439350ac8fee7ab405e0c9a3ad5b",
+          "gpu_source_manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/g3-source-freeze-v3.json",
+          "gpu_source_manifest_sha256": "03b3cdb4b665aeca860cf3e1363d4fbe5c2cbcb0372f3b4fe582e88488ccb5d2",
+          "gpu_source_review": "ACCEPTED",
+          "gpu_source_review_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/g3-build/receipt.json",
+          "gpu_source_review_receipt_sha256": "f0a2f8089977da0039afe2fcf9203f38dfc3752d373b3c76ad9b453f6a6b123e",
+          "native_gl_status": "NOT_RUN",
+          "reviewed_scene_sha256": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da"
+        },
+        "publication": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json",
+        "publication_sha256": "3dbdfc66fa48e61ef8593ac9e85481baf9dab8fff30f480e8ad38b75cb1231a2",
+        "review": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/gpu-admission.json",
+        "review_sha256": "b3109371c1fe54c545291742f91432d38f70e77fa54f93abae536a5ae29c03de",
+        "reviewed_scene_sha256": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da",
+        "runtime_manifest_sha256": "9bf1922a175853d9ba4a8a0186cf6e67d01511e91cdddb102740ed7c05131cb9",
+        "scene_archive": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-scene/libscenefx-0.5.a",
+        "scene_archive_sha256": "e8995f125c3eba6669aa3a8a44be1e075f6807e91055243e67731118303faec5",
+        "scope": "new distinct G3 intrusive diagnostic only; native GL and GPU runtime NOT_RUN",
+        "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+        "source_qualification": "ACCEPTED",
+        "wlroots": "/usr/lib/libwlroots-0.20.so",
+        "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+      },
+      "capture_limit": 12,
+      "finished_ns": 328206095687183,
+      "id": "GPU-G3",
+      "outcome": {
+        "mechanical_rescue": false,
+        "processes": [
+          {
+            "exit": 0,
+            "name": "compositor",
+            "pid": 3510983
+          },
+          {
+            "exit": 0,
+            "name": "pointer",
+            "pid": 3511036
+          },
+          {
+            "exit": 2,
+            "name": "g2-reference",
+            "pid": 3511049
+          }
+        ],
+        "runner_failure": "Ambiguous: bounded wait timeout",
+        "scientific_cleanup": false,
+        "status": "INCONCLUSIVE",
+        "terminal": {
+          "ipc_exit": 1,
+          "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+          "stdout": ""
+        }
+      },
+      "started_ns": 328198472228144,
+      "status": "COMPLETED",
+      "token": "f0083b48774a4d9e83b607a95be914aa"
+    }
+  ],
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "uid": 1000
+}

@@ -1,0 +1,944 @@
+{
+  "atomic_generation": "NOT_PROVEN",
+  "campaign_closed": true,
+  "complete_damage": "NOT_PROVEN",
+  "dynamic": {
+    "atomic_generation": "NOT PROVEN",
+    "complete_damage": "NOT OBSERVABLE",
+    "ids_before": {
+      "POPUP_A": [
+        12,
+        11,
+        14
+      ],
+      "POPUP_B": [
+        15,
+        13,
+        17
+      ],
+      "TOPLEVEL": [
+        3,
+        9,
+        10
+      ]
+    },
+    "stages": [
+      {
+        "geometry": {
+          "cell_width": 640,
+          "children": [
+            8,
+            9,
+            10
+          ],
+          "clamp": "PASS",
+          "content_width": 1920,
+          "expected_scroll": 800.0,
+          "focused": 10,
+          "gap": 0,
+          "geometry_status": "IPC_PENDING_CANDIDATE; native generation NOT_OBSERVABLE",
+          "max_scroll": 960,
+          "min_scroll": 0,
+          "minimum_width": 640,
+          "mutation": "resize",
+          "output": "HEADLESS-1",
+          "resize_candidate": 800.0,
+          "scroll": 800.0,
+          "viewport": [
+            -960,
+            0,
+            960,
+            600
+          ],
+          "workspace_id": 6
+        },
+        "input": {
+          "point": [
+            -273,
+            168
+          ],
+          "status": "PASS"
+        },
+        "pixels": {
+          "complete_damage": "NOT OBSERVABLE",
+          "exclusion": "PASS",
+          "whole_H2": "PASS"
+        },
+        "tag": "resized960"
+      },
+      {
+        "geometry": {
+          "cell_width": 640,
+          "children": [
+            8,
+            9,
+            10
+          ],
+          "clamp": "PASS",
+          "content_width": 1920,
+          "expected_scroll": 800.0,
+          "focused": 10,
+          "gap": 0,
+          "geometry_status": "IPC_PENDING_CANDIDATE; native generation NOT_OBSERVABLE",
+          "max_scroll": 1120,
+          "min_scroll": 0,
+          "minimum_width": 640,
+          "mutation": "resize",
+          "output": "HEADLESS-1",
+          "resize_candidate": 800.0,
+          "scroll": 800.0,
+          "viewport": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "workspace_id": 6
+        },
+        "input": {
+          "point": [
+            -113,
+            168
+          ],
+          "status": "PASS"
+        },
+        "pixels": {
+          "complete_damage": "NOT OBSERVABLE",
+          "exclusion": "PASS",
+          "whole_H2": "PASS"
+        },
+        "tag": "resized-back"
+      },
+      {
+        "geometry": {
+          "cell_width": 640,
+          "children": [
+            8,
+            9,
+            10
+          ],
+          "clamp": "PASS",
+          "content_width": 1920,
+          "expected_scroll": 1120,
+          "focused": 10,
+          "gap": 0,
+          "geometry_status": "IPC_PENDING_CANDIDATE; native generation NOT_OBSERVABLE",
+          "max_scroll": 1120,
+          "min_scroll": 0,
+          "minimum_width": 640,
+          "mutation": "migration",
+          "output": "HEADLESS-2",
+          "resize_candidate": 800.0,
+          "scroll": 1120.0,
+          "viewport": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "workspace_id": 6
+        },
+        "input": {
+          "point": [
+            366,
+            168
+          ],
+          "status": "PASS"
+        },
+        "pixels": {
+          "complete_damage": "NOT OBSERVABLE",
+          "exclusion": "PASS",
+          "whole_H2": "NOT_APPLICABLE: current owner workspace on H2"
+        },
+        "tag": "migrated-H2"
+      },
+      {
+        "geometry": {
+          "cell_width": 640,
+          "children": [
+            8,
+            9,
+            10
+          ],
+          "clamp": "PASS",
+          "content_width": 1920,
+          "expected_scroll": 1120.0,
+          "focused": 10,
+          "gap": 0,
+          "geometry_status": "IPC_PENDING_CANDIDATE; native generation NOT_OBSERVABLE",
+          "max_scroll": 1120,
+          "min_scroll": 0,
+          "minimum_width": 640,
+          "mutation": "migration",
+          "output": "HEADLESS-1",
+          "resize_candidate": 1120.0,
+          "scroll": 1120.0,
+          "viewport": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "workspace_id": 6
+        },
+        "input": {
+          "point": [
+            -434,
+            168
+          ],
+          "status": "PASS"
+        },
+        "pixels": {
+          "complete_damage": "NOT OBSERVABLE",
+          "exclusion": "PASS",
+          "whole_H2": "PASS"
+        },
+        "tag": "migrated-back-H1"
+      }
+    ],
+    "status": "PASS"
+  },
+  "dynamic_final": {
+    "H2": "EXACT",
+    "captured_after_close": true,
+    "status": "PARTIALLY_FEASIBLE"
+  },
+  "executed_source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "executed_source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "gpu_completion": "NOT_PROVEN",
+  "gpu_results_review_sha256": "78ce6fe03955d62d1b079b9a8e81161dcb5bfceef71bd2b71d13892bcf7e4d78",
+  "markers": {
+    "DYNAMIC_INPUT_AFTER_MIGRATION": "PARTIALLY_FEASIBLE",
+    "DYNAMIC_MIGRATION_APPLIED": "PARTIALLY_FEASIBLE",
+    "FULLSCREEN_COMPARABILITY": "NOT_EXERCISED",
+    "FULLSCREEN_COREC_V2_NEW": "NOT_RUN",
+    "FULLSCREEN_PRISTINE_NEW": "NOT_EXERCISED",
+    "GPU_G3_NATIVE_READBACK": "NOT_EXERCISED",
+    "GPU_GLES_ADMISSION": "NOT_EXERCISED",
+    "GPU_WHOLE_FIELD_CAUSALITY": "NOT_PROVEN",
+    "OOM_AVAILABILITY_POST_INJECTION": "PARTIALLY_FEASIBLE",
+    "OOM_NESTED_NATIVE": "PARTIALLY_FEASIBLE",
+    "OOM_ROOT_NATIVE": "PARTIALLY_FEASIBLE"
+  },
+  "native_buffer_identity": "NOT_PROVEN",
+  "nongpu_results_review_sha256": "a8a9ea6c9c1fab09687c1b43378d53d7add0eb421a9b2e626d60d59445578e86",
+  "oom_production_policy": "UNDECIDED",
+  "runs": {
+    "DY-C": {
+      "actions": {
+        "camera": 1,
+        "capture": 16,
+        "chain": 1,
+        "click": 6,
+        "configuration": 18,
+        "grab": 2,
+        "move": 7,
+        "mutation": 4,
+        "spawn": 6,
+        "tool": 96
+      },
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "build_id": "d5d304533f2c8db9d738365e9bd7f2c96779ef8d",
+      "capture_limit": 16,
+      "captures": 16,
+      "command": {
+        "argv": [
+          "/usr/bin/python",
+          "-B",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/graphics/run.py",
+          "DY-C",
+          "--lab",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+          "--manifest",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+          "--review",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+          "--publication",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json"
+        ],
+        "clone_receipt_sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282",
+        "duration_s": 36.504983439,
+        "exit": 0,
+        "runner_log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/execution/DY-C-runner.log",
+        "runner_log_sha256": "26c16abd57d4bedac94e99cb7ba29095e299912fe72d9eee9a618fd1bba697dd"
+      },
+      "grab_requests": [
+        {
+          "parent": "TOPLEVEL",
+          "popup": "POPUP_A",
+          "serial": 36,
+          "used": 36
+        },
+        {
+          "parent": "POPUP_A",
+          "popup": "POPUP_B",
+          "serial": 45,
+          "used": 45
+        }
+      ],
+      "ledger_duration_s": 35.995476057,
+      "mechanical_rescue": false,
+      "outcome_sha256": "13539848fa063c022115824df894be2d0c6c215720c66ce94b7aaa9d644736e4",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "pid": 3492726,
+      "proc_maps_sha256": "32caeb7496843bc8ad9431663e8121fcbcc8fb28f97006985bcb92e25cc9b39a",
+      "raw_process_exits": [
+        {
+          "exit": 0,
+          "name": "compositor",
+          "pid": 3492726
+        },
+        {
+          "exit": 0,
+          "name": "pointer",
+          "pid": 3492769
+        },
+        {
+          "exit": 0,
+          "name": "reference",
+          "pid": 3492782
+        },
+        {
+          "exit": 0,
+          "name": "filler0",
+          "pid": 3492817
+        },
+        {
+          "exit": 0,
+          "name": "filler1",
+          "pid": 3492833
+        },
+        {
+          "exit": 0,
+          "name": "owner",
+          "pid": 3492898
+        }
+      ],
+      "renderer": [
+        "00:00:00.099 [INFO] [wlr] [render/egl.c:374] EGL vendor: Mesa Project",
+        "00:00:00.107 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:473] Creating scenefx FX renderer",
+        "00:00:00.107 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:474] Using OpenGL ES 3.2 Mesa 26.2.4-arch1.1",
+        "00:00:00.107 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:475] GL vendor: AMD",
+        "00:00:00.107 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:476] GL renderer: AMD Radeon 780M Graphics (radeonsi, phoenix, ACO, DRM 3.64, 7.2.9-zen1-1-zen)"
+      ],
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "status": "PARTIALLY_FEASIBLE",
+      "terminal_ipc": {
+        "ipc_exit": 1,
+        "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+        "stdout": ""
+      }
+    },
+    "FS-C": {
+      "capture_limit": 16,
+      "captures": 0,
+      "grab_requests": [],
+      "reason": "qualified FS-P dependency not satisfied",
+      "status": "NOT_RUN"
+    },
+    "FS-P": {
+      "actions": {
+        "chain": 1,
+        "configuration": 8,
+        "spawn": 5,
+        "tool": 15
+      },
+      "binary_sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+      "build_id": "ba9751c82e73d4043b7651354f20936d070c2227",
+      "capture_limit": 12,
+      "captures": 0,
+      "command": {
+        "argv": [
+          "/usr/bin/python",
+          "-B",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/graphics/run.py",
+          "FS-P",
+          "--lab",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+          "--manifest",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+          "--review",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+          "--publication",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json"
+        ],
+        "clone_receipt_sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282",
+        "duration_s": 6.631161108,
+        "exit": 1,
+        "runner_log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/execution/FS-P-runner.log",
+        "runner_log_sha256": "4b384a7baa19535729b17ee4c05fb1c12cd0b332a7cf4f6ed91bfe545b6a2c6b"
+      },
+      "grab_requests": [],
+      "ledger_duration_s": 6.097521916,
+      "mechanical_rescue": false,
+      "outcome_sha256": "11b37750569c1fae4aa6a9c21e3f0166461bbdcfd9c8f46e90ef8ffede72b597",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "pid": 3491656,
+      "proc_maps_sha256": "235b69d003297c97782327dc5dd863148970ffffe8e1bad27e51595c5f1beb2f",
+      "raw_process_exits": [
+        {
+          "exit": 0,
+          "name": "compositor",
+          "pid": 3491656
+        },
+        {
+          "exit": 0,
+          "name": "pointer",
+          "pid": 3491708
+        },
+        {
+          "exit": 0,
+          "name": "reference",
+          "pid": 3491722
+        },
+        {
+          "exit": 0,
+          "name": "filler0",
+          "pid": 3491772
+        },
+        {
+          "exit": 0,
+          "name": "owner",
+          "pid": 3491797
+        }
+      ],
+      "renderer": [
+        "00:00:00.358 [INFO] [wlr] [render/egl.c:374] EGL vendor: Mesa Project",
+        "00:00:00.366 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:473] Creating scenefx FX renderer",
+        "00:00:00.366 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:474] Using OpenGL ES 3.2 Mesa 26.2.4-arch1.1",
+        "00:00:00.366 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:475] GL vendor: AMD",
+        "00:00:00.367 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:476] GL renderer: AMD Radeon 780M Graphics (radeonsi, phoenix, ACO, DRM 3.64, 7.2.9-zen1-1-zen)"
+      ],
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "status": "NOT_EXERCISED",
+      "terminal_ipc": {
+        "ipc_exit": 1,
+        "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+        "stdout": ""
+      }
+    },
+    "GPU-CTRL": {
+      "capture_limit": 12,
+      "captures": 0,
+      "grab_requests": [],
+      "reason": "cannot replace failed GPU-G3; no new attribution question or equivalent reviewed control",
+      "status": "NOT_RUN"
+    },
+    "GPU-G3": {
+      "H1_A_Areturn": "NOT_EXERCISED",
+      "H2_GPU_baseline": "NOT_EXERCISED",
+      "acquisition_entries": 0,
+      "actions": {
+        "configuration": 2,
+        "spawn": 3,
+        "tool": 29
+      },
+      "actual_gpu_client_binding_sha256": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+      "binary_sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+      "build_id": "afdde13d52f3a5fe07c096c1221fcf0c8ae223fc",
+      "capture_limit": 12,
+      "captures": 0,
+      "cause": "Frozen client refuses new TMPDIR due to hardcoded old LAB; no SHM attach after initial configure; exit2",
+      "command": {
+        "argv": [
+          "/usr/bin/python",
+          "-B",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/graphics/run.py",
+          "GPU-G3",
+          "--lab",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+          "--manifest",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+          "--review",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/gpu-admission.json",
+          "--publication",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json"
+        ],
+        "clone_receipt_sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282",
+        "duration_s": 8.184041837,
+        "exit": 1,
+        "runner_log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/execution/GPU-G3-runner.log",
+        "runner_log_sha256": "c0b113182d60f107a4d8aa90d3ff4f71bcd78403062ba6877a6f98abf06044c0"
+      },
+      "epochs": 0,
+      "grab_requests": [],
+      "hook_queries": "NOT_EXERCISED",
+      "ledger_duration_s": 7.623459039,
+      "mechanical_rescue": false,
+      "native_read_success": "NOT_OBSERVED",
+      "outcome_sha256": "df0fd1028dfe0e48bf20a74fafb964fd14f6f0f76fb46b82791a45b3269c44eb",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "pid": 3510983,
+      "proc_maps_sha256": "c2a1b48db5791ba6a2350f08f912a2e65c9d9ef1ab2445f1299dc4218166d55c",
+      "raw_files": 0,
+      "raw_process_exits": [
+        {
+          "exit": 0,
+          "name": "compositor",
+          "pid": 3510983
+        },
+        {
+          "exit": 0,
+          "name": "pointer",
+          "pid": 3511036
+        },
+        {
+          "exit": 2,
+          "name": "g2-reference",
+          "pid": 3511049
+        }
+      ],
+      "readback_bytes": 0,
+      "renderer": [
+        "00:00:00.544 [INFO] [wlr] [render/egl.c:374] EGL vendor: Mesa Project",
+        "00:00:00.556 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:473] Creating scenefx FX renderer",
+        "00:00:00.556 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:474] Using OpenGL ES 3.2 Mesa 26.2.4-arch1.1",
+        "00:00:00.556 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:475] GL vendor: AMD",
+        "00:00:00.556 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:476] GL renderer: AMD Radeon 780M Graphics (radeonsi, phoenix, ACO, DRM 3.64, 7.2.9-zen1-1-zen)"
+      ],
+      "runner_failure": "Ambiguous: bounded wait timeout",
+      "scientific_cleanup": false,
+      "status": "INCONCLUSIVE",
+      "terminal_ipc": {
+        "ipc_exit": 1,
+        "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+        "stdout": ""
+      }
+    },
+    "OM-EXTRA": {
+      "capture_limit": 12,
+      "captures": 0,
+      "grab_requests": [],
+      "reason": "no distinct reviewed discriminant; NOT_ADMITTED",
+      "status": "NOT_RUN"
+    },
+    "OM-NESTED": {
+      "H2": "EXACT",
+      "actions": {
+        "camera": 1,
+        "capture": 8,
+        "chain": 1,
+        "click": 4,
+        "configuration": 10,
+        "grab": 2,
+        "hook": 1,
+        "move": 5,
+        "spawn": 5,
+        "tool": 54
+      },
+      "availability_build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+      "availability_pid": 3497491,
+      "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+      "capture_limit": 10,
+      "captures": 8,
+      "command": {
+        "argv": [
+          "/usr/bin/python",
+          "-B",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/graphics/run.py",
+          "OM-NESTED",
+          "--lab",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+          "--manifest",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+          "--review",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+          "--publication",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json"
+        ],
+        "clone_receipt_sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282",
+        "duration_s": 20.966546947,
+        "exit": 0,
+        "runner_log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/execution/OM-NESTED-runner.log",
+        "runner_log_sha256": "26c16abd57d4bedac94e99cb7ba29095e299912fe72d9eee9a618fd1bba697dd"
+      },
+      "grab_requests": [
+        {
+          "parent": "TOPLEVEL",
+          "popup": "POPUP_A",
+          "serial": 27,
+          "used": 27
+        },
+        {
+          "parent": "POPUP_A",
+          "popup": "POPUP_B",
+          "serial": 36,
+          "used": 36
+        }
+      ],
+      "ledger_duration_s": 20.408873591,
+      "mechanical_rescue": false,
+      "native": {
+        "caller_result": {
+          "failures": "1",
+          "parent": "0x55a81812bc80",
+          "pid": "3497491",
+          "role": "nested_popup",
+          "successes": "1",
+          "tree": "(nil)",
+          "xdg": "0x55a818139b10",
+          "xdg_parent": "0x55a8180816e0"
+        },
+        "children": "1",
+        "children_scope": "existing parent children, not failed tree",
+        "failures": "1",
+        "initialized": "0",
+        "listeners": "0",
+        "matched": "1",
+        "nonce": "39b4767924344003ad80fb9b87da4e20",
+        "parent": "0x55a81812bc80",
+        "parent_children": "1",
+        "pid": "3497491",
+        "published": "0",
+        "role": "nested_popup",
+        "successes": "1",
+        "tree": "0x55a818143120",
+        "xdg": "0x55a818139b10",
+        "xdg_parent": "0x55a8180816e0"
+      },
+      "old_root_A_point": [
+        -215,
+        108
+      ],
+      "old_root_A_status": "PARTIALLY_FEASIBLE",
+      "outcome_sha256": "287ab59fb71a401df92b43f63976190913c1b4e313624863a2bd87195077294e",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "owner_disconnect": null,
+      "owner_raw_exit_before_cleanup": null,
+      "pid": 3497491,
+      "proc_maps_sha256": "200bf9a53737682c3a6bca834bc8d279052acff109bb28bc4a26f717d93c1eec",
+      "raw_process_exits": [
+        {
+          "exit": 0,
+          "name": "compositor",
+          "pid": 3497491
+        },
+        {
+          "exit": 0,
+          "name": "pointer",
+          "pid": 3497533
+        },
+        {
+          "exit": 0,
+          "name": "reference",
+          "pid": 3497545
+        },
+        {
+          "exit": 0,
+          "name": "filler0",
+          "pid": 3497579
+        },
+        {
+          "exit": 0,
+          "name": "owner",
+          "pid": 3497605
+        }
+      ],
+      "renderer": [
+        "00:00:00.103 [INFO] [wlr] [render/egl.c:374] EGL vendor: Mesa Project",
+        "00:00:00.111 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:473] Creating scenefx FX renderer",
+        "00:00:00.111 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:474] Using OpenGL ES 3.2 Mesa 26.2.4-arch1.1",
+        "00:00:00.111 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:475] GL vendor: AMD",
+        "00:00:00.111 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:476] GL renderer: AMD Radeon 780M Graphics (radeonsi, phoenix, ACO, DRM 3.64, 7.2.9-zen1-1-zen)"
+      ],
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "status": "PARTIALLY_FEASIBLE",
+      "terminal_ipc": {
+        "ipc_exit": 1,
+        "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+        "stdout": ""
+      }
+    },
+    "OM-ROOT": {
+      "H2": "EXACT",
+      "actions": {
+        "camera": 1,
+        "capture": 8,
+        "chain": 1,
+        "click": 2,
+        "configuration": 10,
+        "grab": 1,
+        "hook": 1,
+        "move": 3,
+        "spawn": 5,
+        "tool": 49
+      },
+      "availability_build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+      "availability_pid": 3494614,
+      "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+      "capture_limit": 10,
+      "captures": 8,
+      "command": {
+        "argv": [
+          "/usr/bin/python",
+          "-B",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/graphics/run.py",
+          "OM-ROOT",
+          "--lab",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+          "--manifest",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v2.json",
+          "--review",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/nongpu-admission.json",
+          "--publication",
+          "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/pre-run-publication.json"
+        ],
+        "clone_receipt_sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282",
+        "duration_s": 18.258187285,
+        "exit": 0,
+        "runner_log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/execution/OM-ROOT-runner.log",
+        "runner_log_sha256": "26c16abd57d4bedac94e99cb7ba29095e299912fe72d9eee9a618fd1bba697dd"
+      },
+      "grab_requests": [
+        {
+          "parent": "TOPLEVEL",
+          "popup": "POPUP_A",
+          "serial": 27,
+          "used": 27
+        }
+      ],
+      "ledger_duration_s": 17.761603037,
+      "mechanical_rescue": false,
+      "native": {
+        "caller_result": {
+          "failures": "1",
+          "parent": "0x564dbc49ec90",
+          "pid": "3494614",
+          "role": "root_popup",
+          "successes": "0",
+          "tree": "(nil)",
+          "xdg": "0x564dbd1ab920",
+          "xdg_parent": "0x564dbd196260"
+        },
+        "children": "0",
+        "children_scope": "existing parent children, not failed tree",
+        "failures": "1",
+        "initialized": "0",
+        "listeners": "0",
+        "matched": "1",
+        "nonce": "0a825259ea7740c5a7704f149dfa0649",
+        "parent": "0x564dbc49ec90",
+        "parent_children": "0",
+        "pid": "3494614",
+        "published": "0",
+        "role": "root_popup",
+        "successes": "0",
+        "tree": "0x564dbd18fc20",
+        "xdg": "0x564dbd1ab920",
+        "xdg_parent": "0x564dbd196260"
+      },
+      "old_root_A_point": null,
+      "old_root_A_status": "NOT_EXERCISED",
+      "outcome_sha256": "4308cbf00c96c2c93bd228f5544b5f812c2e12253c59bb52b301e7b73ecd5d7b",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "owner_disconnect": null,
+      "owner_raw_exit_before_cleanup": null,
+      "pid": 3494614,
+      "proc_maps_sha256": "c801b608dc3c035b98200e3248cf8953e08e05c7087b4821fc98aee2f9e7c5a0",
+      "raw_process_exits": [
+        {
+          "exit": 0,
+          "name": "compositor",
+          "pid": 3494614
+        },
+        {
+          "exit": 0,
+          "name": "pointer",
+          "pid": 3494653
+        },
+        {
+          "exit": 0,
+          "name": "reference",
+          "pid": 3494681
+        },
+        {
+          "exit": 0,
+          "name": "filler0",
+          "pid": 3494717
+        },
+        {
+          "exit": 0,
+          "name": "owner",
+          "pid": 3494749
+        }
+      ],
+      "renderer": [
+        "00:00:00.111 [INFO] [wlr] [render/egl.c:374] EGL vendor: Mesa Project",
+        "00:00:00.120 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:473] Creating scenefx FX renderer",
+        "00:00:00.120 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:474] Using OpenGL ES 3.2 Mesa 26.2.4-arch1.1",
+        "00:00:00.120 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:475] GL vendor: AMD",
+        "00:00:00.120 [INFO] [wlr] [render/fx_renderer/fx_renderer.c:476] GL renderer: AMD Radeon 780M Graphics (radeonsi, phoenix, ACO, DRM 3.64, 7.2.9-zen1-1-zen)"
+      ],
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "status": "PARTIALLY_FEASIBLE",
+      "terminal_ipc": {
+        "ipc_exit": 1,
+        "stderr": "00:00:00.003 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response\n",
+        "stdout": ""
+      }
+    }
+  },
+  "schema": "native-closure-runtime-summary-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

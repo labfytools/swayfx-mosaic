@@ -1,0 +1,20 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "reviewer": "codex-source-review-independent",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "status": "PASS",
+  "tests_run": 66,
+  "failures": 0,
+  "scope": "Adapter/admission66 tests already executed under final source; exact native source supports retained independent29FakeGL/4mutants plus12command source offline suite",
+  "execution_this_review": "NOT_RERUN; SHA equality and actual compiled source verified",
+  "adapter_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-delta/followup-offline-receipt.json",
+  "adapter_receipt_sha256": "f026a1fa3fe6f2a8471de4ee9693a70a807b3ed79cd52dd26f5651ed52f582b6",
+  "native_fakegl_cases": 29,
+  "native_mutants_rejected": 4,
+  "native_offline_commands": 12,
+  "initial_independent_receipt_sha256": "58ee0ef4535c0e5e47cc68cb2bc35e20b73563e47438b3dee718d24194c535cc",
+  "gpu_runtime": "NOT_RUN"
+}

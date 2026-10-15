@@ -1,0 +1,128 @@
+{
+  "binary_elf_audit": "NOT_RUN",
+  "build_pair_operation": "FAIL",
+  "clone_head": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "clone_receipt_sha256": "035f83e11bd1d3eed9e0ed2444750bb499aec4e4cfb501880514c72888c95282",
+  "clone_tests": {
+    "failures": 0,
+    "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/graphics-clone-tests.log",
+    "status": "PASS",
+    "tests_run": 66
+  },
+  "destdir_operation": "NOT_RESERVED",
+  "g3_destdir_reservation": "NOT_RUN",
+  "g3_stage": "NOT_RUN",
+  "legal_status": "LEGAL_NOT_APPROVED",
+  "license_notice_stage": "NOT_RUN",
+  "mosaic_setup_compile_test": "NOT_RUN",
+  "notes": "Arr\u00eat apr\u00e8s l\u2019unique \u00e9chec de meson setup SceneFX. Aucun retry, changement de flags, compile ou stage.",
+  "repo_source_mutations": false,
+  "runs_after_finalization": [
+    {
+      "id": "FS-P",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "DY-C",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "OM-ROOT",
+      "status": "RESERVED"
+    }
+  ],
+  "runs_before_finalization": [
+    {
+      "id": "FS-P",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "DY-C",
+      "status": "COMPLETED"
+    },
+    {
+      "id": "OM-ROOT",
+      "status": "RESERVED"
+    }
+  ],
+  "scene_compile": "NOT_RUN",
+  "scene_setup": {
+    "argv": [
+      "meson",
+      "setup",
+      "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-scene",
+      "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/g3-source",
+      "--prefix=/usr",
+      "--wrap-mode=nodownload",
+      "-Ddefault_library=static",
+      "-Dexamples=false",
+      "-Dc_args=-D_XOPEN_SOURCE=700,-DG3_ROOT=\"/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition\""
+    ],
+    "error": "g3-source/render/fx_renderer/meson.build:23:22: ERROR: Could not get define 'EGL_EGLEXT_VERSION'",
+    "meson_log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-scene/meson-logs/meson-log.txt",
+    "meson_log_sha256": "c65ea6823f9fca4558cc6a45c5ee989515d445524cdefd48590f6427df6204d3",
+    "returncode": 1,
+    "status": "FAIL",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3/scene-setup.stdout",
+    "stdout_sha256": "8504d3be38ff4de6e82bf9e8826e2e8520d4875150f3e4148bcc7e4896e3ecb4"
+  },
+  "source_changed": false,
+  "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "source_file_count": 49,
+  "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_modes": {
+    "README.md": "0o644",
+    "gpu/README.md": "0o644",
+    "gpu/clients-g2.c": "0o644",
+    "gpu/freeze.py": "0o644",
+    "gpu/g2_gl.h": "0o644",
+    "gpu/g2_native.h": "0o644",
+    "gpu/g3-admission.patch": "0o644",
+    "gpu/protocol.py": "0o644",
+    "gpu/protocols/wlr-layer-shell-unstable-v1.xml": "0o644",
+    "gpu/protocols/xdg-shell.xml": "0o644",
+    "gpu/reproduce.py": "0o644",
+    "gpu/scenario.py": "0o644",
+    "gpu/test-targeted.py": "0o644",
+    "gpu/test_begin.py": "0o644",
+    "gpu/test_gl.c": "0o644",
+    "gpu/test_mutations.py": "0o644",
+    "gpu/test_native.c": "0o644",
+    "gpu/test_protocol.py": "0o644",
+    "gpu/validate_source.py": "0o644",
+    "graphics/README.md": "0o644",
+    "graphics/cases.py": "0o644",
+    "graphics/clients/fullscreen-client.c": "0o644",
+    "graphics/clients/nested-client.c": "0o644",
+    "graphics/clients/pointer-daemon.c": "0o644",
+    "graphics/clients/saved-client.c": "0o644",
+    "graphics/clients/static-reference.c": "0o644",
+    "graphics/clients/vertical-client.c": "0o644",
+    "graphics/engine.py": "0o644",
+    "graphics/freeze.py": "0o644",
+    "graphics/fullscreen.py": "0o644",
+    "graphics/gate.py": "0o644",
+    "graphics/geometry.py": "0o644",
+    "graphics/gpu_handler.py": "0o644",
+    "graphics/ipc_predicates.py": "0o644",
+    "graphics/lifecycle.py": "0o644",
+    "graphics/model.py": "0o644",
+    "graphics/offline/test_followup.py": "0o644",
+    "graphics/oom.py": "0o644",
+    "graphics/oom_handler.py": "0o644",
+    "graphics/pixels.py": "0o644",
+    "graphics/plans.py": "0o644",
+    "graphics/predicates.py": "0o644",
+    "graphics/prepare.py": "0o644",
+    "graphics/protocols/wlr-virtual-pointer-unstable-v1.xml": "0o644",
+    "graphics/protocols/xdg-shell.xml": "0o644",
+    "graphics/run.py": "0o644",
+    "graphics/validate_offline.py": "0o644",
+    "graphics/validators.py": "0o644",
+    "graphics/wire-fixture.txt": "0o644"
+  },
+  "status": "FAIL",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

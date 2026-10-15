@@ -1,13 +1,18 @@
 # Documentation
 
-The [CORE-C V2 integration decision](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
-records the new Git-reconstructible experimental candidate, three private
-binary identities and the reconciled 14-cell matrix (12 runs, 102 captures).
-Disposition is PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE; OOM recommendation
-C_FURTHER_NATIVE_REVIEW, production availability UNDECIDED. C7/C8/O1/G2 remain
-INCONCLUSIVE, O2/R1 NOT_RUN. This later evidence does not rewrite the historical
-blocked provenance ticket. STEP20C remains NEXT; production multi-output
-NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
+The [CORE-C V2 follow-up decision V4](design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md)
+records PARTIALLY_ADVANCED private evidence: five consumed runs, 32 output
+captures, migration/refocus and root/nested OOM SAMPLED_ONLY / PARTIALLY_FEASIBLE.
+[Fullscreen comparison](design/STEP20C_COREC_V2_FULLSCREEN_COMPARATIVE_GATE.md)
+is NOT_EXERCISED, FS-C NOT_RUN; [GLES/readback G3](design/STEP20C_GLES_CONTEXT_READBACK_FOLLOWUP.md)
+is INCONCLUSIVE after a fixture client exit2 before SHM, with native acquisition
+NOT_EXERCISED. See the [migration report](design/STEP20C_COREC_V2_MIGRATION_REFOCUS_GATE.md)
+and [native OOM completion](design/STEP20C_COREC_V2_NATIVE_OOM_COMPLETION.md).
+Disposition PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE; production OOM policy
+UNDECIDED. Separate post-campaign fixture repairs are OFFLINE_ONLY; the
+[parent V2 dossier](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md), 12 runs/102
+captures and historical verdicts remain unchanged. STEP20C NEXT; production
+multi-output NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
 
 Documentation is a first-class project artifact. Architecture and UX contracts are updated before implementation when behavior changes.
 

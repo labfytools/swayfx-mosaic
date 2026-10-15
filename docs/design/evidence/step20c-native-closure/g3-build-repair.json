@@ -1,0 +1,266 @@
+{
+  "actual_compile_macro_commands": 23,
+  "commands": [
+    {
+      "argv": [
+        "cc",
+        "--version"
+      ],
+      "name": "compiler-version",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/compiler-version.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/compiler-version.stdout"
+    },
+    {
+      "argv": [
+        "cc",
+        "-D_XOPEN_SOURCE=700",
+        "-DG3_ROOT=\"/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition\"",
+        "-E",
+        "-P",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/macro-check.c"
+      ],
+      "name": "macro-preprocess",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/macro-preprocess.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/macro-preprocess.stdout"
+    },
+    {
+      "argv": [
+        "cc",
+        "-D_XOPEN_SOURCE=700",
+        "-DG3_ROOT=\"/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition\"",
+        "-fsyntax-only",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/macro-check.c"
+      ],
+      "name": "macro-syntax",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/macro-syntax.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/macro-syntax.stdout"
+    },
+    {
+      "argv": [
+        "meson",
+        "setup",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-scene",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/g3-source",
+        "--prefix=/usr",
+        "--wrap-mode=nodownload",
+        "-Ddefault_library=static",
+        "-Dexamples=false",
+        "-Dc_args=['-D_XOPEN_SOURCE=700', '-DG3_ROOT=\"/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition\"']"
+      ],
+      "name": "scene-setup",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/scene-setup.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/scene-setup.stdout"
+    },
+    {
+      "argv": [
+        "meson",
+        "compile",
+        "-C",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-scene",
+        "-j",
+        "8"
+      ],
+      "name": "scene-compile",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/scene-compile.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/scene-compile.stdout"
+    },
+    {
+      "argv": [
+        "meson",
+        "setup",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/replay-core/mosaic",
+        "--prefix=/usr",
+        "--bindir=bin",
+        "--wrap-mode=nodownload",
+        "-Dmosaic-package=true",
+        "-Dsd-bus-provider=libsystemd",
+        "-Dswaybar=false",
+        "-Dswaynag=false",
+        "-Dman-pages=disabled",
+        "-Ddefault-wallpaper=false",
+        "-Dc_args=-Wno-error=switch"
+      ],
+      "name": "mosaic-setup",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-setup.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-setup.stdout"
+    },
+    {
+      "argv": [
+        "meson",
+        "compile",
+        "-C",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic",
+        "-j",
+        "8"
+      ],
+      "name": "mosaic-compile",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-compile.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-compile.stdout"
+    },
+    {
+      "argv": [
+        "meson",
+        "test",
+        "-C",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic",
+        "--print-errorlogs",
+        "mosaic-model"
+      ],
+      "name": "mosaic-model",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-model.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-model.stdout"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-d",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "name": "elf-dynamic",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-dynamic.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-dynamic.stdout"
+    },
+    {
+      "argv": [
+        "ldd",
+        "-r",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "name": "elf-ldd",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-ldd.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-ldd.stdout"
+    },
+    {
+      "argv": [
+        "nm",
+        "-a",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "name": "elf-symbols",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-symbols.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-symbols.stdout"
+    },
+    {
+      "argv": [
+        "ninja",
+        "-C",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic",
+        "-t",
+        "commands"
+      ],
+      "name": "mosaic-ninja-commands",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-ninja-commands.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-ninja-commands.stdout"
+    },
+    {
+      "argv": [
+        "readelf",
+        "-n",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "name": "elf-buildid",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-buildid.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/elf-buildid.stdout"
+    },
+    {
+      "argv": [
+        "meson",
+        "install",
+        "-C",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic",
+        "--no-rebuild"
+      ],
+      "name": "mosaic-stage",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-stage.stderr",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/build-g3-repair/mosaic-stage.stdout"
+    }
+  ],
+  "identity": {
+    "archive": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-scene/libscenefx-0.5.a",
+    "archive_sha256": "e8995f125c3eba6669aa3a8a44be1e075f6807e91055243e67731118303faec5",
+    "binary": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+    "binary_sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+    "build_id": "afdde13d52f3a5fe07c096c1221fcf0c8ae223fc",
+    "dynamic_scenefx": false,
+    "rpath": false,
+    "runpath": false,
+    "source_mosaic_sha256": "70fb049bc28522783c9b6a76dc3d66e944a25dc5e6f5fa7f52d56665917b4125",
+    "source_scene_sha256": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da",
+    "unresolved": false,
+    "wlroots": "/usr/lib/libwlroots-0.20.so",
+    "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+  },
+  "legal_status": "LEGAL_NOT_APPROVED",
+  "license_sources": {
+    "SceneFX-LICENSE": {
+      "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/g3-source/LICENSE",
+      "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b"
+    },
+    "SwayFX-LICENSE": {
+      "path": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/replay-core/mosaic/LICENSE",
+      "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b"
+    },
+    "wlroots-LICENSE": {
+      "path": "/usr/share/licenses/wlroots0.20/LICENSE",
+      "sha256": "35d427c043dcafe8893b9e7247348f599847c81d9a067703587c80707f3d58df"
+    }
+  },
+  "macro_proof": {
+    "flags": [
+      "-D_XOPEN_SOURCE=700",
+      "-DG3_ROOT=\"/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition\""
+    ],
+    "root": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition",
+    "status": "PASS",
+    "xopen": 700
+  },
+  "original_receipt_sha256": "cba4f3380e88c9d2facfb468d26d1d8831b875fe2dea7722a36b118ca877d4ae",
+  "runtime": "NOT_RUN",
+  "source_changed": false,
+  "sources_after": {
+    "mosaic": "70fb049bc28522783c9b6a76dc3d66e944a25dc5e6f5fa7f52d56665917b4125",
+    "scene": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da"
+  },
+  "sources_before": {
+    "mosaic": "70fb049bc28522783c9b6a76dc3d66e944a25dc5e6f5fa7f52d56665917b4125",
+    "scene": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da"
+  },
+  "stage_manifest": {
+    "usr/bin/swayfx-mosaic": {
+      "mode": "0o755",
+      "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658"
+    },
+    "usr/share/licenses/swayfx-mosaic/INCORPORATED-NOTICES": {
+      "mode": "0o644",
+      "sha256": "a46f71dccc10aec01844fc59974e3094b2951365b191b8b3819ed93effcc3919"
+    },
+    "usr/share/licenses/swayfx-mosaic/SceneFX-LICENSE": {
+      "mode": "0o644",
+      "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b"
+    },
+    "usr/share/licenses/swayfx-mosaic/SwayFX-LICENSE": {
+      "mode": "0o644",
+      "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b"
+    },
+    "usr/share/licenses/swayfx-mosaic/wlroots-LICENSE": {
+      "mode": "0o644",
+      "sha256": "35d427c043dcafe8893b9e7247348f599847c81d9a067703587c80707f3d58df"
+    }
+  },
+  "status": "PASS"
+}

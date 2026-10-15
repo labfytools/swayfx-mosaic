@@ -1,0 +1,207 @@
+{
+  "client_execution": "NOT_RUN",
+  "generated_source_artifacts": [],
+  "git_checks": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "diff",
+        "--check"
+      ],
+      "name": "git-diff-check",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/git-diff-check.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/git-diff-check.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "name": "git-status",
+      "returncode": 0,
+      "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/git-status.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/git-status.stdout",
+      "stdout_sha256": "e24e148aea3e1c3a0b3fb8d27e6033f4b5b6ddeff78f1867df6df9f9320fc922"
+    }
+  ],
+  "gpu_v4_freeze_sha256": "230f131aae824dfafb938f38f77aad08d225ea2fa5496ee65a3b45f3062e8df1",
+  "headless_ipc": "NOT_RUN",
+  "historical_bindings": {
+    "gpu_v4_freeze_sha256": {
+      "path": "g3-source-freeze-v4-postcampaign.json",
+      "sha256": "230f131aae824dfafb938f38f77aad08d225ea2fa5496ee65a3b45f3062e8df1"
+    },
+    "historical_g3_binary_sha256": {
+      "path": "builds/g3-mosaic/sway/swayfx-mosaic",
+      "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658"
+    },
+    "ledger_sha256": {
+      "path": "native-closure-budget.json",
+      "sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c"
+    },
+    "new_offline_gpu_client_sha256": {
+      "path": "postcampaign-repair/client-build/clients-g2-offline-only",
+      "sha256": "bfc7d47596d5f69b68cd7000e257c7819949081ee7c6d66635eb9accf9ad7f36"
+    },
+    "old_gpu_client_sha256": {
+      "path": "gpu-client-guard/clients-g2",
+      "sha256": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4"
+    },
+    "postcampaign_repair_receipt_sha256": {
+      "path": "postcampaign-repair/receipt.json",
+      "sha256": "eae6bb85b21cbd6876e8340384314c21749040cadad89b313eae4b2d9bf7e7a4"
+    },
+    "source_manifest_v2_sha256": {
+      "path": "followup-work/source-manifest-v2.json",
+      "sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7"
+    }
+  },
+  "independent_review": "NOT_PROVEN",
+  "ledger": {
+    "capture_actions": 32,
+    "capture_limit": 110,
+    "mutated": false,
+    "runs": [
+      {
+        "id": "FS-P",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "DY-C",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "OM-ROOT",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "OM-NESTED",
+        "status": "COMPLETED"
+      },
+      {
+        "id": "GPU-G3",
+        "status": "COMPLETED"
+      }
+    ],
+    "runs_count": 5,
+    "sha256_before_after": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c"
+  },
+  "meson_build": "NOT_RUN",
+  "new_client_executed": false,
+  "new_client_sha256": "bfc7d47596d5f69b68cd7000e257c7819949081ee7c6d66635eb9accf9ad7f36",
+  "production_authorized": false,
+  "qualification": "offline tests do not qualify native runtime; fullscreen identity guard remains mandatory and fail-closed",
+  "runtime": "NOT_RUN",
+  "scope": "POSTCAMPAIGN_OFFLINE_ONLY",
+  "source_before_after_identical": true,
+  "source_digest": "96d02f7f90f46fcd4572850b826a894c02d0061f2014d1b2c257c43ed3577897",
+  "source_file_count": 50,
+  "source_manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/source-manifest-v3-postcampaign.json",
+  "source_manifest_sha256": "f13da7228c0c9f61cdefa23fa80f3dea3322cb8551edb62f459aa69a1ba7c20f",
+  "source_modes": {
+    "README.md": "0o644",
+    "gpu/README.md": "0o644",
+    "gpu/clients-g2.c": "0o644",
+    "gpu/freeze.py": "0o644",
+    "gpu/g2_gl.h": "0o644",
+    "gpu/g2_native.h": "0o644",
+    "gpu/g3-admission.patch": "0o644",
+    "gpu/protocol.py": "0o644",
+    "gpu/protocols/wlr-layer-shell-unstable-v1.xml": "0o644",
+    "gpu/protocols/xdg-shell.xml": "0o644",
+    "gpu/reproduce.py": "0o644",
+    "gpu/scenario.py": "0o644",
+    "gpu/test-targeted.py": "0o644",
+    "gpu/test_begin.py": "0o644",
+    "gpu/test_gl.c": "0o644",
+    "gpu/test_mutations.py": "0o644",
+    "gpu/test_native.c": "0o644",
+    "gpu/test_protocol.py": "0o644",
+    "gpu/test_tmpdir.py": "0o644",
+    "gpu/validate_source.py": "0o644",
+    "graphics/README.md": "0o644",
+    "graphics/cases.py": "0o644",
+    "graphics/clients/fullscreen-client.c": "0o644",
+    "graphics/clients/nested-client.c": "0o644",
+    "graphics/clients/pointer-daemon.c": "0o644",
+    "graphics/clients/saved-client.c": "0o644",
+    "graphics/clients/static-reference.c": "0o644",
+    "graphics/clients/vertical-client.c": "0o644",
+    "graphics/engine.py": "0o644",
+    "graphics/freeze.py": "0o644",
+    "graphics/fullscreen.py": "0o644",
+    "graphics/gate.py": "0o644",
+    "graphics/geometry.py": "0o644",
+    "graphics/gpu_handler.py": "0o644",
+    "graphics/ipc_predicates.py": "0o644",
+    "graphics/lifecycle.py": "0o644",
+    "graphics/model.py": "0o644",
+    "graphics/offline/test_followup.py": "0o644",
+    "graphics/oom.py": "0o644",
+    "graphics/oom_handler.py": "0o644",
+    "graphics/pixels.py": "0o644",
+    "graphics/plans.py": "0o644",
+    "graphics/predicates.py": "0o644",
+    "graphics/prepare.py": "0o644",
+    "graphics/protocols/wlr-virtual-pointer-unstable-v1.xml": "0o644",
+    "graphics/protocols/xdg-shell.xml": "0o644",
+    "graphics/run.py": "0o644",
+    "graphics/validate_offline.py": "0o644",
+    "graphics/validators.py": "0o644",
+    "graphics/wire-fixture.txt": "0o644"
+  },
+  "stage": "NOT_RUN",
+  "status": "PASS",
+  "tests": {
+    "commands": [
+      {
+        "argv": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/graphics/offline",
+          "-p",
+          "test_followup.py",
+          "-v"
+        ],
+        "name": "graphics-offline",
+        "returncode": 0,
+        "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/graphics-offline.stderr",
+        "stderr_sha256": "faea7a2f98c2c64681ea3d21bfd3afedde778525d7c1d3182c876513d4411d61",
+        "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/graphics-offline.stdout",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "argv": [
+          "python3",
+          "-B",
+          "/home/fy59/Documents/Development/swayfx-mosaic/tooling/probes/step20c-corec-v2-followup/gpu/test_tmpdir.py"
+        ],
+        "name": "gpu-tmpdir-c17",
+        "returncode": 0,
+        "stderr": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/gpu-tmpdir-c17.stderr",
+        "stderr_sha256": "e45ba36d4cce054829f9b600b5473216b610891c4ad62da430316c662aaad084",
+        "stdout": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/tester-postcampaign/gpu-tmpdir-c17.stdout",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "failures": 0,
+    "gpu_tmpdir_c17": 4,
+    "graphics_offline": 69,
+    "tests_run": 73
+  },
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

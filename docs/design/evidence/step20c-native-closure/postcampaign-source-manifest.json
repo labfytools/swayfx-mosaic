@@ -1,0 +1,575 @@
+{
+  "author": "codex-postcampaign-offline-repair",
+  "files": {
+    "README.md": "fce1ac7d7a430d94654270b88775b8720f8c5caf998f2320dd9e55c48c486b7f",
+    "gpu/README.md": "a569fad78ed04658aed422c6acac529e17cdb8c7179042561acaaf244d531981",
+    "gpu/clients-g2.c": "633bb3bea0eefc40bc87647edb3d550bceefef9b319b302e893ebd225e79addf",
+    "gpu/freeze.py": "1e823aa00aface9416ac687116f51867824973cca5da1ce1b5e1077d7b6d65b8",
+    "gpu/g2_gl.h": "f7862768293f290044feb013e6c25422ace76ec670813537e96b71f373af5969",
+    "gpu/g2_native.h": "0ed910ab4285c0db848b715867b0c98241a77f81d7afe0739583bf834fc40263",
+    "gpu/g3-admission.patch": "0d0717b006d88ade5503431f8e0d20bb1d0416eb745ae37a00a5c9bb1a20e81b",
+    "gpu/protocol.py": "3b664f1400394980913870cc3de5e0c1e70b7f14a96bee259a21fff954816394",
+    "gpu/protocols/wlr-layer-shell-unstable-v1.xml": "996b8c66e1c2276c443336d4cb174634e8e5948823779042f244930525b79cc2",
+    "gpu/protocols/xdg-shell.xml": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+    "gpu/reproduce.py": "169701e803ef0f5cfc1e0e66483a465c5390f841702a905b3f07e381a0d1a4c1",
+    "gpu/scenario.py": "d844c85d08866bfd07d6324d4f089b87f825ea83234132b2258b0fca4eae2672",
+    "gpu/test-targeted.py": "09401232887a741cb65ab98ebd44da3786495265410a390cadce7e174d014ce4",
+    "gpu/test_begin.py": "8e9addbfee3491170dec3303024ddd901aa3d4ead6b25bbafe32424890891f5f",
+    "gpu/test_gl.c": "7ed342e2119e31a873a90b011466a17bbf08e1c4416397c65c80554636a6483d",
+    "gpu/test_mutations.py": "b29058af2be2d13a5378bd93aebb2066247a7e5b5434f7c40f73bac463d1cfd3",
+    "gpu/test_native.c": "53aa4635095b91164140bd0272803c1335b235a42a688da2680fe654c0f2b82a",
+    "gpu/test_protocol.py": "0ed67c714971b35750c510458ca4d6f358a4d29ad354bfd2aeb6446e7cd19421",
+    "gpu/test_tmpdir.py": "6326f087c3f03f33b5c525bbd82381b94b13d4cbcfad5347bcf25d79c02cdc6d",
+    "gpu/validate_source.py": "00ab0e5822be31dc0cbc9c32656ccad56fb4afc28155a421339616f3a5ce1dc0",
+    "graphics/README.md": "304c6dc3feaf7d48d7e1bddd0cae427bea8a75fe93a5c027f2defd45c2e9382a",
+    "graphics/cases.py": "1c5bc411a4fb0572955bdefa5fb67032c682a72788bb92d6d9a390cb7055bcc4",
+    "graphics/clients/fullscreen-client.c": "f71a818ec850bc54bd154f14f5bb300387c3d7340a2f19704f93e49dfbbca2bc",
+    "graphics/clients/nested-client.c": "88f6ad3f6a2843ac13e2ea9a1fe5407e47d23694197408a096046b9ada9bb5cd",
+    "graphics/clients/pointer-daemon.c": "a03188a445c4ecef09f420d000315ce71ca70e5c3fd4a2ba8cc60110c32635c3",
+    "graphics/clients/saved-client.c": "2858fed56cc5384ba325affddbcf35e011cca700015868d42c53ff8ec4ba0867",
+    "graphics/clients/static-reference.c": "e346a85ded3345b232cd6edca5a1ac57aebfd548a60e12b3c47a5cf515e6c50e",
+    "graphics/clients/vertical-client.c": "52e050929a21bd5df0aac21a1156f033bca94e3f90950ef5bcfc3d37daa840e5",
+    "graphics/engine.py": "defb24b3ffb1973aefeda1928a59455bf3f8586b4bee209d118f9db8e17d8479",
+    "graphics/freeze.py": "d41cf96717341a64c258d418043a5da5fdb35baa244231c5b0fca2199c8e60ca",
+    "graphics/fullscreen.py": "601388834f049c2baa0d4fee993437b0fe5b024abc6d07ea3bda27e3199b9953",
+    "graphics/gate.py": "33d2f61d3d75300774185c15c4426fafdbad803bf247718c640649643875b8ee",
+    "graphics/geometry.py": "76a80e98887d3a3707ee942b48a49c1850cdc4aeeb28237d9fea33fa3470fb12",
+    "graphics/gpu_handler.py": "9f8a1cb7bbb0dccea7d84f96bdd2ccdab9937030958c22ca1b996f99e0ab676c",
+    "graphics/ipc_predicates.py": "5354ba53e1b3f8d0026f4475beebee58d093a81db7d26304cad7085ae3efd352",
+    "graphics/lifecycle.py": "df0c11027b3b8b0ef371ddb6ec4bcfd28dac09835644d0c3ce6e273d5e565e92",
+    "graphics/model.py": "a578fc589fb092dae3ccdcf8c4eec12a97e515f721decc4c968078dedcb2367a",
+    "graphics/offline/test_followup.py": "7d3fdd228651960b044f82d863eebede181da791e3f7ceab7a2194d7d3cee10f",
+    "graphics/oom.py": "bf4a07f0337be34c548a0f1752782b36b684bdf4e249f9f7bf757b4fb47c7607",
+    "graphics/oom_handler.py": "37c5852ad8e5a084b58ad1a5ae842445096eb104f59059b493687792f3e68d6a",
+    "graphics/pixels.py": "d315ddad978238ffbf1c8e4d712d4608ba23564703332d814f627f57f7b6e7f5",
+    "graphics/plans.py": "5fe84f4024aa0a8fa0d17a86343cd15d96131d30df3610094b86cfa0d045374c",
+    "graphics/predicates.py": "abe0c4c5b3b6d533d2714e13d317d68cd02e1f1c6180d2972ff94d00c9069cd1",
+    "graphics/prepare.py": "bf17e0019f5fa56b4c4c3b86d9a92ef1a6d1526fda64741cc2b5b62fc4a7f4a8",
+    "graphics/protocols/wlr-virtual-pointer-unstable-v1.xml": "3ff6d540be0bc5228195bf072bde42117ea17945a5c2061add5d3cf97d6bb524",
+    "graphics/protocols/xdg-shell.xml": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+    "graphics/run.py": "27891c4e499457bfedceed623679addddb15e722259d976716e268800c72fb8f",
+    "graphics/validate_offline.py": "15e231eae78e38b38fa0edbec73b2f27440191f7c581f7eb9e4e413113473b1e",
+    "graphics/validators.py": "a7a19322bfeff1c1122e50f351aebfa46f4b144eb5b795c4389eae5c934e4b1d",
+    "graphics/wire-fixture.txt": "c6c9fc072f78fbcf9cfdeebcc5becdbdfb61824352495a0e767d7d390267f640"
+  },
+  "independent_review": "NOT_PROVEN",
+  "limits": {
+    "captures": 110,
+    "captures_per_run": 18,
+    "duration_s": 150,
+    "runs": 8
+  },
+  "modes": {
+    "README.md": "0o644",
+    "gpu/README.md": "0o644",
+    "gpu/clients-g2.c": "0o644",
+    "gpu/freeze.py": "0o644",
+    "gpu/g2_gl.h": "0o644",
+    "gpu/g2_native.h": "0o644",
+    "gpu/g3-admission.patch": "0o644",
+    "gpu/protocol.py": "0o644",
+    "gpu/protocols/wlr-layer-shell-unstable-v1.xml": "0o644",
+    "gpu/protocols/xdg-shell.xml": "0o644",
+    "gpu/reproduce.py": "0o644",
+    "gpu/scenario.py": "0o644",
+    "gpu/test-targeted.py": "0o644",
+    "gpu/test_begin.py": "0o644",
+    "gpu/test_gl.c": "0o644",
+    "gpu/test_mutations.py": "0o644",
+    "gpu/test_native.c": "0o644",
+    "gpu/test_protocol.py": "0o644",
+    "gpu/test_tmpdir.py": "0o644",
+    "gpu/validate_source.py": "0o644",
+    "graphics/README.md": "0o644",
+    "graphics/cases.py": "0o644",
+    "graphics/clients/fullscreen-client.c": "0o644",
+    "graphics/clients/nested-client.c": "0o644",
+    "graphics/clients/pointer-daemon.c": "0o644",
+    "graphics/clients/saved-client.c": "0o644",
+    "graphics/clients/static-reference.c": "0o644",
+    "graphics/clients/vertical-client.c": "0o644",
+    "graphics/engine.py": "0o644",
+    "graphics/freeze.py": "0o644",
+    "graphics/fullscreen.py": "0o644",
+    "graphics/gate.py": "0o644",
+    "graphics/geometry.py": "0o644",
+    "graphics/gpu_handler.py": "0o644",
+    "graphics/ipc_predicates.py": "0o644",
+    "graphics/lifecycle.py": "0o644",
+    "graphics/model.py": "0o644",
+    "graphics/offline/test_followup.py": "0o644",
+    "graphics/oom.py": "0o644",
+    "graphics/oom_handler.py": "0o644",
+    "graphics/pixels.py": "0o644",
+    "graphics/plans.py": "0o644",
+    "graphics/predicates.py": "0o644",
+    "graphics/prepare.py": "0o644",
+    "graphics/protocols/wlr-virtual-pointer-unstable-v1.xml": "0o644",
+    "graphics/protocols/xdg-shell.xml": "0o644",
+    "graphics/run.py": "0o644",
+    "graphics/validate_offline.py": "0o644",
+    "graphics/validators.py": "0o644",
+    "graphics/wire-fixture.txt": "0o644"
+  },
+  "plans": {
+    "DY-C": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "INDEPENDENT_REVIEW_REQUIRED",
+      "axis": 0,
+      "binary": "core",
+      "boundary": 0,
+      "capture_limit": 16,
+      "client": "nested-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "DY-C",
+      "mode": "mosaic",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "static_cross"
+    },
+    "FS-C": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "INDEPENDENT_REVIEW_REQUIRED",
+      "axis": 0,
+      "binary": "core",
+      "boundary": 0,
+      "capture_limit": 16,
+      "client": "fullscreen-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "FS-C",
+      "mode": "mosaic",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "fullscreen_cross"
+    },
+    "FS-P": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "INDEPENDENT_REVIEW_REQUIRED",
+      "axis": 0,
+      "binary": "pristine",
+      "boundary": 0,
+      "capture_limit": 12,
+      "client": "fullscreen-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "FS-P",
+      "mode": "pristine",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "fullscreen_cross"
+    },
+    "GPU-CTRL": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 3,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "NOT_ADMITTED",
+      "axis": 0,
+      "binary": "gpu",
+      "boundary": 0,
+      "capture_limit": 12,
+      "client": "nested-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "GPU-CTRL",
+      "mode": "mosaic",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "static_cross",
+      "reason": "B4 and separately reviewed GPU adapter required"
+    },
+    "GPU-G3": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 3,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "NOT_ADMITTED",
+      "axis": 0,
+      "binary": "gpu",
+      "boundary": 0,
+      "capture_limit": 12,
+      "client": "nested-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "GPU-G3",
+      "mode": "mosaic",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "static_cross",
+      "reason": "B4 and separately reviewed GPU adapter required"
+    },
+    "OM-EXTRA": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 1,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "NOT_ADMITTED",
+      "axis": 0,
+      "binary": "oom",
+      "boundary": 0,
+      "capture_limit": 12,
+      "client": "nested-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "OM-EXTRA",
+      "mode": "mosaic",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "static_cross",
+      "reason": "Distinct question, handler and additional independent review required"
+    },
+    "OM-NESTED": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 1,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "INDEPENDENT_REVIEW_REQUIRED",
+      "axis": 0,
+      "binary": "oom",
+      "boundary": 0,
+      "capture_limit": 10,
+      "client": "nested-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "OM-NESTED",
+      "mode": "mosaic",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "static_cross"
+    },
+    "OM-ROOT": {
+      "action_limits": {
+        "camera": 6,
+        "chain": 2,
+        "click": 12,
+        "configuration": 80,
+        "grab": 4,
+        "hook": 1,
+        "move": 24,
+        "mutation": 26,
+        "source_marker": 1,
+        "spawn": 12,
+        "tool": 160
+      },
+      "admission": "INDEPENDENT_REVIEW_REQUIRED",
+      "axis": 0,
+      "binary": "oom",
+      "boundary": 0,
+      "capture_limit": 10,
+      "client": "nested-client",
+      "config": "output HEADLESS-1 resolution 800x600 scale 1 transform normal position -800 0\noutput HEADLESS-2 resolution 800x600 scale 1 transform normal position 0 0\nworkspace 1 output HEADLESS-1\nworkspace 2 output HEADLESS-2\nfocus_follows_mouse no\nseat seat0 hide_cursor 100\nshadows disable\nblur disable\n",
+      "id": "OM-ROOT",
+      "mode": "mosaic",
+      "outputs": [
+        {
+          "logical": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-1",
+          "scale": 1,
+          "transform": "normal"
+        },
+        {
+          "logical": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "mode": [
+            800,
+            600
+          ],
+          "name": "HEADLESS-2",
+          "scale": 1,
+          "transform": "normal"
+        }
+      ],
+      "placement": "static_cross"
+    }
+  },
+  "runtime": "NOT_RUN",
+  "schema": "native-closure-source-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

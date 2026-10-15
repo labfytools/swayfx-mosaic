@@ -1,0 +1,423 @@
+{
+  "clients": {
+    "fullscreen-client": {
+      "mode": "0o755",
+      "sha256": "ccf3ce2f7ac4ba116057f2c266e837e8dd5df020785430f6843557423ed6a24a"
+    },
+    "nested-client": {
+      "mode": "0o755",
+      "sha256": "3e58515cee4efc55c05f8ca8ac943209532f314b4dcf0c07299607d25ffa9e82"
+    },
+    "pointer-daemon": {
+      "mode": "0o755",
+      "sha256": "3188215af9ee0e2c79e1a5efc1b023ee8be47d0cade28f7c1ebe56ff140ae7db"
+    },
+    "saved-client": {
+      "mode": "0o755",
+      "sha256": "10d766c660b0ed35cd5e002d594fc776ebc4754c6b596cf61dd53facaa29d875"
+    },
+    "static-reference": {
+      "mode": "0o755",
+      "sha256": "3eebddbc3989ce0d9d2987382c8232a9cc6444cdfb29a5ca3a09e37251f6443c"
+    },
+    "vertical-client": {
+      "mode": "0o755",
+      "sha256": "49f4999aafc800192c50d5d1439ba5dd80c22a1e994dee591d9a780e018f0383"
+    }
+  },
+  "clone_clean": true,
+  "commands": [
+    {
+      "argv": [
+        "cc",
+        "--version"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-00.log",
+      "log_sha256": "52fa390d1b33ef5e0b20f39de6624190ade494b52dd543bd8121f350ec88e0e5",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "--version"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-01.log",
+      "log_sha256": "7781d4bdaabd8c59b362476a40f44a32c136372c265defc11595f5f347797e1d",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "pkg-config",
+        "--version"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-02.log",
+      "log_sha256": "7bb9bbd2e2162e7c4db854f8740421fd7f8e6a2113a09dc1ef4711aec644536a",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "pkg-config",
+        "--cflags",
+        "--libs",
+        "wayland-client"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-03.log",
+      "log_sha256": "daeb877303c6117ce9622ed510740569c724d685d27e3401d358afb0ab932236",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "client-header",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/protocols/xdg-shell.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/xdg-shell-client.h"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-04.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "private-code",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/protocols/xdg-shell.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/xdg-shell-protocol.c"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-05.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "client-header",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/protocols/wlr-virtual-pointer-unstable-v1.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/virtual-pointer-client.h"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-06.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "private-code",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/protocols/wlr-virtual-pointer-unstable-v1.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/virtual-pointer-protocol.c"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-07.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/clients/fullscreen-client.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/xdg-shell-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/fullscreen-client",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-08.log",
+      "log_sha256": "00ff2f84ac3a7591528700a862eb951b7d1f6c2ce89c0f61a5c5758180f6a904",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/clients/nested-client.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/xdg-shell-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/nested-client",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-09.log",
+      "log_sha256": "acf128becf44469df920dd8d820b110c9a0672085f62a0efd1019a51e41fad63",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/clients/vertical-client.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/xdg-shell-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/vertical-client",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-10.log",
+      "log_sha256": "6240d00c893497ecd72c7eae9153ded3d7493ac5ef72f4aa2c850b5798efb800",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/clients/saved-client.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/xdg-shell-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/saved-client",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-11.log",
+      "log_sha256": "f0e47bff26bcdf6726ada4dc0aa3b2a32ec7a7f35131cef0cfe02b0985e0b286",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/clients/static-reference.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/xdg-shell-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/static-reference",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-12.log",
+      "log_sha256": "cfc61da356155edf0c44b257f80f724324a465bbf20e54dfe92c055e9ef9ba6c",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/clients/pointer-daemon.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/virtual-pointer-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/client-build/pointer-daemon",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-13.log",
+      "log_sha256": "b324274d7a22b156a98faf45514a8985f826cb52107f553b267b0d1a499a44aa",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "client-header",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/protocols/xdg-shell.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/xdg-shell-client.h"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-14.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "private-code",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/protocols/xdg-shell.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/xdg-shell-protocol.c"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-15.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "client-header",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/protocols/wlr-layer-shell-unstable-v1.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/wlr-layer-shell-unstable-v1-client.h"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-16.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "private-code",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/protocols/wlr-layer-shell-unstable-v1.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/wlr-layer-shell-unstable-v1-protocol.c"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-17.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "pkg-config",
+        "--cflags",
+        "--libs",
+        "wayland-client"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-18.log",
+      "log_sha256": "daeb877303c6117ce9622ed510740569c724d685d27e3401d358afb0ab932236",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/clients-g2.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/xdg-shell-protocol.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/wlr-layer-shell-unstable-v1-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/clients-g2",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "failure": "fatal error: layer-shell-client.h: No such file or directory",
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/command-19.log",
+      "log_sha256": "2f339fe1a8f78a2670936ab271300f6e613a0537b3cf94067fff0a89c1face8b",
+      "rc": 1,
+      "resolution": "generated required header layer-shell-client.h, then compilation passed"
+    },
+    {
+      "argv": [
+        "wayland-scanner",
+        "client-header",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/protocols/wlr-layer-shell-unstable-v1.xml",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/layer-shell-client.h"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/followup-00.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "pkg-config",
+        "--cflags",
+        "--libs",
+        "wayland-client"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/followup-01.log",
+      "log_sha256": "daeb877303c6117ce9622ed510740569c724d685d27e3401d358afb0ab932236",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-I",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/clients-g2.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/xdg-shell-protocol.c",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/wlr-layer-shell-unstable-v1-protocol.c",
+        "-o",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/gpu-client-build/clients-g2",
+        "-lwayland-client",
+        "-lm"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/followup-02.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rc": 0
+    },
+    {
+      "argv": [
+        "/usr/bin/python",
+        "-B",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/gpu/reproduce.py",
+        "--lab",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39",
+        "--core",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/replay-core/scene",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/g3-scene"
+      ],
+      "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/g3-reproduce.log",
+      "log_sha256": "af3d75d1ad42e47bf960fcf57bd58818af9f5cf80b097c948adbeb3f78722fa1",
+      "rc": 0
+    }
+  ],
+  "compositor_or_wayland_client_execution": "NOT_RUN",
+  "g3_reproduction": {
+    "exact_tree_match_lab_g3_source": true,
+    "files": 87,
+    "source_receipt_sha256": "af3d75d1ad42e47bf960fcf57bd58818af9f5cf80b097c948adbeb3f78722fa1",
+    "status": "PASS"
+  },
+  "gpu_client": {
+    "mode": "0o755",
+    "sha256": "b764164b936c4046b0d61b3614b12c9d9c77ee623eefc51b8f437168d6901f48"
+  },
+  "graphics_tests": {
+    "argv": [
+      "/usr/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-c/tooling/probes/step20c-corec-v2-followup/graphics/offline",
+      "-p",
+      "test_followup.py",
+      "-v"
+    ],
+    "failures": 0,
+    "log": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/clone-validation/graphics-clone-tests.log",
+    "log_sha256": "d7d70b9d2b53121d5b3deea5c90274a7820eb33b7794cb07a071d1a422875692",
+    "rc": 0,
+    "tests_run": 66
+  },
+  "origin_url": "ssh://git@git.labfytools.com:2223/fy59/swayfx-mosaic.git",
+  "parent_commit": "d46f854b3026e911659528fe94792aa13837a1d6",
+  "parent_kit_files": 116,
+  "parent_kit_match_retained_extraction": true,
+  "publication_receipt_sha256": "3dbdfc66fa48e61ef8593ac9e85481baf9dab8fff30f480e8ad38b75cb1231a2",
+  "publication_refs": {
+    "github": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+    "origin": "c55373eab3c53132bf1157acc9cfc9edd451156e"
+  },
+  "review_receipt_sha256": "895dfc1870b70c49039c773cbc6012b742514f30da508a2997c352d9ea12f781",
+  "runtime": "NOT_RUN",
+  "schema": "followup-clone-gate-v1",
+  "source_bytes_modes_match": true,
+  "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "source_files": 49,
+  "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "status": "PASS",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1"
+}

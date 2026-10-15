@@ -1,0 +1,43 @@
+{
+  "schema": "independent-postcampaign-offline-delta-review-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "reviewer": "codex-source-review-independent",
+  "author": "codex-postcampaign-offline-repair",
+  "independent": true,
+  "decision": "CORRECTION_REQUIRED",
+  "manifest_sha256": "f13da7228c0c9f61cdefa23fa80f3dea3322cb8551edb62f459aa69a1ba7c20f",
+  "source_digest": "96d02f7f90f46fcd4572850b826a894c02d0061f2014d1b2c257c43ed3577897",
+  "source_files": 50,
+  "source_modes": "all0644",
+  "implementation": "ACCEPTED OFFLINE_ONLY",
+  "tests_run": 73,
+  "failures": 0,
+  "skipped": 0,
+  "tests_log_sha256": "87c65b39ada324e916898340d1db474eaea7b42e88aaef6b3e571b55b75e02c8",
+  "findings": [
+    {
+      "id": "POST-DOC-1",
+      "severity": "P2",
+      "file": "gpu/README.md",
+      "symbol": "Source reconstruction and offline commands",
+      "line": 103,
+      "exact_requirement": "Parent bounded review explicitly requires README commands usable with SMX_LAB/TMPDIR and seven private temp/cache variables; new helper must be replayable from source kit",
+      "evidence": "New test_tmpdir.py reads os.environ[SMX_LAB], while README env-i example sets the seven temp/cache variables but no SMX_LAB; documented test-targeted.py does not invoke test_tmpdir.py and no README command names the new test. Following documented checks does not exercise the new repair; directly adding its command to the shown env fails missing SMX_LAB.",
+      "smallest_correction": "Add a bounded OFFLINE_ONLY command block exporting SMX_LAB=$LAB and all seven temp/cache vars, then python -B test_tmpdir.py (and graphics identity tests as appropriate). State exact extracted C-helper scope and no client/Wayland runtime, budget closed. No source implementation change needed."
+    }
+  ],
+  "gpu_freeze_sha256": "230f131aae824dfafb938f38f77aad08d225ea2fa5496ee65a3b45f3062e8df1",
+  "tester_receipt_sha256": "5905e2002041148d7a104e195132f56c8b4152952547be4ed0985da4eacc3852",
+  "repair_receipt_sha256": "eae6bb85b21cbd6876e8340384314c21749040cadad89b313eae4b2d9bf7e7a4",
+  "historical_executed_source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "historical_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "ledger_sha256": "cd79d42a97e630564ba5f3c119ee24db25f65799211ea30e440cf5b257e7705c",
+  "old_client_sha256": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+  "new_offline_only_client_sha256": "bfc7d47596d5f69b68cd7000e257c7819949081ee7c6d66635eb9accf9ad7f36",
+  "historical_G3_binary_sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+  "previous_result_reviews": "UNCHANGED",
+  "native_runtime_qualification": "NOT_RUN",
+  "new_runtime_authorized": false,
+  "reviewer_actions": "offline tests and exclusive review artifacts only; no source edits/buildMeson/stage/Gitmutation",
+  "notes_sha256": "4df662538ff6faea30d16934ebd27830a3c055441e724e4e159919820712531a"
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "coredumpctl",
+    "--no-pager",
+    "--since",
+    "2026-10-15 08:40:36 UTC",
+    "list"
+  ],
+  "exit": 1,
+  "scope": "journal visible to invoking user, since immutable bootstrap mtime; no cleanup",
+  "stderr": "No coredumps found.\n",
+  "stdout": ""
+}

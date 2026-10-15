@@ -16,6 +16,7 @@
 #include <wayland-client.h>
 #include <sys/resource.h>
 #include <sys/prctl.h>
+#include <sys/stat.h>
 
 /* WHY: one persistent background supplies real A/B commits below blur_tree.
  * CONTRACT: fixed opaque background, premultiplied ARGB glass and static H2.
@@ -74,6 +75,71 @@ static void release(void *data, struct wl_buffer *b) {
   free_pixels(data);
 }
 static const struct wl_buffer_listener buffer_listener = {.release = release};
+/* BEGIN G3_SHM_PATH_HELPER
+ * WHY: the retired G2 LAB pathname rejects a newly reserved G3 LAB before SHM.
+ * CONTRACT: only the owned canonical 0700 new-ticket LAB and its exact scratch.
+ * INVARIANT: no ambient temp fallback, truncation, symlink or dumpability change.
+ * This bounded helper is extracted verbatim by the non-graphical offline test. */
+static int g3_path_reject(const char *reason) {
+  fprintf(stderr, "G3_SHM_PATH_REJECT reason=%s errno=%d\n", reason, errno);
+  return -1;
+}
+static int g3_private_directory(const char *path) {
+  struct stat st;
+  if (lstat(path, &st) < 0)
+    return g3_path_reject("directory_lstat");
+  if (!S_ISDIR(st.st_mode) || st.st_uid != getuid() ||
+      (st.st_mode & 07777) != 0700) {
+    errno = EPERM;
+    return g3_path_reject("directory_type_owner_mode");
+  }
+  char *canonical = realpath(path, NULL);
+  if (!canonical)
+    return g3_path_reject("directory_realpath");
+  bool same = !strcmp(canonical, path);
+  free(canonical);
+  if (!same) {
+    errno = EINVAL;
+    return g3_path_reject("directory_not_canonical");
+  }
+  return 0;
+}
+static int g3_shm_path(char *name, size_t capacity) {
+  const char *lab = getenv("SMX_LAB"), *runtime = getenv("TMPDIR");
+  const char prefix[] = "/var/tmp/swayfx-mosaic-step20c-native-closure-";
+  if (!lab || !runtime) {
+    errno = EINVAL;
+    return g3_path_reject("missing_SMX_LAB_or_TMPDIR");
+  }
+  if (strlen(lab) >= 512 || strlen(runtime) >= 512) {
+    errno = ENAMETOOLONG;
+    return g3_path_reject("environment_path_overflow");
+  }
+  if (strncmp(lab, prefix, sizeof(prefix) - 1) ||
+      !lab[sizeof(prefix) - 1] || strchr(lab + sizeof(prefix) - 1, '/')) {
+    errno = EINVAL;
+    return g3_path_reject("new_ticket_LAB_prefix_or_direct_child");
+  }
+  char scratch[512];
+  int n = snprintf(scratch, sizeof(scratch), "%s/scratch", lab);
+  if (n < 0 || (size_t)n >= sizeof(scratch)) {
+    errno = ENAMETOOLONG;
+    return g3_path_reject("scratch_path_overflow");
+  }
+  if (strcmp(runtime, scratch)) {
+    errno = EINVAL;
+    return g3_path_reject("TMPDIR_not_exact_LAB_scratch");
+  }
+  if (g3_private_directory(lab) || g3_private_directory(runtime))
+    return -1;
+  n = snprintf(name, capacity, "%s/g2-shm-XXXXXX", runtime);
+  if (n < 0 || (size_t)n >= capacity || n >= 512) {
+    errno = ENAMETOOLONG;
+    return g3_path_reject("SHM_template_overflow");
+  }
+  return 0;
+}
+/* END G3_SHM_PATH_HELPER */
 static void draw(void) {
   /* CONTRACT: exactly one runner command per reserved A/B image.
    * INVARIANT: configures cannot draw, and the sequence is A/B/A only. */
@@ -88,13 +154,13 @@ static void draw(void) {
   /* CONTRACT: each mapping stays immutable until native wl_buffer.release.
    * Bounds keep pool/stride integers valid, with at most eight outstanding. */
   char name[512];
-  const char *runtime = getenv("TMPDIR");
-  if (!runtime || strcmp(runtime,"/var/tmp/swayfx-mosaic-corec-v2-i516p6po/scratch") || snprintf(name, sizeof(name), "%s/g2-shm-XXXXXX", runtime) >=
-                      (int)sizeof(name))
+  if (g3_shm_path(name, sizeof(name)) < 0)
     exit(2);
   int fd = mkstemp(name);
-  if (fd < 0)
+  if (fd < 0) {
+    perror("G3_SHM_MKSTEMP_FAILED");
     exit(2);
+  }
   unlink(name);
   if (ftruncate(fd, (off_t)size) < 0)
     exit(2);

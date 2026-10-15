@@ -1,0 +1,142 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "reviewer": "codex-source-review-independent",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "schema": "independent-g3-build-admission-review-v1",
+  "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "findings": [],
+  "gpu_identity": {
+    "binary": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+    "binary_sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+    "build_id": "afdde13d52f3a5fe07c096c1221fcf0c8ae223fc",
+    "wlroots": "/usr/lib/libwlroots-0.20.so",
+    "wlroots_sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837",
+    "build_review": "ACCEPTED",
+    "source_qualification": "ACCEPTED",
+    "scene_archive": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-scene/libscenefx-0.5.a",
+    "scene_archive_sha256": "e8995f125c3eba6669aa3a8a44be1e075f6807e91055243e67731118303faec5",
+    "reviewed_scene_sha256": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da",
+    "scope": "new distinct G3 intrusive diagnostic only; native GL and GPU runtime NOT_RUN"
+  },
+  "runs": {
+    "GPU-G3": {
+      "decision": "ACCEPTED",
+      "client_build_review": "ACCEPTED",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/followup-work/client-compile.json",
+      "client_build_receipt_sha256": "58798a2dd1ad3d9faff4e02b3413ffefc224ec81121c63eea15e192805219528",
+      "gpu_source_review": "ACCEPTED",
+      "gl_observability_preflight": "ACCEPTED",
+      "build_review": "ACCEPTED",
+      "native_gl_status": "NOT_RUN",
+      "gpu_source_manifest": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/g3-source-freeze-v3.json",
+      "gpu_source_manifest_sha256": "03b3cdb4b665aeca860cf3e1363d4fbe5c2cbcb0372f3b4fe582e88488ccb5d2",
+      "gpu_client_build_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-client-build-normalized.json",
+      "gpu_client_build_receipt_sha256": "d1f5e51b463963b8c0804aaaa7a3216f8f4e439350ac8fee7ab405e0c9a3ad5b",
+      "reviewed_scene_sha256": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da",
+      "binding": {
+        "binary": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic",
+        "client": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-client-guard/clients-g2",
+        "client_sha256": "4e791780ac62152245891459864283750681b136a246c3c39ccf36b4f33972b4",
+        "source_manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+        "reviewed_scene_sha256": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da"
+      }
+    }
+  },
+  "artifacts": {
+    "followup-work/source-manifest-v2.json": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+    "g3-source-freeze-v3.json": "03b3cdb4b665aeca860cf3e1363d4fbe5c2cbcb0372f3b4fe582e88488ccb5d2",
+    "build-g3-repair/receipt.json": "61455c537183a7c70b8a64949dbb67050f8aa076f1ebed62e514f0e961e93e24",
+    "build-g3/receipt.json": "cba4f3380e88c9d2facfb468d26d1d8831b875fe2dea7722a36b118ca877d4ae",
+    "gpu-client-build-normalized.json": "d1f5e51b463963b8c0804aaaa7a3216f8f4e439350ac8fee7ab405e0c9a3ad5b",
+    "gpu-client-guard/receipt.json": "7dc827169937b2dfeadad9d0a802527c4e43d58b3457d07f3a25b39c56e59475",
+    "tester-g3-final/receipt.json": "27b886227043621098c56b16e4e6501ff7cbf34151c3c937e5580ee10e035147",
+    "reviews/source-review/receipt.json": "58ee0ef4535c0e5e47cc68cb2bc35e20b73563e47438b3dee718d24194c535cc",
+    "reviews/source-delta/receipt.json": "895dfc1870b70c49039c773cbc6012b742514f30da508a2997c352d9ea12f781",
+    "reviews/admission-nongpu/clone-acceptance.json": "c926c727ee56bcf850076d77c2b9db43e08a742bfeddbb742092b5177793008b",
+    "g3-offline/receipt.json": "8578ad7ad8a1188b0e215c49684034e1acdc59702bfc85c2162451e163c3b93e",
+    "builds/g3-scene/compile_commands.json": "628580188f76708c076976c4473ede4edbdaccb4924f81bddc2a7ae3bd4bc486",
+    "build-g3-repair/macro-compile-commands.json": "07814ebb470091006ea0140044f14a8eb984daf0528c4fe069715918fa0e38d9"
+  },
+  "stage": {
+    "usr/bin/swayfx-mosaic": {
+      "sha256": "9da90b178f20ea79bc9fb2a105c227f9d5d66a9de7eac77ff4ec3ea102908658",
+      "mode": "0o755"
+    },
+    "usr/share/licenses/swayfx-mosaic/SceneFX-LICENSE": {
+      "sha256": "ffd3737a478b83a8b51b42757d3bf909ef36694508355879722e11fc1fa6736b",
+      "mode": "0o644"
+    },
+    "usr/share/licenses/swayfx-mosaic/SwayFX-LICENSE": {
+      "sha256": "bd35722bff46327f5eded1d211207277bbe043d2a22048b282c42ef801593b8b",
+      "mode": "0o644"
+    },
+    "usr/share/licenses/swayfx-mosaic/wlroots-LICENSE": {
+      "sha256": "35d427c043dcafe8893b9e7247348f599847c81d9a067703587c80707f3d58df",
+      "mode": "0o644"
+    },
+    "usr/share/licenses/swayfx-mosaic/INCORPORATED-NOTICES": {
+      "sha256": "a46f71dccc10aec01844fc59974e3094b2951365b191b8b3819ed93effcc3919",
+      "mode": "0o644"
+    }
+  },
+  "legal_status": "LEGAL_NOT_APPROVED",
+  "macro_flags": [
+    "-D_XOPEN_SOURCE=700",
+    "-DG3_ROOT=\"/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/gpu-work/acquisition\""
+  ],
+  "compile_macro_commands": 23,
+  "source_tree_digests": {
+    "scene": "5e56b9de119941ac4a09c39d12d9ba4e350417d285cf7804947e58b6ecf625da",
+    "mosaic": "70fb049bc28522783c9b6a76dc3d66e944a25dc5e6f5fa7f52d56665917b4125"
+  },
+  "audit": {
+    "dynamic": {
+      "argv": [
+        "readelf",
+        "-d",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "exit": 0,
+      "stdout_sha256": "0580e1345ccc1b4764d62a55f00e6168baa91338868dedab8dedfb3fa1f1112c"
+    },
+    "buildid": {
+      "argv": [
+        "readelf",
+        "-n",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "exit": 0,
+      "stdout_sha256": "51b4e850e7e14cfdca8bea0a2a4da375c031ed270924e0351a77e8ea13e417fa"
+    },
+    "symbols": {
+      "argv": [
+        "nm",
+        "-a",
+        "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/builds/g3-mosaic/sway/swayfx-mosaic"
+      ],
+      "exit": 0,
+      "stdout_sha256": "be8bb80e683637762d31d82d2cb75570759db533d758055ae8c7fa471772fd26"
+    }
+  },
+  "b4_semantic_receipt": "/var/tmp/swayfx-mosaic-step20c-native-closure-qseaqp39/reviews/g3-build/b4-semantic.json",
+  "b4_semantic_receipt_sha256": "72f3528fc34a19f50525a1665aa965e56998170d1d406b632b0fd8c5834e6d5d",
+  "historical_initial_build": "FAIL retained; no compilation before argument repair",
+  "continuation": "single explicitly authorized same-pair argument repair PASS; original FAIL unchanged; no new source",
+  "native_preflight": "ACCEPTED scoped diagnostic: EGL divergence preserved; clean GL version/capability windows and lifecycle/restoration; errors nonrestorable; unchanged A refusal stops before B/return",
+  "adapter": "unchanged source accepted: compositor-only diagnostic env, exact module roots, separate GPU identity",
+  "reviewer_runtime": "NOT_RUN",
+  "native_gl_runtime": "NOT_RUN",
+  "gpu_readback": "NOT_RUN",
+  "g2_qualification_transferred": false,
+  "reviewer_build_stage": "NOT_RUN",
+  "reviewer_git_mutation": "NOT_RUN",
+  "conditions": [
+    "Parent must bind this independent receipt and semantic receipt, source/global/GPU freezes and exact ELF/client to GPU-specific runtime manifest",
+    "External gate must bind final binary and acquisition root; acquisition remains empty/unarmed during review",
+    "Unique GPU-G3 reservation150s/captures12/hook3 and strict A/B/A; first A refusal stops without retry",
+    "Native capability and actual mappings/renderer/readback remain to be observed; no GL runtime FEASIBLE claim from build"
+  ]
+}

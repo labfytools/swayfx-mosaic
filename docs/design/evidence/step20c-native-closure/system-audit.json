@@ -1,0 +1,23 @@
+{
+  "daily_process": {
+    "executable": "/usr/bin/sway",
+    "observation": "read-only comparison to historical closeout baseline; no IPC",
+    "pid": 2325,
+    "startticks": "2833"
+  },
+  "free_bytes": 277259689984,
+  "generated_source_artifacts": [],
+  "lab_bytes": 230680734,
+  "owned_pids_checked": 267,
+  "protected_failures": [],
+  "protected_files": 316,
+  "residual_owned_pids": [],
+  "residual_owned_runtimes": [],
+  "runtimes_checked": [
+    "/tmp/smx-gkdlhcvk",
+    "/tmp/smx-insrpz6u",
+    "/tmp/smx-it7zqf9a",
+    "/tmp/smx-ndlyp6ct",
+    "/tmp/smx-vly7lmrg"
+  ]
+}

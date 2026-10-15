@@ -1,0 +1,49 @@
+{
+  "schema": "independent-source-delta-review-v1",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "reviewer": "codex-source-review-independent",
+  "author": "codex-native-closure-implementation",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "gpu_source_manifest_sha256": "03b3cdb4b665aeca860cf3e1363d4fbe5c2cbcb0372f3b4fe582e88488ccb5d2",
+  "prior_review_sha256": "58ee0ef4535c0e5e47cc68cb2bc35e20b73563e47438b3dee718d24194c535cc",
+  "repair_receipt_sha256": "bac668f134dd9e6464312545d005c9068f7e833c8e3f0e3f614411dcf68d3275",
+  "changed_contents": [
+    "graphics/README.md",
+    "graphics/gate.py",
+    "graphics/offline/test_followup.py",
+    "graphics/oom_handler.py"
+  ],
+  "source_entries": 49,
+  "source_modes": "all 0644",
+  "gates": {
+    "B1": "ACCEPTED",
+    "B2": "ACCEPTED",
+    "B3": "ACCEPTED",
+    "B4": "ACCEPTED",
+    "B5_C_publication_modes": "ACCEPTED"
+  },
+  "carried_acceptance": [
+    "B1",
+    "B2",
+    "B4"
+  ],
+  "closed_findings": [
+    "SR-B3-1",
+    "SR-B3-2",
+    "SR-C-1"
+  ],
+  "findings": [],
+  "tests_run": 66,
+  "failures": 0,
+  "tests_log_sha256": "d15282c23cfbf80489b45c485586d6fae0013b57cb9af2ffcd0467e0eba8a8d9",
+  "notes_sha256": "2ad257b325cff36e7d27b42d3ed50a89a7865d50a6d8623024dd20e167af8fbc",
+  "runtime": "NOT_RUN",
+  "production_build": "NOT_RUN",
+  "stage": "NOT_RUN",
+  "commit_push": "NOT_RUN",
+  "phase_C_publication": "NOT_YET_VERIFIED",
+  "authorization": "SOURCE_ONLY_PUBLICATION_REVIEW_ACCEPTED; NO_RUNTIME_AUTHORIZATION"
+}

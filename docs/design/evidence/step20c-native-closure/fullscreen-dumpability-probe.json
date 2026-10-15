@@ -1,0 +1,21 @@
+{
+  "child_exit": 0,
+  "fixture_guard": "engine.launch_client reads /proc/exe from a PR_SET_DUMPABLE0 client; Path.resolve returns unresolved proc path on EACCES",
+  "not_a_headless_run": true,
+  "observations": [
+    {
+      "Path.resolve_strict_false": "/usr/bin/python3.14",
+      "child_dumpable": 1,
+      "readlink": "/usr/bin/python3.14"
+    },
+    {
+      "Path.resolve_strict_false": "/proc/3498194/exe",
+      "child_dumpable": 0,
+      "errno": 13,
+      "error": "Permission denied"
+    }
+  ],
+  "scope": "controlled permission reproduction; original FS-P guard did not save readlink errno",
+  "source_unchanged": true,
+  "status": "PASS_BOUNDED_OFFLINE"
+}

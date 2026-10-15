@@ -1,0 +1,310 @@
+{
+  "schema": "independent-nongpu-results-review-v1",
+  "reviewer": "codex-source-review-independent",
+  "independent": true,
+  "decision": "ACCEPTED",
+  "ticket": "SWAYFX_MOSAIC_STEP20C_COREC_V2_FULLSCREEN_OOM_GLES_NATIVE_CLOSURE_BATCH_V1",
+  "manifest_sha256": "2e9fe75a48466fa1a9e3081137146d5cfffb35145c1749160e2c4f350bc6e5b7",
+  "source_digest": "f21ea193aedfada620c251f0cf6a22375fb993483905129208864e22e535b140",
+  "source_commit": "c55373eab3c53132bf1157acc9cfc9edd451156e",
+  "rows": {
+    "FS-P": {
+      "runtime_status": "NOT_EXERCISED",
+      "review_status": "NOT_EXERCISED",
+      "captures": 0,
+      "seconds_outcome": 6.086245531041641,
+      "seconds_ledger": 6.097521916,
+      "scientific_cleanup": true,
+      "all_process_exit0": true,
+      "terminal_swaymsg_exit": 1,
+      "compositor_exit": 0,
+      "reason": "actual fullscreen client executable"
+    },
+    "DY-C": {
+      "runtime_status": "PARTIALLY_FEASIBLE",
+      "review_status": "SAMPLED_ONLY",
+      "captures": 16,
+      "seconds_outcome": 35.98416800098494,
+      "seconds_ledger": 35.995476057,
+      "scientific_cleanup": true,
+      "all_process_exit0": true,
+      "terminal_swaymsg_exit": 1,
+      "compositor_exit": 0,
+      "stages": [
+        {
+          "tag": "resized960",
+          "scroll": 800.0,
+          "expected": 800.0,
+          "viewport": [
+            -960,
+            0,
+            960,
+            600
+          ],
+          "point": [
+            -273,
+            168
+          ]
+        },
+        {
+          "tag": "resized-back",
+          "scroll": 800.0,
+          "expected": 800.0,
+          "viewport": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "point": [
+            -113,
+            168
+          ]
+        },
+        {
+          "tag": "migrated-H2",
+          "scroll": 1120.0,
+          "expected": 1120,
+          "viewport": [
+            0,
+            0,
+            800,
+            600
+          ],
+          "point": [
+            366,
+            168
+          ]
+        },
+        {
+          "tag": "migrated-back-H1",
+          "scroll": 1120.0,
+          "expected": 1120.0,
+          "viewport": [
+            -800,
+            0,
+            800,
+            600
+          ],
+          "point": [
+            -434,
+            168
+          ]
+        }
+      ]
+    },
+    "OM-ROOT": {
+      "runtime_status": "PARTIALLY_FEASIBLE",
+      "review_status": "SAMPLED_ONLY",
+      "captures": 8,
+      "seconds_outcome": 17.750482999021187,
+      "seconds_ledger": 17.761603037,
+      "scientific_cleanup": true,
+      "all_process_exit0": true,
+      "terminal_swaymsg_exit": 1,
+      "compositor_exit": 0,
+      "native": {
+        "role": "root_popup",
+        "nonce": "0a825259ea7740c5a7704f149dfa0649",
+        "pid": "3494614",
+        "xdg": "0x564dbd1ab920",
+        "xdg_parent": "0x564dbd196260",
+        "parent": "0x564dbc49ec90",
+        "tree": "0x564dbd18fc20",
+        "children": "0",
+        "matched": "1",
+        "failures": "1",
+        "successes": "0",
+        "initialized": "0",
+        "listeners": "0",
+        "published": "0",
+        "parent_children": "0",
+        "children_scope": "existing parent children, not failed tree",
+        "caller_result": {
+          "role": "root_popup",
+          "pid": "3494614",
+          "xdg": "0x564dbd1ab920",
+          "xdg_parent": "0x564dbd196260",
+          "parent": "0x564dbc49ec90",
+          "tree": "(nil)",
+          "successes": "0",
+          "failures": "1"
+        }
+      },
+      "availability": "SAMPLED_ONLY before cleanup with actual neighbor wire",
+      "no_memory_disconnect": "NOT_OBSERVED",
+      "normal_error0_closure": true
+    },
+    "OM-NESTED": {
+      "runtime_status": "PARTIALLY_FEASIBLE",
+      "review_status": "SAMPLED_ONLY",
+      "captures": 8,
+      "seconds_outcome": 20.39799604000291,
+      "seconds_ledger": 20.408873591,
+      "scientific_cleanup": true,
+      "all_process_exit0": true,
+      "terminal_swaymsg_exit": 1,
+      "compositor_exit": 0,
+      "root_A_input": {
+        "point": [
+          -215,
+          108
+        ],
+        "before_neighbor": true
+      },
+      "native": {
+        "role": "nested_popup",
+        "nonce": "39b4767924344003ad80fb9b87da4e20",
+        "pid": "3497491",
+        "xdg": "0x55a818139b10",
+        "xdg_parent": "0x55a8180816e0",
+        "parent": "0x55a81812bc80",
+        "tree": "0x55a818143120",
+        "children": "1",
+        "matched": "1",
+        "failures": "1",
+        "successes": "1",
+        "initialized": "0",
+        "listeners": "0",
+        "published": "0",
+        "parent_children": "1",
+        "children_scope": "existing parent children, not failed tree",
+        "caller_result": {
+          "role": "nested_popup",
+          "pid": "3497491",
+          "xdg": "0x55a818139b10",
+          "xdg_parent": "0x55a8180816e0",
+          "parent": "0x55a81812bc80",
+          "tree": "(nil)",
+          "successes": "1",
+          "failures": "1"
+        }
+      },
+      "availability": "SAMPLED_ONLY before cleanup with actual neighbor wire",
+      "no_memory_disconnect": "NOT_OBSERVED",
+      "normal_error0_closure": true
+    },
+    "FS-C": {
+      "review_status": "NOT_RUN",
+      "reason": "FS-P not qualified; no reservation present"
+    }
+  },
+  "actual_ELFs": {
+    "FS-P": {
+      "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/controls/pristine/sway",
+      "sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+      "pid": 3491656,
+      "build_id": "ba9751c82e73d4043b7651354f20936d070c2227"
+    },
+    "DY-C": {
+      "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic",
+      "sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "pid": 3492726,
+      "build_id": "d5d304533f2c8db9d738365e9bd7f2c96779ef8d"
+    },
+    "OM-ROOT": {
+      "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+      "sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "pid": 3494614,
+      "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d"
+    },
+    "OM-NESTED": {
+      "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic",
+      "sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "pid": 3497491,
+      "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d"
+    }
+  },
+  "run_entries_sha256": "2e655b9853edf81acc4520fe3ff3f81657fb0edf3b5f91a2b8bd83c487bb3d10",
+  "capture_total": 32,
+  "reservations": 4,
+  "artifacts": {
+    "graphics-runs/FS-P/run/outcome.json": "11b37750569c1fae4aa6a9c21e3f0166461bbdcfd9c8f46e90ef8ffede72b597",
+    "graphics-runs/FS-P/run/runtime-identity.json": "d8ed953f80ef80c5460ad1d90b48876c01082ca964522f21ad6c2c68ac6c3639",
+    "graphics-runs/FS-P/run/events.jsonl": "14c4747726cf78f5e71495c74d2896a5793c98065446b0da9eba6bc023b33f00",
+    "graphics-runs/FS-P/run/owner.log": "f3297192c0c0a9b82b5e967646979a23dd8e85cb162eaa6ba0f9492c95a13119",
+    "graphics-runs/FS-P/run/compositor.log": "32b1edc16301407f5306293feff5b95e1363c7094f9695c68a55a19890044a15",
+    "graphics-runs/FS-P/run/reference-closed-3491722.log": "fc807a050dfd9e9bd7d911253315cc5b1e2a2b3d2484236da762426f1e097295",
+    "graphics-runs/FS-P/run/filler0-closed-3491772.log": "86c812f2395303b127e399682da5a8c2dcc522dad2f692372bae5bc7572d3513",
+    "graphics-runs/FS-P/run/owner-closed-3491797.log": "f3297192c0c0a9b82b5e967646979a23dd8e85cb162eaa6ba0f9492c95a13119",
+    "graphics-runs/DY-C/run/outcome.json": "13539848fa063c022115824df894be2d0c6c215720c66ce94b7aaa9d644736e4",
+    "graphics-runs/DY-C/run/runtime-identity.json": "979882ea1e838eff80875f63ebf233e60f559876bec809fa2c11326a172dc110",
+    "graphics-runs/DY-C/run/events.jsonl": "6c8570c1b79696a65b089f4084980d144cef326a156c91c35547e0b654eb37a1",
+    "graphics-runs/DY-C/run/owner.log": "f1f8b23c37a49d11167b92bee64280618952bb40d34e755509f370238a194939",
+    "graphics-runs/DY-C/run/compositor.log": "07a54ce232c3c07998d439f34fe23257eb6bcac7def5aaac07ce35a125d5deee",
+    "graphics-runs/DY-C/run/owner-closed-3492898.log": "f1f8b23c37a49d11167b92bee64280618952bb40d34e755509f370238a194939",
+    "graphics-runs/DY-C/run/filler0-closed-3492817.log": "07227b87dd7f0879cf5d205dbde4aadd19371539c92321fbc8454054223fb16a",
+    "graphics-runs/DY-C/run/filler1-closed-3492833.log": "12f871052bbec431e8488692ca65c60bc3a9ce39b936ef5078ee7869a79ca06d",
+    "graphics-runs/DY-C/run/reference-closed-3492782.log": "1cb3a812c66490eff3265f3541e38844e7c687d51e8b7d048c1ffa2ebc0471c9",
+    "graphics-runs/DY-C/run/H2-reference1.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/DY-C/run/H2-reference2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/DY-C/run/owner-top-1.png": "c8d50e1a0e52074bf595a82a56d5db9f1790cf0cfd7e510c32ceceeba4295802",
+    "graphics-runs/DY-C/run/popup-A-1.png": "35072322e2a22c1fd73e20c67593080266df0fe42b7b6320808f17fb47f98250",
+    "graphics-runs/DY-C/run/mapped-1-H1.png": "1d502191e74f449a3cc9d89db52708a45e9c225d7be814fe839d1513c892dc72",
+    "graphics-runs/DY-C/run/mapped-1-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/DY-C/run/resized960-H1.png": "6257eecea214da92d7107809fe5b54323cd6cf653e3083401c5028652f673aba",
+    "graphics-runs/DY-C/run/resized960-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/DY-C/run/resized-back-H1.png": "1d502191e74f449a3cc9d89db52708a45e9c225d7be814fe839d1513c892dc72",
+    "graphics-runs/DY-C/run/resized-back-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/DY-C/run/migrated-H2-H1.png": "0e78e1e00e1b64efefcadff280b26c47573f6b85aa1a36b6d7773abfbc2088f9",
+    "graphics-runs/DY-C/run/migrated-H2-H2.png": "1f9f0839bdc2bbdc8964e17ffd004c274647b81d03bd1d08cc5968cbc00c9331",
+    "graphics-runs/DY-C/run/migrated-back-H1-H1.png": "1f9f0839bdc2bbdc8964e17ffd004c274647b81d03bd1d08cc5968cbc00c9331",
+    "graphics-runs/DY-C/run/migrated-back-H1-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/DY-C/run/dynamic-final-H1.png": "0e78e1e00e1b64efefcadff280b26c47573f6b85aa1a36b6d7773abfbc2088f9",
+    "graphics-runs/DY-C/run/dynamic-final-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-ROOT/run/outcome.json": "4308cbf00c96c2c93bd228f5544b5f812c2e12253c59bb52b301e7b73ecd5d7b",
+    "graphics-runs/OM-ROOT/run/runtime-identity.json": "03e01bcf01b157b42b9d25063fafd3c5133f1e65fc09792012c3f9a527e51f10",
+    "graphics-runs/OM-ROOT/run/events.jsonl": "c02928d8399b79c3e5252046c08ad783a55ef63504166e48c7253636f74a4b12",
+    "graphics-runs/OM-ROOT/run/owner.log": "03a5cbe24d52d5c0c8b5404b0854801630de7e535141d3fa0f716b39094225ac",
+    "graphics-runs/OM-ROOT/run/compositor.log": "451ff086ec386269d3e7d71b4bd538994896203ecef5c5fb80bf6719abc16dd1",
+    "graphics-runs/OM-ROOT/run/owner-closed-3494749.log": "03a5cbe24d52d5c0c8b5404b0854801630de7e535141d3fa0f716b39094225ac",
+    "graphics-runs/OM-ROOT/run/reference-closed-3494681.log": "6923db619273958cac59e22d47da665d26f715deaae81438c08858309710169b",
+    "graphics-runs/OM-ROOT/run/filler0-closed-3494717.log": "fa7754fcaf73f05fda9473ca6cceeca8519118f88cbbceb2e90622cf638b45a0",
+    "graphics-runs/OM-ROOT/run/H2-reference1.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-ROOT/run/H2-reference2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-ROOT/run/oom-pre-H1.png": "c8d50e1a0e52074bf595a82a56d5db9f1790cf0cfd7e510c32ceceeba4295802",
+    "graphics-runs/OM-ROOT/run/oom-pre-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-ROOT/run/oom-post-H1.png": "c8d50e1a0e52074bf595a82a56d5db9f1790cf0cfd7e510c32ceceeba4295802",
+    "graphics-runs/OM-ROOT/run/oom-post-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-ROOT/run/oom-final-H1.png": "b3897b09ce71283b2c2ce13faa09f0431352d8c52c28de21f0cfce376ed66ff9",
+    "graphics-runs/OM-ROOT/run/oom-final-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-ROOT/run/oom-measurements.json": "63f158c4c0a293d36f2681238b48491b53fdb9a86e18976d7d2a2c391d291833",
+    "graphics-runs/OM-ROOT/run/oom-availability-live.json": "4015b0b7d366028b360e831100abfdd66d44ebfcd438744f917a09e348ea4968",
+    "graphics-runs/OM-ROOT/run/oom-rootA-post-input.json": "b5cb544247a8a8a80df6f24b2086a540fdaaadb8551d94964817ab3606a6c0bf",
+    "graphics-runs/OM-NESTED/run/outcome.json": "287ab59fb71a401df92b43f63976190913c1b4e313624863a2bd87195077294e",
+    "graphics-runs/OM-NESTED/run/runtime-identity.json": "be908a665bc604fb74e238ebf83583b5c1be93d0d12410e1f368a0004b885042",
+    "graphics-runs/OM-NESTED/run/events.jsonl": "44a209ed9a5d202460d2f14e93f303e0bd150234b17db3949a49bbd70078b7de",
+    "graphics-runs/OM-NESTED/run/owner.log": "db671e81532c906361843c0943af4122ff8b97c7657bc175f953f01b7d9afa5c",
+    "graphics-runs/OM-NESTED/run/compositor.log": "ec3b767b0f015a21cbe54a5d3afae28923e34a87a1418bd64381fe88c8bba18e",
+    "graphics-runs/OM-NESTED/run/owner-closed-3497605.log": "db671e81532c906361843c0943af4122ff8b97c7657bc175f953f01b7d9afa5c",
+    "graphics-runs/OM-NESTED/run/reference-closed-3497545.log": "e3fde099dbbb645dd3df20664ae75f2e62688534fdcb67882c9dd07f77064f98",
+    "graphics-runs/OM-NESTED/run/filler0-closed-3497579.log": "8869d75d7057c1a098d06467f39b0f78e3fadd16fa0ab215db01a1c09bc5bb0d",
+    "graphics-runs/OM-NESTED/run/H2-reference1.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-NESTED/run/H2-reference2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-NESTED/run/oom-pre-H1.png": "35072322e2a22c1fd73e20c67593080266df0fe42b7b6320808f17fb47f98250",
+    "graphics-runs/OM-NESTED/run/oom-pre-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-NESTED/run/oom-post-H1.png": "35072322e2a22c1fd73e20c67593080266df0fe42b7b6320808f17fb47f98250",
+    "graphics-runs/OM-NESTED/run/oom-post-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-NESTED/run/oom-final-H1.png": "b3897b09ce71283b2c2ce13faa09f0431352d8c52c28de21f0cfce376ed66ff9",
+    "graphics-runs/OM-NESTED/run/oom-final-H2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/OM-NESTED/run/oom-measurements.json": "27852bd2945ad9f9b0cb6aec758ab6d5dfd195a5b604f297c0f7033e56ac2424",
+    "graphics-runs/OM-NESTED/run/oom-availability-live.json": "301511edc8dd1a8f1df0b62f48c6f24cf8b0f01e9de155c88aea042377e1c522",
+    "graphics-runs/OM-NESTED/run/oom-rootA-post-input.json": "e5f76ffe982b56eb12e468719723bb6ff298a7da2afb8e30cb8578ceb0052996"
+  },
+  "tests_receipt_sha256": "f026a1fa3fe6f2a8471de4ee9693a70a807b3ed79cd52dd26f5651ed52f582b6",
+  "probe_sha256": "fdcca6d786067f0bd91d3c728e4db7926e23e87c1c104ae3cb8d8295756a7a7d",
+  "probe_causality": "BOUNDED_PLAUSIBLE_EXPLANATION; original FS errno NOT_OBSERVED",
+  "offline_revalidation": "PASS raw events, exact RGB, native/wire validators, camera4 stages, closures, availability;6 negative mutations rejected",
+  "findings": [],
+  "limitations": [
+    "ATOMIC_GENERATION NOT_PROVEN",
+    "COMPLETE_DAMAGE NOT_PROVEN",
+    "NATIVE_BUFFER_IDENTITY NOT_PROVEN",
+    "GPU_COMPLETION NOT_PROVEN",
+    "OOM_PRODUCTION_POLICY UNDECIDED"
+  ],
+  "notes_sha256": "e87720c5b8f356a8e9449550ea8615606ddde6384f00b936c3b056fa469e2c20",
+  "reviewer_runtime": "NOT_RUN",
+  "source_edit": "NOT_RUN",
+  "commit_push": "NOT_RUN"
+}

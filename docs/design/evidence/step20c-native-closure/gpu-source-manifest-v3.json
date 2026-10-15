@@ -1,0 +1,82 @@
+{
+  "schema": "G3-relative-source-freeze-v1",
+  "status": "EXPERIMENTAL_SOURCE_ONLY",
+  "review": "PENDING_INDEPENDENT",
+  "build": "NOT_RUN",
+  "runtime": "NOT_RUN",
+  "no_inherited_G2_qualification": true,
+  "files": {
+    "README.md": {
+      "sha256": "83e333c6718ef05c9009ac8340c564f39094abb8353393576f9464ea2a70042c",
+      "mode": "0o644"
+    },
+    "clients-g2.c": {
+      "sha256": "66658e99704c32d90b073f7664dd4aa9ff1cbf3530c81f7f7ac40e2fa49d9ca7",
+      "mode": "0o644"
+    },
+    "freeze.py": {
+      "sha256": "1e823aa00aface9416ac687116f51867824973cca5da1ce1b5e1077d7b6d65b8",
+      "mode": "0o644"
+    },
+    "g2_gl.h": {
+      "sha256": "f7862768293f290044feb013e6c25422ace76ec670813537e96b71f373af5969",
+      "mode": "0o644"
+    },
+    "g2_native.h": {
+      "sha256": "0ed910ab4285c0db848b715867b0c98241a77f81d7afe0739583bf834fc40263",
+      "mode": "0o644"
+    },
+    "g3-admission.patch": {
+      "sha256": "0d0717b006d88ade5503431f8e0d20bb1d0416eb745ae37a00a5c9bb1a20e81b",
+      "mode": "0o644"
+    },
+    "protocol.py": {
+      "sha256": "3b664f1400394980913870cc3de5e0c1e70b7f14a96bee259a21fff954816394",
+      "mode": "0o644"
+    },
+    "protocols/wlr-layer-shell-unstable-v1.xml": {
+      "sha256": "996b8c66e1c2276c443336d4cb174634e8e5948823779042f244930525b79cc2",
+      "mode": "0o644"
+    },
+    "protocols/xdg-shell.xml": {
+      "sha256": "7ba7f9c8473deee674cb1f154a18abd0bb0cc072604fc055b0c15e459fc4c7df",
+      "mode": "0o644"
+    },
+    "reproduce.py": {
+      "sha256": "169701e803ef0f5cfc1e0e66483a465c5390f841702a905b3f07e381a0d1a4c1",
+      "mode": "0o644"
+    },
+    "scenario.py": {
+      "sha256": "d844c85d08866bfd07d6324d4f089b87f825ea83234132b2258b0fca4eae2672",
+      "mode": "0o644"
+    },
+    "test-targeted.py": {
+      "sha256": "09401232887a741cb65ab98ebd44da3786495265410a390cadce7e174d014ce4",
+      "mode": "0o644"
+    },
+    "test_begin.py": {
+      "sha256": "8e9addbfee3491170dec3303024ddd901aa3d4ead6b25bbafe32424890891f5f",
+      "mode": "0o644"
+    },
+    "test_gl.c": {
+      "sha256": "7ed342e2119e31a873a90b011466a17bbf08e1c4416397c65c80554636a6483d",
+      "mode": "0o644"
+    },
+    "test_mutations.py": {
+      "sha256": "b29058af2be2d13a5378bd93aebb2066247a7e5b5434f7c40f73bac463d1cfd3",
+      "mode": "0o644"
+    },
+    "test_native.c": {
+      "sha256": "53aa4635095b91164140bd0272803c1335b235a42a688da2680fe654c0f2b82a",
+      "mode": "0o644"
+    },
+    "test_protocol.py": {
+      "sha256": "0ed67c714971b35750c510458ca4d6f358a4d29ad354bfd2aeb6446e7cd19421",
+      "mode": "0o644"
+    },
+    "validate_source.py": {
+      "sha256": "00ab0e5822be31dc0cbc9c32656ccad56fb4afc28155a421339616f3a5ce1dc0",
+      "mode": "0o644"
+    }
+  }
+}
