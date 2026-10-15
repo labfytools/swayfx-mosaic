@@ -1,0 +1,648 @@
+{
+  "identity": "COREC_V2_REDERIVED",
+  "status": "PASS_BOUNDED_REVIEW_PENDING",
+  "commands": [
+    {
+      "label": "verify-source",
+      "argv": [
+        "/usr/bin/python",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/verify.py",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "extract",
+      "argv": [
+        "/usr/bin/python",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/extract.py",
+        "--sources",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final",
+        "--output",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "normal-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/normal"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "normal-run",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/normal"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "normal-second-reservation",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/normal",
+        "second"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "normal-root-rejection",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/normal",
+        "root"
+      ],
+      "rc": -6,
+      "expected": -6,
+      "pass_expected": true
+    },
+    {
+      "label": "ubsan-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-fsanitize=undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/ubsan"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "ubsan-run",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/ubsan"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "ubsan-second-reservation",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/ubsan",
+        "second"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "ubsan-root-rejection",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/ubsan",
+        "root"
+      ],
+      "rc": -6,
+      "expected": -6,
+      "pass_expected": true
+    },
+    {
+      "label": "asan-ubsan-compile",
+      "argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/asan-ubsan"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "asan-ubsan-run",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/asan-ubsan"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "asan-ubsan-second-reservation",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/asan-ubsan",
+        "second"
+      ],
+      "rc": 0,
+      "expected": 0,
+      "pass_expected": true
+    },
+    {
+      "label": "asan-ubsan-root-rejection",
+      "argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-dumpability/asan-ubsan",
+        "root"
+      ],
+      "rc": -6,
+      "expected": -6,
+      "pass_expected": true
+    }
+  ],
+  "mutations": [
+    {
+      "name": "publish_before_reserve",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/publish_before_reserve",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/publish_before_reserve/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/publish_before_reserve/test"
+      ],
+      "run_rc": -6
+    },
+    {
+      "name": "setter_allocates",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/setter_allocates",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/setter_allocates/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/setter_allocates/test"
+      ],
+      "run_rc": -6
+    },
+    {
+      "name": "inactive_visible",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/inactive_visible",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/inactive_visible/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/inactive_visible/test"
+      ],
+      "run_rc": -6
+    },
+    {
+      "name": "null_frees_reservation",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/null_frees_reservation",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/null_frees_reservation/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/null_frees_reservation/test"
+      ],
+      "run_rc": -6
+    },
+    {
+      "name": "root_accepted",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/root_accepted",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/root_accepted/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": -6,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/root_accepted/test",
+        "root"
+      ],
+      "run_rc": 0
+    },
+    {
+      "name": "caller_null_dereference",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/caller_null_dereference",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/caller_null_dereference/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/caller_null_dereference/test"
+      ],
+      "run_rc": 1
+    },
+    {
+      "name": "zero_allows_hit",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/zero_allows_hit",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/zero_allows_hit/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/zero_allows_hit/test"
+      ],
+      "run_rc": -6
+    },
+    {
+      "name": "doublefree_listener",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/doublefree_listener",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/doublefree_listener/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/doublefree_listener/test"
+      ],
+      "run_rc": 1
+    },
+    {
+      "name": "unsafe_intersection",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/unsafe_intersection",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/unsafe_intersection/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/unsafe_intersection/test"
+      ],
+      "run_rc": 1
+    },
+    {
+      "name": "unchecked_float_conversion",
+      "compile_argv": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-g",
+        "-O1",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined,float-cast-overflow,signed-integer-overflow,bounds",
+        "-fno-sanitize-recover=all",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/reassembled-final/scene/include",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/unchecked_float_conversion",
+        "-I/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests",
+        "-I/usr/include/wlroots-0.20",
+        "-I/usr/include/pixman-1",
+        "-I/usr/include/libdrm",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/kit/tests/core.c",
+        "-lwlroots-0.20",
+        "-lwayland-server",
+        "-lm",
+        "-lpixman-1",
+        "-lm",
+        "-o",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/unchecked_float_conversion/test"
+      ],
+      "compile_rc": 0,
+      "mutant_exercised": true,
+      "killed": true,
+      "correct_rc": 0,
+      "run_argv": [
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/c-tests-mutants-dumpability/unchecked_float_conversion/test"
+      ],
+      "run_rc": 1
+    }
+  ],
+  "binding_file_sha256": "d760a7123951744120b2299da42c7c92832e369848e59f995093e348f43c5d48",
+  "compiler": "cc (GCC) 16.2.1 20260810",
+  "measurement": "PASS native_struct_tree=128 sidecar=64 allocation_attempts=236 reservation_attempts=118 injected_failures=3 inactive_initial=1 inactive_three_trees=2 reserved_three_trees=3 final_reservations=0 dumpable=0 lookup=linear allocator_overhead=NOT_MEASURED damage=ADAPTER_ONLY",
+  "limitations": [
+    "IME exact refocus body exercised with reduced Sway/protocol adapters",
+    "popup current ancestor fullscreen/actual hidden-owner/standard clips exercised with reduced Sway structs; full fading/transaction engine NOT RUN",
+    "Ten mutations PASS in separate mutations.py command; independent review required",
+    "No native compositor OOM survival"
+  ],
+  "initial_failures": [
+    {
+      "directory": "c-tests-attempt1",
+      "phase": "extraction regex confused call/definition",
+      "rc": 1
+    },
+    {
+      "directory": "c-tests-attempt2",
+      "phase": "extractor lacked int return type",
+      "rc": 1
+    },
+    {
+      "directory": "c-tests-attempt3",
+      "phase": "C support lacked WLR_PRIVATE macro",
+      "rc": 1
+    },
+    {
+      "directory": "c-tests-mutants",
+      "phase": "root accepted wrong variant leaked harness root, masking expected rejection; harness corrected to destroy returned root",
+      "rc": 1
+    }
+  ],
+  "campaign": "Single offline C17/ASan/UBSan stage, serial compilation, iterative harness additions/corrections preserved; no functional build",
+  "core_dump_limit": [
+    0,
+    0
+  ],
+  "dumpability": "PR_SET_DUMPABLE=0 and PR_GET_DUMPABLE=0 checked at main entry in every C child; mutants share main",
+  "storage_exception": {
+    "initial_systemd_coredumps": 10,
+    "stored_bytes_observed": 2261704,
+    "managed_location": "systemd coredump storage outside LAB",
+    "removed": false,
+    "fix": "RLIMIT_CORE0 plus checked Linux dumpability0; parent performs final no-new-coredump audit",
+    "initial_audit_sha256": "884f478a6a3304d2445775fd4667e8858d377f0effc5789efee2f72b6e3145de",
+    "journal_only_pre_prctl_events": 8,
+    "final_post_prctl_new_entries_observed": 0,
+    "after_fix_audit_sha256": "43b8ef340c0d2e95e3759f0280303c6c982afaa3dbfac15038be23221f8792be"
+  }
+}

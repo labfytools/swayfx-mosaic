@@ -1,0 +1,160 @@
+{
+  "identity": "COREC_V2_REDERIVED",
+  "status": "SOURCE_AUDITED_REVIEW_PENDING",
+  "source_only": true,
+  "counts": {
+    "wlr_scene_output_commit": 10,
+    "wlr_scene_node_destroy": 72,
+    "wlr_scene_node_set_enabled": 75,
+    "wlr_scene_tree_create": 16,
+    "wlr_scene_xdg_surface_create": 10,
+    "scene_node_init": 11,
+    "scene_tree_init": 6,
+    "wlr_scene_tree_set_clip": 11,
+    "wlr_scene_tree_get_clip": 2,
+    "wlr_scene_node_reparent": 26,
+    "wlr_scene_output_build_state": 7,
+    "wlr_scene_layer_surface_v1_create": 2,
+    "wlr_scene_subsurface_tree_create": 7,
+    "wlr_scene_drag_icon_create": 2,
+    "alloc_scene_tree": 33,
+    "scene_surface_tree_create": 4
+  },
+  "contracts": {
+    "factory": {
+      "ownership": "Factory calloc tree, then sidecar; only scene_tree_init publishes node to parent list",
+      "null": "Sidecar failure frees unpublished tree, no signal/listener initialized; tree allocation failure returns NULL",
+      "listeners": "Factory attaches sidecar destroy listener only after native scene_node_init initializes signal; destroy removes list entry+listener exactly once",
+      "clip": "Inactive reservation until set, retained NULL, active zero masks; no public struct fields appended",
+      "root": "Embedded scene->tree initialized directly; never factory-reserved, setter explicitly aborts for misuse even NDEBUG",
+      "reactivation": "set_enabled never changes clip active or reservation; scene update reads active lookup",
+      "damage": "Native scene_node_update path remains in complete source, old and new visibility regions preserved; C adapter NOT native damage proof"
+    },
+    "constructors": [
+      {
+        "path": "sway/tree/root.c",
+        "function": "root_create",
+        "ownership": "Root scene owns all factory layers and staging",
+        "null": "failed flag short-circuits helpers before parent use; destroys real embedded root and descendants",
+        "publication": "Local root pointer returned only after successful descriptors; staging disabled",
+        "verdict": "SOURCE_AUDITED"
+      },
+      {
+        "path": "sway/tree/node.c",
+        "function": "alloc_scene_tree",
+        "ownership": "Borrowed parent; returned child belongs to parent",
+        "null": "Prechecks failed flag before calling factory; sets failed on NULL",
+        "publication": "No dereference here; constructors must check flag before field use",
+        "verdict": "SOURCE_AUDITED"
+      },
+      {
+        "path": "sway/tree/output.c",
+        "function": "output_create/destroy_scene_layers",
+        "ownership": "Individual output layers under staging, disown existing children before layer destroy",
+        "null": "failed flag checked before fullscreen background; nullable cleanup now conditional; scene_node_disown_children itself guards NULL",
+        "publication": "Output layer pointers local until constructor returns",
+        "verdict": "CORRECTED_NULLABLE_CLEANUP"
+      },
+      {
+        "path": "sway/tree/workspace.c",
+        "function": "workspace_create",
+        "ownership": "workspace owns tiling/fullscreen trees under staging",
+        "null": "failed flag then defined nullable cleanup and workspace handle rollback",
+        "publication": "No enabled/clip use before successful trees",
+        "verdict": "CORRECTED_NULLABLE_CLEANUP"
+      },
+      {
+        "path": "sway/tree/container.c",
+        "function": "container_create",
+        "ownership": "scene tree owns nested border/content/title tree",
+        "null": "dim_rect accepts_input first use now guarded; failed root tree cleanup conditional",
+        "publication": "descriptor only when !failed; parent subtree cleanup covers partial children",
+        "verdict": "CORRECTED_DIM_RECT_AND_CLEANUP"
+      },
+      {
+        "path": "sway/tree/view.c",
+        "function": "view_init/view_save_buffer",
+        "ownership": "scene tree owns live/content/saved subtrees; image capture has separate embedded scene",
+        "null": "failed flag gates view init; err cleanup conditional; saved checks factory result before place/disable/populate and leaves live tree enabled on failure",
+        "publication": "saved tree disabled before population then live/saved handoff; no additional clip setter",
+        "verdict": "SOURCE_AUDITED_PLUS_CLEANUP_CORRECTION"
+      },
+      {
+        "path": "sway/input/seat.c",
+        "function": "seat_create",
+        "ownership": "seat tree owns drag_icons, both parent-owned",
+        "null": "failed flag checked; conditional root cleanup now defined when first create fails",
+        "publication": "wlr_seat and listeners only after tree admission",
+        "verdict": "CORRECTED_NULLABLE_CLEANUP"
+      },
+      {
+        "path": "sway/input/text_input.c",
+        "function": "input_popup_set_focus/handle_im_new_popup_surface",
+        "ownership": "popup wrapper plus relative child under focus tree; popup descriptor borrows relative/view",
+        "null": "disable wrapper and retire descriptor/old relative before refocus; failed new relative returns with listener detached and initialized, pointers cleared; descriptor failure destroys relative and preserves disabled wrapper",
+        "publication": "protocol popup_surface->data now assigned only after wrapper+subsurface success; focused unmap listener may attach before relative admission but is removed on failure",
+        "verdict": "CORRECTED_AND_EXACT_BODY_C_TESTED"
+      },
+      {
+        "path": "sway/desktop/xdg_shell.c",
+        "function": "popup_create",
+        "ownership": "popup wrapper owns primary helper tree; image-capture helper under supplied capture parent; descriptor borrows view",
+        "null": "Factory checked before use; helper failure destroys primary; image-capture failure now destroys primary and frees popup before external protocol listeners",
+        "publication": "Protocol commit/new_popup/reposition/destroy listeners attach only after both trees admitted; nested parent chain lifetime preserved",
+        "verdict": "CORRECTED_CAPTURE_HELPER_ROLLBACK"
+      },
+      {
+        "path": "sway/desktop/layer_shell.c",
+        "function": "sway_layer_surface_create",
+        "ownership": "Layer popup wrapper under root popup layer; descriptor borrows layer scene tree",
+        "null": "Factory checked before descriptor, descriptor failure destroys wrapper/free layer state",
+        "publication": "Layer protocol data/listeners after successful wrapper/descriptor",
+        "verdict": "SOURCE_AUDITED"
+      },
+      {
+        "path": "sway/lock.c",
+        "function": "session_lock_output_create",
+        "ownership": "lock-output wrapper owns background/surface tree",
+        "null": "Factory checked before background, failures destroy wrapper and free lock_output",
+        "publication": "Output ownership/listeners after helper admission",
+        "verdict": "SOURCE_AUDITED"
+      },
+      {
+        "path": "types/scene/{xdg_shell,subsurface_tree,layer_shell_v1,drag_icon}.c",
+        "function": "pinned wlroots helpers",
+        "ownership": "Each helper wrapper owns its factory tree; child tree publication into parent managed by factory",
+        "null": "Each direct factory return checked before first tree dereference; xdg/subsurface descendant admission rollback destroys existing parent before free wrapper; listeners/addons established only after successful helper content",
+        "publication": "Source provider inspected; ELF interposition/provider still separate build gate",
+        "verdict": "SOURCE_AUDITED_PROVIDER_NOT_TESTED"
+      },
+      {
+        "path": "tinywl/tinywl.c; wlroots examples",
+        "function": "example constructors",
+        "ownership": "Example compositor-local",
+        "null": "Unchecked factory returns remain upstream example behavior",
+        "publication": "Excluded by examples=false and not linked to Mosaic compositor",
+        "verdict": "OUT_OF_BINARY_NOT_RUNTIME_QUALIFIED"
+      }
+    ],
+    "clip_callers": {
+      "transaction": "Only workspace layers.tiling and popup tree from arrange_popups root-layer children, never embedded scene root",
+      "popup": "Membership uses top-level current tiling ancestor; fullscreen exemption walks every current ancestor, no pending/workspace fullscreen shortcut. Hidden test uses actual leaf con scene coordinates/applied animation size.",
+      "standard": "probe_workspace_clip retires tiling clip and probe_clip_popup retires popup clip on standard layout",
+      "fading": "Full-source inactive animating branch invokes same helper after positioning; exact helper tested, complete native fading transaction NOT TESTED",
+      "nested": "Child popup inherits root clip through native ancestor traversal; no pointer retained in sidecar",
+      "reactivation": "No bypass in set_enabled: existing active clip read by render/hit even after disable/enable",
+      "coordinates": "int64 checked translate/intersection and ancestor coords, finite/range camera guards; unrelated renderer scale/transform pipeline is NOT QUALIFIED by these guards"
+    },
+    "damage": {
+      "setter": "scene_node_update(&tree->node,NULL) unchanged after active/box mutation. scene_node_update collects previous stored visibility, recomputes bounds/region and new visibility, damages union. No replacement with stub in complete source.",
+      "destroy_reparent": "native destroy signal/listener/parent-list order retained; reparent collects prior visibility, moves parent/list then native update",
+      "limits": "C adapter counts callbacks and consumes Pixman region ownership only. Full native old/new damage, effects, scale/transform, saved/shutdown runtime NOT TESTED"
+    }
+  },
+  "remaining_blockers": [],
+  "limits": [
+    "Independent full source/delta review required before gate PASS",
+    "Source inspection is not native runtime OOM or rendering/damage proof",
+    "Factory function-pointer aliases not found in textual source inventory; future ELF provider audit required"
+  ]
+}

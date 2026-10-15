@@ -1,0 +1,48 @@
+{
+  "functional": [
+    "tree-local rendering/hit clips",
+    "root popup owner-derived/nested clip",
+    "actual leaf owner visibility",
+    "standard layout clip retirement, fading clip refresh",
+    "current ancestor fullscreen exemption"
+  ],
+  "safety": [
+    "prepublication sidecar reservation, allocation-free setter",
+    "int64 translate/intersection and scene coords",
+    "finite/range camera guard",
+    "IME refocus disabled rollback",
+    "container dim_rect NULL",
+    "xdg image capture rollback",
+    "defined nullable partial-constructor cleanup",
+    "seat defined nullable partial constructor cleanup",
+    "IME protocol back-pointer publication after successful admission"
+  ],
+  "instrumentation": {
+    "removed": [
+      "SPIKE_DAMAGE",
+      "PI/OPT not added"
+    ],
+    "retained": [
+      "SPIKE_CLIP",
+      "PROBE_POPUP_CLIP",
+      "PROBE_POPUP_HIDDEN_OWNER"
+    ],
+    "neutrality": "NOT_PROVEN"
+  },
+  "changed_files": {
+    "scene": [
+      "include/scenefx/types/wlr_scene.h",
+      "types/scene/wlr_scene.c"
+    ],
+    "mosaic": [
+      "sway/desktop/transaction.c",
+      "sway/desktop/xdg_shell.c",
+      "sway/input/seat.c",
+      "sway/input/text_input.c",
+      "sway/tree/container.c",
+      "sway/tree/output.c",
+      "sway/tree/view.c",
+      "sway/tree/workspace.c"
+    ]
+  }
+}

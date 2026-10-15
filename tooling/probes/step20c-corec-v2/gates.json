@@ -1,0 +1,23 @@
+{
+  "identity": "COREC_V2_REDERIVED",
+  "production_authorized": false,
+  "gates": {
+    "RECONSTRUCTION_FROM_SURVIVING_SOURCES": "PASS_NEW_DERIVATION",
+    "SOURCE_FORWARD_APPLY": "PASS",
+    "REPRODUCIBLE_KIT": "PASS_REVIEW_PENDING",
+    "SOURCE_EQUIVALENCE": "EXACT_FOR_NEW_TREE",
+    "OPTION_C_CALLSITE_AUDIT": "SOURCE_AUDITED_REVIEW_PENDING",
+    "NATIVE_C_SANITIZERS": "PASS_BOUNDED_REVIEW_PENDING",
+    "PRIVATE_BUILD": "NOT_RUN",
+    "NATIVE_OOM": "NOT_RUN",
+    "GRAPHICS": "NOT_RUN"
+  },
+  "budgets_consumed": {
+    "functional_builds": 0,
+    "stages": 0,
+    "runtime_runs": 0,
+    "captures": 0,
+    "c_campaign": "One offline C17 campaign, serial; setup failures and incremental additions preserved"
+  },
+  "next_gate": "Independent source/C review on final source and harness hashes"
+}

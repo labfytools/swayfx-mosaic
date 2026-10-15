@@ -1,0 +1,252 @@
+[
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "sidecar definitions",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 1366,
+    "end_byte_exclusive": 2545,
+    "start_line": 46,
+    "slice_sha256": "61128058349bdd75e529df4c564c00c9261fdd188c3ed1785d16e155009f93ac"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_tree_from_node",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 2545,
+    "end_byte_exclusive": 2749,
+    "start_line": 81,
+    "slice_sha256": "eec86e4de94b3e8ecc56bbf1655f5e80bf9b1fb43672e58698818d3bb581757f"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_rect_from_node",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 2751,
+    "end_byte_exclusive": 2955,
+    "start_line": 87,
+    "slice_sha256": "d24ec68f941a9cd25c22638678604fadb5d5c815ea8c9c477f6c79e9797a6604"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_buffer_from_node",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 3223,
+    "end_byte_exclusive": 3444,
+    "start_line": 101,
+    "slice_sha256": "a79c1cb11a8dcfb7c203862a1304ffd74ce532096150a67ff790488ca4e31a16"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_blur_from_node",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 3666,
+    "end_byte_exclusive": 3870,
+    "start_line": 114,
+    "slice_sha256": "406bb535a31826551502f60e3a7f8c9c9a48b1a3bd61c84820ef5f1814d721b6"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "scene_node_get_root",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 3872,
+    "end_byte_exclusive": 4238,
+    "start_line": 120,
+    "slice_sha256": "229ff36d803d141fa9291dfd11da272f4a20a73c3adfd35ce39aba22bdeac134"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "scene_node_init",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 4240,
+    "end_byte_exclusive": 4684,
+    "start_line": 135,
+    "slice_sha256": "fd10c53736e569431d8a5acd3d2c34ded432b2ff3c4948c34d8229d7fe352679"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "scene_tree_init",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 7615,
+    "end_byte_exclusive": 7837,
+    "start_line": 239,
+    "slice_sha256": "6eea6009ad5de2fee58d7b9827250ae03eacfd052ca76ac2d9ae31f6e84c6e3e"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_tree_create",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 8778,
+    "end_byte_exclusive": 9546,
+    "start_line": 278,
+    "slice_sha256": "f961636b073021611a1f9c249e9af907a6963703fc5dc237e55776727e1bab82"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_node_coords",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 62991,
+    "end_byte_exclusive": 63629,
+    "start_line": 1983,
+    "slice_sha256": "bf47222dc25f599102c3c5f1fddf2542327ec8fa4ee070ba55f7e433c03b0f38"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_node_set_enabled",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 60543,
+    "end_byte_exclusive": 60892,
+    "start_line": 1883,
+    "slice_sha256": "2aad4804bb853d2751dcfca03ad9aa73899d116c54fd02eaa3e21d8937e8f2e7"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_node_reparent",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 62295,
+    "end_byte_exclusive": 62989,
+    "start_line": 1956,
+    "slice_sha256": "fa5650b166e1939fe37977b8afed94ed8250a78cafa067a78e79844976e51dfe"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_node_destroy",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 5000,
+    "end_byte_exclusive": 7613,
+    "start_line": 166,
+    "slice_sha256": "bcc37abe8cf74f6d97394ef4ef76c65c5f4850b611d74aa21c81cdcf94bfe113"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "scene_clip_translate",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 23186,
+    "end_byte_exclusive": 23683,
+    "start_line": 730,
+    "slice_sha256": "e278bdd04860150718f2b8684e4872c065a589e73c342eebaed7a034978e8fde"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "scene_node_intersect_clip",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 23909,
+    "end_byte_exclusive": 24698,
+    "start_line": 746,
+    "slice_sha256": "2d7fc0d466a23a359dbef8d528ceb966747617c1422d03aad51069fa705eb32a"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "scene_node_point_inside_clip",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 24700,
+    "end_byte_exclusive": 25355,
+    "start_line": 772,
+    "slice_sha256": "e502de6c90918cb9151400f7f06b1640ef5fcdd64a2aca5cd5de0f8965a3ecf3"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_tree_set_clip",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 31590,
+    "end_byte_exclusive": 32752,
+    "start_line": 990,
+    "slice_sha256": "66169f9f10e9fe7ffc73cf1eeec6440f974a30d944885e4becebcb754567d2c8"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "wlr_scene_tree_get_clip",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 32754,
+    "end_byte_exclusive": 32983,
+    "start_line": 1013,
+    "slice_sha256": "c186bc54ac2b6b63dfa7e812caa3455805b5a5b33874bcde273f6994c73c9e54"
+  },
+  {
+    "component": "scene",
+    "path": "types/scene/wlr_scene.c",
+    "symbol": "native hit iterator and data",
+    "fullfile_sha256": "473e9aebe395345525d4057756533761ab34df62d6f1f751805165e225f3d621",
+    "start_byte": 64538,
+    "end_byte_exclusive": 65762,
+    "start_line": 2038,
+    "slice_sha256": "31423e212f75590085a4ad75c3ce60555c849e579e0bc0497c04d03b71d0104b"
+  },
+  {
+    "component": "mosaic",
+    "path": "sway/desktop/transaction.c",
+    "symbol": "probe_clip_box_intersection",
+    "fullfile_sha256": "972b2e6d7f897c9e469a5d85e38d43d9e4c9199964a612b871a3fb2f06b27c16",
+    "start_byte": 37301,
+    "end_byte_exclusive": 37994,
+    "start_line": 1041,
+    "slice_sha256": "4e55af2f6cc0b251f01257e6ccd3b147b3710500bf50cc70b5f1ea9108c26a7b"
+  },
+  {
+    "component": "mosaic",
+    "path": "sway/desktop/transaction.c",
+    "symbol": "probe_camera_scroll",
+    "fullfile_sha256": "972b2e6d7f897c9e469a5d85e38d43d9e4c9199964a612b871a3fb2f06b27c16",
+    "start_byte": 30510,
+    "end_byte_exclusive": 30657,
+    "start_line": 874,
+    "slice_sha256": "8f70413dfca32aa8aca3462f2024c4705ce85ead3a023723e3b552d9c4a66d0c"
+  },
+  {
+    "component": "mosaic",
+    "path": "sway/input/text_input.c",
+    "symbol": "input_popup_set_focus",
+    "fullfile_sha256": "fe7864d08cd89b3b3d57b4c8373fa4928a353ad483b72fe9c72d93d839d7a7f0",
+    "start_byte": 12679,
+    "end_byte_exclusive": 16261,
+    "start_line": 368,
+    "slice_sha256": "a901d876f1d492c5c6f3f79b292ba1baa2f4663adec4ebd7f06f9f477e7ddb92"
+  },
+  {
+    "component": "mosaic",
+    "path": "sway/desktop/transaction.c",
+    "symbol": "probe_workspace_clip",
+    "fullfile_sha256": "972b2e6d7f897c9e469a5d85e38d43d9e4c9199964a612b871a3fb2f06b27c16",
+    "start_byte": 30659,
+    "end_byte_exclusive": 31434,
+    "start_line": 879,
+    "slice_sha256": "ddb762b2d9610e88259b3920c75dbfea7acbac13f41b1b6e3663748884709528"
+  },
+  {
+    "component": "mosaic",
+    "path": "sway/desktop/transaction.c",
+    "symbol": "workspace_tiling_scene_x",
+    "fullfile_sha256": "972b2e6d7f897c9e469a5d85e38d43d9e4c9199964a612b871a3fb2f06b27c16",
+    "start_byte": 31436,
+    "end_byte_exclusive": 31961,
+    "start_line": 898,
+    "slice_sha256": "188d668788ea8edb504b7914375dc2330da88e2ab312552190badb40644470ca"
+  },
+  {
+    "component": "mosaic",
+    "path": "sway/desktop/transaction.c",
+    "symbol": "probe_clip_popup",
+    "fullfile_sha256": "972b2e6d7f897c9e469a5d85e38d43d9e4c9199964a612b871a3fb2f06b27c16",
+    "start_byte": 38227,
+    "end_byte_exclusive": 41840,
+    "start_line": 1060,
+    "slice_sha256": "35113ed3d0d4c345e4b4497eeab9d46ec84caad2b99e4f096cbab68c9c73e477"
+  }
+]

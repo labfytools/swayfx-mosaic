@@ -1,0 +1,368 @@
+--- a/sway/desktop/transaction.c
++++ b/sway/desktop/transaction.c
+@@ -1,3 +1,4 @@
++#include <math.h>
+ #include <assert.h>
+ #include <stdbool.h>
+ #include <limits.h>
+@@ -869,12 +870,37 @@
+ 		width, height, ws->gaps_inner);
+ }
+ 
++// Camera conversion is validated before any double-to-integer cast.
++static int probe_camera_scroll(double scroll) {
++	if (!isfinite(scroll) || scroll < 0) return 0;
++	return scroll > INT_MAX ? INT_MAX : (int)scroll;
++}
++
++static void probe_workspace_clip(struct sway_workspace *ws,
++		struct wlr_box *area, struct side_gaps *gaps) {
++	if (ws->current.layout != L_MOSAIC || !ws->mosaic) {
++		wlr_scene_tree_set_clip(ws->layers.tiling, NULL);
++		return;
++	}
++	struct mosaic_row *row = ws->mosaic->rows->items[0];
++	int64_t width = (int64_t)area->width - gaps->left - gaps->right;
++	int64_t height = (int64_t)area->height - gaps->top - gaps->bottom;
++	struct wlr_box clip = {0};
++	if (isfinite(row->state.scroll_x) && row->state.scroll_x >= 0 &&
++			row->state.scroll_x <= INT_MAX && width > 0 && width <= INT_MAX &&
++			height > 0 && height <= INT_MAX) {
++		clip = (struct wlr_box){probe_camera_scroll(row->state.scroll_x), 0,
++			(int)width, (int)height};
++	}
++	wlr_scene_tree_set_clip(ws->layers.tiling, &clip);
++}
++
+ static int workspace_tiling_scene_x(struct sway_workspace *ws,
+ 		struct wlr_box *area, struct side_gaps *gaps) {
+ 	int64_t x = (int64_t)area->x + gaps->left;
+ 	if (ws->current.layout == L_MOSAIC && ws->mosaic) {
+ 		struct mosaic_row *row = ws->mosaic->rows->items[0];
+-		x -= (int64_t)row->state.scroll_x;
++		x -= probe_camera_scroll(row->state.scroll_x);
+ 	}
+ 	// The camera is kept in logical pixels; this conversion is the sole
+ 	// output-scene mapping and must never overflow wlroots' int positions.
+@@ -974,6 +1000,7 @@
+ 				wlr_scene_node_set_position(&child->layers.tiling->node,
+ 					workspace_tiling_scene_x(child, area, gaps),
+ 					gaps->top + area->y);
++				probe_workspace_clip(child, area, gaps);
+ 
+ 				arrange_workspace_tiling(child,
+ 					area->width - gaps->left - gaps->right,
+@@ -992,6 +1019,8 @@
+ 				workspace_tiling_scene_x(child, area, gaps),
+ 				gaps->top + area->y);
+ 
++			probe_workspace_clip(child, area, gaps);
++
+ 			arrange_workspace_tiling(child,
+ 				area->width - gaps->left - gaps->right,
+ 				area->height - gaps->top - gaps->bottom);
+@@ -1006,6 +1035,118 @@
+ 	output->prev_active_workspace = new_active;
+ }
+ 
++// WHY: disjoint extreme endpoints must be rejected before subtraction.
++// CONTRACT: int64 intermediates; zero on empty; output may alias either input.
++// INVARIANT: no overflow is delegated to the historical wlroots box helper.
++static bool probe_clip_box_intersection(struct wlr_box *dest,
++		const struct wlr_box *a, const struct wlr_box *b) {
++	int64_t x1 = a->x > b->x ? a->x : b->x;
++	int64_t y1 = a->y > b->y ? a->y : b->y;
++	int64_t ax2 = (int64_t)a->x + a->width, bx2 = (int64_t)b->x + b->width;
++	int64_t ay2 = (int64_t)a->y + a->height, by2 = (int64_t)b->y + b->height;
++	int64_t x2 = ax2 < bx2 ? ax2 : bx2, y2 = ay2 < by2 ? ay2 : by2;
++	if (a->width <= 0 || a->height <= 0 || b->width <= 0 || b->height <= 0 ||
++			x2 <= x1 || y2 <= y1 || x2 - x1 > INT_MAX || y2 - y1 > INT_MAX) {
++		*dest = (struct wlr_box){0};
++		return false;
++	}
++	*dest = (struct wlr_box){(int)x1, (int)y1, (int)(x2-x1), (int)(y2-y1)};
++	return true;
++}
++
++// Experimental: derive a root popup clip from its actual tiled owner and the
++// already-applied Mosaic tiling clip. This avoids pending XDG geometry as a
++// source for the visible viewport; no owner pointer is stored on the clip.
++static void probe_clip_popup(struct wlr_scene_node *node,
++		struct sway_popup_desc *popup) {
++	struct wlr_scene_tree *popup_tree = wlr_scene_tree_from_node(node);
++	struct sway_container *con = popup->view ? popup->view->container : NULL;
++	struct sway_workspace *ws = con ? con->current.workspace : NULL;
++	if (!ws || ws->current.layout != L_MOSAIC || !ws->mosaic) {
++		wlr_scene_tree_set_clip(popup_tree, NULL);
++		return;
++	}
++	struct sway_container *owner = con;
++	bool fullscreen = false;
++	for (struct sway_container *ancestor = con; ancestor;
++			ancestor = ancestor->current.parent) {
++		fullscreen |= ancestor->current.fullscreen_mode != 0;
++		owner = ancestor;
++	}
++	if (!ws->current.tiling || list_find(ws->current.tiling, owner) < 0 || fullscreen) {
++		wlr_scene_tree_set_clip(popup_tree, NULL);
++		return;
++	}
++	struct wlr_box local_viewport;
++	struct sway_output *output = ws->current.output;
++	int tile_x, tile_y, popup_x, popup_y;
++	if (!output || output->current.active_workspace != ws ||
++			!wlr_scene_tree_get_clip(ws->layers.tiling, &local_viewport) ||
++			!wlr_scene_node_coords(&ws->layers.tiling->node, &tile_x, &tile_y) ||
++			!wlr_scene_node_coords(node, &popup_x, &popup_y)) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	struct wlr_box global = local_viewport;
++	int64_t gx = (int64_t)tile_x + global.x;
++	int64_t gy = (int64_t)tile_y + global.y;
++	if (gx < INT_MIN || gx > INT_MAX || gy < INT_MIN || gy > INT_MAX) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	global.x = (int)gx;
++	global.y = (int)gy;
++	struct wlr_box output_box = {
++		.x = output->lx, .y = output->ly,
++		.width = output->width, .height = output->height,
++	};
++	if (!probe_clip_box_intersection(&global, &global, &output_box)) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	// EXPERIMENTAL INVARIANT: the viewport alone does not imply that its
++	// popup owner is visible. Use the already-applied scene position and size,
++	// not pending layout geometry, to suppress a fully hidden owner's popup.
++	int owner_x = INT_MIN, owner_y = INT_MIN;
++	struct wlr_box owner_visible;
++	if (!wlr_scene_node_coords(&con->scene_tree->node, &owner_x, &owner_y) ||
++			con->animation_state.current_width <= 0 ||
++			con->animation_state.current_height <= 0 ||
++			!probe_clip_box_intersection(&owner_visible, &global,
++				&(struct wlr_box){
++					.x = owner_x, .y = owner_y,
++					.width = con->animation_state.current_width,
++					.height = con->animation_state.current_height,
++				})) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		// Sampled applied geometry only; logging timing neutrality NOT_PROVEN.
++		sway_log(SWAY_INFO, "PROBE_POPUP_HIDDEN_OWNER owner=%p applied=%d,%d %dx%d viewport=%d,%d %dx%d",
++			(void *)con, owner_x, owner_y,
++			con->animation_state.current_width,
++			con->animation_state.current_height,
++			global.x, global.y, global.width, global.height);
++		return;
++	}
++	int64_t px = (int64_t)global.x - popup_x;
++	int64_t py = (int64_t)global.y - popup_y;
++	if (px < INT_MIN || px > INT_MAX || py < INT_MIN || py > INT_MAX) {
++		struct wlr_box empty = {0};
++		wlr_scene_tree_set_clip(popup_tree, &empty);
++		return;
++	}
++	global.x = (int)px;
++	global.y = (int)py;
++	wlr_scene_tree_set_clip(popup_tree, &global);
++	// WHY/CONTRACT: preserve sampled applied clip evidence, no GPU identity.
++	// INVARIANT: this trace does not prove generation or timing neutrality.
++	sway_log(SWAY_INFO, "PROBE_POPUP_CLIP owner=%p local=%d,%d %dx%d",
++		(void *)con, global.x, global.y, global.width, global.height);
++}
++
+ void arrange_popups(struct wlr_scene_tree *popups) {
+ 	struct wlr_scene_node *node;
+ 	wl_list_for_each(node, &popups->children, link) {
+@@ -1016,6 +1157,7 @@
+ 			int lx, ly;
+ 			wlr_scene_node_coords(popup->relative, &lx, &ly);
+ 			wlr_scene_node_set_position(node, lx, ly);
++			probe_clip_popup(node, popup);
+ 		}
+ 	}
+ }
+--- a/sway/desktop/xdg_shell.c
++++ b/sway/desktop/xdg_shell.c
+@@ -117,6 +117,10 @@
+ 
+ 	popup->image_capture_tree = wlr_scene_xdg_surface_create(image_capture_parent, xdg_surface);
+ 	if (popup->image_capture_tree == NULL) {
++		// WHY: helper admission can fail after primary tree/descriptor creation.
++		// CONTRACT/INVARIANT: rollback owns both primary subtree and popup.
++		wlr_scene_node_destroy(&popup->scene_tree->node);
++		free(popup);
+ 		return NULL;
+ 	}
+ 
+@@ -380,6 +384,7 @@
+ 	int lx, ly;
+ 	wlr_scene_node_coords(&popup->view->content_tree->node, &lx, &ly);
+ 	wlr_scene_node_set_position(&popup->scene_tree->node, lx, ly);
++	arrange_popups(root->layers.popup);
+ }
+ 
+ static void handle_request_maximize(struct wl_listener *listener, void *data) {
+--- a/sway/input/seat.c
++++ b/sway/input/seat.c
+@@ -520,7 +520,8 @@
+ 	seat->scene_tree = alloc_scene_tree(root->layers.seat, &failed);
+ 	seat->drag_icons = alloc_scene_tree(seat->scene_tree, &failed);
+ 	if (failed) {
+-		wlr_scene_node_destroy(&seat->scene_tree->node);
++		// Factory admission may fail before the top-level tree exists.
++		wlr_scene_node_destroy(seat->scene_tree ? &seat->scene_tree->node : NULL);
+ 		free(seat);
+ 		return NULL;
+ 	}
+--- a/sway/input/text_input.c
++++ b/sway/input/text_input.c
+@@ -368,6 +368,7 @@
+ static void input_popup_set_focus(struct sway_input_popup *popup,
+ 		struct wlr_surface *surface) {
+ 	wl_list_remove(&popup->focused_surface_unmap.link);
++	wl_list_init(&popup->focused_surface_unmap.link);
+ 
+ 	if (!popup->scene_tree) {
+ 		wl_list_init(&popup->focused_surface_unmap.link);
+@@ -380,6 +381,13 @@
+ 		popup->desc.relative = NULL;
+ 	}
+ 
++	// WHY: replacement may fail after old relative node/descriptor retirement.
++	// CONTRACT: failed refocus leaves a disabled wrapper without stale focus.
++	// INVARIANT: only a complete relative node and descriptor re-enable it.
++	wlr_scene_node_set_enabled(&popup->scene_tree->node, false);
++	popup->desc.view = NULL;
++	popup->fixed_output = NULL;
++
+ 	if (surface == NULL) {
+ 		wl_list_init(&popup->focused_surface_unmap.link);
+ 		wlr_scene_node_set_enabled(&popup->scene_tree->node, false);
+@@ -439,12 +447,23 @@
+ 	}
+ 
+ 	struct wlr_scene_tree *relative = wlr_scene_tree_create(relative_parent);
++	if (relative == NULL) {
++		wl_list_remove(&popup->focused_surface_unmap.link);
++		wl_list_init(&popup->focused_surface_unmap.link);
++		popup->desc.view = NULL;
++		popup->fixed_output = NULL;
++		return;
++	}
+ 
+ 	popup->desc.relative = &relative->node;
+ 	if (!scene_descriptor_assign(&popup->scene_tree->node,
+ 			SWAY_SCENE_DESC_POPUP, &popup->desc)) {
+-		wlr_scene_node_destroy(&popup->scene_tree->node);
+-		popup->scene_tree = NULL;
++		wlr_scene_node_destroy(&relative->node);
++		popup->desc.relative = NULL;
++		popup->desc.view = NULL;
++		popup->fixed_output = NULL;
++		wl_list_remove(&popup->focused_surface_unmap.link);
++		wl_list_init(&popup->focused_surface_unmap.link);
+ 		return;
+ 	}
+ 
+@@ -515,7 +534,6 @@
+ 
+ 	popup->relay = relay;
+ 	popup->popup_surface = data;
+-	popup->popup_surface->data = popup;
+ 
+ 	popup->scene_tree = wlr_scene_tree_create(root->layers.popup);
+ 	if (!popup->scene_tree) {
+@@ -532,6 +550,10 @@
+ 		return;
+ 	}
+ 
++	// WHY: failed factory/helper admission frees popup before listeners exist.
++	// CONTRACT/INVARIANT: publish protocol back-pointer only after admission.
++	popup->popup_surface->data = popup;
++
+ 	wl_signal_add(&popup->popup_surface->events.destroy, &popup->popup_destroy);
+ 	popup->popup_destroy.notify = handle_im_popup_destroy;
+ 	wl_signal_add(&popup->popup_surface->surface->events.commit, &popup->popup_surface_commit);
+--- a/sway/tree/container.c
++++ b/sway/tree/container.c
+@@ -93,7 +93,7 @@
+ 
+ 		c->dim_rect = alloc_rect_node(c->border.tree, &failed);
+ 		// Disable rect input
+-		c->dim_rect->accepts_input = false;
++		if (c->dim_rect) c->dim_rect->accepts_input = false;
+ 	}
+ 
+ 	if (!failed && !scene_descriptor_assign(&c->scene_tree->node,
+@@ -102,7 +102,8 @@
+ 	}
+ 
+ 	if (failed) {
+-		wlr_scene_node_destroy(&c->scene_tree->node);
++		// Failed factory admission may leave the top-level tree NULL.
++		wlr_scene_node_destroy(c->scene_tree ? &c->scene_tree->node : NULL);
+ 		free(c);
+ 		return NULL;
+ 	}
+--- a/sway/tree/output.c
++++ b/sway/tree/output.c
+@@ -89,19 +89,19 @@
+ }
+ 
+ static void destroy_scene_layers(struct sway_output *output) {
+-	wlr_scene_node_destroy(&output->fullscreen_background->node);
++	wlr_scene_node_destroy(output->fullscreen_background ? &output->fullscreen_background->node : NULL);
+ 
+ 	scene_node_disown_children(output->layers.tiling);
+ 	scene_node_disown_children(output->layers.fullscreen);
+ 
+-	wlr_scene_node_destroy(&output->layers.shell_background->node);
+-	wlr_scene_node_destroy(&output->layers.shell_bottom->node);
+-	wlr_scene_node_destroy(&output->layers.blur_layer->node);
+-	wlr_scene_node_destroy(&output->layers.tiling->node);
+-	wlr_scene_node_destroy(&output->layers.fullscreen->node);
+-	wlr_scene_node_destroy(&output->layers.shell_top->node);
+-	wlr_scene_node_destroy(&output->layers.shell_overlay->node);
+-	wlr_scene_node_destroy(&output->layers.session_lock->node);
++	wlr_scene_node_destroy(output->layers.shell_background ? &output->layers.shell_background->node : NULL);
++	wlr_scene_node_destroy(output->layers.shell_bottom ? &output->layers.shell_bottom->node : NULL);
++	wlr_scene_node_destroy(output->layers.blur_layer ? &output->layers.blur_layer->node : NULL);
++	wlr_scene_node_destroy(output->layers.tiling ? &output->layers.tiling->node : NULL);
++	wlr_scene_node_destroy(output->layers.fullscreen ? &output->layers.fullscreen->node : NULL);
++	wlr_scene_node_destroy(output->layers.shell_top ? &output->layers.shell_top->node : NULL);
++	wlr_scene_node_destroy(output->layers.shell_overlay ? &output->layers.shell_overlay->node : NULL);
++	wlr_scene_node_destroy(output->layers.session_lock ? &output->layers.session_lock->node : NULL);
+ }
+ 
+ struct sway_output *output_create(struct wlr_output *wlr_output) {
+--- a/sway/tree/view.c
++++ b/sway/tree/view.c
+@@ -114,7 +114,7 @@
+ 	return true;
+ 
+ err:
+-	wlr_scene_node_destroy(&view->scene_tree->node);
++	wlr_scene_node_destroy(view->scene_tree ? &view->scene_tree->node : NULL);
+ 	return false;
+ }
+ 
+--- a/sway/tree/workspace.c
++++ b/sway/tree/workspace.c
+@@ -208,8 +208,8 @@
+ 	ws->layers.fullscreen = alloc_scene_tree(root->staging, &failed);
+ 
+ 	if (failed) {
+-		wlr_scene_node_destroy(&ws->layers.tiling->node);
+-		wlr_scene_node_destroy(&ws->layers.fullscreen->node);
++		wlr_scene_node_destroy(ws->layers.tiling ? &ws->layers.tiling->node : NULL);
++		wlr_scene_node_destroy(ws->layers.fullscreen ? &ws->layers.fullscreen->node : NULL);
+ 		wlr_ext_workspace_handle_v1_destroy(ws->ext_workspace);
+ 		free(ws);
+ 		return NULL;

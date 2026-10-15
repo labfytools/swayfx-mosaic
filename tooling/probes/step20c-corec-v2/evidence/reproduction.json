@@ -1,0 +1,41 @@
+{
+  "status": "EXACT_FOR_NEW_TREE",
+  "verified_regular_files": 502,
+  "read_only_cache_and_public_fetch_receipts_equal": true,
+  "receipt": {
+    "identity": "COREC_V2_REDERIVED",
+    "status": "EXACT_FOR_NEW_TREE",
+    "components": {
+      "scene": {
+        "files": 85,
+        "manifest_sha256": "a29661e0eb2e96d2c8884955ae1221cd1598a1089c258dff813e97833f03945a"
+      },
+      "mosaic": {
+        "files": 417,
+        "manifest_sha256": "e8f3cba2fa0ccb90ad35985ec35ce5edd1fa413c3b544076bed58168a831e896"
+      }
+    },
+    "receipts": [
+      {
+        "component": "scene",
+        "parent_pin": "37ccd723bef49e6891156ffafce8f549f01446cc",
+        "parent_tree": "685a78b94f9e44ee683e5fea93874557a9fed457",
+        "archive_sha256": "79de4e9fff96d80f65a77d4eae33f571320840dc48e4918c4bbe4f2d3c071e49",
+        "patch_sha256": "6039799046d052bb4cf2b15fbeb132983d6e3c1a45ad63752a6a63e83b585627",
+        "forward_apply_rc": 0
+      },
+      {
+        "component": "mosaic",
+        "parent_pin": "cd550382b311efdbfe3ed892f4e1d281d852e754",
+        "parent_tree": "6be2d6cada19bd84673c30dfc4fb900a48b87e86",
+        "archive_sha256": "058ab3594e3918b2b60065c21cfe3453df4e44cd4aa873df0f0a8a96728a769f",
+        "patch_sha256": "9eb6afac0be5c747fbf1a1ee5a33a633c193c4ebae0a36b17636abde7a64c879",
+        "forward_apply_rc": 0
+      }
+    ]
+  },
+  "first_attempt": {
+    "rc": 1,
+    "cause": "git apply used umask077 for changed-file replacements, source byte equality but mode0600 versus0644; script restores declared parent mode after apply"
+  }
+}

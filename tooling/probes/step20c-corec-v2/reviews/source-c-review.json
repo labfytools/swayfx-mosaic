@@ -1,0 +1,62 @@
+{
+  "reviewer": "/root/v2_source_c_review",
+  "role": "independent bounded R-source and R-C; not final deepreview",
+  "verdict": "PASS",
+  "identity": "COREC_V2_REDERIVED",
+  "frozen_inputs": {
+    "kit_manifest_sha256": "dea4f8ba4acb4b42664cbd4a3cb413a132f9169bc8c6e142adbdfe18cc5765cf",
+    "file_manifest_sha256": "919b1a59da5c6ddf37816c341e4adde2f9ec194172e2d16555c2258113eec1c4",
+    "files_verified": 20,
+    "scene_patch_sha256": "6039799046d052bb4cf2b15fbeb132983d6e3c1a45ad63752a6a63e83b585627",
+    "mosaic_patch_sha256": "9eb6afac0be5c747fbf1a1ee5a33a633c193c4ebae0a36b17636abde7a64c879"
+  },
+  "gates": {
+    "COREC_V2_FULL_SOURCE_REBUILD": "PASS",
+    "COREC_V2_OPTION_C_CALLSITE_AUDIT": "PASS",
+    "COREC_V2_SOURCE_FORWARD_APPLY": "PASS",
+    "COREC_V2_NATIVE_C_SANITIZERS": "PASS"
+  },
+  "blocking_findings": [],
+  "non_blocking_findings": [],
+  "reproduction": {
+    "destination": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-source-c/fresh",
+    "forward_apply": "PASS both pinned parents; git apply --check then apply; no forced hunks",
+    "comparison": "502 files identical bytes and modes to scene-core/mosaic-core",
+    "exact_body_bindings": "25 fullfile and byte-slice SHA independently recomputed; all match",
+    "c_tests": "PASS_BOUNDED normal/UBSan/ASan+UBSan; first reservation and targeted second reservation fail cleanly; root returns expected SIGABRT",
+    "measurement": "native tree128B, sidecar64B; 236 allocation attempts,118 reservation attempts,3 injected failures, final reservations0; allocator overhead NOT_MEASURED; lookup linear; damage ADAPTER_ONLY",
+    "mutation_execution": "10 compiled successfully; 10 killed; reviewed each oracle and stderr; no compile failure counted as kill",
+    "mutation_oracles": {
+      "publish_before_reserve": "parent child-list assertion during reservation",
+      "setter_allocates": "allocation attempt count assertion",
+      "inactive_visible": "get_clip false assertion",
+      "null_frees_reservation": "later setter explicitly aborts because retained reservation was removed",
+      "root_accepted": "root returns0 rather than expected -6; harness destroys root so leak does not mask",
+      "caller_null_dereference": "UBSan NULL struct member access in exact IME body",
+      "zero_allows_hit": "zero point visibility assertion",
+      "doublefree_listener": "UBSan second list removal after first free; list traversal reaches NULL",
+      "unsafe_intersection": "UBSan signed subtraction overflow on disjoint extreme boxes",
+      "unchecked_float_conversion": "UBSan NaN to int overflow before validation"
+    }
+  },
+  "source_evidence": [
+    "SceneFX wlr_scene.c:278 factory allocates sidecar before scene_tree_init; failure frees unpublished tree. :990 setter preserves reservation NULL and active zero, no bookkeeping calloc. :41 private sidecar, public struct layout unchanged. :166 destroy signal then native disable/recursive destruction; sidecar listener detaches once. :1956 reparent captures old visibility before parent move then scene_node_update.",
+    "Native scene_node_update collects previous stored visibility, union with new clipped bounds, recomputes region and damages previous/new visibility. This is source evidence only; harness uses declared adapter.",
+    "transaction.c probe_clip_popup walks all current parents for fullscreen, tests actual leaf con geometry, clears standard/non-tiled/fullscreen extra clip, inherits root clip for nested nodes; fading branch invokes same workspace clip helper after scene position.",
+    "IME refocus retires descriptor/relative, disables wrapper, clears pointers, rolls back listeners and failed relative; back-pointer publication follows wrapper and subsurface success. Container dim_rect first use guarded; primary XDG subtree and descriptor cleaned on image-capture admission failure; nullable output/workspace/view/seat cleanup defined.",
+    "294 references/16 symbols inventory inspected alongside grouped ownership contracts and complete relevant native callers; pinned wlroots xdg/subsurface/layer/drag helpers check factory NULL before dereference. Examples explicitly out of binary. Root uses scene_tree_init directly; clip setters only factory workspace/popup trees.",
+    "Int64 translations/intersections and finite camera conversion validated before narrowing; adversarial sanitizer corpus exercises extreme disjoint boxes, aliases and NaN/infinities.",
+    "Three passive traces retained and labeled timing neutrality NOT_PROVEN; SPIKE_DAMAGE removed; PI/OPT absent from functional delta; README explicitly explains NULL vs active-zero log ambiguity."
+  ],
+  "limitations": [
+    "No functional compositor/engine build or compositor/IPC/runtime run by reviewer.",
+    "Linked ELF provider, native full damage/effects/scale/transform/fading/transaction behavior, native compositor OOM survival and shutdown remain NOT_PROVEN.",
+    "Tree128B/sidecar64B are native compile measurements, allocator overhead NOT_MEASURED, lookup linear.",
+    "Previous setup failures and resource exception are preserved: ten stored cores2261704B plus eight journal-only pre-prctl events. This review asserts checked PR_SET_DUMPABLE0/PR_GET_DUMPABLE0 and RLIMIT_CORE0 for own harness; no global zero-outside-LAB-writes claim."
+  ],
+  "next_gate": {
+    "first_functional_build": "ALLOWED_BY_THESE_FOUR_GATES, subject to parent resource/plan gates; first bounded private static SceneFX/Mosaic build and ELF/staging review only",
+    "headless": "NOT_AUTHORIZED_BY_THIS_REVIEW; kit publication and binary/fixture review still required"
+  },
+  "changes": "Reviewer generated only review-source-c artifacts; no source/docs/fixture edits, git mutation, commit or push."
+}
