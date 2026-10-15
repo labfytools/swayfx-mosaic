@@ -1,0 +1,232 @@
+{
+  "G2": {
+    "EGL_client_version": 2,
+    "GL_VERSION": "OpenGL ES 3.2 Mesa 26.2.4-arch1.1",
+    "allocation_length": "NOT_PROVEN",
+    "baseline_H2": "PASS exact complete RGB 800x600; 2 captures only, no H1 A/A-return comparison",
+    "cleanup": {
+      "all_process_exit0": true,
+      "mechanical": "PASS",
+      "private_runtime_removed": true,
+      "reaped": true,
+      "rescue": false,
+      "scientific": "PASS",
+      "terminal_IPC_exit": 1,
+      "watchdog": false
+    },
+    "consumed": true,
+    "epochs_2_3": "NOT_RUN",
+    "error_observation": "pre_errors and version query_errors empty after executed pre/version drains; read_errors/restore_errors remain zero-initialized because early refusal precedes state save/bind/read/restore. Empty arrays are not read success or observed restoration.",
+    "first_A": "REJECTED",
+    "metadata_bytes": 1776,
+    "metadata_rows": [
+      "begin",
+      "sample",
+      "rejected"
+    ],
+    "native_READ_SUCCESS": "NOT_PROVEN",
+    "no_retry": "PASS no raw files, no epoch2/3 tokens/data and exactly one client source-A command",
+    "observed_dmabuf": {
+      "allocation_length": "NOT_PROVEN",
+      "borrowed": true,
+      "dimensions": [
+        800,
+        600
+      ],
+      "format": 875713112,
+      "modifier": "020000001046bb04",
+      "planes": [
+        {
+          "dev": 12,
+          "fd": 32,
+          "fstat_ok": true,
+          "ino": 32909,
+          "offset": 0,
+          "stride": 3584
+        },
+        {
+          "dev": 12,
+          "fd": 33,
+          "fstat_ok": true,
+          "ino": 32909,
+          "offset": 2293760,
+          "stride": 1024
+        }
+      ]
+    },
+    "observed_native_object_metadata": {
+      "dimensions": [
+        800,
+        600
+      ],
+      "fbo_rbo_tex": [
+        7,
+        13,
+        4
+      ],
+      "fx": "5572d9a735d0",
+      "image": "5572d9ad6270",
+      "wlr": "5572d99d5900"
+    },
+    "point": 0,
+    "raw_GPU_bytes": 0,
+    "raw_GPU_files": 0,
+    "reason": "GLES_STATE_NOT_SUPPORTED",
+    "reason_interpretation": "Frozen g2_read requires both EGL client_version>=3 and GL_VERSION prefix OpenGL ES 3.; observed EGL value fails. Refusal conforms to accepted strict capability contract. No relaxation/retry authorized.",
+    "source_client_command": [
+      "G2_SOURCE_BYTES command=G2-A bytes=1920000 crc32=c03ad22d exact_original=not-return"
+    ],
+    "state_zero_fields": "before/after and attachment/channel zeros unmeasured initialized values on this early return",
+    "status": "INCONCLUSIVE",
+    "uniforms_and_halfpixel": "NOT_OBSERVED"
+  },
+  "IPC_calls": 0,
+  "committed": false,
+  "decision": "PASS_BOUNDED_RECORDING_AND_STOP_PROTOCOL",
+  "evidence_sha256": {
+    "gpu-kit/g2_gl.h": "cd175030be6a2e5d0af036c714c03455ef417f78f20360e00f7e6d1d7be7ab13",
+    "gpu-kit/g2_native.h": "0dfa9e089853a078094736da7f4e133d7fd648500d380dd7f536a7a6f80fdd8e",
+    "gpu-kit/scenario.py": "a894a74d5b1a9c0378485f0291a8ae788a56bb33ab26665dc6cd033a9271c738",
+    "gpu-work/acquisition/epoch-1.consumed": "92728523a6a90f41ad63b37bcb08901ed0dedbb1e3743f93dea3ff4aa535e30c",
+    "gpu-work/acquisition/epoch-1.jsonl": "a8ac7f57be576a793f373fb5363fd4b05351ed5cd60bb5cbefd8ec905566f6ce",
+    "graphics-runs/G2/run/G2-H2-baseline.json": "1cfa58941ac41b07ea7206add5d1722fa2749eb5be5274b9006b4cbcba8f31b3",
+    "graphics-runs/G2/run/G2-H2-baseline1.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/G2/run/G2-H2-baseline2.png": "4471e93ccb6cf3ff4970f61fce405431a228af598d2f1f030a3b7586962ecd7a",
+    "graphics-runs/G2/run/compositor.log": "4a220e8610b627e74775a1866f1cbc6cc926dfda9cf276c873c632fb26ea73e9",
+    "graphics-runs/G2/run/config": "caf7cdff074714cb5b2ba35827558ce5a7defda125de034a7d42296f03b0528b",
+    "graphics-runs/G2/run/events.jsonl": "6da260a376155fbe4d170651943113d5d4927ed6e94d3f7fe57806e36de169af",
+    "graphics-runs/G2/run/g2-background-closed-3347683.log": "64e75816dbb8a6013fa0614637f8176d9ad922e8c630c46b8d92317e36a170d3",
+    "graphics-runs/G2/run/g2-background.log": "64e75816dbb8a6013fa0614637f8176d9ad922e8c630c46b8d92317e36a170d3",
+    "graphics-runs/G2/run/g2-glass-closed-3347685.log": "b9c79aee77e15c9b99e43d786009d5b79f279368a3c4da94f3e9be19ea7daf63",
+    "graphics-runs/G2/run/g2-glass.log": "b9c79aee77e15c9b99e43d786009d5b79f279368a3c4da94f3e9be19ea7daf63",
+    "graphics-runs/G2/run/g2-reference-closed-3347672.log": "68ab7f0f14e6bfcb09dff2176c8e493de6f84287d1d1fedb9d4904d195c37bd2",
+    "graphics-runs/G2/run/g2-reference.log": "68ab7f0f14e6bfcb09dff2176c8e493de6f84287d1d1fedb9d4904d195c37bd2",
+    "graphics-runs/G2/run/outcome.json": "61a6735ad0c700978a2f58c85ba0d59487cb863a81b7c933da63fbc1ccea10d3",
+    "graphics-runs/G2/run/pointer.log": "fbf1d66c7352dee486b0d01ae2d4e258a14c003a534fb592498727ff17ca402f",
+    "graphics-runs/G2/run/proc-maps.txt": "fe4ed2ab19539069e1adf7cc047a29af0e9f3bd91a1fdc4d17f274c8ce04c89d",
+    "graphics-runs/G2/run/runtime-identity.json": "49f38e896a3670ec9bb69d3d1c5809b4a017024693800a6738eaadf9eacea5e8",
+    "graphics-runs/G2/run/startup-snapshot.json": "01923c0cfc26c32f2675b0386f845b0bc6ffcf262fd5ab6f182ef6ba40f1871b",
+    "graphics-runs/G2/run/terminal-ipc.json": "e6674bddc8ac2b06fb5c2373cf7bc54f0906e7f252559f46928ce70fd0e70cd4",
+    "results/native-G2-outer.json": "61c72e5203c2b32143774249bdb595f802b591e2168fa371cf1a8da973d20fd2",
+    "review-oom-runtime/runtime-receipt.json": "ce5b5bf1d673f18b1eed77c8b3993caa3ea55fa171369cce7737dc5788fe4982",
+    "review-remaining-runtime/G2-dependency-decision.json": "346cf42b038e3f6f17d07ef363f47edec63ccdf8addecb65de4e22cd65e026d2",
+    "review-remaining-runtime/early-receipt.json": "fc9fc09efb117282089575503c8716aee4846d931378ce6cd8f378a1c7cb8906"
+  },
+  "git_operations": 0,
+  "independent": true,
+  "ledger": {
+    "O2": "NOT_RUN_BLOCKED_BY_O1_INCONCLUSIVE",
+    "R1": "NOT_RUN_NOT_ADMITTED",
+    "completed_reservations": 12,
+    "immutable_binding_sha256": {
+      "results/pre-run-freeze.json": "f3e01cf4fdf65a27595f104d105e0b5241c40da8e0ea33b90f0fa1e981ea5767",
+      "results/pre-run-publication.json": "8ef64e846f789faa75ce3c2dd04f092b1d6cf7b58a1de5e502768d7c4ee61616",
+      "results/remaining-pre-run-freeze.json": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121",
+      "results/remaining-publication.json": "ca17909631b03826605ca1ee3d4f4287c9e1328c9e8992487ece0d997e2a2759",
+      "review-graphics/run-admission.json": "0cf469b78016845e73c5c483150c1964e350ba312fa0dfc0c2e1b91d145be0f1",
+      "review-remaining-admission/run-admission.json": "0fb5664d23928444b10309467f9c0aecc228f95bb524db4024a2340594b065c0"
+    },
+    "immutable_prior_bindings": "PASS every recorded manifest/review/publication SHA still exact",
+    "launched": 12,
+    "limits": {
+      "captures": 180,
+      "captures_per_run": 18,
+      "duration_s": 150,
+      "runs": 14
+    },
+    "output_capture_debits": 102,
+    "per_run": {
+      "C1": {
+        "captures": 16,
+        "reserved_cap": 18,
+        "status": "PARTIALLY_FEASIBLE"
+      },
+      "C2": {
+        "captures": 8,
+        "reserved_cap": 12,
+        "status": "PARTIALLY_FEASIBLE"
+      },
+      "C3": {
+        "captures": 9,
+        "reserved_cap": 12,
+        "status": "PARTIALLY_FEASIBLE"
+      },
+      "C4": {
+        "captures": 9,
+        "reserved_cap": 12,
+        "status": "PARTIALLY_FEASIBLE"
+      },
+      "C5": {
+        "captures": 12,
+        "reserved_cap": 12,
+        "status": "PARTIALLY_FEASIBLE"
+      },
+      "C6": {
+        "captures": 10,
+        "reserved_cap": 12,
+        "status": "PARTIALLY_FEASIBLE"
+      },
+      "C7": {
+        "captures": 10,
+        "reserved_cap": 14,
+        "status": "INCONCLUSIVE"
+      },
+      "C8": {
+        "captures": 0,
+        "reserved_cap": 12,
+        "status": "INCONCLUSIVE"
+      },
+      "G2": {
+        "captures": 2,
+        "reserved_cap": 16,
+        "status": "INCONCLUSIVE"
+      },
+      "O1": {
+        "captures": 6,
+        "reserved_cap": 8,
+        "status": "INCONCLUSIVE"
+      },
+      "P0": {
+        "captures": 10,
+        "reserved_cap": 10,
+        "status": "PARTIALLY_FEASIBLE"
+      },
+      "P1": {
+        "captures": 10,
+        "reserved_cap": 10,
+        "status": "PARTIALLY_FEASIBLE"
+      }
+    },
+    "reservations": 12,
+    "reserved_capture_caps": 148,
+    "sha256": "dfe1897e255ca5a96b7b66b0af0728acdffdf3ddf397a3fa3c6b1011b07c9db6"
+  },
+  "new_blocking_findings": [],
+  "new_builds": 0,
+  "new_captures": 0,
+  "new_clients": 0,
+  "new_runs_by_reviewer": 0,
+  "next_smallest_step": "Complete evidence/documentation handoff with immutable refusals and consumed statuses; no further graphics or retry under this review",
+  "out_of_scope_observation": "results/phase-status.json is a historical intermediate snapshot of 8 runs84 captures; final report must use this reconciled ledger and avoid treating that intermediate file as final",
+  "own_review_artifacts_only": true,
+  "phase_I": {
+    "GPU_completion": "NOT_PROVEN",
+    "GPU_object_lifetime": "NOT_PROVEN",
+    "GPU_render_input_equivalence": "NOT_PROVEN",
+    "atomic_transaction_generation": "NOT_PROVEN",
+    "complete_damage_stale_pixels": "NOT_PROVEN",
+    "native_commit_present": "NOT_PROVEN",
+    "presented_physical_buffer_identity": "NOT_PROVEN",
+    "retained_scope": "Prior eight-run review retained; C6 held configure/timeout/ACK evidence does not identify native saved buffer or atomic generation. P1 sampled control remains PF; C7/C8/O1/G2 remain INCONCLUSIVE.",
+    "shader_uniforms_halfpixel": "NOT_OBSERVED_DUE_EARLY_REJECTION",
+    "status": "PARTIAL_EVIDENCE_ONLY",
+    "whole_field_GPU_causality": "NOT_PROVEN"
+  },
+  "prior_fixture_findings": "C7/P2 retained first-eight review; C8 and O1/P2 retained early-receipt; no repairs/retries performed",
+  "production": "NOT_AUTHORIZED; STEP20C gates remain open, partial evidence only",
+  "pushed": false,
+  "reviewer": "/root/remaining_run_admission",
+  "schema": "remaining-runtime-final-independent-review-v1",
+  "scope": "Exact G2 epoch1 refusal, cleanup, final ledger accounting and phase-I evidence boundaries; reuse prior first-eight-run and early remaining-run reviews",
+  "source_edits": false
+}

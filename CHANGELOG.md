@@ -4,6 +4,15 @@
 
 ### STEP20C experimental evidence
 
+- Record the [new CORE-C V2 integration decision](docs/design/STEP20C_COREC_V2_INTEGRATION_DECISION.md):
+  reconstructible source-only CORE/OOM/G2 kit, three private binary identities,
+  12 consumed runs and 102 output captures. C7/C8/O1/G2 stay INCONCLUSIVE,
+  O2/R1 NOT_RUN; bounded O1 survival and strict first-A G2 refusal do not close
+  production gates. Disposition PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE,
+  recommendation C_FURTHER_NATIVE_REVIEW, production availability UNDECIDED.
+  Historical lost bytes remain missing; STEP20C NEXT and production
+  multi-output NOT_YET_SUPPORTED, with no production authorization.
+
 - Record the separate [CORE-C preallocation/native/GPU precision source gate](docs/design/STEP20C_COREC_PREALLOCATION_NATIVE_AND_GPU_PRECISION.md)
   as BLOCKED after user-confirmed deletion of required historical LABs:
   three seal receipts absent, 0/979 entries and 0/916 files reverified. Keep

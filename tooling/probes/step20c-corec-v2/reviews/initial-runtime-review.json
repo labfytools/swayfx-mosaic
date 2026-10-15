@@ -1,0 +1,79 @@
+{
+  "schema": "corec-v2-independent-current-eight-run-review",
+  "decision": "ACCEPTED_PARTIAL_EVIDENCE_C7_INCONCLUSIVE",
+  "runtime_findings": [
+    {
+      "severity": "P2",
+      "file": "runtime-git-kit/tooling/probes/step20c-corec-v2/graphics/cases.py",
+      "symbol": "dynamic_geometry(previous) lines110-112; dynamic_campaign migration",
+      "requirement": "Reconstruct exact pinned native camera behavior after migration, without treating ordinary refocus as a compositor defect",
+      "evidence": "move.c661 calls workspace_move_to_output; move.c668 seat_set_focus. seat.c1204-1212 adjusts focused cell camera. Migrated snapshot workspace6 IDs8,9,10 width640 each, focused10 logical bounds1280..1920 viewport800: right-width=1120; actual1120. Fixture min(previous800,max1120)=800 rejects it.",
+      "smallest_correction": "Future source-only fixture correction must distinguish resize clamp from migration refocus and add direct offline negative/positive cases; preserve C7 INCONCLUSIVE, do not rerun or retroactively PASS."
+    }
+  ],
+  "core_defect_established": false,
+  "run_set": [
+    "P0",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7"
+  ],
+  "statuses": {
+    "P0": "PARTIALLY_FEASIBLE",
+    "C1": "PARTIALLY_FEASIBLE",
+    "C2": "PARTIALLY_FEASIBLE",
+    "C3": "PARTIALLY_FEASIBLE",
+    "C4": "PARTIALLY_FEASIBLE",
+    "C5": "PARTIALLY_FEASIBLE",
+    "C6": "PARTIALLY_FEASIBLE",
+    "C7": "INCONCLUSIVE"
+  },
+  "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+  "budget_sha256": "8ce8a4134ff841dd0a60e2b108cd8dd688ff891f0867facb377bd0013263d839",
+  "admission_sha256": "0cf469b78016845e73c5c483150c1964e350ba312fa0dfc0c2e1b91d145be0f1",
+  "delta_review_sha256": "363080a9bae08a85f00213450b65529538487b4b699152f449539bf860cae21b",
+  "evidence_manifest_sha256": "324b4f27c4978b7c8abb721df9183beb79febe2caed1c6b8e80dd555db1d0eca",
+  "offline_checks_sha256": "0b29fddc1d39da4011e18d06603ea0f769fa317226439b93a29ca32433d74695",
+  "input_checks_sha256": "05cbc1225739c24cc29becc8e0120cc728e854a9ae42074edf60b911150dbafa",
+  "captures_total": 84,
+  "input_wire_pairs_checked": 28,
+  "closures_checked": 30,
+  "all_exit0_no_rescue": true,
+  "terminal_IPC_exit": 1,
+  "C2_axis_annotation_sha256": "95aab3fea44bead98bde84f1dd5aba62106f3fa5c48ccd3d1ceef99d2c44f63d",
+  "C2": "Legacy raw crossing field X0 NOT_EXERCISED retained; executed validator axis1 Y600 independently corroborated A505..675 and B585..715",
+  "C6": "Held configure39 follows ACK30; native timeout transaction waiting1; client remains alive and ACK39 later; saved native identity NOT_OBSERVABLE",
+  "limitations": [
+    "P0 single standard control only; pristine fractional/rotation specific controls not run",
+    "No native presentation, atomic generation, complete damage, saved node/buffer identity or GPU lifetime proof from pixels",
+    "C7 resize stages camera800 legal nonsaturating; migration pixels/input and return-back stages not reached",
+    "Standard-layout C1 H2 differences expected while popups continue; final H2 exact",
+    "No universal click-through; outside grab dismissal retained separately"
+  ],
+  "reviewer_native_runs": 0,
+  "new_reservations": 0,
+  "source_edits": false,
+  "commit_push": false,
+  "output_captures_total": 84,
+  "generated_marker_source_pngs": 2,
+  "png_files_total": 86,
+  "capture_count_correction": {
+    "superseded_receipt": "runtime-receipt-superseded-marker-count.json",
+    "superseded_sha256": "9b8466b35ce2562d73db0bf9d99b38dcf8aea0238384cd377354ec2dc09523e3",
+    "output_captures_per_run": {
+      "P0": 10,
+      "C1": 16,
+      "C2": 8,
+      "C3": 9,
+      "C4": 9,
+      "C5": 12,
+      "C6": 10,
+      "C7": 10
+    },
+    "explanation": "86 PNG files comprise 84 output captures and two generated marker-source.png files in C3/C4, counts_as_capture=False. Source OOM review unchanged; no new audit/run/reservation."
+  }
+}

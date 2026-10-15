@@ -1,5 +1,16 @@
 # Roadmap
 
+The [CORE-C V2 handoff](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
+is PARTIALLY_ADVANCED, with a Git-reconstructible experimental kit and 12
+consumed runs / 102 captures. Disposition remains
+PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE, recommendation C_FURTHER_NATIVE_REVIEW,
+production availability UNDECIDED. The next smallest justified tranche is
+prospective offline repair/review of the C7 migration, C8 group and O1 closure
+fixtures plus targeted native C review; any later run requires separate
+admission and budget. No consumed run may be retried under this ticket.
+STEP20A DONE; STEP20B EXPERIMENTAL; STEP20C NEXT; STEP20D–G PLANNED;
+PRODUCTION_MULTI_OUTPUT NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
+
 This is the canonical order of work, not proof that a feature exists. **A step is not ready for implementation until its user-visible and architectural behavior is documented in the canonical docs.** Update [UX](UX.md), [architecture](ARCHITECTURE.md), and the relevant packaging/upstream documents before changing behavior. Record validation and limitations when the step closes.
 
 | Step | State | Goal |

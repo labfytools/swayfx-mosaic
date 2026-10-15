@@ -1,0 +1,29 @@
+{
+  "decision": "PASS",
+  "scope": "Only test_compositor_only_environment_no_helpers_clients self.root instead of LAB and explanatory comment",
+  "reviewer": "offline_isolation_delta_review",
+  "independent": true,
+  "materialized_by": "parent from explicit reviewer final response, no reviewer file write",
+  "findings": [],
+  "tests": {
+    "offline_suite": "48/48 PASS",
+    "actual_function_namespace_ignores_real_O1_collision": "PASS",
+    "actual_function_fake_existing_token_refused": "PASS",
+    "fake_existing_token_unchanged": "PASS",
+    "real_token_and_budget_hashes_unchanged": "PASS",
+    "git_diff_check_bounded_file": "PASS"
+  },
+  "sha256": {
+    "source_test": "8d4f80c9d7f5dee53f06b9538d5523525e62eda77e4fb1632491a724e2cb8df2",
+    "real_O1_token": "e4416c9a2967e65bebb0c49667400538904503b8a5e5d185ee9318547d304d0d",
+    "real_budget": "dfe1897e255ca5a96b7b66b0af0728acdffdf3ddf397a3fa3c6b1011b07c9db6",
+    "preserved_failure": "fe2141fcdbd575f70be427added2d1f676a23dfd31a188c921571f2846ad6a49",
+    "gpu_manifest": "38b1daba551758e0969312a1ed5fc459af877ee7d443f2135d6aa62e4831af0e"
+  },
+  "native_runtime": "NOT_RUN",
+  "new_native_captures": 0,
+  "new_reservations": 0,
+  "source_edits_by_reviewer": false,
+  "committed": false,
+  "pushed": false
+}

@@ -1,0 +1,86 @@
+{
+  "authorized_runs": [
+    "P1",
+    "C8",
+    "O1",
+    "O2",
+    "G2"
+  ],
+  "conditions": {
+    "C8": "Only via reviewed parent transport after P1 PARTIALLY_FEASIBLE; compare actual P1/C8 configured crossing, roles and geometry before result acceptance",
+    "G2": "Exactly one A/B/A-return acquisition; strict GLES3 RBO capability only; reject unsupported attachment/context/error/state and STOP without B or retry after rejected A; native_gl_status remains NOT_RUN until actual execution",
+    "O2": "Only after O1 COMPLETED PARTIALLY_FEASIBLE and no critical or unresolved survival/invariant failure; Ledger.admit enforces"
+  },
+  "decision": "ACCEPTED",
+  "full_kit_manifest_sha256": "19ad4085ced4a2d9f77f665adff430ca2cf56d0cb41af930356f82d5a28d1370",
+  "independent": true,
+  "manifest_sha256": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121",
+  "not_admitted": [
+    "R1"
+  ],
+  "parent_transport_sha256": "ba2a43e70cbdef9a4ef9aab4529efb8bb4558208f148062a47b3bb07eed9a34b",
+  "prospective": {
+    "C8": {
+      "client_binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-work/client-build/fullscreen-client",
+      "client_binary_sha256": "82fc218f15f2405cca0f2290cc41bbbc6dfead18c641f796f8fcd4012a16af70",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-work/client-compile.json",
+      "client_build_receipt_sha256": "00c97bec3f87077f7edb6fd5e0d0e7ced7ed6c4c1ac76c9d8456647eb59ee793",
+      "client_build_review": "ACCEPTED",
+      "decision": "ACCEPTED",
+      "source_manifest_sha256": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121"
+    },
+    "G2": {
+      "binding": {
+        "binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/gpu-mosaic/sway/swayfx-mosaic",
+        "client": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/gpu-work/client-build/g2-client",
+        "client_sha256": "45b98828e84b94954b4382a3ec1a72d92624667e74534463c133eb3118a689f8",
+        "gate_file": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/gpu-work/native-runtime-gate.json",
+        "source_manifest_sha256": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121"
+      },
+      "build_review": "ACCEPTED",
+      "build_review_receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/ownreview-gpu-built/receipt.json",
+      "build_review_receipt_sha256": "00e78a136ea39a873adbee07653969f7265607c91d5dec5226f9708a14cc0aec",
+      "client_build_review": "ACCEPTED",
+      "decision": "ACCEPTED",
+      "gate_file": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/gpu-work/native-runtime-gate.json",
+      "gate_file_sha256": "75c0c663552eff71bde989e586a8fea5cf97714d3a26400ffdf8ed71566f2e1a",
+      "gl_observability_preflight": "ACCEPTED",
+      "gl_observability_preflight_receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-fifo-delta/receipt.json",
+      "gl_observability_preflight_receipt_sha256": "247fa681a20433a36eb8ba6a6545c6c784f6e8d1cf168345fcabb867a86737c4",
+      "gpu_source_manifest": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/results/gpu-source-freeze-corrected.json",
+      "gpu_source_manifest_sha256": "38b1daba551758e0969312a1ed5fc459af877ee7d443f2135d6aa62e4831af0e",
+      "gpu_source_review": "ACCEPTED",
+      "gpu_source_review_receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/review-gpu-fifo-delta/receipt.json",
+      "gpu_source_review_receipt_sha256": "247fa681a20433a36eb8ba6a6545c6c784f6e8d1cf168345fcabb867a86737c4",
+      "native_gl_status": "NOT_RUN",
+      "pair": 3,
+      "source_manifest_sha256": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121"
+    },
+    "O1": {
+      "client_build_review": "ACCEPTED",
+      "decision": "ACCEPTED",
+      "oom_source_review_sha256": "a953a38b49bea11e9c19e84ed2d8218a16b2e5d980e0ba57677eeee0ddf62c6c",
+      "source_manifest_sha256": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121",
+      "variant_identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC"
+    },
+    "O2": {
+      "client_build_review": "ACCEPTED",
+      "decision": "ACCEPTED",
+      "oom_source_review_sha256": "a953a38b49bea11e9c19e84ed2d8218a16b2e5d980e0ba57677eeee0ddf62c6c",
+      "source_manifest_sha256": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121",
+      "variant_identity": "COREC_V2_NATIVE_OOM_DIAGNOSTIC"
+    },
+    "P1": {
+      "client_binary": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-work/client-build/fullscreen-client",
+      "client_binary_sha256": "82fc218f15f2405cca0f2290cc41bbbc6dfead18c641f796f8fcd4012a16af70",
+      "client_build_receipt": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/graphics-next-work/client-compile.json",
+      "client_build_receipt_sha256": "00c97bec3f87077f7edb6fd5e0d0e7ced7ed6c4c1ac76c9d8456647eb59ee793",
+      "client_build_review": "ACCEPTED",
+      "decision": "ACCEPTED",
+      "source_manifest_sha256": "414e57983d5218fcbea8235c53c09bc8377137d413b5aacf5b0890494db7d121"
+    }
+  },
+  "publication_sha256": "ca17909631b03826605ca1ee3d4f4287c9e1328c9e8992487ece0d997e2a2759",
+  "reviewer": "/root/remaining_run_admission",
+  "scope": "Exact remaining source/publication/binary/client/caps bindings only; conditional private ticket runs, no runtime observation inherited"
+}

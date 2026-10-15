@@ -1,0 +1,79 @@
+{
+  "source_commit": "bf00b0b0ed3e20bfb7c68d2fbbe6553594f3167a",
+  "archive_sha256": "c5a1a8845860931a975599a93565b2a083ff8a9594fc06c12f1d1bd4974cdd88",
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/runtime-next-git-kit/tooling/probes/step20c-corec-v2/assemble.py",
+        "--project-git",
+        "/home/fy59/Documents/Development/swayfx-mosaic",
+        "--scene-git",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/sources/scenefx.git",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/git-next-repro-core"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/runtime-next-git-kit/tooling/probes/step20c-corec-v2/verify.py",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/git-next-repro-core"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/runtime-next-git-kit/tooling/probes/step20c-corec-v2/oom/assemble-variant.py",
+        "--core",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/git-next-repro-core",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/git-next-repro-oom"
+      ],
+      "exit": 0
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/runtime-next-git-kit/tooling/probes/step20c-corec-v2/gpu/reproduce.py",
+        "--core",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/git-next-repro-core/scene",
+        "--destination",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/git-next-repro-gpu",
+        "--work",
+        "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/git-next-repro-work"
+      ],
+      "exit": 0
+    }
+  ],
+  "checks": {
+    "git-next-repro-core/scene": {
+      "files": 85,
+      "bytes_and_modes_exact": true
+    },
+    "git-next-repro-core/mosaic": {
+      "files": 417,
+      "bytes_and_modes_exact": true
+    },
+    "git-next-repro-oom/scene": {
+      "files": 86,
+      "bytes_and_modes_exact": true
+    },
+    "git-next-repro-oom/mosaic": {
+      "files": 417,
+      "bytes_and_modes_exact": true
+    },
+    "git-next-repro-gpu": {
+      "files": 87,
+      "bytes_and_modes_exact": true
+    }
+  },
+  "status": "PASS",
+  "native_builds_or_runs": 0
+}

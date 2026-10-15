@@ -1,5 +1,16 @@
 # Known limitations
 
+The [CORE-C V2 decision](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
+adds reproducible new sources and bounded private native evidence, without
+recovering the historical deleted bytes. C7 migration uses an incomplete
+camera oracle; C8 fails group comparability before captures; O1 survives the
+injection but its root-only closure is rejected; G2 stops at first A on the
+strict EGL/GLES capability guard, with no raw GPU readback. All four runs stay
+INCONCLUSIVE; fullscreen comparison is NOT_EXERCISED, O2/R1 NOT_RUN.
+Damage/lifetime/whole-field GPU gates, legal approval and release/security
+ownership remain open. STEP20C NEXT; production multi-output
+NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
+
 This document describes the development tree at the documentation foundation pass. `EXPERIMENTAL` means implemented but incompletely validated; `PLANNED` means absent from runtime; `NOT YET SUPPORTED` means it must not be presented as ready for general use.
 
 | Area | Status | Practical implication |

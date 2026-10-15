@@ -1,0 +1,164 @@
+{
+  "ticket": "SWAYFX_MOSAIC_STEP20C_REBUILD_FROM_GIT_COREC_OOM_GPU_NIGHT_SHIFT_V1",
+  "source_commit_for_remaining_runs": "bf00b0b0ed3e20bfb7c68d2fbbe6553594f3167a",
+  "identity": "COREC_V2_REDERIVED",
+  "runs_consumed": 12,
+  "captures_consumed": 102,
+  "capture_caps_consumed": 148,
+  "run_limit": 14,
+  "capture_limit": 180,
+  "production_authorized": false,
+  "results": [
+    {
+      "id": "P0",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 10,
+      "binary_sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "5c29de515ff94695aabc62e85d45f36f"
+    },
+    {
+      "id": "P1",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 10,
+      "binary_sha256": "b7fa32116e3c42706b9b02da7df12f27e76d82dd253deb8bdec81519eed145f6",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "5ac3ec24778847d3a1d1452cd6c25caa"
+    },
+    {
+      "id": "C1",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 16,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "5490373d496c4d82b72a9e5f146ad66b"
+    },
+    {
+      "id": "C2",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 8,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "f2933d864c6e46abbc0bbffd5d6f8a75"
+    },
+    {
+      "id": "C3",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 9,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "932467dd9b70412b8cb91f375dc64302"
+    },
+    {
+      "id": "C4",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 9,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "a9edaa8d77024db198ec1f2e06b4e328"
+    },
+    {
+      "id": "C5",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 12,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "b28ab37dbb6e4d8da842b511be191e3b"
+    },
+    {
+      "id": "C6",
+      "status": "PARTIALLY_FEASIBLE",
+      "captures": 10,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": null,
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "a594f94bf0a54ba39f10de1ad4fe3c21"
+    },
+    {
+      "id": "C7",
+      "status": "INCONCLUSIVE",
+      "captures": 10,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": "Ambiguous: reconstructed camera clamp mismatch",
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "6ea13abc103540ebb2f0874040a83c5f"
+    },
+    {
+      "id": "C8",
+      "status": "INCONCLUSIVE",
+      "captures": 0,
+      "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+      "runner_failure": "Ambiguous: exact two-child group preparation",
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "2d540bd387b949e2848216bf48000fbd"
+    },
+    {
+      "id": "O1",
+      "status": "INCONCLUSIVE",
+      "captures": 6,
+      "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+      "runner_failure": "Ambiguous: popup child-first destruction order",
+      "scientific_cleanup": false,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "dcb32bacb26349078f9ca4a7876980b8"
+    },
+    {
+      "id": "O2",
+      "status": "NOT_RUN",
+      "captures": 0,
+      "reason": "O1 INCONCLUSIVE dependent gate closed"
+    },
+    {
+      "id": "G2",
+      "status": "INCONCLUSIVE",
+      "captures": 2,
+      "binary_sha256": "b2ba890908e385b0a8884e786b279bfb2e582eed38c7fcd0587b418326eca5bc",
+      "runner_failure": "RuntimeError: epoch 1 rejected; STOP, no next command/retry",
+      "scientific_cleanup": true,
+      "mechanical_rescue": false,
+      "all_processes_exit0": true,
+      "token": "4965cef41139433bab3c06f321829068"
+    },
+    {
+      "id": "R1",
+      "status": "NOT_RUN",
+      "captures": 0,
+      "reason": "optional distinct discriminant not admitted"
+    }
+  ],
+  "limitations": [
+    "C7 consumed fixture migration oracle error, never rerun",
+    "C8 exact group preparation absent, zero captures, no fullscreen comparison to P1",
+    "O1 root-only closure rejected common oracle, no final pair, no retroactive upgrade",
+    "G2 A source rejected EGL client_version2 versus GL ES3.2; zero raw bytes, no B or A-return",
+    "No native commit/present/buffer lifetime/GPU completion/atomic generation proof"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "corec-v2-final-global-readonly-review-v1",
+  "reviewer": "/root/tranche_final_audit",
+  "independent": true,
+  "decision": "PASS",
+  "review_status": "ACCEPTED",
+  "scope": "Final global audit of experimental CORE-C V2 source kit, documentation, scientific evidence, lifecycle and persistence boundaries",
+  "baseline_commit": "339dda45bc81b953e2f0afadf28765149e3a1ba1",
+  "published_source_commit": "bf00b0b0ed3e20bfb7c68d2fbbe6553594f3167a",
+  "blocking_findings": [],
+  "findings": [
+    {
+      "id": "N1",
+      "classification": "NON_BLOCKING",
+      "subject": "C7 migration oracle omits native refocus",
+      "disposition": "Retain INCONCLUSIVE; prospective correction in a future tranche only"
+    },
+    {
+      "id": "N2",
+      "classification": "NON_BLOCKING",
+      "subject": "C8 owner and peer do not form the comparable two-child group",
+      "disposition": "Retain INCONCLUSIVE and fullscreen comparison NOT_EXERCISED"
+    },
+    {
+      "id": "N3",
+      "classification": "NON_BLOCKING",
+      "subject": "O1 root-only close rejected by the common child-first oracle",
+      "disposition": "Retain scientific cleanup INCONCLUSIVE, six captures and O2 NOT_RUN"
+    },
+    {
+      "id": "N4",
+      "classification": "NON_BLOCKING",
+      "subject": "Disclosed historical system cores and incomplete early environment provenance",
+      "disposition": "Retain explicit historical limitations; no zero-outside-LAB claim"
+    },
+    {
+      "id": "F1",
+      "classification": "FUTURE_SCOPE",
+      "subject": "Per-factory sidecar memory and linear lookup scalability",
+      "disposition": "Global performance and allocator overhead NOT_MEASURED"
+    },
+    {
+      "id": "F2",
+      "classification": "FUTURE_SCOPE",
+      "subject": "Remaining native qualification, production policy and maintenance decisions",
+      "disposition": "No production integration or new runtime authorization"
+    }
+  ],
+  "retained_conclusions": {
+    "global": "PARTIALLY_ADVANCED",
+    "disposition": "PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE",
+    "oom_recommendation": "C_FURTHER_NATIVE_REVIEW",
+    "production_availability": "UNDECIDED",
+    "STEP20C": "NEXT",
+    "production_multi_output": "NOT_YET_SUPPORTED",
+    "production_authorized": false
+  },
+  "independent_checks": {
+    "git_diff_check": "PASS",
+    "python_AST": 43,
+    "local_document_links": 348,
+    "unique_markers": 43,
+    "required_answers": 16,
+    "runtime_review_artifact_hashes": 27,
+    "protected_hashes": 8,
+    "CORE_scene_files_bytes_modes": 85,
+    "CORE_mosaic_files_bytes_modes": 417,
+    "protected_production_source_delta": "EMPTY",
+    "offline_test_token_budget_bindings": "PASS",
+    "runs": 12,
+    "captures": 102,
+    "reserved_capture_caps": 148,
+    "all_recorded_run_durations_below_150s": true
+  },
+  "sha256": {
+    "reviewed_integration_dossier": "b9eb8a0e95501f78d6d45827793ab318ba452e0bbe65ec0d8a849f674b2c1102",
+    "source_c_review": "26aa862c741196fdbb8d7cdf5509301e49f763cdd22ffa7bcb1a4bbf09c66f90",
+    "remaining_runtime_final_review": "3372e0ba9f7b33da4fbc041dc4eea97ccc000fb1a9cf809b189c29c90b510569",
+    "offline_delta_review": "a164271eab56f561f1064880be2e38f7ed4f66005f7e18df4665bdcaf73fe749",
+    "offline_test_delta": "8d4f80c9d7f5dee53f06b9538d5523525e62eda77e4fb1632491a724e2cb8df2",
+    "runtime_summary": "941e73254330e324d3cbc0565e3c9ccc76dcb0f8a2f76fee2a4a6a2475eed705",
+    "budget": "dfe1897e255ca5a96b7b66b0af0728acdffdf3ddf397a3fa3c6b1011b07c9db6",
+    "pre_final_system_check": "7392ead2d8792d854240b867c84c735e4f74eb4868c95188b6b4826d51a1bd35",
+    "closeout_receipt_audit": "3380c7067a78ed3adb797c656f94e08b28a44e31ba5d17669b0e47a7f711f373"
+  },
+  "final_publication": "PENDING_PARENT_CLOSEOUT_NOT_A_REVIEW_FINDING",
+  "source_edits": 0,
+  "artifact_writes_by_reviewer": 0,
+  "new_builds": 0,
+  "new_native_runs": 0,
+  "new_clients": 0,
+  "new_captures": 0,
+  "IPC_calls": 0,
+  "new_reservations": 0,
+  "git_mutations": 0,
+  "committed": false,
+  "pushed": false,
+  "materialized_by": "Parent transcription of explicit structured reviewer response; reviewer performed no file write"
+}

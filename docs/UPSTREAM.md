@@ -1,5 +1,17 @@
 # Upstream maintenance
 
+The [CORE-C V2 dossier](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
+records exact new pinned parents, private patch SHA256, three binary Build IDs
+and static-SceneFX/shared-wlroots provider checks. This is experimental
+source-only persistence, not a permanent library fork or production merge.
+Each changed source/dependency pair requires fresh impact review, rebuild,
+ABI/stage and relevant native qualification. Notices remain
+LEGAL_NOT_APPROVED; maintenance, release and security owners are unassigned.
+Rollback/coexistence is prepared around the distinct Mosaic binary and ordinary
+independently updatable SwayFX fallback, with no live rollback executed.
+Production availability remains UNDECIDED; STEP20C NEXT, production
+multi-output NOT_YET_SUPPORTED and authority FALSE.
+
 SwayFX Mosaic is an independent derivative of [SwayFX](https://github.com/WillPower3309/swayfx), which is based on [Sway](https://github.com/swaywm/sway). It is not endorsed by either project's maintainers. Preserve their license and attribution; see [LICENSE](../LICENSE) and [NOTICE](../NOTICE.md).
 
 ## Pinned source base

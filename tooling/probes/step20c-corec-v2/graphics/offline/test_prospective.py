@@ -108,7 +108,8 @@ class Next(unittest.TestCase):
   for bad,code in [(raw, None),(raw,-9),(raw,7),(raw.replace(', 1,',', 2,'),0),(raw.replace('71','32'),0),('EXIT error=0',0)]:self.rejects(oom_handler.expected_disconnect,bad,code)
   s=SimpleNamespace(comp=Mock());s.comp.poll.return_value=-9;self.rejects(oom_handler.availability,s)
  def test_compositor_only_environment_no_helpers_clients(self):
-  env=oom.process_environment(LAB,'O1','a'*32)
+  # Use the per-test OFFLINE_TEST_ONLY root; LAB/O1 contains the sealed real-run token.
+  env=oom.process_environment(self.root,'O1','a'*32)
   with patch.dict(os.environ,env):self.assertFalse(any(k.startswith('SMX_OOM_') for k in gate.clean_environment(LAB)))
   s=engine.Session.__new__(engine.Session);s.run=self.root;s.handles=[];s.proc={};s.expired=False;s.env={};s.oom_env=env;s.compositor_environment=dict(MOSAIC_G2_DIR='offline',MOSAIC_G2_NONCE='a'*64,WLR_RENDERER='gles2');s.debit=Mock();s.record=Mock()
   with patch.object(engine.shutil,'which',return_value='/usr/bin/prlimit'),patch.object(engine.subprocess,'Popen',return_value=Mock(pid=12)) as popen:

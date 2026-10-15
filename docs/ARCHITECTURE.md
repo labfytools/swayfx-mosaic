@@ -1,5 +1,16 @@
 # Architecture
 
+The [new CORE-C V2 dossier](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
+records an experimental prepublication sidecar reservation, reviewed nullable
+constructor rollback and sampled native clipping/input on its own binary SHA.
+O1 observes zero initialized/published nodes and listeners plus bounded native
+survival, but remains INCONCLUSIVE because its closure oracle rejects the
+root-only lifecycle. Applied/input and damage evidence is partial; native
+commit/present, exact presented-buffer identity, GPU completion and atomic
+generation remain NOT_PROVEN. Compositor/tree authority and Row 0 borrowing
+remain the accepted contracts. No public ABI, production OOM policy or
+dependency is adopted; STEP20C NEXT, production NOT_YET_SUPPORTED.
+
 This is the canonical technical contract for SwayFX Mosaic. The current implementation is an experimental single-row compositor layout. [UX](UX.md) specifies user-visible behavior; [known limitations](KNOWN_LIMITATIONS.md) identifies unvalidated boundaries.
 
 ## Scope and authority

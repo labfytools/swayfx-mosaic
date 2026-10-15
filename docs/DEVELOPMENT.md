@@ -1,5 +1,18 @@
 # Development workflow
 
+For the new experimental CORE-C V2 only, use the
+[versioned source-only kit](../tooling/probes/step20c-corec-v2/README.md), its
+[private build recipe](../tooling/probes/step20c-corec-v2/BUILD_RECIPE.md) and
+[decision/evidence dossier](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md).
+Fresh Git-archive reproduction checks complete bytes and modes for new CORE,
+OOM and GPU trees; it does not recover historical binaries or prove binary
+bit reproducibility. Three private couples/stages and one H1 sanitizer
+campaign were consumed; no full-compositor sanitizer H2. Keep generated data
+outside HOME, redirect temp/cache with the private wrapper, use separate
+sockets, and preserve the LAB. The documented selective purge is NOT EXECUTED.
+No new run, production build dependency, installation or live-session action
+is authorized by reproduction instructions.
+
 Use separate build directories and headless compositor tests. Ordinary development does not install into `/usr`, reload Sway, or change the active desktop session. The current package is experimental; see [Packaging](PACKAGING.md) for the file-ownership contract.
 
 ## Repository and remotes

@@ -1,0 +1,24 @@
+{
+  "core": {
+    "binary_sha256": "91f48aae2675331e0a2c60ec2fedf983745c521c75232c704a6516a4140801fb",
+    "build_id": "d5d304533f2c8db9d738365e9bd7f2c96779ef8d",
+    "scene_archive_sha256": "769b56c4a11bef13f0abdcfd189b11af954eebbfa69fd06c972e01508d8d376b",
+    "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/core-mosaic/sway/swayfx-mosaic"
+  },
+  "oom": {
+    "binary_sha256": "6067946bd79ad6fd8da7669ab9b0b3bacfd2638f5d3d8382002b9118db20d835",
+    "build_id": "9bc3dc9055106b343c80a51ded111a382e98442d",
+    "scene_archive_sha256": "bca4b749eadc551f78712d7e1e7bda769125d2e596524a582988ca5346f8eceb",
+    "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/oom-mosaic/sway/swayfx-mosaic"
+  },
+  "gpu": {
+    "binary_sha256": "b2ba890908e385b0a8884e786b279bfb2e582eed38c7fcd0587b418326eca5bc",
+    "build_id": "b6a52111beabe3c2122e0142a802415d3c84f9a5",
+    "scene_archive_sha256": "06ccfad8c7dfe4ee425b8de44d22d8daa69e2daa14085d6e6998b201a7ad111b",
+    "path": "/var/tmp/swayfx-mosaic-corec-v2-i516p6po/builds/gpu-mosaic/sway/swayfx-mosaic"
+  },
+  "wlroots": {
+    "path": "/usr/lib/libwlroots-0.20.so",
+    "sha256": "7edca9a7d65855addda68e29ba5db94d57c803eb5fa7d0f86db3136b90ca9837"
+  }
+}

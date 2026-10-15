@@ -1,5 +1,14 @@
 # Documentation
 
+The [CORE-C V2 integration decision](design/STEP20C_COREC_V2_INTEGRATION_DECISION.md)
+records the new Git-reconstructible experimental candidate, three private
+binary identities and the reconciled 14-cell matrix (12 runs, 102 captures).
+Disposition is PRIVATE_COREC_V2_NEEDS_TARGETED_EVIDENCE; OOM recommendation
+C_FURTHER_NATIVE_REVIEW, production availability UNDECIDED. C7/C8/O1/G2 remain
+INCONCLUSIVE, O2/R1 NOT_RUN. This later evidence does not rewrite the historical
+blocked provenance ticket. STEP20C remains NEXT; production multi-output
+NOT_YET_SUPPORTED; PRODUCTION_AUTHORIZED FALSE.
+
 Documentation is a first-class project artifact. Architecture and UX contracts are updated before implementation when behavior changes.
 
 The [root README](../README.md) is the public summary. For a specific topic, use the canonical document below. Within its own subject, a canonical document takes precedence over a historical STEP report. If two canonical documents disagree, resolve the conflict before implementation; do not silently choose one.
