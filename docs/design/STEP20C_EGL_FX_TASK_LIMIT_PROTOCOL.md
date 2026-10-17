@@ -1,6 +1,8 @@
 # STEP20C — EGL/FX task-limit protocol design — 2026-10-17
 
-Status: **EXPERIMENTAL / IMPLEMENTED_OFFLINE / OFFLINE_REVIEW_ACCEPTED**.
+Status: **EXPERIMENTAL / IMPLEMENTED_OFFLINE**. Historical offline review is
+accepted; independent review of the current global-headroom delta is accepted.
+The final audit of this delta is **PASS / ACCEPTED**, with no blocking finding.
 New runtime: **NOT_RUN**. No scope, Bubblewrap, EGL/FX helper or compositor is
 launched by this mission. The source-only runner now implements the gate;
 qualification against the real manager remains separately approval-gated.
@@ -77,6 +79,75 @@ manifest/fixture hashes and historical preservation. Disposition:
 **CGROUP_UID_COUNT_FIX_READY_FOR_BENIGN_APPROVAL**, source-only. Publication of
 the correction does not authorize the three future native qualification commands.
 
+## Conservative global headroom fast path — 2026-10-17
+
+The admission path replaces the fragile all-PID census with the system task
+upper bound in field four (`runnable/total`) of Linux `proc_loadavg(5)`.
+Every individual real UID's thread count is bounded by that host total at the
+sample. The minimum finite inherited NPROC soft/hard limit must be **strictly
+greater than total + 256**; infinity is retained, never replaced or raised.
+Both read-only preflight (before ATTEMPT) and admission immediately before
+release perform this check. Counts may change between checks: no PID-set or
+loadavg equality is required, but each observation must independently leave
+the full reserve. This is no atomic reservation against future task creation;
+the kernel still enforces NPROC and the owned cgroup must still prove exact
+finite `pids.max=256`. Mixed-UID helpers do not invalidate the upper bound.
+
+Trust qualification is deliberately Linux-specific and fail-closed: the exact
+`/proc` path must be a unique root procfs mount, with no overmount affecting
+loadavg. Initial self PID/user namespace identities (`4026531836`/`4026531837`),
+the full initial UID map and a singleton self `NSpid` equal to the supervisor PID
+are required. PID1 namespace links may be ptrace-protected and are not needed. These
+recognized Linux identities are a conservative qualification restriction, not
+a portable namespace discovery guarantee. The `/proc` root and `loadavg` must
+be root-owned; process metadata such as `self/status` may legitimately be
+user-owned. Writable files, symlinks, device/inode drift, malformed or oversized
+data, unavailable context or any ambiguous source refuse admission. Reads use bounded no-follow FDs and
+qualify the context before and after the sample. Trusted kernel/root mount
+administration remains an assumption; hostile root is outside this protocol.
+
+`uid_threads()` remains the strict optional historical diagnostic, outside
+admission. The earlier ENOENT and `process creation/end` refusals above remain
+historical facts. `ProcFS.identity()`, bootstrap/manager ownership, pidfds,
+barrier, cleanup and all cgroup controls retain their contracts. Offline tests
+cannot establish `CGROUP_NATIVE_PASS`; real qualification remains **NOT_RUN**.
+
+### Current global-headroom validation — 2026-10-17
+
+The inert Python suite passes **99 tests** (86 historical plus 13 new cases).
+The unchanged private parent-death observer independently passes its **14
+deterministic tests**. Neither suite launches a real scope or payload.
+
+Exactly one real read-only preflight ran through Desktop Commander in the
+ArchASP app.slice context at **2026-10-17T06:57:21.960482+00:00**
+(08:57:21 CEST). It passed with inherited NPROC soft/hard **60706/60706**,
+one global task sample of **1439**, reserve **256** and observed remaining
+margin **59011**. These values describe that sample only; capacity is not
+reserved. Only `systemctl show` child commands were allowed. No ATTEMPT,
+scope or payload was created; native qualification remains **NOT_RUN**.
+
+Two new private 0700 LABs have distinct nonces and exact sealed source copies,
+with **47 file identities / 39 ELF records each**. Their isolated passive CLI
+plans pass through Desktop Commander without `launcher_error`, writes,
+ATTEMPT, socket or result creation. The historical UID-correction LAB inventories
+remain unchanged. Private paths, nonces, process identifiers and raw evidence
+are retained outside public documentation.
+
+Independent delta review is **ACCEPTED**, with no blocking finding; it
+independently reproduces **99/99** tests and **72 targeted tests**, with AST
+invariants and Python style checks passing. The final audit is **PASS / ACCEPTED**,
+with no blocking finding: it independently reproduces **99/99 + 14/14** tests,
+confirms 13 sensitive symbols/classes unchanged by AST, both LAB inventories
+and fixture hashes, identical historical inventories and passive CLI exit 0 /
+NOT_RUN. Audited source hashes matched the reviewed-file receipt before this
+factual documentation closeout.
+
+Disposition: **CGROUP_GLOBAL_HEADROOM_READY_FOR_BENIGN_APPROVAL**, source-only.
+Native qualification remains **NOT_RUN**; no `CGROUP_NATIVE_PASS` follows.
+Fresh conversational approval is required before nominal or parent-death
+execution; EGL needs another fresh LAB, review and approval. STEP20C remains
+NEXT and production multi-output remains NOT_YET_SUPPORTED.
+
 ## Evidence, guarantees and admission
 
 | Route / evidence | Risk | Bound actually supplied | Admission condition / disposition |
@@ -91,9 +162,10 @@ the correction does not authorize the three future native qualification commands
 | Closed mount/environment/device/FD policy | Dlopen drift, inherited socket or control-plane leak | Fixed exposure and sealed inputs, not total resource containment | Preserve pins, ABI, manifest closure and exact allowlists; no new host device/mount |
 
 Linux [RLIMIT_NPROC documentation](https://man7.org/linux/man-pages/man2/getrlimit.2.html)
-explains the real-UID thread limit and EAGAIN at creation. A procfs scan is a
-refusal diagnostic, not an atomic reservation: disappearing entries, unreadable
-status, UID changes or inconsistent thread counts must be reported explicitly.
+explains the real-UID thread limit and EAGAIN at creation. The retained optional
+procfs scan is a strict diagnostic, not an admission prerequisite or atomic
+reservation: disappearing entries, unreadable status, UID changes or inconsistent
+thread counts must be reported explicitly.
 The [kernel cgroup v2 contract](https://docs.kernel.org/admin-guide/cgroup-v2.html#pid)
 counts TIDs hierarchically and rejects task creation over the limit. Migration
 can exceed pids.max, so a verified empty private group and controlled admission
@@ -132,9 +204,9 @@ Independent code review and native qualification are separate gates:
    collecting agent. No cgroup mount, directory FD or user bus reaches payload.
 4. After cgroup admission, omit only the explicit NPROC=256 override, retain
    the inherited UID soft/hard limits and all other prlimit settings. Record
-   inherited NPROC, real UID, diagnostic thread-count provenance and effective
-   cgroup properties; any known lower-than-UID-load NPROC refuses explicitly.
-   Count uncertainty/drift cannot be accepted as a proof of headroom. No fallback
+   inherited NPROC, real UID, trusted global task total, full reserve and effective
+   cgroup properties; minimum finite NPROC <= total + 256 refuses explicitly.
+   Missing or ambiguous host samples cannot prove headroom. No fallback
    to a larger NPROC, unlimited task count, unconfined launch or new device.
 5. Reserve the new single attempt durably with O_EXCL before creating its
    scope/child or otherwise mutating native execution state. A collision,

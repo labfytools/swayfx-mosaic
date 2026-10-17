@@ -5,14 +5,18 @@ records the single 2026-10-17 namespace failure: EXPERIMENTAL /
 EGL_FX_PROBE_BLOCKED_BEFORE_HELPER / EGL_NOT_RUN / ALLOCATOR_NOT_ATTEMPTED.
 The historical READY_FOR_APPROVAL verdict preceded that consumed attempt.
 The [task-limit protocol](design/STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md)
-records probe-local cgroup admission as EXPERIMENTAL / IMPLEMENTED_OFFLINE /
-OFFLINE_REVIEW_ACCEPTED, with inert validation only. Qualification against the real
-manager and new EGL runtime remain NOT_RUN. Separate approval is required for
-benign qualification, then for any new EGL attempt; no retry is authorized.
-The first benign nominal invocation refused in real-UID accounting before
-ATTEMPT or scope creation. The narrowly scoped UID count correction and its
-offline/read-only validation are recorded in that protocol; native admission
-and parent-death cleanup remain unqualified.
+records probe-local cgroup admission as EXPERIMENTAL / IMPLEMENTED_OFFLINE.
+Admission now checks inherited NPROC against a trusted host-global task upper
+bound before ATTEMPT and immediately before release; the strict real-UID census
+remains an optional historical diagnostic. The earlier ENOENT and process-set
+change refusals are preserved. The current delta has 99 passing inert tests,
+14 unchanged observer tests and one successful read-only preflight; two fresh
+sealed LABs pass passive CLI planning without ATTEMPT, scope or payload.
+Independent delta review is ACCEPTED; final audit is PASS / ACCEPTED, with no
+blocking finding. Disposition: CGROUP_GLOBAL_HEADROOM_READY_FOR_BENIGN_APPROVAL,
+source-only. Real manager admission, parent-death cleanup and new EGL runtime
+remain NOT_RUN. Separate approval is required for benign qualification, then
+for any new EGL attempt; no retry is authorized.
 
 [Gate 2 headless boot](design/STEP20C_HEADLESS_BOOT_GATE2.md) records the single
 V5 native failure: EXPERIMENTAL / PRISTINE_ALLOCATOR_BLOCKED / CORE_NOT_RUN,

@@ -63,6 +63,9 @@ class FakeProc:
         return dict(self.identities[pid])
 
     def uid_threads(self, uid):
+        raise AssertionError("diagnostic PID interdit dans admission")
+
+    def global_tasks(self):
         return self.load
 
     def nproc(self):
@@ -347,6 +350,159 @@ class UIDThreadTests(unittest.TestCase):
                         self.proc.uid_threads(1000)
 
 
+class GlobalHeadroomTests(unittest.TestCase):
+    """Vrai parseur/qualificateur, entrées simulées ; aucun proc hôte lu."""
+
+    SAMPLE = "0.00 1.23 12.34 2/1415 1234\n"
+
+    def setUp(self):
+        self.proc = gate.ProcFS()
+        self.context = patch.object(self.proc, "host_context", return_value=(1, 2))
+        self.context.start()
+        self.addCleanup(self.context.stop)
+        self.reader = patch.object(self.proc, "bounded_text", return_value=self.SAMPLE)
+        self.read = self.reader.start()
+        self.addCleanup(self.reader.stop)
+
+    def test_actual_controller_observed_example_and_resource_injection(self):
+        with patch.object(resource, "getrlimit", return_value=(60706, 60706)) as limits:
+            self.assertEqual(gate.nproc_headroom(self.proc)["global_tasks"], 1415)
+        limits.assert_called_once_with(resource.RLIMIT_NPROC)
+
+    def test_malformed_truncated_extra_or_inconsistent_loadavg_refused(self):
+        invalid = ("", "0.00 1.23 12.34", self.SAMPLE.rstrip(),
+                   self.SAMPLE + "extra\n", self.SAMPLE.replace("2/1415", "x/1415"),
+                   self.SAMPLE.replace("2/1415", "-1/1415"),
+                   self.SAMPLE.replace("2/1415", "0/0"),
+                   self.SAMPLE.replace("2/1415", "1416/1415"),
+                   self.SAMPLE.replace("2/1415", "2/" + "9" * 30))
+        for text in invalid:
+            with self.subTest(text=text):
+                self.read.return_value = text
+                with self.assertRaises(gate.Refusal):
+                    self.proc.global_tasks()
+
+    def test_zero_runnable_is_valid(self):
+        self.read.return_value = self.SAMPLE.replace("2/1415", "0/1415")
+        self.assertEqual(self.proc.global_tasks(), 1415)
+
+    def test_missing_unreadable_nonascii_or_changed_context_refuses(self):
+        for error in (FileNotFoundError("missing"), PermissionError("denied"),
+                      UnicodeError("non ascii")):
+            with self.subTest(error=error), patch.object(
+                    self.proc, "bounded_text", side_effect=error):
+                with self.assertRaises(gate.Refusal):
+                    self.proc.global_tasks()
+        with patch.object(self.proc, "host_context", side_effect=[(1,), (2,)]):
+            with self.assertRaisesRegex(gate.Refusal, "contexte"):
+                self.proc.global_tasks()
+
+    def test_finite_minimum_requires_strict_full_reserve(self):
+        for limits in ((1671, 60706), (60706, 1671), (1415, 1415), (0, 0),
+                       (resource.RLIM_INFINITY, 1671), (1671, resource.RLIM_INFINITY)):
+            with self.subTest(limits=limits), patch.object(
+                    self.proc, "nproc", return_value=limits):
+                with self.assertRaisesRegex(gate.Refusal, "RLIMIT_NPROC"):
+                    gate.nproc_headroom(self.proc)
+        for limits in ((1672, 60706), (resource.RLIM_INFINITY, 1672),
+                       (resource.RLIM_INFINITY, resource.RLIM_INFINITY)):
+            with self.subTest(limits=limits), patch.object(
+                    self.proc, "nproc", return_value=limits):
+                self.assertEqual(gate.nproc_headroom(self.proc)["nproc"], limits)
+
+    def test_bounded_fd_reader_rejects_symlink_and_oversize(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            proc = gate.ProcFS(root)
+            (root / "data").write_text("x" * 257)
+            with self.assertRaises(gate.Refusal):
+                proc.bounded_text("data", 256)
+            (root / "link").symlink_to(root / "data")
+            with self.assertRaises(OSError):
+                proc.bounded_text("link", 256)
+
+    def test_fd_reader_rejects_writable_foreign_or_replaced_source(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            path = root / "data"
+            path.write_text(self.SAMPLE)
+            proc = gate.ProcFS(root)
+            path.chmod(0o666)
+            with self.assertRaisesRegex(gate.Refusal, "modifiable"):
+                proc.bounded_text("data", 256)
+            path.chmod(0o444)
+            info = path.stat()
+            foreign = list(info)
+            foreign[4] = 1001
+            with patch.object(gate.os, "fstat", return_value=os.stat_result(foreign)):
+                with self.assertRaisesRegex(gate.Refusal, "non root"):
+                    proc.bounded_text("data", 256, root_owned=True)
+            replaced = list(info)
+            replaced[1] += 1
+            with patch.object(Path, "stat", return_value=os.stat_result(replaced)):
+                with self.assertRaisesRegex(gate.Refusal, "remplacée"):
+                    proc.bounded_text("data", 256)
+
+    def test_invalid_inherited_limits_refuse(self):
+        for limits in ((-2, 4096), ("4096", 4096), (4096,)):
+            with self.subTest(limits=limits), patch.object(
+                    self.proc, "nproc", return_value=limits):
+                with self.assertRaisesRegex(gate.Refusal, "RLIMIT_NPROC invalide"):
+                    gate.nproc_headroom(self.proc)
+
+    def test_actual_host_qualification_refuses_untrusted_contexts(self):
+        # Stop parser-level mocks: exercise the actual context qualification.
+        self.context.stop()
+        device = os.makedev(0, 5)
+        info = os.stat_result((0o40555, 10, device, 1, 0, 0, 0, 0, 0, 0))
+        mount = "1 0 0:5 / /proc rw - proc proc rw\n"
+
+        def text(name, *_args, **_kwargs):
+            if name == "self/mountinfo":
+                return mount
+            if name == "self/status":
+                return f"Name:	fixture\nNSpid:	{PID}\n"
+            return "0 0 4294967295\n"
+
+        def namespace(path):
+            return ("pid:[4026531836]" if path.name == "pid"
+                    else "user:[4026531837]")
+
+        with (patch.object(Path, "stat", return_value=info),
+              patch.object(Path, "resolve", lambda path: path),
+              patch.object(self.proc, "bounded_text", side_effect=text),
+              patch.object(gate.os, "readlink", side_effect=namespace)):
+            self.proc.host_context()
+            for bad in (mount.replace(" - proc proc", " - fuse.lxcfs lxcfs"),
+                        mount + mount,
+                        mount.replace(" / /proc ", " /sub /proc "),
+                        mount + "2 1 0:5 / /proc/loadavg rw - proc proc rw\n"):
+                with self.subTest(mount=bad):
+                    original, mount = mount, bad
+                    with self.assertRaises(gate.Refusal):
+                        self.proc.host_context()
+                    mount = original
+            with patch.object(gate.os, "readlink", return_value="pid:[123]"):
+                with self.assertRaisesRegex(gate.Refusal, "namespace"):
+                    self.proc.host_context()
+            with patch.object(gate.os, "readlink", side_effect=PermissionError("self")):
+                with self.assertRaises(PermissionError):
+                    self.proc.host_context()
+            for nspid in ("", f"NSpid: {PID} 1\n", f"NSpid: {PID + 1}\n",
+                          f"NSpid: {PID}\nNSpid: {PID}\n"):
+                with self.subTest(nspid=nspid), patch.object(
+                        self.proc, "bounded_text", side_effect=lambda name, *_a:
+                        nspid if name == "self/status" else text(name)):
+                    with self.assertRaisesRegex(gate.Refusal, "vue PID"):
+                        self.proc.host_context()
+            with patch.object(self.proc, "bounded_text", side_effect=lambda name, *_a:
+                              mount if name == "self/mountinfo" else "0 1000 1\n"):
+                with self.assertRaisesRegex(gate.Refusal, "UID map"):
+                    self.proc.host_context()
+        with self.assertRaisesRegex(gate.Refusal, "chemin hôte"):
+            gate.ProcFS(Path("/tmp/proc")).host_context()
+
+
 class AdmissionTests(unittest.TestCase):
     def setUp(self):
         self.sentinel = patch.object(
@@ -399,6 +555,37 @@ class AdmissionTests(unittest.TestCase):
                           "COLLECTED",
                           "PAYLOAD_STARTED", "CLEANED"])
         self.assertEqual(self.proc.limits, (4096, 4096))
+
+    def test_global_load_fluctuation_does_not_require_pid_census(self):
+        with patch.object(self.proc, "global_tasks", side_effect=[1415, 1500]):
+            result, _ = self.execute()
+        self.assertEqual(result["cause"], "exit")
+        self.assertEqual(self.barrier.released, 1)
+        self.assertEqual(self.reservations[0]["global_tasks"], 1415)
+
+    def test_rising_global_load_refuses_release(self):
+        with patch.object(self.proc, "global_tasks", side_effect=[1415, 3840]):
+            result, _ = self.execute()
+        self.assertIn("RLIMIT_NPROC", result["error"])
+        self.assertEqual(self.barrier.released, 0)
+        self.assertEqual(len(self.reservations), 1)
+
+    def test_failed_capacity_preflight_has_no_attempt_or_native_spawn(self):
+        self.proc.load = 4096
+        result, _ = self.execute()
+        self.assertIn("RLIMIT_NPROC", result["error"])
+        self.assertEqual(list(self.lab.iterdir()), [])
+        self.assertEqual(self.reservations, [])
+        self.assertEqual(self.journal, [])
+        self.assertEqual(self.manager.created, 0)
+
+    def test_changed_inherited_nproc_before_release_refuses(self):
+        evidence = self.preflight()
+        self.cgroups.present = True
+        self.proc.limits = (5000, 5000)
+        with self.assertRaisesRegex(gate.Refusal, "hérité divergent"):
+            gate.admit(SPEC, evidence, 43, self.proc, self.cgroups, self.manager,
+                       time.monotonic() + 1)
 
     def test_session_scope_refused_before_reservation(self):
         self.proc.identities[PID]["cgroup"] = (
@@ -545,7 +732,7 @@ class AdmissionTests(unittest.TestCase):
 
     def test_failures_in_preflight_reservation_admission_and_drain(self):
         for error in (OSError("read failure"), KeyboardInterrupt()):
-            with patch.object(self.proc, "uid_threads", side_effect=error):
+            with patch.object(self.proc, "global_tasks", side_effect=error):
                 result, _ = self.execute()
             self.assertNotEqual(result["cause"], "exit")
             self.assertEqual(self.manager.created, 0)

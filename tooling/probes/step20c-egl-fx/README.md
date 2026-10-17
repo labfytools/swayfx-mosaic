@@ -17,10 +17,15 @@ nouvelle autorisation conversationnelle avec leur propre LAB et manifeste.
 Le premier essai bénin nominal du 17 octobre 2026 a refusé avant ATTEMPT,
 création de scope ou payload : `UID process divergent` dans le diagnostic
 `ProcFS.uid_threads()`. Les deux LABs bénins historiques restent non consommés
-et ne doivent pas être réutilisés. Le comptage corrigé inclut les threads de
+et ne doivent pas être réutilisés. Le diagnostic historique corrigé inclut les threads de
 tous les processus dont l'UID réel correspond, même avec des UID effectif,
-sauvé ou filesystem différents. Il refuse toute incohérence observée ; ce
-snapshot ne réserve aucune capacité. `ProcFS.identity()` conserve ses contrôles
+sauvé ou filesystem différents. Il reste disponible hors chemin d'admission.
+L'admission lit désormais la borne système `runnable/total` de `/proc/loadavg`
+après qualification conservative du procfs hôte Linux et de ses namespaces
+initiaux ; les contextes ambigus refusent. Le minimum soft/hard NPROC fini doit
+être strictement supérieur au total plus256, avant ATTEMPT et avant release.
+Les valeurs peuvent fluctuer sans égalité entre snapshots si chaque marge reste
+suffisante. Aucun comptage ne réserve atomiquement de capacité. `ProcFS.identity()` conserve ses contrôles
 stricts pour le superviseur, le manager et le bootstrap. Les régressions restent
 hors ligne ; cette correction n'établit aucun PASS cgroup natif.
 
@@ -135,8 +140,8 @@ le plan : aucun processus, fichier ATTEMPT, socket ni appel manager. Le helper
 Python est chargé par chemin absolu, après vérification de son hash, même avec
 `python3 -I`. Avec approbation, le préflight refuse un vrai launcher en session
 scope, un manager non délégué, app.slice inactif, un montage non cgroup2/domain,
-un ancêtre non writable, pids absent, un headroom insuffisant, un diagnostic
-UID incertain ou NPROC hérité sous la charge UID. Aucun snapshot /proc ne
+un ancêtre non writable, pids absent, un headroom insuffisant, une source
+loadavg non fiable ou NPROC hérité <= total système +256. Aucun snapshot /proc ne
 constitue une réservation. Aucun processus n'est migré par le superviseur.
 
 Après ATTEMPT durable O_EXCL, systemd-run crée un seul scope et lance le

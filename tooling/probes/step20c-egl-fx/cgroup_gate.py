@@ -151,6 +151,91 @@ class ProcFS:
         except (OSError, ValueError, KeyError, IndexError) as error:
             raise Refusal(f"proc diagnostic illisible/disparu: {error}") from error
 
+    def bounded_text(self, relative, limit, root_owned=False):
+        """Lire sans suivre le fichier final ; refuser troncature et remplacement."""
+        path = self.root / relative
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
+        try:
+            before = os.fstat(descriptor)
+            require(stat.S_ISREG(before.st_mode) and not before.st_mode & 0o022,
+                    "source proc modifiable/non régulière")
+            require(not root_owned or before.st_uid == 0,
+                    "source proc non root")
+            data = os.read(descriptor, limit + 1)
+            require(len(data) <= limit and os.read(descriptor, 1) == b"",
+                    "source proc trop longue")
+            after = path.stat(follow_symlinks=False)
+            require((before.st_dev, before.st_ino) == (after.st_dev, after.st_ino),
+                    "source proc remplacée")
+            return data.decode("ascii")
+        finally:
+            os.close(descriptor)
+
+    def host_context(self):
+        """Qualifier seulement le procfs hôte Linux reconnu, sinon refuser."""
+        require(self.root == Path("/proc") and self.root.resolve() == self.root,
+                "source proc hors chemin hôte")
+        root = self.root.stat()
+        require(root.st_uid == 0 and not root.st_mode & 0o022,
+                "racine proc non fiable")
+        mounts = self.bounded_text("self/mountinfo", LIMIT)
+        matches = []
+        for line in mounts.splitlines():
+            left, right = line.split(" - ", 1)
+            fields, source = left.split(), right.split()
+            require(len(fields) >= 6 and len(source) == 3,
+                    "mountinfo proc invalide")
+            target = fields[4]
+            if target == "/proc":
+                require(fields[3] == "/" and source[0] == "proc"
+                        and source[1] == "proc", "montage proc hôte requis")
+                matches.append((fields[0], fields[2]))
+            else:
+                require(not any(target == name or target.startswith(name + "/")
+                                for name in ("/proc/loadavg", "/proc/self", "/proc/1")),
+                        "surmonture source proc refusée")
+        require(len(matches) == 1, "montage proc ambigu/absent")
+        require(matches[0][1] == f"{os.major(root.st_dev)}:{os.minor(root.st_dev)}",
+                "device proc divergent")
+        # WHY CONTRACT INVARIANT: recognizing Linux initial self namespace
+        # inodes avoids confusing two equally nested namespaces with the host.
+        # PID1 namespace links may be ptrace-protected for ordinary users; the
+        # singleton self NSpid additionally binds this procfs PID view to us.
+        namespaces = []
+        for kind, initial in (("pid", 4026531836), ("user", 4026531837)):
+            link = os.readlink(self.root / "self" / "ns" / kind)
+            require(link == f"{kind}:[{initial}]", "namespace proc non initial")
+            namespaces.append(link)
+        uid_map = self.bounded_text("self/uid_map", 256).split()
+        require(uid_map == ["0", "0", "4294967295"], "UID map non initiale")
+        status = self.bounded_text("self/status", 65536).splitlines()
+        nspids = [line.split()[1:] for line in status if line.startswith("NSpid:")]
+        require(nspids == [[str(os.getpid())]], "vue PID proc non hôte")
+        loadavg = (self.root / "loadavg").stat(follow_symlinks=False)
+        require(loadavg.st_dev == root.st_dev, "device loadavg divergent")
+        return (root.st_dev, root.st_ino, tuple(matches), tuple(namespaces),
+                loadavg.st_ino)
+
+    def global_tasks(self):
+        """Borne système ponctuelle ; aucun parcours PID ni réservation."""
+        try:
+            before = self.host_context()
+            text = self.bounded_text("loadavg", 256, root_owned=True)
+            # WHY CONTRACT INVARIANT: bounded ASCII full-match rejects partial,
+            # extra and malformed fields rather than accepting an undercount.
+            match = re.fullmatch(
+                r"[0-9]{1,10}\.[0-9]{2} [0-9]{1,10}\.[0-9]{2} "
+                r"[0-9]{1,10}\.[0-9]{2} ([0-9]{1,10})/([0-9]{1,10}) "
+                r"[0-9]{1,10}\n", text)
+            require(match is not None, "loadavg format invalide")
+            runnable, total = map(int, match.groups())
+            require(0 <= runnable <= total and total > 0,
+                    "loadavg compte incohérent")
+            require(self.host_context() == before, "contexte proc divergent")
+            return total
+        except (OSError, UnicodeError, ValueError, IndexError) as error:
+            raise Refusal(f"source loadavg non fiable/illisible: {error}") from error
+
     def nproc(self):
         return resource.getrlimit(resource.RLIMIT_NPROC)
 
@@ -334,6 +419,23 @@ def capacity(cgroups, app):
     return records
 
 
+def nproc_headroom(proc):
+    """Vérifier la réserve entière contre la borne système, sans muter NPROC."""
+    limits = proc.nproc()
+    require(len(limits) == 2 and all(
+        isinstance(value, int) and (value == resource.RLIM_INFINITY or value >= 0)
+        for value in limits), "RLIMIT_NPROC invalide")
+    total = proc.global_tasks()
+    require(isinstance(total, int) and total > 0, "charge système invalide")
+    finite = [value for value in limits if value != resource.RLIM_INFINITY]
+    # WHY CONTRACT INVARIANT: the system total bounds any real UID, including
+    # mixed credentials. Strict > reserves TASKS at each sample, never atomically.
+    require(not finite or min(finite) > total + TASKS,
+            f"inherited RLIMIT_NPROC insuffisant : {limits}, total={total}, "
+            f"réserve={TASKS}")
+    return {"nproc": limits, "global_tasks": total, "required_headroom": TASKS}
+
+
 def preflight(proc, cgroups, manager, uid, pid, deadline):
     """Toutes les observations précèdent ATTEMPT et la première mutation."""
     require(uid != 0 and uid == os.geteuid(), "UID réel/effectif invalide")
@@ -360,13 +462,10 @@ def preflight(proc, cgroups, manager, uid, pid, deadline):
     controllers, enabled, writable = cgroups.available(app)
     require("pids" in controllers and "pids" in enabled, "contrôleur pids absent")
     require(writable, "ancêtre commun non writable")
-    limits = proc.nproc()
-    load = proc.uid_threads(uid)
-    require(all(value == resource.RLIM_INFINITY or value >= load for value in limits),
-            f"inherited RLIMIT_NPROC insuffisant : {limits}, charge UID={load}")
+    headroom = nproc_headroom(proc)
     return {"launcher": launcher, "manager": owner, "manager_process": manager_process,
-            "mount": mount, "app": app, "uid": uid, "nproc": limits,
-            "uid_threads_diagnostic": load, "ancestors": capacity(cgroups, app)}
+            "mount": mount, "app": app, "uid": uid, **headroom,
+            "ancestors": capacity(cgroups, app)}
 
 
 def same_lifetime(first, second):
@@ -507,12 +606,11 @@ def admit(spec, evidence, pid, proc, cgroups, manager, deadline):
         observed_manager = proc.identity(evidence["manager_process"]["pid"])
         require(observed_manager == evidence["manager_process"],
                 "manager PID/startticks divergent")
-        load = proc.uid_threads(evidence["uid"])
-        require(proc.nproc() == evidence["nproc"] and all(
-            value == resource.RLIM_INFINITY or value >= load for value in proc.nproc()),
-            "NPROC/charge UID divergent avant release")
+        headroom = nproc_headroom(proc)
+        require(headroom["nproc"] == evidence["nproc"],
+                "NPROC hérité divergent avant release")
         return {"properties": observed, "process": identity, "cgroup": group,
-                "kernel": record, "pidfd": pidfd}
+                "kernel": record, "pidfd": pidfd, "headroom": headroom}
     except BaseException:
         os.close(pidfd)
         raise
@@ -679,7 +777,8 @@ def run_scope(lab, manifest, reserve, journal, proc=None, cgroups=None,
         # PRECHECK is not journaled until ATTEMPT: failed preflight stays read-only.
         reserve(evidence)
         phase("PRECHECK", nproc=evidence["nproc"],
-              uid_threads=evidence["uid_threads_diagnostic"])
+              global_tasks=evidence["global_tasks"],
+              required_headroom=evidence["required_headroom"])
         barrier = barrier_factory(lab / "gate.sock", spec["nonce"], os.getuid(),
                                   os.getpid(), started + 5)
         identity = evidence["launcher"]
