@@ -9,6 +9,10 @@ records probe-local cgroup admission as EXPERIMENTAL / IMPLEMENTED_OFFLINE /
 OFFLINE_REVIEW_ACCEPTED, with inert validation only. Qualification against the real
 manager and new EGL runtime remain NOT_RUN. Separate approval is required for
 benign qualification, then for any new EGL attempt; no retry is authorized.
+The first benign nominal invocation refused in real-UID accounting before
+ATTEMPT or scope creation. The narrowly scoped UID count correction and its
+offline/read-only validation are recorded in that protocol; native admission
+and parent-death cleanup remain unqualified.
 
 [Gate 2 headless boot](design/STEP20C_HEADLESS_BOOT_GATE2.md) records the single
 V5 native failure: EXPERIMENTAL / PRISTINE_ALLOCATOR_BLOCKED / CORE_NOT_RUN,

@@ -14,6 +14,16 @@ ne prouvent aucun lancement sur le manager réel et ne valident pas le budget
 Mesa. L'exécution bénigne et une éventuelle exécution EGL demandent chacune une
 nouvelle autorisation conversationnelle avec leur propre LAB et manifeste.
 
+Le premier essai bénin nominal du 17 octobre 2026 a refusé avant ATTEMPT,
+création de scope ou payload : `UID process divergent` dans le diagnostic
+`ProcFS.uid_threads()`. Les deux LABs bénins historiques restent non consommés
+et ne doivent pas être réutilisés. Le comptage corrigé inclut les threads de
+tous les processus dont l'UID réel correspond, même avec des UID effectif,
+sauvé ou filesystem différents. Il refuse toute incohérence observée ; ce
+snapshot ne réserve aucune capacité. `ProcFS.identity()` conserve ses contrôles
+stricts pour le superviseur, le manager et le bootstrap. Les régressions restent
+hors ligne ; cette correction n'établit aucun PASS cgroup natif.
+
 `probe.c` crée seulement un event loop, un backend headless non démarré et EGL
 via le constructeur interne pinned `wlr_egl_create_with_drm_fd(-1)`. Il interroge
 **le device associé à ce display**, exige `EGL_MESA_device_software` et refuse

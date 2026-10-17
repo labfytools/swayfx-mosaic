@@ -25,6 +25,58 @@ benign qualification and EGL execution each need separate conversational approva
 The historical validation section below retains its original provenance and
 does not describe current implementation coverage.
 
+## First benign preflight refusal and real-UID accounting — 2026-10-17
+
+The single nominal invocation refused with `UID process divergent` inside
+`ProcFS.uid_threads()`, before ATTEMPT, scope creation or payload execution.
+The two historical benign LABs remain unconsumed and must not be reused.
+Native cgroup qualification has not passed; parent-death remains NOT_RUN.
+
+Resource accounting must include every thread belonging to the requested real
+UID, including legitimate mixed credentials such as `(1000, 0, 0, 0)` used by
+a privileged portal helper. This diagnostic is not a graphical-service admission
+scan. Sample PID/startticks, proc directory identity, all four UIDs, cgroup,
+Threads and task entries before/after; unreadability, disappearance or observed
+drift refuses rather than undercounting. The snapshot is not an atomic reservation.
+
+Authentication of the supervisor, manager and bootstrap remains separate:
+`ProcFS.identity()` still requires homogeneous real/effective/saved/filesystem
+UIDs matching proc ownership, with strict lifetime and cgroup checks. The count
+fix must not relax that predicate or introduce process-name/privilege exceptions.
+Only source correction, inert regression tests, read-only diagnostics and fresh
+LAB preparation are authorized here; any real benign execution requires fresh
+conversational approval.
+
+### UID count correction validation — 2026-10-17
+
+The actual counter now uses two observations and compares the PID set, process
+lifetime, proc inode/device, all four UIDs, cgroup, Threads and exact task names.
+Foreign real UIDs contribute zero; their credentials and directory identity are
+compared across observations. No whitelist, privilege bypass or partial total
+is accepted. The strict `identity()` source is unchanged.
+
+The offline suite passes **86 tests** (75 existing plus 11 new regressions).
+The unchanged private parent-death observer passes its **14 deterministic
+tests**. Two fresh 0700 LABs have distinct nonces and sealed manifests; both
+isolated passive CLI plans pass via Desktop Commander on ArchASP under
+app.slice, without approval flags, ATTEMPT or payload execution.
+
+One live counter diagnostic refused on a precisely identified disappearing
+proc entry (ENOENT); it sampled the legitimate mixed-UID helper and its one
+thread without the historical homogeneous-UID refusal. A separate read-only
+preflight refused a changed process set. Neither was repeated to obtain PASS.
+These are expected fail-closed outcomes, not a measured complete UID total or
+a successful real preflight. Snapshots cannot detect every transient change or
+reserve task capacity. The next approved invocation can still refuse on drift.
+Native admission and parent-death cleanup remain **NOT_RUN / NOT QUALIFIED**;
+no cgroup runtime PASS, Mesa capacity or STEP20C readiness follows.
+
+Bounded independent delta review is ACCEPTED; the single final audit is PASS
+with no blocking finding and independently reproduces 86/86 plus 14/14 tests,
+manifest/fixture hashes and historical preservation. Disposition:
+**CGROUP_UID_COUNT_FIX_READY_FOR_BENIGN_APPROVAL**, source-only. Publication of
+the correction does not authorize the three future native qualification commands.
+
 ## Evidence, guarantees and admission
 
 | Route / evidence | Risk | Bound actually supplied | Admission condition / disposition |

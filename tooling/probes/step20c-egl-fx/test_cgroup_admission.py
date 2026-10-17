@@ -181,6 +181,172 @@ class FakeBarrier:
         self.closed = True
 
 
+class UIDThreadTests(unittest.TestCase):
+    """Faux procfs sur disque ; exerce le vrai compteur, sans enfant natif."""
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+        self.proc = gate.ProcFS(self.root)
+        self.add_process(101)
+
+    def add_process(self, pid, uids=(1000, 1000, 1000, 1000), threads=2):
+        directory = self.root / str(pid)
+        directory.mkdir()
+        fields = ["S"] + ["0"] * 18 + ["123"]
+        (directory / "stat").write_text(f"{pid} (fixture) " + " ".join(fields))
+        (directory / "cgroup").write_text("0::/fixture.scope\n")
+        (directory / "status").write_text(
+            "Uid:\t" + " ".join(map(str, uids)) + f"\nThreads:\t{threads}\n")
+        (directory / "task").mkdir()
+        for tid in range(pid, pid + threads):
+            (directory / "task" / str(tid)).mkdir()
+        return directory
+
+    def change_before_second_sample(self, action):
+        """Injecte une mutation entre les deux lectures réelles du compteur."""
+        original = Path.read_text
+        reads = 0
+
+        def read(path, *args, **kwargs):
+            nonlocal reads
+            if path == self.root / "101" / "status":
+                reads += 1
+                if reads == 2:
+                    action()
+            return original(path, *args, **kwargs)
+
+        return patch.object(Path, "read_text", read)
+
+    def test_homogeneous_uid_count(self):
+        self.assertEqual(self.proc.uid_threads(1000), 2)
+
+    def test_mixed_uid_count_does_not_call_identity(self):
+        status = self.root / "101" / "status"
+        status.write_text("Uid: 1000 0 0 0\nThreads: 2\n")
+        original = Path.stat
+
+        def root_owned(path, *args, **kwargs):
+            info = original(path, *args, **kwargs)
+            if path == self.root / "101":
+                values = list(info)
+                values[4] = 0  # A setuid helper's proc directory may be root-owned.
+                return os.stat_result(values)
+            return info
+
+        with patch.object(Path, "stat", root_owned):
+            with patch.object(self.proc, "identity", side_effect=AssertionError):
+                self.assertEqual(self.proc.uid_threads(1000), 2)
+
+    def test_multiple_processes_and_foreign_real_uid(self):
+        self.add_process(201, (1000, 0, 0, 0), 3)
+        self.add_process(301, (2000, 1000, 1000, 1000), 4)
+        self.assertEqual(self.proc.uid_threads(1000), 5)
+
+    def test_identity_still_refuses_mixed_credentials_for_owned_roles(self):
+        (self.root / "101" / "status").write_text(
+            "Uid: 1000 0 0 0\nThreads: 2\n")
+        for role in ("supervisor", "bootstrap", "manager"):
+            with self.subTest(role=role):
+                with self.assertRaisesRegex(gate.Refusal, "UID process divergent"):
+                    self.proc.identity(101)
+
+    def test_uid_startticks_cgroup_and_threads_drifts_refuse(self):
+        directory = self.root / "101"
+        changes = {
+            "uid": ("status", "Uid: 1000 0 0 0\nThreads: 2\n"),
+            "real_uid": ("status", "Uid: 2000 0 0 0\nThreads: 2\n"),
+            "threads": ("status", "Uid: 1000 1000 1000 1000\nThreads: 1\n"),
+            "startticks": ("stat", "101 (fixture) " +
+                           " ".join(["S"] + ["0"] * 18 + ["456"])),
+            "pid": ("stat", "999 (fixture) " +
+                    " ".join(["S"] + ["0"] * 18 + ["123"])),
+            "cgroup": ("cgroup", "0::/other.scope\n"),
+        }
+        for name, (filename, text) in changes.items():
+            target = directory / filename
+            original = target.read_text()
+            with self.subTest(field=name):
+                with self.change_before_second_sample(lambda: target.write_text(text)):
+                    with self.assertRaises(gate.Refusal):
+                        self.proc.uid_threads(1000)
+            target.write_text(original)
+
+    def test_inode_and_device_drifts_refuse(self):
+        original = Path.stat
+        for field in ("st_ino", "st_dev"):
+            calls = 0
+
+            def stat(path, *args, **kwargs):
+                nonlocal calls
+                info = original(path, *args, **kwargs)
+                if path == self.root / "101":
+                    calls += 1
+                    if calls >= 3:
+                        values = list(info)
+                        values[1 if field == "st_ino" else 2] += 1
+                        return os.stat_result(values)
+                return info
+
+            with self.subTest(field=field), patch.object(Path, "stat", stat):
+                with self.assertRaises(gate.Refusal):
+                    self.proc.uid_threads(1000)
+
+    def test_disappearance_refuses(self):
+        target = self.root / "101" / "status"
+        with self.change_before_second_sample(target.unlink):
+            with self.assertRaisesRegex(gate.Refusal, "illisible/disparu"):
+                self.proc.uid_threads(1000)
+
+    def test_unreadable_task_directory_refuses(self):
+        original = Path.iterdir
+
+        def entries(path):
+            if path.name == "task":
+                raise PermissionError("fixture task unreadable")
+            return original(path)
+
+        with patch.object(Path, "iterdir", entries):
+            with self.assertRaisesRegex(gate.Refusal, "fixture task unreadable"):
+                self.proc.uid_threads(1000)
+
+    def test_threads_contradiction_refuses(self):
+        (self.root / "101" / "task" / "102").rmdir()
+        with self.assertRaisesRegex(gate.Refusal, "compte threads incohérent"):
+            self.proc.uid_threads(1000)
+
+    def test_equal_count_task_replacement_refuses(self):
+        def replace_task():
+            (self.root / "101" / "task" / "102").rename(
+                self.root / "101" / "task" / "103")
+
+        with self.change_before_second_sample(replace_task):
+            with self.assertRaisesRegex(gate.Refusal, "task drift"):
+                self.proc.uid_threads(1000)
+
+    def test_process_creation_and_end_refuse(self):
+        original = Path.iterdir
+        for creation in (True, False):
+            calls = 0
+
+            def entries(path):
+                nonlocal calls
+                if path == self.root:
+                    calls += 1
+                    if calls == 2:
+                        if creation:
+                            self.add_process(201)
+                        else:
+                            return iter(())
+                return original(path)
+
+            with self.subTest(creation=creation):
+                with patch.object(Path, "iterdir", entries):
+                    with self.assertRaisesRegex(gate.Refusal, "process creation/end"):
+                        self.proc.uid_threads(1000)
+
+
 class AdmissionTests(unittest.TestCase):
     def setUp(self):
         self.sentinel = patch.object(
@@ -589,15 +755,15 @@ class FilesystemTests(unittest.TestCase):
             nonlocal reads
             if path == directory / "status":
                 reads += 1
-                if reads > 2:
+                if reads > 1:
                     return status.replace("Threads:\t1", "Threads:\t2")
             return original(path, *args, **kwargs)
 
         with patch.object(Path, "read_text", changed):
-            with self.assertRaisesRegex(gate.Refusal, "drift"):
+            with self.assertRaisesRegex(gate.Refusal, "threads incohérent"):
                 proc.uid_threads(UID)
         (directory / "status").unlink()
-        with self.assertRaises(FileNotFoundError):
+        with self.assertRaisesRegex(gate.Refusal, "illisible/disparu"):
             proc.uid_threads(UID)
 
 

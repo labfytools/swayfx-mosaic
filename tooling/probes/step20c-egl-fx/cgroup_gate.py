@@ -90,33 +90,66 @@ class ProcFS:
         return {"pid": pid, "uid": before.st_uid, "startticks": int(fields[19]),
                 "cgroup": lines[0][3:]}
 
+    def _thread_snapshot(self, directory, uid):
+        """Observe une durée de vie sans authentifier ses credentials mixtes."""
+        before = directory.stat()
+        status = dict(line.split(":", 1) for line in
+                      (directory / "status").read_text().splitlines()
+                      if ":" in line)
+        uids = tuple(map(int, status["Uid"].split()))
+        require(len(uids) == 4, "UID diagnostic incomplet")
+        # Foreign real UIDs contribute nothing; compare their credentials and
+        # directory lifetime across passes to detect a transition into this UID.
+        if uids[0] != uid:
+            return (int(directory.name), None, before.st_dev, before.st_ino,
+                    uids, None, None, ())
+        raw_stat = (directory / "stat").read_text()
+        pid = int(raw_stat.split("(", 1)[0].strip())
+        fields = raw_stat.rsplit(")", 1)[1].split()
+        require(pid == int(directory.name), "PID divergent pendant diagnostic")
+        lines = (directory / "cgroup").read_text().splitlines()
+        require(len(lines) == 1 and lines[0].startswith("0::/"),
+                "cgroup v1/hybride pendant diagnostic")
+        threads = int(status["Threads"])
+        tasks = tuple(sorted(entry.name for entry in
+                             (directory / "task").iterdir()))
+        require(all(name.isdecimal() for name in tasks)
+                and threads > 0 and threads == len(tasks),
+                f"PID {pid}: compte threads incohérent")
+        after = directory.stat()
+        require((before.st_dev, before.st_ino) == (after.st_dev, after.st_ino),
+                "proc identity drift pendant diagnostic")
+        return (pid, int(fields[19]), before.st_dev, before.st_ino,
+                uids, lines[0][3:], threads, tasks)
+
     def uid_threads(self, uid):
-        total = 0
-        # Every disappearing/unreadable process refuses; a snapshot never reserves.
-        for directory in self.root.iterdir():
-            if not directory.name.isdecimal():
-                continue
-            status = dict(line.split(":", 1) for line in
-                          (directory / "status").read_text().splitlines()
-                          if ":" in line)
-            observed_uid = int(status["Uid"].split()[0])
-            if observed_uid == uid:
-                before = self.identity(int(directory.name))
-                require(before["uid"] == uid, "UID drift pendant diagnostic")
-                threads = int(status["Threads"])
-                tasks = list((directory / "task").iterdir())
-                require(threads > 0 and threads == len(tasks),
-                        "compte threads incohérent")
-                after_status = dict(line.split(":", 1) for line in
-                                    (directory / "status").read_text().splitlines()
-                                    if ":" in line)
-                require(status["Uid"] == after_status["Uid"]
-                        and status["Threads"] == after_status["Threads"]
-                        and self.identity(int(directory.name)) == before,
-                        "UID/count/startticks drift pendant diagnostic")
-                total += threads
-        require(total > 0, "charge UID inconnue")
-        return total
+        """Compte le real UID ; toute incertitude observée refuse le diagnostic."""
+        try:
+            directories = {entry.name: entry for entry in self.root.iterdir()
+                           if entry.name.isdecimal()}
+            # RLIMIT_NPROC counts real-UID threads, including privileged helpers.
+            # Authentication remains exclusively in the unchanged identity().
+            before = {name: self._thread_snapshot(directory, uid)
+                      for name, directory in directories.items()}
+            after = {name: self._thread_snapshot(directory, uid)
+                     for name, directory in directories.items()}
+            final_names = {entry.name for entry in self.root.iterdir()
+                           if entry.name.isdecimal()}
+            require(final_names == set(directories),
+                    "process creation/end pendant diagnostic")
+            fields = ("pid", "startticks", "device", "inode", "UID",
+                      "cgroup", "Threads", "task")
+            for name, sample in before.items():
+                changed = [field for field, old, new in
+                           zip(fields, sample, after[name]) if old != new]
+                require(not changed,
+                        f"PID {name}: {','.join(changed)} drift pendant diagnostic")
+            total = sum(sample[6] for sample in after.values()
+                        if sample[4][0] == uid)
+            require(total > 0, "charge UID inconnue")
+            return total
+        except (OSError, ValueError, KeyError, IndexError) as error:
+            raise Refusal(f"proc diagnostic illisible/disparu: {error}") from error
 
     def nproc(self):
         return resource.getrlimit(resource.RLIMIT_NPROC)
