@@ -97,6 +97,10 @@ Resolve contradictory canonical documents **before** implementing behavior.
 3. Use existing C, Sway/wlroots/SceneFX conventions. Keep ownership/lifetimes,
    container identity, popup hierarchy, pending/current state and output
    coordinates explicit. Add regression tests for changed behavior.
+   For Python probe tools, use readable PEP 8 formatting, short functions and
+   docstrings explaining effects and refusals. Comment design/ownership
+   invariants and explicit error handling; keep offline tests reproducible and
+   independently reviewed without starting native workloads.
 4. Build and test in isolated build directories; never install, reload,
    restart or replace the **running desktop session**. Never operate on the
    live Sway IPC socket. Headless tests must use their own `XDG_RUNTIME_DIR`,
@@ -146,7 +150,14 @@ Resolve contradictory canonical documents **before** implementing behavior.
   checksum. The exporter validates before atomic replacement and must leave
   the previous artifact intact on failure. Never force-apply hunks.
 - Do not modify git history, branches, remotes or package version/pins without
-  an explicit scoped reason. **No commit or push unless the user requests it.**
+  an explicit scoped reason. For this repository, Codex must commit each
+  coherent batch after documentation, applicable tests and independent review,
+  then push origin followed by github and verify that both remote branch SHAs
+  match the intended commit. This permanent user instruction excludes force
+  pushes, upstream pushes, history rewriting, other repositories, private
+  evidence, personal identifiers, secrets/credentials, binaries, raw logs,
+  large files and unvalidated PASS claims. It grants no production change,
+  native execution or sandbox expansion beyond the current task's scope.
 
 ## Required handoff after each task
 

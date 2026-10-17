@@ -1,5 +1,12 @@
 # Documentation
 
+[Gate 2 headless boot](design/STEP20C_HEADLESS_BOOT_GATE2.md) records the single
+V5 native failure: EXPERIMENTAL / PRISTINE_ALLOCATOR_BLOCKED / CORE_NOT_RUN,
+without private IPC or rendering proof. The [allocator triage](design/STEP20C_HEADLESS_ALLOCATOR_TRIAGE.md)
+distinguishes source inference from observed failure; any new native experiment
+requires separate approval. STEP20C remains NEXT; production multi-output
+NOT_YET_SUPPORTED.
+
 The [CORE-C V2 follow-up decision V4](design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md)
 records PARTIALLY_ADVANCED private evidence: five consumed runs, 32 output
 captures, migration/refocus and root/nested OOM SAMPLED_ONLY / PARTIALLY_FEASIBLE.
