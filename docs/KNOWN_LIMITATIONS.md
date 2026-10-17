@@ -2,10 +2,13 @@
 
 The [EGL/FX attempt](design/STEP20C_HEADLESS_EGL_FX_PROBE.md#observed-single-attempt--2026-10-17)
 failed at Bubblewrap namespace creation before the helper: EGL_NOT_RUN /
-ALLOCATOR_NOT_ATTEMPTED; budget consumed. A probe-local cgroup task-limit
-[protocol is DESIGN_ONLY](design/STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md),
-EGL_FX_RETRY_PREP_BLOCKED; new runtime NOT_RUN. No production contract or
-STEP20C status changes, and no new native execution is authorized.
+ALLOCATOR_NOT_ATTEMPTED; budget consumed. The probe-local cgroup task-limit
+[protocol is IMPLEMENTED_OFFLINE](design/STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md),
+EXPERIMENTAL / OFFLINE_REVIEW_ACCEPTED, with inert validation only. Real manager
+qualification, including parent-death cleanup, and new EGL runtime remain
+NOT_RUN. Separate approvals are required for benign qualification and any later
+EGL attempt. No production contract or STEP20C status changes, and no new native
+execution is authorized.
 
 The [CORE-C V2 follow-up decision V4](design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md)
 records five new consumed reservations and 32 output captures, separately from

@@ -2,7 +2,8 @@
 
 Status: **EXPERIMENTAL / EGL_FX_PROBE_BLOCKED_BEFORE_HELPER / EGL_NOT_RUN / ALLOCATOR_NOT_ATTEMPTED**.
 The single historical launch budget is consumed; no retry is authorized.
-Retry preparation: **EGL_FX_RETRY_PREP_BLOCKED / runtime NOT_RUN**.
+New admission implementation: **EXPERIMENTAL / IMPLEMENTED_OFFLINE / OFFLINE_REVIEW_ACCEPTED**;
+real cgroup qualification and new EGL runtime **NOT_RUN**.
 See the [task-limit protocol](STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md).
 The source-only fixture prepares one future measurement, without authorizing execution.
 STEP20C remains NEXT; production multi-output NOT_YET_SUPPORTED.
@@ -62,8 +63,9 @@ ABI or a mandatory host device blocks preparation instead of weakening isolation
 
 ## Source-only preparation and identity boundary
 
-The [six-file fixture](../../tooling/probes/step20c-egl-fx/README.md) contains
-probe.c, prepare.py, run.py, test_probe.py, test_probe_mocks.c and README.md.
+The [eight-file fixture](../../tooling/probes/step20c-egl-fx/README.md) contains
+probe.c, prepare.py, run.py, cgroup_gate.py, test_probe.py,
+test_cgroup_admission.py, test_probe_mocks.c and README.md.
 Its README gives exact preparation and inert-test commands. prepare.py creates
 a new private mode0700 LAB, extracts SceneFX and wlroots from pinned Git
 objects, checks every extracted blob, compares compiled installed headers and
@@ -74,8 +76,8 @@ neither the target loader, ldd nor the real helper is executed.
 
 The private manifest seals argv, environments, compile commands, cc -M inputs,
 source/header/script/tool/helper hashes, ELF identities and DT_NEEDED closure.
-The prepared manifest covers 755 files, 80 ELF identities, 17 compared installed
-headers and 557 source blobs. Installed ELF bytes/Build IDs are pinned, not
+The historical prepared manifest covers 755 files, 80 ELF identities,
+17 compared installed headers and 557 source blobs. Installed ELF bytes/Build IDs are pinned, not
 reproduced from source; header/export agreement proves no binary source identity.
 Mesa EGL, swrast, GBM dri and gallium providers are explicit closure seeds;
 conditional runtime dlopen remains unobserved. The inspected ELF closure has
@@ -157,7 +159,7 @@ Read-only inspection in this mission confirms ATTEMPT with budget_consumed=1,
 stdout length 0, stderr length 71, and result cause=exit, returncode=1,
 collected=true, elapsed=0.003128459007712081 seconds, error=null.
 The diagnostic is `bwrap: Creating new namespace failed: Resource temporarily unavailable`.
-The retained launcher is byte-identical to repository run.py and applies
+The retained launcher is byte-identical to run.py at baseline `99f1fbeb` and applies
 `prlimit --nproc=256` before Bubblewrap creates namespaces.
 
 The namespace creation failed before the C helper, EGL or SceneFX started.
@@ -180,5 +182,30 @@ preparation evidence, with no new runtime success. The reservation is exhausted
 even though the helper never started. Never remove ATTEMPT, modify the old LAB,
 rerun its launcher, or reuse its digest to admit revised inputs. No new native
 process, Bubblewrap, scope, device exposure or compositor was authorized or
-executed in this follow-up. The [new protocol design](STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md)
-requires separately reviewed implementation and new conversational approval.
+executed in this incident follow-up. The subsequent
+[task-limit protocol](STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md) now records the
+source-only implementation separately from this historical result.
+
+## Subsequent cgroup admission implementation — offline only
+
+The schema2 runner implements a manager-owned probe-local scope, a blocked
+AF_UNIX peer-credential admission handshake before payload exec, inherited
+NPROC without the explicit 256 override, bounded collection and owned cleanup.
+The scope budget is TasksMax=256, RuntimeMaxSec=12s and TimeoutStopSec=2s;
+normal supervision remains bounded to 10 s including cleanup. Mocked/inert
+validation exercises the admission and refusal paths without a real scope,
+Bubblewrap or EGL helper. This establishes IMPLEMENTED_OFFLINE, with final
+review accepted after a bounded private-observer repair; it does not
+qualify real manager behavior or Mesa capacity.
+
+Fresh benign nominal and parent-death LABs require distinct manifests and budgets.
+Parent-death qualification requires external read-only observation: a dead
+supervisor cannot certify CLEANED, and its private gate.sock can remain as an
+artifact. Pre-admission manager diagnostics are not retained as raw output;
+the supervisor error remains available. These limits must stay explicit in
+the qualification handoff. Real qualification is NOT_RUN and requires new
+conversational approval after the accepted offline review. Only after benign qualification
+may a separately reviewed fresh EGL LAB be proposed for its own approval.
+The historical ATTEMPT, manifest, failure and exhausted one-launch budget
+remain unchanged. STEP20C stays NEXT; production multi-output remains
+NOT_YET_SUPPORTED.

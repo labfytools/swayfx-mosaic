@@ -13,6 +13,54 @@ from unittest.mock import patch
 import run
 
 
+class SystemctlDurationTests(unittest.TestCase):
+    """Passer la sortie CLI réelle au parseur puis à l'admission de production."""
+
+    def admission(self, runtime="12s", stop="2s"):
+        import test_cgroup_admission as fixtures
+        gate = run.gate.module
+        fixture = fixtures.AdmissionTests()
+        fixture.setUp()
+        self.addCleanup(fixture.doCleanups)
+        evidence = fixture.preflight()
+        fixture.cgroups.present = True
+        properties = {
+            "Id": fixtures.SPEC["unit"], "Description": fixtures.SPEC["description"],
+            "InvocationID": "c" * 32, "ControlGroup": fixtures.GROUP,
+            "Delegate": "yes", "TasksMax": "256", "KillMode": "control-group",
+            "RuntimeMaxUSec": runtime, "TimeoutStopUSec": stop,
+        }
+        # Literal CLI text, independently of POLICY. No systemctl is spawned.
+        text = "\n".join(f"{key}={value}" for key, value in properties.items()
+                         if value is not None)
+        manager = gate.SystemManager(fixtures.UID, popen=fixtures.native_spawn_forbidden)
+
+        def captured(argv, deadline):
+            if "--user" in argv:
+                return text
+            return "\n".join(f"{key}={value}" for key, value in fixture.manager.owner.items())
+
+        with patch.object(manager, "call", side_effect=captured) as capture:
+            receipt = gate.admit(fixtures.SPEC, evidence, 43, fixture.proc,
+                                 fixture.cgroups, manager, 1)
+        self.addCleanup(os.close, receipt["pidfd"])
+        self.assertIn("show", capture.call_args_list[0].args[0])
+        return receipt
+
+    def test_rendered_durations_pass_actual_show_parser_and_admission(self):
+        receipt = self.admission()
+        self.assertEqual(receipt["properties"]["RuntimeMaxUSec"], "12s")
+        self.assertEqual(receipt["properties"]["TimeoutStopUSec"], "2s")
+
+    def test_infinite_absent_and_different_durations_are_refused(self):
+        for runtime, stop in (("infinity", "2s"), (None, "2s"), ("10s", "2s"),
+                              ("12s", "infinity"), ("12s", None), ("12s", "3s"),
+                              ("12000000", "2000000")):
+            with self.subTest(runtime=runtime, stop=stop):
+                with self.assertRaisesRegex(run.gate.module.Refusal, "propriétés/budget"):
+                    self.admission(runtime, stop)
+
+
 class ProtocolTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -23,14 +71,21 @@ class ProtocolTests(unittest.TestCase):
         (self.lab / "fixture").mkdir()
         (self.lab / "bin/probe").write_bytes(b"INERT-NOT-ELF")
         (self.lab / "fixture/run.py").write_text("# inert\n")
+        (self.lab / "fixture/cgroup_gate.py").write_text("# inert gate\n")
         self.files = [self.lab / "bin/probe", self.lab / "fixture/run.py",
+                      self.lab / "fixture/cgroup_gate.py", Path("/usr/bin/python3"),
+                      Path("/usr/bin/systemd-run"), Path("/usr/bin/systemctl"),
+                      Path("/usr/bin/env"), Path("/usr/bin/readelf"),
                       Path("/usr/bin/bwrap"), Path("/usr/bin/prlimit")]
         self.manifest = {
-            "schema": 1, "lab": str(self.lab), "argv": run.command(self.lab),
+            "schema": 2, "kind": "egl", "qualification_mode": "nominal",
+            "scope": run.gate.policy("a" * 32), "lab": str(self.lab), "argv": run.command(self.lab),
             "environment": run.ENV, "supervisor_environment": run.HOST_ENV,
             "files": {str(path): {"sha256": run.digest(path), "resolved": str(path.resolve())}
                       for path in self.files},
         }
+
+        self.manifest["scope_argv"] = run.gate.sealed_scope_argv(self.lab, self.manifest)
 
     def seal(self):
         (self.lab / "manifest.json").write_text(json.dumps(self.manifest))
@@ -44,7 +99,7 @@ class ProtocolTests(unittest.TestCase):
             return run.verify(self.lab, seal)
 
     def test_valid_identity(self):
-        self.assertEqual(self.verify()["schema"], 1)
+        self.assertEqual(self.verify()["schema"], 2)
 
     def test_manifest_drift(self):
         seal = self.seal()
@@ -63,6 +118,22 @@ class ProtocolTests(unittest.TestCase):
         (self.lab / "fixture/run.py").write_text("# changed\n")
         with self.assertRaises(run.Refusal):
             self.verify(seal)
+
+    def test_scope_argv_and_policy_drift(self):
+        self.manifest["scope_argv"].append("--property=TasksMax=infinity")
+        with self.assertRaises(run.Refusal):
+            self.verify()
+        self.manifest["scope_argv"] = run.gate.sealed_scope_argv(self.lab, self.manifest)
+        self.manifest["scope"]["properties"] = {"TasksMax": "infinity"}
+        with self.assertRaises(run.Refusal):
+            self.verify()
+
+    def test_helper_drift_refuses_before_import(self):
+        seal = self.seal()
+        (self.lab / "fixture/cgroup_gate.py").write_text("raise AssertionError('import')")
+        with patch.object(run._SealedHelper, "__getattr__", side_effect=AssertionError("import")):
+            with self.assertRaisesRegex(run.Refusal, "helper"):
+                self.verify(seal)
 
     def test_forbidden_mount_and_devices(self):
         for device in ("/dev/dri", "/dev/input", "/dev/udmabuf", "/etc", "/sys", "/run/user"):
@@ -113,7 +184,7 @@ class ProtocolTests(unittest.TestCase):
     def test_invalid_identity_stops_before_native_boundary(self):
         with patch.object(sys, "argv", ["run.py", "--lab", str(self.lab), "--manifest-sha256", "bad",
                                        "--approve-native-probe"]), \
-                patch.object(run, "supervise", side_effect=AssertionError("native boundary")), \
+                patch.object(run.gate, "run_scope", side_effect=AssertionError("native boundary")), \
                 contextlib.redirect_stderr(io.StringIO()):
             self.assertEqual(run.main(), 20)
         self.assertFalse((self.lab / "ATTEMPT").exists())
@@ -127,9 +198,12 @@ class ProtocolTests(unittest.TestCase):
 
     def test_spawn_failure_consumes_budget(self):
         arguments = ["run.py", "--lab", str(self.lab), "--manifest-sha256", "test", "--approve-native-probe"]
+        def spawn_failure(lab, manifest, reserve, journal):
+            reserve({"mock": True})
+            return {"cause": "spawn_failure", "error": "mock spawn failure", "collected": True}, [b"", b""]
         with patch.object(sys, "argv", arguments), \
                 patch.object(run, "verify", return_value=self.manifest), \
-                patch.object(run, "supervise", side_effect=OSError("mock spawn failure")) as native, \
+                patch.object(run.gate, "run_scope", side_effect=spawn_failure) as native, \
                 contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             self.assertEqual(run.main(), 20)
             self.assertEqual(run.main(), 20)
