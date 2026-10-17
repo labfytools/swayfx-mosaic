@@ -1,6 +1,9 @@
 # STEP20C — isolated EGL/FX probe preparation
 
-Status: **EXPERIMENTAL / EGL_FX_PROBE_READY_FOR_APPROVAL / runtime NOT_RUN**.
+Status: **EXPERIMENTAL / EGL_FX_PROBE_BLOCKED_BEFORE_HELPER / EGL_NOT_RUN / ALLOCATOR_NOT_ATTEMPTED**.
+The single historical launch budget is consumed; no retry is authorized.
+Retry preparation: **EGL_FX_RETRY_PREP_BLOCKED / runtime NOT_RUN**.
+See the [task-limit protocol](STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md).
 The source-only fixture prepares one future measurement, without authorizing execution.
 STEP20C remains NEXT; production multi-output NOT_YET_SUPPORTED.
 The [Gate 2 V5 failure](STEP20C_HEADLESS_BOOT_GATE2.md) remains
@@ -80,7 +83,7 @@ no RPATH/RUNPATH; prepare.py does not enforce a general RPATH rejection policy.
 Licences remain in private source archives; no binary, raw log or private
 manifest belongs in Git.
 
-## Fixed confinement and unconsumed budget
+## Historical pre-attempt confinement and budget
 
 run.command fixes prlimit then Bubblewrap with --unshare-user --unshare-all
 --disable-userns --new-session --die-with-parent --clearenv, read-only /usr,
@@ -105,7 +108,7 @@ its descendants. Unproven collection is failure. This provides no hostile
 same-UID-peer guarantee. Receipts/raw channels stay bounded and private, with
 atomic writes/fsync. No systemd scope, compositor, client, socket or capture.
 
-## Preparation and approval boundary
+## Historical pre-attempt preparation and approval boundary
 
 Offline evidence: 23 Python tests and eight inert C-mock scenarios passed;
 the real helper passed C17 syntax checking and linking without execution.
@@ -123,7 +126,8 @@ qualifies preparation only; software EGL/FX success remains unmeasured.
 
 The default run.py entrypoint only verifies and prints a passive plan: no files
 created, Bubblewrap or ELF launched. Copy the manifest digest from the reviewed
-preparation; do not recompute it to accept drift. A future command has this shape:
+preparation; do not recompute it to accept drift. The historical command template below is retained for provenance only; it is
+not an admissible retry procedure:
 
 ```sh
 /usr/bin/env -i PATH=/usr/bin LC_ALL=C /usr/bin/python3 -I \
@@ -138,3 +142,43 @@ failure, forbids retry. Existing ATTEMPT also refuses the passive plan.
 Invoking the real helper, even --version, remains forbidden in this preparation.
 No device access, compositor, scope, live IPC, installation or production ABI
 change is authorized. Runtime remains NOT_RUN.
+
+
+## Observed single attempt — 2026-10-17
+
+This dated result supersedes the pre-attempt READY_FOR_APPROVAL and unconsumed
+budget statements above, which remain historical evidence. The approved launch
+was made from published commit `99f1fbeb4010c7f3ff82c97138431a3c0c5c387c`.
+The private historical LAB is retained locally, unchanged; neither its private
+manifest nor raw logs are published. Its reviewed manifest SHA256 is
+`205ca2780bb1ca4d21a71beabd46b9aef27d9b6b64fa6345c749f7f3280e75c8`.
+
+Read-only inspection in this mission confirms ATTEMPT with budget_consumed=1,
+stdout length 0, stderr length 71, and result cause=exit, returncode=1,
+collected=true, elapsed=0.003128459007712081 seconds, error=null.
+The diagnostic is `bwrap: Creating new namespace failed: Resource temporarily unavailable`.
+The retained launcher is byte-identical to repository run.py and applies
+`prlimit --nproc=256` before Bubblewrap creates namespaces.
+
+The namespace creation failed before the C helper, EGL or SceneFX started.
+No EGL identity, capability, FD, allocation, texture or target was measured.
+The strict verdict is **EGL_FX_PROBE_BLOCKED_BEFORE_HELPER / EGL_NOT_RUN /
+ALLOCATOR_NOT_ATTEMPTED**, not an EGL initialization failure. Collection of
+the child is recorded; it does not establish renderer success.
+
+The supplied incident diagnosis reports 93 processes / 1126 threads for real
+UID 1000, with zero procfs read errors, and the normal process limit 60706.
+These are historical measurements supplied with the ticket, not a new atomic
+procfs snapshot. Linux RLIMIT_NPROC accounts threads of the real UID. Setting
+256 below that reported load is the very probable cause of the immediate
+EAGAIN-like namespace failure; no syscall trace proves which kernel counter
+failed. Namespace permission metadata alone cannot eliminate every other cause.
+See the [Linux manual](https://man7.org/linux/man-pages/man2/getrlimit.2.html).
+
+The previous 755 sealed dependency identities and linked helper remain passive
+preparation evidence, with no new runtime success. The reservation is exhausted
+even though the helper never started. Never remove ATTEMPT, modify the old LAB,
+rerun its launcher, or reuse its digest to admit revised inputs. No new native
+process, Bubblewrap, scope, device exposure or compositor was authorized or
+executed in this follow-up. The [new protocol design](STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md)
+requires separately reviewed implementation and new conversational approval.

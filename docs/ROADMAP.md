@@ -1,5 +1,12 @@
 # Roadmap
 
+The [EGL/FX attempt](design/STEP20C_HEADLESS_EGL_FX_PROBE.md#observed-single-attempt--2026-10-17)
+failed at Bubblewrap namespace creation before the helper: EGL_NOT_RUN /
+ALLOCATOR_NOT_ATTEMPTED; budget consumed. A probe-local cgroup task-limit
+[protocol is DESIGN_ONLY](design/STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md),
+EGL_FX_RETRY_PREP_BLOCKED; new runtime NOT_RUN. No production contract or
+STEP20C status changes, and no new native execution is authorized.
+
 The [CORE-C V2 follow-up V4](design/STEP20C_COREC_V2_INTEGRATION_DECISION_V4.md)
 is PARTIALLY_ADVANCED: five consumed runs/32 output captures, sampled migration/
 refocus and root/nested OOM progress, fullscreen comparison and native G3

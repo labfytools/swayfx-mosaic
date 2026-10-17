@@ -1,5 +1,14 @@
 # STEP20C — fixture source-only EGL/FX
 
+**Mise à jour du 17/10/2026 : essai unique consommé, BLOCKED_BEFORE_HELPER.**
+Bubblewrap a échoué à créer le namespace ; EGL_NOT_RUN /
+ALLOCATOR_NOT_ATTEMPTED. Les instructions ci-dessous décrivent la préparation
+historique et ne constituent plus une procédure de relance admissible.
+Ne relancer aucun ancien LAB. Le [nouveau protocole de limite de tâches](../../../docs/design/STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md)
+est DESIGN_ONLY / EGL_FX_RETRY_PREP_BLOCKED : admission cgroup à implémenter,
+tester hors ligne et qualifier séparément avant toute nouvelle autorisation EGL.
+Le code historique reste inchangé ; ses tests ne valident pas ce nouveau protocole.
+
 **EXPERIMENTAL / runtime NOT_RUN.** Cette fixture prépare une unique mesure
 future. Elle n'ajoute aucune dépendance de production, ne démarre aucun
 compositeur et ne démontre ni allocation ni rendu. Le document de référence est

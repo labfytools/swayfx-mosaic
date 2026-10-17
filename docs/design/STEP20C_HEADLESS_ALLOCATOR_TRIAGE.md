@@ -89,3 +89,15 @@ This helper is a proposal, NOT_RUN: measuring EGL identity/caps/formats cannot
 resolve an absent allocator and would not qualify boot, rendering or CORE. If it finds no compatible allocation under the existing containment,
 retain PRISTINE_ALLOCATOR_BLOCKED / CORE_NOT_RUN and report the limitation;
 any renderer or sandbox design change needs its own scoped decision.
+
+
+## EGL/FX follow-up — 2026-10-17
+
+The [single EGL/FX attempt](STEP20C_HEADLESS_EGL_FX_PROBE.md#observed-single-attempt--2026-10-17)
+consumed its reservation but failed at Bubblewrap namespace creation before the
+helper. EGL_NOT_RUN / ALLOCATOR_NOT_ATTEMPTED: it supplies no new allocator or
+renderer evidence and leaves V5 PRISTINE_ALLOCATOR_BLOCKED / CORE_NOT_RUN intact.
+The [task-limit design](STEP20C_EGL_FX_TASK_LIMIT_PROTOCOL.md) is offline only;
+its proposed cgroup/scope is a new protocol, not authorized by the older
+scope-free proposal above. New qualification and EGL execution need separate
+approvals. Historical LABs and raw verdicts remain immutable.
