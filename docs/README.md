@@ -1,5 +1,10 @@
 # Documentation
 
+[Isolated EGL/FX probe preparation](design/STEP20C_HEADLESS_EGL_FX_PROBE.md)
+is EXPERIMENTAL / EGL_FX_PROBE_READY_FOR_APPROVAL; its source-only fixture and
+reported offline tests await independent validation. Runtime NOT_RUN; separate
+conversational approval is required for the single native measurement.
+
 [Gate 2 headless boot](design/STEP20C_HEADLESS_BOOT_GATE2.md) records the single
 V5 native failure: EXPERIMENTAL / PRISTINE_ALLOCATOR_BLOCKED / CORE_NOT_RUN,
 without private IPC or rendering proof. The [allocator triage](design/STEP20C_HEADLESS_ALLOCATOR_TRIAGE.md)
