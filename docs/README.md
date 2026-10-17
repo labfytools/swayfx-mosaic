@@ -1,5 +1,10 @@
 # Documentation
 
+[First physical Mosaic session](design/MOSAIC_FIRST_PHYSICAL_SESSION.md)
+defines the bounded experimental eDP-1 trial and manual TTY return to Stable.
+Preparation is source-only; PHYSICAL_NOT_RUN. No greeter/default selection or
+production contract change is authorized.
+
 [Isolated EGL/FX probe](design/STEP20C_HEADLESS_EGL_FX_PROBE.md)
 records the single 2026-10-17 namespace failure: EXPERIMENTAL /
 EGL_FX_PROBE_BLOCKED_BEFORE_HELPER / EGL_NOT_RUN / ALLOCATOR_NOT_ATTEMPTED.
